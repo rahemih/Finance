@@ -27,7 +27,8 @@ Auto Trading: DISABLED
 
 ## Governance
 
-Bootstrap task: FIN-P00-WA-001 = CANONICAL_COMPLETE  
+Bootstrap task: FIN-P00-WA-001 = CANONICAL_COMPLETE
+Reconciliation PR: #2  
 Bootstrap lock: RELEASED after reconciliation merge  
 Open critical incidents: none  
 Open production blockers: n/a (pre-development)
