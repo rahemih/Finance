@@ -15,11 +15,34 @@ Finance / NEXUS QUANT is a governance-first private-team project.
 
 ## Branch naming
 
-- `feat/<task-id>-<slug>`
-- `fix/<task-id>-<slug>`
-- `docs/<task-id>-<slug>`
-- `chore/<task-id>-<slug>`
-- `bootstrap/<slug>`
+Canonical branch: `main`.
+
+Human-created task branches must use:
+
+`<type>/<TASK-ID>-<slug>`
+
+Allowed types:
+
+- `feat`
+- `fix`
+- `docs`
+- `chore`
+- `research`
+- `security`
+- `perf`
+- `test`
+- `refactor`
+- `bootstrap`
+
+Example:
+
+`chore/FIN-P00-WB-001-branch-hygiene`
+
+Approved automation prefixes such as `dependabot/` are exempt.
+
+Merged branches are deleted automatically. Unmerged stale branches are reported but never auto-deleted only because of age.
+
+See `docs/00-governance/BRANCH-POLICY.md`.
 
 ## Commits
 
