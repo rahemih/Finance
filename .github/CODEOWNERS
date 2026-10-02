@@ -1,0 +1,10 @@
+# Canonical owner. Expand to team aliases when the team is onboarded.
+* @rahemih
+
+# High-risk domains
+/docs/00-governance/ @rahemih
+/docs/07-risk/ @rahemih
+/docs/08-execution/ @rahemih
+/docs/10-security/ @rahemih
+/.github/ @rahemih
+/contracts/ @rahemih
