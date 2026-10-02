@@ -1,0 +1,26 @@
+name: Governance Verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Verify governance baseline
+        run: python3 scripts/verify_governance.py
+      - name: Validate task contract schema JSON
+        run: python3 -m json.tool contracts/schemas/task-contract.schema.json >/dev/null

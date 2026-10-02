@@ -1,0 +1,50 @@
+name: Governed Task
+description: Create a governed implementation/research task
+title: "[TASK] "
+labels: []
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: Task ID
+      placeholder: FIN-P00-WA-001
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / Out of Scope
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk
+      options:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - CRITICAL
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence and tests
+    validations:
+      required: true
+  - type: checkboxes
+    id: guard
+    attributes:
+      label: Readiness
+      options:
+        - label: Task Contract exists
+          required: true
+        - label: Dependencies and active locks were checked
+          required: true
