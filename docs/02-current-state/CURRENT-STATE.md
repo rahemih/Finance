@@ -6,8 +6,7 @@ Last reconciled: 2026-10-02
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Bootstrap merge SHA: `758c3a095b2872864dfbd9d3a1488282cc8a6219`  
-Bootstrap reconciliation SHA: `7ca3ee90545eef9b30d64a270837c5bb6c0a0c3e`
+Current canonical HEAD: `205eccceb4d966d6f07fc97e4aec2fe580763ebf`
 
 ## Roadmap
 
@@ -19,7 +18,7 @@ Direct roadmap mutation: FORBIDDEN
 
 Development: NOT_STARTED  
 Current Phase: P00 — Charter & Governance  
-Phase state: ACTIVE
+Phase state: READY
 
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
@@ -28,19 +27,24 @@ Auto Trading: DISABLED
 
 ## Governance
 
-Bootstrap task: FIN-P00-WA-001 = CANONICAL_COMPLETE  
-Active task: FIN-P00-WB-001 — Automated branch hygiene and naming policy  
-Active lock: LOCK-FIN-P00-WB-001-01  
+FIN-P00-WA-001 = CANONICAL_COMPLETE  
+FIN-P00-WB-001 = CANONICAL_COMPLETE  
+Active task: none  
+Active locks: none  
 Open critical incidents: none  
 Repository-admin hardening Human Gate: Issue #3
 
-## Branch hygiene target
+## Branch hygiene
 
-- merged same-repository PR branches: auto-delete
-- unmerged stale branch threshold: 30 days (report-only)
+- canonical branches present after cleanup: `main` only
+- merged same-repository PR branches: auto-delete enabled by workflow
+- previously merged branches: auto-cleaned on push/schedule/dispatch
+- stale unmerged branch threshold: 30 days, report-only
 - non-canonical branch warning threshold: 12
-- governed PR branch naming: enforced by CI
+- governed PR branch naming: enforced by Governance Verify
+- Branch Hygiene run: `37050133661` = SUCCESS
+- Post-merge Governance run: `37050133697` = SUCCESS
 
 ## Next
 
-Validate FIN-P00-WB-001 in Governance Verify, merge via PR, run post-merge Branch Hygiene audit, release lock and reconcile state.
+Complete the repository-admin settings tracked in Issue #3 (main Ruleset / merge-policy hardening), then continue Phase 0 governed work.
