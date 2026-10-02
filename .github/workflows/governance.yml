@@ -19,8 +19,13 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
       - name: Verify governance baseline
         run: python3 scripts/verify_governance.py
       - name: Validate task contract schema JSON
         run: python3 -m json.tool contracts/schemas/task-contract.schema.json >/dev/null
+      - name: Validate PR branch name
+        if: github.event_name == 'pull_request'
+        env:
+          PR_HEAD_REF: ${{ github.head_ref }}
+        run: python3 scripts/check_branch_name.py
