@@ -4,7 +4,7 @@ This catalog is the canonical index of governed work.
 
 | Task ID | Phase | Title | Risk | Status | Contract | Lock |
 |---|---|---|---|---|---|---|
-| FIN-P00-WA-001 | P00 | Repository foundation bootstrap | MEDIUM | ACTIVE | bootstrap exception: initial governance creation | LOCK-FIN-P00-WA-001-01 |
+| FIN-P00-WA-001 | P00 | Repository foundation bootstrap | MEDIUM | CANONICAL_COMPLETE | bootstrap exception: initial governance creation | RELEASED |
 
 ## Rules
 
