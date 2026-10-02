@@ -1,0 +1,102 @@
+{
+  "task_id": "FIN-P00-WB-001",
+  "phase": "P00",
+  "workstream": "WB",
+  "objective": "Establish automated branch hygiene and naming controls so merged branches are removed automatically and stale unmerged branches are surfaced without destructive deletion.",
+  "scope": [
+    "Add branch naming policy validation for pull requests",
+    "Delete same-repository merged PR branches automatically",
+    "Run a daily branch hygiene audit",
+    "Report stale unmerged branches older than 30 days",
+    "Warn when branch count exceeds 12",
+    "Document branch lifecycle policy"
+  ],
+  "out_of_scope": [
+    "Delete unmerged branches automatically",
+    "Change repository visibility",
+    "Change branch protection/rulesets through GitHub admin settings",
+    "Change secrets or credentials",
+    "Enable live trading or runtime infrastructure"
+  ],
+  "dependencies": [
+    "FIN-P00-WA-001"
+  ],
+  "read_paths": [
+    ".github/**",
+    "docs/00-governance/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "contracts/**",
+    "scripts/**",
+    "CONTRIBUTING.md"
+  ],
+  "write_paths": [
+    ".github/workflows/**",
+    "docs/00-governance/BRANCH-POLICY.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WB-001.json",
+    "scripts/check_branch_name.py",
+    "CONTRIBUTING.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Task Contract schema validation",
+    "Governance Verify",
+    "Branch-name validation on pull_request",
+    "Workflow syntax acceptance by GitHub Actions"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Confirm workflow uses least-privilege permissions",
+    "Confirm unmerged branches are never auto-deleted",
+    "Confirm main is excluded from cleanup"
+  ],
+  "evidence": [
+    "PR number",
+    "Head SHA",
+    "Governance Verify run ID",
+    "Merge SHA",
+    "Post-merge branch hygiene workflow evidence",
+    "Task Catalog reconciliation",
+    "CURRENT-STATE reconciliation"
+  ],
+  "rollback": "Revert the branch hygiene workflow and branch-name validation commit; branch deletion is limited to merged same-repository PR heads and cannot delete main.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P00-WA-001 is CANONICAL_COMPLETE",
+    "main HEAD recorded",
+    "No conflicting active branch-hygiene task",
+    "Task Contract validates"
+  ],
+  "definition_of_done": [
+    "Branch policy documented",
+    "Merged PR branches auto-delete",
+    "Stale unmerged branches are report-only",
+    "PR branch naming is validated",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge verification passes",
+    "Task Catalog and CURRENT-STATE reconciled",
+    "Lock released"
+  ]
+}
