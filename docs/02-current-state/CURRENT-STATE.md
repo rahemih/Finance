@@ -24,7 +24,8 @@ Milestones: `P00–P24` created
 P01-A issue: `HOS-107 = Done`  
 P01-B issue: `HOS-109`  
 Open-source registry issue: `HOS-110`  
-Frontend UI/UX registry issue: `HOS-112`
+Frontend UI/UX registry issue: `HOS-112`  
+Agent framework/ready-agent registry issue: `HOS-113`
 
 ## Roadmap / Gate State
 
@@ -76,9 +77,9 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WU-001 = IN_REVIEW`  
-Active task branch: `research/FIN-P01-WU-001-frontend-uiux-registry`  
-Active locks: none  
+Active task: `FIN-P01-WG-001 = IN_REVIEW`  
+Active task branch: `research/FIN-P01-WG-001-agent-registry`  
+Active locks: `LOCK-FIN-P01-WG-001-01`  
 Open critical incidents: none
 
 ## Safety
@@ -154,7 +155,7 @@ Lock: RELEASED
 
 ## Next
 
-1. Canonically close the supporting frontend UI/UX and excellence baseline task `FIN-P01-WU-001`.
+1. Canonically close the supporting agent framework / ready-agent registry task `FIN-P01-WG-001`.
 2. Continue to P01-D — Compliance / Jurisdiction Matrix.
 
 ## Frontend UI/UX and excellence baseline
@@ -182,3 +183,24 @@ Closure evidence:
 - Linear issue: `HOS-112`
 - Runtime frontend implementation: NOT_PERFORMED
 - Production frontend dependency selection: NOT_PERFORMED
+
+
+## Agent framework / ready-agent registry
+
+Task: `FIN-P01-WG-001`  
+State: IN_REVIEW  
+Linear: `HOS-113`  
+Lock: `LOCK-FIN-P01-WG-001-01`
+
+Artifacts:
+- `docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md`
+- `docs/03-research/agent-framework-ready-agent-registry.json`
+- `docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md`
+
+Canonical A0-A10 roles: AUTHORITATIVE.  
+External framework production selection: NOT_AUTHORIZED.  
+Runtime agent dependency installation: NOT_PERFORMED.  
+Agent broker/fund/credential authority: NONE.  
+P02-F remains the implementation authority for agent architecture.  
+Live Trading: DISABLED.  
+Auto Trading: DISABLED.

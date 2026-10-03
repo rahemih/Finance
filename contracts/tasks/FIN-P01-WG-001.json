@@ -1,0 +1,104 @@
+{
+  "task_id": "FIN-P01-WG-001",
+  "phase": "P01",
+  "workstream": "WG",
+  "objective": "Create a governed registry and integration baseline for agent frameworks, finance-specific ready-agent projects, interoperability protocols, evaluation and observability candidates without installing production dependencies or granting trading authority.",
+  "scope": [
+    "Evaluate agent frameworks and finance-specific ready-agent projects",
+    "Map external agent patterns to canonical A0-A10 roles and bounded specialist agents",
+    "Classify orchestration, interoperability, evaluation and observability candidates",
+    "Define agent authority, tool access, spawning, handoff, provenance, tracing, evaluation and failure behavior",
+    "Define financial-agent safety gates and Human Gate boundaries",
+    "Repair stale Current State entry for FIN-P01-WU-001",
+    "Preserve P02-F as the canonical agent architecture and authority implementation phase"
+  ],
+  "out_of_scope": [
+    "Install agent runtime dependencies",
+    "Select a production agent framework",
+    "Create model/provider credentials",
+    "Place orders or connect a live execution account",
+    "Move funds",
+    "Change risk ceilings",
+    "Enable Live Trading",
+    "Enable Auto Trading",
+    "Modify the frozen Master Roadmap"
+  ],
+  "dependencies": [
+    "FIN-P00-WF-001",
+    "FIN-P01-WR-001",
+    "FIN-P01-WU-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WG-001.json",
+    "docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md",
+    "docs/03-research/agent-framework-ready-agent-registry.json",
+    "docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md",
+    "docs/09-agents/AGENT-REGISTRY.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A1", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "LINEAR_READ", "LINEAR_WRITE_GOVERNED", "CI_READ", "CI_EXECUTE"],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Registry JSON parses successfully",
+    "Every external candidate has a classification, role, license signal and adoption guardrail",
+    "Canonical A0-A10 roles remain authoritative",
+    "No external ready agent receives direct execution authority",
+    "P02-F remains implementation authority for agent architecture",
+    "Current State and Task Catalog reconcile cleanly"
+  ],
+  "security_tests": [
+    "No credentials or secrets",
+    "No runtime dependency installation",
+    "No recursive autonomous spawning authorization",
+    "No direct broker/order/fund authority",
+    "A5 Risk veto cannot be bypassed",
+    "A8 Security veto cannot be bypassed",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "rollback": "Revert registry and governance companion documents. No runtime code, credentials or trading state are changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "G0_GOVERNANCE_READY = PASS",
+    "FIN-P01-WR-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WU-001 = CANONICAL_COMPLETE",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Agent framework/ready-agent registry documented",
+    "Machine-readable registry committed",
+    "Agent governance integration baseline committed",
+    "Canonical Agent Registry linked to external candidate registry",
+    "Technology Matrix linked",
+    "Current State and Task Catalog reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Linear synchronized",
+    "FIN-P01-WG-001 = CANONICAL_COMPLETE"
+  ]
+}

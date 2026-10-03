@@ -325,3 +325,24 @@ These four tools are approved for immediate project **research/analysis** use wi
 ## 13. Change control
 
 Changes to this matrix require a governed Task Contract and PR. Tool availability may change independently at the platform level; when that occurs, CURRENT-STATE and Linear must be reconciled rather than silently assuming continued access.
+
+
+## Agent runtime and interoperability candidate policy
+
+Task `FIN-P01-WG-001` records agent-runtime candidates separately from ChatGPT plugins/connectors.
+
+Candidate families:
+- OpenAI Agents SDK — primary orchestration candidate for later P02-F evaluation;
+- Microsoft Agent Framework — production/polyglot alternative candidate;
+- LangGraph — durable/stateful workflow candidate;
+- PydanticAI — typed Python specialist candidate;
+- TradingAgents / FinRobot — finance-domain patterns to adapt, not trading authority;
+- MCP / A2A — interoperability candidates;
+- Promptfoo / Inspect AI — agent evaluation/red-team candidates;
+- Phoenix / Langfuse — observability candidates subject to exact license/privacy review.
+
+These are not ACTIVE production tools merely because they are listed. The effective authority remains:
+
+`Task Contract ∩ Agent Registry ∩ Toolchain Matrix ∩ Risk/Security Policy ∩ Human/Owner Gates`.
+
+No framework capability may broaden tool permissions or trading authority.
