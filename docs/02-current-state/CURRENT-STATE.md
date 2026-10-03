@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD before active G0 task: `5763339f487a30092284ec4e39b8f433372db016`  
+Current canonical HEAD before this closure PR: `b10da5bfa9afe422f21f5f92a54d4430f4609823`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -23,13 +23,12 @@ Priority: `High`
 Project Lead / Owner: `Hossein Rahemi`  
 Operational Project Manager: `A0 — Governance / Orchestrator`  
 Milestones: `P00–P24` created  
-Active Linear issue: `HOS-106`
+P00 closure issue: `HOS-106`
 
 ## Toolchain
 
 Canonical matrix: `docs/09-agents/TOOLCHAIN-MATRIX.md`  
 FIN-P00-WD-001 = CANONICAL_COMPLETE  
-Useful installed plugins/skills are documented canonically.  
 Least privilege: ENFORCED  
 Blanket Full Access: NOT AUTHORIZED BY DEFAULT
 
@@ -37,20 +36,20 @@ Blanket Full Access: NOT AUTHORIZED BY DEFAULT
 
 Frozen baseline: `docs/01-roadmap/MASTER-ROADMAP-v2.0.md`  
 Frozen Master Roadmap SHA: `d185e83fa37c67aec994cbed2e00b99e23c628a4`  
+Roadmap state: FROZEN  
 Direct roadmap mutation: FORBIDDEN
 
-Detailed roadmap: CANONICAL  
+Detailed canonical roadmap: CANONICAL  
 Execution roadmap: CANONICAL  
 FIN-P00-WE-001 = CANONICAL_COMPLETE
 
 ## Execution
 
 Development: NOT_STARTED  
-Current Phase: P00 — Charter & Governance  
-Phase state: ACTIVE / G0_VALIDATION  
-G0_GOVERNANCE_READY: PASS_PENDING_CANONICAL_MERGE
-
-P01 — Market / Provider / Compliance Research: NOT_STARTED / waiting for final G0 PASS
+P00 — Charter & Governance: CANONICAL_COMPLETE  
+G0_GOVERNANCE_READY: PASS  
+Current Phase: P01 — Market / Provider / Compliance Research  
+P01 state: READY
 
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
@@ -64,31 +63,29 @@ FIN-P00-WB-001 = CANONICAL_COMPLETE
 FIN-P00-WC-001 = CANONICAL_COMPLETE  
 FIN-P00-WD-001 = CANONICAL_COMPLETE  
 FIN-P00-WE-001 = CANONICAL_COMPLETE  
-FIN-P00-WF-001 = ACTIVE
+FIN-P00-WF-001 = CANONICAL_COMPLETE
 
-Active task: FIN-P00-WF-001 — P00 governance closure and G0 readiness  
-Active lock: LOCK-FIN-P00-WF-001-01  
+Active task: none  
+Active locks: none  
 Open critical incidents: none  
 Repository-admin hardening issue #3: CLOSED / COMPLETE
 
-## G0 audit evidence
+## G0 evidence
 
 Dossier: `docs/00-governance/G0-GOVERNANCE-READY.md`
 
-Mandatory G0 criteria: PASS in audit  
-Current gate verdict: `PASS_PENDING_CANONICAL_MERGE`
+- All mandatory G0 criteria: PASS
+- Audit PR: `#12`
+- Audit PR Governance run: `37119776839` = SUCCESS
+- Audit merge SHA: `b10da5bfa9afe422f21f5f92a54d4430f4609823`
+- Audit post-merge Governance run: `37119801569` = SUCCESS
+- Final gate verdict: `G0_GOVERNANCE_READY = PASS`
 
-Pre-task live evidence:
-- protected `main` only in branch inventory
-- active `Protect main` ruleset ID `24412077`
-- required `governance` status check
-- current pre-task main Governance run `37119475343` = SUCCESS
-- GitHub Issue #3 = CLOSED / completed
-- Secret Protection = ACTIVE via canonical UI-verification record
-- Push Protection = ACTIVE via canonical UI-verification record
-- Linear P00–P24 milestones present
-- prior P00 tasks WA–WE = CANONICAL_COMPLETE / RELEASED
+Known non-blocking observation:
+- GitHub repository is public; explicit visibility review is required in P03 before sensitive/proprietary runtime material is introduced.
 
 ## Next
 
-Merge FIN-P00-WF-001 after required Governance Verify passes. After successful post-merge verification, finalize G0 as PASS, close P00, release the lock and mark P01 READY.
+Start P01-A — Universe & Instrument Taxonomy under a new governed Task Contract.
+
+P01 research may use official sources, Exa, Legal Data Hunter, Blockscout and other approved research tools, but production providers, credentials and live execution remain unselected/disabled.
