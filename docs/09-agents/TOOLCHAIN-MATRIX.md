@@ -53,6 +53,75 @@ External plugins may provide evidence and research, but they do not override can
 
 A ChatGPT plugin being `ACTIVE` does **not** mean it is selected as a production provider. Production providers for market data, brokers, exchanges, databases, observability, news, macro data, or execution must be selected by the relevant roadmap task and architecture/risk/security gates.
 
+## 3A. Verified installed useful-plugin inventory
+
+The following installed plugins were independently re-checked on 2026-10-03 and are considered useful to this project, either as baseline tools or as conditional tools for a specific roadmap task.
+
+### Tier A — Core governance / engineering / project operations
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| GitHub | installed / ACTIVE | Canonical repository, PR, CI, governance and evidence |
+| Linear | installed / ACTIVE | Project planning, milestones, dependencies, execution tracking |
+| Figma | installed / ACTIVE | UX, diagrams, design system and design-to-code |
+| Google Drive | installed / ACTIVE | Docs/Sheets/Slides, evidence packs, exports and controlled backups |
+| Slack | installed / ACTIVE | Team coordination and operational communication |
+| Context7 | installed / ACTIVE | Current library/API documentation for implementation accuracy |
+| OpenAI Developers | installed / ACTIVE | OpenAI API/agent implementation guidance |
+| Codex Security | installed / ACTIVE | Security analysis, scanning and investigation |
+
+### Tier B — Engineering / data / runtime candidates
+
+These are useful, but **not selected production dependencies merely because they are installed**.
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Vercel | installed / ACTIVE | Deployment, workflow, observability and application hosting evaluation |
+| Neon | installed / ACTIVE | Postgres, branching, functions, storage and backend evaluation |
+| Supabase | installed / ACTIVE | Alternative Postgres/backend/auth/realtime/storage evaluation |
+| PostHog | installed / ACTIVE | Product analytics, experiments, logs and LLM analytics |
+| TinyFish | installed / ACTIVE | User-directed browser workflows and web interaction when static research is insufficient |
+
+### Tier C — Market / quant / legal intelligence
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Blockscout Blockchain Data | installed / ACTIVE | EVM on-chain intelligence |
+| Exa | installed / ACTIVE | Research, financial/news discovery and papers |
+| Wolfram | installed / ACTIVE | Exact mathematics/statistics and Quant cross-checking |
+| Legal Data Hunter | installed / ACTIVE | Regulatory/legal primary-document discovery and compliance research |
+
+### Tier D — Collaboration / knowledge / reporting
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Notion | installed / ACTIVE | Research synthesis and knowledge capture when useful; GitHub remains canonical |
+| Gmail | installed / ACTIVE | Project email workflows and later notification support |
+| Google Calendar | installed / ACTIVE | Scheduling, review gates and operational coordination |
+| Dropbox | installed / ACTIVE | Secondary artifact exchange/storage |
+| Adobe | installed / ACTIVE | PDF/document/media production and review |
+| Canva | installed / ACTIVE | Presentations and visual communication |
+| Gamma | installed / ACTIVE | Project reports, presentations and stakeholder summaries |
+
+### Tier E — Conditional / non-core installed tools
+
+These are useful only for specific scoped tasks and must not be treated as baseline runtime dependencies.
+
+| Plugin | Verified | Permitted project use |
+|---|---|---|
+| Semrush | installed / ACTIVE | SEO/traffic research only if a public documentation/product surface is later introduced |
+| Runway | installed / ACTIVE | Optional media generation for demos, onboarding or documentation |
+| Higgsfield | installed / ACTIVE | Optional branded visuals/media/prototypes |
+
+### Selection rule
+
+If two installed plugins overlap, the relevant architecture/task must select one based on requirements, cost, security, data residency, reliability, operability and exit strategy. Installation status is never an architecture decision.
+
+For example:
+- `Neon` and `Supabase` are both useful candidates; no production database/backend has been selected yet.
+- `Google Drive`, `Dropbox` and `Notion` can all store project material, but only GitHub canonical governance artifacts define engineering truth.
+- `Exa`, `TinyFish` and native web research have different roles; browser automation should be used only when interaction is required.
+
 ## 4. Skill matrix
 
 Skills do not require a separate always-on installation toggle. They are **AUTHORIZED_FOR_USE_WHEN_TRIGGERED** and must be loaded/invoked only when the relevant task calls for them.
