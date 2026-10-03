@@ -1,0 +1,633 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WA-001",
+  "generated_at": "2026-10-03",
+  "state": "research_candidate_registry",
+  "production_selection": false,
+  "live_trading": false,
+  "auto_trading": false,
+  "identity_rules": {
+    "provider_alias_is_canonical": false,
+    "instrument_type_is_identity_dimension": true,
+    "venue_and_settlement_required_for_derivatives": true,
+    "forex_volume_global_label_forbidden": true,
+    "forex_volume_allowed_labels": [
+      "BROKER_VOLUME_PROXY",
+      "TICK_VOLUME_PROXY",
+      "ECN_VOLUME_PROXY",
+      "FUTURES_VOLUME_PROXY",
+      "AGGREGATED_PROXY"
+    ],
+    "admission_states": [
+      "DISCOVERED",
+      "RESEARCH_CANDIDATE",
+      "DATA_ELIGIBLE",
+      "COMPLIANCE_ELIGIBLE",
+      "ARCHITECTURE_SUPPORTED",
+      "DEMO_ELIGIBLE",
+      "SHADOW_ELIGIBLE",
+      "LIVE_ELIGIBLE"
+    ]
+  },
+  "expansion_policy": {
+    "numeric_thresholds": "TBD_P01_B",
+    "required_dimensions": [
+      "data_quality",
+      "market_quality",
+      "operations",
+      "compliance_and_rights"
+    ],
+    "notes": "No asset becomes active merely because a provider lists it."
+  },
+  "instruments": [
+    {
+      "canonical_id": "CRYPTO:BTC/USD:SPOT",
+      "asset_class": "crypto",
+      "role": "tradable_candidate",
+      "instrument_type": "spot",
+      "base": "BTC",
+      "quote": "USD",
+      "venue_scope": "provider_neutral",
+      "settlement_currency": "TBD_BY_VENUE",
+      "expiry_model": "none",
+      "trading_hours_model": "24x7",
+      "price_source_class": "spot_venue",
+      "volume_source_class": "centralized_actual_per_venue",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "chain_context": {
+        "network": "Bitcoin",
+        "identifier": "bitcoin-mainnet"
+      },
+      "source_refs": [
+        "CME_CRYPTO",
+        "COINBASE_INSTRUMENTS"
+      ]
+    },
+    {
+      "canonical_id": "CRYPTO:BTC/USD:PERP:LINEAR",
+      "asset_class": "crypto",
+      "role": "tradable_candidate",
+      "instrument_type": "perpetual",
+      "base": "BTC",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_template",
+      "settlement_currency": "TBD_BY_VENUE",
+      "collateral_currency": "TBD_BY_VENUE",
+      "expiry_model": "perpetual",
+      "trading_hours_model": "24x7",
+      "price_source_class": "derivatives_venue",
+      "volume_source_class": "centralized_actual_per_venue",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "COINBASE_INSTRUMENTS"
+      ]
+    },
+    {
+      "canonical_id": "CRYPTO:ETH/USD:SPOT",
+      "asset_class": "crypto",
+      "role": "tradable_candidate",
+      "instrument_type": "spot",
+      "base": "ETH",
+      "quote": "USD",
+      "venue_scope": "provider_neutral",
+      "settlement_currency": "TBD_BY_VENUE",
+      "expiry_model": "none",
+      "trading_hours_model": "24x7",
+      "price_source_class": "spot_venue",
+      "volume_source_class": "centralized_actual_per_venue",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "chain_context": {
+        "network": "Ethereum",
+        "chain_id": "1",
+        "native_currency": "ETH",
+        "verified_via": "Blockscout"
+      },
+      "source_refs": [
+        "CME_CRYPTO",
+        "BLOCKSCOUT_ETHEREUM",
+        "COINBASE_INSTRUMENTS"
+      ]
+    },
+    {
+      "canonical_id": "CRYPTO:ETH/USD:PERP:LINEAR",
+      "asset_class": "crypto",
+      "role": "tradable_candidate",
+      "instrument_type": "perpetual",
+      "base": "ETH",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_template",
+      "settlement_currency": "TBD_BY_VENUE",
+      "collateral_currency": "TBD_BY_VENUE",
+      "expiry_model": "perpetual",
+      "trading_hours_model": "24x7",
+      "price_source_class": "derivatives_venue",
+      "volume_source_class": "centralized_actual_per_venue",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "COINBASE_INSTRUMENTS"
+      ]
+    },
+    {
+      "canonical_id": "FX:EUR/USD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "EUR",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/JPY:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "JPY",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:GBP/USD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "GBP",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:AUD/USD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "AUD",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/CAD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "CAD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/CHF:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "CHF",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:NZD/USD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "NZD",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "CORE",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:EUR/GBP:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "EUR",
+      "quote": "GBP",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:EUR/JPY:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "EUR",
+      "quote": "JPY",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:GBP/JPY:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "GBP",
+      "quote": "JPY",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/CNY:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "CNY",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/HKD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "HKD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/SGD:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "SGD",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/MXN:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "MXN",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "FX:USD/CNH:SPOT_OTC",
+      "asset_class": "forex",
+      "role": "tradable_candidate",
+      "instrument_type": "spot_otc",
+      "base": "USD",
+      "quote": "CNH",
+      "venue_scope": "provider_neutral_otc",
+      "settlement_currency": "not_applicable",
+      "expiry_model": "none",
+      "trading_hours_model": "OTC_24x5",
+      "price_source_class": "broker_or_ecn",
+      "volume_source_class": "PROXY_REQUIRED",
+      "volume_coverage_confidence": "TBD_BY_SOURCE",
+      "eligibility_tier": "RESEARCH",
+      "status": "RESEARCH_CANDIDATE",
+      "notes": "Offshore renminbi identity must remain distinct from onshore CNY.",
+      "source_refs": [
+        "BIS_FX_2025"
+      ]
+    },
+    {
+      "canonical_id": "COMMODITY:XAU/USD:SPOT_OTC",
+      "asset_class": "commodity",
+      "role": "context_only",
+      "instrument_type": "spot_otc",
+      "base": "XAU",
+      "quote": "USD",
+      "venue_scope": "provider_neutral_otc",
+      "trading_hours_model": "OTC_SOURCE_SPECIFIC",
+      "price_source_class": "otc_or_vendor",
+      "volume_source_class": "PROXY_REQUIRED",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "CME_GOLD"
+      ]
+    },
+    {
+      "canonical_id": "COMMODITY:GOLD:GC:FUTURES:COMEX",
+      "asset_class": "commodity",
+      "role": "context_only",
+      "instrument_type": "futures",
+      "benchmark": "Gold Futures",
+      "venue_scope": "COMEX",
+      "settlement_currency": "USD",
+      "contract_multiplier": "100 troy ounces",
+      "expiry_model": "dated",
+      "trading_hours_model": "exchange_calendar",
+      "price_source_class": "exchange_futures",
+      "volume_source_class": "centralized_actual",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "CME_GOLD"
+      ]
+    },
+    {
+      "canonical_id": "COMMODITY:WTI:CL:FUTURES:NYMEX",
+      "asset_class": "commodity",
+      "role": "context_only",
+      "instrument_type": "futures",
+      "benchmark": "WTI Light Sweet Crude Oil",
+      "venue_scope": "NYMEX",
+      "settlement_currency": "USD",
+      "contract_multiplier": "1000 barrels",
+      "expiry_model": "dated",
+      "trading_hours_model": "exchange_calendar",
+      "price_source_class": "exchange_futures",
+      "volume_source_class": "centralized_actual",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "CME_WTI"
+      ]
+    },
+    {
+      "canonical_id": "COMMODITY:BRENT:B:FUTURES:ICE_EUROPE",
+      "asset_class": "commodity",
+      "role": "context_only",
+      "instrument_type": "futures",
+      "benchmark": "ICE Brent Crude",
+      "venue_scope": "ICE_FUTURES_EUROPE",
+      "settlement_currency": "USD",
+      "contract_multiplier": "1000 barrels",
+      "expiry_model": "dated",
+      "trading_hours_model": "exchange_calendar",
+      "price_source_class": "exchange_futures",
+      "volume_source_class": "centralized_actual",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "ICE_BRENT"
+      ]
+    },
+    {
+      "canonical_id": "FX_INDEX:USDX:DX:FUTURES:ICE_US",
+      "asset_class": "fx_index",
+      "role": "context_only",
+      "instrument_type": "futures",
+      "benchmark": "U.S. Dollar Index",
+      "venue_scope": "ICE_FUTURES_US",
+      "settlement_currency": "component_currency_delivery",
+      "contract_multiplier": "1000 x index value",
+      "expiry_model": "dated",
+      "trading_hours_model": "exchange_calendar",
+      "price_source_class": "exchange_futures",
+      "volume_source_class": "centralized_actual",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "ICE_USDX"
+      ]
+    },
+    {
+      "canonical_id": "RATES:UST:CMT:2Y",
+      "asset_class": "rates",
+      "role": "context_only",
+      "instrument_type": "yield",
+      "benchmark": "U.S. Treasury Constant Maturity 2-Year",
+      "venue_scope": "official_source",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "official_rate",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "UST_CMT"
+      ]
+    },
+    {
+      "canonical_id": "RATES:UST:CMT:10Y",
+      "asset_class": "rates",
+      "role": "context_only",
+      "instrument_type": "yield",
+      "benchmark": "U.S. Treasury Constant Maturity 10-Year",
+      "venue_scope": "official_source",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "official_rate",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "UST_CMT"
+      ]
+    },
+    {
+      "canonical_id": "RATES:UST:CMT:10Y-2Y",
+      "asset_class": "rates",
+      "role": "context_only",
+      "instrument_type": "derived_spread",
+      "benchmark": "10Y minus 2Y Treasury CMT spread",
+      "venue_scope": "derived_from_official_sources",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "derived_official_rate",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "UST_CMT"
+      ]
+    },
+    {
+      "canonical_id": "EQUITY_INDEX:SPX:INDEX",
+      "asset_class": "equity_index",
+      "role": "context_only",
+      "instrument_type": "index",
+      "benchmark": "S&P 500 Index",
+      "venue_scope": "licensed_index_source_TBD",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "official_or_licensed_index",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "notes": "Licensing/data rights to be evaluated in P01-B/P01-E."
+    },
+    {
+      "canonical_id": "EQUITY_INDEX:NDX:INDEX",
+      "asset_class": "equity_index",
+      "role": "context_only",
+      "instrument_type": "index",
+      "benchmark": "Nasdaq-100 Index",
+      "venue_scope": "licensed_index_source_TBD",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "official_or_licensed_index",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "notes": "Licensing/data rights to be evaluated in P01-B/P01-E."
+    },
+    {
+      "canonical_id": "VOLATILITY:VIX:INDEX",
+      "asset_class": "volatility",
+      "role": "context_only",
+      "instrument_type": "index",
+      "benchmark": "Cboe Volatility Index",
+      "venue_scope": "CBOE",
+      "trading_hours_model": "source_calendar",
+      "price_source_class": "official_index",
+      "volume_source_class": "none",
+      "eligibility_tier": "CONTEXT",
+      "status": "RESEARCH_CANDIDATE",
+      "source_refs": [
+        "CBOE_VIX"
+      ]
+    }
+  ],
+  "source_register": {
+    "BIS_FX_2025": "https://www.bis.org/statistics/rpfx25_fx.htm",
+    "CME_GOLD": "https://www.cmegroup.com/markets/metals/precious/gold.contractSpecs.html",
+    "CME_WTI": "https://www.cmegroup.com/rulebook/NYMEX/2/200.pdf",
+    "ICE_BRENT": "https://www.ice.com/products/219",
+    "ICE_USDX": "https://www.ice.com/forex/usdx",
+    "UST_CMT": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve",
+    "CBOE_VIX": "https://www.cboe.com/tradable-products/vix/",
+    "CME_CRYPTO": "https://www.cmegroup.com/markets/cryptocurrencies/cryptocurrency-futures.html",
+    "COINBASE_INSTRUMENTS": "https://docs.cdp.coinbase.com/international-exchange/concepts/instruments",
+    "BLOCKSCOUT_ETHEREUM": "Blockscout live chain registry: Ethereum mainnet chain_id=1"
+  }
+}
