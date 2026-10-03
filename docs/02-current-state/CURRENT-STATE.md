@@ -31,6 +31,7 @@ Agent framework / ready-agent registry: `HOS-113 = Done`
 Automation/orchestration registry: `HOS-116 = Done`  
 Master tooling registry: `HOS-118 = Done`  
 Roadmap tooling usage map: `HOS-119 = Done`  
+Agent Layer Build Readiness: `HOS-120 = Done`  
 P01-D: `HOS-114 = Done`  
 P01-E: `HOS-117 = Done`
 
@@ -56,6 +57,7 @@ FIN-P01-WR-001 = CANONICAL_COMPLETE
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
+FIN-P01-WG-002 = CANONICAL_COMPLETE  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
 FIN-P01-WT-001 = CANONICAL_COMPLETE
 
@@ -112,6 +114,11 @@ Implementation evidence:
 - `docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md`
 - `docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md`
 - `docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md`
+- `docs/09-agents/architecture/AGENT-LAYER-BUILD-READINESS.md`
+- `docs/09-agents/contracts/` (A0–A10 Markdown + JSON contracts)
+- `docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md`
+- `docs/09-agents/schemas/AGENT-MESSAGE-ENVELOPE.schema.json`
+- `docs/09-agents/evaluations/AGENT-EVALUATION-MATRIX.md`
 - `docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md`
 - `docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md`
 - `docs/02-current-state/BUILD-READINESS-CHECKLIST.md`
@@ -196,6 +203,65 @@ Implementation evidence:
 - post-merge Governance: `37140276018` = SUCCESS
 - post-merge Branch Hygiene: `37140276010` = SUCCESS
 - original stale branch superseded and non-canonical
+
+
+## Agent Layer Build Readiness
+
+Task: `FIN-P01-WG-002`  
+Linear: `HOS-120`  
+Closure subtask: `HOS-140`  
+Mode: READINESS_ONLY  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+Canonical agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A2 Data
+- A3 Market Intelligence
+- A4 Quant
+- A5 Risk
+- A6 Execution
+- A7 Learning
+- A8 Security
+- A9 Operations
+- A10 Evidence / Audit
+
+Artifacts:
+- `contracts/tasks/FIN-P01-WG-002.json`
+- `docs/09-agents/architecture/AGENT-LAYER-BUILD-READINESS.md`
+- `docs/09-agents/architecture/AGENT-AUTHORITY-AND-INTERACTION-MATRIX.md`
+- `docs/09-agents/architecture/AGENT-OBSERVABILITY-SECURITY-MEMORY.md`
+- `docs/09-agents/architecture/P02-F-IMPLEMENTATION-BACKLOG.md`
+- `docs/09-agents/contracts/` (A0–A10 Markdown + JSON)
+- `docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md`
+- `docs/09-agents/schemas/AGENT-CONTRACT.schema.json`
+- `docs/09-agents/schemas/AGENT-MESSAGE-ENVELOPE.schema.json`
+- `docs/09-agents/evaluations/AGENT-EVALUATION-MATRIX.md`
+
+Readiness evidence:
+- 11 canonical agent contracts complete;
+- each agent contract contains all 42 required contract fields;
+- 25 bounded specialists registered;
+- standard message envelope complete;
+- interaction/handoff/delegation model complete;
+- evaluation/red-team matrix complete with 27 scenarios;
+- security, prompt-injection, memory/state and observability requirements complete;
+- P02-F runtime implementation backlog complete;
+- runtime implementation remains deferred until P02-F is explicitly active.
+
+Implementation evidence:
+- implementation PR #43 = MERGED
+- merge SHA: `b5f337edb368724f226b587c23a6cbd438e511f2`
+- PR Governance: `37133037394` = SUCCESS
+- post-merge Governance: `37133087463` = SUCCESS
+- post-merge Branch Hygiene: `37133087415` = SUCCESS
+- final shared-state blocker `FIN-P01-WE-001 / HOS-117` = CANONICAL_COMPLETE / RELEASED
+
+Runtime implementation: NOT_STARTED / NOT_AUTHORIZED_BEFORE_P02_F  
+Production framework selection: DEFERRED_TO_P02_F  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
 
 
 ## Automation & orchestration registry

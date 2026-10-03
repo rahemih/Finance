@@ -21,7 +21,7 @@
   ],
   "lock": {
     "id": "LOCK-FIN-P01-WG-002-01",
-    "state": "ACTIVE",
+    "state": "RELEASED",
     "scope": [
       "contracts/tasks/FIN-P01-WG-002.json",
       "docs/09-agents/contracts/**",
