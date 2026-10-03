@@ -1,0 +1,477 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WB-001",
+  "assessed_at": "2026-10-03",
+  "state": "RESEARCH_INVENTORY",
+  "production_provider_selected": false,
+  "scoring_policy": {
+    "type": "evidence_matrix_not_final_ranking",
+    "values": [
+      "strong_documented",
+      "documented",
+      "partial",
+      "unknown",
+      "not_applicable"
+    ],
+    "rule": "Unknown commercial/licensing/coverage details are not guessed. Final provider choice is deferred to P01-G."
+  },
+  "providers": [
+    {
+      "provider_id": "DATABENTO",
+      "provider_class": "exchange_market_data_vendor",
+      "coverage": [
+        "futures",
+        "options",
+        "equities",
+        "CME crypto futures",
+        "commodity futures"
+      ],
+      "crypto_spot": "not_documented_for_target_scope",
+      "forex_spot": "not_primary_target",
+      "context_markets": "strong_documented",
+      "realtime": "strong_documented",
+      "historical": "strong_documented",
+      "order_book": "strong_documented",
+      "derivatives_metrics": "partial",
+      "timestamps": "strong_documented",
+      "delivery": [
+        "raw_tcp",
+        "http",
+        "python",
+        "rust",
+        "cpp",
+        "csv",
+        "json",
+        "DBN"
+      ],
+      "public_operational_evidence": "Live and historical APIs; full depth schemas; public latency/timestamp claims; historical coverage/pricing pages.",
+      "public_limits": "Dataset/subscription and licensing dependent; exact production capacity to validate in trial.",
+      "licensing": "Exchange license fees/entitlements can apply; Databento pricing states pass-through license handling and plan-specific licensing.",
+      "sla_support": "partial",
+      "cost_transparency": "strong_documented",
+      "candidate_roles": [
+        "centralized_futures_context",
+        "historical_replay",
+        "cross_validation",
+        "CME_crypto_futures_context"
+      ],
+      "evidence_refs": [
+        "DATABENTO_PRICING",
+        "DATABENTO_LIVE"
+      ],
+      "open_questions": [
+        "Exact ICE/Cboe/index entitlement needs for desired context set",
+        "Production SLA/support tier",
+        "Required L2/L3 history cost at expected retention"
+      ]
+    },
+    {
+      "provider_id": "DXFEED",
+      "provider_class": "multi_asset_market_data_vendor",
+      "coverage": [
+        "forex",
+        "crypto",
+        "futures",
+        "options",
+        "equities",
+        "indices"
+      ],
+      "crypto_spot": "documented",
+      "forex_spot": "strong_documented",
+      "context_markets": "strong_documented",
+      "realtime": "strong_documented",
+      "historical": "documented",
+      "order_book": "documented",
+      "derivatives_metrics": "partial",
+      "timestamps": "documented",
+      "delivery": [
+        "Java",
+        "C++",
+        ".NET",
+        "JavaScript",
+        "Go",
+        "Swift",
+        "REST",
+        "WebSocket",
+        "FIX"
+      ],
+      "public_operational_evidence": "Global multi-asset coverage and multiple APIs are documented; replay/historical delivery available.",
+      "public_limits": "unknown",
+      "licensing": "Data-originator/exchange entitlements apply. Terms restrict redistribution and derivative/third-party use unless authorized.",
+      "sla_support": "unknown",
+      "cost_transparency": "partial",
+      "candidate_roles": [
+        "broad_multi_asset_primary_candidate",
+        "forex_reference_candidate",
+        "context_market_candidate",
+        "cross_validation"
+      ],
+      "evidence_refs": [
+        "DXFEED_API",
+        "DXFEED_COVERAGE",
+        "DXFEED_TERMS"
+      ],
+      "open_questions": [
+        "Exact spot-FX contributor coverage and volume semantics",
+        "Quote/depth granularity by asset class",
+        "Commercial quote and SLA",
+        "Entitlements for SPX/NDX/VIX/ICE/CME target set"
+      ]
+    },
+    {
+      "provider_id": "TWELVE_DATA",
+      "provider_class": "multi_asset_api_vendor",
+      "coverage": [
+        "forex",
+        "crypto",
+        "commodities",
+        "indices",
+        "equities",
+        "fixed_income_selected"
+      ],
+      "crypto_spot": "documented",
+      "forex_spot": "strong_documented",
+      "context_markets": "documented",
+      "realtime": "documented",
+      "historical": "documented",
+      "order_book": "partial",
+      "derivatives_metrics": "partial",
+      "timestamps": "documented",
+      "delivery": [
+        "REST",
+        "WebSocket",
+        "OpenAPI"
+      ],
+      "public_operational_evidence": "Public API credit system, WebSocket credits and connection behavior documented.",
+      "public_limits": "Credit-based per-minute model; plan-specific API/WS credits; support docs note default 3 WebSocket connections and 429 behavior.",
+      "licensing": "Pricing distinguishes personal/internal/non-commercial and internal display/non-display use; broader rights require plan/contract review.",
+      "sla_support": "99.95% SLA shown on higher plan(s), scope to verify contractually.",
+      "cost_transparency": "strong_documented",
+      "candidate_roles": [
+        "low_complexity_forex_crypto_reference",
+        "broad_context_reference",
+        "secondary_validation"
+      ],
+      "evidence_refs": [
+        "TWELVE_DOCS",
+        "TWELVE_CREDITS",
+        "TWELVE_PRICING"
+      ],
+      "open_questions": [
+        "Deep order-book suitability for crypto/order-flow requirements",
+        "Exact index licensing for SPX/NDX/VIX",
+        "Historical tick depth by target market",
+        "Commercial non-display rights for automated research/trading"
+      ]
+    },
+    {
+      "provider_id": "MASSIVE",
+      "provider_class": "multi_asset_api_vendor",
+      "coverage": [
+        "forex",
+        "crypto",
+        "indices",
+        "equities",
+        "options"
+      ],
+      "crypto_spot": "documented",
+      "forex_spot": "strong_documented",
+      "context_markets": "documented",
+      "realtime": "strong_documented",
+      "historical": "documented",
+      "order_book": "partial",
+      "derivatives_metrics": "partial",
+      "timestamps": "documented",
+      "delivery": [
+        "REST",
+        "WebSocket"
+      ],
+      "public_operational_evidence": "Official WebSocket docs expose Forex BBO and second/minute aggregates, crypto aggregates/trades/quotes, and index values/aggregates.",
+      "public_limits": "Plan-dependent; exact capacity/rate limits require current plan verification.",
+      "licensing": "Plan/dataset dependent; commercial/display/non-display rights require contract review.",
+      "sla_support": "unknown",
+      "cost_transparency": "documented",
+      "candidate_roles": [
+        "forex_quote_reference",
+        "crypto_reference",
+        "index_context",
+        "secondary_validation"
+      ],
+      "evidence_refs": [
+        "MASSIVE_PRICING",
+        "MASSIVE_FX_WS",
+        "MASSIVE_CRYPTO_WS",
+        "MASSIVE_INDEX_WS"
+      ],
+      "open_questions": [
+        "Forex aggregate volume semantics must remain proxy-labeled because aggregates are derived from quotes",
+        "Deep crypto order-book availability/retention",
+        "Exact index entitlements and redistribution rights",
+        "Enterprise SLA"
+      ]
+    },
+    {
+      "provider_id": "KAIKO",
+      "provider_class": "crypto_specialist_vendor",
+      "coverage": [
+        "crypto_spot",
+        "crypto_derivatives",
+        "CeFi",
+        "DeFi",
+        "reference_rates"
+      ],
+      "crypto_spot": "strong_documented",
+      "forex_spot": "not_primary_target",
+      "context_markets": "partial",
+      "realtime": "strong_documented",
+      "historical": "strong_documented",
+      "order_book": "strong_documented",
+      "derivatives_metrics": "strong_documented",
+      "timestamps": "strong_documented",
+      "delivery": [
+        "Stream",
+        "REST",
+        "AWS",
+        "Azure",
+        "GCP",
+        "Snowflake",
+        "BigQuery",
+        "Private Networks"
+      ],
+      "public_operational_evidence": "L1/L2 trades/order books, derivatives reference metrics, stream/replay channels and collection/exchange timestamps are documented.",
+      "public_limits": "Subscription dependent",
+      "licensing": "Enterprise/custom data plans; standard licensing agreement; exchange redistribution relationships documented. Display and other usage can require specific license models.",
+      "sla_support": "best_effort_language_in_public_index_license_material",
+      "cost_transparency": "partial",
+      "candidate_roles": [
+        "crypto_primary_candidate",
+        "crypto_order_flow",
+        "crypto_derivatives_metrics",
+        "crypto_cross_validation"
+      ],
+      "evidence_refs": [
+        "KAIKO_CHANNELS",
+        "KAIKO_ORDERBOOK",
+        "KAIKO_DERIVATIVES",
+        "KAIKO_PRICING_LICENSES",
+        "KAIKO_EXCHANGE_AGREEMENTS"
+      ],
+      "open_questions": [
+        "Commercial quote for required instruments/channels/history",
+        "Exact SLA for subscribed market-data product",
+        "Liquidation/funding/open-interest coverage by venue",
+        "Whether OANDA FX add-on is useful or duplicates later FX source"
+      ]
+    },
+    {
+      "provider_id": "COINAPI",
+      "provider_class": "crypto_specialist_aggregator",
+      "coverage": [
+        "crypto_spot",
+        "crypto_order_books",
+        "crypto_quotes",
+        "crypto_trades",
+        "exchange_rates"
+      ],
+      "crypto_spot": "strong_documented",
+      "forex_spot": "partial",
+      "context_markets": "partial",
+      "realtime": "strong_documented",
+      "historical": "documented",
+      "order_book": "strong_documented",
+      "derivatives_metrics": "partial",
+      "timestamps": "documented",
+      "delivery": [
+        "REST",
+        "WebSocket",
+        "JSON-RPC",
+        "FIX_addon"
+      ],
+      "public_operational_evidence": "Market Data API documents 300+ exchanges, REST/WebSocket, trades, quotes, multiple order-book depths and heartbeat/connectivity messages.",
+      "public_limits": "Plan-specific REST credits/data quotas publicly documented; enterprise custom.",
+      "licensing": "Commercial/licensing terms require plan/contract review; no redistribution right assumed.",
+      "sla_support": "partial",
+      "cost_transparency": "strong_documented",
+      "candidate_roles": [
+        "crypto_secondary_candidate",
+        "crypto_cross_validation",
+        "exchange_symbol_reference"
+      ],
+      "evidence_refs": [
+        "COINAPI_DOCS",
+        "COINAPI_WS",
+        "COINAPI_PRICING"
+      ],
+      "open_questions": [
+        "Exact derivatives/funding/OI/liquidation coverage by venue",
+        "Historical L2 retention by plan",
+        "Redistribution/internal non-display rights",
+        "SLA and support commitments"
+      ]
+    },
+    {
+      "provider_id": "FRED_ALFRED",
+      "provider_class": "official_macro_aggregator",
+      "coverage": [
+        "macro",
+        "rates",
+        "economic_series",
+        "revisions_vintages"
+      ],
+      "crypto_spot": "not_applicable",
+      "forex_spot": "partial",
+      "context_markets": "strong_documented",
+      "realtime": "not_applicable",
+      "historical": "strong_documented",
+      "order_book": "not_applicable",
+      "derivatives_metrics": "not_applicable",
+      "timestamps": "documented",
+      "delivery": [
+        "REST",
+        "JSON",
+        "XML",
+        "CSV",
+        "XLSX"
+      ],
+      "public_operational_evidence": "FRED API and ALFRED real-time periods/vintage dates support revision-aware macro datasets.",
+      "public_limits": "Bank may impose/adjust limits; API key required for API use.",
+      "licensing": "Third-party series can carry separate copyright/use restrictions; FRED availability does not override source-owner rights.",
+      "sla_support": "unknown",
+      "cost_transparency": "not_applicable",
+      "candidate_roles": [
+        "official_macro_context",
+        "revision_aware_research",
+        "rates_context",
+        "macro_vintage_source"
+      ],
+      "evidence_refs": [
+        "FRED_API",
+        "FRED_ALFRED",
+        "FRED_TERMS"
+      ],
+      "open_questions": [
+        "Series-by-series copyright/redistribution checks in P01-E",
+        "Which series should be sourced directly from source agency instead of FRED"
+      ]
+    },
+    {
+      "provider_id": "DIRECT_OFFICIAL_SOURCES",
+      "provider_class": "official_exchange_and_agency_sources",
+      "coverage": [
+        "CME",
+        "ICE",
+        "Cboe",
+        "US_Treasury",
+        "BLS",
+        "BEA",
+        "CFTC",
+        "other_official_macro"
+      ],
+      "crypto_spot": "not_applicable",
+      "forex_spot": "not_applicable",
+      "context_markets": "strong_documented",
+      "realtime": "partial",
+      "historical": "documented",
+      "order_book": "partial",
+      "derivatives_metrics": "partial",
+      "timestamps": "strong_documented",
+      "delivery": [
+        "source_specific"
+      ],
+      "public_operational_evidence": "Authoritative source class for exchange products, benchmarks, macro/rates and release calendars.",
+      "public_limits": "source_specific",
+      "licensing": "source_specific; exchange/index redistribution and non-display rights can require separate agreements.",
+      "sla_support": "source_specific",
+      "cost_transparency": "partial",
+      "candidate_roles": [
+        "ground_truth_reference",
+        "context_source",
+        "license_authority",
+        "cross_validation"
+      ],
+      "evidence_refs": [
+        "P01A_SOURCE_REGISTER"
+      ],
+      "open_questions": [
+        "Direct-feed commercial feasibility vs vendor-normalized access",
+        "Licensing and non-display rights by exchange/index",
+        "Operational support expectations"
+      ]
+    },
+    {
+      "provider_id": "BLOCKSCOUT",
+      "provider_class": "onchain_supplemental_source",
+      "coverage": [
+        "EVM_onchain",
+        "transactions",
+        "contracts",
+        "tokens",
+        "network_metadata"
+      ],
+      "crypto_spot": "not_applicable",
+      "forex_spot": "not_applicable",
+      "context_markets": "partial",
+      "realtime": "documented",
+      "historical": "documented",
+      "order_book": "not_applicable",
+      "derivatives_metrics": "not_applicable",
+      "timestamps": "documented",
+      "delivery": [
+        "API",
+        "plugin"
+      ],
+      "public_operational_evidence": "Useful for on-chain provenance and network state; not an exchange market-data replacement.",
+      "public_limits": "network/instance/API dependent",
+      "licensing": "instance/API specific",
+      "sla_support": "unknown",
+      "cost_transparency": "partial",
+      "candidate_roles": [
+        "onchain_context",
+        "chain_identity_validation",
+        "supplemental_crypto_intelligence"
+      ],
+      "evidence_refs": [
+        "BLOCKSCOUT_PLUGIN"
+      ],
+      "open_questions": [
+        "Coverage/retention/rate limits for selected chains",
+        "Whether production on-chain workloads should use Blockscout or direct node/indexer"
+      ]
+    }
+  ],
+  "cross_cutting_rules": [
+    "No provider is selected as primary or backup in P01-B.",
+    "Spot FX volume must remain explicitly labeled as broker/tick/ECN/futures/aggregated proxy unless a source can substantiate broader coverage.",
+    "Exchange/index licensing and redistribution rights are not inferred from technical API availability.",
+    "Official-source data should be preferred for macro releases and benchmark definitions when practical.",
+    "Order-flow strategies require venue/depth provenance; aggregated bars are not a substitute for L2/L3 data.",
+    "Production provider choice requires P01-D/E/F evidence and P01-G decision."
+  ],
+  "source_register": {
+    "DATABENTO_PRICING": "https://databento.com/pricing",
+    "DATABENTO_LIVE": "https://databento.com/live",
+    "DXFEED_API": "https://kb.dxfeed.com/en/market-data-api.html",
+    "DXFEED_COVERAGE": "https://dxfeed.com/coverage/global/",
+    "DXFEED_TERMS": "https://dxfeed.com/tr/general-terms-and-conditions-for-services/",
+    "TWELVE_DOCS": "https://twelvedata.com/docs",
+    "TWELVE_CREDITS": "https://support.twelvedata.com/en/articles/5615854-credits",
+    "TWELVE_PRICING": "https://twelvedata.com/pricing",
+    "MASSIVE_PRICING": "https://massive.com/pricing",
+    "MASSIVE_FX_WS": "https://massive.com/docs/websocket/forex/quotes",
+    "MASSIVE_CRYPTO_WS": "https://massive.com/docs/websocket/crypto/aggregates-per-second",
+    "MASSIVE_INDEX_WS": "https://massive.com/docs/websocket/indices/aggregates-per-second",
+    "KAIKO_CHANNELS": "https://docs.kaiko.com/explore-our-data/subscriptions-channel-availability",
+    "KAIKO_ORDERBOOK": "https://docs.kaiko.com/stream/data-feeds/level-1-and-level-2-data/level-2-tick-level/bids-and-asks",
+    "KAIKO_DERIVATIVES": "https://docs.kaiko.com/stream/data-feeds/reference-data/derivatives-pricing",
+    "KAIKO_PRICING_LICENSES": "https://www.kaiko.com/about-kaiko/pricing-and-contracts",
+    "KAIKO_EXCHANGE_AGREEMENTS": "https://www.kaiko.com/exchange-agreements",
+    "COINAPI_DOCS": "https://www.coinapi.io/products/market-data-api/docs",
+    "COINAPI_WS": "https://www.coinapi.io/products/market-data-api/docs/websocket",
+    "COINAPI_PRICING": "https://www.coinapi.io/products/market-data-api/pricing",
+    "FRED_API": "https://fred.stlouisfed.org/docs/api/fred/",
+    "FRED_ALFRED": "https://fred.stlouisfed.org/docs/api/fred/alfred.html",
+    "FRED_TERMS": "https://fred.stlouisfed.org/docs/api/terms_of_use.html",
+    "P01A_SOURCE_REGISTER": "docs/03-research/P01-A-MARKET-UNIVERSE.md",
+    "BLOCKSCOUT_PLUGIN": "Connected Blockscout Blockchain Data plugin; production source choice deferred."
+  }
+}
