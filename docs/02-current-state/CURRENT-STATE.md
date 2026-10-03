@@ -30,7 +30,7 @@ Open-source registry issue: `HOS-110`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: ACTIVE_P01_C
+P01 state: READY_FOR_P01_D
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -40,7 +40,7 @@ Execution roadmap: CANONICAL
 
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
-FIN-P01-WC-001 = ACTIVE
+FIN-P01-WC-001 = CANONICAL_COMPLETE
 
 P01-A artifacts:
 - `docs/03-research/P01-A-MARKET-UNIVERSE.md`
@@ -75,8 +75,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: FIN-P01-WC-001 — Broker / exchange inventory and execution scorecards  
-Active lock: LOCK-FIN-P01-WC-001-01  
+Active task: none  
+Active locks: none  
 Open critical incidents: none
 
 ## Safety
@@ -134,16 +134,22 @@ Closure evidence:
 - Runtime dependency installation: NOT_PERFORMED
 - Production provider/broker selection: NOT_PERFORMED
 
-## P01-C
+## P01-C closure evidence
 
-FIN-P01-WC-001 = ACTIVE  
+FIN-P01-WC-001 = CANONICAL_COMPLETE  
 Linear issue: `HOS-111`  
 Research artifact: `docs/03-research/P01-C-BROKER-EXCHANGE-INVENTORY.md`  
 Machine-readable scorecards: `docs/03-research/p01-c-execution-venue-scorecards.json`  
+Implementation PR: `#21`  
+Implementation merge SHA: `f9098477a386f8cd2c73e0bb988bcfef80dadc7a`  
+PR Governance run: `37121354870` = SUCCESS  
+Post-merge Governance run: `37121383852` = SUCCESS  
+Post-merge Branch Hygiene run: `37121383808` = SUCCESS  
 Final broker/exchange selection: NOT_PERFORMED  
 Owner jurisdiction: NOT_INFERRED  
-Credentials/funding/orders: NONE
+Accounts/KYC/credentials/funding/orders: NONE  
+Lock: RELEASED
 
 ## Next
 
-Canonical-review P01-C, merge, verify post-merge, release its lock, then continue to P01-D Compliance / Jurisdiction Matrix.
+Reconcile the already-open supporting frontend UI/UX registry task `FIN-P01-WUI-001` without allowing it to override current canonical P01 state. After the repository is conflict-free, continue to P01-D — Compliance / Jurisdiction Matrix.
