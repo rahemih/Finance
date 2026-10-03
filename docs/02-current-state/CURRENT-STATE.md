@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this closure PR: `de183a11561f7ce6f701e8e5b9d06b14ef08e124`  
+Current canonical HEAD before this repair PR: `73b7d70dfbf2b9c2eb9f071169a637f38a37771b`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -77,8 +77,9 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: none  
-Active locks: none  
+Active task: `FIN-P01-WG-001-R01 = IN_REVIEW`  
+Active task branch: `fix/FIN-P01-WG-001-R01-current-state-reconciliation`  
+Active locks: `LOCK-FIN-P01-WG-001-R01-01`  
 Open critical incidents: none
 
 ## Safety
@@ -154,7 +155,8 @@ Lock: RELEASED
 
 ## Next
 
-Continue to P01-D — Compliance / Jurisdiction Matrix.
+1. Canonically close `FIN-P01-WG-001-R01`.
+2. Continue to P01-D — Compliance / Jurisdiction Matrix.
 
 ## Frontend UI/UX and excellence baseline
 
@@ -173,18 +175,6 @@ Live Trading: DISABLED.
 Auto Trading: DISABLED.
 
 Closure evidence:
-- Implementation PR: `#28`
-- Implementation merge SHA: `73e816a7cf50de5af438b405c528e621c5e26815`
-- PR Governance run: `37122784634` = SUCCESS
-- Post-merge Governance run: `37122804991` = SUCCESS
-- Post-merge Branch Hygiene run: `37122805072` = SUCCESS
-- Linear issue: `HOS-113`
-- Runtime agent dependency installation: NOT_PERFORMED
-- Production agent framework selection: NOT_PERFORMED
-- Broker/fund/credential authority granted to agents: NONE
-
-
-Closure evidence:
 - Implementation PR: `#26`
 - Implementation merge SHA: `1bc95d41e336ce290902a8d0b427616d3facb3a3`
 - PR Governance run: `37121957216` = SUCCESS
@@ -200,7 +190,7 @@ Closure evidence:
 Task: `FIN-P01-WG-001`  
 State: CANONICAL_COMPLETE  
 Linear: `HOS-113`  
-Lock: `LOCK-FIN-P01-WG-001-01`
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md`
@@ -214,3 +204,18 @@ Agent broker/fund/credential authority: NONE.
 P02-F remains the implementation authority for agent architecture.  
 Live Trading: DISABLED.  
 Auto Trading: DISABLED.
+
+Closure evidence:
+- Implementation PR: `#28`
+- Implementation merge SHA: `73e816a7cf50de5af438b405c528e621c5e26815`
+- PR Governance run: `37122784634` = SUCCESS
+- Post-merge Governance run: `37122804991` = SUCCESS
+- Post-merge Branch Hygiene run: `37122805072` = SUCCESS
+- Closure PR: `#29`
+- Closure merge SHA: `73b7d70dfbf2b9c2eb9f071169a637f38a37771b`
+- Closure post-merge Governance run: `37122875203` = SUCCESS
+- Closure post-merge Branch Hygiene run: `37122875196` = SUCCESS
+- Linear issue: `HOS-113`
+- Runtime agent dependency installation: NOT_PERFORMED
+- Production agent framework selection: NOT_PERFORMED
+- Broker/fund/credential authority granted to agents: NONE
