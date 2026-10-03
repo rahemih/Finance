@@ -1,0 +1,109 @@
+{
+  "task_id": "FIN-P01-WG-003",
+  "phase": "P01",
+  "workstream": "WG",
+  "title": "Agent Runtime Preflight Engineering",
+  "mode": "PRE_RUNTIME_ONLY",
+  "objective": "Produce the final runtime-neutral engineering specification for NEXUS QUANT agents so P02-F can begin implementation without redesign, while preserving all roadmap, security, risk and financial authority gates.",
+  "dependencies": [
+    "FIN-P01-WG-002"
+  ],
+  "constraints": [
+    "This task is Agent Layer only and must not execute P01-F or any other main-roadmap workstream",
+    "P02-F is not active; production runtime implementation remains forbidden",
+    "No production agent framework may be selected or installed",
+    "No runtime dependency may be pinned as a production decision",
+    "No credentials, accounts, funding, broker/exchange connectivity or financial authority",
+    "A5 and A8 vetoes remain deterministic and non-bypassable",
+    "Live Trading and Auto Trading remain disabled"
+  ],
+  "lock": {
+    "id": "LOCK-FIN-P01-WG-003-01",
+    "state": "ACTIVE",
+    "scope": [
+      "contracts/tasks/FIN-P01-WG-003.json",
+      "docs/09-agents/runtime/**"
+    ]
+  },
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WG-003.json",
+    "docs/09-agents/runtime/**"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "risk_level": "MEDIUM",
+  "human_gate": false,
+  "tests": [
+    "All WG-003 JSON parses",
+    "A0-A10 runtime adapter spec preserves canonical authority",
+    "Specialist lifecycle forbids recursive unbounded spawning and authority escalation",
+    "Checkpoint/resume spec requires freshness revalidation",
+    "A5/A8 veto gates are deterministic and non-bypassable",
+    "Message validation fails closed on schema/provenance/freshness failures",
+    "Security spec treats external content as untrusted data",
+    "Observability/evaluation spec covers trace, cost, token, latency, retries and red-team cases",
+    "Framework/runtime selection remains explicitly DEFERRED_UNTIL_P02_F"
+  ],
+  "security_tests": [
+    "No credential or permission expansion",
+    "No hidden memory as authority or evidence",
+    "No specialist can bypass parent/Task Contract authority",
+    "No runtime package installation",
+    "No Live Trading or Auto Trading activation",
+    "Safe failure states include WAIT, NO_TRADE and INSUFFICIENT_EVIDENCE"
+  ],
+  "rollback": "Revert FIN-P01-WG-003 documentation-only commits. No runtime, dependency, secret, account, deployment or financial state is changed.",
+  "definition_of_ready": [
+    "FIN-P01-WG-002 = CANONICAL_COMPLETE",
+    "LOCK-FIN-P01-WG-002-01 = RELEASED",
+    "No active conflicting Agent Layer writer",
+    "P02-F remains inactive"
+  ],
+  "definition_of_done": [
+    "Runtime-neutral A0-A10 adapter specification complete",
+    "Bounded specialist lifecycle specification complete",
+    "State/checkpoint/resume/freshness specification complete",
+    "Deterministic A5/A8 veto specification complete",
+    "Message-envelope runtime validation specification complete",
+    "Runtime security and tool-abuse controls complete",
+    "Observability and evaluation harness specification complete",
+    "P02-F implementation sequence and framework decision gate complete",
+    "Machine-readable preflight manifest complete",
+    "Validation passes",
+    "PR merged",
+    "Post-merge validation passes",
+    "Linear parent/subtasks synchronized",
+    "Lock released",
+    "FIN-P01-WG-003 = PRE_RUNTIME_COMPLETE"
+  ]
+}
