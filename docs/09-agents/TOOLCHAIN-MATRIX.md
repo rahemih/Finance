@@ -1,6 +1,6 @@
 # Finance — Canonical Toolchain / Plugin / Skill / Access Matrix
 
-State: `ACTIVE`  
+State: `CANONICAL`  
 Owner: `Hossein Rahemi`  
 Operational authority: `A0 — Governance / Orchestrator`  
 Task: `FIN-P00-WD-001`  
@@ -173,6 +173,14 @@ Verified on 2026-10-03:
 
 These four tools are approved for immediate project **research/analysis** use within the boundaries above.
 
-## 12. Change control
+## 12. Canonical evidence
+
+- Linear issue: `HOS-104`
+- Implementation PR: `#8`
+- Implementation merge SHA: `64b79dc053e63c1bc82e5894c041aad3f1fe626b`
+- PR Governance run: `37113173645` = SUCCESS
+- Post-merge Governance run: `37113198691` = SUCCESS
+
+## 13. Change control
 
 Changes to this matrix require a governed Task Contract and PR. Tool availability may change independently at the platform level; when that occurs, CURRENT-STATE and Linear must be reconciled rather than silently assuming continued access.
