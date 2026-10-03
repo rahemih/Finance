@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this task: `7be5e05f7c91c2e1fa6b7caa899d97ac6dfc73fc`  
+Current canonical HEAD: `64b79dc053e63c1bc82e5894c041aad3f1fe626b`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -27,7 +27,7 @@ Milestones: `P00–P24` created
 ## Toolchain
 
 Canonical matrix: `docs/09-agents/TOOLCHAIN-MATRIX.md`  
-Toolchain task: `FIN-P00-WD-001`  
+Toolchain task: `FIN-P00-WD-001 = CANONICAL_COMPLETE`  
 Linear issue: `HOS-104`
 
 Verified active domain additions:
@@ -57,7 +57,7 @@ Execution roadmap: NOT_STARTED
 
 Development: NOT_STARTED  
 Current Phase: P00 — Charter & Governance  
-Phase state: ACTIVE
+Phase state: READY
 
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
@@ -69,9 +69,9 @@ Auto Trading: DISABLED
 FIN-P00-WA-001 = CANONICAL_COMPLETE  
 FIN-P00-WB-001 = CANONICAL_COMPLETE  
 FIN-P00-WC-001 = CANONICAL_COMPLETE  
-FIN-P00-WD-001 = ACTIVE  
-Active task: FIN-P00-WD-001 — Project toolchain / plugin / skill activation matrix  
-Active lock: LOCK-FIN-P00-WD-001-01  
+FIN-P00-WD-001 = CANONICAL_COMPLETE  
+Active task: none  
+Active locks: none  
 Open critical incidents: none  
 Repository-admin hardening issue #3: CLOSED / COMPLETE
 
@@ -83,6 +83,14 @@ No implementation code starts until:
 3. Linear milestones/tasks are reconciled to those canonical documents,
 4. P00 Governance Gate is satisfied.
 
+## Toolchain closure evidence
+
+- Linear issue: `HOS-104`
+- Implementation PR: `#8`
+- Implementation merge SHA: `64b79dc053e63c1bc82e5894c041aad3f1fe626b`
+- PR Governance run: `37113173645` = SUCCESS
+- Post-merge Governance run: `37113198691` = SUCCESS
+
 ## Next
 
-Close FIN-P00-WD-001 after PR/CI/post-merge reconciliation. Then prepare the governed detailed-roadmap and execution-roadmap task.
+Prepare the governed detailed-roadmap and execution-roadmap task. Do not start implementation code yet.

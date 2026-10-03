@@ -1,6 +1,6 @@
 # Finance — Canonical Toolchain / Plugin / Skill / Access Matrix
 
-State: `ACTIVE`  
+State: `CANONICAL`  
 Owner: `Hossein Rahemi`  
 Operational authority: `A0 — Governance / Orchestrator`  
 Task: `FIN-P00-WD-001`  
@@ -53,6 +53,75 @@ External plugins may provide evidence and research, but they do not override can
 
 A ChatGPT plugin being `ACTIVE` does **not** mean it is selected as a production provider. Production providers for market data, brokers, exchanges, databases, observability, news, macro data, or execution must be selected by the relevant roadmap task and architecture/risk/security gates.
 
+## 3A. Verified installed useful-plugin inventory
+
+The following installed plugins were independently re-checked on 2026-10-03 and are considered useful to this project, either as baseline tools or as conditional tools for a specific roadmap task.
+
+### Tier A — Core governance / engineering / project operations
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| GitHub | installed / ACTIVE | Canonical repository, PR, CI, governance and evidence |
+| Linear | installed / ACTIVE | Project planning, milestones, dependencies, execution tracking |
+| Figma | installed / ACTIVE | UX, diagrams, design system and design-to-code |
+| Google Drive | installed / ACTIVE | Docs/Sheets/Slides, evidence packs, exports and controlled backups |
+| Slack | installed / ACTIVE | Team coordination and operational communication |
+| Context7 | installed / ACTIVE | Current library/API documentation for implementation accuracy |
+| OpenAI Developers | installed / ACTIVE | OpenAI API/agent implementation guidance |
+| Codex Security | installed / ACTIVE | Security analysis, scanning and investigation |
+
+### Tier B — Engineering / data / runtime candidates
+
+These are useful, but **not selected production dependencies merely because they are installed**.
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Vercel | installed / ACTIVE | Deployment, workflow, observability and application hosting evaluation |
+| Neon | installed / ACTIVE | Postgres, branching, functions, storage and backend evaluation |
+| Supabase | installed / ACTIVE | Alternative Postgres/backend/auth/realtime/storage evaluation |
+| PostHog | installed / ACTIVE | Product analytics, experiments, logs and LLM analytics |
+| TinyFish | installed / ACTIVE | User-directed browser workflows and web interaction when static research is insufficient |
+
+### Tier C — Market / quant / legal intelligence
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Blockscout Blockchain Data | installed / ACTIVE | EVM on-chain intelligence |
+| Exa | installed / ACTIVE | Research, financial/news discovery and papers |
+| Wolfram | installed / ACTIVE | Exact mathematics/statistics and Quant cross-checking |
+| Legal Data Hunter | installed / ACTIVE | Regulatory/legal primary-document discovery and compliance research |
+
+### Tier D — Collaboration / knowledge / reporting
+
+| Plugin | Verified | Role in Finance |
+|---|---|---|
+| Notion | installed / ACTIVE | Research synthesis and knowledge capture when useful; GitHub remains canonical |
+| Gmail | installed / ACTIVE | Project email workflows and later notification support |
+| Google Calendar | installed / ACTIVE | Scheduling, review gates and operational coordination |
+| Dropbox | installed / ACTIVE | Secondary artifact exchange/storage |
+| Adobe | installed / ACTIVE | PDF/document/media production and review |
+| Canva | installed / ACTIVE | Presentations and visual communication |
+| Gamma | installed / ACTIVE | Project reports, presentations and stakeholder summaries |
+
+### Tier E — Conditional / non-core installed tools
+
+These are useful only for specific scoped tasks and must not be treated as baseline runtime dependencies.
+
+| Plugin | Verified | Permitted project use |
+|---|---|---|
+| Semrush | installed / ACTIVE | SEO/traffic research only if a public documentation/product surface is later introduced |
+| Runway | installed / ACTIVE | Optional media generation for demos, onboarding or documentation |
+| Higgsfield | installed / ACTIVE | Optional branded visuals/media/prototypes |
+
+### Selection rule
+
+If two installed plugins overlap, the relevant architecture/task must select one based on requirements, cost, security, data residency, reliability, operability and exit strategy. Installation status is never an architecture decision.
+
+For example:
+- `Neon` and `Supabase` are both useful candidates; no production database/backend has been selected yet.
+- `Google Drive`, `Dropbox` and `Notion` can all store project material, but only GitHub canonical governance artifacts define engineering truth.
+- `Exa`, `TinyFish` and native web research have different roles; browser automation should be used only when interaction is required.
+
 ## 4. Skill matrix
 
 Skills do not require a separate always-on installation toggle. They are **AUTHORIZED_FOR_USE_WHEN_TRIGGERED** and must be loaded/invoked only when the relevant task calls for them.
@@ -79,6 +148,78 @@ Skills do not require a separate always-on installation toggle. They are **AUTHO
 | Google Drive | AUTHORIZED_WHEN_TRIGGERED | Connected Docs/Sheets/Slides/Drive workflows |
 | Sentry | CONDITIONAL | Read-only error/issue inspection after `SENTRY_AUTH_TOKEN` is configured |
 | Plugin Management | AUTHORIZED_WHEN_TRIGGERED | Plugin discovery, connection status and permission governance |
+
+## 4A. Expanded skill inventory
+
+The following skill families are present and useful to Finance. They are **not always-on services**; they are loaded only when a task trigger matches.
+
+### Vercel skills — authorized when relevant
+
+High-value project skills include:
+- `agent-browser` and `agent-browser-verify` — browser-based UI/runtime verification;
+- `ai-sdk`, `ai-gateway`, `ai-elements`, `ai-generation-persistence` — AI runtime and model-routing patterns;
+- `auth`, `env-vars` — identity/configuration guidance;
+- `bootstrap`, `nextjs`, `shadcn`, `react-best-practices` — application foundation and UI quality;
+- `cron-jobs`, `vercel-functions`, `vercel-queues`, `workflow` — scheduled, serverless, asynchronous and durable workloads;
+- `deployments-cicd`, `verification`, `investigation-mode`, `observability` — deployment, validation, incident triage and telemetry;
+- `vercel-firewall`, `vercel-sandbox` — WAF/DDoS and isolated execution guidance;
+- `vercel-flags` — staged rollout/feature-flag patterns;
+- `vercel-services`, `vercel-storage` — service/storage architecture when Vercel is selected.
+
+Other Vercel skills remain available but are used only when a concrete task requires them.
+
+### Neon skills — authorized when relevant
+
+- `neon`
+- `neon-postgres`
+- `neon-functions`
+- `neon-object-storage`
+- `neon-ai-gateway`
+
+These are evaluation/implementation aids only until an architecture task selects Neon.
+
+### Supabase skills — authorized when relevant
+
+- `supabase`
+- `supabase-postgres-best-practices`
+
+These are useful for database, Auth, Realtime, Edge Functions, Storage, RLS and Postgres optimization. Supabase remains an architecture candidate, not a selected production dependency.
+
+### Figma skills — authorized when relevant
+
+- `figma-code-connect`
+- `figma-create-new-file`
+- `figma-design-to-code`
+- `figma-generate-design`
+- `figma-generate-diagram`
+- `figma-generate-library`
+- `figma-use`
+
+Additional Figma motion/shader/Slides/SwiftUI skills remain task-specific.
+
+### Google Drive skills — authorized when relevant
+
+- `google-drive`
+- `google-docs`
+- `google-sheets`
+- `google-slides`
+- `google-drive-comments`
+
+### Sentry skill — conditional
+
+- `sentry` is available for read-only issue/event inspection when `SENTRY_AUTH_TOKEN` is configured.
+- Sentry itself is not currently declared a connected baseline production dependency.
+
+### Plugin Management skill
+
+- `plugin-management` is authorized for discovery, installed-state verification, dependency inspection and permission governance.
+- It may not silently elevate a plugin to blanket Full Access.
+
+### Skill governance rule
+
+A skill may improve implementation quality, but it never expands an agent's authority. The effective permission set is the intersection of:
+
+`Task Contract ∩ Agent Registry ∩ Toolchain Matrix ∩ Environment Policy ∩ Risk/Security/Owner Gates`.
 
 ## 5. Agent-to-tool routing
 
@@ -173,6 +314,14 @@ Verified on 2026-10-03:
 
 These four tools are approved for immediate project **research/analysis** use within the boundaries above.
 
-## 12. Change control
+## 12. Canonical evidence
+
+- Linear issue: `HOS-104`
+- Implementation PR: `#8`
+- Implementation merge SHA: `64b79dc053e63c1bc82e5894c041aad3f1fe626b`
+- PR Governance run: `37113173645` = SUCCESS
+- Post-merge Governance run: `37113198691` = SUCCESS
+
+## 13. Change control
 
 Changes to this matrix require a governed Task Contract and PR. Tool availability may change independently at the platform level; when that occurs, CURRENT-STATE and Linear must be reconciled rather than silently assuming continued access.
