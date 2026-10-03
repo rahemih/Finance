@@ -1,0 +1,64 @@
+{
+  "task_id":"FIN-P01-WUI-001",
+  "phase":"P01",
+  "workstream":"WUI",
+  "objective":"Create a governed frontend UI/UX repository registry and page-to-repository mapping for NEXUS QUANT without installing runtime dependencies or implementing frontend code.",
+  "scope":[
+    "Verify upstream activity and license signals for selected frontend repositories",
+    "Define preferred candidates for framework, design system, auth, dashboards, financial charts, tables, server state, forms, validation, animation and icons",
+    "Map major product pages and UI surfaces to candidate repositories/components",
+    "Define RTL Persian and LTR financial-chart/numeric-zone rules",
+    "Define frontend adoption gates for P02/P04/P23",
+    "Create machine-readable registry",
+    "Reconcile the registry from current canonical main after P01-C shared-writer lock release"
+  ],
+  "out_of_scope":[
+    "Install dependencies",
+    "Implement frontend code",
+    "Select production hosting",
+    "Provision auth credentials",
+    "Enable trading",
+    "Modify frozen Master Roadmap"
+  ],
+  "dependencies":["FIN-P00-WF-001","FIN-P01-WR-001","FIN-P01-WC-001"],
+  "read_paths":["docs/00-governance/**","docs/01-roadmap/**","docs/02-current-state/**","docs/03-research/**","docs/13-tasks/**"],
+  "write_paths":[
+    "docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md",
+    "docs/03-research/frontend-ui-ux-repository-registry.json",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P01-WUI-001.json"
+  ],
+  "forbidden_paths":["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","src/**","frontend/**","backend/**","quant/**","infra/**","secrets/**","credentials/**"],
+  "agents":["A0","A1","A8","A10"],
+  "plugins":["GitHub","Linear","Figma","Context7"],
+  "skills":["Figma design system / design-to-code skills when later triggered","Vercel Next.js / shadcn / React best-practice skills when later triggered"],
+  "access":["REPO_READ","REPO_WRITE_GOVERNED","LINEAR_READ","LINEAR_WRITE_GOVERNED","CI_READ","CI_EXECUTE"],
+  "secrets":[],
+  "risk_level":"MEDIUM",
+  "tests":[
+    "Governance Verify",
+    "Registry JSON parses successfully",
+    "Every candidate has a classification and license signal",
+    "Every major page family has a mapped UI stack",
+    "No production dependency is marked approved",
+    "RTL/LTR rules are documented",
+    "Current State preserves canonical P01-C closure evidence"
+  ],
+  "security_tests":["No credentials or secrets","No runtime dependency installation","No auth provider provisioning","Live Trading remains DISABLED","Auto Trading remains DISABLED"],
+  "rollback":"Revert registry artifacts and companion/state/catalog reconciliation. No runtime code is changed.",
+  "human_gate":false,
+  "definition_of_ready":["G0_GOVERNANCE_READY = PASS","FIN-P01-WR-001 = CANONICAL_COMPLETE","FIN-P01-WC-001 = CANONICAL_COMPLETE","No conflicting active lock"],
+  "definition_of_done":[
+    "Frontend registry documented",
+    "Machine-readable page mapping committed",
+    "Technology matrix linked",
+    "Task Catalog and Current State reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Linear synchronized",
+    "FIN-P01-WUI-001 = CANONICAL_COMPLETE"
+  ]
+}
