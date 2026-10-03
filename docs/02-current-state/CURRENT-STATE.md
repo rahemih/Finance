@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD: `805a29701a1511b9a6f4e0cbda686c78c9ee03a7`  
+Current canonical HEAD before this task: `7be5e05f7c91c2e1fa6b7caa899d97ac6dfc73fc`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -22,9 +22,28 @@ Project status: `In Progress`
 Priority: `High`  
 Project Lead / Owner: `Hossein Rahemi`  
 Operational Project Manager: `A0 — Governance / Orchestrator`  
-Milestones: `P00–P24` created  
-Project management/source-of-truth document: CREATED  
-Initial project status update: CREATED
+Milestones: `P00–P24` created
+
+## Toolchain
+
+Canonical matrix: `docs/09-agents/TOOLCHAIN-MATRIX.md`  
+Toolchain task: `FIN-P00-WD-001`  
+Linear issue: `HOS-104`
+
+Verified active domain additions:
+- Blockscout Blockchain Data = ACTIVE / installed
+- Exa = ACTIVE / installed
+- Wolfram = ACTIVE / installed
+- Legal Data Hunter = ACTIVE / installed
+
+Core engineering/project tools remain available:
+GitHub, Linear, Figma, Google Drive, Slack, Vercel, Neon, Context7, PostHog, OpenAI Developers, Codex Security and approved auxiliary tools.
+
+Skill policy: `AUTHORIZED_FOR_USE_WHEN_TRIGGERED`; skills do not grant authority beyond Task Contract + Agent Registry.
+
+Least privilege: ENFORCED  
+Blanket plugin Full Access: NOT AUTHORIZED BY DEFAULT  
+ChatGPT plugins as production runtime dependencies: FORBIDDEN unless selected later by governed architecture task.
 
 ## Roadmap
 
@@ -38,7 +57,7 @@ Execution roadmap: NOT_STARTED
 
 Development: NOT_STARTED  
 Current Phase: P00 — Charter & Governance  
-Phase state: READY
+Phase state: ACTIVE
 
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
@@ -50,20 +69,11 @@ Auto Trading: DISABLED
 FIN-P00-WA-001 = CANONICAL_COMPLETE  
 FIN-P00-WB-001 = CANONICAL_COMPLETE  
 FIN-P00-WC-001 = CANONICAL_COMPLETE  
-Active task: none  
-Active locks: none  
+FIN-P00-WD-001 = ACTIVE  
+Active task: FIN-P00-WD-001 — Project toolchain / plugin / skill activation matrix  
+Active lock: LOCK-FIN-P00-WD-001-01  
 Open critical incidents: none  
 Repository-admin hardening issue #3: CLOSED / COMPLETE
-
-## Coordination evidence
-
-- Linear Project ID: `P-HOS-2`
-- Linear Project URL: `https://linear.app/hossein123/project/finance-nexus-quant-e71779b07bb4`
-- GitHub coordination PR: `#6`
-- Coordination merge SHA: `805a29701a1511b9a6f4e0cbda686c78c9ee03a7`
-- PR Governance run: `37112228993` = SUCCESS
-- Post-merge Governance run: `37112250094` = SUCCESS
-- Branch inventory after merge: `main` only
 
 ## Coordination rule
 
@@ -75,4 +85,4 @@ No implementation code starts until:
 
 ## Next
 
-Prepare the governed task for detailed canonical roadmap + execution roadmap creation. Do not start implementation code yet.
+Close FIN-P00-WD-001 after PR/CI/post-merge reconciliation. Then prepare the governed detailed-roadmap and execution-roadmap task.
