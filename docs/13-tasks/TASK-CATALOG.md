@@ -23,6 +23,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P01-WD-001 | P01 | Jurisdiction & compliance matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WD-001.json` | RELEASED |
 
+| FIN-P01-WE-001 | P01 | Cost / Licensing / Data Rights | MEDIUM | ACTIVE | `contracts/tasks/FIN-P01-WE-001.json` | LOCK-FIN-P01-WE-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
