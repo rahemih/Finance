@@ -77,9 +77,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WG-001 = IN_REVIEW`  
-Active task branch: `research/FIN-P01-WG-001-agent-registry`  
-Active locks: `LOCK-FIN-P01-WG-001-01`  
+Active task: none  
+Active locks: none  
 Open critical incidents: none
 
 ## Safety
@@ -155,8 +154,7 @@ Lock: RELEASED
 
 ## Next
 
-1. Canonically close the supporting agent framework / ready-agent registry task `FIN-P01-WG-001`.
-2. Continue to P01-D — Compliance / Jurisdiction Matrix.
+Continue to P01-D — Compliance / Jurisdiction Matrix.
 
 ## Frontend UI/UX and excellence baseline
 
@@ -175,6 +173,18 @@ Live Trading: DISABLED.
 Auto Trading: DISABLED.
 
 Closure evidence:
+- Implementation PR: `#28`
+- Implementation merge SHA: `73e816a7cf50de5af438b405c528e621c5e26815`
+- PR Governance run: `37122784634` = SUCCESS
+- Post-merge Governance run: `37122804991` = SUCCESS
+- Post-merge Branch Hygiene run: `37122805072` = SUCCESS
+- Linear issue: `HOS-113`
+- Runtime agent dependency installation: NOT_PERFORMED
+- Production agent framework selection: NOT_PERFORMED
+- Broker/fund/credential authority granted to agents: NONE
+
+
+Closure evidence:
 - Implementation PR: `#26`
 - Implementation merge SHA: `1bc95d41e336ce290902a8d0b427616d3facb3a3`
 - PR Governance run: `37121957216` = SUCCESS
@@ -188,7 +198,7 @@ Closure evidence:
 ## Agent framework / ready-agent registry
 
 Task: `FIN-P01-WG-001`  
-State: IN_REVIEW  
+State: CANONICAL_COMPLETE  
 Linear: `HOS-113`  
 Lock: `LOCK-FIN-P01-WG-001-01`
 
