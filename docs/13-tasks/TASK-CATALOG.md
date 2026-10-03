@@ -11,7 +11,7 @@ This catalog is the canonical index of governed work.
 | FIN-P00-WE-001 | P00 | Detailed canonical roadmap and execution roadmap | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WE-001.json` | RELEASED |
 | FIN-P00-WF-001 | P00 | P00 governance closure and G0 readiness | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WF-001.json` | RELEASED |
 
-| FIN-P01-WA-001 | P01 | Market universe and instrument taxonomy | MEDIUM | ACTIVE | `contracts/tasks/FIN-P01-WA-001.json` | LOCK-FIN-P01-WA-001-01 |
+| FIN-P01-WA-001 | P01 | Market universe and instrument taxonomy | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WA-001.json` | RELEASED |
 
 ## Rules
 
