@@ -1,0 +1,137 @@
+{
+  "task_id": "FIN-P00-WF-001",
+  "phase": "P00",
+  "workstream": "WF",
+  "objective": "Perform final P00 governance reconciliation, produce the G0_GOVERNANCE_READY evidence dossier, and prepare P00 canonical closure / P01 readiness if all required controls pass.",
+  "scope": [
+    "Audit GitHub merge settings and active Protect main ruleset",
+    "Verify required governance status check and recent main post-merge success",
+    "Verify branch hygiene and branch inventory",
+    "Verify repository hardening evidence including Secret Protection and Push Protection records",
+    "Audit Project Charter, Governance, Current State, Task Catalog, Agent Registry and Toolchain Matrix",
+    "Audit frozen Master Roadmap v2.0 and canonical detailed/execution roadmap companion package",
+    "Verify P00 tasks FIN-P00-WA-001 through FIN-P00-WE-001 are CANONICAL_COMPLETE with released locks",
+    "Verify Linear project management state, owner/lead, P00-P24 milestones and P00 task reconciliation",
+    "Verify no unresolved critical incident or governance blocker",
+    "Verify Live Trading and Auto Trading remain disabled",
+    "Create G0-GOVERNANCE-READY.md with evidence-backed verdict"
+  ],
+  "out_of_scope": [
+    "Market/provider research beyond G0 governance readiness",
+    "Application/runtime implementation",
+    "Production provider selection",
+    "Security architecture implementation reserved for P03",
+    "Trading credential creation",
+    "Demo, Shadow, Live or Auto Trading activation"
+  ],
+  "dependencies": [
+    "FIN-P00-WA-001",
+    "FIN-P00-WB-001",
+    "FIN-P00-WC-001",
+    "FIN-P00-WD-001",
+    "FIN-P00-WE-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**",
+    ".github/**",
+    "contracts/**",
+    "scripts/**"
+  ],
+  "write_paths": [
+    "docs/00-governance/G0-GOVERNANCE-READY.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WF-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Plugin Management"
+  ],
+  "skills": [
+    "Plugin Management"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Current main branch is protected",
+    "Protect main ruleset is active and requires governance status check",
+    "Squash-only merge policy and update/delete branch settings are correct",
+    "Branch inventory is main only at audit time",
+    "Repository hardening issue #3 is closed completed",
+    "All prior P00 tasks are CANONICAL_COMPLETE and locks released",
+    "Master Roadmap v2.0 remains frozen/unmodified",
+    "Eight roadmap companion documents exist on main",
+    "Linear project is active with Hossein Rahemi as lead and P00-P24 milestones present",
+    "No unresolved critical incident or active conflicting lock",
+    "Live Trading and Auto Trading remain disabled"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Secret Protection and Push Protection recorded as active in canonical hardening evidence",
+    "No secrets/credentials introduced by this task",
+    "No permission or ruleset weakening",
+    "No bypass of required checks",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "GitHub repository API snapshot",
+    "Protect main ruleset API snapshot",
+    "Branch inventory snapshot",
+    "Issue #3 closed hardening record",
+    "Current main Governance Verify run 37119475343",
+    "Linear project/milestone/issue snapshot",
+    "G0-GOVERNANCE-READY.md",
+    "PR and post-merge evidence"
+  ],
+  "rollback": "Revert only G0 dossier and state/catalog reconciliation. Do not weaken repository protections or mutate the frozen roadmap.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P00-WE-001 is CANONICAL_COMPLETE",
+    "No active conflicting task/lock exists",
+    "Current main Governance Verify passes",
+    "Linear project is available"
+  ],
+  "definition_of_done": [
+    "G0 evidence dossier exists",
+    "All G0 criteria have explicit PASS/FAIL/BLOCKED status",
+    "If all mandatory criteria pass, G0_GOVERNANCE_READY is recorded PASS",
+    "P00 state is reconciled",
+    "P01 readiness state is reconciled",
+    "Task Catalog and Current State agree",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Lock is released",
+    "FIN-P00-WF-001 is CANONICAL_COMPLETE"
+  ]
+}

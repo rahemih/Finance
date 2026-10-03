@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD: `4c4e8b295023d312951725dbdfccc8f468f32ca1`  
+Canonical HEAD before active G0 task: `5763339f487a30092284ec4e39b8f433372db016`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -22,48 +22,35 @@ Project status: `In Progress`
 Priority: `High`  
 Project Lead / Owner: `Hossein Rahemi`  
 Operational Project Manager: `A0 — Governance / Orchestrator`  
-Milestones: `P00–P24` created
+Milestones: `P00–P24` created  
+Active Linear issue: `HOS-106`
 
 ## Toolchain
 
 Canonical matrix: `docs/09-agents/TOOLCHAIN-MATRIX.md`  
-Toolchain task: `FIN-P00-WD-001 = CANONICAL_COMPLETE`  
-Linear issue: `HOS-104 = Done`
-
-Useful installed project plugins and skills are documented in the Toolchain Matrix and the roadmap Agent/Plugin/Skill Matrix.
-
+FIN-P00-WD-001 = CANONICAL_COMPLETE  
+Useful installed plugins/skills are documented canonically.  
 Least privilege: ENFORCED  
-Blanket plugin Full Access: NOT AUTHORIZED BY DEFAULT  
-ChatGPT plugins as production runtime dependencies: FORBIDDEN unless selected later by governed architecture/provider tasks.
+Blanket Full Access: NOT AUTHORIZED BY DEFAULT
 
 ## Roadmap
 
 Frozen baseline: `docs/01-roadmap/MASTER-ROADMAP-v2.0.md`  
-Master Roadmap: v2.0  
-Roadmap state: FROZEN  
+Frozen Master Roadmap SHA: `d185e83fa37c67aec994cbed2e00b99e23c628a4`  
 Direct roadmap mutation: FORBIDDEN
 
-Roadmap companion task: `FIN-P00-WE-001 = CANONICAL_COMPLETE`  
-Linear issue: `HOS-105`
-
-Companion artifacts created on active task branch:
-- `docs/01-roadmap/MASTER-ROADMAP-DETAILS.md`
-- `docs/01-roadmap/EXECUTION-ROADMAP.md`
-- `docs/01-roadmap/PHASE-WORKSTREAM-MATRIX.md`
-- `docs/01-roadmap/DEPENDENCY-GRAPH.md`
-- `docs/01-roadmap/GATE-MATRIX.md`
-- `docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md`
-- `docs/01-roadmap/AGENT-PLUGIN-SKILL-MATRIX.md`
-- `docs/01-roadmap/TEST-EVIDENCE-MATRIX.md`
-
-Detailed canonical roadmap: CANONICAL  
-Execution roadmap: CANONICAL
+Detailed roadmap: CANONICAL  
+Execution roadmap: CANONICAL  
+FIN-P00-WE-001 = CANONICAL_COMPLETE
 
 ## Execution
 
 Development: NOT_STARTED  
 Current Phase: P00 — Charter & Governance  
-Phase state: READY_FOR_G0_AUDIT
+Phase state: ACTIVE / G0_VALIDATION  
+G0_GOVERNANCE_READY: PASS_PENDING_CANONICAL_MERGE
+
+P01 — Market / Provider / Compliance Research: NOT_STARTED / waiting for final G0 PASS
 
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
@@ -76,40 +63,32 @@ FIN-P00-WA-001 = CANONICAL_COMPLETE
 FIN-P00-WB-001 = CANONICAL_COMPLETE  
 FIN-P00-WC-001 = CANONICAL_COMPLETE  
 FIN-P00-WD-001 = CANONICAL_COMPLETE  
-FIN-P00-WE-001 = CANONICAL_COMPLETE
+FIN-P00-WE-001 = CANONICAL_COMPLETE  
+FIN-P00-WF-001 = ACTIVE
 
-Active task: none  
-Active locks: none  
+Active task: FIN-P00-WF-001 — P00 governance closure and G0 readiness  
+Active lock: LOCK-FIN-P00-WF-001-01  
 Open critical incidents: none  
 Repository-admin hardening issue #3: CLOSED / COMPLETE
 
-## Recent evidence
+## G0 audit evidence
 
-Toolchain closure:
-- PR #9 = MERGED
-- merge SHA: `6e22682ed59666ad18b44eb7d067ad56512b3414`
-- PR Governance run: `37113933957` = SUCCESS
-- post-merge Governance run: `37118722767` = SUCCESS
-- HOS-104 = Done
+Dossier: `docs/00-governance/G0-GOVERNANCE-READY.md`
 
-## Coordination rule
+Mandatory G0 criteria: PASS in audit  
+Current gate verdict: `PASS_PENDING_CANONICAL_MERGE`
 
-No implementation code starts until:
-1. FIN-P00-WE-001 is CANONICAL_COMPLETE,
-2. Linear is reconciled to the canonical roadmap package,
-3. P00-F Governance Closure passes `G0_GOVERNANCE_READY`.
-
-## Roadmap closure evidence
-
-- Linear issue: `HOS-105`
-- Implementation PR: `#10`
-- Implementation merge SHA: `4c4e8b295023d312951725dbdfccc8f468f32ca1`
-- PR Governance run: `37119396345` = SUCCESS
-- Post-merge Governance run: `37119418336` = SUCCESS
-- Frozen Master Roadmap SHA unchanged: `d185e83fa37c67aec994cbed2e00b99e23c628a4`
-- P00–P24 coverage in detailed/execution roadmaps: PASS
-- G0–G13 coverage in Gate Matrix: PASS
+Pre-task live evidence:
+- protected `main` only in branch inventory
+- active `Protect main` ruleset ID `24412077`
+- required `governance` status check
+- current pre-task main Governance run `37119475343` = SUCCESS
+- GitHub Issue #3 = CLOSED / completed
+- Secret Protection = ACTIVE via canonical UI-verification record
+- Push Protection = ACTIVE via canonical UI-verification record
+- Linear P00–P24 milestones present
+- prior P00 tasks WA–WE = CANONICAL_COMPLETE / RELEASED
 
 ## Next
 
-Start P00-F Governance Closure and evaluate `G0_GOVERNANCE_READY`. Do not start application/runtime trading implementation before G0 passes.
+Merge FIN-P00-WF-001 after required Governance Verify passes. After successful post-merge verification, finalize G0 as PASS, close P00, release the lock and mark P01 READY.
