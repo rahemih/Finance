@@ -1,0 +1,48 @@
+{
+  "task_id":"FIN-P01-WT-001",
+  "phase":"P01",
+  "workstream":"WT",
+  "objective":"Create a single canonical human-readable Roadmap Tooling Usage Map covering all registered project tools/capabilities and their P00-P24 usage.",
+  "scope":[
+    "List all registered tool families and named tools",
+    "Map every roadmap phase P00-P24 to the tools/capabilities it uses",
+    "Record purpose, current state and activation mode",
+    "Link specialist registries instead of duplicating decision authority",
+    "Mirror the canonical map into a Linear project document"
+  ],
+  "out_of_scope":[
+    "Runtime installation",
+    "Production provider selection",
+    "Credentials",
+    "Broker/exchange connectivity",
+    "Live Trading",
+    "Auto Trading",
+    "Frozen Master Roadmap mutation"
+  ],
+  "dependencies":["FIN-P01-WM-001"],
+  "write_paths":[
+    "contracts/tasks/FIN-P01-WT-001.json",
+    "docs/01-roadmap/ROADMAP-TOOLING-USAGE-MAP.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "risk_level":"LOW",
+  "human_gate":false,
+  "tests":[
+    "Governance Verify",
+    "Document covers P00-P24",
+    "Document references all specialist registries",
+    "Each named tool has purpose/state/phase mapping",
+    "No production selection is implied",
+    "Linear mirror exists"
+  ],
+  "definition_of_done":[
+    "Roadmap Tooling Usage Map committed",
+    "Linear document created and linked",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge checks pass",
+    "Task closed and lock released"
+  ]
+}
