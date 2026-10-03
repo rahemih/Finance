@@ -1,0 +1,103 @@
+{
+  "registry": "NEXUS_QUANT_AUTOMATION_ORCHESTRATION_REGISTRY",
+  "task_id": "FIN-P01-WO-001",
+  "linear_issue": "HOS-116",
+  "observed_at": "2026-10-03",
+  "production_selection_authorized": false,
+  "runtime_installation_authorized": false,
+  "existing_canonical": [
+    "github-actions"
+  ],
+  "candidates": [
+    {
+      "repo": "temporalio/temporal",
+      "classification": "ADOPT_CANDIDATE",
+      "role": "durable_stateful_workflows",
+      "license_signal": "MIT",
+      "stars": 23437,
+      "pushed_at": "2026-10-03T02:43:10Z"
+    },
+    {
+      "repo": "dagster-io/dagster",
+      "classification": "ADOPT_CANDIDATE",
+      "role": "data_ml_asset_orchestration",
+      "license_signal": "Apache-2.0",
+      "stars": 16232,
+      "pushed_at": "2026-10-02T20:34:38Z"
+    },
+    {
+      "repo": "kestra-io/kestra",
+      "classification": "USE_CANDIDATE",
+      "role": "event_schedule_operations_orchestration",
+      "license_signal": "Apache-2.0",
+      "stars": 28927,
+      "pushed_at": "2026-10-03T12:12:25Z"
+    },
+    {
+      "repo": "n8n-io/n8n",
+      "classification": "USE_CANDIDATE",
+      "role": "external_integrations_notifications",
+      "license_signal": "NOASSERTION_REVIEW_REQUIRED",
+      "stars": 206554,
+      "pushed_at": "2026-10-03T12:36:24Z"
+    },
+    {
+      "repo": "PrefectHQ/prefect",
+      "classification": "ALTERNATIVE_CANDIDATE",
+      "role": "python_data_workflow_orchestration",
+      "license_signal": "Apache-2.0",
+      "stars": 23964,
+      "pushed_at": "2026-10-02T22:54:55Z"
+    },
+    {
+      "repo": "apache/airflow",
+      "classification": "REFERENCE",
+      "role": "batch_scheduler_orchestration",
+      "license_signal": "Apache-2.0",
+      "stars": 47039,
+      "pushed_at": "2026-10-03T12:41:34Z"
+    },
+    {
+      "repo": "triggerdotdev/trigger.dev",
+      "classification": "SPECIALIST_CANDIDATE",
+      "role": "typescript_background_ai_jobs",
+      "license_signal": "Apache-2.0",
+      "stars": 16458,
+      "pushed_at": "2026-10-02T22:06:26Z"
+    },
+    {
+      "repo": "windmill-labs/windmill",
+      "classification": "SPECIALIST_CANDIDATE",
+      "role": "internal_scripts_workflows_tools",
+      "license_signal": "NOASSERTION_REVIEW_REQUIRED",
+      "stars": 18092,
+      "pushed_at": "2026-10-03T09:18:50Z"
+    }
+  ],
+  "preferred_research_direction": {
+    "ci_governance": "github-actions",
+    "critical_durable_workflows": "temporalio/temporal",
+    "data_ml_pipelines": "dagster-io/dagster",
+    "event_schedule_ops": "kestra-io/kestra",
+    "external_integrations": "n8n-io/n8n"
+  },
+  "hard_rules": {
+    "overlapping_orchestrator_sprawl": false,
+    "owner_gate_automation": false,
+    "runtime_installation_before_selection": false,
+    "live_trading_enabled": false,
+    "auto_trading_enabled": false
+  },
+  "phase_ownership": [
+    "P02",
+    "P04",
+    "P05",
+    "P06",
+    "P14",
+    "P17",
+    "P18",
+    "P22",
+    "P23",
+    "P24"
+  ]
+}

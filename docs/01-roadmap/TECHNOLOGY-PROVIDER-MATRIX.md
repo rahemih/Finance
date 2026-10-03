@@ -335,3 +335,26 @@ Current research direction:
 - Phoenix and Langfuse: observability candidates requiring exact license/privacy review.
 
 Final framework selection and authority implementation are deferred to P02-F/P04. Listing does not authorize package installation, model credentials, broker connectivity, Live Trading or Auto Trading.
+
+
+## 19. Automation and orchestration
+
+Governed registry:
+- `docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md`
+- `docs/03-research/automation-orchestration-registry.json`
+- `docs/00-governance/AUTOMATION-GOVERNANCE.md`
+- Task: `FIN-P01-WO-001`
+- Linear: `HOS-116`
+
+Research direction:
+- GitHub Actions: existing canonical CI/governance automation.
+- Temporal: `ADOPT_CANDIDATE` for critical durable workflows.
+- Dagster: `ADOPT_CANDIDATE` for data/quant/ML pipelines.
+- Kestra: `USE_CANDIDATE` for event/schedule/operations workflows.
+- n8n: `USE_CANDIDATE` for external integrations, subject to license/security review.
+- Prefect: `ALTERNATIVE_CANDIDATE`.
+- Airflow: `REFERENCE / ALTERNATIVE_CANDIDATE`.
+- Trigger.dev: `SPECIALIST_CANDIDATE`.
+- Windmill: `SPECIALIST_CANDIDATE` with license review.
+
+No runtime installation or production selection is authorized by this registry. Final choices belong to P02/P04 and the owning implementation phases.

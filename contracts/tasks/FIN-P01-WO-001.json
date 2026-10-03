@@ -1,0 +1,44 @@
+{
+  "task_id":"FIN-P01-WO-001",
+  "phase":"P01",
+  "workstream":"WO",
+  "objective":"Create the governed Automation & Orchestration Registry for NEXUS QUANT.",
+  "scope":[
+    "Evaluate workflow, data/ML, event/schedule, integration and background-job automation systems",
+    "Classify candidates and define adoption guardrails",
+    "Define automation governance, reliability, observability and recovery baseline",
+    "Map future implementation to roadmap phases"
+  ],
+  "out_of_scope":[
+    "Runtime installation",
+    "Credentials",
+    "Production trading activation",
+    "Frozen roadmap mutation"
+  ],
+  "dependencies":["FIN-P00-WF-001","FIN-P01-WR-001","FIN-P01-WG-001"],
+  "write_paths":[
+    "contracts/tasks/FIN-P01-WO-001.json",
+    "docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md",
+    "docs/03-research/automation-orchestration-registry.json",
+    "docs/00-governance/AUTOMATION-GOVERNANCE.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "risk_level":"MEDIUM",
+  "human_gate":false,
+  "tests":[
+    "Governance Verify",
+    "Registry JSON parses",
+    "No production runtime is selected or installed",
+    "Current State and Task Catalog reconcile"
+  ],
+  "definition_of_done":[
+    "Registry and governance baseline committed",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge checks pass",
+    "Linear synchronized",
+    "FIN-P01-WO-001 = CANONICAL_COMPLETE"
+  ]
+}
