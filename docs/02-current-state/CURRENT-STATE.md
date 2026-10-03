@@ -29,6 +29,7 @@ Open-source registry: `HOS-110 = Done`
 Frontend excellence baseline: `HOS-112 = Done`  
 Agent framework / ready-agent registry: `HOS-113 = Done`  
 Automation/orchestration registry: `HOS-116 = Done`  
+Master tooling registry: `HOS-118 = In Progress`  
 P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
@@ -106,6 +107,9 @@ Implementation evidence:
 - `docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md`
 - `docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md`
 - `docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md`
+- `docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md`
+- `docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md`
+- `docs/02-current-state/BUILD-READINESS-CHECKLIST.md`
 
 ## Recent Governance Evidence
 
@@ -132,8 +136,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WM-001 = IN_REVIEW`  
+Active lock: `LOCK-FIN-P01-WM-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -150,7 +154,8 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-E — Cost / Licensing / Data Rights.
+1. Canonically close `FIN-P01-WM-001`.
+2. Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
 ## Automation & orchestration registry
@@ -178,3 +183,22 @@ Automation registry closure evidence:
 - Post-merge Governance run: `37124070548` = SUCCESS
 - Post-merge Branch Hygiene run: `37124070583` = SUCCESS
 - Runtime automation installation: NOT_PERFORMED
+
+
+## Project capability & tooling master registry
+
+Task: `FIN-P01-WM-001`  
+State: IN_REVIEW  
+Linear: `HOS-118`  
+Lock: `LOCK-FIN-P01-WM-001-01`
+
+Artifacts:
+- `docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md`
+- `docs/03-research/project-capability-tooling-master-registry.json`
+- `docs/00-governance/PHASE-TOOLING-ACTIVATION-POLICY.md`
+- `docs/02-current-state/BUILD-READINESS-CHECKLIST.md`
+
+Tooling arsenal readiness: PASS.  
+Broad build-start gate: NOT_YET — P01 remains active.  
+Runtime tooling installation from this task: NOT_PERFORMED.  
+Production technology selection from this task: NOT_PERFORMED.

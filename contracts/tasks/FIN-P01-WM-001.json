@@ -1,0 +1,53 @@
+{
+  "task_id":"FIN-P01-WM-001",
+  "phase":"P01",
+  "workstream":"WM",
+  "objective":"Create the canonical Project Capability & Tooling Master Registry, phase activation policy and build-readiness checklist for NEXUS QUANT.",
+  "scope":[
+    "Unify existing plugin/skill, repository, frontend, agent and automation registries",
+    "Add standards, protocols, policy-as-code, IaC, secrets, observability, data/ML lifecycle, supply-chain, testing, replay and operations capability candidates",
+    "Define phase-based evaluation/selection/install triggers",
+    "Create machine-readable registry and build-readiness checklist",
+    "Prevent premature installation and overlapping tool sprawl"
+  ],
+  "out_of_scope":[
+    "Runtime infrastructure installation",
+    "Production provider selection",
+    "Credentials",
+    "Broker/exchange connectivity",
+    "Live Trading",
+    "Auto Trading",
+    "Frozen roadmap mutation"
+  ],
+  "dependencies":["FIN-P00-WD-001","FIN-P01-WR-001","FIN-P01-WU-001","FIN-P01-WG-001","FIN-P01-WO-001"],
+  "write_paths":[
+    "contracts/tasks/FIN-P01-WM-001.json",
+    "docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md",
+    "docs/03-research/project-capability-tooling-master-registry.json",
+    "docs/00-governance/PHASE-TOOLING-ACTIVATION-POLICY.md",
+    "docs/02-current-state/BUILD-READINESS-CHECKLIST.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "risk_level":"MEDIUM",
+  "human_gate":false,
+  "tests":[
+    "Governance Verify",
+    "Master registry JSON parses",
+    "Every capability has owner phase and activation mode",
+    "No deferred production runtime is marked installed",
+    "Build readiness checklist exists",
+    "Current State and Task Catalog reconcile"
+  ],
+  "definition_of_done":[
+    "Master registry committed",
+    "Activation policy committed",
+    "Build readiness checklist committed",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge checks pass",
+    "Linear synchronized",
+    "FIN-P01-WM-001 = CANONICAL_COMPLETE"
+  ]
+}
