@@ -17,7 +17,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WR-001 | P01 | Open-source repository & dependency registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WR-001.json` | RELEASED |
 
 | FIN-P01-WC-001 | P01 | Broker / exchange inventory and execution scorecards | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WC-001.json` | RELEASED |
-| FIN-P01-WU-001 | P01 | Frontend UI/UX repository registry & excellence baseline | MEDIUM | IN_REVIEW | `contracts/tasks/FIN-P01-WU-001.json` | NONE |
+| FIN-P01-WU-001 | P01 | Frontend UI/UX repository registry & excellence baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WU-001.json` | RELEASED |
 
 ## Rules
 
