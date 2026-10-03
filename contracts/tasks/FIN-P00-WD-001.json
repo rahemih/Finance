@@ -1,0 +1,167 @@
+{
+  "task_id": "FIN-P00-WD-001",
+  "phase": "P00",
+  "workstream": "WD",
+  "objective": "Canonicalize the project toolchain, plugin, skill, and access matrix for Finance — NEXUS QUANT before detailed roadmap execution.",
+  "scope": [
+    "Verify the four newly requested project plugins are installed",
+    "Classify project plugins as core, domain intelligence, engineering, collaboration, optional, or conditional",
+    "Register relevant ChatGPT skills and their invocation policy",
+    "Map agents to approved plugin and skill families",
+    "Define least-privilege, source-of-truth, and external-action rules",
+    "Reconcile GitHub and Linear toolchain state"
+  ],
+  "out_of_scope": [
+    "Change global plugin permissions to Full Access",
+    "Store credentials or secrets in GitHub or Linear",
+    "Choose production market-data or broker providers",
+    "Make ChatGPT plugins production runtime dependencies",
+    "Start implementation code",
+    "Enable demo, live, or automatic trading"
+  ],
+  "dependencies": [
+    "FIN-P00-WA-001",
+    "FIN-P00-WB-001",
+    "FIN-P00-WC-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**",
+    "contracts/schemas/**"
+  ],
+  "write_paths": [
+    "docs/09-agents/TOOLCHAIN-MATRIX.md",
+    "docs/09-agents/AGENT-REGISTRY.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WD-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Figma",
+    "Google Drive",
+    "Slack",
+    "Vercel",
+    "Neon",
+    "Context7",
+    "PostHog",
+    "OpenAI Developers",
+    "Blockscout Blockchain Data",
+    "Exa",
+    "Wolfram",
+    "Legal Data Hunter",
+    "Codex Security",
+    "Gmail",
+    "Google Calendar",
+    "Dropbox",
+    "Adobe",
+    "Canva"
+  ],
+  "skills": [
+    "Vercel AI SDK",
+    "Vercel AI Gateway",
+    "Vercel Workflow",
+    "Vercel Observability",
+    "Vercel Deployments CI/CD",
+    "Vercel Cron Jobs",
+    "Vercel Firewall",
+    "Vercel Verification",
+    "Vercel Investigation Mode",
+    "Neon Postgres",
+    "Neon Functions",
+    "Neon Object Storage",
+    "Figma Design-to-Code",
+    "Figma Generate Design",
+    "Figma Generate Library",
+    "Figma Generate Diagram",
+    "Google Drive",
+    "Sentry",
+    "Plugin Management"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "DESIGN_READ_WRITE_GOVERNED",
+    "INFRA_READ_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Task Contract schema validation",
+    "Governance Verify",
+    "Blockscout Blockchain Data installed=true",
+    "Exa installed=true",
+    "Wolfram installed=true",
+    "Legal Data Hunter installed=true",
+    "Toolchain Matrix contains source-of-truth and least-privilege rules",
+    "Agent Registry references the canonical Toolchain Matrix"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No secret values stored in governance documents",
+    "No plugin is granted blanket production-trading authority",
+    "No ChatGPT plugin is declared a production runtime dependency",
+    "Risk and Security veto boundaries remain intact",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "Plugin installation-state verification on 2026-10-03",
+    "Linear issue HOS-104",
+    "GitHub Pull Request",
+    "Governance Verify run",
+    "Merge SHA",
+    "Post-merge Governance Verify",
+    "Final Linear reconciliation"
+  ],
+  "rollback": "Revert only the toolchain governance documentation and state reconciliation. Do not uninstall user plugins automatically; plugin removal requires explicit Owner intent.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P00 repository foundation is canonical",
+    "Linear project management coordination is canonical",
+    "No conflicting active task or lock exists",
+    "Four requested domain plugins are installed"
+  ],
+  "definition_of_done": [
+    "Canonical Toolchain Matrix exists",
+    "Agent Registry references the Toolchain Matrix",
+    "Task Catalog and CURRENT-STATE are reconciled",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Linear issue is reconciled",
+    "Task lock is released"
+  ]
+}
