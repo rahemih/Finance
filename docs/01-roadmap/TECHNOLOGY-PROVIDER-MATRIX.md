@@ -358,3 +358,34 @@ Research direction:
 - Windmill: `SPECIALIST_CANDIDATE` with license review.
 
 No runtime installation or production selection is authorized by this registry. Final choices belong to P02/P04 and the owning implementation phases.
+
+
+## 20. Project capability & tooling master registry
+
+Canonical master index:
+- `docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md`
+- `docs/03-research/project-capability-tooling-master-registry.json`
+- `docs/00-governance/PHASE-TOOLING-ACTIVATION-POLICY.md`
+- `docs/02-current-state/BUILD-READINESS-CHECKLIST.md`
+- Task: `FIN-P01-WM-001`
+- Linear: `HOS-118`
+
+This index unifies the project capability arsenal across:
+- plugins/connectors/skills;
+- open-source repositories;
+- frontend/UI/UX;
+- agents and interoperability;
+- automation/orchestration;
+- standards/contracts;
+- policy-as-code;
+- infrastructure-as-code;
+- secrets/IAM/KMS;
+- observability;
+- data quality/lineage/formats/replay;
+- ML lifecycle/model registry/feature store;
+- software supply-chain/SBOM/signing/provenance;
+- feature flags/configuration;
+- load/failure/chaos testing;
+- runbooks, incident response, FinOps and evidence.
+
+The Phase Tooling Activation Policy requires A0 to automatically re-evaluate applicable registered capabilities at the start of their owning roadmap phase. This does not authorize premature installation or production selection.
