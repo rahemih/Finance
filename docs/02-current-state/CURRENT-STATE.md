@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this closure PR: `b10da5bfa9afe422f21f5f92a54d4430f4609823`  
+Canonical HEAD before active P01-A task: `43a6384d121dd8ed30c2923f1cb472ef117da78f`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -18,43 +18,42 @@ Workspace: `Hossein`
 Team: `Hossein (HOS)`  
 Project: `Finance — NEXUS QUANT`  
 Project ID: `P-HOS-2`  
-Project status: `In Progress`  
-Priority: `High`  
 Project Lead / Owner: `Hossein Rahemi`  
 Operational Project Manager: `A0 — Governance / Orchestrator`  
 Milestones: `P00–P24` created  
-P00 closure issue: `HOS-106`
+Active issue: `HOS-107`
 
-## Toolchain
+## Roadmap / Gate State
 
-Canonical matrix: `docs/09-agents/TOOLCHAIN-MATRIX.md`  
-FIN-P00-WD-001 = CANONICAL_COMPLETE  
-Least privilege: ENFORCED  
-Blanket Full Access: NOT AUTHORIZED BY DEFAULT
-
-## Roadmap
-
-Frozen baseline: `docs/01-roadmap/MASTER-ROADMAP-v2.0.md`  
-Frozen Master Roadmap SHA: `d185e83fa37c67aec994cbed2e00b99e23c628a4`  
-Roadmap state: FROZEN  
-Direct roadmap mutation: FORBIDDEN
-
-Detailed canonical roadmap: CANONICAL  
-Execution roadmap: CANONICAL  
-FIN-P00-WE-001 = CANONICAL_COMPLETE
-
-## Execution
-
-Development: NOT_STARTED  
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY
+P01 state: ACTIVE
 
-Demo Trading: NOT_STARTED  
-Shadow Trading: NOT_STARTED  
-Live Trading: DISABLED  
-Auto Trading: DISABLED
+Frozen Master Roadmap: v2.0 / FROZEN  
+Detailed roadmap: CANONICAL  
+Execution roadmap: CANONICAL
+
+## Active Research
+
+Task: `FIN-P01-WA-001 — Market universe and instrument taxonomy`  
+Lock: `LOCK-FIN-P01-WA-001-01`
+
+Artifacts:
+- `docs/03-research/P01-A-MARKET-UNIVERSE.md`
+- `docs/03-research/p01-a-market-universe.json`
+
+Research scope:
+- Crypto + Forex tradable candidates
+- Gold/Oil/USDX/Rates/Indices/Volatility context
+- provider-neutral identity/taxonomy
+- eligibility/expansion semantics
+- Forex proxy-volume labeling
+- official-source register
+
+Production data provider: NOT_SELECTED  
+Broker/exchange: NOT_SELECTED  
+Numeric liquidity thresholds: TBD in later P01 provider research
 
 ## Governance
 
@@ -63,29 +62,21 @@ FIN-P00-WB-001 = CANONICAL_COMPLETE
 FIN-P00-WC-001 = CANONICAL_COMPLETE  
 FIN-P00-WD-001 = CANONICAL_COMPLETE  
 FIN-P00-WE-001 = CANONICAL_COMPLETE  
-FIN-P00-WF-001 = CANONICAL_COMPLETE
+FIN-P00-WF-001 = CANONICAL_COMPLETE  
+FIN-P01-WA-001 = ACTIVE
 
-Active task: none  
-Active locks: none  
-Open critical incidents: none  
-Repository-admin hardening issue #3: CLOSED / COMPLETE
+Active task: FIN-P01-WA-001  
+Active lock: LOCK-FIN-P01-WA-001-01  
+Open critical incidents: none
 
-## G0 evidence
+## Safety
 
-Dossier: `docs/00-governance/G0-GOVERNANCE-READY.md`
-
-- All mandatory G0 criteria: PASS
-- Audit PR: `#12`
-- Audit PR Governance run: `37119776839` = SUCCESS
-- Audit merge SHA: `b10da5bfa9afe422f21f5f92a54d4430f4609823`
-- Audit post-merge Governance run: `37119801569` = SUCCESS
-- Final gate verdict: `G0_GOVERNANCE_READY = PASS`
-
-Known non-blocking observation:
-- GitHub repository is public; explicit visibility review is required in P03 before sensitive/proprietary runtime material is introduced.
+Development/runtime implementation: NOT_STARTED  
+Demo Trading: NOT_STARTED  
+Shadow Trading: NOT_STARTED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
 
 ## Next
 
-Start P01-A — Universe & Instrument Taxonomy under a new governed Task Contract.
-
-P01 research may use official sources, Exa, Legal Data Hunter, Blockscout and other approved research tools, but production providers, credentials and live execution remain unselected/disabled.
+Validate and merge FIN-P01-WA-001. Then close the task, release its lock and proceed to P01-B Market Data Provider Inventory.
