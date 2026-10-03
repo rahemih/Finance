@@ -22,7 +22,8 @@ Project Lead / Owner: `Hossein Rahemi`
 Operational Project Manager: `A0 — Governance / Orchestrator`  
 Milestones: `P00–P24` created  
 P01-A issue: `HOS-107 = Done`  
-P01-B issue: `HOS-109`
+P01-B issue: `HOS-109`  
+Open-source registry issue: `HOS-110`
 
 ## Roadmap / Gate State
 
@@ -73,7 +74,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: none  
+Active task: `FIN-P01-WR-001 = IN_REVIEW`  
+Active task branch: `research/FIN-P01-WR-001-open-source-repository-registry`  
 Active locks: none  
 Open critical incidents: none
 
@@ -110,6 +112,19 @@ Auto Trading: DISABLED
 
 An unmerged research branch created outside the canonical P01-B merge path may remain temporarily. Branch Hygiene policy does not delete unmerged branches without exact merged-PR proof. Such a branch is non-canonical and must not override `main`.
 
+## Open-source repository registry
+
+Task: `FIN-P01-WR-001`  
+State: IN_REVIEW  
+Linear: `HOS-110`
+
+Artifacts:
+- `docs/03-research/OPEN-SOURCE-REPOSITORY-DEPENDENCY-REGISTRY.md`
+- `docs/03-research/open-source-repository-dependency-registry.json`
+
+Production dependency selections: NOT_AUTHORIZED.
+
 ## Next
 
-Start P01-C — Broker / Exchange Inventory under a new governed Task Contract. Research only: no account opening, credentials, funding, order placement, or live trading.
+1. Complete and canonically close `FIN-P01-WR-001`.
+2. Continue P01-C — Broker / Exchange Inventory under a new governed Task Contract. Research only: no account opening, credentials, funding, order placement, or live trading.

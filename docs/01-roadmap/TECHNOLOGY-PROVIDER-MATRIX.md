@@ -257,3 +257,29 @@ At `FIN-P00-WE-001`:
 - no real-capital credentials exist by roadmap authorization;
 - LIVE_TRADING remains DISABLED;
 - AUTO_TRADING remains DISABLED.
+
+
+## 16. Governed open-source repository registry
+
+Wave-1 open-source finance/quant/trading candidates are tracked in:
+
+- `docs/03-research/OPEN-SOURCE-REPOSITORY-DEPENDENCY-REGISTRY.md`
+- `docs/03-research/open-source-repository-dependency-registry.json`
+- Task: `FIN-P01-WR-001`
+- Linear: `HOS-110`
+
+The registry distinguishes direct adoption candidates from bounded-use candidates, architecture/reference projects and license-risk projects.
+
+Current notable classifications:
+- Microsoft Qlib: `ADOPT_CANDIDATE`
+- CCXT: `ADOPT_CANDIDATE`
+- NautilusTrader: `USE_CANDIDATE` with LGPL review
+- FinRL: `USE_CANDIDATE` for experimental RL
+- QuantConnect LEAN: `REFERENCE`
+- Machine Learning for Trading: `REFERENCE`
+- Freqtrade: `LICENSE_RISK` / GPL-3.0
+- VectorBT: `LICENSE_RISK` pending exact license-term review
+- yfinance: `USE_CANDIDATE` for research only, not production market-data backbone
+- OpenBB: `REFERENCE` during stewardship transition
+
+These labels are research classifications only. They do not authorize installation, production use, market-data rights, broker connectivity or live execution.

@@ -14,6 +14,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WA-001 | P01 | Market universe and instrument taxonomy | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WA-001.json` | RELEASED |
 
 | FIN-P01-WB-001 | P01 | Market data provider inventory and scorecards | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WB-001.json` | RELEASED |
+| FIN-P01-WR-001 | P01 | Open-source repository & dependency registry | MEDIUM | IN_REVIEW | `contracts/tasks/FIN-P01-WR-001.json` | NONE |
 
 ## Rules
 

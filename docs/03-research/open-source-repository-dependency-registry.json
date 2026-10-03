@@ -1,0 +1,20 @@
+{
+  "registry": "NEXUS_QUANT_OPEN_SOURCE_REPOSITORY_DEPENDENCY_REGISTRY",
+  "task_id": "FIN-P01-WR-001",
+  "linear_issue": "HOS-110",
+  "wave": 1,
+  "effective_date": "2026-10-03",
+  "production_selections_authorized": false,
+  "entries": [
+    {"repo":"microsoft/qlib","url":"https://github.com/microsoft/qlib","role":["quant_research","ml","alpha","portfolio","backtest"],"license":"MIT","pushed_at":"2026-09-22T05:57:23Z","classification":"ADOPT_CANDIDATE","production_approved":false,"risk":["phase_specific_validation_required"]},
+    {"repo":"QuantConnect/Lean","url":"https://github.com/QuantConnect/Lean","role":["backtest","execution","research"],"license":"Apache-2.0","pushed_at":"2026-10-02T20:57:46Z","classification":"REFERENCE","production_approved":false,"risk":["architecture_fit_required"]},
+    {"repo":"nautechsystems/nautilus_trader","url":"https://github.com/nautechsystems/nautilus_trader","role":["event_driven_trading","oms","execution"],"license":"LGPL-3.0","pushed_at":"2026-10-03T10:35:29Z","classification":"USE_CANDIDATE","production_approved":false,"risk":["license_review_required"]},
+    {"repo":"AI4Finance-Foundation/FinRL","url":"https://github.com/AI4Finance-Foundation/FinRL","role":["reinforcement_learning","research"],"license":"MIT","pushed_at":"2026-09-28T23:32:46Z","classification":"USE_CANDIDATE","production_approved":false,"risk":["rl_validation_required","no_auto_live_promotion"]},
+    {"repo":"ccxt/ccxt","url":"https://github.com/ccxt/ccxt","role":["crypto_exchange_adapter","market_data","execution_adapter"],"license":"MIT","pushed_at":"2026-10-02T14:53:21Z","classification":"ADOPT_CANDIDATE","production_approved":false,"risk":["venue_native_semantics_must_remain_authoritative"]},
+    {"repo":"freqtrade/freqtrade","url":"https://github.com/freqtrade/freqtrade","role":["crypto_bot","strategy","backtest"],"license":"GPL-3.0","pushed_at":"2026-10-02T16:13:51Z","classification":"LICENSE_RISK","production_approved":false,"risk":["gpl_compatibility_review_required"]},
+    {"repo":"polakowo/vectorbt","url":"https://github.com/polakowo/vectorbt","role":["vectorized_research","parameter_sweep","backtest"],"license":"NOASSERTION","pushed_at":"2026-09-26T11:27:49Z","classification":"LICENSE_RISK","production_approved":false,"risk":["exact_license_terms_review_required"]},
+    {"repo":"ranaroussi/yfinance","url":"https://github.com/ranaroussi/yfinance","role":["research_data","prototype"],"license":"Apache-2.0","pushed_at":"2026-09-30T20:35:57Z","classification":"USE_CANDIDATE","production_approved":false,"risk":["data_rights_separate_from_code_license","not_production_data_backbone"]},
+    {"repo":"stefan-jansen/machine-learning-for-trading","url":"https://github.com/stefan-jansen/machine-learning-for-trading","role":["education","ml_research_reference","feature_engineering"],"license":"MIT","pushed_at":"2026-10-03T10:32:28Z","classification":"REFERENCE","production_approved":false,"risk":["reference_not_framework"]},
+    {"repo":"OpenBB-finance/OpenBB","url":"https://github.com/OpenBB-finance/OpenBB","role":["financial_data_integration","provider_abstraction","agent_research_interface"],"license":"PER_COMPONENT_REVIEW","pushed_at":"2026-09-18","classification":"REFERENCE","production_approved":false,"risk":["organization_wind_down","stewardship_transition","license_review_required"]}
+  ]
+}
