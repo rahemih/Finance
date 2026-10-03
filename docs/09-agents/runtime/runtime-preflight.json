@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "task_id": "FIN-P01-WG-003",
-  "state": "PRE_RUNTIME_ENGINEERING",
+  "state": "PRE_RUNTIME_COMPLETE",
   "runtime_authority": "P02-F",
   "framework_selection": "DEFERRED_UNTIL_P02_F",
   "dependency_installation": "NOT_PERFORMED",
@@ -91,5 +91,12 @@
     "evaluation_harness",
     "failure_injection",
     "A10_closure"
-  ]
+  ],
+  "completion_evidence": {
+    "implementation_pr": 47,
+    "implementation_merge_sha": "b6a77e67eeec33d3b6d00a5657f417e5887d022b",
+    "pr_governance_run": 37156334965,
+    "postmerge_governance_run": 37156357014,
+    "postmerge_branch_hygiene_run": 37156357003
+  }
 }
