@@ -56,7 +56,7 @@ FIN-P01-WG-001-R01 = CANONICAL_COMPLETE
 
 Task: `FIN-P01-WD-001 — Jurisdiction & compliance matrix`  
 Linear: `HOS-114`  
-Branch: `research/FIN-P01-WD-001-compliance-jurisdiction-R02`  
+Branch: `research/FIN-P01-WD-001-R02-compliance-jurisdiction`  
 Lock: `LOCK-FIN-P01-WD-001-01`
 
 Artifacts:
