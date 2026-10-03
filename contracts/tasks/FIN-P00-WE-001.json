@@ -1,0 +1,160 @@
+{
+  "task_id": "FIN-P00-WE-001",
+  "phase": "P00",
+  "workstream": "WE",
+  "objective": "Create and canonicalize the detailed roadmap package and execution roadmap that expand frozen Master Roadmap v2.0 without modifying it.",
+  "scope": [
+    "Create MASTER-ROADMAP-DETAILS.md as the detailed companion to frozen Master Roadmap v2.0",
+    "Create EXECUTION-ROADMAP.md with phase-by-phase governed execution sequencing and workstream identifiers",
+    "Create PHASE-WORKSTREAM-MATRIX.md",
+    "Create DEPENDENCY-GRAPH.md",
+    "Create GATE-MATRIX.md",
+    "Create TECHNOLOGY-PROVIDER-MATRIX.md",
+    "Create AGENT-PLUGIN-SKILL-MATRIX.md",
+    "Create TEST-EVIDENCE-MATRIX.md",
+    "Reconcile TASK-CATALOG and CURRENT-STATE",
+    "Synchronize Linear project management state and roadmap references"
+  ],
+  "out_of_scope": [
+    "Modify docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "Implement application, data, quant, risk, execution, UI or infrastructure code",
+    "Select a production provider solely because it is installed or listed",
+    "Create live broker/exchange credentials",
+    "Enable Demo, Shadow, Live or Automatic Trading",
+    "Bypass future phase gates or owner gates"
+  ],
+  "dependencies": [
+    "FIN-P00-WA-001",
+    "FIN-P00-WB-001",
+    "FIN-P00-WC-001",
+    "FIN-P00-WD-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**",
+    "contracts/schemas/**"
+  ],
+  "write_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/01-roadmap/PHASE-WORKSTREAM-MATRIX.md",
+    "docs/01-roadmap/DEPENDENCY-GRAPH.md",
+    "docs/01-roadmap/GATE-MATRIX.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/01-roadmap/AGENT-PLUGIN-SKILL-MATRIX.md",
+    "docs/01-roadmap/TEST-EVIDENCE-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WE-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Context7",
+    "Exa",
+    "Wolfram",
+    "Legal Data Hunter",
+    "Blockscout Blockchain Data",
+    "Figma",
+    "Google Drive",
+    "Vercel",
+    "Neon",
+    "Supabase",
+    "PostHog",
+    "Codex Security"
+  ],
+  "skills": [
+    "Plugin Management",
+    "Figma Generate Diagram",
+    "Vercel architecture/observability/workflow skills",
+    "Neon Postgres",
+    "Supabase Postgres Best Practices",
+    "Google Drive"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Task Contract schema validation",
+    "Governance Verify",
+    "Frozen Master Roadmap file is byte-identical to main baseline",
+    "All 25 phases P00-P24 are represented in detailed roadmap and execution roadmap",
+    "All gates G0-G13 are represented in Gate Matrix",
+    "Every phase has objective, workstreams, outputs, validation and exit evidence",
+    "Every execution workstream has phase-scoped identifier and dependency semantics",
+    "Technology/provider matrix marks production selection as governed/TBD where not already canonical",
+    "Agent/plugin/skill matrix does not expand authority beyond Agent Registry and Toolchain Matrix",
+    "No Live/Auto trading activation"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials or secret values in roadmap documents",
+    "No plugin is granted blanket production authority",
+    "Risk and Security independent veto remain explicit",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "Linear issue HOS-105",
+    "GitHub PR",
+    "Governance Verify run ID",
+    "Merge SHA",
+    "Post-merge Governance Verify run ID",
+    "Linear roadmap synchronization evidence"
+  ],
+  "rollback": "Revert only the companion roadmap package and state/catalog reconciliation. Frozen Master Roadmap v2.0 remains untouched.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P00-WD-001 is CANONICAL_COMPLETE",
+    "No active conflicting lock exists",
+    "Master Roadmap v2.0 is FROZEN and available on main",
+    "Linear project P-HOS-2 is active",
+    "Toolchain Matrix is canonical"
+  ],
+  "definition_of_done": [
+    "All eight canonical roadmap companion documents exist",
+    "All P00-P24 phases are decomposed into executable workstreams",
+    "Dependencies, gates, providers/technology candidates, agents/tools, tests/evidence are mapped",
+    "TASK-CATALOG and CURRENT-STATE are reconciled",
+    "Linear references are synchronized",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Lock is released",
+    "FIN-P00-WE-001 is CANONICAL_COMPLETE"
+  ]
+}
