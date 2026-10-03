@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nexus-quant.agent-message-envelope.v1",
+  "title": "NEXUS QUANT Agent Message Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "task_id",
+    "agent_id",
+    "model_id",
+    "model_version",
+    "input_data_refs",
+    "source_refs",
+    "source_as_of",
+    "retrieved_at",
+    "freshness_status",
+    "assumptions",
+    "supporting_evidence",
+    "opposing_evidence",
+    "conflicts",
+    "confidence",
+    "uncertainty",
+    "risk_flags",
+    "action_class",
+    "tool_trace_id",
+    "limitations"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^A(10|[0-9])$"
+    },
+    "specialist_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_data_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_as_of": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "freshness_status": {
+      "enum": [
+        "FRESH",
+        "STALE",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "opposing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "action_class": {
+      "enum": [
+        "INFORMATION_ONLY",
+        "RESEARCH_CANDIDATE",
+        "WAIT",
+        "NO_TRADE",
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "tool_trace_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "latency_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "token_usage": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "cost_estimate": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "terminal_status": {
+      "enum": [
+        "SUCCESS",
+        "DEGRADED",
+        "BLOCKED",
+        "FAILED",
+        "VETOED"
+      ]
+    }
+  }
+}
