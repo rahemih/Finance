@@ -9,6 +9,7 @@ This catalog is the canonical index of governed work.
 | FIN-P00-WC-001 | P00 | Linear project activation and project-management coordination | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WC-001.json` | RELEASED |
 | FIN-P00-WD-001 | P00 | Project toolchain / plugin / skill activation matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WD-001.json` | RELEASED |
 | FIN-P00-WE-001 | P00 | Detailed canonical roadmap and execution roadmap | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WE-001.json` | RELEASED |
+| FIN-P00-WF-001 | P00 | P00 governance closure and G0 readiness | MEDIUM | ACTIVE | `contracts/tasks/FIN-P00-WF-001.json` | LOCK-FIN-P00-WF-001-01 |
 
 ## Rules
 
