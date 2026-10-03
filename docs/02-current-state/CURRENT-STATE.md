@@ -23,7 +23,8 @@ Operational Project Manager: `A0 — Governance / Orchestrator`
 Milestones: `P00–P24` created  
 P01-A issue: `HOS-107 = Done`  
 P01-B issue: `HOS-109`  
-Open-source registry issue: `HOS-110`
+Open-source registry issue: `HOS-110`  
+Frontend UI/UX registry issue: `HOS-112`
 
 ## Roadmap / Gate State
 
@@ -75,7 +76,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: none  
+Active task: `FIN-P01-WUI-001 = IN_REVIEW`  
+Active task branch: `research/FIN-P01-WUI-001-frontend-uiux-registry`  
 Active locks: none  
 Open critical incidents: none
 
@@ -152,4 +154,21 @@ Lock: RELEASED
 
 ## Next
 
-Reconcile the already-open supporting frontend UI/UX registry task `FIN-P01-WUI-001` without allowing it to override current canonical P01 state. After the repository is conflict-free, continue to P01-D — Compliance / Jurisdiction Matrix.
+1. Canonically close the supporting frontend UI/UX and excellence baseline task `FIN-P01-WUI-001`.
+2. Continue to P01-D — Compliance / Jurisdiction Matrix.
+
+## Frontend UI/UX and excellence baseline
+
+Task: `FIN-P01-WUI-001`  
+State: IN_REVIEW  
+Linear: `HOS-112`
+
+Artifacts:
+- `docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md`
+- `docs/03-research/frontend-ui-ux-repository-registry.json`
+- `docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md`
+
+Runtime implementation: NOT_STARTED.  
+Production frontend dependency selection: NOT_AUTHORIZED.  
+Live Trading: DISABLED.  
+Auto Trading: DISABLED.
