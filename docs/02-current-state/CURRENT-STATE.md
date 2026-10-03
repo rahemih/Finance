@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this closure PR: `de183a11561f7ce6f701e8e5b9d06b14ef08e124`  
+Canonical HEAD before active P01-D task: `dac0e245a43995271fd84e6ef1570cd0b914c219`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -20,18 +20,22 @@ Project: `Finance — NEXUS QUANT`
 Project ID: `P-HOS-2`  
 Project Lead / Owner: `Hossein Rahemi`  
 Operational Project Manager: `A0 — Governance / Orchestrator`  
-Milestones: `P00–P24` created  
-P01-A issue: `HOS-107 = Done`  
-P01-B issue: `HOS-109`  
-Open-source registry issue: `HOS-110`  
-Frontend UI/UX registry issue: `HOS-112`
+Milestones: `P00–P24` created
+
+P01-A: `HOS-107 = Done`  
+P01-B canonical issue: `HOS-109 = Done`  
+P01-C: `HOS-111 = Done`  
+Open-source registry: `HOS-110 = Done`  
+Frontend excellence baseline: `HOS-112 = Done`  
+Agent-framework registry: `HOS-113 = Backlog`  
+Active P01-D issue: `HOS-114 = In Progress`
 
 ## Roadmap / Gate State
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_D
+P01 state: ACTIVE_P01_D
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -41,29 +45,47 @@ Execution roadmap: CANONICAL
 
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
-FIN-P01-WC-001 = CANONICAL_COMPLETE
+FIN-P01-WC-001 = CANONICAL_COMPLETE  
+FIN-P01-WD-001 = ACTIVE  
+FIN-P01-WR-001 = CANONICAL_COMPLETE  
+FIN-P01-WU-001 = CANONICAL_COMPLETE
 
-P01-A artifacts:
+### P01-A artifacts
+
 - `docs/03-research/P01-A-MARKET-UNIVERSE.md`
 - `docs/03-research/p01-a-market-universe.json`
 
-P01-B artifacts:
+### P01-B artifacts
+
 - `docs/03-research/P01-B-MARKET-DATA-PROVIDERS.md`
 - `docs/03-research/p01-b-provider-scorecards.json`
 
-P01-B scope covered:
-- real-time/historical market-data candidates
-- crypto spot/order-book/derivatives source classes
-- Forex quote/reference sources with mandatory proxy-volume semantics
-- centralized futures/context data sources
-- official macro/vintage sources
-- licensing/redistribution/SLA/capacity unknowns carried forward
-- cross-provider/fallback independence requirements
-
 Production data provider: NOT_SELECTED  
-Primary/backup decision: DEFERRED_TO_P01_F_G  
-Broker/exchange: NOT_SELECTED  
-Credentials: NONE
+Primary/backup decision: DEFERRED_TO_P01_F_G
+
+### P01-C artifacts
+
+- `docs/03-research/P01-C-BROKER-EXCHANGE-INVENTORY.md`
+- `docs/03-research/p01-c-execution-venue-scorecards.json`
+
+Final broker/exchange selection: NOT_PERFORMED  
+Accounts/KYC/credentials/funding/orders: NONE
+
+### P01-D active artifacts
+
+- `docs/03-research/P01-D-JURISDICTION-COMPLIANCE.md`
+- `docs/03-research/p01-d-jurisdiction-compliance.json`
+
+Owner jurisdiction: UNSET_HUMAN_GATE  
+Personalized legal conclusion: NONE  
+Representative compliance regimes: EU/EEA, US, UK, Australia, Japan, Singapore, Dubai/VARA and Hong Kong
+
+### Supporting research baselines
+
+FIN-P01-WR-001 = CANONICAL_COMPLETE  
+FIN-P01-WU-001 = CANONICAL_COMPLETE
+
+No supporting research registry has authority to select production dependencies.
 
 ## Governance
 
@@ -74,12 +96,21 @@ FIN-P00-WD-001 = CANONICAL_COMPLETE
 FIN-P00-WE-001 = CANONICAL_COMPLETE  
 FIN-P00-WF-001 = CANONICAL_COMPLETE  
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
-FIN-P01-WB-001 = CANONICAL_COMPLETE
+FIN-P01-WB-001 = CANONICAL_COMPLETE  
+FIN-P01-WC-001 = CANONICAL_COMPLETE  
+FIN-P01-WD-001 = ACTIVE  
+FIN-P01-WR-001 = CANONICAL_COMPLETE  
+FIN-P01-WU-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WU-001 = IN_REVIEW`  
-Active task branch: `research/FIN-P01-WU-001-frontend-uiux-registry`  
-Active locks: none  
+Active task: `FIN-P01-WD-001 — Jurisdiction & compliance matrix`  
+Active branch: `research/FIN-P01-WD-001-compliance-jurisdiction`  
+Active lock: `LOCK-FIN-P01-WD-001-01`  
 Open critical incidents: none
+
+## Repository hygiene
+
+The superseded open frontend PR #24 has been closed.  
+Older unmerged research branches may remain because Branch Hygiene does not delete unmerged branches without exact merged-PR proof. They are non-canonical and must not override `main`.
 
 ## Safety
 
@@ -87,98 +118,33 @@ Development/runtime implementation: NOT_STARTED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
-Auto Trading: DISABLED
+Auto Trading: DISABLED  
+Production provider selection: NOT_PERFORMED  
+Production broker/exchange selection: NOT_PERFORMED  
+Credentials: NONE
 
-## P01-A closure evidence
+## Recent canonical evidence
 
-- Implementation PR: `#14`
-- Merge SHA: `f28dc1b35e43d3f2b751306e25ddf21ed599eeb1`
-- Post-merge Governance run: `37120248774` = SUCCESS
-- Closure PR: `#15`
-- Closure merge SHA: `bde2b4ae294d50b062d3d0955cb752459ac7061c`
-- Closure post-merge Governance run: `37120315706` = SUCCESS
+P01-A closure:
+- PR #14 / #15
+- final closure merge: `bde2b4ae294d50b062d3d0955cb752459ac7061c`
 
-## P01-B closure evidence
+P01-B closure:
+- implementation PR #16
+- merge: `de183a11561f7ce6f701e8e5b9d06b14ef08e124`
+- post-merge Governance: `37120710127` = SUCCESS
 
-- Linear issue: `HOS-109`
-- Implementation PR: `#16`
-- Implementation merge SHA: `de183a11561f7ce6f701e8e5b9d06b14ef08e124`
-- PR Governance check: SUCCESS
-- Post-merge Governance run: `37120710127` = SUCCESS
-- Branch Hygiene run: `37120710131` = SUCCESS
-- Production provider selection: NOT_PERFORMED
-- Broker/exchange selection: NOT_PERFORMED
-- Lock: RELEASED
+P01-C closure:
+- implementation PR #21
+- merge: `f9098477a386f8cd2c73e0bb988bcfef80dadc7a`
+- post-merge Governance: `37121383852` = SUCCESS
 
-## Repository hygiene observation
-
-An unmerged research branch created outside the canonical P01-B merge path may remain temporarily. Branch Hygiene policy does not delete unmerged branches without exact merged-PR proof. Such a branch is non-canonical and must not override `main`.
-
-## Open-source repository registry
-
-Task: `FIN-P01-WR-001`  
-State: CANONICAL_COMPLETE  
-Linear: `HOS-110`
-
-Artifacts:
-- `docs/03-research/OPEN-SOURCE-REPOSITORY-DEPENDENCY-REGISTRY.md`
-- `docs/03-research/open-source-repository-dependency-registry.json`
-
-Production dependency selections: NOT_AUTHORIZED.
-
-Closure evidence:
-- Implementation PR: `#19`
-- Merge SHA: `b6fd3067cec34c8595677ab6d51bba324dfc1f2b`
-- PR Governance run: `37120984559` = SUCCESS
-- Post-merge Governance run: `37121007124` = SUCCESS
-- Post-merge Branch Hygiene run: `37121007125` = SUCCESS
-- Linear issue: `HOS-110`
-- Runtime dependency installation: NOT_PERFORMED
-- Production provider/broker selection: NOT_PERFORMED
-
-## P01-C closure evidence
-
-FIN-P01-WC-001 = CANONICAL_COMPLETE  
-Linear issue: `HOS-111`  
-Research artifact: `docs/03-research/P01-C-BROKER-EXCHANGE-INVENTORY.md`  
-Machine-readable scorecards: `docs/03-research/p01-c-execution-venue-scorecards.json`  
-Implementation PR: `#21`  
-Implementation merge SHA: `f9098477a386f8cd2c73e0bb988bcfef80dadc7a`  
-PR Governance run: `37121354870` = SUCCESS  
-Post-merge Governance run: `37121383852` = SUCCESS  
-Post-merge Branch Hygiene run: `37121383808` = SUCCESS  
-Final broker/exchange selection: NOT_PERFORMED  
-Owner jurisdiction: NOT_INFERRED  
-Accounts/KYC/credentials/funding/orders: NONE  
-Lock: RELEASED
+Frontend excellence baseline closure:
+- implementation PR #26
+- closure PR #27
+- closure merge: `dac0e245a43995271fd84e6ef1570cd0b914c219`
+- latest main Governance: `37122038140` = SUCCESS
 
 ## Next
 
-1. Canonically close the supporting frontend UI/UX and excellence baseline task `FIN-P01-WU-001`.
-2. Continue to P01-D — Compliance / Jurisdiction Matrix.
-
-## Frontend UI/UX and excellence baseline
-
-Task: `FIN-P01-WU-001`  
-State: CANONICAL_COMPLETE  
-Linear: `HOS-112`
-
-Artifacts:
-- `docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md`
-- `docs/03-research/frontend-ui-ux-repository-registry.json`
-- `docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md`
-
-Runtime implementation: NOT_STARTED.  
-Production frontend dependency selection: NOT_AUTHORIZED.  
-Live Trading: DISABLED.  
-Auto Trading: DISABLED.
-
-Closure evidence:
-- Implementation PR: `#26`
-- Implementation merge SHA: `1bc95d41e336ce290902a8d0b427616d3facb3a3`
-- PR Governance run: `37121957216` = SUCCESS
-- Post-merge Governance run: `37121982919` = SUCCESS
-- Post-merge Branch Hygiene run: `37121982911` = SUCCESS
-- Linear issue: `HOS-112`
-- Runtime frontend implementation: NOT_PERFORMED
-- Production frontend dependency selection: NOT_PERFORMED
+Validate and merge FIN-P01-WD-001. After canonical closure, proceed to P01-E — Cost / Licensing / Data Rights.
