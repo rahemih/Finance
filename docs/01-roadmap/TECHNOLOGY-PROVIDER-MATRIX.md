@@ -312,3 +312,26 @@ This baseline covers:
 - component preview and engineering productivity.
 
 No runtime dependency or production technology is selected by this section. Exact implementation remains governed by P02/P03/P04/P22/P23/P24.
+
+
+## 18. Agent frameworks, ready agents and interoperability
+
+Governed candidate registry:
+
+- `docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md`
+- `docs/03-research/agent-framework-ready-agent-registry.json`
+- `docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md`
+- Task: `FIN-P01-WG-001`
+- Linear: `HOS-113`
+
+Current research direction:
+- OpenAI Agents SDK: `ADOPT_CANDIDATE` for lightweight orchestration, handoffs, guardrails and tracing.
+- Microsoft Agent Framework: `ALTERNATIVE_CANDIDATE`.
+- LangGraph: `USE_CANDIDATE` for durable/stateful workflows where justified.
+- PydanticAI: `USE_CANDIDATE` for typed Python specialist agents.
+- TradingAgents and FinRobot: `ADAPT_REFERENCE` for financial multi-agent patterns; no direct execution authority.
+- MCP and A2A: `INTEROP_CANDIDATE`.
+- Promptfoo and Inspect AI: `EVAL_CANDIDATE`.
+- Phoenix and Langfuse: observability candidates requiring exact license/privacy review.
+
+Final framework selection and authority implementation are deferred to P02-F/P04. Listing does not authorize package installation, model credentials, broker connectivity, Live Trading or Auto Trading.
