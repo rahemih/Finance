@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WD-001",
+  "researched_at": "2026-10-03",
+  "purpose": "Provider-neutral jurisdiction/compliance research baseline; not personalized legal advice.",
+  "owner_jurisdiction": {
+    "status": "UNSET_HUMAN_GATE",
+    "rule": "Do not infer residence, nationality, citizenship, tax residency, entity domicile, professional-client status or account eligibility from ChatGPT/account/network/location metadata.",
+    "required_before_provider_baseline": [
+      "country_of_residence",
+      "citizenship_if_provider_requires",
+      "tax_residency",
+      "entity_or_individual_account",
+      "entity_domicile_if_any",
+      "retail_professional_accredited_status_if_applicable",
+      "intended_products",
+      "intended_venues",
+      "whether_system_is_self_trading_only_or_serves_third_parties"
+    ]
+  },
+  "operating_model": {
+    "current": "private owner/team research platform; no public SaaS, no client asset custody, no copy trading, no brokerage service",
+    "regulatory_conclusion": "NO_PERSONALIZED_REGULATORY_CLASSIFICATION_MADE",
+    "note": "Whether the project itself triggers licensing depends on actual activity, client/service model, entity and jurisdiction. P01-D only defines evidence requirements."
+  },
+  "mandatory_separation": [
+    "MARKET_DATA_RIGHTS != TRADING_AUTHORIZATION",
+    "TECHNICAL_API_ACCESS != LEGAL_ELIGIBILITY",
+    "BROKER_ACCOUNT_APPROVAL != PRODUCT_ELIGIBILITY",
+    "PRODUCT_ELIGIBILITY != STRATEGY_APPROVAL",
+    "PROVIDER_PUBLIC_DOCS != REDISTRIBUTION_LICENSE",
+    "PAPER_OR_DEMO_ACCESS != LIVE_TRADING_AUTHORIZATION"
+  ],
+  "jurisdictions": [
+    {
+      "jurisdiction_id": "EU_EEA",
+      "label": "European Union / EEA baseline",
+      "regulator_sources": [
+        "EUR-Lex",
+        "ESMA",
+        "national competent authority TBD by owner/entity jurisdiction"
+      ],
+      "crypto": {
+        "status": "REGULATED_PROVIDER_REGIME",
+        "facts": [
+          "Regulation (EU) 2023/1114 (MiCA) establishes uniform requirements for crypto-asset service providers and applies to persons/undertakings providing crypto-asset services in the Union.",
+          "MiCA authorization is service-specific and supervised by the competent authority of the home Member State, with Union-wide validity subject to the regulation.",
+          "P01-D does not conclude that private own-account spot crypto trading requires CASP authorization; that depends on activity/service facts."
+        ],
+        "retail_derivatives": "REQUIRES_PRODUCT_AND_CLIENT_CLASS_REVIEW"
+      },
+      "forex_cfd": {
+        "status": "RETAIL_PRODUCT_INTERVENTION_BASELINE",
+        "facts": [
+          "ESMA's CFD product-intervention framework introduced retail protections including leverage limits, margin close-out, negative balance protection, inducement restrictions and standardized risk warnings.",
+          "The historical ESMA limits include 30:1 for major FX pairs, 20:1 for non-major FX/gold/major indices, 10:1 for other commodities/non-major indices, 5:1 for equities/other reference values and 2:1 for cryptocurrencies.",
+          "Current binding implementation must be verified with the applicable national competent authority and provider terms at account-opening time."
+        ]
+      },
+      "owner_gate": "Identify specific Member State/EEA state and client classification before any broker/provider eligibility decision.",
+      "source_refs": [
+        "EU_MICA",
+        "ESMA_CFD"
+      ]
+    },
+    {
+      "jurisdiction_id": "US",
+      "label": "United States baseline",
+      "regulator_sources": [
+        "CFTC",
+        "eCFR",
+        "SEC where instrument classification requires"
+      ],
+      "forex_cfd": {
+        "status": "OFF_EXCHANGE_RETAIL_FOREX_RESTRICTED_TO_REGULATED_COUNTERPARTIES",
+        "facts": [
+          "CFTC rules regulate off-exchange retail foreign-currency transactions.",
+          "Persons acting as counterparties to retail forex transactions generally must fall within permitted/regulated categories; CFTC rules include RFED and FCM registration structures.",
+          "17 CFR Part 5 is the primary current CFTC regulation set for off-exchange foreign currency transactions."
+        ]
+      },
+      "crypto": {
+        "status": "PRODUCT_AND_VENUE_SPECIFIC",
+        "facts": [
+          "CFTC materials state that certain leveraged, margined or financed retail commodity transactions may be required to trade on registered venues absent an exception or relief.",
+          "Digital-asset regulatory treatment is product-specific and can involve CFTC and/or SEC authority; P01-D does not classify any specific token/product for U.S. law."
+        ]
+      },
+      "owner_gate": "U.S. person/resident/entity status and exact product/venue must be explicitly verified before eligibility.",
+      "source_refs": [
+        "US_CFTC_RETAIL_FX",
+        "US_ECFR_PART5",
+        "US_CFTC_CRYPTO"
+      ]
+    },
+    {
+      "jurisdiction_id": "UK",
+      "label": "United Kingdom baseline",
+      "regulator_sources": [
+        "FCA"
+      ],
+      "crypto": {
+        "status": "RETAIL_CRYPTO_DERIVATIVES_RESTRICTED",
+        "facts": [
+          "FCA PS20/10 prohibits marketing, distribution and sale in or from the UK to retail clients of derivatives and ETNs referencing certain unregulated transferable cryptoassets.",
+          "The ban took effect on 6 January 2021."
+        ]
+      },
+      "forex_cfd": {
+        "status": "RETAIL_CFD_RULES",
+        "facts": [
+          "FCA PS19/18 and COBS 22.5 apply retail protections to CFDs and leveraged rolling spot forex.",
+          "Protections include leverage limits, 50% margin close-out, negative balance protection, inducement restrictions and standardized risk warnings.",
+          "FCA Handbook COBS 22.5 sets 3.33% minimum margin for major FX pairs (about 30:1) and 5% for minor FX pairs/gold (about 20:1)."
+        ]
+      },
+      "owner_gate": "UK retail/professional classification and provider authorization must be verified before product eligibility.",
+      "source_refs": [
+        "UK_FCA_CRYPTO_DERIV",
+        "UK_FCA_CFD",
+        "UK_FCA_COBS"
+      ]
+    },
+    {
+      "jurisdiction_id": "AU",
+      "label": "Australia baseline",
+      "regulator_sources": [
+        "ASIC"
+      ],
+      "forex_cfd": {
+        "status": "RETAIL_CFD_PRODUCT_INTERVENTION",
+        "facts": [
+          "ASIC's CFD product-intervention order applies retail-client protections including leverage limits from 30:1 to 2:1, margin close-out and negative balance protection.",
+          "ASIC extended the order through 23 May 2027 unless revoked or remade earlier.",
+          "ASIC's 2026 review states the order is due to expire in May 2027 unless remade, so status must be revalidated before use."
+        ]
+      },
+      "crypto": {
+        "status": "CRYPTO_CFD_IF_OFFERED_FALLS_WITHIN_CFD_INTERVENTION_SCOPE",
+        "facts": [
+          "ASIC describes CFDs as potentially referencing FX, indices, equities, commodities or crypto-assets; exact product/provider authorization requires current validation."
+        ]
+      },
+      "owner_gate": "Australian retail/wholesale client status and provider authorization must be verified.",
+      "source_refs": [
+        "AU_ASIC_CFD",
+        "AU_ASIC_2026"
+      ]
+    },
+    {
+      "jurisdiction_id": "JP",
+      "label": "Japan baseline",
+      "regulator_sources": [
+        "Japan Financial Services Agency"
+      ],
+      "crypto": {
+        "status": "REGISTERED_INTERMEDIARY_AND_DERIVATIVE_RULES",
+        "facts": [
+          "FSA materials describe registration requirements for crypto-asset exchange service providers.",
+          "Crypto-asset derivatives are regulated under the Financial Instruments and Exchange Act.",
+          "FSA materials describe a minimum 50% margin requirement for retail crypto-asset CFD transactions, corresponding to a 2:1 leverage ceiling."
+        ]
+      },
+      "forex_cfd": {
+        "status": "REGISTERED_FINANCIAL_INSTRUMENT_BUSINESS_REVIEW_REQUIRED",
+        "facts": [
+          "FSA materials treat FX/derivative intermediaries under financial instruments regulation; exact current retail FX leverage and provider status must be verified at execution-provider selection."
+        ]
+      },
+      "owner_gate": "Japanese resident/entity and client status plus FSA registration of the venue/intermediary must be verified.",
+      "source_refs": [
+        "JP_FSA_CRYPTO_FRAMEWORK",
+        "JP_FSA_CRYPTO_DERIV"
+      ]
+    },
+    {
+      "jurisdiction_id": "SG",
+      "label": "Singapore baseline",
+      "regulator_sources": [
+        "Monetary Authority of Singapore"
+      ],
+      "crypto": {
+        "status": "DPT_SERVICE_PROVIDER_RETAIL_SAFEGUARDS",
+        "facts": [
+          "MAS PS-G03 sets consumer-protection expectations for Digital Payment Token service providers.",
+          "For retail customers, the guidelines restrict credit/leverage and DPT derivative facilitation, including leveraged DPT transactions and DPT derivatives contracts."
+        ]
+      },
+      "forex_cfd": {
+        "status": "CMS_LICENSE_REGULATED_ACTIVITY",
+        "facts": [
+          "MAS states that a company must hold a Capital Markets Services licence to conduct regulated activities under the Securities and Futures Act unless exempt.",
+          "Capital-markets products include OTC derivatives, exchange-traded derivatives and spot foreign exchange for leveraged foreign exchange trading.",
+          "Licensed broker-dealers offering CFDs or leveraged spot FX are required to collect margins."
+        ]
+      },
+      "owner_gate": "Singapore retail/accredited/institutional status and provider licence/exemption must be verified.",
+      "source_refs": [
+        "SG_MAS_DPT",
+        "SG_MAS_CMS"
+      ]
+    },
+    {
+      "jurisdiction_id": "AE_DUBAI_VARA",
+      "label": "Dubai (VARA jurisdiction; excludes DIFC)",
+      "regulator_sources": [
+        "Virtual Assets Regulatory Authority"
+      ],
+      "crypto": {
+        "status": "VARA_ACTIVITY_LICENSING_AND_PROPRIETARY_REGISTRATION_RULES",
+        "facts": [
+          "VARA states that entities carrying out VA Activities by way of business in Dubai must be authorized/licensed unless exempt.",
+          "VARA's framework covers Dubai mainland and free zones except DIFC.",
+          "An entity actively investing its own portfolio in virtual assets at or above USD 250,000,000 equivalent during any rolling 30-day period must register with VARA.",
+          "VARA states that proprietary-portfolio registration does not itself authorize VA service activities or use of third-party assets."
+        ]
+      },
+      "forex_cfd": {
+        "status": "OUTSIDE_THIS_VARA_CRYPTO_RULESET_TBD_BY_LOCAL_FINANCIAL_REGULATOR"
+      },
+      "owner_gate": "Determine whether any UAE activity is in Dubai/VARA, DIFC, ADGM or another emirate/federal regime before eligibility analysis.",
+      "source_refs": [
+        "AE_VARA_LICENSE"
+      ]
+    },
+    {
+      "jurisdiction_id": "HK",
+      "label": "Hong Kong baseline",
+      "regulator_sources": [
+        "Securities and Futures Commission"
+      ],
+      "crypto": {
+        "status": "VATP_LICENSING",
+        "facts": [
+          "SFC states that centralized virtual-asset trading platforms carrying on business in Hong Kong or actively marketing to Hong Kong investors are required to be licensed under the applicable SFO/AMLO regimes.",
+          "The current VATP licensing handbook requires licensed-platform compliance and emphasizes jurisdiction-specific compliance for activities outside Hong Kong."
+        ]
+      },
+      "forex_cfd": {
+        "status": "TYPE_3_LEVERAGED_FOREX_REGULATED_ACTIVITY",
+        "facts": [
+          "SFC identifies Type 3 as leveraged foreign exchange trading and states that regulated activities generally require licensing unless an exemption applies."
+        ]
+      },
+      "owner_gate": "Hong Kong client status, active-marketing rules and provider licence scope must be verified.",
+      "source_refs": [
+        "HK_SFC_LICENSE",
+        "HK_SFC_VATP"
+      ]
+    }
+  ],
+  "market_data_compliance": {
+    "rule": "Market-data use rights are contract/licence questions independent of trading authorization.",
+    "required_fields_per_source": [
+      "internal_display",
+      "internal_non_display",
+      "automated_analysis",
+      "algorithmic_trading_use",
+      "historical_storage",
+      "raw_retention",
+      "derived_data_creation",
+      "model_training",
+      "redistribution",
+      "client_display",
+      "audit_retention",
+      "exchange_or_index_entitlements",
+      "professional_nonprofessional_classification",
+      "territory_restrictions",
+      "termination_data_deletion_or_retention"
+    ],
+    "canonical_handoff": [
+      "P01-B already records UNKNOWN / CONTRACT REVIEW for unpublished rights.",
+      "P01-E must price and confirm exchange/index/vendor licensing and professional/non-professional classifications.",
+      "No public endpoint or free trial is presumed to grant redistribution or production non-display rights."
+    ]
+  },
+  "provider_broker_eligibility_checklist": [
+    "Owner/entity jurisdiction verified by explicit Owner input",
+    "Client classification verified: retail/professional/accredited/institutional as applicable",
+    "Provider/broker legal entity identified",
+    "Regulator and licence/registration number verified on official register",
+    "Target product allowed for that client class",
+    "Target leverage/margin allowed",
+    "Crypto spot vs perpetual/futures/CFD classification verified",
+    "Automated/API trading permitted under provider terms",
+    "Regional onboarding/KYC eligibility verified",
+    "Account/entity type supports required API permissions",
+    "Withdrawal permission can be disabled or operationally isolated where supported",
+    "Market-data licensing permits intended internal/non-display/storage/derived use",
+    "Tax/reporting obligations flagged for professional review where necessary",
+    "Sanctions/AML/provider-country restrictions checked",
+    "Any product warning/knowledge/appropriateness assessment requirements satisfied",
+    "Evidence date and revalidation trigger recorded"
+  ],
+  "decision_rules": [
+    "Unknown jurisdiction or client class => provider/venue cannot be promoted to production baseline.",
+    "Conflicting provider terms vs regulator rule => FAIL_CLOSED and escalate to legal/compliance review.",
+    "Product unavailable to retail clients => do not attempt workarounds, offshore routing or status misrepresentation.",
+    "KYC/geofencing/provider eligibility controls must not be bypassed.",
+    "No automated process may change declared residency, client class or legal-entity facts.",
+    "Legal/compliance uncertainty blocks Live eligibility but does not block offline research using lawfully obtained data."
+  ],
+  "handoff": {
+    "P01_E": "Cost, licensing, data rights, professional/non-professional fees and contractual retention/redistribution rights.",
+    "P01_F": "Primary/backup provider and broker design only among jurisdiction-eligible candidates.",
+    "P01_G": "Provider baseline decision after jurisdiction + cost + rights + fallback evidence.",
+    "P03": "Identity, secrets, audit, sanctions/KYC data handling and private administration.",
+    "P24": "Fresh compliance/eligibility check before real-capital activation."
+  },
+  "source_register": {
+    "EU_MICA": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114",
+    "ESMA_CFD": "https://www.esma.europa.eu/press-news/esma-news/esma-adopts-final-product-intervention-measures-cfds-and-binary-options",
+    "US_CFTC_RETAIL_FX": "https://www.cftc.gov/LawRegulation/FederalRegister/FinalRules/2010-21729.html",
+    "US_ECFR_PART5": "https://www.ecfr.gov/current/title-17/part-5",
+    "US_CFTC_CRYPTO": "https://www.cftc.gov/PressRoom/SpeechesTestimony/cftcsecjointcryptostatement090225",
+    "UK_FCA_CRYPTO_DERIV": "https://www.fca.org.uk/publications/policy-statements/ps20-10-prohibiting-sale-retail-clients-investment-products-reference-cryptoassets",
+    "UK_FCA_CFD": "https://www.fca.org.uk/publications/policy-statements/ps19-18-restricting-contract-difference-products",
+    "UK_FCA_COBS": "https://handbook.fca.org.uk/handbook/COBS/22/5.html",
+    "AU_ASIC_CFD": "https://www.asic.gov.au/about-asic/news-centre/find-a-media-release/2022-releases/22-082mr-asic-s-cfd-product-intervention-order-extended-for-five-years/",
+    "AU_ASIC_2026": "https://download.asic.gov.au/media/tq0he35c/rep828-published-20-january-2026.pdf",
+    "JP_FSA_CRYPTO_FRAMEWORK": "https://www.fsa.go.jp/en/news/2022/20220914-2/02.pdf",
+    "JP_FSA_CRYPTO_DERIV": "https://www.fsa.go.jp/en/news/2022/20221207/01.pdf",
+    "SG_MAS_DPT": "https://www.mas.gov.sg/regulation/guidelines/ps-g03-guidelines-on-consumer-protection-measures-by-dpt-service-providers",
+    "SG_MAS_CMS": "https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence",
+    "AE_VARA_LICENSE": "https://rulebooks.vara.ae/index.php/rulebook/licensing-requirements",
+    "HK_SFC_LICENSE": "https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing/Do-you-need-a-licence-or-registration",
+    "HK_SFC_VATP": "https://www.sfc.hk/en/Rules-and-standards/Virtual-assets/Virtual-asset-trading-platforms-operators",
+    "LDH_EU_MICA": "Legal Data Hunter EU/EUR-Lex source_id 32023R1114",
+    "LDH_US_PART5": "Legal Data Hunter US/eCFR source_id 17_CFR_Part_5"
+  },
+  "limitations": [
+    "This matrix is representative, not exhaustive.",
+    "Rules and provider availability can change; revalidation is mandatory before account opening and Live/Canary progression.",
+    "National implementation and local regulator rules may be stricter than supranational baselines.",
+    "Tax treatment is explicitly out of scope for legal conclusions and requires jurisdiction-specific professional review when needed.",
+    "No conclusion is made about the Owner's actual legal eligibility."
+  ]
+}
