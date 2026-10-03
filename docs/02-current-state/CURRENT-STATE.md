@@ -29,7 +29,7 @@ Open-source registry: `HOS-110 = Done`
 Frontend excellence baseline: `HOS-112 = Done`  
 Agent framework / ready-agent registry: `HOS-113 = Done`  
 Automation/orchestration registry: `HOS-116 = Done`  
-Master tooling registry: `HOS-118 = In Progress`  
+Master tooling registry: `HOS-118 = Done`  
 P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
@@ -52,7 +52,8 @@ FIN-P01-WD-001 = CANONICAL_COMPLETE
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
-FIN-P01-WG-001-R01 = CANONICAL_COMPLETE
+FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
+FIN-P01-WM-001 = CANONICAL_COMPLETE
 
 ## P01-D — Jurisdiction & compliance closure
 
@@ -136,8 +137,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WM-001 = IN_REVIEW`  
-Active lock: `LOCK-FIN-P01-WM-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -154,8 +155,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-1. Canonically close `FIN-P01-WM-001`.
-2. Proceed to P01-E — Cost / Licensing / Data Rights.
+Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
 ## Automation & orchestration registry
@@ -188,9 +188,9 @@ Automation registry closure evidence:
 ## Project capability & tooling master registry
 
 Task: `FIN-P01-WM-001`  
-State: IN_REVIEW  
+State: CANONICAL_COMPLETE  
 Linear: `HOS-118`  
-Lock: `LOCK-FIN-P01-WM-001-01`
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md`
@@ -202,3 +202,14 @@ Tooling arsenal readiness: PASS.
 Broad build-start gate: NOT_YET — P01 remains active.  
 Runtime tooling installation from this task: NOT_PERFORMED.  
 Production technology selection from this task: NOT_PERFORMED.
+
+
+Master tooling registry closure evidence:
+- Implementation PR: `#38`
+- Implementation merge SHA: `2483181048a545683eb31bf3efe3cb6792222fff`
+- PR Governance run: `37124970530` = SUCCESS
+- Post-merge Governance run: `37125005808` = SUCCESS
+- Post-merge Branch Hygiene run: `37125005812` = SUCCESS
+- Tooling arsenal readiness: PASS
+- Broad build-start gate: NOT_YET — P01 remains active
+- Runtime tooling installation: NOT_PERFORMED
