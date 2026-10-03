@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "task_id": "FIN-P01-WG-002",
+  "hierarchy": [
+    "Owner/Governance",
+    "A0",
+    "A1-A10",
+    "Bounded Specialists"
+  ],
+  "vetoes": {
+    "A5": "BINDING_STOP_OR_NO_TRADE",
+    "A8": "BINDING_STOP"
+  },
+  "consensus_override": false,
+  "spawn": {
+    "authorized_by": [
+      "A0",
+      "authorized_parent"
+    ],
+    "requires": [
+      "active_task_contract",
+      "catalog_entry",
+      "bounded_scope",
+      "budget",
+      "termination_condition"
+    ],
+    "recursive_unbounded": false
+  },
+  "handoff_required_fields": [
+    "run_id",
+    "task_id",
+    "from_agent",
+    "to_agent",
+    "purpose",
+    "input_refs",
+    "evidence_refs",
+    "freshness_status",
+    "authority_scope",
+    "risk_flags",
+    "trace_id"
+  ]
+}
