@@ -28,14 +28,15 @@ P01-C: `HOS-111 = Done`
 Open-source registry: `HOS-110 = Done`  
 Frontend excellence baseline: `HOS-112 = Done`  
 Agent framework / ready-agent registry: `HOS-113 = Done`  
-P01-D: `HOS-114 = In Review / closure pending`
+P01-D: `HOS-114 = Done`  
+Active P01-E: `HOS-117 = In Progress`
 
 ## Roadmap / Gate State
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_E
+P01 state: ACTIVE_P01_E
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -47,6 +48,7 @@ FIN-P01-WA-001 = CANONICAL_COMPLETE
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
 FIN-P01-WC-001 = CANONICAL_COMPLETE  
 FIN-P01-WD-001 = CANONICAL_COMPLETE  
+FIN-P01-WE-001 = ACTIVE  
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
@@ -131,8 +133,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WE-001 — Cost / Licensing / Data Rights`  
+Active branch: `research/FIN-P01-WE-001-cost-licensing-data-rights`  
+Active lock: `LOCK-FIN-P01-WE-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -149,4 +152,23 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-E — Cost / Licensing / Data Rights.
+Execute P01-E — Cost / Licensing / Data Rights, then hand off to P01-F — Primary / Backup Provider Strategy.
+
+
+## P01-E — Cost / Licensing / Data Rights
+
+Task: `FIN-P01-WE-001`  
+Linear: `HOS-117`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P01-WE-001-01`
+
+Planned artifacts:
+- `docs/03-research/P01-E-COST-LICENSING-DATA-RIGHTS.md`
+- `docs/03-research/p01-e-cost-licensing-data-rights.json`
+
+Research rules:
+- official/public evidence first;
+- unknown commercial terms remain `UNKNOWN / QUOTE_REQUIRED / CONTRACT_REVIEW`;
+- no Owner professional/non-professional status is inferred;
+- no subscriptions, contracts, credentials or accounts are created;
+- no final provider/broker selection is made.
