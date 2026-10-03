@@ -19,7 +19,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WC-001 | P01 | Broker / exchange inventory and execution scorecards | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WC-001.json` | RELEASED |
 | FIN-P01-WU-001 | P01 | Frontend UI/UX repository registry & excellence baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WU-001.json` | RELEASED |
 | FIN-P01-WG-001 | P01 | Agent framework, ready-agent & interoperability registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001.json` | RELEASED |
-| FIN-P01-WG-001-R01 | P01 | Agent registry Current State reconciliation repair | LOW | IN_REVIEW | `contracts/tasks/FIN-P01-WG-001-R01.json` | LOCK-FIN-P01-WG-001-R01-01 |
+| FIN-P01-WG-001-R01 | P01 | Agent registry Current State reconciliation repair | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001-R01.json` | RELEASED |
 
 ## Rules
 
