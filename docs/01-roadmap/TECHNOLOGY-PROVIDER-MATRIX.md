@@ -283,3 +283,32 @@ Current notable classifications:
 - OpenBB: `REFERENCE` during stewardship transition
 
 These labels are research classifications only. They do not authorize installation, production use, market-data rights, broker connectivity or live execution.
+
+
+## 17. Frontend UI/UX and excellence baseline
+
+The governed frontend repository registry and non-library quality baseline are tracked in:
+
+- `docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md`
+- `docs/03-research/frontend-ui-ux-repository-registry.json`
+- `docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md`
+- Task: `FIN-P01-WUI-001`
+- Linear: `HOS-112`
+
+This baseline covers:
+- design system / Figma / design tokens;
+- RTL Persian and LTR financial islands;
+- performance budgets, SSR/streaming/caching/realtime strategy;
+- accessibility and visualization rules;
+- visual regression, E2E, contract and performance testing;
+- frontend observability;
+- feature flags;
+- mock/contract-first development;
+- internationalization/timezone/number formatting;
+- PWA/offline candidate behavior;
+- personalization;
+- security UX;
+- font/asset optimization;
+- component preview and engineering productivity.
+
+No runtime dependency or production technology is selected by this section. Exact implementation remains governed by P02/P03/P04/P22/P23/P24.
