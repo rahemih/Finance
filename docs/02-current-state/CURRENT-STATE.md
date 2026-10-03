@@ -74,8 +74,7 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WR-001 = IN_REVIEW`  
-Active task branch: `research/FIN-P01-WR-001-open-source-repository-registry`  
+Active task: none  
 Active locks: none  
 Open critical incidents: none
 
@@ -115,7 +114,7 @@ An unmerged research branch created outside the canonical P01-B merge path may r
 ## Open-source repository registry
 
 Task: `FIN-P01-WR-001`  
-State: IN_REVIEW  
+State: CANONICAL_COMPLETE  
 Linear: `HOS-110`
 
 Artifacts:
@@ -123,6 +122,16 @@ Artifacts:
 - `docs/03-research/open-source-repository-dependency-registry.json`
 
 Production dependency selections: NOT_AUTHORIZED.
+
+Closure evidence:
+- Implementation PR: `#19`
+- Merge SHA: `b6fd3067cec34c8595677ab6d51bba324dfc1f2b`
+- PR Governance run: `37120984559` = SUCCESS
+- Post-merge Governance run: `37121007124` = SUCCESS
+- Post-merge Branch Hygiene run: `37121007125` = SUCCESS
+- Linear issue: `HOS-110`
+- Runtime dependency installation: NOT_PERFORMED
+- Production provider/broker selection: NOT_PERFORMED
 
 ## Next
 
