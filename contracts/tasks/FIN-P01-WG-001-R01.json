@@ -1,0 +1,79 @@
+{
+  "task_id": "FIN-P01-WG-001-R01",
+  "phase": "P01",
+  "workstream": "WG",
+  "objective": "Repair post-closure Current State reconciliation defects for FIN-P01-WG-001 without changing runtime behavior or agent architecture decisions.",
+  "scope": [
+    "Move FIN-P01-WG-001 closure evidence to the correct Agent registry section",
+    "Preserve FIN-P01-WU-001 frontend closure evidence in the Frontend section",
+    "Mark the Agent registry lock as RELEASED in Current State",
+    "Reconcile the Current State canonical HEAD marker",
+    "Register the repair task in Task Catalog"
+  ],
+  "out_of_scope": [
+    "Runtime code",
+    "Agent dependency installation",
+    "Production agent framework selection",
+    "Credentials",
+    "Broker/exchange actions",
+    "Frozen roadmap mutation",
+    "Live Trading",
+    "Auto Trading"
+  ],
+  "dependencies": ["FIN-P01-WG-001"],
+  "read_paths": [
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "docs/09-agents/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WG-001-R01.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "LINEAR_READ", "LINEAR_WRITE_GOVERNED", "CI_READ", "CI_EXECUTE"],
+  "secrets": [],
+  "risk_level": "LOW",
+  "tests": [
+    "Governance Verify",
+    "Frontend closure evidence remains under Frontend section",
+    "Agent closure evidence appears only under Agent section",
+    "FIN-P01-WG-001 lock displays RELEASED",
+    "Repair task is cataloged"
+  ],
+  "security_tests": [
+    "Docs/governance only",
+    "No runtime dependency installation",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "rollback": "Revert repair documentation commits.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P01-WG-001 = CANONICAL_COMPLETE",
+    "Post-merge documentation defect reproduced",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Current State structure corrected",
+    "Task Catalog reconciled",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge Governance Verify passes",
+    "Repair lock released",
+    "FIN-P01-WG-001-R01 = CANONICAL_COMPLETE"
+  ]
+}
