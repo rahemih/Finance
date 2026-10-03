@@ -30,7 +30,7 @@ Frontend excellence baseline: `HOS-112 = Done`
 Agent framework / ready-agent registry: `HOS-113 = Done`  
 Automation/orchestration registry: `HOS-116 = Done`  
 Master tooling registry: `HOS-118 = Done`  
-Roadmap tooling usage map: `HOS-119 = In Progress`  
+Roadmap tooling usage map: `HOS-119 = Done`  
 P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
@@ -54,7 +54,8 @@ FIN-P01-WR-001 = CANONICAL_COMPLETE
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
-FIN-P01-WM-001 = CANONICAL_COMPLETE
+FIN-P01-WM-001 = CANONICAL_COMPLETE  
+FIN-P01-WT-001 = CANONICAL_COMPLETE
 
 ## P01-D — Jurisdiction & compliance closure
 
@@ -138,8 +139,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WT-001 = IN_REVIEW`  
-Active lock: `LOCK-FIN-P01-WT-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -156,8 +157,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-1. Canonically close `FIN-P01-WT-001`.
-2. Proceed to P01-E — Cost / Licensing / Data Rights.
+Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
 ## Automation & orchestration registry
@@ -220,9 +220,9 @@ Master tooling registry closure evidence:
 ## Roadmap tooling usage map
 
 Task: `FIN-P01-WT-001`  
-State: IN_REVIEW  
+State: CANONICAL_COMPLETE  
 Linear: `HOS-119`  
-Lock: `LOCK-FIN-P01-WT-001-01`
+Lock: RELEASED
 
 Artifacts:
 - `docs/01-roadmap/ROADMAP-TOOLING-USAGE-MAP.md`
@@ -243,3 +243,13 @@ Coverage:
 
 Runtime installation from this task: NOT_PERFORMED.  
 Production technology selection from this task: NOT_PERFORMED.
+
+
+Roadmap tooling usage map closure evidence:
+- Implementation PR: `#40`
+- Implementation merge SHA: `8dc19f6df4f423901dc7aac402155c5674a4ccb3`
+- PR Governance run: `37126439434` = SUCCESS
+- Post-merge Governance run: `37126477578` = SUCCESS
+- Post-merge Branch Hygiene run: `37126477588` = SUCCESS
+- Linear Project Document: `NEXUS QUANT — Roadmap Tooling Usage Map`
+- Runtime installation: NOT_PERFORMED
