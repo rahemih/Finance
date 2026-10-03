@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this repair PR: `73b7d70dfbf2b9c2eb9f071169a637f38a37771b`  
+Current canonical HEAD before this closure PR: `bc739024d7cfa6e20af37bd71fd5e3eddc5799d1`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -77,9 +77,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WG-001-R01 = IN_REVIEW`  
-Active task branch: `fix/FIN-P01-WG-001-R01-current-state-reconciliation`  
-Active locks: `LOCK-FIN-P01-WG-001-R01-01`  
+Active task: none  
+Active locks: none  
 Open critical incidents: none
 
 ## Safety
@@ -155,8 +154,7 @@ Lock: RELEASED
 
 ## Next
 
-1. Canonically close `FIN-P01-WG-001-R01`.
-2. Continue to P01-D — Compliance / Jurisdiction Matrix.
+Continue to P01-D — Compliance / Jurisdiction Matrix.
 
 ## Frontend UI/UX and excellence baseline
 
@@ -219,3 +217,17 @@ Closure evidence:
 - Runtime agent dependency installation: NOT_PERFORMED
 - Production agent framework selection: NOT_PERFORMED
 - Broker/fund/credential authority granted to agents: NONE
+
+
+## FIN-P01-WG-001-R01 closure evidence
+
+Task: `FIN-P01-WG-001-R01`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+- Repair implementation PR: `#30`
+- Repair merge SHA: `bc739024d7cfa6e20af37bd71fd5e3eddc5799d1`
+- Post-merge Governance: pending this closure reconciliation evidence
+- Runtime changes: NONE
+- Live Trading: DISABLED
+- Auto Trading: DISABLED
