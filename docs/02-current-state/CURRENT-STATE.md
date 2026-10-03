@@ -28,7 +28,7 @@ P01-A issue: `HOS-107`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_B
+P01 state: ACTIVE_P01_B
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -36,7 +36,8 @@ Execution roadmap: CANONICAL
 
 ## Active Research
 
-Task: `FIN-P01-WA-001 = CANONICAL_COMPLETE`  
+Task: `FIN-P01-WA-001 = CANONICAL_COMPLETE  
+FIN-P01-WB-001 = ACTIVE`  
 Lock: `RELEASED`
 
 Artifacts:
@@ -65,8 +66,8 @@ FIN-P00-WE-001 = CANONICAL_COMPLETE
 FIN-P00-WF-001 = CANONICAL_COMPLETE  
 FIN-P01-WA-001 = CANONICAL_COMPLETE
 
-Active task: none  
-Active locks: none  
+Active task: FIN-P01-WB-001 — Market data provider inventory and scorecards  
+Active lock: LOCK-FIN-P01-WB-001-01  
 Open critical incidents: none
 
 ## Safety
@@ -87,6 +88,15 @@ Auto Trading: DISABLED
 - Provider selection: NOT_PERFORMED
 - Broker selection: NOT_PERFORMED
 
+## P01-B
+
+FIN-P01-WB-001 = ACTIVE  
+Linear issue: `HOS-109`  
+Research artifact: `docs/03-research/P01-B-MARKET-DATA-PROVIDERS.md`  
+Machine-readable scorecards: `docs/03-research/p01-b-provider-scorecards.json`  
+Production provider: NOT_SELECTED  
+Primary/backup decision: DEFERRED_TO_P01_F_G
+
 ## Next
 
-Start P01-B — Market Data Provider Inventory under a new governed Task Contract.
+Canonical-review P01-B, merge, verify post-merge, release its lock, then continue to P01-C Broker / Exchange Inventory.
