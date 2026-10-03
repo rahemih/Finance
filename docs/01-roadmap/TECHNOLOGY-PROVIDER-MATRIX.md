@@ -283,3 +283,26 @@ Current notable classifications:
 - OpenBB: `REFERENCE` during stewardship transition
 
 These labels are research classifications only. They do not authorize installation, production use, market-data rights, broker connectivity or live execution.
+
+
+## 17. Frontend UI/UX repository registry
+
+Governed frontend candidates and page-level composition guidance are tracked in:
+
+- `docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md`
+- `docs/03-research/frontend-ui-ux-repository-registry.json`
+- Task: `FIN-P01-WUI-001`
+- Linear: `HOS-112`
+
+Candidate stack includes:
+- Next.js / React / TypeScript;
+- shadcn/ui;
+- Better Auth as an auth candidate subject to P03;
+- TradingView Lightweight Charts;
+- TanStack Table / Query;
+- React Hook Form + Zod;
+- Motion;
+- Lucide;
+- selective Tremor use for analytical dashboard primitives.
+
+These are **research candidates only**. No frontend package, auth provider, hosting platform or production version is approved by this registry. Exact adoption requires the responsible P02/P04/P23 task plus license, SBOM, CVE, performance, accessibility, RTL and replacement-path review.
