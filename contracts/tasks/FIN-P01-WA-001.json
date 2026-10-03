@@ -1,0 +1,133 @@
+{
+  "task_id": "FIN-P01-WA-001",
+  "phase": "P01",
+  "workstream": "WA",
+  "objective": "Define a provider-neutral candidate market universe and canonical instrument taxonomy for Crypto + Forex tradables and cross-market context instruments.",
+  "scope": [
+    "Define canonical asset/instrument/venue/contract identity fields",
+    "Define tradable vs context-only vs proxy classifications",
+    "Define bootstrap candidate universe for Crypto and Forex without selecting providers",
+    "Define context universe for Gold, Oil, USD index, Treasury yields, equity indices and volatility",
+    "Define liquidity/data-coverage eligibility rules for later expansion",
+    "Define Spot FX volume-proxy labeling requirements",
+    "Define crypto spot/perpetual/futures distinctions and chain metadata",
+    "Create machine-readable candidate universe registry",
+    "Ground taxonomy rationale in current official/primary sources where available"
+  ],
+  "out_of_scope": [
+    "Select production data provider",
+    "Select broker/exchange",
+    "Determine legal eligibility by owner jurisdiction",
+    "Create API credentials",
+    "Implement adapters",
+    "Rank instruments by expected return",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P00-WF-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "docs/03-research/P01-A-MARKET-UNIVERSE.md",
+    "docs/03-research/p01-a-market-universe.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P01-WA-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Blockscout Blockchain Data",
+    "Legal Data Hunter"
+  ],
+  "skills": [
+    "Plugin Management"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Machine-readable universe JSON parses successfully",
+    "Every registry instrument has a unique canonical_id",
+    "Tradable candidates are separated from context-only instruments",
+    "Spot FX volume fields require proxy/source/coverage labels",
+    "Crypto perpetual instruments preserve settlement/collateral/funding metadata requirements",
+    "Provider-specific aliases are not treated as canonical IDs",
+    "No production provider or broker is selected"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials or secrets",
+    "No live trading activation",
+    "No provider access authority implied by taxonomy",
+    "No withdrawal-capable permissions"
+  ],
+  "evidence": [
+    "BIS 2025 Triennial FX Survey",
+    "CME Gold and WTI official product/contract documentation",
+    "ICE Brent and USDX official product documentation",
+    "U.S. Treasury Daily Par Yield Curve documentation",
+    "Cboe VIX official methodology/product documentation",
+    "CME cryptocurrency product documentation",
+    "Coinbase instrument taxonomy/product-spec examples",
+    "Blockscout Ethereum mainnet chain-id verification",
+    "GitHub PR and CI evidence"
+  ],
+  "rollback": "Revert the P01-A research artifacts and state/catalog reconciliation. No runtime or provider changes are involved.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "G0_GOVERNANCE_READY = PASS",
+    "P01 = READY",
+    "No conflicting active lock",
+    "Research tools available"
+  ],
+  "definition_of_done": [
+    "Provider-neutral taxonomy is documented",
+    "Machine-readable universe registry is committed",
+    "Bootstrap Crypto and Forex candidate universes are defined",
+    "Context universe is defined",
+    "Eligibility/expansion rules are defined",
+    "Official source register is included",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P01-WA-001 = CANONICAL_COMPLETE"
+  ]
+}
