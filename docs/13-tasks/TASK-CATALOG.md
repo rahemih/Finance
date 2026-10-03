@@ -16,6 +16,8 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WB-001 | P01 | Market data provider inventory and scorecards | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WB-001.json` | RELEASED |
 | FIN-P01-WR-001 | P01 | Open-source repository & dependency registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WR-001.json` | RELEASED |
 
+| FIN-P01-WC-001 | P01 | Broker / exchange inventory and execution scorecards | MEDIUM | ACTIVE | `contracts/tasks/FIN-P01-WC-001.json` | LOCK-FIN-P01-WC-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

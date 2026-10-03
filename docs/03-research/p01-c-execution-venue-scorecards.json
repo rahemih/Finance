@@ -1,0 +1,357 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WC-001",
+  "assessed_at": "2026-10-03",
+  "state": "RESEARCH_INVENTORY",
+  "final_venue_selected": false,
+  "owner_jurisdiction": "NOT_INFERRED",
+  "live_trading": "DISABLED",
+  "scoring_policy": {
+    "type": "evidence_matrix_not_final_ranking",
+    "values": [
+      "strong_documented",
+      "documented",
+      "partial",
+      "unknown",
+      "not_applicable"
+    ],
+    "rule": "Unknown jurisdiction, product access, account eligibility, pricing and permission details are not guessed. Final venue decision is deferred to P01-G after P01-D/E/F."
+  },
+  "project_security_policy": {
+    "withdrawal_capable_trading_credentials": "FORBIDDEN",
+    "least_privilege_required": true,
+    "demo_before_live": true,
+    "independent_risk_firewall_required": true,
+    "automatic_live_activation": false
+  },
+  "venues": [
+    {
+      "venue_id": "COINBASE_ADVANCED",
+      "asset_class": "crypto",
+      "venue_type": "centralized_exchange_api",
+      "candidate_products": [
+        "BTC/USD spot",
+        "ETH/USD spot",
+        "international/perpetual products where account/jurisdiction eligible"
+      ],
+      "spot_execution": "strong_documented",
+      "perpetual_execution": "partial",
+      "api_styles": [
+        "REST",
+        "WebSocket"
+      ],
+      "client_order_id": "strong_documented",
+      "order_event_stream": "strong_documented",
+      "reconciliation": [
+        "accounts",
+        "orders",
+        "fills",
+        "portfolios"
+      ],
+      "sandbox": "documented_static_mock",
+      "sandbox_parity_note": "Advanced Trade sandbox responses are static/pre-defined and formatted like production; it is not a realistic matching-engine simulation.",
+      "public_rate_limits": "documented",
+      "permissions": "view/trade permissions documented at endpoint level; exact transfer/withdrawal isolation for the intended key type must be verified before any execution credential exists",
+      "symbol_metadata": "documented",
+      "operational_status": "documented_status_page_class",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "crypto_spot_execution_candidate",
+        "crypto_api_reference",
+        "perpetual_candidate_where_eligible"
+      ],
+      "security_flags": [
+        "sandbox_is_mocked",
+        "verify_key_scope_before_any_credential",
+        "product_eligibility_is_jurisdiction_specific"
+      ],
+      "official_source_refs": [
+        "COINBASE_REST",
+        "COINBASE_SANDBOX",
+        "COINBASE_WS",
+        "COINBASE_WS_LIMITS"
+      ]
+    },
+    {
+      "venue_id": "KRAKEN",
+      "asset_class": "crypto",
+      "venue_type": "centralized_exchange_api",
+      "candidate_products": [
+        "BTC/USD spot",
+        "ETH/USD spot",
+        "derivatives/perpetual products where eligible"
+      ],
+      "spot_execution": "strong_documented",
+      "perpetual_execution": "documented",
+      "api_styles": [
+        "REST",
+        "WebSocket"
+      ],
+      "client_order_id": "strong_documented",
+      "order_event_stream": "documented",
+      "reconciliation": [
+        "open orders",
+        "closed orders/trades",
+        "positions",
+        "fills",
+        "accounts"
+      ],
+      "sandbox": "partial",
+      "sandbox_parity_note": "Official derivatives support material describes a separated demo environment with production-like API structure, but 2026 support text also references a decommissioning transition; current endpoint availability must be revalidated before testing.",
+      "public_rate_limits": "strong_documented",
+      "permissions": "granular spot API key permissions documented; trading keys can omit Withdraw Funds permission",
+      "symbol_metadata": "documented",
+      "operational_status": "documented_status_page_class",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "crypto_spot_execution_candidate",
+        "crypto_derivatives_execution_candidate",
+        "venue_native_validation"
+      ],
+      "security_flags": [
+        "demo_status_requires_revalidation",
+        "keep_withdraw_funds_disabled",
+        "jurisdiction_product_matrix_required"
+      ],
+      "official_source_refs": [
+        "KRAKEN_ADD_ORDER",
+        "KRAKEN_RATE_LIMITS",
+        "KRAKEN_API_KEY_PERMISSIONS",
+        "KRAKEN_DERIVATIVES_DEMO",
+        "KRAKEN_DERIVATIVES_LIMITS"
+      ]
+    },
+    {
+      "venue_id": "BINANCE",
+      "asset_class": "crypto",
+      "venue_type": "centralized_exchange_api",
+      "candidate_products": [
+        "BTC/USDT spot",
+        "ETH/USDT spot",
+        "USD-M/COIN-M derivatives where jurisdiction/account eligible"
+      ],
+      "spot_execution": "strong_documented",
+      "perpetual_execution": "documented_product_class",
+      "api_styles": [
+        "REST",
+        "WebSocket",
+        "WebSocket API"
+      ],
+      "client_order_id": "strong_documented",
+      "order_event_stream": "strong_documented",
+      "reconciliation": [
+        "orders",
+        "trades",
+        "balances",
+        "user data streams"
+      ],
+      "sandbox": "spot_testnet_documented",
+      "sandbox_parity_note": "Spot Testnet user-data and order behavior are documented. Derivatives test-environment availability/parity must be independently revalidated at execution-test time.",
+      "public_rate_limits": "strong_documented",
+      "permissions": "API permission model exists; exact least-privilege and withdrawal separation must be verified from the current account/API-key controls before any credential is created",
+      "symbol_metadata": "strong_documented_exchangeInfo_filters",
+      "operational_status": "partial",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "crypto_spot_execution_candidate",
+        "crypto_derivatives_candidate_where_eligible",
+        "venue_native_market_microstructure_reference"
+      ],
+      "security_flags": [
+        "jurisdiction_availability_can_change",
+        "verify_api_key_withdrawal_isolation",
+        "testnet_live_parity_requires_validation"
+      ],
+      "official_source_refs": [
+        "BINANCE_SPOT_TESTNET_USER_STREAM",
+        "BINANCE_TESTNET_ENUMS",
+        "BINANCE_TESTNET_RESPONSE_FORMAT"
+      ]
+    },
+    {
+      "venue_id": "OANDA_V20",
+      "asset_class": "forex",
+      "venue_type": "retail_fx_broker_api",
+      "candidate_products": [
+        "core spot FX/CFD-style broker execution subject to account entity/product eligibility"
+      ],
+      "spot_execution": "strong_documented",
+      "perpetual_execution": "not_applicable",
+      "api_styles": [
+        "REST",
+        "streaming HTTP"
+      ],
+      "client_order_id": "strong_documented_clientExtensions",
+      "order_event_stream": "strong_documented_transactions_stream",
+      "reconciliation": [
+        "account snapshot",
+        "orders",
+        "trades",
+        "positions",
+        "transactions",
+        "poll account updates"
+      ],
+      "sandbox": "practice_environment_documented",
+      "sandbox_parity_note": "Separate fxPractice base URL is documented. Execution quality and market conditions must still be compared with live before any capital stage.",
+      "public_rate_limits": "documented_guidance",
+      "permissions": "personal access token is broad and documented as granting access to all sub-accounts; this requires compensating security controls and entity/account scoping review",
+      "symbol_metadata": "documented_instruments",
+      "operational_status": "partial",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "forex_execution_candidate",
+        "forex_demo_candidate",
+        "broker_specific_quote_execution_reference"
+      ],
+      "security_flags": [
+        "broad_personal_access_token",
+        "token_treated_as_password",
+        "verify_no_funding_withdrawal_capability_in_execution_design"
+      ],
+      "official_source_refs": [
+        "OANDA_AUTH",
+        "OANDA_ORDER",
+        "OANDA_TRANSACTIONS",
+        "OANDA_BEST_PRACTICES",
+        "OANDA_DEVELOPMENT_GUIDE"
+      ]
+    },
+    {
+      "venue_id": "IBKR",
+      "asset_class": "multi_asset_forex_context",
+      "venue_type": "broker_api",
+      "candidate_products": [
+        "Forex",
+        "futures/context and other multi-asset products subject to account permissions"
+      ],
+      "spot_execution": "documented",
+      "perpetual_execution": "not_primary_target",
+      "api_styles": [
+        "TWS API",
+        "Web API",
+        "FIX/CTCI where eligible"
+      ],
+      "client_order_id": "documented_orderId_clientId_permId_model",
+      "order_event_stream": "strong_documented",
+      "reconciliation": [
+        "orders",
+        "executions",
+        "positions",
+        "account information"
+      ],
+      "sandbox": "paper_account_documented",
+      "sandbox_parity_note": "Paper Trading uses simulated technology; official docs warn execution behavior can differ from live. A regular approved/funded account is generally needed to open paper trading.",
+      "public_rate_limits": "strong_documented",
+      "permissions": "account/trading permissions and market-data subscriptions are account/username specific; execution security model requires P01-D/P03 review",
+      "symbol_metadata": "strong_documented_contract_model",
+      "operational_status": "documented",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "forex_execution_candidate",
+        "multi_asset_broker_candidate",
+        "futures_context_execution_candidate"
+      ],
+      "security_flags": [
+        "TWS_or_gateway_operational_dependency",
+        "paper_live_behavior_differs",
+        "jurisdiction_product_restrictions_exist",
+        "market_data_entitlements_separate"
+      ],
+      "official_source_refs": [
+        "IBKR_TWS_INTRO",
+        "IBKR_TWS_LIMITATIONS",
+        "IBKR_PACING",
+        "IBKR_EXECUTION",
+        "IBKR_THIRD_PARTY_FAQ"
+      ]
+    },
+    {
+      "venue_id": "SAXO_OPENAPI",
+      "asset_class": "multi_asset_forex",
+      "venue_type": "broker_openapi",
+      "candidate_products": [
+        "FxSpot",
+        "multi-asset products supported by account/entity/instrument metadata"
+      ],
+      "spot_execution": "strong_documented",
+      "perpetual_execution": "not_primary_target",
+      "api_styles": [
+        "REST",
+        "WebSocket streaming"
+      ],
+      "client_order_id": "partial_request_correlation_and_order_ids",
+      "order_event_stream": "strong_documented_streaming",
+      "reconciliation": [
+        "orders",
+        "positions",
+        "balances",
+        "portfolio resources"
+      ],
+      "sandbox": "SIM_environment_strong_documented",
+      "sandbox_parity_note": "Official SIM endpoints are provided. Exchange-specific timeouts, suitability and product restrictions still require live-readiness validation.",
+      "public_rate_limits": "documented_429_and_rate_limiting_model",
+      "permissions": "OAuth/token model documented; exact scopes and account authority must be reviewed before any credential exists",
+      "symbol_metadata": "strong_documented_reference_data",
+      "operational_status": "documented",
+      "jurisdiction_status": "DEFER_TO_P01_D",
+      "production_selected": false,
+      "candidate_roles": [
+        "forex_execution_candidate",
+        "multi_asset_broker_candidate",
+        "simulation_environment_candidate"
+      ],
+      "security_flags": [
+        "oauth_scope_review_required",
+        "duplicate_order_debouncing_required",
+        "timeout_reconciliation_required"
+      ],
+      "official_source_refs": [
+        "SAXO_ORDER_REFERENCE",
+        "SAXO_ORDER_PLACEMENT",
+        "SAXO_STREAMING"
+      ]
+    }
+  ],
+  "cross_cutting_findings": [
+    "No venue is approved or selected in P01-C.",
+    "Demo/testnet/paper environments are not assumed to reproduce live liquidity, fills, latency, slippage, rejection or liquidation behavior.",
+    "Client-generated order identifiers are strongly preferred for idempotency, but exchange/broker native order IDs and immutable execution IDs must also be stored.",
+    "Every execution adapter must reconcile orders, fills, positions and balances/account state after reconnect or uncertain timeout.",
+    "Trading credentials must use least privilege and must not have withdrawal capability where the venue permits separate permissions.",
+    "If a venue credential model is broad, compensating controls and account segregation are mandatory architecture/security questions.",
+    "Jurisdiction and product eligibility are deferred to P01-D and must be based on explicit Owner/entity facts, not inferred location.",
+    "Venue-specific semantics remain authoritative even if a common adapter such as CCXT is later used."
+  ],
+  "source_register": {
+    "COINBASE_REST": "https://docs.cdp.coinbase.com/coinbase-app/advanced-trade-apis/rest-api",
+    "COINBASE_SANDBOX": "https://docs.cdp.coinbase.com/coinbase-app/advanced-trade-apis/sandbox",
+    "COINBASE_WS": "https://docs.cdp.coinbase.com/coinbase-app/advanced-trade-apis/websocket/websocket-channels",
+    "COINBASE_WS_LIMITS": "https://docs.cdp.coinbase.com/coinbase-app/advanced-trade-apis/websocket/websocket-rate-limits",
+    "KRAKEN_ADD_ORDER": "https://docs.kraken.com/exchange/api-reference/spot-websocket-v2/add_order",
+    "KRAKEN_RATE_LIMITS": "https://support.kraken.com/articles/206548367-what-are-the-api-rate-limits-",
+    "KRAKEN_API_KEY_PERMISSIONS": "https://support.kraken.com/articles/360000919966-how-to-create-an-api-key",
+    "KRAKEN_DERIVATIVES_DEMO": "https://support.kraken.com/articles/360024809011-api-testing-environment-derivatives",
+    "KRAKEN_DERIVATIVES_LIMITS": "https://support.kraken.com/articles/360022635612-request-limits-rest-api-derivatives",
+    "BINANCE_SPOT_TESTNET_USER_STREAM": "https://developers.binance.com/en/docs/products/spot/testnet/user-data-stream",
+    "BINANCE_TESTNET_ENUMS": "https://developers.binance.com/docs/binance-spot-api-docs/testnet/enums",
+    "BINANCE_TESTNET_RESPONSE_FORMAT": "https://developers.binance.com/docs/binance-spot-api-docs/testnet/websocket-api/response-format",
+    "OANDA_AUTH": "https://developer.oanda.com/rest-live-v20/authentication/",
+    "OANDA_ORDER": "https://developer.oanda.com/rest-live-v20/order-ep/",
+    "OANDA_TRANSACTIONS": "https://developer.oanda.com/rest-live-v20/transaction-ep/",
+    "OANDA_BEST_PRACTICES": "https://developer.oanda.com/rest-live-v20/best-practices/",
+    "OANDA_DEVELOPMENT_GUIDE": "https://developer.oanda.com/rest-live-v20/development-guide/",
+    "IBKR_TWS_INTRO": "https://ibkrcampus.com/docs/tws-api/doc/introduction",
+    "IBKR_TWS_LIMITATIONS": "https://ibkrcampus.com/docs/tws-api/doc/notes-limitations/tws-api-limitations",
+    "IBKR_PACING": "https://ibkrcampus.com/docs/web-api/trading/usage-and-availability/pacing-limitations",
+    "IBKR_EXECUTION": "https://ibkrcampus.com/docs/tws-api/ref/execution",
+    "IBKR_THIRD_PARTY_FAQ": "https://ibkrcampus.com/docs/third-party-integrations/general-third-party-frequently-asked-questions",
+    "SAXO_ORDER_REFERENCE": "https://www.developer.saxo/openapi/referencedocs/trade/v2/orders",
+    "SAXO_ORDER_PLACEMENT": "https://www.developer.saxo/openapi/learn/order-placement",
+    "SAXO_STREAMING": "https://www.developer.saxo/openapi/learn/streaming"
+  }
+}
