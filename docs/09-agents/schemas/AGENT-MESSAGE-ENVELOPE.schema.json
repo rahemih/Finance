@@ -8,6 +8,7 @@
     "run_id",
     "task_id",
     "agent_id",
+    "specialist_id",
     "model_id",
     "model_version",
     "input_data_refs",
