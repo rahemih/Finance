@@ -1,0 +1,99 @@
+{
+  "registry": "NEXUS_QUANT_FRONTEND_UI_UX_REPOSITORY_REGISTRY",
+  "task_id": "FIN-P01-WU-001",
+  "linear_issue": "HOS-112",
+  "effective_date": "2026-10-03",
+  "production_selections_authorized": false,
+  "stack": {
+    "framework": "vercel/next.js",
+    "design_system": "shadcn-ui/ui",
+    "auth": "better-auth/better-auth",
+    "financial_charts": "tradingview/lightweight-charts",
+    "dashboards": "tremorlabs/tremor",
+    "tables": "TanStack/table",
+    "server_state": "TanStack/query",
+    "forms": "react-hook-form/react-hook-form",
+    "validation": "colinhacks/zod",
+    "animation": "motiondivision/motion",
+    "icons": "lucide-icons/lucide"
+  },
+  "pages": {
+    "auth": [
+      "shadcn-ui/ui",
+      "better-auth/better-auth",
+      "react-hook-form/react-hook-form",
+      "colinhacks/zod",
+      "lucide-icons/lucide"
+    ],
+    "dashboard": [
+      "shadcn-ui/ui",
+      "tremorlabs/tremor",
+      "TanStack/query",
+      "tradingview/lightweight-charts"
+    ],
+    "markets": [
+      "shadcn-ui/ui",
+      "TanStack/table",
+      "TanStack/query",
+      "tradingview/lightweight-charts"
+    ],
+    "asset_detail": [
+      "shadcn-ui/ui",
+      "tradingview/lightweight-charts",
+      "TanStack/query",
+      "TanStack/table",
+      "tremorlabs/tremor"
+    ],
+    "opportunities": [
+      "shadcn-ui/ui",
+      "TanStack/table",
+      "tremorlabs/tremor",
+      "TanStack/query"
+    ],
+    "trades": [
+      "shadcn-ui/ui",
+      "TanStack/table",
+      "TanStack/query",
+      "tradingview/lightweight-charts"
+    ],
+    "portfolio_risk": [
+      "shadcn-ui/ui",
+      "tremorlabs/tremor",
+      "TanStack/table",
+      "tradingview/lightweight-charts"
+    ],
+    "research": [
+      "shadcn-ui/ui",
+      "TanStack/table",
+      "tremorlabs/tremor",
+      "TanStack/query"
+    ],
+    "reports": [
+      "shadcn-ui/ui",
+      "tremorlabs/tremor",
+      "TanStack/table"
+    ],
+    "system_operations": [
+      "shadcn-ui/ui",
+      "TanStack/table",
+      "tremorlabs/tremor",
+      "TanStack/query"
+    ],
+    "settings": [
+      "shadcn-ui/ui",
+      "better-auth/better-auth",
+      "react-hook-form/react-hook-form",
+      "colinhacks/zod"
+    ]
+  },
+  "ux_rules": {
+    "application_direction": "rtl",
+    "financial_chart_direction": "ltr",
+    "numeric_financial_islands": "ltr",
+    "desktop_analysis_first": true,
+    "mobile_monitoring_required": true,
+    "dark_mode_first_class": true,
+    "reduced_motion_required": true,
+    "keyboard_navigation_required": true
+  }
+}
