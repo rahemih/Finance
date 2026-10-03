@@ -1,0 +1,631 @@
+{
+  "version": "1.0.0",
+  "task_id": "FIN-P01-WG-002",
+  "specialists": [
+    {
+      "specialist_id": "crypto",
+      "parent_agent": "A3",
+      "purpose": "Crypto market structure and evidence synthesis",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "forex",
+      "parent_agent": "A3",
+      "purpose": "FX market structure and evidence synthesis",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "technical",
+      "parent_agent": "A3",
+      "purpose": "Technical evidence family",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "trend",
+      "parent_agent": "A3",
+      "purpose": "Trend/regime evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "momentum",
+      "parent_agent": "A3",
+      "purpose": "Momentum evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "order_flow",
+      "parent_agent": "A3",
+      "purpose": "Order-flow evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "liquidity",
+      "parent_agent": "A3",
+      "purpose": "Liquidity/spread/depth evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "macro",
+      "parent_agent": "A3",
+      "purpose": "Macro and rates evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "fundamental",
+      "parent_agent": "A3",
+      "purpose": "Fundamental evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "news",
+      "parent_agent": "A3",
+      "purpose": "News/event evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "sentiment",
+      "parent_agent": "A3",
+      "purpose": "Sentiment evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "on_chain",
+      "parent_agent": "A3",
+      "purpose": "On-chain evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "historical_analog",
+      "parent_agent": "A3",
+      "purpose": "Historical analog evidence",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "quant_research",
+      "parent_agent": "A4",
+      "purpose": "Quantitative research",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "backtest_validation",
+      "parent_agent": "A4",
+      "purpose": "Backtest integrity and leakage review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "model_validation",
+      "parent_agent": "A4",
+      "purpose": "Model validation",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "calibration",
+      "parent_agent": "A4",
+      "purpose": "Probability/calibration review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "risk_red_team",
+      "parent_agent": "A5",
+      "purpose": "Independent risk challenge",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "execution_review",
+      "parent_agent": "A6",
+      "purpose": "Execution-system review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "security_red_team",
+      "parent_agent": "A8",
+      "purpose": "Security/adversarial review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "data_quality",
+      "parent_agent": "A2",
+      "purpose": "Data quality/freshness/lineage review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "ux",
+      "parent_agent": "A1",
+      "purpose": "Human-facing UX architecture review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "performance",
+      "parent_agent": "A9",
+      "purpose": "Performance/latency review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "documentation",
+      "parent_agent": "A10",
+      "purpose": "Documentation/evidence completeness",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    },
+    {
+      "specialist_id": "cost_finops",
+      "parent_agent": "A9",
+      "purpose": "Cost/usage efficiency review",
+      "inputs": [
+        "task-bounded refs",
+        "governed evidence"
+      ],
+      "outputs": [
+        "structured evidence/result envelope"
+      ],
+      "tools": [
+        "only active Task Contract allowlist"
+      ],
+      "forbidden": [
+        "authority escalation",
+        "task-contract mutation",
+        "unbounded recursive spawn",
+        "veto bypass",
+        "credential permission expansion",
+        "permanent-agent creation"
+      ],
+      "spawn_trigger": "Parent identifies bounded specialist need explicitly allowed by active Task Contract",
+      "termination_condition": "Bounded deliverable returned, scope canceled, timeout/budget reached, veto, or required evidence unavailable"
+    }
+  ]
+}

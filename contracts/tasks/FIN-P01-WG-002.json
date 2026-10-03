@@ -1,0 +1,117 @@
+{
+  "task_id": "FIN-P01-WG-002",
+  "phase": "P01",
+  "workstream": "WG",
+  "title": "Agent Layer Build Readiness",
+  "mode": "READINESS_ONLY",
+  "objective": "Produce a complete pre-P02-F contract, schema, specialist, interaction, evaluation, security, memory, observability and implementation-backlog package for canonical agents A0-A10 without installing or selecting a production runtime.",
+  "dependencies": [
+    "FIN-P01-WG-001",
+    "FIN-P01-WG-001-R01",
+    "FIN-P01-WM-001",
+    "FIN-P01-WT-001"
+  ],
+  "constraints": [
+    "P02-F is not active; runtime implementation is forbidden",
+    "Production framework selection is deferred to P02-F",
+    "No credentials, accounts, funding, live connectivity or production automation activation",
+    "A5 and A8 veto semantics are non-bypassable",
+    "External frameworks and specialist agents cannot replace A0-A10 authority",
+    "CURRENT-STATE.md and TASK-CATALOG.md are not written while FIN-P01-WE-001 owns concurrent shared-writer changes"
+  ],
+  "lock": {
+    "id": "LOCK-FIN-P01-WG-002-01",
+    "state": "ACTIVE",
+    "scope": [
+      "contracts/tasks/FIN-P01-WG-002.json",
+      "docs/09-agents/contracts/**",
+      "docs/09-agents/specialists/**",
+      "docs/09-agents/schemas/**",
+      "docs/09-agents/evaluations/**",
+      "docs/09-agents/architecture/**"
+    ]
+  },
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WG-002.json",
+    "docs/09-agents/contracts/**",
+    "docs/09-agents/specialists/**",
+    "docs/09-agents/schemas/**",
+    "docs/09-agents/evaluations/**",
+    "docs/09-agents/architecture/**"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "risk_level": "MEDIUM",
+  "human_gate": false,
+  "tests": [
+    "All JSON parses",
+    "A0-A10 contracts conform to contract schema",
+    "Message envelope schema validates representative outputs",
+    "Specialist catalog has parent/purpose/inputs/outputs/tools/forbidden/spawn/termination",
+    "Evaluation matrix covers required normal, ambiguity, freshness, injection, outage, veto, timeout, retry, circuit-breaker, provenance, latency, cost and reproducibility cases",
+    "A5/A8 veto paths cannot be bypassed in interaction matrix",
+    "Runtime selection and installation remain deferred"
+  ],
+  "security_tests": [
+    "Untrusted external content is DATA not instruction",
+    "No specialist self-escalation",
+    "No recursive unbounded spawning",
+    "No secret or permission expansion",
+    "No runtime/live authority activation",
+    "Fail-closed states include WAIT, NO_TRADE and INSUFFICIENT_EVIDENCE"
+  ],
+  "rollback": "Revert FIN-P01-WG-002 documentation-only commits; no runtime, secrets, account, financial or deployment state is changed.",
+  "definition_of_ready": [
+    "FIN-P01-WG-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WG-001-R01 = CANONICAL_COMPLETE",
+    "P01 active",
+    "P02-F not active",
+    "Dedicated write scope does not overlap FIN-P01-WE-001 artifacts"
+  ],
+  "definition_of_done": [
+    "A0-A10 Markdown and JSON contracts complete",
+    "Specialist catalog complete",
+    "Message and contract schemas complete",
+    "Interaction and handoff matrix complete",
+    "Evaluation/red-team matrix complete",
+    "Memory/security/observability requirements complete",
+    "P02-F backlog complete",
+    "Validation passes",
+    "PR merged",
+    "Post-merge validation passes",
+    "Shared Current State/Task Catalog reconciliation completed after conflicting writer is released",
+    "Linear parent/subtasks synchronized",
+    "Lock released"
+  ]
+}
