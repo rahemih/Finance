@@ -1,0 +1,101 @@
+{
+  "task_id": "FIN-P00-WC-001",
+  "phase": "P00",
+  "workstream": "WC",
+  "objective": "Activate Finance in Linear, establish project leadership and operational project-management authority, synchronize GitHub/Linear source-of-truth rules, and mirror roadmap phases as Linear milestones before any implementation work starts.",
+  "scope": [
+    "Create and activate Linear project Finance — NEXUS QUANT",
+    "Set Hossein Rahemi as Project Lead / Owner",
+    "Define A0 Governance / Orchestrator as Operational Project Manager",
+    "Link canonical GitHub repository",
+    "Create Linear milestones P00 through P24",
+    "Create Linear project-management and source-of-truth document",
+    "Create initial Linear status update",
+    "Reconcile GitHub CURRENT-STATE and Task Catalog with Linear state"
+  ],
+  "out_of_scope": [
+    "Create detailed canonical roadmap",
+    "Create execution roadmap",
+    "Start implementation code",
+    "Create trading runtime infrastructure",
+    "Enable demo, live, or automatic trading"
+  ],
+  "dependencies": [
+    "FIN-P00-WA-001",
+    "FIN-P00-WB-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "docs/00-governance/PROJECT-MANAGEMENT.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WC-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE", "CI_EXECUTE"],
+  "secrets": [],
+  "risk_level": "LOW",
+  "tests": [
+    "Task Contract schema validation",
+    "Governance Verify",
+    "Linear project exists and is In Progress",
+    "Linear Project Lead is Hossein Rahemi",
+    "Linear milestones P00 through P24 exist",
+    "GitHub/Linear source-of-truth policy is documented"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials or secrets stored in GitHub or Linear management documents",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "Linear project ID P-HOS-2",
+    "Linear project URL",
+    "Linear management document ID",
+    "Linear initial status update ID",
+    "GitHub PR number",
+    "Governance Verify run ID",
+    "Merge SHA",
+    "Post-merge verification"
+  ],
+  "rollback": "Revert GitHub coordination documentation only. Do not delete Linear project history; mark it paused/canceled only if governance later requires.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Initial Git bootstrap is CANONICAL_COMPLETE",
+    "Branch hygiene is CANONICAL_COMPLETE",
+    "Initial Git hardening is COMPLETE",
+    "Linear workspace/team/user identity verified",
+    "No conflicting active governance task"
+  ],
+  "definition_of_done": [
+    "Linear project is active",
+    "Project Lead and Operational Project Manager are defined",
+    "P00-P24 milestones exist",
+    "Source-of-truth document exists",
+    "Initial project status update exists",
+    "GitHub Task Catalog and CURRENT-STATE are reconciled",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge verify passes",
+    "Task lock released"
+  ]
+}
