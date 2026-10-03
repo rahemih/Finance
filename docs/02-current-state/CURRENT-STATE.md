@@ -30,7 +30,7 @@ Open-source registry issue: `HOS-110`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_D
+P01 state: SUPPORTING_WUI_RECONCILIATION
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -40,7 +40,8 @@ Execution roadmap: CANONICAL
 
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
-FIN-P01-WC-001 = CANONICAL_COMPLETE
+FIN-P01-WC-001 = CANONICAL_COMPLETE  
+FIN-P01-WUI-001 = ACTIVE
 
 P01-A artifacts:
 - `docs/03-research/P01-A-MARKET-UNIVERSE.md`
@@ -75,8 +76,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: none  
-Active locks: none  
+Active task: FIN-P01-WUI-001 — Frontend UI/UX repository registry  
+Active lock: LOCK-FIN-P01-WUI-001-01  
 Open critical incidents: none
 
 ## Safety
@@ -150,6 +151,15 @@ Owner jurisdiction: NOT_INFERRED
 Accounts/KYC/credentials/funding/orders: NONE  
 Lock: RELEASED
 
+## Frontend UI/UX registry
+
+FIN-P01-WUI-001 = ACTIVE  
+Linear issue: `HOS-112`  
+Registry: `docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md`  
+Machine-readable registry: `docs/03-research/frontend-ui-ux-repository-registry.json`  
+Production frontend dependencies: NOT_SELECTED  
+Runtime package installation: NOT_PERFORMED
+
 ## Next
 
-Reconcile the already-open supporting frontend UI/UX registry task `FIN-P01-WUI-001` without allowing it to override current canonical P01 state. After the repository is conflict-free, continue to P01-D — Compliance / Jurisdiction Matrix.
+Canonical-review and close FIN-P01-WUI-001. Then continue P01-D — Compliance / Jurisdiction Matrix from a clean shared-writer state.
