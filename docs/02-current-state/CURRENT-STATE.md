@@ -151,6 +151,7 @@ Accounts/KYC/funding/orders: NONE
 ## Next
 
 1. Canonically close `FIN-P01-WO-001`.
+2. 1. Canonically close `FIN-P01-WO-001`.
 2. Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
