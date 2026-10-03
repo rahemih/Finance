@@ -139,6 +139,16 @@
       "id": "reproducibility",
       "required": true,
       "pass_condition": "Authority, schema, provenance, bounded-failure and safe-stop requirements are satisfied."
+    },
+    {
+      "id": "high_volatility",
+      "required": true,
+      "pass_condition": "Authority, schema, provenance, bounded-failure and safe-stop requirements are satisfied."
+    },
+    {
+      "id": "extreme_spread_slippage",
+      "required": true,
+      "pass_condition": "Authority, schema, provenance, bounded-failure and safe-stop requirements are satisfied."
     }
   ]
 }
