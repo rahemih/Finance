@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD before active P01-D task: `375a4a95cb3dad821fc404038d39382a5d958f8d`  
+Canonical HEAD before this closure PR: `7a79869bc9efe2c7840c35414645f80f5c2c4af0`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -28,14 +28,14 @@ P01-C: `HOS-111 = Done`
 Open-source registry: `HOS-110 = Done`  
 Frontend excellence baseline: `HOS-112 = Done`  
 Agent framework / ready-agent registry: `HOS-113 = Done`  
-Active P01-D: `HOS-114 = In Progress`
+P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: ACTIVE_P01_D
+P01 state: READY_FOR_P01_E
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -46,37 +46,44 @@ Execution roadmap: CANONICAL
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
 FIN-P01-WC-001 = CANONICAL_COMPLETE  
-FIN-P01-WD-001 = ACTIVE  
+FIN-P01-WD-001 = CANONICAL_COMPLETE  
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE
 
-## Active Task
+## P01-D — Jurisdiction & compliance closure
 
 Task: `FIN-P01-WD-001 — Jurisdiction & compliance matrix`  
 Linear: `HOS-114`  
-Branch: `research/FIN-P01-WD-001-R02-compliance-jurisdiction`  
-Lock: `LOCK-FIN-P01-WD-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/P01-D-JURISDICTION-COMPLIANCE.md`
 - `docs/03-research/p01-d-jurisdiction-compliance.json`
 
-Scope:
-- separate market-data licensing from trading authorization;
-- representative jurisdiction/regulatory research for Crypto and Forex;
-- retail/professional/client-class restrictions;
+Coverage:
+- market-data licensing separated from trading authorization;
+- representative Crypto/Forex regulatory baselines for EU/EEA, US, UK, Australia, Japan, Singapore, Dubai/VARA and Hong Kong;
+- retail/professional/client-class evidence requirements;
 - provider/broker eligibility checklist;
-- Owner jurisdiction as an explicit future Human Gate;
-- no personalized legal conclusion.
+- explicit Owner-jurisdiction Human Gate;
+- fail-closed rules for unresolved compliance facts.
 
 Owner jurisdiction: UNSET_HUMAN_GATE  
 Personalized legal conclusion: NONE  
 Production provider: NOT_SELECTED  
-Production broker/exchange: NOT_SELECTED
+Production broker/exchange: NOT_SELECTED  
+Accounts/KYC/credentials/funding/orders: NONE
 
-The earlier P01-D branches created before concurrent governance repairs are superseded/non-canonical. R02 is based on the latest clean canonical main after `FIN-P01-WG-001-R01` closure.
+Implementation evidence:
+- superseded PR #33 = CLOSED / NOT MERGED because branch naming check failed
+- canonical implementation PR #34 = MERGED
+- implementation merge SHA: `7a79869bc9efe2c7840c35414645f80f5c2c4af0`
+- PR Governance: `37123703743` = SUCCESS
+- post-merge Governance: `37123730859` = SUCCESS
+- post-merge Branch Hygiene: `37123730848` = SUCCESS
 
 ## Canonical P01 Research Artifacts
 
@@ -124,8 +131,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WD-001`  
-Active lock: `LOCK-FIN-P01-WD-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -142,4 +149,4 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Validate and merge `FIN-P01-WD-001`. After canonical closure, proceed to P01-E — Cost / Licensing / Data Rights.
+Proceed to P01-E — Cost / Licensing / Data Rights.
