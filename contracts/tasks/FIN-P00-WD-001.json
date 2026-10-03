@@ -9,7 +9,9 @@
     "Register relevant ChatGPT skills and their invocation policy",
     "Map agents to approved plugin and skill families",
     "Define least-privilege, source-of-truth, and external-action rules",
-    "Reconcile GitHub and Linear toolchain state"
+    "Reconcile GitHub and Linear toolchain state",
+    "Inventory and document all already-installed project-relevant plugins, including conditional and auxiliary tools",
+    "Classify installed useful plugins into core, domain intelligence, engineering/data, collaboration, and conditional/auxiliary tiers"
   ],
   "out_of_scope": [
     "Change global plugin permissions to Full Access",
@@ -70,19 +72,26 @@
     "Slack",
     "Vercel",
     "Neon",
+    "Supabase",
     "Context7",
     "PostHog",
     "OpenAI Developers",
+    "Codex Security",
     "Blockscout Blockchain Data",
     "Exa",
     "Wolfram",
     "Legal Data Hunter",
-    "Codex Security",
+    "TinyFish",
+    "Notion",
     "Gmail",
     "Google Calendar",
     "Dropbox",
     "Adobe",
-    "Canva"
+    "Canva",
+    "Gamma",
+    "Semrush",
+    "Runway",
+    "Higgsfield"
   ],
   "skills": [
     "Vercel AI SDK",
