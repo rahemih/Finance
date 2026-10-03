@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P01-WR-001",
+  "phase": "P01",
+  "workstream": "WR",
+  "objective": "Create a governed open-source finance/quant/trading repository and dependency registry that records upstream health, license, intended project role, integration mode and adoption risk without selecting production dependencies.",
+  "scope": [
+    "Verify Wave-1 open-source repositories using current upstream GitHub evidence",
+    "Record repository URL, upstream owner, license, activity timestamp and project role",
+    "Classify each candidate as ADOPT_CANDIDATE, USE_CANDIDATE, REFERENCE, REJECT or LICENSE_RISK",
+    "Separate direct dependency candidates from architecture/reference-only repositories",
+    "Record licensing, data-rights, maintenance and integration risks",
+    "Create machine-readable registry JSON",
+    "Cross-link the canonical Technology & Provider Candidate Matrix",
+    "Synchronize task state with Linear"
+  ],
+  "out_of_scope": [
+    "Install runtime dependencies",
+    "Select a production market-data provider",
+    "Select a broker or exchange",
+    "Copy third-party source code into the repository",
+    "Provision credentials",
+    "Enable Demo, Shadow, Live or Auto Trading",
+    "Close P01-B Data Provider Scorecards"
+  ],
+  "dependencies": [
+    "FIN-P00-WF-001",
+    "FIN-P01-WA-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "docs/03-research/OPEN-SOURCE-REPOSITORY-DEPENDENCY-REGISTRY.md",
+    "docs/03-research/open-source-repository-dependency-registry.json",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P01-WR-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A1","A2","A4","A6","A8","A10"],
+  "plugins": ["GitHub","Linear","Exa"],
+  "skills": ["Plugin Management"],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Registry JSON parses successfully",
+    "Repository identifiers are unique",
+    "Every entry has an explicit classification and intended role",
+    "Every direct-use candidate has an explicit license assessment",
+    "No candidate is marked production approved",
+    "P01-B remains open and not falsely closed"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials or secrets",
+    "No third-party source copied",
+    "No runtime dependency installation",
+    "No live trading activation"
+  ],
+  "evidence": [
+    "Current GitHub repository metadata for Wave-1 candidates",
+    "Upstream license metadata and repository documentation",
+    "OpenBB organization wind-down notice current as of 2026-10-03",
+    "GitHub PR and CI evidence",
+    "Linear HOS-110"
+  ],
+  "rollback": "Revert registry artifacts and companion/state/catalog updates. No runtime code or production dependency is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "G0_GOVERNANCE_READY = PASS",
+    "P01 = ACTIVE",
+    "FIN-P01-WA-001 = CANONICAL_COMPLETE",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Wave-1 repository registry is documented",
+    "Machine-readable registry is committed",
+    "License and maintenance risks are explicit",
+    "Technology & Provider Candidate Matrix links the registry",
+    "Linear is synchronized",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Task Catalog and Current State are reconciled",
+    "FIN-P01-WR-001 = CANONICAL_COMPLETE"
+  ]
+}
