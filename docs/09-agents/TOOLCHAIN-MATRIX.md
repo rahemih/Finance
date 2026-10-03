@@ -149,6 +149,78 @@ Skills do not require a separate always-on installation toggle. They are **AUTHO
 | Sentry | CONDITIONAL | Read-only error/issue inspection after `SENTRY_AUTH_TOKEN` is configured |
 | Plugin Management | AUTHORIZED_WHEN_TRIGGERED | Plugin discovery, connection status and permission governance |
 
+## 4A. Expanded skill inventory
+
+The following skill families are present and useful to Finance. They are **not always-on services**; they are loaded only when a task trigger matches.
+
+### Vercel skills — authorized when relevant
+
+High-value project skills include:
+- `agent-browser` and `agent-browser-verify` — browser-based UI/runtime verification;
+- `ai-sdk`, `ai-gateway`, `ai-elements`, `ai-generation-persistence` — AI runtime and model-routing patterns;
+- `auth`, `env-vars` — identity/configuration guidance;
+- `bootstrap`, `nextjs`, `shadcn`, `react-best-practices` — application foundation and UI quality;
+- `cron-jobs`, `vercel-functions`, `vercel-queues`, `workflow` — scheduled, serverless, asynchronous and durable workloads;
+- `deployments-cicd`, `verification`, `investigation-mode`, `observability` — deployment, validation, incident triage and telemetry;
+- `vercel-firewall`, `vercel-sandbox` — WAF/DDoS and isolated execution guidance;
+- `vercel-flags` — staged rollout/feature-flag patterns;
+- `vercel-services`, `vercel-storage` — service/storage architecture when Vercel is selected.
+
+Other Vercel skills remain available but are used only when a concrete task requires them.
+
+### Neon skills — authorized when relevant
+
+- `neon`
+- `neon-postgres`
+- `neon-functions`
+- `neon-object-storage`
+- `neon-ai-gateway`
+
+These are evaluation/implementation aids only until an architecture task selects Neon.
+
+### Supabase skills — authorized when relevant
+
+- `supabase`
+- `supabase-postgres-best-practices`
+
+These are useful for database, Auth, Realtime, Edge Functions, Storage, RLS and Postgres optimization. Supabase remains an architecture candidate, not a selected production dependency.
+
+### Figma skills — authorized when relevant
+
+- `figma-code-connect`
+- `figma-create-new-file`
+- `figma-design-to-code`
+- `figma-generate-design`
+- `figma-generate-diagram`
+- `figma-generate-library`
+- `figma-use`
+
+Additional Figma motion/shader/Slides/SwiftUI skills remain task-specific.
+
+### Google Drive skills — authorized when relevant
+
+- `google-drive`
+- `google-docs`
+- `google-sheets`
+- `google-slides`
+- `google-drive-comments`
+
+### Sentry skill — conditional
+
+- `sentry` is available for read-only issue/event inspection when `SENTRY_AUTH_TOKEN` is configured.
+- Sentry itself is not currently declared a connected baseline production dependency.
+
+### Plugin Management skill
+
+- `plugin-management` is authorized for discovery, installed-state verification, dependency inspection and permission governance.
+- It may not silently elevate a plugin to blanket Full Access.
+
+### Skill governance rule
+
+A skill may improve implementation quality, but it never expands an agent's authority. The effective permission set is the intersection of:
+
+`Task Contract ∩ Agent Registry ∩ Toolchain Matrix ∩ Environment Policy ∩ Risk/Security/Owner Gates`.
+
 ## 5. Agent-to-tool routing
 
 | Agent | Preferred tool families | Boundary |
