@@ -22,6 +22,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WG-001-R01 | P01 | Agent registry Current State reconciliation repair | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001-R01.json` | RELEASED |
 
 | FIN-P01-WD-001 | P01 | Jurisdiction & compliance matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WD-001.json` | RELEASED |
+| FIN-P01-WE-001 | P01 | Cost / Licensing / Data Rights | MEDIUM | IN_REVIEW | `contracts/tasks/FIN-P01-WE-001.json` | LOCK-FIN-P01-WE-001-01 |
 | FIN-P01-WO-001 | P01 | Automation & orchestration registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WO-001.json` | RELEASED |
 | FIN-P01-WM-001 | P01 | Project capability & tooling master registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WM-001.json` | RELEASED |
 | FIN-P01-WT-001 | P01 | Roadmap tooling usage map | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WT-001.json` | RELEASED |

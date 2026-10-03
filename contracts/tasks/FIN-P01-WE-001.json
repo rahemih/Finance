@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P01-WE-001",
+  "phase": "P01",
+  "workstream": "WE",
+  "objective": "Build the governed cost, licensing and data-rights baseline for P01-B/P01-C candidates using current official/public evidence, explicit quote-required fields and scenario-based cost assumptions without purchasing services or selecting production providers.",
+  "scope": [
+    "Collect public subscription and usage cost evidence for market-data candidates",
+    "Collect public trading fee / commission / market-data cost evidence for execution candidates where published",
+    "Separate vendor subscription fees, exchange/index pass-through fees, usage fees, trading fees, spreads/funding and infrastructure/operational costs",
+    "Record professional/non-professional classification dependencies without inferring Owner status",
+    "Record internal display, non-display, automated-analysis, algorithmic-trading, storage, raw-retention, derived-data/model-training and redistribution rights",
+    "Mark unpublished or contract-specific terms UNKNOWN / QUOTE_REQUIRED / CONTRACT_REVIEW",
+    "Create scenario-based monthly/annual cost model with formulas instead of invented exact totals",
+    "Define evidence freshness and revalidation cadence",
+    "Reconcile Current State and Task Catalog and hand off to P01-F"
+  ],
+  "out_of_scope": [
+    "Purchase or activate subscriptions",
+    "Accept vendor/exchange/broker contracts",
+    "Create credentials, API keys or accounts",
+    "Fund accounts or place orders",
+    "Select final primary/backup provider or execution venue",
+    "Infer Owner residence, tax residency or professional/non-professional status",
+    "Provide personalized legal/tax/investment advice",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WB-001",
+    "FIN-P01-WC-001",
+    "FIN-P01-WD-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WE-001.json",
+    "docs/03-research/P01-E-COST-LICENSING-DATA-RIGHTS.md",
+    "docs/03-research/p01-e-cost-licensing-data-rights.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Legal Data Hunter"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Cost/licensing JSON parses successfully",
+    "Every numeric public price has source/as-of metadata or is marked estimate/unknown",
+    "No unpublished quote is invented",
+    "Market-data rights and trading authorization remain separate",
+    "Professional/non-professional status is not inferred",
+    "No provider or broker is declared production-selected",
+    "Scenario cost formulas distinguish fixed, variable, pass-through and quote-required costs"
+  ],
+  "security_tests": [
+    "No credentials, subscriptions, account creation or funding",
+    "No provider terms acceptance",
+    "No KYC or personal-jurisdiction inference",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "Official provider pricing/terms pages",
+    "Official exchange/index entitlement/licensing pages where relevant",
+    "Official broker/exchange fee pages where relevant",
+    "Machine-readable cost/licensing/data-rights matrix",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-117 reconciliation"
+  ],
+  "rollback": "Revert P01-E research artifacts and state/catalog changes only. No subscriptions, accounts, credentials, contracts or runtime changes are made.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P01-WB-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WC-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WD-001 = CANONICAL_COMPLETE",
+    "P01 = READY_FOR_P01_E",
+    "No conflicting active lock",
+    "Official/public research tools available"
+  ],
+  "definition_of_done": [
+    "Data-provider public cost/licensing matrix committed",
+    "Execution-venue fee/cost matrix committed",
+    "Data-rights fields and quote-required gaps recorded",
+    "Scenario-based cost model committed",
+    "Owner-specific classification remains explicit future Human Gate where required",
+    "P01-F handoff requirements documented",
+    "Task Catalog and Current State reconciled",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P01-WE-001 = CANONICAL_COMPLETE"
+  ]
+}

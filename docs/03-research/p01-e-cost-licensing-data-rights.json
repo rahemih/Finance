@@ -1,0 +1,520 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WE-001",
+  "assessed_at": "2026-10-03",
+  "state": "RESEARCH_BASELINE",
+  "production_provider_selected": false,
+  "production_venue_selected": false,
+  "owner_classification": "UNSET_HUMAN_GATE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "methodology": {
+    "rules": [
+      "Use official/public sources only for numeric public prices and public usage terms.",
+      "Unknown commercial terms are QUOTE_REQUIRED or CONTRACT_REVIEW and are never guessed.",
+      "Market-data licensing is separate from trading authorization.",
+      "Professional/non-professional status is not inferred.",
+      "No vendor, broker, exchange, plan or entitlement is production-selected by this task.",
+      "Prices and fee schedules are time-sensitive and require revalidation before procurement or production use."
+    ],
+    "evidence_date": "2026-10-03"
+  },
+  "market_data_providers": [
+    {
+      "provider_id": "DATABENTO",
+      "public_pricing": {
+        "currency": "USD",
+        "entries": [
+          {
+            "plan": "Standard",
+            "amount_monthly": 199,
+            "billing": "monthly",
+            "note": "Public page lists live data and no license fees for this plan."
+          },
+          {
+            "plan": "Plus",
+            "amount_monthly": 1750,
+            "billing": "annual_contract",
+            "note": "Public page labels this as license-fee pricing; exact applicability depends on venue/use."
+          },
+          {
+            "plan": "Unlimited",
+            "amount_monthly": 4500,
+            "billing": "annual_contract",
+            "note": "Public page labels this as license-fee pricing; exact applicability depends on venue/use."
+          }
+        ],
+        "usage_based": "Historical usage is metered by data volume; dataset/schema/date-range dependent."
+      },
+      "rights": {
+        "internal_display": "PLAN_AND_VENUE_DEPENDENT",
+        "internal_non_display": "PLAN_AND_VENUE_DEPENDENT",
+        "automated_analysis": "PLAN_AND_VENUE_DEPENDENT",
+        "algorithmic_use": "PLAN_AND_VENUE_DEPENDENT",
+        "raw_retention": "PLAN_AND_VENUE_DEPENDENT",
+        "derived_data_model_training": "CONTRACT_REVIEW",
+        "redistribution": "PLUS_OR_SEPARATE_RIGHTS_REVIEW",
+        "exchange_entitlements": "PASS_THROUGH_OR_VENUE_SPECIFIC"
+      },
+      "status": "PUBLIC_PRICE_WITH_LICENSE_DEPENDENCIES",
+      "sources": [
+        "DATABENTO_PRICING",
+        "DATABENTO_PORTAL_LICENSES"
+      ]
+    },
+    {
+      "provider_id": "DXFEED",
+      "public_pricing": {
+        "status": "QUOTE_REQUIRED"
+      },
+      "rights": {
+        "internal_display": "CONTRACT_REVIEW",
+        "internal_non_display": "CONTRACT_REVIEW",
+        "automated_analysis": "CONTRACT_REVIEW",
+        "algorithmic_use": "CONTRACT_REVIEW",
+        "raw_retention": "CONTRACT_REVIEW",
+        "derived_data_model_training": "CONTRACT_REVIEW",
+        "redistribution": "CONTRACT_REVIEW",
+        "exchange_entitlements": "SOURCE_EXCHANGE_DEPENDENT"
+      },
+      "status": "COMMERCIAL_QUOTE_REQUIRED",
+      "sources": [
+        "DXFEED_TERMS",
+        "DXFEED_COVERAGE"
+      ]
+    },
+    {
+      "provider_id": "TWELVE_DATA",
+      "public_pricing": {
+        "currency": "USD",
+        "individual": [
+          {
+            "plan": "Basic",
+            "amount_monthly": 0
+          },
+          {
+            "plan": "Grow",
+            "amount_monthly": 79
+          },
+          {
+            "plan": "Pro",
+            "amount_monthly": 229
+          },
+          {
+            "plan": "Ultra",
+            "amount_monthly": 999
+          }
+        ],
+        "business": [
+          {
+            "plan": "Venture",
+            "amount_monthly": 499,
+            "note": "Current business page card observed at this amount; page also contains dynamic 'from' pricing, so checkout revalidation is required."
+          },
+          {
+            "plan": "Enterprise",
+            "amount_monthly": 1099
+          },
+          {
+            "plan": "Enterprise+",
+            "status": "CUSTOM"
+          }
+        ]
+      },
+      "rights": {
+        "individual_use": "PERSONAL_OR_INTERNAL_NON_COMMERCIAL",
+        "internal_display": "PLAN_DEPENDENT",
+        "internal_non_display": "PLAN_DEPENDENT",
+        "commercial_display": "BUSINESS_PLAN_AND_EXCHANGE_LICENSE_DEPENDENT",
+        "automated_analysis": "SUBSCRIPTION_AND_DATA_LICENSE_DEPENDENT",
+        "algorithmic_use": "NON_DISPLAY_RIGHTS_REQUIRED",
+        "raw_retention": "TERMS_AND_ADDON_DEPENDENT",
+        "derived_data_model_training": "TERMS_REVIEW_REQUIRED",
+        "redistribution": "SEPARATE_AGREEMENT_OR_RIGHTS_ADDON",
+        "exchange_entitlements": "EXCHANGE_SPECIFIC"
+      },
+      "status": "PUBLIC_PRICE_WITH_USAGE_RIGHTS_BOUNDARIES",
+      "sources": [
+        "TWELVE_INDIVIDUAL_PRICING",
+        "TWELVE_BUSINESS_PRICING",
+        "TWELVE_COMMERCIAL_USAGE",
+        "TWELVE_TERMS"
+      ]
+    },
+    {
+      "provider_id": "MASSIVE",
+      "public_pricing": {
+        "currency": "USD",
+        "currencies": [
+          {
+            "plan": "Basic",
+            "amount_monthly": 0
+          },
+          {
+            "plan": "Starter",
+            "amount_monthly": 49
+          }
+        ],
+        "indices": [
+          {
+            "plan": "Basic",
+            "amount_monthly": 0
+          },
+          {
+            "plan": "Starter",
+            "amount_monthly": 49
+          },
+          {
+            "plan": "Advanced",
+            "amount_monthly": 99
+          }
+        ],
+        "business": "QUOTE_OR_SEPARATE_BUSINESS_PLAN_REVIEW"
+      },
+      "rights": {
+        "internal_display": "PLAN_DEPENDENT",
+        "internal_non_display": "PLAN_DEPENDENT",
+        "automated_analysis": "PLAN_DEPENDENT",
+        "algorithmic_use": "PLAN_DEPENDENT",
+        "raw_retention": "PLAN_DEPENDENT",
+        "derived_data_model_training": "CONTRACT_REVIEW",
+        "redistribution": "BUSINESS_OR_CONTRACT_REVIEW",
+        "exchange_entitlements": "DATASET_DEPENDENT"
+      },
+      "status": "PUBLIC_INDIVIDUAL_PRICE_BUSINESS_REVIEW_REQUIRED",
+      "sources": [
+        "MASSIVE_CURRENCIES_PRICING",
+        "MASSIVE_INDICES_PRICING"
+      ]
+    },
+    {
+      "provider_id": "KAIKO",
+      "public_pricing": {
+        "status": "QUOTE_REQUIRED",
+        "note": "Kaiko states enterprise plans are custom based on assets/instruments, data type, granularity, history/live access and usage."
+      },
+      "rights": {
+        "internal_display": "STANDARD_LICENSE_REVIEW",
+        "internal_non_display": "STANDARD_LICENSE_REVIEW",
+        "automated_analysis": "STANDARD_LICENSE_REVIEW",
+        "algorithmic_use": "STANDARD_LICENSE_REVIEW",
+        "raw_retention": "STANDARD_LICENSE_REVIEW",
+        "derived_data_model_training": "CONTRACT_REVIEW",
+        "redistribution": "LICENSE_REQUIRED",
+        "exchange_entitlements": "EXCHANGE_AGREEMENT_DEPENDENT"
+      },
+      "status": "CUSTOM_ENTERPRISE_QUOTE",
+      "sources": [
+        "KAIKO_PRICING_LICENSES"
+      ]
+    },
+    {
+      "provider_id": "COINAPI",
+      "public_pricing": {
+        "currency": "USD",
+        "entries": [
+          {
+            "plan": "Pay As You Go",
+            "status": "METERED"
+          },
+          {
+            "plan": "Startup",
+            "amount_monthly": 79
+          },
+          {
+            "plan": "Streamer",
+            "amount_monthly": 249
+          },
+          {
+            "plan": "Pro",
+            "amount_monthly": 599
+          },
+          {
+            "plan": "Enterprise",
+            "status": "CUSTOM"
+          }
+        ],
+        "overage_note": "Plan-specific data quotas and overage rates are publicly documented."
+      },
+      "rights": {
+        "internal_display": "CONTRACT_REVIEW",
+        "internal_non_display": "CONTRACT_REVIEW",
+        "automated_analysis": "CONTRACT_REVIEW",
+        "algorithmic_use": "CONTRACT_REVIEW",
+        "raw_retention": "CONTRACT_REVIEW",
+        "derived_data_model_training": "CONTRACT_REVIEW",
+        "redistribution": "CONTRACT_REVIEW",
+        "exchange_entitlements": "DATA_SOURCE_DEPENDENT"
+      },
+      "status": "PUBLIC_PRICE_RIGHTS_REVIEW_REQUIRED",
+      "sources": [
+        "COINAPI_PRICING",
+        "COINAPI_DOCS"
+      ]
+    },
+    {
+      "provider_id": "FRED_ALFRED",
+      "public_pricing": {
+        "status": "NO_PUBLIC_SUBSCRIPTION_FEE_IDENTIFIED_FOR_API",
+        "note": "API use requires an API key; series may contain third-party rights."
+      },
+      "rights": {
+        "internal_display": "SERIES_SPECIFIC",
+        "internal_non_display": "SERIES_SPECIFIC",
+        "automated_analysis": "SERIES_SPECIFIC",
+        "algorithmic_use": "SERIES_SPECIFIC",
+        "raw_retention": "SERIES_SPECIFIC",
+        "derived_data_model_training": "SERIES_SPECIFIC",
+        "redistribution": "SERIES_COPYRIGHT_DEPENDENT",
+        "exchange_entitlements": "NOT_APPLICABLE"
+      },
+      "status": "SERIES_BY_SERIES_RIGHTS_REVIEW",
+      "sources": [
+        "FRED_API",
+        "FRED_TERMS"
+      ]
+    },
+    {
+      "provider_id": "DIRECT_OFFICIAL_SOURCES",
+      "public_pricing": {
+        "status": "SOURCE_SPECIFIC"
+      },
+      "rights": {
+        "internal_display": "SOURCE_SPECIFIC",
+        "internal_non_display": "SOURCE_SPECIFIC",
+        "automated_analysis": "SOURCE_SPECIFIC",
+        "algorithmic_use": "SOURCE_SPECIFIC",
+        "raw_retention": "SOURCE_SPECIFIC",
+        "derived_data_model_training": "SOURCE_SPECIFIC",
+        "redistribution": "SOURCE_SPECIFIC",
+        "exchange_entitlements": "SOURCE_SPECIFIC"
+      },
+      "status": "SOURCE_SPECIFIC_REVIEW",
+      "sources": [
+        "P01A_SOURCE_REGISTER"
+      ]
+    },
+    {
+      "provider_id": "BLOCKSCOUT",
+      "public_pricing": {
+        "status": "INSTANCE_OR_DEPLOYMENT_SPECIFIC"
+      },
+      "rights": {
+        "internal_display": "INSTANCE_OR_API_SPECIFIC",
+        "internal_non_display": "INSTANCE_OR_API_SPECIFIC",
+        "automated_analysis": "INSTANCE_OR_API_SPECIFIC",
+        "algorithmic_use": "INSTANCE_OR_API_SPECIFIC",
+        "raw_retention": "INSTANCE_OR_API_SPECIFIC",
+        "derived_data_model_training": "INSTANCE_OR_API_SPECIFIC",
+        "redistribution": "INSTANCE_OR_API_SPECIFIC",
+        "exchange_entitlements": "NOT_APPLICABLE"
+      },
+      "status": "SUPPLEMENTAL_ONLY_PRODUCTION_SOURCE_DEFERRED",
+      "sources": [
+        "BLOCKSCOUT_PLUGIN"
+      ]
+    }
+  ],
+  "execution_venues": [
+    {
+      "venue_id": "COINBASE_ADVANCED",
+      "public_cost": {
+        "status": "ACCOUNT_TIER_DEPENDENT",
+        "note": "Maker/taker fees vary by product and current account fee tier; exact current rates are shown in the signed-in fee page."
+      },
+      "market_data_cost": "SEPARATE_REVIEW_IF_EXTERNAL_OR_PREMIUM_DATA_REQUIRED",
+      "financing_funding": "PRODUCT_SPECIFIC",
+      "eligibility": "JURISDICTION_AND_PRODUCT_SPECIFIC",
+      "source": "COINBASE_ADVANCED_FEES"
+    },
+    {
+      "venue_id": "KRAKEN",
+      "public_cost": {
+        "currency": "USD",
+        "spot_tier_1": {
+          "maker_percent": 0.4,
+          "taker_percent": 0.8,
+          "qualification": "$0+ 30-day spot volume; current public schedule also uses assets-on-platform for tiering"
+        },
+        "note": "Fee tiers are dynamic and must be revalidated at execution time."
+      },
+      "market_data_cost": "PUBLIC_API_ACCESS_AND_ACCOUNT_ENTITLEMENT_REVIEW",
+      "financing_funding": "PRODUCT_SPECIFIC",
+      "eligibility": "JURISDICTION_AND_PRODUCT_SPECIFIC",
+      "source": "KRAKEN_2026_FEE_TIERS"
+    },
+    {
+      "venue_id": "BINANCE",
+      "public_cost": {
+        "spot_regular": {
+          "maker_percent": 0.1,
+          "taker_percent": 0.1
+        },
+        "bnb_discount_example": {
+          "maker_percent": 0.075,
+          "taker_percent": 0.075
+        },
+        "note": "Tier/product/pair/promotional rates can differ."
+      },
+      "market_data_cost": "PUBLIC_API_TECHNICAL_ACCESS_NOT_EQUAL_TO_TRADING_ELIGIBILITY",
+      "financing_funding": "DERIVATIVES_PRODUCT_SPECIFIC",
+      "eligibility": "JURISDICTION_AND_ACCOUNT_SPECIFIC",
+      "source": "BINANCE_SPOT_FEES"
+    },
+    {
+      "venue_id": "OANDA_V20",
+      "public_cost": {
+        "region": "US_PUBLIC_PAGE_AND_HELP",
+        "spread_only": "SPREAD_INCLUDED_COMMISSION_MODEL_AVAILABLE",
+        "core_commission_usd_per_10000_units_per_leg": 0.7,
+        "note": "Entity/region/account pricing differs; project must revalidate against the eventual eligible entity."
+      },
+      "market_data_cost": "BROKER_ACCOUNT_AND_API_TERMS_DEPENDENT",
+      "financing_funding": "PAIR_AND_HOLDING_PERIOD_DEPENDENT",
+      "eligibility": "ENTITY_AND_JURISDICTION_SPECIFIC",
+      "sources": [
+        "OANDA_US_PRICING",
+        "OANDA_CORE_SPREAD_COMMISSION"
+      ]
+    },
+    {
+      "venue_id": "IBKR",
+      "public_cost": {
+        "spot_fx_tier_1_basis_points": 0.2,
+        "minimum_usd_per_order_tier_1": 2,
+        "note": "Lower basis-point tiers and minimums apply at very high monthly trade values; account/program variations can apply."
+      },
+      "market_data_cost": "PER_USERNAME_SUBSCRIPTIONS_AND_PROFESSIONAL_CLASSIFICATION_DEPENDENT",
+      "financing_funding": "PRODUCT_AND_ACCOUNT_SPECIFIC",
+      "eligibility": "ACCOUNT_PERMISSIONS_AND_JURISDICTION_SPECIFIC",
+      "sources": [
+        "IBKR_SPOT_FX_COMMISSIONS",
+        "IBKR_MARKET_DATA_PRICING"
+      ]
+    },
+    {
+      "venue_id": "SAXO_OPENAPI",
+      "public_cost": {
+        "status": "REGION_AND_TIER_DEPENDENT",
+        "note": "FX spreads and exact prices vary by country and account tier; public pages state exact prices are available in platform tickets. Region-specific small-trade fees may apply."
+      },
+      "market_data_cost": "ACCOUNT_AND_DATA_ENTITLEMENT_DEPENDENT",
+      "financing_funding": "ROLLOVER_AND_FINANCING_APPLY_TO_HELD_POSITIONS",
+      "eligibility": "COUNTRY_AND_CLIENT_CLASS_SPECIFIC",
+      "sources": [
+        "SAXO_FX_PRICING",
+        "SAXO_GENERAL_CHARGES"
+      ]
+    }
+  ],
+  "rights_dimensions": [
+    "internal_display",
+    "internal_non_display",
+    "automated_analysis",
+    "algorithmic_use",
+    "storage",
+    "raw_retention",
+    "derived_data_model_training",
+    "redistribution",
+    "exchange_or_index_entitlements",
+    "professional_non_professional_classification"
+  ],
+  "scenario_cost_model": {
+    "currency": "USD",
+    "formulas": {
+      "fixed_data_monthly": "SUM(public_plan_fees + quoted_vendor_fees + exchange_index_entitlements + mandatory_support_or_license_fees)",
+      "variable_data_monthly": "SUM(usage_gb_or_messages * unit_rate + api_overage + data_egress)",
+      "execution_monthly": "SUM(traded_notional * commission_rate + spread_cost + financing_or_funding + venue_pass_through_costs)",
+      "operations_monthly": "compute + storage + backups + egress + observability + security_tooling",
+      "total_monthly": "fixed_data_monthly + variable_data_monthly + execution_monthly + operations_monthly"
+    },
+    "scenarios": [
+      {
+        "id": "RESEARCH_SELF_SERVE",
+        "purpose": "Research/demo cost envelope using self-serve plans where legally permitted.",
+        "assumptions": [
+          "No redistribution",
+          "No production provider selection",
+          "No professional-status inference"
+        ],
+        "quote_required_components": [
+          "exchange-specific entitlements",
+          "commercial rights not included in public plan",
+          "enterprise support/SLA if needed"
+        ]
+      },
+      {
+        "id": "PRODUCTION_DATA_CANDIDATE",
+        "purpose": "Institutional/non-display production-data cost envelope.",
+        "assumptions": [
+          "Use rights must explicitly permit non-display/automated use",
+          "Venue/index entitlements are separate where applicable"
+        ],
+        "quote_required_components": [
+          "Kaiko",
+          "dxFeed",
+          "business/enterprise market-data rights",
+          "exchange/index non-display fees",
+          "SLA/support"
+        ]
+      },
+      {
+        "id": "EXECUTION_EVALUATION",
+        "purpose": "Variable execution-cost comparison without choosing a venue.",
+        "assumptions": [
+          "Jurisdiction and account eligibility unresolved",
+          "No account or credential creation"
+        ],
+        "quote_required_components": [
+          "actual account fee tier",
+          "spread/slippage distribution",
+          "funding/financing",
+          "market-data entitlements"
+        ]
+      }
+    ]
+  },
+  "p01_f_handoff": [
+    "Use P01-E public-price evidence and rights flags to compare primary/backup candidates.",
+    "Do not select a provider whose required rights are QUOTE_REQUIRED or CONTRACT_REVIEW without resolving them.",
+    "Carry jurisdiction/client-class eligibility from P01-D.",
+    "Preserve no-provider-selected and no-live-activation states until later governed decisions."
+  ],
+  "source_register": {
+    "DATABENTO_PRICING": "https://databento.com/pricing",
+    "DATABENTO_PORTAL_LICENSES": "https://databento.com/docs/portal",
+    "DXFEED_COVERAGE": "https://dxfeed.com/coverage/global/",
+    "DXFEED_TERMS": "https://dxfeed.com/tr/general-terms-and-conditions-for-services/",
+    "TWELVE_INDIVIDUAL_PRICING": "https://twelvedata.com/pricing",
+    "TWELVE_BUSINESS_PRICING": "https://twelvedata.com/pricing-business",
+    "TWELVE_COMMERCIAL_USAGE": "https://support.twelvedata.com/en/articles/5332349-commercial-and-personal-usage",
+    "TWELVE_TERMS": "https://twelvedata.com/terms",
+    "MASSIVE_CURRENCIES_PRICING": "https://massive.com/pricing?product=currencies",
+    "MASSIVE_INDICES_PRICING": "https://massive.com/pricing?product=indices",
+    "KAIKO_PRICING_LICENSES": "https://www.kaiko.com/about-kaiko/pricing-and-contracts",
+    "COINAPI_PRICING": "https://www.coinapi.io/products/market-data-api/pricing",
+    "COINAPI_DOCS": "https://www.coinapi.io/products/market-data-api/docs",
+    "FRED_API": "https://fred.stlouisfed.org/docs/api/fred/",
+    "FRED_TERMS": "https://fred.stlouisfed.org/docs/api/terms_of_use.html",
+    "P01A_SOURCE_REGISTER": "docs/03-research/P01-A-MARKET-UNIVERSE.md",
+    "BLOCKSCOUT_PLUGIN": "Connected Blockscout Blockchain Data plugin; production source choice deferred.",
+    "COINBASE_ADVANCED_FEES": "https://help.coinbase.com/en-gb/coinbase/trading-and-funding/advanced-trade/advanced-trade-fees",
+    "KRAKEN_2026_FEE_TIERS": "https://support.kraken.com/articles/cross-platform-fee-tier-changes",
+    "BINANCE_SPOT_FEES": "https://www.binance.com/en/fee/trading",
+    "OANDA_US_PRICING": "https://www.oanda.com/us-en/trading/our-pricing/",
+    "OANDA_CORE_SPREAD_COMMISSION": "https://help.oanda.com/us/en/faqs/spreads-commission.htm",
+    "IBKR_SPOT_FX_COMMISSIONS": "https://www.interactivebrokers.com/en/pricing/commissions-spot-currencies.php",
+    "IBKR_MARKET_DATA_PRICING": "https://www.interactivebrokers.com/en/pricing/market-data-pricing.php",
+    "SAXO_FX_PRICING": "https://www.home.saxo/rates-and-conditions/forex/spreads-and-commissions",
+    "SAXO_GENERAL_CHARGES": "https://www.home.saxo/rates-and-conditions/commissions-charges-and-margin-schedule"
+  },
+  "unresolved": [
+    "Owner professional/non-professional classification",
+    "Owner/account jurisdiction and eligible contracting entity",
+    "Exact exchange/index non-display and redistribution entitlements",
+    "Kaiko and dxFeed commercial quotes",
+    "Actual Coinbase account fee tier",
+    "Any production SLA/support commitments not public",
+    "Infrastructure/storage/egress quantities before architecture sizing"
+  ]
+}
