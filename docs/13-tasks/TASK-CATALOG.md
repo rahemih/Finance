@@ -23,6 +23,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P01-WD-001 | P01 | Jurisdiction & compliance matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WD-001.json` | RELEASED |
 | FIN-P01-WO-001 | P01 | Automation & orchestration registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WO-001.json` | RELEASED |
+| FIN-P01-WM-001 | P01 | Project capability & tooling master registry | MEDIUM | IN_REVIEW | `contracts/tasks/FIN-P01-WM-001.json` | LOCK-FIN-P01-WM-001-01 |
 
 ## Rules
 
