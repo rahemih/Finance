@@ -94,25 +94,13 @@
     "Higgsfield"
   ],
   "skills": [
-    "Vercel AI SDK",
-    "Vercel AI Gateway",
-    "Vercel Workflow",
-    "Vercel Observability",
-    "Vercel Deployments CI/CD",
-    "Vercel Cron Jobs",
-    "Vercel Firewall",
-    "Vercel Verification",
-    "Vercel Investigation Mode",
-    "Neon Postgres",
-    "Neon Functions",
-    "Neon Object Storage",
-    "Figma Design-to-Code",
-    "Figma Generate Design",
-    "Figma Generate Library",
-    "Figma Generate Diagram",
-    "Google Drive",
-    "Sentry",
-    "Plugin Management"
+    "Vercel: agent-browser, agent-browser-verify, ai-elements, ai-gateway, ai-generation-persistence, ai-sdk, auth, bootstrap, cron-jobs, deployments-cicd, env-vars, investigation-mode, nextjs, observability, react-best-practices, shadcn, vercel-firewall, vercel-flags, vercel-functions, vercel-queues, vercel-sandbox, vercel-services, vercel-storage, verification, workflow",
+    "Neon: neon, neon-ai-gateway, neon-functions, neon-object-storage, neon-postgres",
+    "Supabase: supabase, supabase-postgres-best-practices",
+    "Figma: figma-code-connect, figma-create-new-file, figma-design-to-code, figma-generate-design, figma-generate-diagram, figma-generate-library, figma-use",
+    "Google Drive: google-docs, google-drive, google-drive-comments, google-sheets, google-slides",
+    "Sentry: sentry (conditional on SENTRY_AUTH_TOKEN)",
+    "Plugin Management: plugin-management"
   ],
   "access": [
     "REPO_READ",
