@@ -3,7 +3,7 @@
 GATE = `G0_GOVERNANCE_READY`  
 TASK = `FIN-P00-WF-001`  
 AUDIT_DATE = `2026-10-03`  
-VERDICT = `PASS_PENDING_CANONICAL_MERGE`  
+VERDICT = `PASS`  
 LIVE_TRADING = `DISABLED`  
 AUTO_TRADING = `DISABLED`
 
@@ -184,15 +184,17 @@ At G0:
 
 All mandatory governance-readiness criteria evaluated by this audit are PASS.
 
-Current verdict:
+Final canonical evidence:
+- G0 audit PR: `#12`
+- G0 audit PR Governance run: `37119776839` = SUCCESS
+- G0 audit merge SHA: `b10da5bfa9afe422f21f5f92a54d4430f4609823`
+- G0 audit post-merge Governance run: `37119801569` = SUCCESS
 
-`G0_GOVERNANCE_READY = PASS_PENDING_CANONICAL_MERGE`
+Final verdict:
 
-Final `PASS` requires:
-1. this G0 dossier and reconciliation to pass required `governance` CI;
-2. protected PR merge to `main`;
-3. post-merge Governance Verify = SUCCESS;
-4. WF lock release and final Current State / Task Catalog reconciliation.
+`G0_GOVERNANCE_READY = PASS`
+
+This PASS authorizes P01 — Market / Provider / Compliance Research to begin under normal Task Contract / lock / evidence governance. It does not authorize runtime trading implementation or any capital deployment.
 
 ## 8. Authorized next state after final PASS
 
