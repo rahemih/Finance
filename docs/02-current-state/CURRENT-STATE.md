@@ -28,7 +28,7 @@ P01-C: `HOS-111 = Done`
 Open-source registry: `HOS-110 = Done`  
 Frontend excellence baseline: `HOS-112 = Done`  
 Agent framework / ready-agent registry: `HOS-113 = Done`  
-Automation/orchestration registry: `HOS-116 = In Progress`  
+Automation/orchestration registry: `HOS-116 = Done`  
 P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
@@ -132,8 +132,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WO-001 = IN_REVIEW`  
-Active lock: `LOCK-FIN-P01-WO-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -150,17 +150,15 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-1. Canonically close `FIN-P01-WO-001`.
-2. 1. Canonically close `FIN-P01-WO-001`.
-2. Proceed to P01-E — Cost / Licensing / Data Rights.
+Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
 ## Automation & orchestration registry
 
 Task: `FIN-P01-WO-001`  
-State: IN_REVIEW  
+State: CANONICAL_COMPLETE  
 Linear: `HOS-116`  
-Lock: `LOCK-FIN-P01-WO-001-01`
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md`
@@ -171,3 +169,12 @@ Production automation runtime selection: NOT_AUTHORIZED.
 Runtime installation: NOT_PERFORMED.  
 Live Trading: DISABLED.  
 Auto Trading: DISABLED.
+
+
+Automation registry closure evidence:
+- Implementation PR: `#36`
+- Implementation merge SHA: `4c10437e62da63b011c3b741dc645f429f6c33d7`
+- PR Governance run: `37124041966` = SUCCESS
+- Post-merge Governance run: `37124070548` = SUCCESS
+- Post-merge Branch Hygiene run: `37124070583` = SUCCESS
+- Runtime automation installation: NOT_PERFORMED
