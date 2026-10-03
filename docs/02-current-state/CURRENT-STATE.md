@@ -30,6 +30,7 @@ Frontend excellence baseline: `HOS-112 = Done`
 Agent framework / ready-agent registry: `HOS-113 = Done`  
 Automation/orchestration registry: `HOS-116 = Done`  
 Master tooling registry: `HOS-118 = Done`  
+Roadmap tooling usage map: `HOS-119 = In Progress`  
 P01-D: `HOS-114 = In Review / closure pending`
 
 ## Roadmap / Gate State
@@ -137,8 +138,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WT-001 = IN_REVIEW`  
+Active lock: `LOCK-FIN-P01-WT-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -155,7 +156,8 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-E — Cost / Licensing / Data Rights.
+1. Canonically close `FIN-P01-WT-001`.
+2. Proceed to P01-E — Cost / Licensing / Data Rights.
 
 
 ## Automation & orchestration registry
@@ -213,3 +215,31 @@ Master tooling registry closure evidence:
 - Tooling arsenal readiness: PASS
 - Broad build-start gate: NOT_YET — P01 remains active
 - Runtime tooling installation: NOT_PERFORMED
+
+
+## Roadmap tooling usage map
+
+Task: `FIN-P01-WT-001`  
+State: IN_REVIEW  
+Linear: `HOS-119`  
+Lock: `LOCK-FIN-P01-WT-001-01`
+
+Artifacts:
+- `docs/01-roadmap/ROADMAP-TOOLING-USAGE-MAP.md`
+- Linear Project Document: `NEXUS QUANT — Roadmap Tooling Usage Map`
+
+Coverage:
+- P00 through P24;
+- plugins/connectors/skills;
+- finance/quant repositories;
+- frontend stack;
+- agents/interoperability;
+- automation/orchestration;
+- standards/contracts;
+- security/IaC/secrets;
+- data/ML lifecycle;
+- testing/observability/operations;
+- phase-based evaluation/install timing.
+
+Runtime installation from this task: NOT_PERFORMED.  
+Production technology selection from this task: NOT_PERFORMED.

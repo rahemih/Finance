@@ -389,3 +389,21 @@ This index unifies the project capability arsenal across:
 - runbooks, incident response, FinOps and evidence.
 
 The Phase Tooling Activation Policy requires A0 to automatically re-evaluate applicable registered capabilities at the start of their owning roadmap phase. This does not authorize premature installation or production selection.
+
+
+## 21. Roadmap tooling usage map
+
+Single human-readable roadmap/tooling index:
+- `docs/01-roadmap/ROADMAP-TOOLING-USAGE-MAP.md`
+- Task: `FIN-P01-WT-001`
+- Linear: `HOS-119`
+- Linear Project Document: `NEXUS QUANT — Roadmap Tooling Usage Map`
+
+The map covers P00–P24 and records for each tool/capability:
+- where it is used;
+- what it does in that phase;
+- its current state/classification;
+- whether the phase only evaluates it or may install/configure it after gates;
+- links to the authoritative specialist registry.
+
+This is a companion index only. It does not override specialist registries, the frozen Master Roadmap, architecture ADRs, security gates, or production selection evidence.
