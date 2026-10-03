@@ -1,0 +1,133 @@
+{
+  "task_id": "FIN-P01-WD-001",
+  "phase": "P01",
+  "workstream": "WD",
+  "objective": "Create an evidence-backed jurisdiction/compliance matrix for the Finance / NEXUS QUANT research and future execution path without inferring the Owner's personal jurisdiction or giving legal advice.",
+  "scope": [
+    "Distinguish market-data licensing/redistribution obligations from trading/broker/exchange authorization",
+    "Define owner/entity jurisdiction verification as an explicit future Human Gate",
+    "Map representative major regulatory regimes using current official/primary sources",
+    "Record retail/professional/client-class restrictions where material",
+    "Record crypto-derivative, leveraged retail FX/CFD, broker/exchange authorization and marketing/access restrictions at a high level",
+    "Record data-use/storage/redistribution and index/exchange entitlement review requirements",
+    "Define provider/broker jurisdiction eligibility checklist and evidence fields",
+    "Create a machine-readable jurisdiction/compliance matrix",
+    "Reconcile stale supporting-task state and mark P01-D active"
+  ],
+  "out_of_scope": [
+    "Provide personalized legal, tax or investment advice",
+    "Infer Owner residence, nationality, citizenship, tax residency or professional-client status",
+    "Make final jurisdiction eligibility determination for the Owner",
+    "Open KYC/account/subscription relationships",
+    "Select production provider, broker or exchange",
+    "Implement adapters or runtime code",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WA-001",
+    "FIN-P01-WB-001",
+    "FIN-P01-WC-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "docs/03-research/P01-D-JURISDICTION-COMPLIANCE.md",
+    "docs/03-research/p01-d-jurisdiction-compliance.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P01-WD-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "backend/**",
+    "frontend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Legal Data Hunter",
+    "Exa"
+  ],
+  "skills": [
+    "Plugin Management"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Jurisdiction JSON parses successfully",
+    "Every legal/regulatory claim has an official/primary source reference or is marked UNVERIFIED/TBD",
+    "Owner jurisdiction is not inferred from platform/account/location metadata",
+    "Market-data rights are separated from trading authorization",
+    "Retail/professional status is not assumed",
+    "No final provider/broker/exchange selection is recorded",
+    "No personalized legal conclusion is recorded"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No personal jurisdiction or identity attributes inferred",
+    "No credentials/KYC/account creation",
+    "No permission/risk-policy changes",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "Official regulator/statute/regulation sources",
+    "Legal Data Hunter primary-source results where available",
+    "Official exchange/index licensing sources already canonical in P01-B",
+    "Machine-readable jurisdiction/compliance matrix",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-114 reconciliation"
+  ],
+  "rollback": "Revert P01-D research artifacts and state/catalog reconciliation only. No accounts, credentials, subscriptions or runtime changes are made.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P01-WA-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WB-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WC-001 = CANONICAL_COMPLETE",
+    "P01 = READY_FOR_P01_D",
+    "No conflicting active lock",
+    "Research tools available"
+  ],
+  "definition_of_done": [
+    "Jurisdiction/compliance research matrix is committed",
+    "Owner-jurisdiction Human Gate fields are defined",
+    "Representative major regimes are documented with primary evidence",
+    "Market-data licensing and trading-authorization concerns are separated",
+    "Later P01-E/P01-F/P01-G handoffs are explicit",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P01-WD-001 = CANONICAL_COMPLETE"
+  ]
+}
