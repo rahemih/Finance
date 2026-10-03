@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Current canonical HEAD before this repair PR: `73b7d70dfbf2b9c2eb9f071169a637f38a37771b`  
+Current canonical HEAD before this repair closure PR: `bc739024d7cfa6e20af37bd71fd5e3eddc5799d1`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -77,9 +77,8 @@ FIN-P00-WF-001 = CANONICAL_COMPLETE
 FIN-P01-WA-001 = CANONICAL_COMPLETE  
 FIN-P01-WB-001 = CANONICAL_COMPLETE
 
-Active task: `FIN-P01-WG-001-R01 = IN_REVIEW`  
-Active task branch: `fix/FIN-P01-WG-001-R01-current-state-reconciliation`  
-Active locks: `LOCK-FIN-P01-WG-001-R01-01`  
+Active task: none  
+Active locks: none  
 Open critical incidents: none
 
 ## Safety
@@ -155,8 +154,7 @@ Lock: RELEASED
 
 ## Next
 
-1. Canonically close `FIN-P01-WG-001-R01`.
-2. Continue to P01-D — Compliance / Jurisdiction Matrix.
+Continue to P01-D — Compliance / Jurisdiction Matrix.
 
 ## Frontend UI/UX and excellence baseline
 
@@ -219,3 +217,24 @@ Closure evidence:
 - Runtime agent dependency installation: NOT_PERFORMED
 - Production agent framework selection: NOT_PERFORMED
 - Broker/fund/credential authority granted to agents: NONE
+
+
+## Agent registry reconciliation repair
+
+Task: `FIN-P01-WG-001-R01`  
+State: CANONICAL_COMPLETE  
+Linear: `HOS-115`  
+Lock: RELEASED
+
+Scope:
+- repaired post-closure Current State evidence placement;
+- preserved Frontend and Agent evidence in their correct sections;
+- reconciled Agent registry lock state;
+- docs/governance only; runtime behavior unchanged.
+
+Evidence:
+- Repair PR: `#30`
+- Repair merge SHA: `bc739024d7cfa6e20af37bd71fd5e3eddc5799d1`
+- PR Governance run: `37123010092` = SUCCESS
+- Post-merge Governance run: `37123038548` = SUCCESS
+- Post-merge Branch Hygiene run: `37123038577` = SUCCESS
