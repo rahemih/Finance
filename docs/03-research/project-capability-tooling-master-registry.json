@@ -1,0 +1,447 @@
+{
+  "registry": "NEXUS_QUANT_PROJECT_CAPABILITY_TOOLING_MASTER_REGISTRY",
+  "task_id": "FIN-P01-WM-001",
+  "linear_issue": "HOS-118",
+  "effective_date": "2026-10-03",
+  "production_installations_authorized": false,
+  "activation_states": [
+    "ACTIVE_NOW",
+    "BASELINE_STANDARD",
+    "ADOPT_CANDIDATE",
+    "USE_CANDIDATE",
+    "ALTERNATIVE",
+    "CONDITIONAL",
+    "LICENSE_REVIEW",
+    "HUMAN_GATE",
+    "DEFERRED"
+  ],
+  "canonical_sources": {
+    "plugins_skills": "docs/09-agents/TOOLCHAIN-MATRIX.md",
+    "oss_repositories": "docs/03-research/OPEN-SOURCE-REPOSITORY-DEPENDENCY-REGISTRY.md",
+    "frontend": "docs/03-research/FRONTEND-UI-UX-REPOSITORY-REGISTRY.md",
+    "frontend_quality": "docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md",
+    "agents": "docs/03-research/AGENT-FRAMEWORK-READY-AGENT-REGISTRY.md",
+    "agent_governance": "docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md",
+    "automation": "docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md",
+    "automation_governance": "docs/00-governance/AUTOMATION-GOVERNANCE.md"
+  },
+  "capabilities": [
+    {
+      "id": "governance.repo",
+      "name": "GitHub",
+      "class": "governance",
+      "state": "ACTIVE_NOW",
+      "owner_phases": [
+        "P00",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P22",
+        "P24"
+      ],
+      "activation": "always"
+    },
+    {
+      "id": "governance.pm",
+      "name": "Linear",
+      "class": "governance",
+      "state": "ACTIVE_NOW",
+      "owner_phases": [
+        "P00",
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P22",
+        "P24"
+      ],
+      "activation": "always"
+    },
+    {
+      "id": "policy.opa",
+      "name": "Open Policy Agent",
+      "class": "policy_as_code",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P03",
+        "P04"
+      ],
+      "activation": "evaluate_benchmark_adr_install"
+    },
+    {
+      "id": "arch.adr",
+      "name": "Architecture Decision Records",
+      "class": "architecture",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P03",
+        "P04",
+        "P22",
+        "P23"
+      ],
+      "activation": "required_for_major_decisions"
+    },
+    {
+      "id": "contract.openapi",
+      "name": "OpenAPI",
+      "class": "api_contract",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P04"
+      ],
+      "activation": "design_then_ci_enforce"
+    },
+    {
+      "id": "contract.asyncapi",
+      "name": "AsyncAPI",
+      "class": "event_contract",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P05"
+      ],
+      "activation": "design_then_event_ci_enforce"
+    },
+    {
+      "id": "contract.jsonschema",
+      "name": "JSON Schema / typed contracts",
+      "class": "validation_contract",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P04",
+        "P05"
+      ],
+      "activation": "mandatory_machine_boundaries"
+    },
+    {
+      "id": "obs.otel",
+      "name": "OpenTelemetry",
+      "class": "observability_standard",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P02",
+        "P22"
+      ],
+      "activation": "instrument_early_backend_later"
+    },
+    {
+      "id": "infra.opentofu",
+      "name": "OpenTofu",
+      "class": "infrastructure_as_code",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P02",
+        "P04"
+      ],
+      "activation": "after_hosting_topology"
+    },
+    {
+      "id": "secrets.manager",
+      "name": "Cloud KMS/Secret Manager or Vault candidate",
+      "class": "secrets",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P03",
+        "P04"
+      ],
+      "activation": "security_architecture_then_select"
+    },
+    {
+      "id": "config.typed",
+      "name": "Schema-validated configuration",
+      "class": "configuration",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P04"
+      ],
+      "activation": "before_runtime_environments"
+    },
+    {
+      "id": "time.ntp",
+      "name": "NTP/chrony-class time discipline",
+      "class": "time_sync",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P02",
+        "P05"
+      ],
+      "activation": "before_market_event_runtime"
+    },
+    {
+      "id": "data.quality",
+      "name": "Great Expectations/Soda-class",
+      "class": "data_quality",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P05",
+        "P06"
+      ],
+      "activation": "benchmark_vs_project_checks"
+    },
+    {
+      "id": "data.lineage",
+      "name": "OpenLineage",
+      "class": "data_lineage",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P05",
+        "P06"
+      ],
+      "activation": "if_standardized_lineage_needed"
+    },
+    {
+      "id": "data.arrow",
+      "name": "Apache Arrow",
+      "class": "data_format",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P06"
+      ],
+      "activation": "benchmark"
+    },
+    {
+      "id": "data.parquet",
+      "name": "Apache Parquet",
+      "class": "data_format",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P06"
+      ],
+      "activation": "historical_analytics_candidate"
+    },
+    {
+      "id": "data.replay",
+      "name": "Deterministic event/market replay",
+      "class": "project_core",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P06",
+        "P24"
+      ],
+      "activation": "build_from_canonical_event_contracts"
+    },
+    {
+      "id": "ml.mlflow",
+      "name": "MLflow",
+      "class": "experiment_model_lifecycle",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P14",
+        "P17",
+        "P18"
+      ],
+      "activation": "benchmark_privacy_storage_review"
+    },
+    {
+      "id": "ml.feast",
+      "name": "Feast",
+      "class": "feature_store",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P14",
+        "P17"
+      ],
+      "activation": "only_if_dedicated_feature_store_needed"
+    },
+    {
+      "id": "agent.registry",
+      "name": "Agent Framework Registry",
+      "class": "agents",
+      "state": "DEFERRED",
+      "owner_phases": [
+        "P02"
+      ],
+      "activation": "P02_F_re_evaluation"
+    },
+    {
+      "id": "interop.mcp_a2a",
+      "name": "MCP / A2A",
+      "class": "interoperability",
+      "state": "CONDITIONAL",
+      "owner_phases": [
+        "P02",
+        "P04"
+      ],
+      "activation": "only_if_runtime_boundaries_require"
+    },
+    {
+      "id": "auto.github",
+      "name": "GitHub Actions",
+      "class": "automation",
+      "state": "ACTIVE_NOW",
+      "owner_phases": [
+        "P00",
+        "P04"
+      ],
+      "activation": "always_ci_governance"
+    },
+    {
+      "id": "auto.temporal",
+      "name": "Temporal",
+      "class": "automation",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P02",
+        "P04",
+        "P22"
+      ],
+      "activation": "critical_durable_workflow_evaluation"
+    },
+    {
+      "id": "auto.dagster",
+      "name": "Dagster",
+      "class": "automation",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P05",
+        "P06",
+        "P17"
+      ],
+      "activation": "data_ml_pipeline_evaluation"
+    },
+    {
+      "id": "auto.kestra",
+      "name": "Kestra",
+      "class": "automation",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P04",
+        "P22"
+      ],
+      "activation": "only_if_distinct_event_ops_need"
+    },
+    {
+      "id": "security.sbom",
+      "name": "Syft + CycloneDX",
+      "class": "supply_chain",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P03",
+        "P04"
+      ],
+      "activation": "ci_release_gate"
+    },
+    {
+      "id": "security.signing",
+      "name": "Sigstore/Cosign",
+      "class": "artifact_signing",
+      "state": "ADOPT_CANDIDATE",
+      "owner_phases": [
+        "P04"
+      ],
+      "activation": "release_gate"
+    },
+    {
+      "id": "security.slsa",
+      "name": "SLSA-class provenance",
+      "class": "build_provenance",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P04"
+      ],
+      "activation": "release_policy"
+    },
+    {
+      "id": "flags.openfeature",
+      "name": "OpenFeature",
+      "class": "feature_flags",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P04",
+        "P23"
+      ],
+      "activation": "if_runtime_flags_needed"
+    },
+    {
+      "id": "test.load",
+      "name": "k6-class",
+      "class": "load_testing",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P22",
+        "P24"
+      ],
+      "activation": "license_review_then_benchmark"
+    },
+    {
+      "id": "test.chaos",
+      "name": "Toxiproxy/project fault harness",
+      "class": "chaos_fault_injection",
+      "state": "USE_CANDIDATE",
+      "owner_phases": [
+        "P22",
+        "P24"
+      ],
+      "activation": "failure_recovery_validation"
+    },
+    {
+      "id": "test.chaosmesh",
+      "name": "Chaos Mesh",
+      "class": "chaos_fault_injection",
+      "state": "CONDITIONAL",
+      "owner_phases": [
+        "P22",
+        "P24"
+      ],
+      "activation": "only_if_kubernetes_selected"
+    },
+    {
+      "id": "ops.runbooks",
+      "name": "Incident/Recovery Runbooks",
+      "class": "operations",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P22",
+        "P24"
+      ],
+      "activation": "before_production_readiness"
+    },
+    {
+      "id": "ops.finops",
+      "name": "Cost/usage telemetry + billing exports",
+      "class": "finops",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P04",
+        "P22"
+      ],
+      "activation": "from_first_paid_runtime"
+    },
+    {
+      "id": "evidence.store",
+      "name": "Governed immutable evidence/archive",
+      "class": "audit",
+      "state": "BASELINE_STANDARD",
+      "owner_phases": [
+        "P03",
+        "P22"
+      ],
+      "activation": "before_sensitive_runtime"
+    }
+  ],
+  "phase_rule": {
+    "on_phase_start": [
+      "read_master_registry",
+      "select_entries_matching_phase",
+      "revalidate_upstream_health_version_license_security",
+      "compare_overlapping_candidates",
+      "add_only_justified_tools_to_task_contract",
+      "install_configure_only_after_governance_allows",
+      "record_rejected_deferred_candidates"
+    ]
+  },
+  "human_gate_rules": [
+    "paid_plan_or_commercial_terms",
+    "production_credentials",
+    "broker_exchange_account_or_funding",
+    "withdrawal_permissions",
+    "risk_ceiling_increase",
+    "live_trading_enablement",
+    "unrestricted_auto_trading_enablement"
+  ]
+}
