@@ -1,0 +1,147 @@
+{
+  "registry": "NEXUS_QUANT_AGENT_FRAMEWORK_READY_AGENT_REGISTRY",
+  "task_id": "FIN-P01-WG-001",
+  "linear_issue": "HOS-113",
+  "observed_at": "2026-10-03",
+  "production_selection_authorized": false,
+  "runtime_installation_authorized": false,
+  "canonical_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "candidates": [
+    {
+      "repo": "openai/openai-agents-python",
+      "classification": "ADOPT_CANDIDATE",
+      "role": "orchestration_guardrails_handoffs_tracing",
+      "license_signal": "MIT",
+      "stars": 29822,
+      "pushed_at": "2026-10-02T18:52:10Z"
+    },
+    {
+      "repo": "microsoft/agent-framework",
+      "classification": "ALTERNATIVE_CANDIDATE",
+      "role": "production_multi_agent_workflows",
+      "license_signal": "MIT",
+      "stars": 13922,
+      "pushed_at": "2026-10-03T01:49:25Z"
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "classification": "USE_CANDIDATE",
+      "role": "durable_stateful_workflows",
+      "license_signal": "MIT",
+      "stars": 42659,
+      "pushed_at": "2026-10-03T02:08:21Z"
+    },
+    {
+      "repo": "pydantic/pydantic-ai",
+      "classification": "USE_CANDIDATE",
+      "role": "typed_python_specialists",
+      "license_signal": "MIT",
+      "stars": 20381,
+      "pushed_at": "2026-10-03T12:16:45Z"
+    },
+    {
+      "repo": "crewAIInc/crewAI",
+      "classification": "REFERENCE",
+      "role": "role_based_collaboration_patterns",
+      "license_signal": "MIT",
+      "stars": 59308,
+      "pushed_at": "2026-10-03T00:03:55Z"
+    },
+    {
+      "repo": "microsoft/semantic-kernel",
+      "classification": "REFERENCE",
+      "role": "provider_tool_orchestration_patterns",
+      "license_signal": "MIT",
+      "stars": 28620,
+      "pushed_at": "2026-10-01T18:26:46Z"
+    },
+    {
+      "repo": "TauricResearch/TradingAgents",
+      "classification": "ADAPT_REFERENCE",
+      "role": "finance_multi_agent_patterns",
+      "license_signal": "Apache-2.0",
+      "stars": 109578,
+      "pushed_at": "2026-09-29T06:15:10Z"
+    },
+    {
+      "repo": "AI4Finance-Foundation/FinRobot",
+      "classification": "ADAPT_REFERENCE",
+      "role": "financial_agent_tools_verification_patterns",
+      "license_signal": "Apache-2.0",
+      "stars": 8128,
+      "pushed_at": "2026-09-28T11:24:54Z"
+    },
+    {
+      "repo": "a2aproject/A2A",
+      "classification": "INTEROP_CANDIDATE",
+      "role": "agent_to_agent_protocol",
+      "license_signal": "Apache-2.0",
+      "stars": 25996,
+      "pushed_at": "2026-10-02T22:19:07Z"
+    },
+    {
+      "repo": "modelcontextprotocol/modelcontextprotocol",
+      "classification": "INTEROP_CANDIDATE",
+      "role": "tool_context_protocol",
+      "license_signal": "NOASSERTION_REVIEW_REQUIRED",
+      "stars": 9368,
+      "pushed_at": "2026-10-03T01:52:24Z"
+    },
+    {
+      "repo": "promptfoo/promptfoo",
+      "classification": "EVAL_CANDIDATE",
+      "role": "red_team_agent_prompt_tool_evals",
+      "license_signal": "MIT",
+      "stars": 25665,
+      "pushed_at": "2026-10-03T09:44:10Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "classification": "EVAL_CANDIDATE",
+      "role": "reproducible_model_agent_evals",
+      "license_signal": "MIT",
+      "stars": 2925,
+      "pushed_at": "2026-10-03T00:59:39Z"
+    },
+    {
+      "repo": "Arize-ai/phoenix",
+      "classification": "OBSERVABILITY_CANDIDATE",
+      "role": "ai_observability_evaluation",
+      "license_signal": "NOASSERTION_REVIEW_REQUIRED",
+      "stars": 11689,
+      "pushed_at": "2026-10-03T11:38:54Z"
+    },
+    {
+      "repo": "langfuse/langfuse",
+      "classification": "OBSERVABILITY_CANDIDATE",
+      "role": "agent_tracing_evaluation",
+      "license_signal": "NOASSERTION_REVIEW_REQUIRED",
+      "stars": 35331,
+      "pushed_at": "2026-10-02T21:21:34Z"
+    }
+  ],
+  "hard_rules": {
+    "external_agents_replace_canonical_roles": false,
+    "direct_live_order_authority": false,
+    "fund_movement_authority": false,
+    "credential_broadening_authority": false,
+    "risk_veto_bypass": false,
+    "security_veto_bypass": false,
+    "recursive_unbounded_spawning": false,
+    "live_trading_enabled": false,
+    "auto_trading_enabled": false
+  },
+  "implementation_authority": "P02-F"
+}
