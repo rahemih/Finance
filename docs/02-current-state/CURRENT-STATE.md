@@ -32,14 +32,14 @@ Automation/orchestration registry: `HOS-116 = Done`
 Master tooling registry: `HOS-118 = Done`  
 Roadmap tooling usage map: `HOS-119 = Done`  
 P01-D: `HOS-114 = Done`  
-P01-E: `HOS-117 = In Progress`
+P01-E: `HOS-117 = Done`
 
 ## Roadmap / Gate State
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: P01_E_IN_REVIEW
+P01 state: READY_FOR_P01_F
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -51,7 +51,7 @@ FIN-P01-WA-001 = CANONICAL_COMPLETE
 FIN-P01-WB-001 = CANONICAL_COMPLETE  
 FIN-P01-WC-001 = CANONICAL_COMPLETE  
 FIN-P01-WD-001 = CANONICAL_COMPLETE  
-FIN-P01-WE-001 = IN_REVIEW  
+FIN-P01-WE-001 = CANONICAL_COMPLETE  
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
@@ -141,9 +141,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WE-001 — Cost / Licensing / Data Rights`  
-Active branch: `research/FIN-P01-WE-001-cost-licensing-data-rights-rebuild`  
-Active lock: `LOCK-FIN-P01-WE-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -160,15 +159,15 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Complete canonical merge/closure of P01-E, then hand off to P01-F — Primary / Backup Provider Strategy.
+Proceed to P01-F — Primary / Backup Provider Strategy.
 
 
 ## P01-E — Cost / Licensing / Data Rights
 
 Task: `FIN-P01-WE-001`  
 Linear: `HOS-117`  
-State: IN_REVIEW  
-Lock: `LOCK-FIN-P01-WE-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/P01-E-COST-LICENSING-DATA-RIGHTS.md`
@@ -189,6 +188,14 @@ Production venue: NOT_SELECTED
 Subscriptions/contracts/credentials/accounts/funding: NONE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+Implementation evidence:
+- repaired implementation PR #44 = MERGED
+- implementation merge SHA: `cdd1766d449fe0355e08ee4d9dca6b9327b4b5d6`
+- PR Governance: `37140248204` = SUCCESS
+- post-merge Governance: `37140276018` = SUCCESS
+- post-merge Branch Hygiene: `37140276010` = SUCCESS
+- original stale branch superseded and non-canonical
 
 
 ## Automation & orchestration registry
