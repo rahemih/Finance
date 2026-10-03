@@ -19,3 +19,20 @@ Core agents are governance roles, not unrestricted autonomous identities.
 Specialist agents are spawned on demand for Crypto, Forex, Trend, Momentum, Order Flow, Macro, News, Backtest, Red Team, Security, UX, Performance, Documentation and Cost.
 
 Every agent contract must define Role, Authority, Inputs, Outputs, Read, Write, Forbidden, Tools, Plugins, Skills, Trigger, Escalation, Failure Behavior and Audit requirements.
+
+
+## Toolchain policy
+
+Canonical tool/plugin/skill routing and access boundaries are defined in:
+
+`docs/09-agents/TOOLCHAIN-MATRIX.md`
+
+All agents must comply with that matrix.
+
+Additional rules:
+- a plugin being installed does not make it a production dependency;
+- agents may use research plugins automatically for read-only evidence gathering when relevant to an authorized task;
+- writes must remain inside the active Task Contract;
+- A5 Risk and A8 Security veto authority cannot be bypassed by another agent or plugin;
+- no agent may use any connector to enable Live Trading, unrestricted Auto Trading, withdrawal permission, or critical credential changes without the required governance gate and Owner authority;
+- skills are loaded only when triggered by the task and do not grant extra authority beyond the agent contract.
