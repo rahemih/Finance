@@ -1,0 +1,144 @@
+{
+  "task_id": "FIN-P02-WH-001",
+  "phase": "P02",
+  "workstream": "WH",
+  "objective": "Define the canonical provisional capacity, latency, retention, recovery and cost envelope for NEXUS QUANT so later engineering phases can select and benchmark concrete technologies against explicit measurable boundaries.",
+  "scope": [
+    "Define BOOTSTRAP/OPERATING/STRESS workload scenarios",
+    "Define provisional instrument/provider/event-rate assumptions",
+    "Define ingestion/stream processing capacity envelope",
+    "Define raw/canonical/feature/audit storage-growth formulas",
+    "Define retention tiers and rights-aware storage behavior",
+    "Define API/model/agent concurrency and budget envelope",
+    "Define replay/backtest/learning workload classes",
+    "Define execution and data-pipeline latency classes",
+    "Define observability overhead envelope",
+    "Define backup/DR overhead and provisional RPO/RTO classes",
+    "Define cost equation and configurable budget guardrails",
+    "Define architecture review/scaling triggers",
+    "Define benchmark obligations for P04/P05/P06/P22"
+  ],
+  "out_of_scope": [
+    "Select cloud/vendor/instance/database/storage plans",
+    "Purchase subscriptions or infrastructure",
+    "Claim measured production throughput",
+    "Set final Live execution SLA",
+    "Set final provider/license spend",
+    "Enable Demo, Shadow, Canary, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001",
+    "FIN-P02-WC-001",
+    "FIN-P02-WD-001",
+    "FIN-P02-WE-001",
+    "FIN-P02-WF-001",
+    "FIN-P02-WG-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WH-001.json",
+    "docs/04-architecture/CAPACITY-COST-ENVELOPE.md",
+    "docs/04-architecture/capacity-cost-envelope.json",
+    "docs/04-architecture/ADR/ADR-0013-capacity-cost-envelope.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Wolfram"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "COMPUTATION_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "All numeric values are labeled PROVISIONAL unless backed by measured benchmark evidence",
+    "Storage formulas are unit-checked",
+    "Raw-retention assumptions remain licensing-aware",
+    "Peak and sustained event rates are distinct",
+    "Execution latency excludes provider/network latency unless explicitly stated",
+    "Budget guardrails degrade research before safety controls",
+    "No hard dependency on a cloud/vendor pricing model",
+    "Architecture review triggers are explicit",
+    "P04/P05/P06/P22 benchmark handoffs are explicit"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Security/audit/risk controls are not disabled to save cost",
+    "Backup/DR overhead is included in cost model",
+    "Budget exhaustion cannot force unsafe execution behavior",
+    "Observability redaction/security requirements remain intact under cost pressure"
+  ],
+  "evidence": [
+    "P01-A bootstrap market universe",
+    "P01-E cost/licensing/data-rights baseline",
+    "P02-C data/storage architecture",
+    "P02-G environment/DR topology",
+    "Wolfram unit-check calculations",
+    "Machine-readable capacity/cost envelope",
+    "ADR-0013",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-161 reconciliation"
+  ],
+  "rollback": "Revert P02-H architecture artifacts and state/catalog changes. No purchases, provisioning or runtime scaling actions are performed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WG-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_H",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Workload/capacity scenarios are canonical",
+    "Storage/latency/DR envelopes are canonical",
+    "Cost model and budget guardrails are canonical",
+    "Scaling/review triggers are canonical",
+    "ADR-0013 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WH-001 = CANONICAL_COMPLETE"
+  ]
+}
