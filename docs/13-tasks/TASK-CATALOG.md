@@ -48,6 +48,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P02-WH-001 | P02 | Capacity / Cost Envelope | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WH-001.json` | RELEASED |
 
+| FIN-P02-WI-001 | P02 | Architecture Review + G2 Freeze | HIGH | ACTIVE | `contracts/tasks/FIN-P02-WI-001.json` | LOCK-FIN-P02-WI-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
