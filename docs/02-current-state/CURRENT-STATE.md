@@ -6,7 +6,7 @@ Last reconciled: 2026-10-03
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD before this implementation PR: `b5f337edb368724f226b587c23a6cbd438e511f2`  
+Canonical HEAD before this closure PR: `ac16f7fe136c6dcef3d80c7578a8b60d2670c2f4`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: G1_PASS_PENDING_CANONICAL_MERGE
+Current Phase: P02 — Master Architecture  
+P01 state: CANONICAL_COMPLETE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -59,7 +59,7 @@ FIN-P01-WU-001 = CANONICAL_COMPLETE
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
 FIN-P01-WG-002 = CANONICAL_COMPLETE  
-FIN-P01-WG-004 = IN_REVIEW  
+FIN-P01-WG-004 = CANONICAL_COMPLETE  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
 FIN-P01-WT-001 = CANONICAL_COMPLETE
 
@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WG-004 — Provider Baseline Decision & G1`  
-Active branch: `research/FIN-P01-WG-004-provider-baseline-decision`  
-Active lock: `LOCK-FIN-P01-WG-004-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -169,7 +168,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P01-G country-neutral baseline is complete and under canonical review. G1 is PASS_PENDING_CANONICAL_MERGE. Actual jurisdiction/client-class eligibility is deferred to account-opening / production activation.
+P01 is CANONICAL_COMPLETE and G1_PROVIDER_BASELINE = PASS. P02 — Master Architecture is READY. Actual jurisdiction/client-class eligibility remains deferred to account-opening / production activation.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -404,8 +403,8 @@ Auto Trading: DISABLED
 
 Task: `FIN-P01-WG-004`  
 Linear: `HOS-153`  
-State: IN_REVIEW  
-Lock: `LOCK-FIN-P01-WG-004-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `contracts/tasks/FIN-P01-WG-004.json`
@@ -422,7 +421,7 @@ Conditional baseline prepared:
 - Crypto execution candidate pool: Coinbase Advanced / Kraken / Binance
 - Forex execution candidate pool: OANDA / IBKR / Saxo
 
-G1_PROVIDER_BASELINE: PASS_PENDING_CANONICAL_MERGE
+G1_PROVIDER_BASELINE: PASS
 
 Owner directive:
 - country / jurisdiction = DO NOT USE / DO NOT ASSUME;
@@ -455,3 +454,53 @@ Reference baseline:
 Final real-account execution provider: DEFERRED_TO_ACCOUNT_OPENING_PRODUCTION_ACTIVATION
 Country/location in ranking: FORBIDDEN
 G1_PROVIDER_BASELINE: PASS_PENDING_CANONICAL_MERGE
+
+
+## P01 final closure
+
+Phase: `P01 — Market / Provider / Compliance Research`  
+State: CANONICAL_COMPLETE  
+Gate: `G1_PROVIDER_BASELINE = PASS`
+
+Final task:
+- `FIN-P01-WG-004 = CANONICAL_COMPLETE`
+- Lock: RELEASED
+
+Country/location policy:
+- Country/location is not used or inferred in the provider baseline.
+- Country-specific legal/account eligibility is deferred to real account-opening / production activation.
+- P02 architecture must remain provider-portable and jurisdiction-agnostic.
+
+Final provider reference baseline:
+- Crypto data: Kaiko primary reference / CoinAPI backup / venue-native cross-check
+- Forex data: dxFeed primary reference / Twelve Data backup / Massive secondary validation
+- Futures/context: Databento primary / dxFeed backup / official exchange/index authority
+- Macro/rates: direct official sources + FRED/ALFRED
+- On-chain: Blockscout supplemental + independent verification
+- Crypto execution architecture refs: Kraken / Binance / Coinbase Advanced
+- Forex execution architecture refs: Saxo OpenAPI / OANDA v20 / IBKR
+
+P01-G implementation evidence:
+- PR #55 = MERGED
+- merge SHA: `ac16f7fe136c6dcef3d80c7578a8b60d2670c2f4`
+- PR Governance: `37187579529` = SUCCESS
+- post-merge Governance: `37187602600` = SUCCESS
+- post-merge Branch Hygiene: `37187602599` = SUCCESS
+
+Safety:
+- Production account/provider activation: NOT_AUTHORIZED
+- Accounts/KYC/subscriptions/credentials/funding/orders: NONE
+- Demo Trading: NOT_STARTED
+- Shadow Trading: NOT_STARTED
+- Live Trading: DISABLED
+- Auto Trading: DISABLED
+
+## P02 readiness
+
+P02 — Master Architecture: READY
+
+Next workstream:
+`P02-A — Architecture Principles & ADR Set`
+
+Primary agents:
+A1 lead; A2/A4/A5/A6/A8/A9 consulted; A10 audits; A0 coordinates.

@@ -2,7 +2,7 @@
 
 GATE = `G1_PROVIDER_BASELINE`  
 TASK = `FIN-P01-WG-004`  
-STATE = `PASS_PENDING_CANONICAL_MERGE`  
+STATE = `PASS`  
 DATE = `2026-10-04`  
 COUNTRY_LOCATION = `NOT_USED`
 
@@ -90,7 +90,7 @@ Any prior transient country-specific research is not part of the canonical G1 ba
 
 ## 7. Gate verdict
 
-`G1_PROVIDER_BASELINE = PASS_PENDING_CANONICAL_MERGE`
+`G1_PROVIDER_BASELINE = PASS`
 
 Meaning:
 - P02 architecture may start after canonical merge/closure.
@@ -111,3 +111,18 @@ Demo Trading: NOT_STARTED
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## 9. Canonical closure evidence
+
+- Implementation PR: `#55`
+- Merge SHA: `ac16f7fe136c6dcef3d80c7578a8b60d2670c2f4`
+- PR Governance run: `37187579529` = SUCCESS
+- Post-merge Governance run: `37187602600` = SUCCESS
+- Post-merge Branch Hygiene run: `37187602599` = SUCCESS
+- `FIN-P01-WG-004 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P01-WG-004-01 = RELEASED`
+
+Final verdict:
+
+`G1_PROVIDER_BASELINE = PASS`
