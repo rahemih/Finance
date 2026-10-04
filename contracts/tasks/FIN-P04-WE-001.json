@@ -1,0 +1,142 @@
+{
+  "task_id": "FIN-P04-WE-001",
+  "phase": "P04",
+  "workstream": "WE",
+  "objective": "Build a deterministic, offline engineering test harness with fixtures, mocks/simulators, deterministic clocks/IDs, replay hooks, failure injection and execution-uncertainty semantics, enforced by the required governance CI gate.",
+  "scope": [
+    "Create deterministic UTC clock with explicit advance/set behavior",
+    "Create deterministic ID sequence for reproducible correlation/test identities",
+    "Create fixture loader for canonical JSON fixtures",
+    "Create ordered replay tape that rejects duplicate/non-monotonic sequence and non-monotonic event time",
+    "Create scripted provider simulator with zero external/network side effects",
+    "Model TIMEOUT_UNKNOWN as unresolved, not rejection/success",
+    "Block blind retry while provider outcome is unresolved",
+    "Provide reconciliation hook before unresolved execution can continue",
+    "Create named/checkpoint failure injector",
+    "Create network-deny test guard",
+    "Create positive and negative canonical fixtures",
+    "Create standard-library unittest suite",
+    "Create deterministic replay evidence generator",
+    "Run harness tests and replay evidence in required governance CI",
+    "Include P04-E harness inputs in deterministic foundation artifact",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Real market-data or broker/exchange adapters",
+    "Strategy, signal, portfolio, risk or firewall implementation",
+    "Network calls to external providers",
+    "P04-F dependency/license/SBOM governance",
+    "Production deployment/infrastructure/secrets/accounts/credentials",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P04-WD-001 CANONICAL_COMPLETE",
+    "FROZEN_G2 execution UNKNOWN/reconciliation semantics",
+    "P04-C required governance aggregate CI gate"
+  ],
+  "read_paths": [
+    "tests/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/06-engineering/**",
+    "scripts/ci/**",
+    ".github/workflows/**",
+    "config/**",
+    "contracts/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WE-001.json",
+    "docs/06-engineering/TEST-HARNESS.md",
+    "docs/06-engineering/test-harness.json",
+    "tests/README.md",
+    "tests/harness/__init__.py",
+    "tests/harness/core.py",
+    "tests/foundation/test_harness.py",
+    "tests/fixtures/foundation/replay-basic.json",
+    "tests/fixtures/foundation/provider-unknown.json",
+    "scripts/ci/test_harness_evidence.py",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Deterministic clock returns exact reproducible time and controlled advance",
+    "Deterministic IDs repeat from same seed/prefix",
+    "Replay tape emits stable ordering and digest",
+    "Replay tape rejects duplicate/non-monotonic sequence",
+    "Replay tape rejects backwards event time",
+    "Scripted provider ACK path is deterministic",
+    "TIMEOUT_UNKNOWN is unresolved",
+    "Blind retry while unresolved is rejected",
+    "Reconcile resolves UNKNOWN before a later safe submit",
+    "Failure injector fires only at configured checkpoint/call",
+    "Network deny guard blocks socket connection attempts",
+    "Required governance CI executes unittest suite",
+    "Replay evidence built twice is byte-identical"
+  ],
+  "security_tests": [
+    "Harness performs no external network I/O",
+    "No real credential or provider endpoint is present",
+    "UNKNOWN cannot be auto-converted to rejection/success",
+    "Blind retry is blocked before reconciliation",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P04-E harness source and fixtures",
+    "Unittest output in required governance CI",
+    "Deterministic replay evidence artifact",
+    "Implementation/post-merge CI evidence",
+    "Linear HOS-176 reconciliation"
+  ],
+  "rollback": "Revert P04-E test harness, fixtures, test/evidence scripts and CI integration. No production runtime, provider, credential, account, market or trading state is changed by this task.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WD-001 CANONICAL_COMPLETE",
+    "Required governance CI active",
+    "No conflicting active lock",
+    "Task branch starts from current main"
+  ],
+  "definition_of_done": [
+    "Harness and fixtures canonical",
+    "Positive and negative unittest scenarios pass",
+    "Replay evidence is deterministic",
+    "Required governance CI enforces harness tests",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "Lock released",
+    "Linear HOS-176 Done",
+    "P04-F remains NOT_STARTED"
+  ]
+}

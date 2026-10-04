@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WE-001",
+  "state": "P04-E_IMPLEMENTATION",
+  "harness": {
+    "runtime": "PYTHON_STDLIB_ONLY",
+    "clock": "DETERMINISTIC_UTC",
+    "ids": "DETERMINISTIC_SEQUENCE",
+    "fixtures": "SOURCE_CONTROLLED_JSON",
+    "replay": "ORDERED_MONOTONIC_TAPE",
+    "provider_simulator": "SCRIPTED_OFFLINE",
+    "failure_injection": "NAMED_DETERMINISTIC_CHECKPOINTS",
+    "network_policy": "DENY_GUARD_AVAILABLE"
+  },
+  "execution_uncertainty": {
+    "timeout_result": "UNKNOWN",
+    "unknown_is_success": false,
+    "unknown_is_rejection": false,
+    "blind_retry_allowed": false,
+    "reconciliation_required": true
+  },
+  "ci": {
+    "required_context": "governance",
+    "unittest_required": true,
+    "deterministic_evidence_required": true
+  },
+  "next": "P04-F — Dependency / License / SBOM Governance (NOT_STARTED)",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

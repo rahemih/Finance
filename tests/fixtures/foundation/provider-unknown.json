@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0",
+  "submit_outcomes": [
+    "TIMEOUT_UNKNOWN",
+    "ACKNOWLEDGED"
+  ]
+}
