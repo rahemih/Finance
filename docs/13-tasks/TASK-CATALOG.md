@@ -40,7 +40,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P02-WD-001 | P02 | Intelligence / Signal Architecture | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WD-001.json` | RELEASED |
 
-| FIN-P02-WE-001 | P02 | Risk / Firewall / Execution Architecture | HIGH | ACTIVE | `contracts/tasks/FIN-P02-WE-001.json` | LOCK-FIN-P02-WE-001-01 |
+| FIN-P02-WE-001 | P02 | Risk / Firewall / Execution Architecture | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WE-001.json` | RELEASED |
 
 ## Rules
 
