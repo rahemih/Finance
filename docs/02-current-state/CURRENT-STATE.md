@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WD-001 — Intelligence / Signal Architecture`  
+Active branch: `docs/FIN-P02-WD-001-intelligence-signal-architecture`  
+Active lock: `LOCK-FIN-P02-WD-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_D
+P02 — Master Architecture: ACTIVE_P02_D
 
-Next workstream:
+Active workstream:
 `P02-D — Intelligence / Signal Architecture`
 
 Primary agents:
@@ -640,3 +641,32 @@ Auto Trading: DISABLED
 - `FIN-P02-WC-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WC-001-01 = RELEASED`
 - P02 next workstream: `P02-D — Intelligence / Signal Architecture`
+
+
+## P02-D — Intelligence / Signal Architecture
+
+Task: `FIN-P02-WD-001`  
+Linear: `HOS-157`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WD-001-01`
+
+Artifacts:
+- `docs/04-architecture/INTELLIGENCE-SIGNAL-ARCHITECTURE.md`
+- `docs/04-architecture/intelligence-signal-architecture.json`
+- `docs/04-architecture/ADR/ADR-0009-independent-evidence-fusion-calibrated-probability.md`
+
+Evidence families: 13
+
+Key decisions:
+- evidence families, not raw indicator count, define independent confirmation;
+- correlated indicators/sources are capped and not double-counted;
+- WAIT / NO_TRADE are first-class outputs;
+- probability is empirical/calibrated or explicitly unavailable;
+- LLM narrative cannot change probability, verdict or safety fields;
+- SignalCandidate is non-executable and must pass Risk/Firewall later;
+- source reliability/provenance is mandatory;
+- country/location dependency: NONE.
+
+Runtime model implementation: NOT_STARTED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
