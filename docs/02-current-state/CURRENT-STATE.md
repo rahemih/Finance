@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WD-001 — Config / Environment Contract`  
-Active branch: `chore/FIN-P04-WD-001-config-environment-contract`  
-Active lock: `LOCK-FIN-P04-WD-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1600,9 +1599,8 @@ Safety:
 
 Task: `FIN-P04-WD-001`  
 Linear: `HOS-175`  
-State: ACTIVE  
-Branch: `chore/FIN-P04-WD-001-config-environment-contract`  
-Lock: `LOCK-FIN-P04-WD-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A1 Architecture / Configuration Contract = LEAD
@@ -1668,3 +1666,33 @@ Required CI:
 Production environment/infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-E: NOT_STARTED
+
+
+P04-D implementation evidence:
+- implementation PR: `#100` = MERGED
+- final PR head SHA: `77a023e4b1656b494fb95681371e5722ec1a8340`
+- implementation merge SHA: `36aa699b87f69546e18d99e4500336ab8ba06d55`
+- PR Governance/Foundation CI: `37204268124` = SUCCESS
+- PR artifact: `11304032820` / digest `sha256:89b1d58c5ab1df91d1334b43327ecb27e704dcbe7b857e804cd8f17cdc8d02ef`
+- post-merge Governance/Foundation CI: `37204313153` = SUCCESS
+- post-merge Branch Hygiene: `37204313208` = SUCCESS
+- post-merge artifact: `11304077294` / digest `sha256:8e8d2af0b3b6107c1837d8e98b2cd7dfcc2b472189e2d2719e08f3303529bdec`
+- environment set = DEV / TEST / RESEARCH / DEMO / SHADOW / CANARY / LIVE
+- all environment provisioning states = CONTRACT_ONLY
+- all credential authorities = unprovisioned
+- raw secrets in canonical config = forbidden
+- location/country authorization dependency = false
+
+P04-D closure:
+- `FIN-P04-WD-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WD-001-01 = RELEASED`
+- next workstream: `P04-E — Test Harness`
+- P04-E: NOT_STARTED
+
+Safety:
+- production deployment/environment = NONE
+- secret manager/KMS/vault provisioned = NONE
+- production infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
