@@ -111,6 +111,18 @@ Additional exact transitive toolchain assertion:
 
 The assertion is constrained by both namespace and exact version. A pnpm version change requires a new review/assertion; components outside the `@pnpm` namespace are unaffected. Unknown-license fail-closed behavior remains unchanged.
 
+Canonical workflow action assertions:
+- `actions/checkout@v7.0.1` → MIT
+- `actions/setup-node@v7.0.0` → MIT
+- `actions/setup-python@v7.0.0` → MIT
+- `actions/upload-artifact@v7.0.1` → MIT
+- `actions/github-script@v9.0.0` → MIT
+- `astral-sh/setup-uv@v10.2.0` → MIT
+- `anchore/sbom-action@v0.24.3` → Apache-2.0
+- `aquasecurity/trivy-action@v0.36.0` → Apache-2.0
+
+Each assertion is tied to the exact action/version already pinned by immutable commit SHA in the workflow. A workflow action version change requires fresh license evidence.
+
 ## 5. Waivers
 
 A waiver is explicit and temporary.
