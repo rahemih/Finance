@@ -19,5 +19,13 @@
       "version": "11.28.4",
       "onFail": "error"
     }
+  },
+  "scripts": {
+    "doctor": "python scripts/dev/doctor.py",
+    "bootstrap": "python scripts/dev/bootstrap.py",
+    "check:fast": "python scripts/dev/local_gate.py fast",
+    "check:full": "python scripts/dev/local_gate.py full",
+    "test:foundation": "python -m unittest discover -s tests/foundation -p \"test_*.py\" -v",
+    "hooks:install": "python scripts/dev/install_hooks.py"
   }
 }
