@@ -87,6 +87,12 @@ jobs:
           uv --version
           uv sync --locked --no-install-project
 
+      - name: Developer environment doctor
+        run: python scripts/dev/doctor.py --ci
+
+      - name: Developer tooling contract
+        run: python scripts/ci/developer_tooling_contract.py
+
       - name: Foundation lint
         run: python scripts/ci/foundation_ci.py lint
 
