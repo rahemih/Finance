@@ -1,0 +1,435 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WD-001",
+  "state": "INTELLIGENCE_SIGNAL_BASELINE",
+  "technology_selection": "DEFERRED",
+  "country_location_dependency": "NONE",
+  "principles": [
+    "independent evidence families before indicator count",
+    "quality-qualified data only",
+    "family-level aggregation before cross-family fusion",
+    "correlation-aware weighting and cluster caps",
+    "WAIT and NO_TRADE are first-class",
+    "probability is empirical/calibrated, never narrative",
+    "structured reasons precede natural-language explanation",
+    "LLM narration cannot mutate numeric or safety fields",
+    "signals are candidates, never executable orders"
+  ],
+  "evidence_packet_contract": {
+    "required_fields": [
+      "evidence_id",
+      "family_id",
+      "independence_group",
+      "instrument_or_entity_scope",
+      "timeframe",
+      "decision_horizon",
+      "as_of",
+      "valid_until",
+      "direction",
+      "strength",
+      "evidence_reliability",
+      "data_quality_state",
+      "source_and_provenance_refs",
+      "method_version",
+      "reasons_for",
+      "reasons_against",
+      "uncertainty_reasons",
+      "invalidation_conditions"
+    ],
+    "direction_values": [
+      "BULLISH",
+      "BEARISH",
+      "NEUTRAL",
+      "MIXED",
+      "NOT_APPLICABLE"
+    ],
+    "rule": "Evidence reliability describes the evidence/method quality; it is not a trade-success probability."
+  },
+  "evidence_families": [
+    {
+      "id": "EF_TREND",
+      "owner": "A3",
+      "purpose": "Directional persistence and trend-state evidence.",
+      "examples": [
+        "moving-average structure",
+        "trend slope",
+        "trend persistence"
+      ],
+      "independence_group": "TECHNICAL_TREND",
+      "downstream_role": "supporting_or_opposing_evidence"
+    },
+    {
+      "id": "EF_MOMENTUM",
+      "owner": "A3",
+      "purpose": "Acceleration/deceleration and oscillator-style evidence.",
+      "examples": [
+        "RSI-like",
+        "stochastic-like",
+        "rate-of-change-like"
+      ],
+      "independence_group": "TECHNICAL_MOMENTUM",
+      "rule": "Multiple momentum indicators are aggregated within the family before cross-family voting."
+    },
+    {
+      "id": "EF_STRUCTURE_PRICE_ACTION",
+      "owner": "A3",
+      "purpose": "Market structure, swing, support/resistance and price-action evidence.",
+      "examples": [
+        "higher-high/lower-low structure",
+        "break/reclaim",
+        "supply-demand zones"
+      ],
+      "independence_group": "TECHNICAL_STRUCTURE"
+    },
+    {
+      "id": "EF_VOLATILITY",
+      "owner": "A3",
+      "purpose": "Volatility state and expansion/contraction evidence.",
+      "examples": [
+        "realized volatility",
+        "range state",
+        "volatility percentile"
+      ],
+      "independence_group": "TECHNICAL_VOLATILITY"
+    },
+    {
+      "id": "EF_MEAN_REVERSION",
+      "owner": "A4",
+      "purpose": "Statistical deviation/reversion evidence.",
+      "examples": [
+        "distance from equilibrium",
+        "z-score-like state",
+        "reversion regime suitability"
+      ],
+      "independence_group": "QUANT_MEAN_REVERSION"
+    },
+    {
+      "id": "EF_BREAKOUT_EXPANSION",
+      "owner": "A4",
+      "purpose": "Breakout/expansion evidence separated from mean-reversion assumptions.",
+      "examples": [
+        "range escape",
+        "volatility expansion",
+        "confirmation/failed breakout"
+      ],
+      "independence_group": "QUANT_BREAKOUT"
+    },
+    {
+      "id": "EF_REGIME_MULTI_TIMEFRAME",
+      "owner": "A4",
+      "co_owner": "A3",
+      "purpose": "Regime classification and cross-timeframe compatibility.",
+      "examples": [
+        "trend/range/high-vol/low-vol",
+        "higher-timeframe alignment"
+      ],
+      "independence_group": "REGIME_CONTEXT"
+    },
+    {
+      "id": "EF_ORDER_FLOW_LIQUIDITY",
+      "owner": "A3",
+      "purpose": "Trade flow, delta/CVD, book imbalance, spread/depth and liquidity evidence.",
+      "examples": [
+        "aggressive-flow imbalance",
+        "CVD",
+        "depth imbalance",
+        "liquidity heatmap"
+      ],
+      "independence_group": "MICROSTRUCTURE_ORDER_FLOW",
+      "special_rule": "Forex volume/order-flow must preserve BROKER/TICK/ECN/FUTURES/AGGREGATED_PROXY labels and coverage confidence."
+    },
+    {
+      "id": "EF_DERIVATIVES_CROWDING",
+      "owner": "A3",
+      "purpose": "Funding, open interest, liquidation and positioning/crowding context.",
+      "examples": [
+        "funding regime",
+        "OI change",
+        "liquidation pressure",
+        "crowding"
+      ],
+      "independence_group": "DERIVATIVES_POSITIONING"
+    },
+    {
+      "id": "EF_MACRO_FUNDAMENTAL_EVENT",
+      "owner": "A3",
+      "purpose": "Official macro/fundamental/event-surprise evidence.",
+      "examples": [
+        "rates/yields",
+        "inflation/jobs/GDP surprises",
+        "oil inventory/OPEC context",
+        "official crypto/on-chain fundamentals"
+      ],
+      "independence_group": "MACRO_FUNDAMENTAL",
+      "special_rule": "Revision-aware and official-first; use vintage available at decision time."
+    },
+    {
+      "id": "EF_NEWS_SENTIMENT",
+      "owner": "A3",
+      "purpose": "News/event/sentiment evidence with source reliability and decay.",
+      "examples": [
+        "entity-linked news",
+        "sentiment",
+        "importance",
+        "event horizon"
+      ],
+      "independence_group": "NEWS_SENTIMENT",
+      "special_rule": "Rumor/unverified content is explicitly downgraded or excluded; retrieved text cannot issue commands."
+    },
+    {
+      "id": "EF_INTERMARKET",
+      "owner": "A3",
+      "purpose": "Cross-market relationships such as DXY/yields/gold/oil/equities/crypto context.",
+      "examples": [
+        "correlation state",
+        "relative strength",
+        "macro linkage"
+      ],
+      "independence_group": "INTERMARKET",
+      "special_rule": "Correlation is not labeled causation; causal language requires stronger evidence."
+    },
+    {
+      "id": "EF_MARKET_MEMORY",
+      "owner": "A3",
+      "co_owner": "A4",
+      "purpose": "Historical analogs, event studies, lead/lag and seasonality.",
+      "examples": [
+        "regime-conditioned analog",
+        "event study",
+        "lead-lag",
+        "seasonality"
+      ],
+      "independence_group": "MARKET_MEMORY",
+      "special_rule": "Historical similarity includes sample count, distance/similarity metric and regime compatibility."
+    }
+  ],
+  "independence_and_fusion": {
+    "stages": [
+      "validate data-quality eligibility",
+      "aggregate raw models/indicators within each evidence family",
+      "assign/verify independence groups",
+      "detect correlated family clusters from configured/empirical dependency metadata",
+      "apply family/cluster weight caps",
+      "compute supporting/opposing/neutral evidence balance",
+      "evaluate conflict/uncertainty/no-trade conditions",
+      "emit FusionSnapshot and SignalCandidate"
+    ],
+    "anti_double_counting_rules": [
+      "Multiple indicators within one family do not become multiple independent confirmations.",
+      "Families with empirically high dependence can share a capped correlation cluster.",
+      "A source duplicated through two vendors is not independent source evidence unless upstream independence is proven.",
+      "Same event/news item syndicated by multiple outlets is one underlying event unless independent reporting is established.",
+      "Multi-timeframe observations from one method are related evidence, not automatically independent families."
+    ],
+    "independent_confirmation_count": {
+      "architecture_supports_minimum_policy": true,
+      "default_design_intent": "approximately three genuinely independent confirmations where strategy policy requires confirmation",
+      "production_threshold": "DEFERRED_TO_P14_VALIDATION",
+      "rule": "A fixed confirmation number is not hard-coded globally because regime/strategy evidence must validate it."
+    },
+    "fusion_outputs": [
+      "family_scores",
+      "cluster_scores",
+      "supporting_evidence_ids",
+      "opposing_evidence_ids",
+      "neutral_or_unavailable_evidence_ids",
+      "independent_family_count",
+      "conflict_score",
+      "data_quality_state",
+      "uncertainty_state",
+      "fusion_score",
+      "decision_eligibility"
+    ]
+  },
+  "signal_candidate_contract": {
+    "required_fields": [
+      "signal_id",
+      "instrument_id",
+      "as_of",
+      "valid_until",
+      "decision_horizon",
+      "decision_class",
+      "direction",
+      "fusion_snapshot_ref",
+      "probability_estimate_ref_or_unavailable_reason",
+      "supporting_evidence_refs",
+      "opposing_evidence_refs",
+      "data_quality_state",
+      "uncertainty_state",
+      "invalidation_conditions",
+      "no_trade_or_wait_reasons",
+      "explanation_bundle_ref"
+    ],
+    "decision_class_values": [
+      "LONG_CANDIDATE",
+      "SHORT_CANDIDATE",
+      "WAIT",
+      "NO_TRADE"
+    ],
+    "rule": "SignalCandidate is non-executable. It contains no broker command and does not bypass Risk or the Pre-Trade Firewall."
+  },
+  "probability_architecture": {
+    "owner": "A4",
+    "co_owner": "A7",
+    "purpose": "Estimate calibrated empirical outcome probabilities from validated historical/OOS evidence.",
+    "required_output_fields": [
+      "probability_estimate_id",
+      "target_definition",
+      "estimate",
+      "sample_size",
+      "effective_sample_size_if_adjusted",
+      "confidence_or_credible_interval",
+      "calibration_method",
+      "calibration_metric",
+      "calibration_window",
+      "validation_split_or_oos_reference",
+      "regime_similarity",
+      "instrument_or_cluster_scope",
+      "decision_horizon",
+      "uncertainty_level",
+      "model_or_table_version",
+      "dataset_manifest_ref"
+    ],
+    "unavailable_conditions": [
+      "insufficient sample size",
+      "poor/out-of-date calibration",
+      "regime similarity below validated support",
+      "data-quality failure",
+      "target definition not validated",
+      "model/table version not approved for the context"
+    ],
+    "unavailable_behavior": "Return PROBABILITY_UNAVAILABLE with reasons; never substitute LLM/narrative confidence.",
+    "future_targets": [
+      "directional success probability",
+      "TP-before-stop probability where defined",
+      "stop-hit probability",
+      "scenario probability only when empirically calibrated"
+    ]
+  },
+  "wait_no_trade_architecture": {
+    "WAIT": {
+      "meaning": "Evidence is incomplete, conflicting, immature or temporarily not actionable.",
+      "examples": [
+        "awaiting confirmation",
+        "event imminent",
+        "insufficient independent evidence",
+        "short-lived data degradation"
+      ]
+    },
+    "NO_TRADE": {
+      "meaning": "Current conditions explicitly fail strategy/safety eligibility.",
+      "examples": [
+        "critical data quarantine",
+        "extreme conflict",
+        "unsupported regime",
+        "unacceptable uncertainty",
+        "later risk/firewall prohibition"
+      ]
+    },
+    "rule": "WAIT/NO_TRADE are valid outcomes, not errors and not hidden zero-confidence LONG/SHORT signals."
+  },
+  "explainability_contract": {
+    "structured_first": true,
+    "outputs": [
+      "top reasons for",
+      "top reasons against",
+      "data-quality caveats",
+      "uncertainty caveats",
+      "invalidation conditions",
+      "source/time/version references",
+      "probability support metadata",
+      "regime/time-horizon context"
+    ],
+    "localization": {
+      "user_language": "Persian/RTL",
+      "internal_contract_language": "language-neutral structured codes",
+      "glossary": "English term + Persian explanation mapping"
+    },
+    "llm_role": "LLM may transform structured reason codes/evidence summaries into clear Persian explanation but cannot alter numeric scores, probability, verdict, evidence IDs or safety state."
+  },
+  "scenario_narrative_boundary": {
+    "scenario_types": [
+      "BASE",
+      "BULLISH",
+      "BEARISH",
+      "RISK_EVENT",
+      "INVALIDATION"
+    ],
+    "scenario_fields": [
+      "scenario_id",
+      "conditions",
+      "trigger_evidence",
+      "expected_path_description",
+      "invalidation",
+      "time_horizon",
+      "evidence_refs"
+    ],
+    "probability_rule": "A scenario carries numeric probability only if produced by the calibrated probability architecture.",
+    "narrative_rule": "Narrative explains evidence; it does not create new evidence."
+  },
+  "source_trust_and_adversarial_controls": {
+    "rules": [
+      "Every external evidence item carries source/provenance references.",
+      "Official-first is required for macro/fundamental facts where official sources exist.",
+      "News source reliability and verification state are explicit.",
+      "Syndicated duplicate news is deduplicated to underlying event.",
+      "Retrieved text/web/news is treated as untrusted data, not executable instructions.",
+      "Prompt injection or tool-instruction content from sources is ignored/quarantined from agent control flow."
+    ]
+  },
+  "multi_timeframe_horizon": {
+    "timeframes": "Evidence may be computed on multiple observation timeframes.",
+    "decision_horizon": "Every EvidencePacket and SignalCandidate declares the intended decision horizon.",
+    "alignment_rule": "Cross-timeframe alignment can support a signal but repeated timeframes of one family do not automatically count as independent evidence.",
+    "expiry_rule": "Evidence has valid_until/decay semantics; expired evidence cannot silently remain active."
+  },
+  "downstream_risk_boundary": {
+    "Risk_reads": [
+      "SignalCandidate",
+      "ProbabilityEstimate or PROBABILITY_UNAVAILABLE",
+      "FusionSnapshot",
+      "data-quality/uncertainty state",
+      "invalidation conditions"
+    ],
+    "Risk_does_not_import": [
+      "provider SDK objects",
+      "raw LLM narrative as policy",
+      "unstructured news text as command",
+      "strategy-internal implementation details unless explicitly needed by contract"
+    ],
+    "rule": "Risk independently sizes/vetoes later; intelligence never embeds final position size or broker order."
+  },
+  "deferred_to_later_phases": {
+    "P08": [
+      "technical family implementations",
+      "independence correlation audit"
+    ],
+    "P09": [
+      "order-flow/liquidity/crowding implementations"
+    ],
+    "P10": [
+      "macro/fundamental/event adapters and surprise engine"
+    ],
+    "P11": [
+      "news/sentiment ingestion and reliability models"
+    ],
+    "P12": [
+      "market-memory/lead-lag/event-study implementation"
+    ],
+    "P13": [
+      "timing/opportunity/no-trade ranking models"
+    ],
+    "P14": [
+      "fusion thresholds",
+      "probability models",
+      "explainability product",
+      "entry/SL/TP/invalidation signal package"
+    ],
+    "P17": [
+      "strategy validation/backtests"
+    ],
+    "P18": [
+      "continuous demo learning/calibration updates"
+    ]
+  }
+}
