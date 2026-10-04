@@ -1,6 +1,6 @@
 # NEXUS QUANT — Canonical Threat Model
 
-STATE = P03-A IMPLEMENTATION
+STATE = P03-A CANONICAL_BASELINE
 TASK = FIN-P03-WA-001
 LINEAR = HOS-163
 BASELINE = FROZEN_G2
@@ -470,4 +470,4 @@ P03-A is ready for implementation PR validation when:
 - no control is falsely claimed implemented;
 - Governance Verify passes.
 
-Task closure still requires merge, post-merge verification, lock release, Current State / Task Catalog reconciliation and Linear synchronization.
+Canonical closure evidence is recorded in Current State. Any future semantic change to this baseline requires governed change control.
