@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P03-G_IMPLEMENTATION",
+  "state": "P03-G_CANONICAL_COMPLETE",
   "task_id": "FIN-P03-WG-001",
   "linear_issue": "HOS-170",
   "date": "2026-10-04",
@@ -173,5 +173,13 @@
     "forensics": "NOT_SELECTED",
     "production_emergency_credential": "NONE",
     "production_accounts_credentials": "NONE"
+  },
+  "closure_evidence": {
+    "implementation_pr": 89,
+    "implementation_merge_sha": "8b5946a1fa7e01a1572597d161671fc734b7340d",
+    "pr_governance_run": 37198781243,
+    "postmerge_governance_run": 37198802394,
+    "postmerge_branch_hygiene_run": 37198802392,
+    "lock": "RELEASED"
   }
 }

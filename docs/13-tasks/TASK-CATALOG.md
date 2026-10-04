@@ -69,7 +69,7 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WF-001 | P03 | Supply Chain Security | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WF-001.json` | RELEASED |
 
 
-| FIN-P03-WG-001 | P03 | Incident Response / Emergency Access | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WG-001.json` | LOCK-FIN-P03-WG-001-01 |
+| FIN-P03-WG-001 | P03 | Incident Response / Emergency Access | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WG-001.json` | RELEASED |
 
 ## Rules
 
