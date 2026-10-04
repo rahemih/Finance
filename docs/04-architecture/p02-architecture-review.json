@@ -1,0 +1,324 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WI-001",
+  "evaluated_main_sha": "76580ff9e62d064c4f5b6ed8267175e0e70c7019",
+  "gate": "G2_ARCHITECTURE_FREEZE",
+  "verdict": "PASS_PENDING_CANONICAL_MERGE",
+  "prerequisites": {
+    "p02_a_through_h_canonical_complete": true,
+    "p02_a_through_h_locks_released": true,
+    "open_pull_requests_at_review_start": 0,
+    "unresolved_critical_incidents": 0,
+    "adrs_0001_through_0013_present": true
+  },
+  "domain_reviews": [
+    {
+      "reviewer": "A1",
+      "area": "Architecture coherence / interfaces / portability",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0001",
+        "ADR-0002",
+        "ADR-0007",
+        "P02-B",
+        "P02-G"
+      ],
+      "notes": "Modular-core-first, canonical contracts, explicit service-extraction candidates and provider/country-neutral architecture are mutually consistent."
+    },
+    {
+      "reviewer": "A2",
+      "area": "Data / provenance / replay / storage",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0004",
+        "ADR-0008",
+        "P02-C"
+      ],
+      "notes": "Event/receive/observed time, raw/versioned evidence, macro vintages, feature lineage and replay manifests are consistent."
+    },
+    {
+      "reviewer": "A3",
+      "area": "Market Intelligence / signal evidence",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0009",
+        "P02-D"
+      ],
+      "notes": "Evidence-family model preserves provenance, WAIT/NO_TRADE and correlation-aware anti-double-counting."
+    },
+    {
+      "reviewer": "A4",
+      "area": "Quant / empirical probability / reproducibility",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0008",
+        "ADR-0009",
+        "P02-C",
+        "P02-D"
+      ],
+      "notes": "Probability is empirical/calibrated or unavailable; exact algorithms and validation remain correctly deferred."
+    },
+    {
+      "reviewer": "A5",
+      "area": "Risk / Pre-Trade Firewall authority",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0003",
+        "ADR-0010",
+        "P02-E"
+      ],
+      "notes": "Independent veto/reduction authority is non-bypassable; Risk cannot raise its own ceilings; Firewall fails closed."
+    },
+    {
+      "reviewer": "A6",
+      "area": "OMS / execution / reconciliation",
+      "verdict": "PASS",
+      "evidence": [
+        "ADR-0010",
+        "P02-E",
+        "P02-G"
+      ],
+      "notes": "UNKNOWN/RECONCILING states, stable idempotency identity and no blind cross-broker replay protect execution uncertainty."
+    },
+    {
+      "reviewer": "A7",
+      "area": "Learning / model lifecycle",
+      "verdict": "PASS",
+      "evidence": [
+        "P02-C",
+        "P02-D",
+        "ADR-0011"
+      ],
+      "notes": "Experiment artifacts retain lineage; learning can propose but not auto-promote to Live."
+    },
+    {
+      "reviewer": "A8",
+      "area": "Security architecture boundaries",
+      "verdict": "PASS_WITH_DOWNSTREAM_IMPLEMENTATION",
+      "evidence": [
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0011",
+        "ADR-0012",
+        "P02-F",
+        "P02-G"
+      ],
+      "notes": "Least privilege, tool gateway, execution enclave, secrets boundary and quarantine are architecturally defined. Threat model/RBAC/MFA/secrets implementation belongs to P03."
+    },
+    {
+      "reviewer": "A9",
+      "area": "Operations / topology / DR / capacity",
+      "verdict": "PASS_WITH_DOWNSTREAM_VALIDATION",
+      "evidence": [
+        "ADR-0012",
+        "ADR-0013",
+        "P02-G",
+        "P02-H"
+      ],
+      "notes": "Topology and provisional capacity/DR envelopes are sufficient for engineering selection; measured RPO/RTO and capacity validation remain P04/P22 obligations."
+    },
+    {
+      "reviewer": "A10",
+      "area": "Evidence / traceability / closure readiness",
+      "verdict": "PASS",
+      "evidence": [
+        "P02-A-H closure evidence",
+        "Task Catalog",
+        "Current State",
+        "ADR set"
+      ],
+      "notes": "Architecture decisions are traceable to governed tasks/PR/CI evidence. Final G2 requires this review PR and post-merge evidence."
+    },
+    {
+      "reviewer": "A0",
+      "area": "Governance / task/gate consistency",
+      "verdict": "PASS",
+      "evidence": [
+        "Task Catalog",
+        "Gate Matrix",
+        "Change Control"
+      ],
+      "notes": "No active conflicting lock; G2 does not require Owner Human Gate; future baseline changes remain governed."
+    }
+  ],
+  "architecture_invariants_verified": [
+    "GitHub main + merged CI evidence remains technical source of truth",
+    "Modular core first; no microservices-by-default",
+    "Provider SDK/schema does not become core domain contract",
+    "Country/location is not an architecture dependency",
+    "Event/source/receive/observed time semantics are explicit",
+    "Corrections/revisions do not silently overwrite historical truth",
+    "Evidence families prevent indicator-count double counting",
+    "Probability is empirical/calibrated or explicitly unavailable",
+    "SignalCandidate is non-executable",
+    "Risk and Pre-Trade Firewall remain independent veto authorities",
+    "Execution uses stable idempotency identity and explicit UNKNOWN/RECONCILING states",
+    "Blind automatic cross-broker failover is forbidden",
+    "Auto-promote-to-Live is forbidden",
+    "Agent/tool availability is not permission",
+    "A5/A8 veto cannot be overridden by agent consensus",
+    "DEV/TEST/RESEARCH/DEMO/SHADOW/CANARY/LIVE are separate authority contexts",
+    "SHADOW has no live command path",
+    "Public ingress cannot directly reach execution/secrets",
+    "DR recovery requires reconciliation before new risk-increasing execution",
+    "Capacity/cost numeric assumptions are provisional until measured",
+    "Live Trading and Auto Trading remain disabled"
+  ],
+  "cross_architecture_consistency_checks": [
+    {
+      "check": "Domain dependency direction",
+      "verdict": "PASS",
+      "detail": "Primary decision path is directional; feedback uses events/read models rather than hidden state mutation."
+    },
+    {
+      "check": "Data -> Intelligence boundary",
+      "verdict": "PASS",
+      "detail": "Only quality-qualified/versioned evidence feeds decision architecture."
+    },
+    {
+      "check": "Intelligence -> Risk boundary",
+      "verdict": "PASS",
+      "detail": "SignalCandidate carries evidence/probability/uncertainty but no executable broker command or final size authority."
+    },
+    {
+      "check": "Risk -> Execution boundary",
+      "verdict": "PASS",
+      "detail": "RiskVerdict and deterministic FirewallVerdict precede OMS; no bypass path is defined."
+    },
+    {
+      "check": "Agent -> Domain boundary",
+      "verdict": "PASS",
+      "detail": "Agents use governed domain/tool APIs; Governance Kernel/Tool Gateway enforce role/task/resource permissions."
+    },
+    {
+      "check": "Environment -> Credential boundary",
+      "verdict": "PASS",
+      "detail": "Credentials and mutable execution state do not promote across environments; lower environments cannot write CANARY/LIVE."
+    },
+    {
+      "check": "Recovery -> Execution boundary",
+      "verdict": "PASS",
+      "detail": "Restored state does not authorize execution until broker truth and Risk/Firewall state are reconciled."
+    },
+    {
+      "check": "Cost -> Safety boundary",
+      "verdict": "PASS",
+      "detail": "Budget pressure may shed research but cannot disable Risk/Security/Audit/Reconciliation/Kill Switches."
+    }
+  ],
+  "unresolved_critical_architecture_risks": [],
+  "residual_risks_and_deferred_validation": [
+    {
+      "id": "P02-RR-01",
+      "severity": "HIGH_DOWNSTREAM_NOT_BLOCKING_G2",
+      "topic": "Threat model / RBAC / MFA / secrets / admin exposure",
+      "owner_phase": "P03",
+      "reason_not_g2_blocker": "P02 defines boundaries; P03 is explicitly the security implementation/baseline phase."
+    },
+    {
+      "id": "P02-RR-02",
+      "severity": "MEDIUM",
+      "topic": "Exact runtime/database/stream/storage/cloud versions and dependency security",
+      "owner_phase": "P04",
+      "reason_not_g2_blocker": "Architecture is intentionally technology-portable and P04 owns concrete selection."
+    },
+    {
+      "id": "P02-RR-03",
+      "severity": "MEDIUM",
+      "topic": "Measured event rates/event sizes/compression/latency",
+      "owner_phase": "P05/P06",
+      "reason_not_g2_blocker": "P02-H values are explicitly provisional and include benchmark/review triggers."
+    },
+    {
+      "id": "P02-RR-04",
+      "severity": "HIGH_DOWNSTREAM_NOT_BLOCKING_G2",
+      "topic": "Empirical signal thresholds/calibration/strategy validity",
+      "owner_phase": "P08-P18",
+      "reason_not_g2_blocker": "P02 only freezes interfaces/authority; no edge/performance claim is made."
+    },
+    {
+      "id": "P02-RR-05",
+      "severity": "HIGH_DOWNSTREAM_NOT_BLOCKING_G2",
+      "topic": "Actual provider/broker account legal eligibility/client classification",
+      "owner_phase": "Account opening / controlled production activation",
+      "reason_not_g2_blocker": "Architecture is country-neutral and no real account/provider is activated."
+    },
+    {
+      "id": "P02-RR-06",
+      "severity": "MEDIUM",
+      "topic": "Measured backup/restore/failure-domain independence/RPO/RTO",
+      "owner_phase": "P22",
+      "reason_not_g2_blocker": "Logical DR topology and provisional targets exist; P22 owns implementation/drills."
+    },
+    {
+      "id": "P02-RR-07",
+      "severity": "LOW_GOVERNANCE_DEBT",
+      "topic": "Historical unmerged branches remain in repository",
+      "owner_phase": "Branch hygiene/governance",
+      "reason_not_g2_blocker": "They are explicitly non-canonical, have no active locks/PRs and cannot override main."
+    }
+  ],
+  "g2_criteria": [
+    {
+      "criterion": "domain boundaries",
+      "status": "PASS",
+      "evidence": "P02-B / ADR-0007"
+    },
+    {
+      "criterion": "interfaces/data architecture",
+      "status": "PASS",
+      "evidence": "P02-B/C / ADR-0008"
+    },
+    {
+      "criterion": "risk/execution architecture",
+      "status": "PASS",
+      "evidence": "P02-E / ADR-0010"
+    },
+    {
+      "criterion": "agent topology/authority",
+      "status": "PASS",
+      "evidence": "P02-F / ADR-0011"
+    },
+    {
+      "criterion": "environment/network/DR",
+      "status": "PASS",
+      "evidence": "P02-G / ADR-0012"
+    },
+    {
+      "criterion": "capacity assumptions reviewed",
+      "status": "PASS",
+      "evidence": "P02-H / ADR-0013"
+    },
+    {
+      "criterion": "no unresolved critical architecture risk",
+      "status": "PASS",
+      "evidence": "P02-I review matrix"
+    },
+    {
+      "criterion": "required diagrams",
+      "status": "PENDING_IN_THIS_TASK",
+      "evidence": "P02-ARCHITECTURE-DIAGRAMS.md"
+    }
+  ],
+  "freeze_policy": {
+    "effective_when": "FIN-P02-WI-001 canonical closure and post-merge verification succeed",
+    "baseline_state": "FROZEN_G2",
+    "allowed_change_mechanisms": [
+      "ADR",
+      "RFC",
+      "ERRATA where non-semantic",
+      "ROADMAP ADDENDUM where roadmap scope changes"
+    ],
+    "direct_unreviewed_architecture_mutation": "FORBIDDEN",
+    "revalidation_triggers": [
+      "major domain/interface change",
+      "provider-specific lock-in introduced",
+      "Risk/Firewall authority change",
+      "execution failover/idempotency change",
+      "agent authority/tool security change",
+      "environment/credential boundary change",
+      "capacity envelope materially exceeded",
+      "incident invalidates architecture assumption"
+    ]
+  }
+}
