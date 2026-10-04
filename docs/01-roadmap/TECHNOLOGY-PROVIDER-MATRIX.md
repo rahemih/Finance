@@ -407,3 +407,38 @@ The map covers P00–P24 and records for each tool/capability:
 - links to the authoritative specialist registry.
 
 This is a companion index only. It does not override specialist registries, the frozen Master Roadmap, architecture ADRs, security gates, or production selection evidence.
+
+
+## 22. Security tooling registry
+
+Canonical security baseline:
+- `docs/03-research/SECURITY-TOOLING-REGISTRY.md`
+- `docs/03-research/security-tooling-registry.json`
+- `docs/00-governance/SECURITY-TOOLING-BASELINE.md`
+- Linear Project Document: `NEXUS QUANT — Security Tooling Registry`
+- Task: `FIN-P01-WS-001`
+- Linear: `HOS-152`
+
+Preferred defense-in-depth direction:
+- GitHub Secret Protection / Push Protection: active baseline.
+- GitHub CodeQL: primary SAST candidate.
+- Trivy: primary broad vulnerability / misconfiguration / secret / SBOM scan candidate.
+- Semgrep: bounded NEXUS-specific custom SAST candidate.
+- Syft + CycloneDX: SBOM generation/interchange.
+- Grype: optional independent SBOM/image vulnerability check.
+- Cosign + SLSA-class provenance: artifact signing and build provenance.
+- OPA: policy-as-code candidate.
+- selected Secret Manager/KMS or Vault-class solution: secrets/key lifecycle.
+- OWASP ZAP: DAST/API/web security candidate.
+- Promptfoo + Inspect AI: agent/LLM security evaluation.
+- Falco: conditional runtime threat detection if topology justifies it.
+- Codex Security: connected assisted security-review capability.
+
+Primary roadmap ownership:
+- P03: security architecture/tool selection.
+- P04: CI/build/release enforcement.
+- P22: runtime/incident controls.
+- P23: authorized application/API DAST.
+- P24: final security evidence and independent A8 gate.
+
+Listing does not authorize installation, credentials, production scanning or trading authority.
