@@ -89,6 +89,20 @@ Unknown, missing or `NOASSERTION` third-party license also fails closed pending 
 
 This engineering policy is not legal advice.
 
+### Curated version-bound assertions
+
+When an SBOM generator omits license metadata for a **known toolchain component**, P04-F may use a narrowly-scoped assertion only when all of the following are true:
+- the component identity includes an exact package/version identity;
+- the license is verified from the component's official tagged source;
+- evidence and scope are recorded in `config/supply-chain/license-policy.json`;
+- a version change does not inherit the assertion automatically.
+
+Baseline assertion:
+- `pkg:npm/%40pnpm/exe@11.28.4` → `MIT`
+- evidence: official `pnpm/pnpm` tag `v11.28.4` LICENSE.
+
+This is not a wildcard exemption and does not weaken unknown-license fail-closed behavior.
+
 ## 5. Waivers
 
 A waiver is explicit and temporary.
