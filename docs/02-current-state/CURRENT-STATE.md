@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WF-001 — Dependency / License / SBOM Governance`  
-Active branch: `security/FIN-P04-WF-001-dependency-license-sbom`  
-Active lock: `LOCK-FIN-P04-WF-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1790,9 +1789,8 @@ Safety:
 
 Task: `FIN-P04-WF-001`  
 Linear: `HOS-177`  
-State: ACTIVE  
-Branch: `security/FIN-P04-WF-001-dependency-license-sbom`  
-Lock: `LOCK-FIN-P04-WF-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A8 Security / Supply Chain = LEAD
@@ -1839,3 +1837,34 @@ Signing/KMS/provenance promotion: NOT_PROVISIONED
 Production infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-G: NOT_STARTED
+
+
+P04-F implementation evidence:
+- implementation PR: `#104` = MERGED
+- final PR head SHA: `188c6c56e855af0a90f5e8078da51a5599a03567`
+- implementation merge SHA: `b1eaec2899462e59c4e88260020b31d3b90c87e5`
+- PR Governance/Foundation CI: `37208914028` = SUCCESS
+- PR artifact: `11305319583` / digest `sha256:e3e1b8e2620659c96c13237deb434344bc46e06670cee1978da1aa5afd836660`
+- post-merge Governance/Foundation CI: `37208975687` = SUCCESS
+- post-merge Branch Hygiene: `37208975652` = SUCCESS
+- post-merge artifact: `11305991133` / digest `sha256:c6dd7ab0f1b66aa3c4b6e17adc8a621128e88dbb2f0d87f3730152c3ac560718`
+- Syft = `1.54.0`
+- CycloneDX = `1.7`
+- Trivy = `0.75.0`
+- HIGH/CRITICAL gate = PASS
+- license policy = PASS
+- dependency auto-merge = DISABLED
+- active waivers at baseline = NONE
+
+P04-F closure:
+- `FIN-P04-WF-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WF-001-01 = RELEASED`
+- next workstream: `P04-G — Developer Bootstrap & Tooling`
+- P04-G: NOT_STARTED
+
+Safety:
+- signing identity/key = NONE
+- production deployment/infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
