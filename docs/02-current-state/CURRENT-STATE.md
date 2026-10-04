@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WG-001 — Environment / Network / DR Topology`  
+Active branch: `docs/FIN-P02-WG-001-environment-network-dr-topology`  
+Active lock: `LOCK-FIN-P02-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_G
+P02 — Master Architecture: ACTIVE_P02_G
 
-Next workstream:
+Active workstream:
 `P02-G — Environment / Network / DR Topology`
 
 Primary agents:
@@ -775,3 +776,36 @@ Auto Trading: DISABLED
 - `FIN-P02-WF-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WF-001-01 = RELEASED`
 - P02 next workstream: `P02-G — Environment / Network / DR Topology`
+
+
+## P02-G — Environment / Network / DR Topology
+
+Task: `FIN-P02-WG-001`  
+Linear: `HOS-160`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WG-001-01`
+
+Artifacts:
+- `docs/04-architecture/ENVIRONMENT-NETWORK-DR-TOPOLOGY.md`
+- `docs/04-architecture/environment-network-dr-topology.json`
+- `docs/04-architecture/ADR/ADR-0012-environment-network-dr-topology.md`
+
+Environments:
+DEV / TEST / RESEARCH / DEMO / SHADOW / CANARY / LIVE
+
+Trust zones: 8
+
+Key decisions:
+- environment isolation includes authority, credentials and mutable state;
+- SHADOW has no live command path;
+- public/user ingress cannot reach execution or secrets directly;
+- execution originates only from the Execution Enclave;
+- cross-environment writes are forbidden by default;
+- code/model/config promote as immutable artifacts, not ambient state;
+- DR recovery requires reconciliation before new risk-increasing execution;
+- cloud/provider/region/country selection is deferred.
+
+Infrastructure provisioned: NONE  
+CANARY: DISABLED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED

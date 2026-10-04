@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WG-001",
+  "state": "LOGICAL_TOPOLOGY_BASELINE",
+  "provider_or_cloud_selection": "DEFERRED",
+  "geography_dependency": "NONE",
+  "principles": [
+    "environment isolation is authority isolation, not naming only",
+    "public/user ingress never reaches execution or secrets directly",
+    "provider/broker integration is mediated by controlled adapters",
+    "cross-environment writes are forbidden by default",
+    "recovery does not expand authority",
+    "reconciliation precedes resumed risk-increasing execution",
+    "country and cloud vendor are not architecture dependencies"
+  ],
+  "environments": [
+    {
+      "id": "DEV",
+      "purpose": "local/engineering development",
+      "real_market_data": "OPTIONAL_SANITIZED_OR_DEV",
+      "real_account_access": "FORBIDDEN",
+      "execution_capability": "MOCK_ONLY",
+      "credential_class": "DEV_ONLY",
+      "promotion_target": "TEST"
+    },
+    {
+      "id": "TEST",
+      "purpose": "automated integration/contract/security testing",
+      "real_market_data": "REPLAY_OR_TEST_FIXTURES",
+      "real_account_access": "FORBIDDEN",
+      "execution_capability": "SIMULATED_ONLY",
+      "credential_class": "TEST_ONLY",
+      "promotion_target": "RESEARCH_OR_DEMO"
+    },
+    {
+      "id": "RESEARCH",
+      "purpose": "historical analysis/backtest/experimentation",
+      "real_market_data": "READ_ONLY_ALLOWED_IF_LICENSED",
+      "real_account_access": "FORBIDDEN",
+      "execution_capability": "NONE",
+      "credential_class": "RESEARCH_READ_ONLY",
+      "promotion_target": "DEMO"
+    },
+    {
+      "id": "DEMO",
+      "purpose": "paper/practice execution and permanent learning",
+      "real_market_data": "ALLOWED_IF_LICENSED",
+      "real_account_access": "FORBIDDEN",
+      "execution_capability": "SIMULATION_OR_PROVIDER_PRACTICE_ONLY",
+      "credential_class": "DEMO_OR_PRACTICE_ONLY",
+      "promotion_target": "SHADOW"
+    },
+    {
+      "id": "SHADOW",
+      "purpose": "observe real conditions and generate parallel decisions without live side effects",
+      "real_market_data": "ALLOWED_IF_LICENSED",
+      "real_account_access": "READ_ONLY_ONLY_IF_LATER_EXPLICITLY_GATED",
+      "execution_capability": "NO_LIVE_COMMAND_PATH",
+      "credential_class": "SHADOW_READ_ONLY_OR_NONE",
+      "promotion_target": "CANARY"
+    },
+    {
+      "id": "CANARY",
+      "purpose": "later micro-capital bounded production proving stage",
+      "real_market_data": "PRODUCTION_CLASS",
+      "real_account_access": "DISABLED_UNTIL_LATER_OWNER_GATES",
+      "execution_capability": "DISABLED_IN_P02",
+      "credential_class": "SEPARATE_CANARY_CREDENTIALS",
+      "promotion_target": "LIVE"
+    },
+    {
+      "id": "LIVE",
+      "purpose": "later controlled production",
+      "real_market_data": "PRODUCTION_CLASS",
+      "real_account_access": "DISABLED_UNTIL_G13_PATH",
+      "execution_capability": "DISABLED_IN_P02",
+      "credential_class": "SEPARATE_LIVE_CREDENTIALS",
+      "promotion_target": "NONE"
+    }
+  ],
+  "trust_zones": [
+    {
+      "id": "Z0_USER_EDGE",
+      "purpose": "owner/team client/browser/mobile entry",
+      "internet_exposed": "CLIENT_SIDE_ONLY",
+      "allowed_outbound": [
+        "Z1_APPLICATION_INGRESS"
+      ],
+      "forbidden_direct": [
+        "Z3_DATA_PLANE",
+        "Z4_EXECUTION_ENCLAVE",
+        "Z5_SECURITY_SECRETS",
+        "Z7_BACKUP_DR"
+      ]
+    },
+    {
+      "id": "Z1_APPLICATION_INGRESS",
+      "purpose": "authenticated API/UI boundary and future notification ingress",
+      "internet_exposed": "CONTROLLED",
+      "allowed_outbound": [
+        "Z2_CONTROL_PLANE",
+        "read models in Z3"
+      ],
+      "forbidden_direct": [
+        "broker/exchange order endpoints",
+        "raw secrets"
+      ]
+    },
+    {
+      "id": "Z2_CONTROL_PLANE",
+      "purpose": "governance, agent orchestration, workflow/control APIs",
+      "internet_exposed": "NO_DIRECT_PUBLIC",
+      "allowed_outbound": [
+        "authorized domain APIs",
+        "Z6_OBSERVABILITY_AUDIT",
+        "Z5 via credential handles only"
+      ],
+      "forbidden_direct": [
+        "provider credentials",
+        "broker mutation outside D12/D11 path"
+      ]
+    },
+    {
+      "id": "Z3_DATA_PLANE",
+      "purpose": "market-data adapters, canonical streams, storage, features, research data",
+      "internet_exposed": "NO_DIRECT_PUBLIC",
+      "allowed_outbound": [
+        "external market/macro/news providers through controlled adapter egress",
+        "Z6_OBSERVABILITY_AUDIT"
+      ],
+      "forbidden_direct": [
+        "live broker order mutation",
+        "raw secret disclosure"
+      ]
+    },
+    {
+      "id": "Z4_EXECUTION_ENCLAVE",
+      "purpose": "Risk/Firewall/OMS/execution adapters and reconciliation",
+      "internet_exposed": "NO",
+      "allowed_outbound": [
+        "approved broker/exchange endpoints",
+        "Z5 credential handle resolution",
+        "Z6_OBSERVABILITY_AUDIT"
+      ],
+      "ingress_from": [
+        "authorized internal Risk/OMS contracts only"
+      ],
+      "forbidden_direct": [
+        "Z0_USER_EDGE",
+        "untrusted agent text",
+        "general web/news content"
+      ]
+    },
+    {
+      "id": "Z5_SECURITY_SECRETS",
+      "purpose": "identity, authorization, secret/KMS/vault abstractions",
+      "internet_exposed": "NO",
+      "allowed_outbound": [
+        "identity/security providers if later selected"
+      ],
+      "access_rule": "least privilege; service/role scoped; no bulk secret reads"
+    },
+    {
+      "id": "Z6_OBSERVABILITY_AUDIT",
+      "purpose": "logs, metrics, traces, security events, audit/evidence",
+      "internet_exposed": "NO_DIRECT_PUBLIC",
+      "write_sources": [
+        "all zones through controlled sinks"
+      ],
+      "authority": "observe/audit; no hidden business-state mutation"
+    },
+    {
+      "id": "Z7_BACKUP_DR",
+      "purpose": "backup copies, recovery manifests, restore staging",
+      "internet_exposed": "NO",
+      "access_rule": "restricted; separate credentials/keys later; restore through validation/quarantine path"
+    }
+  ],
+  "external_boundaries": [
+    {
+      "id": "EXT_MARKET_DATA",
+      "access": "OUTBOUND_FROM_CONTROLLED_ADAPTERS",
+      "inbound_mutation": "FORBIDDEN"
+    },
+    {
+      "id": "EXT_MACRO_NEWS",
+      "access": "OUTBOUND_FETCH_OR_VALIDATED_CALLBACK",
+      "inbound_mutation": "UNTRUSTED_DATA_ONLY"
+    },
+    {
+      "id": "EXT_BROKER_EXCHANGE",
+      "access": "OUTBOUND_FROM_Z4_ONLY",
+      "inbound_events": "VALIDATED_ACK_FILL_STATUS_CALLBACK_OR_POLL",
+      "rule": "provider event cannot bypass OMS/reconciliation authority"
+    },
+    {
+      "id": "EXT_MODEL_TOOL_SERVICES",
+      "access": "OUTBOUND_FROM_Z2_TOOL_GATEWAY",
+      "rule": "no authority expansion; untrusted content boundary applies"
+    }
+  ],
+  "cross_environment_rules": [
+    "No non-production environment can write LIVE/CANARY authoritative state.",
+    "LIVE/CANARY credentials are never copied into DEV/TEST/RESEARCH/DEMO/SHADOW.",
+    "Production-derived market data may be replicated read-only downward only when licensing and privacy rules permit.",
+    "Execution/account/order state does not flow downward except sanitized/replay fixtures explicitly produced for testing.",
+    "Models/config/code promote upward by immutable artifact/version reference, never by mutable local state.",
+    "Promotion never carries ambient credentials.",
+    "User preferences may be replicated only through governed configuration migration, not hidden memory.",
+    "Backups remain environment-scoped; restore into a different environment requires explicit transformation/sanitization."
+  ],
+  "environment_promotion": {
+    "artifact_first": true,
+    "required_evidence": [
+      "immutable build/model/config artifact identity",
+      "test/evaluation evidence",
+      "security/risk compatibility",
+      "environment-specific configuration validation",
+      "rollback target",
+      "required Human Gate for later high-risk promotions"
+    ],
+    "rule": "Promotion changes deployment eligibility, not agent/risk authority."
+  },
+  "execution_network_path": [
+    "Signal/Risk/Firewall internal contract",
+    "Z4 OMS",
+    "Z4 provider adapter",
+    "outbound TLS/validated provider channel",
+    "broker/exchange",
+    "validated provider acknowledgement/fill/status",
+    "Z4 OMS reconciliation",
+    "Z6 audit/evidence"
+  ],
+  "dr_classes": [
+    {
+      "id": "DR0_EXECUTION_AUTHORITY",
+      "data": [
+        "approved intents",
+        "OMS lifecycle",
+        "fills",
+        "positions",
+        "risk/firewall verdicts",
+        "kill-switch state",
+        "security/audit critical events"
+      ],
+      "priority": "HIGHEST",
+      "recovery_requirement": "must reconcile external truth before risk-increasing execution",
+      "loss_tolerance": "MINIMIZE_TO_STRONGEST_PRACTICAL_LEVEL",
+      "numeric_rpo_rto": "DEFERRED_TO_P02_H_P22"
+    },
+    {
+      "id": "DR1_CONTROL_SECURITY",
+      "data": [
+        "task/workflow state",
+        "agent checkpoints",
+        "identity/config references",
+        "policy versions",
+        "audit manifests"
+      ],
+      "priority": "HIGH",
+      "recovery_requirement": "integrity and authorization validation before resume",
+      "numeric_rpo_rto": "DEFERRED_TO_P02_H_P22"
+    },
+    {
+      "id": "DR2_MARKET_HISTORY_RESEARCH",
+      "data": [
+        "raw/canonical market history",
+        "macro vintages",
+        "feature/replay datasets",
+        "model artifacts"
+      ],
+      "priority": "MEDIUM_HIGH",
+      "recovery_requirement": "hash/manifest validation and provider-rights compliance",
+      "numeric_rpo_rto": "DEFERRED_TO_P02_H_P22"
+    },
+    {
+      "id": "DR3_DERIVED_REBUILDABLE",
+      "data": [
+        "caches",
+        "read models",
+        "temporary projections",
+        "noncritical derived views"
+      ],
+      "priority": "LOWER",
+      "recovery_requirement": "rebuild from canonical sources",
+      "numeric_rpo_rto": "DEFERRED_TO_P02_H_P22"
+    }
+  ],
+  "recovery_sequence": [
+    "enter HALTED or SAFE_MODE",
+    "restore identity/security/control dependencies",
+    "validate configuration/policy versions",
+    "restore/reconnect authoritative execution/audit state",
+    "reconcile broker/exchange orders/fills/positions/balances",
+    "restore/validate market-data and quality state",
+    "rebuild mutable projections/read models",
+    "revalidate agent checkpoints/tools/permissions",
+    "run health/integrity checks",
+    "permit read-only/research paths first where safe",
+    "obtain required authorization before risk-increasing execution",
+    "transition RECOVERY -> NORMAL only after explicit checks"
+  ],
+  "failover_rules": [
+    "Infrastructure failover does not imply execution failover.",
+    "Provider/broker failover follows ADR-0010 reconciliation sequence.",
+    "DR site/instance recovery cannot reuse uncertain execution state without reconciliation.",
+    "If Security/Secrets integrity is unknown, execution remains halted.",
+    "If Audit/Evidence sink is unavailable beyond policy threshold, high-risk actions fail closed.",
+    "If critical Data Quality state is unknown, trading decision path fails closed."
+  ],
+  "logical_dr_topology": {
+    "primary_site": "SITE_A_LOGICAL",
+    "recovery_site": "SITE_B_LOGICAL_OR_EQUIVALENT_RECOVERY_TARGET",
+    "geography": "UNSPECIFIED",
+    "provider": "UNSPECIFIED",
+    "requirement": "failure-domain separation must be evaluated in P04/P22; same-failure-domain backups do not count as full DR",
+    "backup_strategy": [
+      "versioned backups",
+      "off-primary copy",
+      "integrity manifests",
+      "restore staging/quarantine",
+      "periodic restore drills later in P22"
+    ]
+  },
+  "topology_diagrams_required_for_p02_i": [
+    "system context",
+    "trust-zone/container",
+    "data flow",
+    "decision flow",
+    "execution path",
+    "recovery path",
+    "agent interaction"
+  ],
+  "deferred_to_later_phases": {
+    "P02_H": [
+      "numerical throughput/storage/latency/RPO/RTO/cost envelope"
+    ],
+    "P03": [
+      "RBAC/MFA/private admin/network exposure/secrets concrete security design"
+    ],
+    "P04": [
+      "cloud/runtime/network/storage/queue concrete technologies and topology implementation"
+    ],
+    "P22": [
+      "backup/restore/DR implementation and drills"
+    ],
+    "P24": [
+      "CANARY/LIVE activation"
+    ]
+  }
+}
