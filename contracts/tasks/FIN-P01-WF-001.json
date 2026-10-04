@@ -1,0 +1,135 @@
+{
+  "task_id": "FIN-P01-WF-001",
+  "phase": "P01",
+  "workstream": "WF",
+  "objective": "Define the governed Primary / Backup Provider Strategy for market data, context data, macro/on-chain sources and future execution venues without selecting final production providers.",
+  "scope": [
+    "Define domain-specific primary, backup and authoritative cross-check roles",
+    "Define independence requirements so backup paths do not share the same failure domain where avoidable",
+    "Define health, divergence, failover, degraded and recovery states",
+    "Define data-provider failover separately from execution-venue failover",
+    "Define conditional candidate pools using P01-B/C evidence",
+    "Carry P01-D jurisdiction/client-class restrictions into candidate eligibility",
+    "Carry P01-E licensing/data-rights/cost constraints into candidate eligibility",
+    "Define single-provider concentration controls",
+    "Create machine-readable strategy matrix",
+    "Prepare unresolved prerequisites for P01-G"
+  ],
+  "out_of_scope": [
+    "Select the final production provider, broker or exchange",
+    "Purchase subscriptions or accept vendor contracts",
+    "Open accounts, KYC, create credentials or fund accounts",
+    "Implement data adapters or execution adapters",
+    "Enable automatic live cross-broker failover",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WB-001",
+    "FIN-P01-WC-001",
+    "FIN-P01-WD-001",
+    "FIN-P01-WE-001"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WF-001.json",
+    "docs/03-research/P01-F-PRIMARY-BACKUP-PROVIDER-STRATEGY.md",
+    "docs/03-research/p01-f-primary-backup-provider-strategy.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Legal Data Hunter",
+    "Blockscout Blockchain Data"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Strategy JSON parses successfully",
+    "Every domain has explicit primary/backup/cross-check semantics or an explicit reason why not",
+    "Backup paths are evaluated for failure-domain independence",
+    "Execution failover is not treated as equivalent to data failover",
+    "No candidate with unresolved jurisdiction or required data-rights status is marked production-selected",
+    "No final production provider, broker or exchange is selected",
+    "P01-G prerequisites are explicit"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials, accounts or subscriptions",
+    "No automatic live broker failover authorization",
+    "No provider terms accepted",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "P01-B provider scorecards",
+    "P01-C execution venue scorecards",
+    "P01-D jurisdiction/compliance matrix",
+    "P01-E cost/licensing/data-rights matrix",
+    "Machine-readable P01-F strategy matrix",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-151 reconciliation"
+  ],
+  "rollback": "Revert P01-F strategy artifacts and state/catalog reconciliation only. No runtime/provider/account changes are made.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P01-WB-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WC-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WD-001 = CANONICAL_COMPLETE",
+    "FIN-P01-WE-001 = CANONICAL_COMPLETE",
+    "P01 = READY_FOR_P01_F",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Primary/backup/cross-check strategy is documented",
+    "Machine-readable strategy matrix is committed",
+    "Execution redundancy policy is documented",
+    "Failover and recovery states are documented",
+    "P01-G unresolved prerequisites are explicit",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges to protected main",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P01-WF-001 = CANONICAL_COMPLETE"
+  ]
+}
