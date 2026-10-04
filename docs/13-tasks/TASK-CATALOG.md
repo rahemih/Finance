@@ -78,7 +78,7 @@ This catalog is the canonical index of governed work.
 | FIN-P04-WA-001 | P04 | Repository / Workspace Structure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WA-001.json` | RELEASED |
 
 
-| FIN-P04-WB-001 | P04 | Language / Runtime / Dependency Baseline | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WB-001.json` | LOCK-FIN-P04-WB-001-01 |
+| FIN-P04-WB-001 | P04 | Language / Runtime / Dependency Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WB-001.json` | RELEASED |
 
 ## Rules
 
