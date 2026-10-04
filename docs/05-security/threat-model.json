@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P03-A_IMPLEMENTATION",
+  "state": "P03-A_CANONICAL_COMPLETE",
   "task_id": "FIN-P03-WA-001",
   "linear_issue": "HOS-163",
   "date": "2026-10-04",
@@ -1075,5 +1075,13 @@
     "backup_restore_audit_tampering_explicit": true,
     "every_high_critical_has_future_owner": true,
     "controls_claimed_implemented": false
+  },
+  "closure_evidence": {
+    "implementation_pr": 77,
+    "implementation_merge_sha": "141821a27e74e9967883bdb6f0c936a2b3b39b6b",
+    "pr_governance_run": 37196101262,
+    "postmerge_governance_run": 37196131383,
+    "postmerge_branch_hygiene_run": 37196131367,
+    "lock": "RELEASED"
   }
 }
