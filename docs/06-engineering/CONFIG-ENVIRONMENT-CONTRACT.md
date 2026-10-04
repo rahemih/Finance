@@ -1,6 +1,6 @@
 # NEXUS QUANT — Config / Environment Contract
 
-STATE = P04-D IMPLEMENTATION
+STATE = P04-D CANONICAL_BASELINE
 TASK = `FIN-P04-WD-001`
 LINEAR = `HOS-175`
 DATE = 2026-10-04
@@ -177,3 +177,24 @@ After canonical closure only:
 `P04-E — Test Harness`
 
 P04-E is not started by this task.
+
+
+## 15. Closure evidence
+
+Implementation:
+- PR: `#100` = MERGED
+- final PR head SHA: `77a023e4b1656b494fb95681371e5722ec1a8340`
+- required Governance/Foundation CI: `37204268124` = SUCCESS
+- PR foundation artifact: `11304032820`
+- PR artifact digest: `sha256:89b1d58c5ab1df91d1334b43327ecb27e704dcbe7b857e804cd8f17cdc8d02ef`
+- implementation merge SHA: `36aa699b87f69546e18d99e4500336ab8ba06d55`
+- post-merge Governance/Foundation CI: `37204313153` = SUCCESS
+- post-merge Branch Hygiene: `37204313208` = SUCCESS
+- post-merge foundation artifact: `11304077294`
+- post-merge artifact digest: `sha256:8e8d2af0b3b6107c1837d8e98b2cd7dfcc2b472189e2d2719e08f3303529bdec`
+
+Closure:
+- `FIN-P04-WD-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WD-001-01 = RELEASED`
+- next workstream = `P04-E — Test Harness`
+- P04-E = `NOT_STARTED`

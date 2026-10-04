@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P04-D_IMPLEMENTATION",
+  "state": "P04-D_CANONICAL_BASELINE",
   "precedence": [
     "config/base.json",
     "config/environments/<environment>.json",
