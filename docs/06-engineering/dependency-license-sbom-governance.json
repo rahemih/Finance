@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WF-001",
+  "state": "P04-F_IMPLEMENTATION",
+  "tools": {
+    "syft": {
+      "version": "1.54.0",
+      "action_commit": "66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c",
+      "output": "CycloneDX JSON 1.7"
+    },
+    "trivy": {
+      "version": "0.75.0",
+      "action_commit": "ed142fd0673e97e23eac54620cfb913e5ce36c25",
+      "block_severities": [
+        "CRITICAL",
+        "HIGH"
+      ]
+    }
+  },
+  "licenses": {
+    "policy": "ALLOW_REVIEW_BLOCK",
+    "unknown": "BLOCK_PENDING_REVIEW",
+    "waivers": "EXACT_TIME_BOUNDED"
+  },
+  "vulnerabilities": {
+    "critical": "BLOCK",
+    "high": "BLOCK",
+    "medium": "REPORT",
+    "low": "REPORT",
+    "ignore_requires_active_waiver": true
+  },
+  "dependency_auto_merge": false,
+  "next": "P04-G — Developer Bootstrap & Tooling (NOT_STARTED)",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
