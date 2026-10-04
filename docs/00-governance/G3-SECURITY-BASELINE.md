@@ -2,7 +2,7 @@
 
 GATE = `G3_SECURITY_BASELINE`  
 TASK = `FIN-P03-WH-001`  
-STATE = `PASS_PENDING_CANONICAL_MERGE`  
+STATE = `PASS`  
 DATE = `2026-10-04`
 
 ## 1. Gate purpose
@@ -36,11 +36,21 @@ All are present and canonical.
 - Unresolved High design/governance blockers = 0.
 - Deferred runtime implementation is explicitly assigned to P04/P22/P23/P24.
 
-## 4. Pre-merge verdict
+## 4. Final verdict
 
-`G3_SECURITY_BASELINE = PASS_PENDING_CANONICAL_MERGE`
+`G3_SECURITY_BASELINE = PASS`
 
-Final PASS requires successful PR Governance, canonical merge, post-merge verification, closure reconciliation and lock release.
+Canonical P03-H implementation evidence:
+- implementation PR: `#92` = MERGED
+- implementation merge SHA: `95aec6989e59dcfc87249c8ebf72f8d6705c2041`
+- PR Governance: `37199298353` = SUCCESS
+- post-merge Governance: `37199325066` = SUCCESS
+- post-merge Branch Hygiene: `37199325002` = SUCCESS
+- G3 criteria: `20 PASS / 0 FAIL`
+- unresolved Critical design/governance blockers: `0`
+- unresolved High design/governance blockers: `0`
+
+This closure change releases `LOCK-FIN-P03-WH-001-01`, closes P03 and authorizes P04 readiness.
 
 ## 5. Safety
 
