@@ -1,6 +1,6 @@
 # NEXUS QUANT — Reproducible Build / Artifact Verification
 
-STATE = P04-H IMPLEMENTATION
+STATE = P04-H CANONICAL_BASELINE
 TASK = `FIN-P04-WH-001`
 LINEAR = `HOS-179`
 DATE = 2026-10-04
@@ -149,3 +149,32 @@ After P04 canonical closure:
 `P05 — Real-Time Data`
 
 P05 remains `NOT_STARTED` until explicit Owner authorization to enter the next phase.
+
+
+## 12. Canonical closure evidence
+
+Implementation:
+- PR: `#108` = MERGED;
+- final PR head: `982d2624930b5dff3e76595dd3378b8599aac159`;
+- PR Governance: `37213862656` = SUCCESS;
+- PR artifact: `11307687243`;
+- PR artifact digest: `sha256:13eec67e42b2ef84a00ca9bf948fd8048149fef555f3f78fe65784243ae2d821`;
+- implementation merge SHA: `55f9dd6486ea862e4f733fe71d39b6690caa3abb`;
+- post-merge Governance: `37213946513` = SUCCESS;
+- post-merge Branch Hygiene: `37213946537` = SUCCESS;
+- post-merge artifact: `11307168552`;
+- post-merge artifact digest: `sha256:4ec9197932d0db3b4b45889c667491cd966b1b974f99487a37eaa344d5e134b2`.
+
+Reproducibility:
+- canonical artifact SHA-256: `11a86c96091043a106bd7f28a522ca34ad104dca215772be8bc1c558bfb57922`;
+- post-merge rollback manifest SHA-256: `83139bf61de6ebccb11fbeedf9fa5b4549e06df839e59aa598dbb0e0ab0c7e35`;
+- file count: `289`;
+- inventory SHA-256: `0977c66bdf306523c873154110f62a091bccef06d0d476d4d497a1b44342d483`;
+- independent clean builds: byte-identical PASS;
+- verifier/tamper checks: PASS.
+
+Closure:
+- `FIN-P04-WH-001 = CANONICAL_COMPLETE`;
+- `LOCK-FIN-P04-WH-001-01 = RELEASED`;
+- P04 = `CANONICAL_COMPLETE`;
+- P05 = `NOT_STARTED_PENDING_OWNER_AUTHORIZATION`.
