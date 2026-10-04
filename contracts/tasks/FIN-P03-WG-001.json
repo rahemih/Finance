@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P03-WG-001",
+  "phase": "P03",
+  "workstream": "WG",
+  "objective": "Define the canonical incident-response, containment, emergency-access and recovery-security baseline without operating real incident-response infrastructure.",
+  "scope": [
+    "Incident taxonomy/severity/declaration",
+    "Incident command roles and A8 authority",
+    "Detect/analyze/contain/eradicate/recover/post-incident flow",
+    "Emergency halt/safe mode",
+    "Credential compromise response",
+    "Provider/broker/execution uncertainty response",
+    "Data poisoning response",
+    "Agent/model/MCP compromise response",
+    "Supply-chain compromise response",
+    "Audit integrity incident response",
+    "Ransomware/destructive event response",
+    "Break-glass identity/network access",
+    "Evidence preservation/chain of custody",
+    "Communications/escalation placeholders",
+    "Recovery revalidation before privileged/execution re-enable",
+    "Tabletop/drill requirements",
+    "Machine-readable incident matrix and diagrams"
+  ],
+  "out_of_scope": [
+    "Operate SOC/on-call",
+    "Provision SIEM/EDR/paging/forensics",
+    "Jurisdiction-specific notification timelines",
+    "Create production accounts/credentials",
+    "Enable CANARY/LIVE/Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "FIN-P03-WC-001",
+    "FIN-P03-WD-001",
+    "FIN-P03-WE-001",
+    "FIN-P03-WF-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WG-001.json",
+    "docs/05-security/INCIDENT-EMERGENCY-ACCESS.md",
+    "docs/05-security/incident-emergency-access.json",
+    "docs/05-security/INCIDENT-EMERGENCY-ACCESS-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "CRITICAL incident can trigger global/affected-scope halt",
+    "Break-glass cannot bypass A5/A8 or enable LIVE",
+    "Compromised credential path revokes before normal recovery",
+    "UNKNOWN execution blocks blind retry/reroute and forces reconciliation",
+    "Poisoned data quarantines downstream decision eligibility",
+    "Agent/model/MCP compromise removes sensitive tool authority",
+    "Audit integrity incident preserves independent evidence",
+    "Restore requires security/risk/provider reconciliation before execution re-enable",
+    "Incident severity/ownership/evidence are explicit",
+    "Country/location is not assumed for legal notification policy",
+    "No SOC/EDR/SIEM infrastructure is falsely claimed active"
+  ],
+  "evidence": [
+    "P03-A through P03-F canonical baselines",
+    "NIST SP 800-61r3",
+    "NIST CSF 2.0",
+    "FROZEN_G2 DR topology",
+    "machine-readable incident matrix",
+    "diagrams",
+    "GitHub PR/check evidence",
+    "Linear HOS-170 reconciliation"
+  ],
+  "rollback": "Revert P03-G policy artifacts and shared state/catalog changes. No live incident infrastructure or credentials are changed.",
+  "definition_of_ready": [
+    "P03-A through P03-F CANONICAL_COMPLETE",
+    "P03-F lock RELEASED",
+    "FROZEN_G2 active",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Incident/emergency baseline canonical",
+    "Machine-readable matrix and diagrams canonical",
+    "Current State/Task Catalog reconciled",
+    "Governance Verify passes",
+    "Implementation PR merges",
+    "Post-merge verification passes",
+    "Closure PR merges",
+    "Lock released",
+    "FIN-P03-WG-001 CANONICAL_COMPLETE"
+  ]
+}

@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-F implementation merge: `415d6658b49f2b3c482c3daaccea99077d07479e`  
+Canonical HEAD at P03-G Fresh Live Guard: `a07b6f76c08f401505a3c00cf8f791fd1b657c42`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WG-001 — Incident Response / Emergency Access`  
+Active branch: `security/FIN-P03-WG-001-incident-emergency`  
+Active lock: `LOCK-FIN-P03-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A through P03-F are CANONICAL_COMPLETE. Next authorized workstream: `P03-G — Incident / Emergency Access`.
+P03-A through P03-F are CANONICAL_COMPLETE. P03-G — Incident Response / Emergency Access is ACTIVE under `FIN-P03-WG-001` / `HOS-170`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1251,3 +1252,39 @@ P03-F closure:
 - `FIN-P03-WF-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WF-001-01 = RELEASED`
 - next = `P03-G — Incident / Emergency Access`
+
+
+## P03-G — Incident Response / Emergency Access
+
+Task: `FIN-P03-WG-001`  
+Linear: `HOS-170`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WG-001-incident-emergency`  
+Lock: `LOCK-FIN-P03-WG-001-01`
+
+Primary agent:
+- A8 Security = LEAD / incident security authority
+
+Supporting agents:
+- A0 Governance / Incident coordination
+- A1 Architecture
+- A5 Risk
+- A6 Execution / reconciliation
+- A9 Operations / recovery
+- A10 Evidence / audit
+
+Dependencies:
+- P03-A through P03-F = CANONICAL_COMPLETE
+- FROZEN_G2 recovery topology = active
+
+Objective:
+- incident severity/taxonomy;
+- safe containment/halt;
+- credential/provider/data/agent/supply-chain/audit incident playbooks;
+- accountable break-glass access;
+- evidence preservation;
+- security/risk/provider reconciliation before recovery.
+
+SOC/SIEM/EDR/paging infrastructure: NOT_PROVISIONED  
+Country/location/jurisdiction assumptions: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED
