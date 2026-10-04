@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P03-E_IMPLEMENTATION",
+  "state": "P03-E_CANONICAL_COMPLETE",
   "task_id": "FIN-P03-WE-001",
   "linear_issue": "HOS-167",
   "date": "2026-10-04",
@@ -243,5 +243,13 @@
     "digest_chain_signature_service": "NOT_IMPLEMENTED",
     "jurisdiction_specific_retention": "NOT_DEFINED",
     "production_maker_checker": "NOT_IMPLEMENTED"
+  },
+  "closure_evidence": {
+    "implementation_pr": 85,
+    "implementation_merge_sha": "cd536117802a376e3e2df97a002d196aecf818c9",
+    "pr_governance_run": 37198019279,
+    "postmerge_governance_run": 37198039797,
+    "postmerge_branch_hygiene_run": 37198039793,
+    "lock": "RELEASED"
   }
 }
