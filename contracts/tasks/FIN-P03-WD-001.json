@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P03-WD-001",
+  "phase": "P03",
+  "workstream": "WD",
+  "objective": "Define the canonical private-administration and network-exposure security baseline for NEXUS QUANT without provisioning networking infrastructure.",
+  "scope": [
+    "Classify public/application/internal/admin/execution/secrets/observability/recovery exposure",
+    "Minimize public attack surface",
+    "Define identity-aware private administrative access direction",
+    "Require identity/device/session authorization independent of network location",
+    "Define admin entry-point patterns such as ZTNA/identity-aware proxy/VPN/bastion classes without vendor selection",
+    "Separate management plane from user/application ingress",
+    "Define default-deny east-west and north-south service access direction",
+    "Preserve Z0-Z7 trust-zone boundaries",
+    "Restrict Z4 Execution and Z5 Secrets to explicit internal paths",
+    "Define controlled egress for providers/tools/brokers",
+    "Define emergency/break-glass network access constraints",
+    "Define admin access audit/evidence",
+    "Define DDoS/rate-limit/WAF/API-gateway direction for public ingress",
+    "Create machine-readable exposure matrix and diagrams",
+    "Map downstream implementation/testing ownership"
+  ],
+  "out_of_scope": [
+    "Provision VPN/ZTNA/bastion/firewall/proxy/WAF/VPC/VNet/service mesh",
+    "Modify real production firewall/security-group rules",
+    "Select production network/cloud vendor",
+    "Create real credentials/accounts",
+    "Enable CANARY/LIVE/Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "FIN-P03-WC-001",
+    "FIN-P02-WG-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WD-001.json",
+    "docs/05-security/PRIVATE-ADMIN-NETWORK-EXPOSURE.md",
+    "docs/05-security/private-admin-network-exposure.json",
+    "docs/05-security/PRIVATE-ADMIN-NETWORK-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "network/**",
+    "terraform/**",
+    "pulumi/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "No implicit trust from VPN/LAN/IP/location",
+    "Privileged admin access requires P03-B identity/MFA/session/device controls",
+    "Management plane is not exposed through ordinary public/user ingress",
+    "Z4/Z5/Z7 have no public inbound path",
+    "Service-to-service access is default deny and identity/policy scoped",
+    "Broker/exchange outbound execution originates only from Z4",
+    "Secrets access originates only from explicitly authorized internal workloads",
+    "Public ingress protection direction includes rate-limit/DDoS/WAF/API controls as applicable",
+    "Administrative access is fully auditable",
+    "Country/location is not an authorization assumption",
+    "No network product/infrastructure is falsely claimed provisioned"
+  ],
+  "evidence": [
+    "P02-G environment/network/DR topology",
+    "P03-A threat model",
+    "P03-B identity/access baseline",
+    "P03-C secrets/key baseline",
+    "NIST SP 800-207",
+    "NIST SP 800-207A",
+    "machine-readable exposure matrix",
+    "network/admin diagrams",
+    "GitHub PR and Governance checks",
+    "Linear HOS-166 reconciliation"
+  ],
+  "rollback": "Revert P03-D policy artifacts and shared state/catalog changes. No live network infrastructure is changed.",
+  "definition_of_ready": [
+    "P03-A/B/C CANONICAL_COMPLETE",
+    "P03-C lock RELEASED",
+    "FROZEN_G2 active",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Private administration policy canonical",
+    "Exposure matrix canonical",
+    "Diagrams canonical",
+    "Current State and Task Catalog reconciled",
+    "Governance Verify passes",
+    "Implementation PR merges",
+    "Post-merge verification passes",
+    "Closure PR merges",
+    "Lock released",
+    "FIN-P03-WD-001 CANONICAL_COMPLETE"
+  ]
+}
