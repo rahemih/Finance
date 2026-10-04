@@ -135,6 +135,13 @@
       "license": "Apache-2.0",
       "evidence": "npm registry metadata for detect-libc 2.1.2",
       "scope": "pnpm 11.28.4 transitive toolchain dependency only"
+    },
+    {
+      "identity_prefix": "pkg:npm/pnpm",
+      "exact_version": "11.28.4",
+      "license": "MIT",
+      "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
+      "scope": "Canonical pnpm 11.28.4 package-manager component only"
     }
   ]
 }
