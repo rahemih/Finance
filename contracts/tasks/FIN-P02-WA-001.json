@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P02-WA-001",
+  "phase": "P02",
+  "workstream": "WA",
+  "objective": "Define the canonical architecture principles and ADR framework for a modular, provider-portable, replayable, fail-closed and proportionate NEXUS QUANT architecture before domain boundaries are frozen.",
+  "scope": [
+    "Define simplicity-first architecture principles for a private <=10-user system",
+    "Define country-neutral and provider-portable architecture principles",
+    "Define modular-core-first and dedicated-service extraction criteria",
+    "Define event-time, provenance, replay and immutable-evidence principles",
+    "Define independent Risk and Pre-Trade Firewall authority principles",
+    "Define deterministic execution/OMS/reconciliation principles",
+    "Define environment isolation and fail-closed behavior",
+    "Define security/least-privilege/no-withdrawal principles",
+    "Define bounded agent authority, handoff and audit principles",
+    "Define observability/evidence-by-default principles",
+    "Define cost and operational-complexity guardrails",
+    "Define ADR lifecycle/template/numbering/supersession rules",
+    "Create foundational ADRs needed by P02-B through P02-I"
+  ],
+  "out_of_scope": [
+    "Freeze final domain/module boundaries",
+    "Select final runtime/database/message-bus/vendor technologies",
+    "Implement runtime code",
+    "Provision cloud or infrastructure",
+    "Create provider accounts or credentials",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WG-004"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WA-001.json",
+    "docs/04-architecture/ARCHITECTURE-PRINCIPLES.md",
+    "docs/04-architecture/ADR/**",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Architecture principles do not prematurely select vendors or runtime technologies",
+    "Country/location is not an architectural assumption",
+    "Risk/Firewall authority is explicitly independent from strategy and execution",
+    "Provider portability is mandatory",
+    "Replay/provenance and deterministic recovery are first-class principles",
+    "ADR framework has status/lifecycle/supersession rules",
+    "Foundational ADR set is internally consistent",
+    "No implementation code or runtime provisioning"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Least privilege is explicit",
+    "Trading credentials must not require withdrawal authority",
+    "Environment separation is explicit",
+    "Critical decisions fail closed",
+    "Agent authority cannot bypass Risk/Security/Governance"
+  ],
+  "evidence": [
+    "P01 country-neutral provider baseline",
+    "Canonical roadmap P02 requirements",
+    "Canonical A0-A10 contracts and authority model",
+    "Architecture principles document",
+    "ADR framework and foundational ADR set",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-154 reconciliation"
+  ],
+  "rollback": "Revert P02-A architecture documents and state/catalog changes. No runtime resources or code are created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P01 = CANONICAL_COMPLETE",
+    "G1_PROVIDER_BASELINE = PASS",
+    "P02 = READY",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Architecture principles are canonical",
+    "ADR framework is canonical",
+    "Foundational ADR set is canonical",
+    "P02-B through P02-I can reference stable architecture decision rules",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WA-001 = CANONICAL_COMPLETE"
+  ]
+}

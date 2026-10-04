@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WA-001 — Architecture Principles & ADR Framework`  
+Active branch: `docs/FIN-P02-WA-001-principles-adr-framework`  
+Active lock: `LOCK-FIN-P02-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,10 +498,46 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY
+P02 — Master Architecture: ACTIVE
 
-Next workstream:
+Active workstream:
 `P02-A — Architecture Principles & ADR Set`
 
 Primary agents:
 A1 lead; A2/A4/A5/A6/A8/A9 consulted; A10 audits; A0 coordinates.
+
+
+## P02-A — Architecture Principles & ADR Framework
+
+Task: `FIN-P02-WA-001`  
+Linear: `HOS-154`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WA-001-01`
+
+Artifacts:
+- `docs/04-architecture/ARCHITECTURE-PRINCIPLES.md`
+- `docs/04-architecture/ADR/README.md`
+- `docs/04-architecture/ADR/ADR-0001-modular-core-first.md`
+- `docs/04-architecture/ADR/ADR-0002-provider-portability-canonical-contracts.md`
+- `docs/04-architecture/ADR/ADR-0003-independent-risk-firewall-authority.md`
+- `docs/04-architecture/ADR/ADR-0004-event-time-provenance-replay.md`
+- `docs/04-architecture/ADR/ADR-0005-environment-isolation-fail-closed.md`
+- `docs/04-architecture/ADR/ADR-0006-bounded-agent-authority.md`
+
+Architecture stance:
+- simplicity-first / modular-core-first;
+- country-neutral and provider-portable;
+- canonical contracts before adapters;
+- replay/provenance first-class;
+- Risk/Firewall independent veto;
+- execution idempotent/reconcilable;
+- environment isolation;
+- least privilege / no-withdrawal trading credentials;
+- bounded agents;
+- fail-closed critical behavior;
+- observability/evidence by design;
+- runtime/vendor selection deferred to later P02/P04 tasks.
+
+Runtime code: NOT_STARTED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
