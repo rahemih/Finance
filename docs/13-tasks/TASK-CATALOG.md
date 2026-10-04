@@ -32,7 +32,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P01-WG-004 | P01 | Provider Baseline Decision & G1 | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-004.json` | RELEASED |
 
-| FIN-P02-WA-001 | P02 | Architecture Principles & ADR Framework | MEDIUM | ACTIVE | `contracts/tasks/FIN-P02-WA-001.json` | LOCK-FIN-P02-WA-001-01 |
+| FIN-P02-WA-001 | P02 | Architecture Principles & ADR Framework | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WA-001.json` | RELEASED |
 
 ## Rules
 
