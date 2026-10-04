@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P01-WF-001",
+  "assessed_at": "2026-10-04",
+  "state": "STRATEGY_BASELINE",
+  "final_provider_selected": false,
+  "final_execution_venue_selected": false,
+  "owner_jurisdiction": "UNSET_HUMAN_GATE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "principles": [
+    "No single provider is authoritative across Crypto, OTC FX, futures/index context, macro and on-chain domains.",
+    "Primary and backup paths should avoid the same legal entity, infrastructure and normalization failure domain where practical.",
+    "Authoritative cross-check sources are preferred when available even if they are not the operational primary feed.",
+    "Data failover and execution-venue failover are different control problems and must never share identical automation rules.",
+    "Unresolved jurisdiction, client-class, licensing or required non-display rights block production promotion.",
+    "Unknown provider state or irreconcilable divergence fails closed for affected decisions."
+  ],
+  "system_states": [
+    "NORMAL",
+    "PRIMARY_DEGRADED",
+    "BACKUP_VALIDATING",
+    "BACKUP_ACTIVE",
+    "CROSSCHECK_DIVERGENCE",
+    "FAIL_CLOSED",
+    "RECOVERY_VALIDATION"
+  ],
+  "health_dimensions": [
+    "freshness",
+    "sequence_or_gap_integrity",
+    "timestamp_quality",
+    "latency_distribution",
+    "completeness",
+    "schema_contract",
+    "cross_provider_price_divergence",
+    "order_book_consistency",
+    "provider_status",
+    "licensing_entitlement_validity",
+    "credential_or_session_health_when_applicable"
+  ],
+  "domains": [
+    {
+      "domain_id": "CRYPTO_MARKET_DATA",
+      "role": "tradable_market_data",
+      "strategy": "MULTI_VENDOR_PLUS_VENUE_NATIVE",
+      "conditional_primary_candidates": [
+        "KAIKO",
+        "COINAPI"
+      ],
+      "conditional_backup_candidates": [
+        "COINAPI",
+        "KAIKO"
+      ],
+      "authoritative_cross_check": [
+        "EXCHANGE_NATIVE_FEEDS_FOR_SELECTED_VENUES"
+      ],
+      "reference_venues": [
+        "COINBASE_ADVANCED",
+        "KRAKEN",
+        "BINANCE"
+      ],
+      "preferred_pairing_rules": [
+        "Use one normalized multi-venue vendor plus at least one venue-native feed for critical instruments.",
+        "Primary and backup normalized vendors should not be assumed independent until upstream source overlap is reviewed.",
+        "Order-flow evidence must retain original venue provenance."
+      ],
+      "unresolved_before_p01_g": [
+        "Kaiko commercial quote and subscribed SLA",
+        "Kaiko non-display/algorithmic/raw-retention/model-use rights",
+        "CoinAPI non-display/raw-retention/redistribution terms",
+        "Target exchange jurisdiction eligibility"
+      ],
+      "current_status": "CONDITIONAL_SHORTLIST_ONLY"
+    },
+    {
+      "domain_id": "FOREX_MARKET_DATA",
+      "role": "tradable_market_data",
+      "strategy": "MULTI_SOURCE_OTC_QUOTES_WITH_PROXY_LABELING",
+      "conditional_primary_candidates": [
+        "DXFEED"
+      ],
+      "conditional_backup_candidates": [
+        "MASSIVE",
+        "TWELVE_DATA"
+      ],
+      "authoritative_cross_check": [
+        "ELIGIBLE_EXECUTION_BROKER_QUOTES",
+        "FUTURES_PROXY_WHERE_RELEVANT"
+      ],
+      "broker_quote_candidates": [
+        "OANDA_V20",
+        "IBKR",
+        "SAXO_OPENAPI"
+      ],
+      "preferred_pairing_rules": [
+        "Use an independent multi-source or normalized FX feed as research/market context and compare against the actual execution broker quote.",
+        "Never label any vendor/broker quote stream as consolidated global Spot FX volume.",
+        "Volume/order-flow fields remain BROKER/TICK/ECN/FUTURES/AGGREGATED_PROXY with coverage confidence."
+      ],
+      "unresolved_before_p01_g": [
+        "dxFeed commercial quote/SLA and exact FX contributor coverage",
+        "Business non-display/automated-use rights for chosen backup",
+        "Owner jurisdiction/client class and eligible broker entity"
+      ],
+      "current_status": "CONDITIONAL_SHORTLIST_ONLY"
+    },
+    {
+      "domain_id": "FUTURES_COMMODITY_CONTEXT",
+      "role": "context_market_data",
+      "strategy": "NORMALIZED_VENDOR_PLUS_EXCHANGE_AUTHORITY",
+      "conditional_primary_candidates": [
+        "DATABENTO"
+      ],
+      "conditional_backup_candidates": [
+        "DXFEED"
+      ],
+      "authoritative_cross_check": [
+        "CME_OFFICIAL",
+        "ICE_OFFICIAL",
+        "CBOE_OFFICIAL_AS_APPLICABLE"
+      ],
+      "preferred_pairing_rules": [
+        "Use normalized futures data for operational ingestion/replay only with required exchange entitlements.",
+        "Contract specifications, calendars and benchmark definitions come from the exchange/owner authority.",
+        "For critical context signals, compare vendor values to official/exchange-derived reference where operationally possible."
+      ],
+      "unresolved_before_p01_g": [
+        "Exact CME/ICE/Cboe/index entitlements",
+        "Required depth/history tier and retention cost",
+        "Production support/SLA"
+      ],
+      "current_status": "CONDITIONAL_SHORTLIST_ONLY"
+    },
+    {
+      "domain_id": "INDEX_CONTEXT",
+      "role": "context_market_data",
+      "strategy": "INDEX_OWNER_OR_LICENSED_FEED_WITH_SECONDARY_VENDOR",
+      "conditional_primary_candidates": [
+        "LICENSED_INDEX_SOURCE_TBD"
+      ],
+      "conditional_backup_candidates": [
+        "DXFEED",
+        "MASSIVE",
+        "DATABENTO_WHERE_COVERED"
+      ],
+      "authoritative_cross_check": [
+        "SP_DJI",
+        "NASDAQ_GIDS",
+        "CBOE"
+      ],
+      "preferred_pairing_rules": [
+        "Index owner/licensed-source entitlement is authoritative for SPX/NDX/VIX use rights.",
+        "Secondary vendor can improve operational resilience but does not replace index licensing."
+      ],
+      "unresolved_before_p01_g": [
+        "Display/non-display/index entitlements",
+        "Internal algorithmic/derived use rights",
+        "Cost and redistribution restrictions"
+      ],
+      "current_status": "RIGHTS_BLOCKED_FOR_PRODUCTION_SELECTION"
+    },
+    {
+      "domain_id": "MACRO_RATES",
+      "role": "context_and_fundamental_data",
+      "strategy": "OFFICIAL_FIRST_WITH_REVISION_AWARE_AGGREGATOR",
+      "conditional_primary_candidates": [
+        "DIRECT_OFFICIAL_SOURCES"
+      ],
+      "conditional_backup_candidates": [
+        "FRED_ALFRED"
+      ],
+      "authoritative_cross_check": [
+        "SOURCE_AGENCY_PER_SERIES"
+      ],
+      "preferred_pairing_rules": [
+        "Official release source is authoritative for event time and first release.",
+        "FRED/ALFRED is preferred as revision-aware aggregation and convenience layer when series rights permit.",
+        "Store first release, previous-at-time and later revisions separately."
+      ],
+      "unresolved_before_p01_g": [
+        "Series-by-series third-party rights where FRED republishes external data",
+        "Final official-source list for each macro family"
+      ],
+      "current_status": "STRONG_BASELINE_CANDIDATE"
+    },
+    {
+      "domain_id": "ONCHAIN_CONTEXT",
+      "role": "supplemental_crypto_intelligence",
+      "strategy": "CHAIN_AUTHORITY_PLUS_INDEXER",
+      "conditional_primary_candidates": [
+        "BLOCKSCOUT"
+      ],
+      "conditional_backup_candidates": [
+        "DIRECT_NODE_OR_SECOND_INDEXER_TBD"
+      ],
+      "authoritative_cross_check": [
+        "CHAIN_STATE"
+      ],
+      "preferred_pairing_rules": [
+        "Block explorer/indexer output is convenient evidence, not identity proof by itself.",
+        "Critical on-chain signals should be reproducible against chain state or an independent indexer/node path."
+      ],
+      "unresolved_before_p01_g": [
+        "Selected chains",
+        "Production retention/rate limits",
+        "Whether direct node or second indexer is economically justified"
+      ],
+      "current_status": "SUPPLEMENTAL_ONLY"
+    }
+  ],
+  "execution_redundancy": {
+    "global_rule": "NO_BLIND_AUTOMATIC_LIVE_CROSS_BROKER_FAILOVER",
+    "reasons": [
+      "Unknown acknowledgement state can create duplicate orders.",
+      "Positions, balances, margin and liquidation conditions differ by venue.",
+      "A backup venue may have different product contracts, symbol semantics and legal eligibility.",
+      "Cross-venue failover can unintentionally increase portfolio or counterparty risk."
+    ],
+    "crypto": {
+      "candidate_pool": [
+        "COINBASE_ADVANCED",
+        "KRAKEN",
+        "BINANCE"
+      ],
+      "required_independence": "different legal venue/entity where possible",
+      "promotion_prerequisites": [
+        "owner jurisdiction and product eligibility",
+        "account/API permissions",
+        "sandbox or controlled certification",
+        "client-order-id/idempotency semantics",
+        "reconciliation and position recovery tests",
+        "current fee/funding model",
+        "A5 risk approval and P16 firewall compatibility"
+      ],
+      "failover_policy": "On execution-venue degradation, halt new orders, reconcile all uncertain orders/fills/positions, enter DEGRADED or SAFE_MODE, then authorize future-order routing to a certified backup only after deterministic reconciliation."
+    },
+    "forex": {
+      "candidate_pool": [
+        "OANDA_V20",
+        "IBKR",
+        "SAXO_OPENAPI"
+      ],
+      "required_independence": "separate broker/legal entity and independent account state",
+      "promotion_prerequisites": [
+        "owner jurisdiction/client class",
+        "broker legal-entity eligibility",
+        "API automation terms",
+        "paper/practice/SIM certification",
+        "order/fill/reconciliation tests",
+        "financing/spread/commission model",
+        "A5 risk approval and P16 firewall compatibility"
+      ],
+      "failover_policy": "Broker outage never triggers immediate duplicate order replay. New-order routing remains halted until local and broker states reconcile; backup is used only for new intents after controlled switch."
+    }
+  },
+  "data_failover_policy": {
+    "automatic_failover_now": "NOT_AUTHORIZED_IN_P01",
+    "future_automatic_failover_conditions": [
+      "P05 adapter/heartbeat/gap recovery implementation",
+      "P07 trusted-data quality/provenance gates",
+      "bounded divergence thresholds defined from empirical provider comparison",
+      "backup feed continuously validated before activation",
+      "recovery path tested",
+      "A2/A5/A9 approval within task scope"
+    ],
+    "switch_sequence": [
+      "detect degradation",
+      "mark primary unhealthy",
+      "validate backup freshness/schema/gap state",
+      "compare against authoritative/cross-check source",
+      "switch affected domain to backup if policy permits",
+      "preserve provider/source provenance in every event",
+      "keep primary under observation",
+      "require recovery validation before reverting"
+    ],
+    "fail_closed_conditions": [
+      "both primary and backup stale/unavailable",
+      "divergence exceeds future approved threshold and cannot be adjudicated",
+      "licensing/entitlement is invalid or expired",
+      "schema/sequence integrity fails",
+      "source provenance is missing for risk-relevant fields"
+    ]
+  },
+  "concentration_controls": {
+    "market_data": [
+      "Critical tradable domains should not depend on one vendor for both operational feed and independent validation.",
+      "A single vendor may cover multiple context markets, but authoritative exchange/agency references remain separate.",
+      "Shared upstream exchanges/sources between aggregators must be documented to avoid false independence."
+    ],
+    "execution": [
+      "Capital concentration limits are deferred to P15 but P01-F requires multiple eligible venue candidates before high-autonomy production.",
+      "Backup venue must be independently reconciled and operationally certified before use.",
+      "No withdrawal permission is required for trading API design."
+    ]
+  },
+  "p01_g_prerequisites": [
+    "Owner country of residence/account jurisdiction supplied explicitly",
+    "Individual vs entity account decision supplied",
+    "Retail/professional/accredited/institutional status resolved where applicable",
+    "Target products and intended venues confirmed",
+    "Kaiko/dxFeed and any other required enterprise quotes resolved if shortlisted",
+    "Required non-display/algorithmic/storage/model-use rights resolved",
+    "Index/exchange entitlements resolved for context sources",
+    "Primary/backup operational SLA/support expectations resolved",
+    "Final conditional shortlist revalidated against current provider availability and terms"
+  ],
+  "decision_status": {
+    "market_data_primary_backup": "DESIGN_COMPLETE_SELECTION_PENDING_P01_G",
+    "execution_primary_backup": "DESIGN_COMPLETE_SELECTION_PENDING_JURISDICTION_AND_P01_G",
+    "production_activation": "NOT_AUTHORIZED"
+  },
+  "fresh_evidence_2026_10_04": [
+    "Kaiko official docs still expose realtime top-of-book/order-book sequence/timestamps and derivatives metrics.",
+    "CoinAPI official pricing/docs still expose REST/WebSocket and plan-specific trade/quote/order-book access.",
+    "dxFeed official coverage still documents global multi-asset Forex/crypto/futures/index delivery.",
+    "Databento official materials still document live/historical market-data access and pass-through license treatment.",
+    "OANDA v20 official docs still require an account/token and document account-specific pricing streams with at most four streamed prices per second per instrument.",
+    "IBKR official pricing still documents tiered spot-currency commissions and aggregated liquidity from multiple dealers."
+  ]
+}

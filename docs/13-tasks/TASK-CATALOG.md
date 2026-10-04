@@ -28,6 +28,8 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WM-001 | P01 | Project capability & tooling master registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WM-001.json` | RELEASED |
 | FIN-P01-WT-001 | P01 | Roadmap tooling usage map | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WT-001.json` | RELEASED |
 
+| FIN-P01-WF-001 | P01 | Primary / Backup Provider Strategy | MEDIUM | ACTIVE | `contracts/tasks/FIN-P01-WF-001.json` | LOCK-FIN-P01-WF-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
