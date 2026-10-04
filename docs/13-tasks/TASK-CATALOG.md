@@ -99,7 +99,7 @@ This catalog is the canonical index of governed work.
 | FIN-P04-WH-001 | P04 | Reproducible Build / Artifact Verification | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001.json` | RELEASED |
 
 
-| FIN-P04-WH-001-R01 | P04 | Post-Closure Audit & State Reconciliation | MEDIUM | ACTIVE | `contracts/tasks/FIN-P04-WH-001-R01.json` | LOCK-FIN-P04-WH-001-R01-01 |
+| FIN-P04-WH-001-R01 | P04 | Post-Closure Audit & State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001-R01.json` | RELEASED |
 
 ## Rules
 
