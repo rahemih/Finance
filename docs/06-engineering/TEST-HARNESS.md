@@ -1,6 +1,6 @@
 # NEXUS QUANT — Test Harness
 
-STATE = P04-E IMPLEMENTATION
+STATE = P04-E CANONICAL_BASELINE
 TASK = `FIN-P04-WE-001`
 LINEAR = `HOS-176`
 DATE = 2026-10-04
@@ -188,3 +188,30 @@ After canonical closure only:
 `P04-F — Dependency / License / SBOM Governance`
 
 P04-F is not started by this task.
+
+
+## 11. Closure evidence
+
+Implementation:
+- PR: `#102` = MERGED
+- final PR head SHA: `3f420c85a43b24e6b9f33d88ba44455a7e248dbf`
+- required Governance/Foundation CI: `37205107709` = SUCCESS
+- unittest: `15/15 PASS`
+- replay SHA-256: `1f647e599ee382d608b7a7b41ddc061f4ba875be0d0e24a329c7ea2393b558d6`
+- deterministic test-harness evidence SHA-256: `db1c5a535eb7043e0c57015364d4a813bfa052f95873de14af5a815a9a26c060`
+- PR foundation artifact: `11303848661`
+- PR artifact digest: `sha256:3197790747f66fa184bdf26e0043c5b9a59c1039d99723fcb4cec6e11933ca00`
+- implementation merge SHA: `a2b3b332565b6013a26974f787948f60618adcf3`
+- post-merge Governance/Foundation CI: `37205159882` = SUCCESS
+- post-merge Branch Hygiene: `37205159878` = SUCCESS
+- post-merge unittest: `15/15 PASS`
+- post-merge replay SHA-256: `1f647e599ee382d608b7a7b41ddc061f4ba875be0d0e24a329c7ea2393b558d6`
+- post-merge test-harness evidence SHA-256: `db1c5a535eb7043e0c57015364d4a813bfa052f95873de14af5a815a9a26c060`
+- post-merge artifact: `11304412529`
+- post-merge artifact digest: `sha256:e9dbe78b33c5d45a74be72dc4532d0204461c50c184b13be06aab4c648c53753`
+
+Closure:
+- `FIN-P04-WE-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WE-001-01 = RELEASED`
+- next workstream = `P04-F — Dependency / License / SBOM Governance`
+- P04-F = `NOT_STARTED`
