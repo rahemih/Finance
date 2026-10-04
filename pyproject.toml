@@ -1,0 +1,9 @@
+[project]
+name = "nexus-quant"
+version = "0.0.0"
+description = "NEXUS QUANT governed polyglot monorepo root"
+requires-python = "==3.14.*"
+dependencies = []
+
+[tool.uv]
+package = false
