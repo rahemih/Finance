@@ -1,294 +1,254 @@
-# P01-G — Provider Baseline Decision Preflight
+# P01-G — Provider Baseline Decision
 
-STATE = HUMAN_GATE_PENDING  
+STATE = COUNTRY_NEUTRAL_BASELINE_READY  
 TASK = `FIN-P01-WG-004`  
 PHASE = `P01 — Market / Provider / Compliance Research`  
 GATE = `G1_PROVIDER_BASELINE`  
-FINAL_PROVIDER_SELECTION = `NOT_PERFORMED`  
+COUNTRY_LOCATION_INPUT = `DO_NOT_USE / DO_NOT_ASSUME`  
+FINAL_EXECUTION_VENUE = `DEFERRED`  
 LIVE_TRADING = `DISABLED`  
 AUTO_TRADING = `DISABLED`
 
-## 1. Objective
+## 1. Owner directive
 
-P01-G is the final main-roadmap workstream in P01.
+P01-G is explicitly country-neutral.
 
-Its purpose is to convert the research from P01-A through P01-F into a defensible provider baseline:
+No country, residence, IP-derived location, account-location metadata or inferred jurisdiction is used to rank market-data providers or execution candidates.
 
-- market-data primary/backup paths;
-- execution venue candidate baseline;
-- authoritative macro/context sources;
-- explicit rejected/deferred alternatives;
-- residual risks;
-- G1 gate decision.
+Known non-location inputs:
+- account type: individual / personal;
+- client classification: unknown;
+- intended products: Forex, Crypto Spot, Crypto Futures/Perpetuals;
+- budget preference: unknown;
+- technical cost default for comparison only: BALANCED.
 
-The final production baseline cannot be selected from technical quality alone. Jurisdiction, client class, data rights and product eligibility are hard gates.
+Actual legal entity, product eligibility, KYC/client classification and broker/exchange availability are revalidated only at the real account-opening / production-activation gate.
 
-## 2. Evidence already complete
+## 2. G1 interpretation
 
-P01-G starts with canonical evidence from:
+The canonical roadmap defines P01-G as an evidence-backed shortlist and rejection-reason decision, not account opening.
 
-- P01-A — Market Universe & Instrument Taxonomy
-- P01-B — Market Data Provider Inventory
-- P01-C — Broker / Exchange Inventory
-- P01-D — Jurisdiction & Compliance
-- P01-E — Cost / Licensing / Data Rights
-- P01-F — Primary / Backup Provider Strategy
+G1 therefore answers:
 
-Therefore P01-G is a decision and gate phase, not another broad discovery phase.
+> Do we have a technically viable, legally-aware, cost-aware and resilient provider baseline that is sufficient to design a portable architecture in P02?
 
-## 3. Hard gates
+It does **not** answer:
 
-A candidate can only enter final scoring if all mandatory hard gates pass.
+> Which exact broker legal entity may a specific person open today?
 
-### H1 — Jurisdiction / product eligibility
+That later question is intentionally deferred.
 
-The provider/broker legal entity and product must be legal/available for the actual account jurisdiction and client class.
+## 3. P01 hard gates
 
-Unknown = BLOCKED.
+The country-neutral G1 hard gates are:
 
-### H2 — Client class
+1. technical capability fit;
+2. known data-rights constraints;
+3. security / least-privilege compatibility;
+4. primary/backup independence;
+5. operations / recovery path;
+6. cost envelope known or explicitly `QUOTE_REQUIRED`;
+7. provider portability / no single-provider lock-in.
 
-Retail / professional / accredited / institutional status must be explicit where it changes product access, leverage, market-data fees or terms.
+The following are **activation gates**, not P01 architecture gates:
+- jurisdiction/product eligibility;
+- retail/professional/accredited classification;
+- final legal entity;
+- KYC/account approval;
+- final contract/data entitlement;
+- live API permissions.
 
-Unknown where material = BLOCKED.
+Unknown activation facts do not authorize trading, but they no longer block P02 architecture.
 
-### H3 — Data rights
-
-For production data use, required rights must explicitly cover the intended use, which may include:
-
-- internal display;
-- non-display;
-- automated analysis;
-- algorithmic use;
-- storage;
-- raw retention;
-- derived data / model training;
-- exchange/index entitlement.
-
-Unknown mandatory rights = BLOCKED.
-
-### H4 — Technical capability
-
-The provider must meet the data/execution capability required by the target role.
-
-### H5 — Security / permissions
-
-The account/API model must support least privilege. Trading APIs must not require withdrawal authority.
-
-### H6 — Resilience
-
-The chosen primary and backup design must provide meaningful independence rather than duplicate the same failure domain.
-
-### H7 — Operations / recovery
-
-The candidate must support a testable failure/recovery path appropriate to its role.
-
-## 4. Deterministic soft scoring
-
-Soft scores are calculated only for candidates that pass the hard gates.
-
-### Market-data weights
-
-| Criterion | Weight |
-|---|---:|
-| Coverage / market fit | 20 |
-| Data quality / provenance / timestamps | 20 |
-| Real-time / history / replay / depth | 15 |
-| Licensing / rights clarity | 15 |
-| Resilience / backup fit | 10 |
-| Cost transparency / economics | 10 |
-| Operations / SLA / support | 10 |
-| **Total** | **100** |
-
-### Execution weights
-
-| Criterion | Weight |
-|---|---:|
-| API order lifecycle / reconciliation | 25 |
-| Market / liquidity / product fit | 20 |
-| Sandbox / test / certification | 15 |
-| Security / permissions | 15 |
-| Fees / spread / financing | 10 |
-| Resilience / support | 10 |
-| Integration complexity | 5 |
-| **Total** | **100** |
-
-A high score cannot override a failed hard gate.
-
-## 5. Current conditional shortlist
+## 4. Country-neutral reference baseline
 
 ### Crypto market data
 
-Conditional institutional primary:
-- Kaiko
+Primary reference:
+- **Kaiko**
 
-Conditional secondary:
-- CoinAPI
+Backup reference:
+- **CoinAPI**
 
-Mandatory independent cross-check:
-- direct venue-native feed for the traded venue
+Mandatory future cross-check:
+- direct venue-native feed for every actually traded venue.
 
-Current blockers:
-- enterprise quote/SLA where required;
-- non-display/algorithmic/raw-retention/model-use rights;
-- target venue jurisdiction eligibility.
+Evidence-derived technical reference scores:
+- Kaiko: **80.5 / 100**
+- CoinAPI: **78.5 / 100**
+
+Activation blockers remain:
+- commercial quote / SLA where applicable;
+- non-display / algorithmic / raw-retention / model-use rights;
+- actual traded-venue account/product eligibility.
 
 ### Forex market data
 
-Conditional primary:
-- dxFeed
+Primary reference:
+- **dxFeed**
 
-Conditional backups:
-- Massive
-- Twelve Data
+Backup reference:
+- **Twelve Data**
 
-Mandatory execution cross-check:
-- quote from the eventual eligible execution broker
+Secondary validation:
+- **Massive**
 
-Current blockers:
-- dxFeed commercial quote/SLA;
+Forex-specific technical scores:
+- dxFeed: **77.5 / 100**
+- Twelve Data: **77.0 / 100**
+- Massive: **72.0 / 100**
+
+Mandatory rules:
+- actual execution-broker quote becomes an additional live cross-check at activation;
+- no source is labeled `GLOBAL_SPOT_FX_VOLUME`;
+- broker/tick/ECN/futures/aggregated volume remains proxy-labeled with coverage confidence.
+
+Activation blockers remain:
+- commercial quote/SLA;
 - exact contributor/coverage semantics;
-- business non-display/automated rights;
-- actual account jurisdiction.
+- business non-display/automated-use rights;
+- actual broker account/product eligibility.
 
-### Futures / commodity context
+### Futures / commodity / index context
 
-Conditional primary:
-- Databento
+Primary reference:
+- **Databento**
 
-Conditional backup:
-- dxFeed
+Backup reference:
+- **dxFeed**
 
 Authority:
-- CME / ICE / Cboe as applicable
+- CME / ICE / Cboe / index owner as applicable.
 
-Current blockers:
+Databento technical reference score:
+- **88.5 / 100**
+
+Activation blockers:
 - exchange/index entitlements;
 - required depth/history tier;
-- production SLA/support.
+- production SLA/support;
+- source-specific non-display/derived-data rights.
 
 ### Macro / rates
 
 Primary authority:
-- direct official source
+- **Direct official sources**
 
-Secondary/revision-aware aggregation:
-- FRED / ALFRED
+Secondary / revision-aware aggregator:
+- **FRED / ALFRED**
 
-This is the strongest currently available baseline because it follows official-first policy.
+FRED/ALFRED reference score:
+- **92.0 / 100**
 
-### On-chain context
+Important:
+- source-agency releases remain authoritative;
+- FRED availability does not override third-party series rights.
 
-Supplemental:
-- Blockscout
+### On-chain
 
-Independent validation:
-- chain state / direct node / second indexer
+Supplemental reference:
+- **Blockscout**
+
+Independent verification:
+- direct node or second indexer when a signal becomes risk-relevant.
 
 Blockscout is not a replacement for exchange market data.
 
-## 6. Current execution candidate pools
+## 5. Execution architecture reference candidates
+
+These are **architecture reference candidates**, not production account selections.
 
 ### Crypto
 
-- Coinbase Advanced
-- Kraken
-- Binance
+Reference order by technical evidence:
+1. **Kraken — 84.5**
+2. **Binance — 83.5**
+3. **Coinbase Advanced — 76.5**
 
-No ordering is performed before Owner jurisdiction and product eligibility are known.
+P02 may use these capabilities to design a portable crypto execution adapter contract.
+
+Actual production venue:
+`DEFERRED_TO_ACCOUNT_OPENING / PRODUCTION_ACTIVATION`
 
 ### Forex
 
-- OANDA
-- Interactive Brokers
-- Saxo
+Reference order by technical evidence:
+1. **Saxo OpenAPI — 89.5**
+2. **OANDA v20 — 86.5**
+3. **Interactive Brokers — 85.0**
 
-No ordering is performed before Owner jurisdiction and account/client class are known.
+P02 may use these capabilities to design a portable Forex execution adapter contract.
 
-## 7. Decisions already rejected
+Actual production broker:
+`DEFERRED_TO_ACCOUNT_OPENING / PRODUCTION_ACTIVATION`
 
-The following are rejected by design:
+## 6. Scoring rules
 
-- one provider for all data domains;
-- treating two aggregators as independent without upstream-source review;
-- broker quote as global Spot FX market truth;
-- blind automatic live cross-broker failover;
-- production use where required data rights are unknown;
-- inferring Owner jurisdiction from ChatGPT/account/network/location metadata.
+Scores are deterministic evidence summaries only.
 
-## 8. Human Gate
+They do **not**:
+- make a legal eligibility decision;
+- grant API authority;
+- authorize subscriptions;
+- authorize account opening;
+- authorize Live or Auto Trading.
 
-P01-G has now reached a **real Owner Human Gate**.
+A later candidate can be technically top-ranked and still be rejected at activation because of legal entity, client class, contract, permissions or product availability.
 
-To continue the final provider-baseline decision, the following must be supplied explicitly:
+## 7. Explicit rejections / deferrals
 
-1. **Account jurisdiction / country of residence**  
-   The country under which the trading/data accounts will actually be opened and operated.
+Rejected:
+- one provider for every data domain;
+- treating two aggregators as independent without upstream-source analysis;
+- broker quote as global FX market truth;
+- blind live cross-broker order replay/failover;
+- using country/location in P01-G ranking.
 
-2. **Account type**  
-   Individual or company/entity.  
-   If company/entity: country of registration.
+Deferred:
+- final crypto execution venue;
+- final Forex execution broker;
+- final provider commercial contract;
+- exchange/index entitlements;
+- real client classification;
+- any jurisdiction-specific product decision.
 
-3. **Client classification**  
-   Retail / Professional or Accredited / Institutional / Unknown.
+## 8. G1 result
 
-4. **Intended products**  
-   Choose all relevant:
-   - Crypto Spot
-   - Crypto Perpetual/Futures
-   - Forex Spot / leveraged FX / CFD as applicable
+P01-A through P01-F are canonical.
 
-5. **Optional budget preference**  
-   - Low-cost
-   - Balanced
-   - Reliability-first
-   - Unknown
+P01-G now has:
+- a provider-neutral/country-neutral shortlist;
+- known constraints;
+- cost/rights unknowns explicitly labeled;
+- plausible primary/backup/cross-check paths;
+- execution reference candidates;
+- no single-provider architecture assumption;
+- no hidden use of location.
 
-Citizenship or tax residency will only be requested later if a shortlisted provider/regime specifically requires it. The project does not collect extra personal data without a concrete need.
+Therefore:
 
-## 9. What happens immediately after the Human Gate
+`G1_PROVIDER_BASELINE = PASS_PENDING_CANONICAL_MERGE`
 
-A8 + A10:
-- revalidate the supplied jurisdiction using official regulator sources and Legal Data Hunter.
+This PASS authorizes **P02 — Master Architecture** only.
 
-A2 + A1:
-- revalidate candidate provider availability, rights and technical fit.
+It does **not** authorize:
+- account opening;
+- KYC;
+- provider contracts;
+- credentials;
+- funding;
+- Demo/Shadow/Live execution;
+- automatic trading.
 
-A5:
-- reject any candidate with unresolved counterparty/product/risk eligibility.
+## 9. Safety state
 
-A9:
-- validate operational redundancy and recovery fit.
-
-A0:
-- run the deterministic decision process and prepare the G1 dossier.
-
-If mandatory evidence passes:
-
-`G1_PROVIDER_BASELINE = PASS`
-
-and:
-
-`P01 = CANONICAL_COMPLETE`
-
-Then the project may move to:
-
-`P02 — Master Architecture`
-
-No runtime trading implementation is authorized by G1 itself.
-
-## 10. Current status
-
-P01-A = COMPLETE  
-P01-B = COMPLETE  
-P01-C = COMPLETE  
-P01-D = COMPLETE  
-P01-E = COMPLETE  
-P01-F = COMPLETE  
-P01-G = `HUMAN_GATE_PENDING`
-
-G1 = `HUMAN_GATE`
-
-Accounts / KYC / credentials / subscriptions / funding / orders = `NONE`  
-Live Trading = `DISABLED`  
-Auto Trading = `DISABLED`
+Accounts = NONE  
+KYC = NONE  
+Subscriptions/contracts = NONE  
+Credentials = NONE  
+Funding = NONE  
+Orders = NONE  
+Demo Trading = NOT_STARTED  
+Shadow Trading = NOT_STARTED  
+Live Trading = DISABLED  
+Auto Trading = DISABLED
