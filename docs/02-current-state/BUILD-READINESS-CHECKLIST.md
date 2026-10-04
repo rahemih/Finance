@@ -82,6 +82,13 @@ ML_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
 - [x] Signing candidate identified: Cosign.
 - [x] Build provenance standard identified: SLSA-class.
 - [x] Policy-as-code candidate identified.
+- [x] Security tooling registry exists.
+- [x] Primary SAST candidate identified: GitHub CodeQL.
+- [x] Broad vulnerability/misconfiguration candidate identified: Trivy.
+- [x] Custom SAST candidate identified: Semgrep.
+- [x] DAST/API candidate identified: OWASP ZAP.
+- [x] Runtime security candidate identified: Falco (conditional).
+- [x] Independent SBOM vulnerability scanner identified: Grype.
 - [x] Least-privilege / Human Gate model defined.
 - [ ] P03 security architecture completed.
 - [ ] P04 supply-chain CI gates implemented.
