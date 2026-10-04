@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WH-001",
+  "state": "PROVISIONAL_CAPACITY_COST_BASELINE",
+  "measurement_status": "DESIGN_ASSUMPTIONS_NOT_PRODUCTION_MEASUREMENTS",
+  "trading_latency_class": "NON_HFT",
+  "country_location_dependency": "NONE",
+  "workload_scenarios": [
+    {
+      "id": "BOOTSTRAP",
+      "purpose": "initial engineering/demo validation scope",
+      "active_instrument_streams_provisional": 25,
+      "average_events_per_sec": 500,
+      "peak_events_per_sec": 5000,
+      "concurrent_user_sessions": 10,
+      "concurrent_agent_runs": 5,
+      "notes": "Intentionally small bootstrap scope; expansion only after P05/P06 measurements."
+    },
+    {
+      "id": "OPERATING",
+      "purpose": "expected private-system operating design point",
+      "active_instrument_streams_provisional": 75,
+      "average_events_per_sec": 2000,
+      "peak_events_per_sec": 20000,
+      "concurrent_user_sessions": 20,
+      "concurrent_agent_runs": 10,
+      "notes": "Primary architecture sizing target for P04 technology selection."
+    },
+    {
+      "id": "STRESS",
+      "purpose": "architecture stress/review boundary, not normal target",
+      "active_instrument_streams_provisional": 200,
+      "average_events_per_sec": 10000,
+      "peak_events_per_sec": 50000,
+      "concurrent_user_sessions": 50,
+      "concurrent_agent_runs": 25,
+      "notes": "Exceeding this envelope triggers explicit architecture review rather than silent scaling assumptions."
+    }
+  ],
+  "event_size_assumptions_bytes": [
+    500,
+    1000
+  ],
+  "storage_calculation": {
+    "formula_uncompressed_GB_per_day": "events_per_sec * event_bytes * 86400 / 1e9",
+    "formula_uncompressed_TB_per_30d": "events_per_sec * event_bytes * 86400 * 30 / 1e12",
+    "compression_ratios_for_planning_only": [
+      "3:1",
+      "5:1"
+    ],
+    "wolfram_unit_check": [
+      {
+        "scenario": "BOOTSTRAP",
+        "events_per_sec": 500,
+        "event_bytes": 500,
+        "GB_day_uncompressed": 21.6,
+        "TB_30d_uncompressed": 0.648,
+        "GB_day_3to1": 7.2,
+        "GB_day_5to1": 4.32
+      },
+      {
+        "scenario": "BOOTSTRAP",
+        "events_per_sec": 500,
+        "event_bytes": 1000,
+        "GB_day_uncompressed": 43.2,
+        "TB_30d_uncompressed": 1.296,
+        "GB_day_3to1": 14.4,
+        "GB_day_5to1": 8.64
+      },
+      {
+        "scenario": "OPERATING",
+        "events_per_sec": 2000,
+        "event_bytes": 500,
+        "GB_day_uncompressed": 86.4,
+        "TB_30d_uncompressed": 2.592,
+        "GB_day_3to1": 28.8,
+        "GB_day_5to1": 17.28
+      },
+      {
+        "scenario": "OPERATING",
+        "events_per_sec": 2000,
+        "event_bytes": 1000,
+        "GB_day_uncompressed": 172.8,
+        "TB_30d_uncompressed": 5.184,
+        "GB_day_3to1": 57.6,
+        "GB_day_5to1": 34.56
+      },
+      {
+        "scenario": "STRESS",
+        "events_per_sec": 10000,
+        "event_bytes": 500,
+        "GB_day_uncompressed": 432,
+        "TB_30d_uncompressed": 12.96,
+        "GB_day_3to1": 144,
+        "GB_day_5to1": 86.4
+      },
+      {
+        "scenario": "STRESS",
+        "events_per_sec": 10000,
+        "event_bytes": 1000,
+        "GB_day_uncompressed": 864,
+        "TB_30d_uncompressed": 25.92,
+        "GB_day_3to1": 288,
+        "GB_day_5to1": 172.8
+      }
+    ],
+    "caveats": [
+      "Serialized event size varies materially by trade/quote/book/provider/schema.",
+      "Compression depends on codec, columnar layout, cardinality and data type.",
+      "Order-book depth data can exceed representative averages.",
+      "Provider retention/licensing may forbid or shorten raw retention.",
+      "P05/P06 measured histograms replace these assumptions."
+    ]
+  },
+  "retention_envelope": [
+    {
+      "tier": "HOT",
+      "provisional_duration": "7 days",
+      "intended_data": [
+        "recent canonical events",
+        "selected raw evidence where licensed",
+        "current replay windows"
+      ],
+      "objective": "fast investigation/replay",
+      "rights_rule": "provider contract can shorten or forbid raw retention"
+    },
+    {
+      "tier": "WARM",
+      "provisional_duration": "30-90 days",
+      "intended_data": [
+        "canonical events",
+        "selected raw/history",
+        "quality/provenance",
+        "feature lineage"
+      ],
+      "objective": "operational analytics/backtest windows",
+      "rights_rule": "dataset-specific"
+    },
+    {
+      "tier": "COLD",
+      "provisional_duration": "90 days to multi-year where permitted",
+      "intended_data": [
+        "compressed/partitioned history",
+        "macro vintages",
+        "replay manifests",
+        "derived features",
+        "model artifacts",
+        "audit evidence"
+      ],
+      "objective": "research/reproducibility/long-term evidence",
+      "rights_rule": "raw provider content retained only if licensed; derived-only where required"
+    }
+  ],
+  "buffer_backpressure_envelope": {
+    "planning_rule": "At least 60 seconds of OPERATING peak ingress should be absorbable through bounded buffering/backpressure without silent loss; exact implementation measured in P05.",
+    "operating_example_raw_payload_only": "20,000 eps * 1,000 bytes * 60s = 1.2 GB before framing/runtime overhead",
+    "stress_example_raw_payload_only": "50,000 eps * 1,000 bytes * 60s = 3.0 GB before framing/runtime overhead",
+    "implementation_rule": "Never provision buffer by payload bytes alone; include serialization/runtime/index/replication overhead and bounded disk spill where appropriate."
+  },
+  "latency_classes": [
+    {
+      "id": "L_FAST_DATA",
+      "path": "adapter receive -> canonical event availability",
+      "provisional_target": "p95 <= 250 ms, p99 <= 1000 ms under OPERATING",
+      "excludes": [
+        "upstream provider source latency",
+        "internet distance before receipt"
+      ],
+      "failure_behavior": "freshness flags/degraded mode; no false timestamp substitution"
+    },
+    {
+      "id": "L_SIGNAL_STANDARD",
+      "path": "quality-qualified evidence cutoff -> SignalCandidate",
+      "provisional_target": "p95 <= 2 s for fast/intraday pipelines; slower macro/research pipelines declare their own horizon",
+      "excludes": [
+        "slow external publications before ingestion"
+      ],
+      "failure_behavior": "WAIT/expired evidence rather than late actionable signal"
+    },
+    {
+      "id": "L_RISK_FIREWALL",
+      "path": "SignalCandidate + current state -> FirewallVerdict",
+      "provisional_target": "p95 <= 100 ms, p99 <= 250 ms internal processing",
+      "excludes": [
+        "model inference upstream",
+        "broker network"
+      ],
+      "failure_behavior": "timeout/unknown critical state fails closed"
+    },
+    {
+      "id": "L_OMS_DISPATCH",
+      "path": "ApprovedTradeIntent -> provider-adapter dispatch start",
+      "provisional_target": "p95 <= 100 ms internal processing",
+      "excludes": [
+        "broker/exchange acknowledgement latency"
+      ],
+      "failure_behavior": "UNKNOWN/RECONCILING semantics from ADR-0010"
+    },
+    {
+      "id": "L_UI",
+      "path": "user query/navigation -> useful operational view",
+      "provisional_target": "p95 <= 2 s for ordinary internal dashboards",
+      "excludes": [
+        "explicit long-running research jobs"
+      ],
+      "failure_behavior": "show stale/loading/degraded state explicitly"
+    }
+  ],
+  "agent_model_envelope": {
+    "team_size_baseline": "private owner/team <=10",
+    "concurrent_agent_runs": {
+      "bootstrap": 5,
+      "operating": 10,
+      "stress": 25
+    },
+    "default_per_run_limits_required": [
+      "max turns",
+      "max tool calls",
+      "max wall-clock",
+      "token budget",
+      "cost budget",
+      "retry limit"
+    ],
+    "provider_concurrency_rule": "Start with conservative configurable provider-specific concurrency; discover actual limits in P04/P18 rather than assuming unlimited parallelism.",
+    "safety_priority": "Budget/cost limits may degrade or pause research agents but cannot disable deterministic Risk/Security/Audit controls."
+  },
+  "research_compute_classes": [
+    {
+      "id": "RC_INTERACTIVE",
+      "examples": [
+        "feature inspection",
+        "small scenario analysis",
+        "short replay"
+      ],
+      "target": "seconds to minutes",
+      "concurrency": "several jobs"
+    },
+    {
+      "id": "RC_BATCH",
+      "examples": [
+        "multi-instrument backtest",
+        "walk-forward",
+        "feature rebuild"
+      ],
+      "target": "minutes to hours",
+      "concurrency": "bounded queue; default 2-4 heavy jobs in early system"
+    },
+    {
+      "id": "RC_HEAVY",
+      "examples": [
+        "Monte Carlo",
+        "large parameter sweep",
+        "retraining"
+      ],
+      "target": "hours; scheduled/queued",
+      "concurrency": "1-2 early; expand only after cost/measurement evidence"
+    }
+  ],
+  "observability_envelope": {
+    "telemetry_volume_budget": "Plan 5-15% additional storage/ingest overhead relative to retained operational metadata, excluding verbose debug traces.",
+    "sampling_rule": "Never sample away mandatory execution/risk/security/audit evidence. High-volume low-risk debug telemetry may be sampled.",
+    "retention_rule": "Security/audit retention can differ from application logs.",
+    "cost_control": "debug verbosity and trace detail are environment-sensitive; production safety evidence remains unsampled."
+  },
+  "dr_targets_provisional": [
+    {
+      "class": "DR0_EXECUTION_AUTHORITY",
+      "local_persisted_state_rpo_objective": "<= 1 minute provisional",
+      "safe_mode_rto_objective": "<= 15 minutes provisional",
+      "normal_operation_rto_objective": "<= 60 minutes after successful reconciliation",
+      "rule": "External broker truth must be reconciled; local RPO does not replace external truth."
+    },
+    {
+      "class": "DR1_CONTROL_SECURITY",
+      "rpo_objective": "<= 15 minutes provisional",
+      "rto_objective": "<= 4 hours provisional"
+    },
+    {
+      "class": "DR2_MARKET_HISTORY_RESEARCH",
+      "rpo_objective": "<= 24 hours provisional for rebuildable/backfillable data; tighter where source cannot be recovered",
+      "rto_objective": "<= 24 hours provisional"
+    },
+    {
+      "class": "DR3_DERIVED_REBUILDABLE",
+      "rpo_objective": "N/A if fully rebuildable",
+      "rto_objective": "<= 48 hours provisional"
+    }
+  ],
+  "cost_model": {
+    "formula": "monthly_total = market_data_fixed + exchange_index_entitlements + provider_usage + execution_fees + compute + storage + egress + model_ai + observability + backup_dr + security + support",
+    "pricing_source_rule": "Use official/current P01-E or later procurement evidence; never embed stale vendor totals as architecture truth.",
+    "budget_mode": "BALANCED_NON_BINDING_DEFAULT_UNTIL_OWNER_SETS_BUDGET",
+    "guardrails": [
+      {
+        "threshold": "70% of configured monthly budget forecast",
+        "action": "alert and forecast review"
+      },
+      {
+        "threshold": "85%",
+        "action": "throttle/defer noncritical research, heavy experiments and optional model diversity"
+      },
+      {
+        "threshold": "100%",
+        "action": "freeze discretionary new research spend; preserve safety/security/audit/required operations"
+      },
+      {
+        "threshold": "unexpected 2x daily cost anomaly",
+        "action": "circuit-breaker optional AI/research workloads and investigate"
+      }
+    ],
+    "never_cost_disable": [
+      "Risk Engine",
+      "Pre-Trade Firewall",
+      "Security controls",
+      "mandatory Audit/Evidence",
+      "execution reconciliation",
+      "kill switches"
+    ]
+  },
+  "capacity_guardrails": [
+    {
+      "trigger": "sustained ingestion >70% of OPERATING average envelope or repeated peak-buffer exhaustion",
+      "action": "capacity investigation and P05 benchmark evidence"
+    },
+    {
+      "trigger": "sustained workload exceeds OPERATING envelope or approaches STRESS envelope",
+      "action": "architecture/scaling review before broad universe/provider expansion"
+    },
+    {
+      "trigger": "average event rate >10,000 eps or peak >50,000 eps",
+      "action": "explicit P02/P04 architecture reassessment; do not assume current topology"
+    },
+    {
+      "trigger": "active instrument/provider stream count >200",
+      "action": "re-evaluate partitioning/process extraction/streaming topology"
+    },
+    {
+      "trigger": "agent concurrency >25 or heavy research queue persistently saturated",
+      "action": "re-evaluate worker isolation/scheduling/model-provider quotas"
+    },
+    {
+      "trigger": "storage growth deviates >50% from forecast for 7 days",
+      "action": "retention/schema/compression/provider-feed investigation"
+    },
+    {
+      "trigger": "critical latency SLO fails for three consecutive measurement windows",
+      "action": "degrade/stop expansion and profile bottleneck before scaling features"
+    }
+  ],
+  "benchmark_handoff": {
+    "P04": [
+      "benchmark candidate runtime/database/queue/storage primitives against OPERATING and STRESS envelopes",
+      "measure serialization and telemetry overhead",
+      "validate environment resource isolation and cost instrumentation"
+    ],
+    "P05": [
+      "measure real event-size/rate distributions per provider/instrument/channel",
+      "load/soak burst tests and backpressure/gap behavior",
+      "replace provisional data latency with measured p50/p95/p99"
+    ],
+    "P06": [
+      "measure compression ratios, partition sizes, retention/compaction cost",
+      "benchmark replay scan rates and feature rebuild"
+    ],
+    "P17_P18": [
+      "measure backtest/retraining CPU/memory/model costs and queue saturation"
+    ],
+    "P22": [
+      "measure backup duration, restore throughput and actual RPO/RTO drills"
+    ]
+  }
+}
