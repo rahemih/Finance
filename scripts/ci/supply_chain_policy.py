@@ -322,15 +322,20 @@ def validate_sbom(path: Path, license_policy: dict[str, Any], active: list[dict[
 
     reviewed_count = 0
     third_party_count = 0
+    violations: list[str] = []
+
     for component in components:
         if not isinstance(component, dict):
-            fail("SBOM_COMPONENT_OBJECT_REQUIRED")
+            violations.append("SBOM_COMPONENT_OBJECT_REQUIRED")
+            continue
         name = component.get("name")
         if name in first_party:
             continue
+
         third_party_count += 1
         identity = component_identity(component)
         licenses = component_licenses(component)
+
         if not licenses:
             asserted = curated_license_assertion(license_policy, identity)
             if asserted is not None:
@@ -340,29 +345,35 @@ def validate_sbom(path: Path, license_policy: dict[str, Any], active: list[dict[
                 if has_license_waiver(active, identity, marker):
                     reviewed_count += 1
                     continue
-                fail(f"SBOM_LICENSE_MISSING component={identity}")
+                violations.append(f"SBOM_LICENSE_MISSING component={identity}")
+                continue
 
         for value in licenses:
             lowered = value.lower()
             if value in block or any(pattern in lowered for pattern in blocked_patterns):
-                fail(f"SBOM_LICENSE_BLOCKED component={identity} license={value}")
+                violations.append(f"SBOM_LICENSE_BLOCKED component={identity} license={value}")
+                continue
             if value in allow:
                 continue
             if value in review:
                 if has_license_waiver(active, identity, value):
                     reviewed_count += 1
                     continue
-                fail(f"SBOM_LICENSE_REVIEW_REQUIRED component={identity} license={value}")
+                violations.append(f"SBOM_LICENSE_REVIEW_REQUIRED component={identity} license={value}")
+                continue
             if value in {"UNKNOWN", "NOASSERTION"}:
                 if has_license_waiver(active, identity, value):
                     reviewed_count += 1
                     continue
-                fail(f"SBOM_LICENSE_UNKNOWN component={identity} license={value}")
-            # Compound SPDX expressions or unclassified names require explicit review.
+                violations.append(f"SBOM_LICENSE_UNKNOWN component={identity} license={value}")
+                continue
             if has_license_waiver(active, identity, value):
                 reviewed_count += 1
                 continue
-            fail(f"SBOM_LICENSE_UNCLASSIFIED component={identity} license={value}")
+            violations.append(f"SBOM_LICENSE_UNCLASSIFIED component={identity} license={value}")
+
+    if violations:
+        fail("SBOM_LICENSE_VIOLATIONS " + " || ".join(sorted(violations)))
 
     print(
         "SBOM_LICENSE_POLICY=PASS "
