@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P02-WC-001 — Data Flow & Storage Architecture`  
-Active branch: `docs/FIN-P02-WC-001-data-flow-storage-architecture`  
-Active lock: `LOCK-FIN-P02-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -498,10 +497,10 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: ACTIVE_P02_C
+P02 — Master Architecture: READY_FOR_P02_D
 
-Active workstream:
-`P02-C — Data Flow & Storage Architecture`
+Next workstream:
+`P02-D — Intelligence / Signal Architecture`
 
 Primary agents:
 A1 lead; A2/A4/A5/A6/A8/A9 consulted; A10 audits; A0 coordinates.
@@ -604,8 +603,8 @@ Auto Trading: DISABLED
 
 Task: `FIN-P02-WC-001`  
 Linear: `HOS-156`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P02-WC-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md`
@@ -629,3 +628,15 @@ Country/location dependency: NONE
 Runtime storage implementation: NOT_STARTED  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P02-C closure evidence
+
+- Implementation PR: `#63`
+- Merge SHA: `1f72627d2a9a84af9ab273f74585e49bc2f2c126`
+- PR Governance run: `37191228229` = SUCCESS
+- Post-merge Governance run: `37191255047` = SUCCESS
+- Post-merge Branch Hygiene run: `37191255051` = SUCCESS
+- `FIN-P02-WC-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P02-WC-001-01 = RELEASED`
+- P02 next workstream: `P02-D — Intelligence / Signal Architecture`
