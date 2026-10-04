@@ -2,8 +2,8 @@
   "schema_version": "1.1.0",
   "task_id": "FIN-P01-WG-004",
   "assessed_at": "2026-10-04",
-  "state": "COUNTRY_NEUTRAL_BASELINE_READY",
-  "g1_provider_baseline": "PASS_PENDING_CANONICAL_MERGE",
+  "state": "CANONICAL_BASELINE",
+  "g1_provider_baseline": "PASS",
   "owner_directive": {
     "country_or_location": "DO_NOT_USE_DO_NOT_ASSUME",
     "account_type": "INDIVIDUAL",
@@ -281,5 +281,14 @@
     "shadow_trading": "NOT_STARTED",
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
+  },
+  "closure_evidence": {
+    "implementation_pr": 55,
+    "implementation_merge_sha": "ac16f7fe136c6dcef3d80c7578a8b60d2670c2f4",
+    "implementation_pr_governance_run": 37187579529,
+    "postmerge_governance_run": 37187602600,
+    "postmerge_branch_hygiene_run": 37187602599,
+    "task_status": "CANONICAL_COMPLETE",
+    "lock": "RELEASED"
   }
 }
