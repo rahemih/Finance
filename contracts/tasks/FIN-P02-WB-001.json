@@ -1,0 +1,145 @@
+{
+  "task_id": "FIN-P02-WB-001",
+  "phase": "P02",
+  "workstream": "WB",
+  "objective": "Define the canonical logical domain/module boundaries, ownership, dependency direction and prohibited couplings for NEXUS QUANT before data, intelligence, risk/execution and runtime topology are detailed.",
+  "scope": [
+    "Define external adapter and provider boundary",
+    "Define canonical instrument/reference-data and market-event boundary",
+    "Define raw/history/storage ownership boundary",
+    "Define data-quality/provenance boundary",
+    "Define feature/evidence boundary",
+    "Define market-intelligence boundary",
+    "Define quant/strategy boundary",
+    "Define signal/probability/explainability boundary",
+    "Define portfolio/risk boundary",
+    "Define deterministic pre-trade firewall boundary",
+    "Define execution/OMS/reconciliation boundary",
+    "Define learning/experiment/model-registry boundary",
+    "Define operations/observability boundary",
+    "Define security/identity/secrets boundary",
+    "Define agent control-plane boundary",
+    "Define UX/API/notification/team boundary",
+    "Define evidence/audit boundary",
+    "Define allowed dependency direction and prohibited cross-domain access",
+    "Identify dedicated-process/service extraction candidates without implementing them"
+  ],
+  "out_of_scope": [
+    "Select runtime frameworks, databases, queues or cloud providers",
+    "Freeze physical deployment topology",
+    "Define exact event/storage schemas",
+    "Implement modules or services",
+    "Provision infrastructure",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WB-001.json",
+    "docs/04-architecture/DOMAIN-BOUNDARIES.md",
+    "docs/04-architecture/domain-boundaries.json",
+    "docs/04-architecture/ADR/ADR-0007-domain-boundaries-dependency-direction.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Every domain has one primary owner",
+    "Dependency direction is explicit and acyclic at the logical-domain level",
+    "Strategy/Signal cannot call execution directly",
+    "Execution cannot override Risk/Firewall",
+    "Learning cannot auto-promote into Live",
+    "UX and agents cannot bypass application/domain APIs to mutate broker/provider state",
+    "Provider-specific data is confined to adapters/boundary metadata",
+    "Operations can observe/control health but cannot silently change trading risk policy",
+    "Country/location is absent from domain design"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Security/identity boundary owns credentials/secrets policy",
+    "Trading credentials remain withdrawal-disabled by principle",
+    "Agent tool authority is bounded",
+    "Critical cross-domain writes are auditable",
+    "No provider SDK is allowed as a core domain dependency"
+  ],
+  "evidence": [
+    "P02-A architecture principles",
+    "Foundational ADRs 0001-0006",
+    "Canonical A0-A10 authority model",
+    "P01 provider baseline and portability requirements",
+    "Domain boundary document and machine-readable matrix",
+    "ADR-0007",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-155 reconciliation"
+  ],
+  "rollback": "Revert P02-B architecture artifacts and state/catalog changes. No runtime code or infrastructure is created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WA-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_B",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Logical domain map is canonical",
+    "Ownership matrix is canonical",
+    "Allowed dependency direction is canonical",
+    "Prohibited couplings are canonical",
+    "Service extraction candidates are documented without premature physical decomposition",
+    "ADR-0007 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WB-001 = CANONICAL_COMPLETE"
+  ]
+}
