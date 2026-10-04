@@ -1,12 +1,12 @@
 # Current State
 
-Last reconciled: 2026-10-03
+Last reconciled: 2026-10-04
 
 ## Repository
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD before this closure PR: `ac16f7fe136c6dcef3d80c7578a8b60d2670c2f4`  
+Canonical HEAD at P03-A Fresh Live Guard: `4ca8fd2f511f450571bd244647bd49bcbb316bfc`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WA-001 — Threat Model`  
+Active branch: `security/FIN-P03-WA-001-threat-model`  
+Active lock: `LOCK-FIN-P03-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P01 is CANONICAL_COMPLETE and G1_PROVIDER_BASELINE = PASS. P02 — Master Architecture is READY. Actual jurisdiction/client-class eligibility remains deferred to account-opening / production activation.
+P03-A — Threat Model is ACTIVE under `FIN-P03-WA-001` / `HOS-163`. The task is architecture/security analysis only; it does not provision security infrastructure, credentials, accounts or trading authority.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -934,3 +935,58 @@ Safety:
 - accounts/credentials/funding/orders = NONE
 - Live Trading = DISABLED
 - Auto Trading = DISABLED
+
+
+## P03-A — Threat Model
+
+Task: `FIN-P03-WA-001`  
+Linear: `HOS-163`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WA-001-threat-model`  
+Lock: `LOCK-FIN-P03-WA-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A6 Execution
+- A9 Operations
+- A10 Evidence / Audit
+
+Artifacts:
+- `contracts/tasks/FIN-P03-WA-001.json`
+- `docs/05-security/THREAT-MODEL.md`
+- `docs/05-security/threat-model.json`
+- `docs/05-security/THREAT-MODEL-DIAGRAMS.md`
+
+Baseline:
+- P02 = CANONICAL_COMPLETE
+- G2_ARCHITECTURE_FREEZE = PASS
+- P02_ARCHITECTURE_BASELINE = FROZEN_G2
+- country/location dependency = NONE
+
+Threat-model coverage:
+- identities/sessions/RBAC/Human Gates;
+- secrets and execution credentials;
+- agent/LLM prompt injection, MCP/tool poisoning and excessive agency;
+- market-data poisoning/replay/staleness/provenance;
+- A5/A8 veto bypass;
+- duplicate/rerouted/UNKNOWN execution state;
+- supply-chain/CI/SBOM/provenance;
+- audit/telemetry tampering;
+- backup/restore/DR corruption;
+- application ingress and DoS.
+
+Machine-readable threat count: 35.
+
+Important:
+- controls are requirements / planned mitigations, not claimed implemented;
+- runtime implementation remains NOT_STARTED;
+- accounts/credentials/funding/orders = NONE;
+- Live Trading = DISABLED;
+- Auto Trading = DISABLED.
+
+Next P03-A step:
+Governance validation -> implementation PR -> merge -> post-merge verify -> closure reconciliation -> lock release.
