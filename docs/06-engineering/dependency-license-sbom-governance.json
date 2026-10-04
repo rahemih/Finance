@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WF-001",
-  "state": "P04-F_IMPLEMENTATION",
+  "state": "P04-F_CANONICAL_COMPLETE",
   "tools": {
     "syft": {
       "version": "1.54.0",
@@ -33,5 +33,18 @@
   "next": "P04-G — Developer Bootstrap & Tooling (NOT_STARTED)",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 104,
+    "implementation_head_sha": "188c6c56e855af0a90f5e8078da51a5599a03567",
+    "pr_governance_run": 37208914028,
+    "pr_artifact_id": 11305319583,
+    "pr_artifact_digest": "sha256:e3e1b8e2620659c96c13237deb434344bc46e06670cee1978da1aa5afd836660",
+    "implementation_merge_sha": "b1eaec2899462e59c4e88260020b31d3b90c87e5",
+    "postmerge_governance_run": 37208975687,
+    "postmerge_branch_hygiene_run": 37208975652,
+    "postmerge_artifact_id": 11305991133,
+    "postmerge_artifact_digest": "sha256:c6dd7ab0f1b66aa3c4b6e17adc8a621128e88dbb2f0d87f3730152c3ac560718",
+    "lock": "RELEASED"
+  }
 }

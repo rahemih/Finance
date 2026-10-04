@@ -1,6 +1,6 @@
 # NEXUS QUANT — Dependency / License / SBOM Governance
 
-STATE = P04-F IMPLEMENTATION
+STATE = P04-F CANONICAL_BASELINE
 TASK = `FIN-P04-WF-001`
 LINEAR = `HOS-177`
 DATE = 2026-10-04
@@ -229,3 +229,32 @@ After canonical closure:
 `P04-G — Developer Bootstrap & Tooling`
 
 P04-G is not started by P04-F.
+
+
+## 13. Closure evidence
+
+Implementation:
+- PR: `#104` = MERGED
+- final PR head SHA: `188c6c56e855af0a90f5e8078da51a5599a03567`
+- required Governance/Foundation CI: `37208914028` = SUCCESS
+- PR artifact: `11305319583`
+- PR artifact digest: `sha256:e3e1b8e2620659c96c13237deb434344bc46e06670cee1978da1aa5afd836660`
+- implementation merge SHA: `b1eaec2899462e59c4e88260020b31d3b90c87e5`
+- post-merge Governance/Foundation CI: `37208975687` = SUCCESS
+- post-merge Branch Hygiene: `37208975652` = SUCCESS
+- post-merge artifact: `11305991133`
+- post-merge artifact digest: `sha256:c6dd7ab0f1b66aa3c4b6e17adc8a621128e88dbb2f0d87f3730152c3ac560718`
+
+Validated controls:
+- CycloneDX JSON 1.7 = PASS
+- Syft 1.54.0 = PASS
+- license policy = PASS
+- Trivy 0.75.0 HIGH/CRITICAL gate = PASS
+- governed waiver parity = PASS
+- dependency auto-merge = DISABLED
+
+Closure:
+- `FIN-P04-WF-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WF-001-01 = RELEASED`
+- next workstream = `P04-G — Developer Bootstrap & Tooling`
+- P04-G = `NOT_STARTED`
