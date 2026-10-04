@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-E_IMPLEMENTATION",
+  "task_id": "FIN-P03-WE-001",
+  "linear_issue": "HOS-167",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "prior_security": [
+      "P03-A_CANONICAL",
+      "P03-B_CANONICAL",
+      "P03-C_CANONICAL",
+      "P03-D_CANONICAL"
+    ],
+    "country_location_dependency": "NONE",
+    "canary": "DISABLED",
+    "live": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "stream_classes": [
+    {
+      "id": "L1",
+      "name": "SECURITY_AUDIT",
+      "integrity": "CRITICAL"
+    },
+    {
+      "id": "L2",
+      "name": "GOVERNANCE_CHANGE_AUDIT",
+      "integrity": "CRITICAL"
+    },
+    {
+      "id": "L3",
+      "name": "EXECUTION_FINANCIAL_AUDIT",
+      "integrity": "CRITICAL"
+    },
+    {
+      "id": "L4",
+      "name": "DATA_EVIDENCE_PROVENANCE",
+      "integrity": "HIGH"
+    },
+    {
+      "id": "L5",
+      "name": "OPERATIONAL_RELIABILITY",
+      "integrity": "HIGH"
+    },
+    {
+      "id": "L6",
+      "name": "DEBUG_DIAGNOSTIC",
+      "integrity": "NON_AUTHORITATIVE_BY_DEFAULT"
+    }
+  ],
+  "event_envelope_required": [
+    "audit_event_id",
+    "event_type",
+    "event_schema_version",
+    "event_time",
+    "receive_time",
+    "observed_at",
+    "time_confidence",
+    "actor_principal_id",
+    "actor_type",
+    "actor_session_or_workload_ref",
+    "action",
+    "target_resource",
+    "environment",
+    "policy_version",
+    "result",
+    "reason_code",
+    "evidence_refs",
+    "producer_id",
+    "sequence_or_chain_position",
+    "event_digest"
+  ],
+  "optional_context": [
+    "source_time",
+    "task_id",
+    "run_id",
+    "correlation_id",
+    "authorization_decision_id",
+    "human_gate_id",
+    "risk_verdict_id",
+    "firewall_verdict_id",
+    "before_ref",
+    "after_ref",
+    "previous_digest",
+    "signature_attestation_ref"
+  ],
+  "attribution": {
+    "shared_admin_identity": "FORBIDDEN",
+    "collapse_to_system_identity": "FORBIDDEN_FOR_ATTRIBUTABLE_ACTIONS",
+    "preserve_delegation_chain": true,
+    "source_ip_location_is_identity": false
+  },
+  "integrity": {
+    "canonical_history": "APPEND_ONLY_LOGICAL",
+    "silent_edit": false,
+    "corrections": "NEW_LINKED_EVENTS",
+    "adhoc_delete": false,
+    "digest_chaining_or_equivalent_required_for_critical_domains": true,
+    "protected_checkpoint_manifest_direction": true,
+    "immutable_read_only_copy_direction": true,
+    "audit_access_itself_audited": true,
+    "hash_beside_mutable_data_alone_sufficient": false
+  },
+  "digest_chain": {
+    "conceptual_formula": "H(canonical_event_n || digest_n-1 || stream_id || schema_version)",
+    "canonical_serialization_required": true,
+    "algorithm": "DEFERRED_TO_P04_APPROVED_CRYPTO",
+    "explicit_stream_partition": true,
+    "checkpoints_manifests": true,
+    "independently_protected_trust_anchor_direction": true,
+    "rewrite_to_repair": false
+  },
+  "role_separation": {
+    "writer_can_append": true,
+    "writer_can_mutate_prior": false,
+    "reader_can_query_scoped": true,
+    "reader_can_mutate": false,
+    "audit_admin_business_authority_inherited": false,
+    "evidence_approver_can_fabricate_missing_events": false
+  },
+  "never_log": [
+    "password",
+    "mfa_secret",
+    "private_key",
+    "api_key",
+    "raw_broker_exchange_credential",
+    "full_session_token",
+    "access_token",
+    "refresh_token",
+    "secret_manager_plaintext"
+  ],
+  "time": {
+    "semantics": [
+      "source_time",
+      "event_time",
+      "receive_time",
+      "observed_at"
+    ],
+    "clock_source_recorded": true,
+    "offset_sync_state_recorded_when_known": true,
+    "time_confidence_required": true,
+    "external_device_time_implicitly_trusted": false,
+    "monotonic_sequence_for_ordering_critical_streams": "WHEN_APPLICABLE"
+  },
+  "change_classes": [
+    {
+      "id": "C1",
+      "name": "SECURITY_AUTHORITY_CHANGE",
+      "severity": "CRITICAL",
+      "maker_checker": "SELECTED_HIGHEST_RISK"
+    },
+    {
+      "id": "C2",
+      "name": "RISK_TRADING_AUTHORITY_CHANGE",
+      "severity": "CRITICAL",
+      "maker_checker": "REQUIRED_FOR_PRODUCTION_CAPABLE_HIGHEST_RISK"
+    },
+    {
+      "id": "C3",
+      "name": "CREDENTIAL_SECRET_CHANGE",
+      "severity": "CRITICAL",
+      "maker_checker": "POLICY_DEFINED_PRODUCTION_CRITICAL"
+    },
+    {
+      "id": "C4",
+      "name": "ENVIRONMENT_NETWORK_EXPOSURE_CHANGE",
+      "severity": "HIGH_OR_CRITICAL",
+      "maker_checker": "AS_POLICY_REQUIRES"
+    },
+    {
+      "id": "C5",
+      "name": "MODEL_STRATEGY_CONFIG_PROMOTION",
+      "severity": "HIGH",
+      "maker_checker": "HIGHER_GATE_FOR_CANARY_LIVE"
+    },
+    {
+      "id": "C6",
+      "name": "DATA_PROVENANCE_OVERRIDE",
+      "severity": "HIGH",
+      "maker_checker": "AS_POLICY_REQUIRES"
+    }
+  ],
+  "maker_checker_required_when": [
+    "enable_CANARY_or_LIVE_authority",
+    "weaken_disable_A5_A8_Firewall",
+    "grant_critical_credential_permissions",
+    "publicly_expose_Z4_Z5_Z7",
+    "destroy_disable_critical_audit_evidence",
+    "equivalent_critical_security_authority_escalation"
+  ],
+  "human_gate_bindings": [
+    "approval_id",
+    "approver_principal",
+    "maker_requester_principal",
+    "task_run",
+    "exact_action",
+    "target_resource",
+    "environment",
+    "normalized_argument_or_config_digest",
+    "before_after_version_digest",
+    "evidence_refs",
+    "timestamp",
+    "expiry",
+    "single_use_state",
+    "resulting_authorization_or_change_id"
+  ],
+  "human_gate_rules": {
+    "different_arguments_forbidden": true,
+    "material_drift_invalidates": true,
+    "suppress_A5_A8_veto": false,
+    "replay_after_use_or_expiry": false,
+    "lower_environment_reuse_for_higher": false
+  },
+  "critical_path_completeness": [
+    "authentication_authorization",
+    "governance",
+    "risk_execution",
+    "secrets",
+    "network_administration",
+    "supply_chain_when_implemented",
+    "backup_restore"
+  ],
+  "audit_failure": {
+    "high_critical_privileged_or_financial_action": "BLOCK_OR_SAFE_MODE_IF_REQUIRED_DURABLE_AUDIT_UNAVAILABLE",
+    "lower_risk_read_debug": "BOUNDED_DEGRADED_MODE_MAY_BE_ALLOWED",
+    "logging_failure_can_convert_deny_to_allow": false,
+    "bounded_buffer_required": true,
+    "overflow_explicit_state": true,
+    "outage_is_security_event": true
+  },
+  "retention": {
+    "exact_periods": "DEFERRED",
+    "class_specific_versioned_policy": true,
+    "legal_security_hold_supported": true,
+    "authorized_audited_disposal": true,
+    "country_location_assumption": "NONE"
+  },
+  "implementation_state": {
+    "canonical_audit_storage": "NOT_PROVISIONED",
+    "siem": "NOT_SELECTED_NOT_PROVISIONED",
+    "worm_object_lock": "NOT_SELECTED_NOT_PROVISIONED",
+    "digest_chain_signature_service": "NOT_IMPLEMENTED",
+    "jurisdiction_specific_retention": "NOT_DEFINED",
+    "production_maker_checker": "NOT_IMPLEMENTED"
+  }
+}
