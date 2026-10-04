@@ -27,17 +27,19 @@ Some research and UX work may begin earlier only when it does not create impleme
 
 ## 3. Current execution position
 
-Completed P00 work:
-- P00-A foundation baseline: COMPLETE
-- P00-B repository/branch governance: COMPLETE
-- P00-C Linear project management: COMPLETE
-- P00-D Toolchain governance: COMPLETE
+Canonical completion:
+- P00 — Charter & Governance: CANONICAL_COMPLETE / G0 PASS
+- P01 — Market / Provider / Compliance Research: CANONICAL_COMPLETE / G1 PASS
+- P02 — Master Architecture: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS
+- P03 — Security & Identity: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
+- P04 — Engineering Foundation: CANONICAL_COMPLETE / Engineering Foundation exit PASS
 
-Active:
-- P00-E detailed/execution roadmap package: `FIN-P00-WE-001`
+Active implementation:
+- none
 
-Next after P00-E:
-- P00-F Governance Closure / `G0_GOVERNANCE_READY`
+Next phase boundary:
+- P05 — Real-Time Data: NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+- P05-H will produce the roadmap-defined G4_REALTIME_DATA evidence after P05 implementation/validation
 
 ---
 
@@ -51,8 +53,8 @@ Next after P00-E:
 | 2 | P00-B | Protected main + branch hygiene | P00-A | COMPLETE |
 | 3 | P00-C | Linear management baseline | P00-A/B | COMPLETE |
 | 4 | P00-D | Toolchain/Plugin/Skill/Access Matrix | P00-C | COMPLETE |
-| 5 | P00-E | Detailed roadmap package | P00-D | ACTIVE |
-| 6 | P00-F | P00 audit, state reconciliation, G0 dossier | P00-E | NEXT |
+| 5 | P00-E | Detailed roadmap package | P00-D | COMPLETE |
+| 6 | P00-F | P00 audit, state reconciliation, G0 dossier | P00-E | COMPLETE |
 
 P00-F must verify no unresolved drift, no active lock, roadmap documents canonical, Linear synchronized and all governance required checks passing.
 
