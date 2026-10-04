@@ -30,6 +30,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P01-WF-001 | P01 | Primary / Backup Provider Strategy | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WF-001.json` | RELEASED |
 
+| FIN-P01-WG-004 | P01 | Provider Baseline Decision & G1 | HIGH | HUMAN_GATE | `contracts/tasks/FIN-P01-WG-004.json` | LOCK-FIN-P01-WG-004-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
