@@ -1,6 +1,6 @@
 # NEXUS QUANT — Language / Runtime / Dependency Baseline
 
-STATE = P04-B IMPLEMENTATION
+STATE = P04-B CANONICAL_BASELINE
 TASK = `FIN-P04-WB-001`
 LINEAR = `HOS-173`
 DATE = 2026-10-04
@@ -182,3 +182,16 @@ After canonical closure only:
 `P04-C — CI/CD Foundation`
 
 P04-C is not started by this task.
+
+
+## 13. Closure evidence
+
+- implementation PR: `#96` = MERGED
+- implementation merge SHA: `ee9b7403fd6faec09dc41134b0b0cc7072b1cc47`
+- PR Governance: `37202504193` = SUCCESS
+- post-merge Governance: `37202525310` = SUCCESS
+- post-merge Branch Hygiene: `37202525316` = SUCCESS
+- `FIN-P04-WB-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WB-001-01 = RELEASED`
+- next workstream: `P04-C — CI/CD Foundation`
+- P04-C state: `NOT_STARTED`
