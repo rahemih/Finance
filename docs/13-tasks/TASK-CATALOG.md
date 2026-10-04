@@ -34,6 +34,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P02-WA-001 | P02 | Architecture Principles & ADR Framework | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WA-001.json` | RELEASED |
 
+| FIN-P02-WB-001 | P02 | Domain / Module Boundaries | MEDIUM | ACTIVE | `contracts/tasks/FIN-P02-WB-001.json` | LOCK-FIN-P02-WB-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
