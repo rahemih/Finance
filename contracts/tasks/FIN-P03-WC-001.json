@@ -1,0 +1,87 @@
+{
+  "task_id": "FIN-P03-WC-001",
+  "phase": "P03",
+  "workstream": "WC",
+  "objective": "Define the canonical secrets, KMS/vault-class key-management and environment-separation policy without provisioning real secrets or infrastructure.",
+  "scope": [
+    "Secret/key classification",
+    "Secret-reference-only contract",
+    "Vault/secret-manager and KMS/HSM-class direction",
+    "Envelope-encryption/key hierarchy",
+    "Creation/rotation/revocation/expiration",
+    "Dynamic/short-lived workload credentials",
+    "Environment-specific secret/key namespaces",
+    "Future execution credential restrictions",
+    "CI/CD secret boundaries",
+    "Redaction/audit/incident/recovery",
+    "Backup/restore rules",
+    "Machine-readable policy and diagrams"
+  ],
+  "out_of_scope": [
+    "Create real credentials/API keys",
+    "Provision vault/KMS/HSM/cloud resources",
+    "Store raw secrets in GitHub/Linear/ChatGPT",
+    "Enable CANARY/LIVE/Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WC-001.json",
+    "docs/05-security/SECRETS-KEY-MANAGEMENT.md",
+    "docs/05-security/secrets-key-management.json",
+    "docs/05-security/SECRETS-KEY-MANAGEMENT-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "No raw secret material exists in artifacts",
+    "Every secret class has owner/use/lifecycle/environment",
+    "CANARY/LIVE credentials remain disabled/nonexistent",
+    "Execution credentials prohibit withdrawal/transfer where separable",
+    "Cross-environment secret reuse is forbidden",
+    "Agents/models/logs receive handles/metadata rather than raw secrets",
+    "Rotation/revocation/compromise response defined",
+    "Backup restore does not blindly restore execution credentials",
+    "No vendor/runtime control falsely claimed implemented"
+  ],
+  "definition_of_done": [
+    "Secrets/key baseline canonical",
+    "Machine-readable policy and diagrams canonical",
+    "Current State/Task Catalog reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge verification passes",
+    "Lock released",
+    "FIN-P03-WC-001 CANONICAL_COMPLETE"
+  ]
+}
