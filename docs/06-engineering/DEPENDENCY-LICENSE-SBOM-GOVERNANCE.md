@@ -98,10 +98,12 @@ When an SBOM generator omits license metadata for a **known toolchain component*
 - a version change does not inherit the assertion automatically.
 
 Baseline assertion:
-- `pkg:npm/%40pnpm/exe@11.28.4` → `MIT`
+- identity prefix: `pkg:npm/%40pnpm/`
+- exact version: `11.28.4`
+- license: `MIT`
 - evidence: official `pnpm/pnpm` tag `v11.28.4` LICENSE.
 
-This is not a wildcard exemption and does not weaken unknown-license fail-closed behavior.
+The assertion is constrained by both namespace and exact version. A pnpm version change requires a new review/assertion; components outside the `@pnpm` namespace are unaffected. Unknown-license fail-closed behavior remains unchanged.
 
 ## 5. Waivers
 
