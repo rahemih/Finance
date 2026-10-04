@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_F
+P01 state: ACTIVE_P01_F
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -53,6 +53,7 @@ FIN-P01-WB-001 = CANONICAL_COMPLETE
 FIN-P01-WC-001 = CANONICAL_COMPLETE  
 FIN-P01-WD-001 = CANONICAL_COMPLETE  
 FIN-P01-WE-001 = CANONICAL_COMPLETE  
+FIN-P01-WF-001 = ACTIVE  
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
@@ -148,8 +149,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WF-001 — Primary / Backup Provider Strategy`  
+Active branch: `research/FIN-P01-WF-001-primary-backup-provider-strategy`  
+Active lock: `LOCK-FIN-P01-WF-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -166,7 +168,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-F — Primary / Backup Provider Strategy.
+Execute P01-F — Primary / Backup Provider Strategy, then proceed to P01-G — Provider Baseline Decision.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -357,3 +359,29 @@ Roadmap tooling usage map closure evidence:
 - Post-merge Branch Hygiene run: `37126477588` = SUCCESS
 - Linear Project Document: `NEXUS QUANT — Roadmap Tooling Usage Map`
 - Runtime installation: NOT_PERFORMED
+
+
+## P01-F — Primary / Backup Provider Strategy
+
+Task: `FIN-P01-WF-001`  
+Linear: `HOS-151`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P01-WF-001-01`
+
+Artifacts:
+- `docs/03-research/P01-F-PRIMARY-BACKUP-PROVIDER-STRATEGY.md`
+- `docs/03-research/p01-f-primary-backup-provider-strategy.json`
+
+Design:
+- market data: Primary + independent Backup + authoritative Cross-check;
+- execution: no blind live cross-broker failover;
+- Crypto data: Kaiko/CoinAPI conditional shortlist + venue-native verification;
+- Forex data: dxFeed conditional primary class + Massive/Twelve Data backup class + broker-quote cross-check;
+- futures/context: Databento conditional primary + dxFeed backup + official exchange authority;
+- macro/rates: official-first + FRED/ALFRED revision-aware backup;
+- on-chain: Blockscout supplemental + independent chain/node/indexer verification.
+
+Final provider/broker selection: NOT_PERFORMED  
+Owner jurisdiction: UNSET_HUMAN_GATE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
