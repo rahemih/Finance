@@ -102,6 +102,18 @@ jobs:
       - name: Config / environment contract
         run: python scripts/ci/config_contract.py
 
+      - name: Foundation test harness
+        run: python -m unittest discover -s tests/foundation -p 'test_*.py' -v
+
+      - name: Deterministic test-harness evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/test_harness_evidence.py --output build/test-harness-a.json
+          python scripts/ci/test_harness_evidence.py --output build/test-harness-b.json
+          cmp build/test-harness-a.json build/test-harness-b.json
+          sha256sum build/test-harness-a.json
+
       - name: Workflow supply-chain security
         run: python scripts/ci/foundation_ci.py security
 
@@ -121,6 +133,8 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: foundation-ci-manifest
-          path: build/foundation-a.json
+          path: |
+            build/foundation-a.json
+            build/test-harness-a.json
           if-no-files-found: error
           retention-days: 7
