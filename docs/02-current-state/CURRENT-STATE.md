@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WE-001 — Test Harness`  
+Active branch: `test/FIN-P04-WE-001-test-harness`  
+Active lock: `LOCK-FIN-P04-WE-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1696,3 +1697,52 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-E — Test Harness
+
+Task: `FIN-P04-WE-001`  
+Linear: `HOS-176`  
+State: ACTIVE  
+Branch: `test/FIN-P04-WE-001-test-harness`  
+Lock: `LOCK-FIN-P04-WE-001-01`
+
+Primary agent:
+- A9 Test / Operations Harness = LEAD
+
+Supporting:
+- A1 Architecture
+- A6 Execution semantics consultation
+- A8 Security
+- A10 Evidence / Audit
+- A0 Governance
+
+Prerequisite:
+- `FIN-P04-WD-001 = CANONICAL_COMPLETE`
+
+Harness primitives:
+- DeterministicClock
+- DeterministicIdSequence
+- ReplayTape
+- ScriptedProviderSimulator
+- FailureInjector
+- NetworkDenyGuard
+- source-controlled JSON fixtures
+- deterministic replay evidence generator
+
+Execution-uncertainty test invariant:
+- `TIMEOUT_UNKNOWN` = unresolved
+- UNKNOWN is not success
+- UNKNOWN is not rejection
+- blind retry before reconciliation = forbidden
+
+CI:
+- required `governance` context runs standard-library unittest suite
+- replay evidence is built twice and byte-compared
+- foundation artifact includes P04-E source/fixtures and test-harness evidence
+
+Dependencies added by P04-E: NONE  
+External provider/network calls: NONE  
+Production infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-F: NOT_STARTED
