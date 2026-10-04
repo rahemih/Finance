@@ -1,0 +1,133 @@
+{
+  "task_id": "FIN-P03-WH-001",
+  "phase": "P03",
+  "workstream": "WH",
+  "objective": "Independently validate the P03 security baseline against FROZEN_G2 and decide G3_SECURITY_BASELINE without implementing deferred runtime controls.",
+  "scope": [
+    "Verify P03-A through P03-G canonical closure and released locks",
+    "Review threat coverage and downstream ownership",
+    "Review identity/MFA/RBAC/session/device policy",
+    "Review secrets/key-management/environment separation",
+    "Review private administration/network exposure",
+    "Review audit/change integrity",
+    "Review supply-chain security",
+    "Review incident/emergency access",
+    "Cross-check A5/A8 veto, fail-closed, no direct broker path, no-withdrawal, environment separation and break-glass invariants",
+    "Classify residual downstream implementation risks",
+    "Produce Security Validation report, machine-readable matrix and G3 dossier",
+    "Reconcile Current State and Task Catalog"
+  ],
+  "out_of_scope": [
+    "Install/provision security runtime infrastructure",
+    "Create production identities/secrets/accounts",
+    "Enable CANARY/LIVE/Auto Trading",
+    "Start P04 implementation before final G3 PASS"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "FIN-P03-WC-001",
+    "FIN-P03-WD-001",
+    "FIN-P03-WE-001",
+    "FIN-P03-WF-001",
+    "FIN-P03-WG-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/FIN-P03-*.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WH-001.json",
+    "docs/05-security/P03-SECURITY-VALIDATION.md",
+    "docs/05-security/p03-security-validation.json",
+    "docs/00-governance/G3-SECURITY-BASELINE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "P03-A through P03-G canonical complete / locks released",
+    "Threat model covers all FROZEN_G2 trust boundaries",
+    "Every HIGH/CRITICAL threat has downstream control ownership",
+    "Deny-by-default authorization and least privilege",
+    "Privileged MFA direction is phishing-resistant",
+    "Human Gate bound to exact action/resource/environment/digest/expiry",
+    "Raw production secrets prohibited from model/prompt/log/checkpoint surfaces",
+    "Execution credentials environment/account scoped; withdrawal/transfer forbidden where separable",
+    "Network location/VPN/geolocation is not authorization",
+    "Execution/secrets/recovery admin exposure fails closed; break-glass cannot bypass trading controls",
+    "Audit writers cannot mutate prior history and audit failure cannot convert deny to allow",
+    "Critical supply-chain findings/provenance/signature/digest failures block promotion",
+    "UNKNOWN execution requires reconciliation and forbids blind retry/reroute",
+    "Emergency access is scoped, time-bounded, audited and cannot bypass A5/A8 or enable Live",
+    "A5 Risk and A8 Security veto remain non-bypassable",
+    "Critical security/data/execution uncertainty fails closed",
+    "No planned runtime control falsely claimed implemented",
+    "Country/location is not an authorization/security architecture dependency",
+    "No unresolved Critical/High design or governance blocker",
+    "Production accounts/credentials/CANARY/LIVE/Auto Trading remain disabled/unprovisioned"
+  ],
+  "evidence": [
+    "P03-A through P03-G artifacts and closure evidence",
+    "Gate Matrix G3 criteria",
+    "FROZEN_G2 architecture",
+    "Protect main active ruleset",
+    "Governance Verify / Branch Hygiene evidence",
+    "Linear HOS-171 reconciliation"
+  ],
+  "rollback": "Revert P03-H validation/gate artifacts and state/catalog changes. No runtime security implementation is changed.",
+  "definition_of_ready": [
+    "P03-A through P03-G CANONICAL_COMPLETE",
+    "all P03-A through P03-G locks RELEASED",
+    "G2 PASS / FROZEN_G2",
+    "no conflicting active lock"
+  ],
+  "definition_of_done": [
+    "independent security validation complete",
+    "no unresolved Critical/High design/governance blocker",
+    "G3_SECURITY_BASELINE final PASS after canonical merge/post-merge verification",
+    "P03 CANONICAL_COMPLETE",
+    "lock released",
+    "Current State/Task Catalog/Linear reconciled"
+  ]
+}
