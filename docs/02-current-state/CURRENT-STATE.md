@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P02-WH-001 — Capacity / Cost Envelope`  
-Active branch: `docs/FIN-P02-WH-001-capacity-cost-envelope`  
-Active lock: `LOCK-FIN-P02-WH-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -498,10 +497,10 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: ACTIVE_P02_H
+P02 — Master Architecture: READY_FOR_P02_I
 
-Active workstream:
-`P02-H — Capacity / Cost Envelope`
+Next workstream:
+`P02-I — Architecture Review + G2 Freeze`
 
 Primary agents:
 A1 lead; A2/A4/A5/A6/A8/A9 consulted; A10 audits; A0 coordinates.
@@ -827,8 +826,8 @@ Auto Trading: DISABLED
 
 Task: `FIN-P02-WH-001`  
 Linear: `HOS-161`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P02-WH-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/04-architecture/CAPACITY-COST-ENVELOPE.md`
@@ -853,3 +852,15 @@ Key decisions:
 Vendor/cloud purchase: NONE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P02-H closure evidence
+
+- Implementation PR: `#73`
+- Merge SHA: `2b3f2d3b45b88a40d02ae4cd331bf0b9e3ec1bf7`
+- PR Governance run: `37193481997` = SUCCESS
+- Post-merge Governance run: `37193507757` = SUCCESS
+- Post-merge Branch Hygiene run: `37193507761` = SUCCESS
+- `FIN-P02-WH-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P02-WH-001-01 = RELEASED`
+- P02 next workstream: `P02-I — Architecture Review + G2 Freeze`
