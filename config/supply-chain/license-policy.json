@@ -65,6 +65,13 @@
       "license": "MIT",
       "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
       "scope": "Packages produced by the canonical pnpm 11.28.4 toolchain distribution only"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40reflink/reflink",
+      "exact_version": "0.1.19",
+      "license": "MIT",
+      "evidence": "npm registry metadata for @reflink/reflink platform packages 0.1.19",
+      "scope": "pnpm 11.28.4 transitive reflink toolchain packages only"
     }
   ]
 }
