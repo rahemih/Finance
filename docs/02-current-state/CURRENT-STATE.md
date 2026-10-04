@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WH-001 — Capacity / Cost Envelope`  
+Active branch: `docs/FIN-P02-WH-001-capacity-cost-envelope`  
+Active lock: `LOCK-FIN-P02-WH-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_H
+P02 — Master Architecture: ACTIVE_P02_H
 
-Next workstream:
+Active workstream:
 `P02-H — Capacity / Cost Envelope`
 
 Primary agents:
@@ -820,3 +821,35 @@ Auto Trading: DISABLED
 - `FIN-P02-WG-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WG-001-01 = RELEASED`
 - P02 next workstream: `P02-H — Capacity / Cost Envelope`
+
+
+## P02-H — Capacity / Cost Envelope
+
+Task: `FIN-P02-WH-001`  
+Linear: `HOS-161`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WH-001-01`
+
+Artifacts:
+- `docs/04-architecture/CAPACITY-COST-ENVELOPE.md`
+- `docs/04-architecture/capacity-cost-envelope.json`
+- `docs/04-architecture/ADR/ADR-0013-capacity-cost-envelope.md`
+
+Design scenarios:
+- BOOTSTRAP: 500 avg / 5,000 peak events/s
+- OPERATING: 2,000 avg / 20,000 peak events/s
+- STRESS: 10,000 avg / 50,000 peak events/s
+
+All numeric values: PROVISIONAL / NOT PRODUCTION MEASUREMENTS
+
+Key decisions:
+- project is non-HFT;
+- storage sizing is formula/rights driven;
+- Risk/Firewall internal p95 target is provisional <=100 ms;
+- cost guardrails shed discretionary research before safety controls;
+- DR RPO/RTO classes are provisional until P22 drills;
+- exceeding STRESS or defined growth/latency triggers requires architecture review.
+
+Vendor/cloud purchase: NONE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
