@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD at P03-B Fresh Live Guard: `18b2036350236e24e7e1466b5ca64cf8a6317fa4`  
+Canonical HEAD after P03-B implementation merge: `a527e991a53474b5ddb83668cbb0ae357a78f2ba`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P03-WB-001 — RBAC / MFA / Session / Device Policy`  
-Active branch: `security/FIN-P03-WB-001-rbac-mfa-session-device`  
-Active lock: `LOCK-FIN-P03-WB-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -169,7 +168,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A — Threat Model is CANONICAL_COMPLETE. P03-B — RBAC / MFA / Session / Device Policy is ACTIVE under `FIN-P03-WB-001` / `HOS-164`.
+P03-A and P03-B are CANONICAL_COMPLETE. Next authorized workstream: `P03-C — Secrets / KMS / Vault & Environment Separation`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1007,9 +1006,8 @@ Closure:
 
 Task: `FIN-P03-WB-001`  
 Linear: `HOS-164`  
-State: ACTIVE  
-Branch: `security/FIN-P03-WB-001-rbac-mfa-session-device`  
-Lock: `LOCK-FIN-P03-WB-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A8 Security = LEAD
@@ -1039,3 +1037,20 @@ Production accounts/credentials: NONE
 Country/location authorization dependency: NONE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+P03-B implementation evidence:
+- implementation PR: `#79` = MERGED
+- implementation merge SHA: `a527e991a53474b5ddb83668cbb0ae357a78f2ba`
+- PR Governance run: `37196716807` = SUCCESS
+- post-merge Governance run: `37196748678` = SUCCESS
+- post-merge Branch Hygiene run: `37196748668` = SUCCESS
+- authorization default: DENY
+- active privileged human roles require phishing-resistant MFA direction
+- country/location authorization dependency: NONE
+- runtime identity implementation: NOT_PERFORMED
+
+P03-B closure:
+- `FIN-P03-WB-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P03-WB-001-01 = RELEASED`
+- next = `P03-C — Secrets / KMS / Vault & Environment Separation`
