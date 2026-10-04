@@ -110,7 +110,7 @@
     "auto_trading": "DISABLED",
     "production_credentials": "NONE"
   },
-  "next": "Merge closure reconciliation; P04 remains CANONICAL_COMPLETE and P05 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION.",
+  "next": "P04 remains CANONICAL_COMPLETE. P05 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION.",
   "canonical_main_sha_after_repair": "8dcf5a61ffb3c82de86e8e24ef14b570231f8b89",
   "repair_evidence": {
     "implementation_pr": 110,
@@ -127,6 +127,24 @@
     "postmerge_rollback_manifest_sha256": "0b7d6846bd72a5f1db803404107269aa3718f291b6c42dcedc4e83f6f15f7bd1",
     "postmerge_file_count": 295,
     "postmerge_inventory_sha256": "5bab5c490cf607b80bd39375b0f064cc90e7fce177136dab3d5f70e3e5777319",
-    "lock": "RELEASED_PENDING_CLOSURE_MERGE"
+    "lock": "RELEASED"
+  },
+  "canonical_main_sha_after_closure": "69c9275c463eb802fab9328a3d01b65c9ad2055c",
+  "closure_evidence": {
+    "closure_pr": 111,
+    "closure_head_sha": "de48ddfdcd2449b63314678819fa31685a94c5c3",
+    "closure_pr_governance_run": 37221162927,
+    "closure_pr_artifact_id": 11309488544,
+    "closure_pr_artifact_digest": "sha256:2729956aec4c721824cd6f98d1e8a4f3ab10d910f0b894182d37d210a6733341",
+    "closure_merge_sha": "69c9275c463eb802fab9328a3d01b65c9ad2055c",
+    "closure_postmerge_governance_run": 37221233926,
+    "closure_postmerge_branch_hygiene_run": 37221233928,
+    "closure_postmerge_artifact_id": 11310348403,
+    "closure_postmerge_artifact_digest": "sha256:76d112ce8a95f96f2aa41644f94fa7f3f870025862abfd4c34eff514cad43bbb",
+    "final_reproducible_artifact_sha256": "cff8e328cf4d56397f03bf8c782a1da989a33057f7ed7422c082cdb65caa485c",
+    "final_rollback_manifest_sha256": "d5c734083b5ad072df7f4f8fed7e327f2390d4d91d653d3a41e7eee7217da344",
+    "final_file_count": 295,
+    "final_inventory_sha256": "33c0fd3f6b44060a4ee703006497bffd15a1c0890f4dc4017a30231344bf5215",
+    "status": "CANONICAL_COMPLETE"
   }
 }
