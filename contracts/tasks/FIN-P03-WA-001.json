@@ -1,0 +1,140 @@
+{
+  "task_id": "FIN-P03-WA-001",
+  "phase": "P03",
+  "workstream": "WA",
+  "objective": "Build the canonical architecture-level threat model for NEXUS QUANT against the frozen G2 architecture, covering identity, data integrity, agents/LLMs, execution, supply chain, secrets, recovery and audit threats with explicit severity and remediation ownership.",
+  "scope": [
+    "Identify protected assets and security objectives",
+    "Map P02 trust boundaries and attack surfaces",
+    "Identify external, insider, compromised-provider and supply-chain threat actors",
+    "Perform STRIDE-style threat analysis",
+    "Add finance/trading-specific abuse cases",
+    "Add agent/LLM prompt-injection and tool-abuse threats",
+    "Add market-data poisoning/replay/staleness/provenance threats",
+    "Add execution duplication/reroute/reconciliation threats",
+    "Add secrets/identity/session/privilege-escalation threats",
+    "Add CI/dependency/SBOM/provenance threats",
+    "Add backup/restore/audit tampering threats",
+    "Assign severity, security objective, owner phase and control direction",
+    "Define non-negotiable security invariants",
+    "Create machine-readable threat register and threat diagrams"
+  ],
+  "out_of_scope": [
+    "Implement MFA/RBAC/session controls",
+    "Select/install secrets manager/KMS",
+    "Install SAST/CVE/DAST/runtime scanners",
+    "Provision security/network infrastructure",
+    "Create production accounts or credentials",
+    "Enable Demo, Shadow, Canary, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WI-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WA-001.json",
+    "docs/05-security/THREAT-MODEL.md",
+    "docs/05-security/threat-model.json",
+    "docs/05-security/THREAT-MODEL-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Codex Security"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "Threat model traces to FROZEN_G2 trust zones and authority boundaries",
+    "Every critical asset has confidentiality/integrity/availability objectives",
+    "Every trust boundary has at least one analyzed threat class",
+    "Agent/LLM prompt injection and tool abuse are explicitly modeled",
+    "Market-data integrity and execution uncertainty are explicitly modeled",
+    "Supply-chain/build/provenance threats are explicitly modeled",
+    "Backup/restore/audit tampering is explicitly modeled",
+    "Every HIGH/CRITICAL threat has an owning future control workstream",
+    "No security control is claimed implemented when it is only planned"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No secrets/credentials are created or exposed",
+    "Threat model includes credential theft and withdrawal-permission abuse",
+    "Threat model includes A5/A8 veto bypass attempts",
+    "Threat model includes cross-environment privilege escalation",
+    "Threat model includes fail-closed behavior where security truth is unknown"
+  ],
+  "evidence": [
+    "G2 frozen architecture baseline",
+    "Security Tooling Baseline and Registry",
+    "official threat-model/security references where used",
+    "machine-readable threat register",
+    "threat diagrams",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-163 reconciliation"
+  ],
+  "rollback": "Revert P03-A threat-model artifacts and state/catalog changes. No runtime security configuration or credentials are changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P02 = CANONICAL_COMPLETE",
+    "G2_ARCHITECTURE_FREEZE = PASS",
+    "P02_ARCHITECTURE_BASELINE = FROZEN_G2",
+    "P03 = READY",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Threat assets/actors/boundaries are canonical",
+    "Threat register is canonical and severity-assigned",
+    "Security invariants are canonical",
+    "Control ownership maps to P03/P04/P22/P23/P24",
+    "Threat diagrams are canonical",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P03-WA-001 = CANONICAL_COMPLETE"
+  ]
+}
