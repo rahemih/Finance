@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WA-001",
+  "state": "P04-A_IMPLEMENTATION",
+  "architecture_baseline": "FROZEN_G2",
+  "security_gate": "G3_SECURITY_BASELINE_PASS",
+  "workspace_model": "GOVERNED_POLYGLOT_MONOREPO",
+  "architecture_style": "MODULAR_CORE_FIRST",
+  "exact_runtime_selection": "DEFERRED_TO_P04-B",
+  "zones": [
+    {
+      "path": "apps",
+      "kind": "deployment-composition",
+      "production": true,
+      "may_import": [
+        "packages",
+        "adapters",
+        "quant"
+      ],
+      "forbidden": [
+        "research-as-runtime-dependency"
+      ]
+    },
+    {
+      "path": "packages",
+      "kind": "provider-neutral-production-modules",
+      "production": true,
+      "may_import": [
+        "packages/contracts"
+      ],
+      "vendor_sdk_allowed": false
+    },
+    {
+      "path": "adapters",
+      "kind": "external-provider-boundary",
+      "production": true,
+      "vendor_sdk_allowed": true,
+      "provider_details_must_end_here": true
+    },
+    {
+      "path": "quant",
+      "kind": "production-quant-python-boundary",
+      "production": true,
+      "direct_broker_access": false,
+      "self_live_promotion": false
+    },
+    {
+      "path": "research",
+      "kind": "experimentation",
+      "production": false,
+      "may_consume_production_interfaces": true,
+      "may_be_imported_by_production": false
+    },
+    {
+      "path": "config",
+      "kind": "non-secret-config",
+      "production": true,
+      "raw_secrets_allowed": false
+    },
+    {
+      "path": "infra",
+      "kind": "infrastructure-definitions",
+      "production": true,
+      "provider_selected_by_structure": false
+    },
+    {
+      "path": "tests",
+      "kind": "cross-workspace-test-harness",
+      "production": false
+    },
+    {
+      "path": "contracts",
+      "kind": "repository-governance-contracts",
+      "production": false
+    },
+    {
+      "path": "docs",
+      "kind": "canonical-documentation-evidence",
+      "production": false
+    },
+    {
+      "path": "scripts",
+      "kind": "repository-governance-automation",
+      "production": false
+    },
+    {
+      "path": ".github",
+      "kind": "repository-ci-governance",
+      "production": false
+    }
+  ],
+  "reserved_package_families": [
+    "contracts",
+    "core",
+    "platform",
+    "security",
+    "observability"
+  ],
+  "invariants": {
+    "provider_sdk_in_core": false,
+    "strategy_signal_direct_broker": false,
+    "execution_override_risk_firewall": false,
+    "research_imported_by_production": false,
+    "ux_direct_broker_provider_secret": false,
+    "agent_direct_provider_mutation": false,
+    "shared_database_as_hidden_cross_domain_write_api": false,
+    "a5_a8_veto_bypass": false,
+    "raw_secret_in_repo": false,
+    "country_location_structural_dependency": false
+  },
+  "strong_future_extraction_candidates": [
+    "market-data-adapters",
+    "execution-oms",
+    "agent-control-plane",
+    "application-api-ux"
+  ],
+  "conditional_extraction": [
+    "risk-pretrade-firewall"
+  ],
+  "generated_output": {
+    "transient_build_outputs_committed": false,
+    "release_artifacts_committed_to_source": false,
+    "reproducible_generator_required_for_source_controlled_generated_files": true
+  },
+  "next": "P04-B — Language / Runtime / Dependency Baseline",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
