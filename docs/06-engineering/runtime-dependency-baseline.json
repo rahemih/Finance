@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WB-001",
+  "state": "P04-B_IMPLEMENTATION",
+  "as_of": "2026-10-04",
+  "runtimes": {
+    "node": {
+      "version": "24.21.0",
+      "channel": "LTS",
+      "pin": "exact"
+    },
+    "python": {
+      "version": "3.14.8",
+      "series": "3.14",
+      "pin": "exact-local-marker",
+      "requires_python": "==3.14.*"
+    }
+  },
+  "languages": {
+    "typescript": {
+      "version": "7.0.2",
+      "state": "APPROVED_BASELINE_NOT_ROOT_INSTALLED"
+    }
+  },
+  "package_managers": {
+    "pnpm": {
+      "version": "11.28.4",
+      "pin": "exact",
+      "lockfile": "pnpm-lock.yaml",
+      "lockfile_version": "9.0",
+      "alternative_newer": "12.9.1",
+      "alternative_state": "DEFERRED_REVALIDATION",
+      "reason": "pnpm 12 multi-document lockfile compatibility risk with current dependency/SBOM consumers"
+    },
+    "uv": {
+      "version": "0.12.23",
+      "pin": "exact",
+      "manifest": "pyproject.toml",
+      "lockfile": "uv.lock"
+    }
+  },
+  "architecture_runtime_dependencies": {
+    "pydantic-ai": {
+      "version": "2.54.0",
+      "state": "APPROVED_PIN_INSTALLATION_DEFERRED_UNTIL_OWNING_AGENT_RUNTIME_PACKAGE_EXISTS"
+    }
+  },
+  "policies": {
+    "direct_production_dependencies": "EXACT_BY_DEFAULT",
+    "transitive_dependencies": "LOCKFILE_EXACT",
+    "git_dependencies": "IMMUTABLE_COMMIT_SHA_ONLY_WHEN_UNAVOIDABLE",
+    "floating_latest_for_production": false,
+    "prerelease_requires_exception": true,
+    "lockfile_required": true,
+    "silent_lockfile_upgrade": false
+  },
+  "next": "P04-C — CI/CD Foundation (NOT_STARTED)",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
