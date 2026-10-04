@@ -1,0 +1,217 @@
+{
+  "registry": "NEXUS_QUANT_SECURITY_TOOLING_REGISTRY",
+  "task_id": "FIN-P01-WS-001",
+  "linear_issue": "HOS-152",
+  "effective_date": "2026-10-04",
+  "production_installation_authorized": false,
+  "authority": "A8_SECURITY",
+  "tools": [
+    {
+      "id": "github-secret-protection",
+      "role": "secret_prevention",
+      "state": "ACTIVE_NOW",
+      "phases": [
+        "P00",
+        "P03",
+        "P04",
+        "P24"
+      ],
+      "guardrail": "do_not_weaken"
+    },
+    {
+      "id": "github-codeql",
+      "repo": "github/codeql",
+      "role": "sast_code_scanning",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "MIT_REPO_PLATFORM_TERMS_RECHECK",
+      "phases": [
+        "P03",
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "trivy",
+      "repo": "aquasecurity/trivy",
+      "role": "vulnerability_misconfiguration_secret_sbom_scan",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P03",
+        "P04",
+        "P22",
+        "P24"
+      ]
+    },
+    {
+      "id": "semgrep",
+      "repo": "semgrep/semgrep",
+      "role": "custom_pattern_sast",
+      "state": "USE_CANDIDATE_LICENSE_REVIEW",
+      "license_signal": "LGPL-2.1",
+      "phases": [
+        "P03",
+        "P04"
+      ]
+    },
+    {
+      "id": "owasp-zap",
+      "repo": "zaproxy/zaproxy",
+      "role": "dast_api_web_security",
+      "state": "ADOPT_CANDIDATE_FOR_DAST",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P23",
+        "P24"
+      ]
+    },
+    {
+      "id": "falco",
+      "repo": "falcosecurity/falco",
+      "role": "runtime_threat_detection",
+      "state": "CONDITIONAL",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P22",
+        "P24"
+      ]
+    },
+    {
+      "id": "grype",
+      "repo": "anchore/grype",
+      "role": "sbom_image_filesystem_vulnerability_scan",
+      "state": "ALTERNATIVE_INDEPENDENT_CHECK",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P03",
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "syft",
+      "repo": "anchore/syft",
+      "role": "sbom_generation",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P03",
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "cyclonedx-cli",
+      "repo": "CycloneDX/cyclonedx-cli",
+      "role": "sbom_analysis_merge_diff_convert",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P03",
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "cosign",
+      "repo": "sigstore/cosign",
+      "role": "artifact_signing",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "slsa",
+      "role": "build_provenance",
+      "state": "BASELINE_STANDARD",
+      "phases": [
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "opa",
+      "repo": "open-policy-agent/opa",
+      "role": "policy_as_code",
+      "state": "ADOPT_CANDIDATE",
+      "license_signal": "Apache-2.0",
+      "phases": [
+        "P03",
+        "P04",
+        "P15",
+        "P16",
+        "P24"
+      ]
+    },
+    {
+      "id": "secret-manager-kms",
+      "role": "secret_key_lifecycle",
+      "state": "ADOPT_CANDIDATE",
+      "phases": [
+        "P03",
+        "P04"
+      ]
+    },
+    {
+      "id": "codex-security",
+      "role": "assisted_security_review",
+      "state": "ACTIVE_NOW",
+      "phases": [
+        "P03",
+        "P04",
+        "P24"
+      ]
+    },
+    {
+      "id": "promptfoo",
+      "role": "agent_prompt_tool_abuse_redteam",
+      "state": "EVAL_CANDIDATE",
+      "phases": [
+        "P03",
+        "P14",
+        "P24"
+      ]
+    },
+    {
+      "id": "inspect-ai",
+      "role": "model_agent_evaluation",
+      "state": "EVAL_CANDIDATE",
+      "phases": [
+        "P03",
+        "P14",
+        "P24"
+      ]
+    }
+  ],
+  "preferred_stack": {
+    "secrets": "github_secret_protection_plus_selected_secret_manager",
+    "sast": "github_codeql",
+    "custom_sast": "semgrep_if_needed",
+    "broad_scan": "trivy",
+    "sbom": "syft_plus_cyclonedx",
+    "independent_sbom_vuln_check": "grype_optional",
+    "policy": "opa",
+    "signing": "cosign",
+    "provenance": "slsa",
+    "dast": "owasp_zap",
+    "runtime_detection": "falco_if_topology_justifies",
+    "agent_security": "promptfoo_plus_inspect_ai_plus_project_harness"
+  },
+  "anti_overlap": [
+    "codeql_primary_semgrep_custom_only",
+    "trivy_primary_grype_optional_independent_check",
+    "single_secret_manager",
+    "single_policy_engine_unless_benchmarked_need",
+    "falco_only_if_runtime_topology_justifies"
+  ],
+  "hard_rules": [
+    "a8_veto_non_bypassable",
+    "no_secret_in_source_linear_prompts_logs",
+    "active_dast_only_authorized_targets",
+    "critical_security_state_unknown_fails_closed",
+    "no_live_or_auto_trading_enablement"
+  ]
+}
