@@ -1,0 +1,143 @@
+{
+  "task_id": "FIN-P02-WG-001",
+  "phase": "P02",
+  "workstream": "WG",
+  "objective": "Define the canonical logical environment, network trust-zone, deployment-boundary and disaster-recovery topology for NEXUS QUANT without choosing a cloud vendor, geographic region or concrete infrastructure product.",
+  "scope": [
+    "Define DEV/TEST/RESEARCH/DEMO/SHADOW/CANARY/LIVE environment isolation",
+    "Define environment/account/credential separation",
+    "Define logical network trust zones and permitted traffic direction",
+    "Define user/application ingress boundary",
+    "Define control/data/execution/security/audit planes",
+    "Define outbound provider/broker integration boundaries",
+    "Define execution enclave and secrets boundary",
+    "Define observability/audit isolation",
+    "Define cross-environment data movement rules",
+    "Define logical backup and disaster-recovery topology",
+    "Define recovery classes and critical-state prioritization",
+    "Define startup/recovery/failover state flow",
+    "Define environment promotion boundary",
+    "Define fail-closed behavior for network/secrets/provider/reconciliation uncertainty"
+  ],
+  "out_of_scope": [
+    "Select cloud provider, hosting vendor, region, country or datacenter",
+    "Provision infrastructure",
+    "Select concrete firewall, VPN, KMS, database, queue or observability product",
+    "Set final numerical capacity or cost envelopes",
+    "Create production accounts/credentials",
+    "Enable Demo, Shadow, Canary, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001",
+    "FIN-P02-WC-001",
+    "FIN-P02-WD-001",
+    "FIN-P02-WE-001",
+    "FIN-P02-WF-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WG-001.json",
+    "docs/04-architecture/ENVIRONMENT-NETWORK-DR-TOPOLOGY.md",
+    "docs/04-architecture/environment-network-dr-topology.json",
+    "docs/04-architecture/ADR/ADR-0012-environment-network-dr-topology.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "Every environment has explicit authority and credential boundaries",
+    "SHADOW cannot emit live provider commands",
+    "DEMO cannot reuse LIVE credentials",
+    "CANARY/LIVE are logically isolated from non-production writes",
+    "Execution plane cannot be directly reached from public/user ingress",
+    "Secrets plane is not directly exposed to agents/UX/data workloads",
+    "Observability/audit survives application-plane failure where practical",
+    "Cross-environment data movement is directional and governed",
+    "DR recovery requires reconciliation before risk-increasing execution",
+    "No country/cloud/vendor is selected"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Public ingress terminates outside execution/security trust zones",
+    "Provider/broker connections are outbound from controlled integration boundaries",
+    "No inbound provider callback can directly mutate execution authority without validation",
+    "Secrets access is least privilege and environment-bound",
+    "Backups remain encrypted/access-controlled in later implementation",
+    "Recovery cannot silently broaden network/credential/risk authority"
+  ],
+  "evidence": [
+    "P02-A environment isolation/fail-closed principles",
+    "P02-B domain boundaries/service-extraction candidates",
+    "P02-C storage/recovery requirements",
+    "P02-E execution/reconciliation/kill-switch requirements",
+    "P02-F agent/tool authority boundary",
+    "Logical topology document and machine-readable topology",
+    "ADR-0012",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-160 reconciliation"
+  ],
+  "rollback": "Revert P02-G architecture artifacts and state/catalog changes. No infrastructure, region, account or credential is provisioned.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WF-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_G",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Environment isolation model is canonical",
+    "Network trust-zone topology is canonical",
+    "DR/recovery topology is canonical",
+    "Cross-environment movement/promotion rules are canonical",
+    "ADR-0012 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WG-001 = CANONICAL_COMPLETE"
+  ]
+}
