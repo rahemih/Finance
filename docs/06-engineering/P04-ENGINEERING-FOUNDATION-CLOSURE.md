@@ -93,3 +93,27 @@ Next phase:
 P05 = `NOT_STARTED_PENDING_OWNER_AUTHORIZATION`.
 
 No P05 task, branch, adapter or implementation is authorized by this closure.
+
+
+## Post-closure audit
+
+Task `FIN-P04-WH-001-R01` / Linear `HOS-180` independently revalidated the closed P04 baseline.
+
+Findings:
+- canonical implementation blockers: 0;
+- functional/security test failures: 0;
+- documentation/project-state drift: 4 LOW, repaired;
+- residual hygiene: 1 INFO stale non-canonical branch with no unique commits.
+
+Repair evidence:
+- PR `#110` = MERGED;
+- merge SHA `8dcf5a61ffb3c82de86e8e24ef14b570231f8b89`;
+- PR Governance `37220930187` = SUCCESS;
+- post-merge Governance `37220998573` = SUCCESS;
+- post-merge Branch Hygiene `37220998534` = SUCCESS;
+- 20/20 tests PASS;
+- SBOM/license/Trivy PASS;
+- reproducible build PASS;
+- `P04_ENGINEERING_FOUNDATION_EXIT=PASS`.
+
+P04 remains `CANONICAL_COMPLETE`; P05 remains `NOT_STARTED_PENDING_OWNER_AUTHORIZATION`.
