@@ -71,6 +71,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P03-WG-001 | P03 | Incident Response / Emergency Access | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WG-001.json` | RELEASED |
 
+
+| FIN-P01-WS-001 | P01 | Security Tooling Registry & Defense-in-Depth Baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WS-001.json` | RELEASED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
