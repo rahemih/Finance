@@ -15,17 +15,109 @@ concurrency:
 
 jobs:
   governance:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
       - name: Verify governance baseline
         run: python3 scripts/verify_governance.py
+
       - name: Validate task contract schema JSON
         run: python3 -m json.tool contracts/schemas/task-contract.schema.json >/dev/null
+
       - name: Validate PR branch name
         if: github.event_name == 'pull_request'
         env:
           PR_HEAD_REF: ${{ github.head_ref }}
         run: python3 scripts/check_branch_name.py
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+
+      - name: Verify Node.js version
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(node --version)" = "v$(cat .node-version)"
+
+      - name: Activate exact pnpm
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare pnpm@11.28.4 --activate
+          test "$(pnpm --version)" = "11.28.4"
+
+      - name: Verify pnpm lockfile without lifecycle scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+
+      - name: Verify Python version
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(python --version)" = "Python $(cat .python-version)"
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: '0.12.23'
+
+      - name: Verify uv version and locked Python sync
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(uv --version)" = "uv 0.12.23"
+          uv sync --locked --no-install-project
+
+      - name: Foundation lint
+        run: python scripts/ci/foundation_ci.py lint
+
+      - name: Typecheck readiness
+        run: python scripts/ci/foundation_ci.py typecheck
+
+      - name: CI foundation unit self-checks
+        run: python scripts/ci/foundation_ci.py unit
+
+      - name: Forward Task Contract validation
+        run: python scripts/ci/foundation_ci.py contract
+
+      - name: Workflow supply-chain security
+        run: python scripts/ci/foundation_ci.py security
+
+      - name: Promotion fail-closed verification
+        run: python scripts/ci/foundation_ci.py promotion
+
+      - name: Build deterministic foundation manifest twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/foundation_ci.py build --output build/foundation-a.json
+          python scripts/ci/foundation_ci.py build --output build/foundation-b.json
+          cmp build/foundation-a.json build/foundation-b.json
+          sha256sum build/foundation-a.json
+
+      - name: Upload foundation CI evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: foundation-ci-manifest
+          path: build/foundation-a.json
+          if-no-files-found: error
+          retention-days: 7
