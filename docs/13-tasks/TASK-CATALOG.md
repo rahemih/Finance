@@ -50,6 +50,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P02-WI-001 | P02 | Architecture Review + G2 Freeze | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WI-001.json` | RELEASED |
 
+
+| FIN-P03-WA-001 | P03 | Threat Model | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WA-001.json` | LOCK-FIN-P03-WA-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
