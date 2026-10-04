@@ -1,6 +1,6 @@
 # NEXUS QUANT — Developer Bootstrap & Tooling
 
-STATE = P04-G IMPLEMENTATION
+STATE = P04-G CANONICAL_BASELINE
 TASK = `FIN-P04-WG-001`
 LINEAR = `HOS-178`
 DATE = 2026-10-04
@@ -148,3 +148,26 @@ After canonical closure:
 `P04-H — Reproducible Build / Artifact Verification`
 
 P04-H is not started by P04-G.
+
+
+## 11. Closure evidence
+
+Implementation:
+- PR: `#106` = MERGED
+- final PR head SHA: `a55ac1280aff97369d528c7f3659acf684cb8918`
+- required Governance/Foundation CI: `37209840384` = SUCCESS
+- strict developer doctor = PASS
+- developer tooling contract = PASS
+- PR artifact: `11306385795`
+- PR artifact digest: `sha256:d28ca63e9022ac81d032b26f1dfddc27327db34d6c4de59920ba91bd11cdce48`
+- implementation merge SHA: `b4ffad65d3f3f38671e776a2eb8add07785bb37b`
+- post-merge Governance/Foundation CI: `37209923615` = SUCCESS
+- post-merge Branch Hygiene: `37209923616` = SUCCESS
+- post-merge artifact: `11306585482`
+- post-merge artifact digest: `sha256:7dbe1bddf8f5a1413413ee930251d58e9e74b7af2403888cf9010e05978d084a`
+
+Closure:
+- `FIN-P04-WG-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WG-001-01 = RELEASED`
+- next workstream = `P04-H — Reproducible Build / Artifact Verification`
+- P04-H = `NOT_STARTED`
