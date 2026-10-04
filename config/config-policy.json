@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "state": "P04-D_IMPLEMENTATION",
+  "precedence": [
+    "config/base.json",
+    "config/environments/<environment>.json",
+    "approved non-secret runtime override",
+    "opaque secret-handle resolution outside canonical config"
+  ],
+  "environments": [
+    "DEV",
+    "TEST",
+    "RESEARCH",
+    "DEMO",
+    "SHADOW",
+    "CANARY",
+    "LIVE"
+  ],
+  "runtime_override": {
+    "allowed_paths": [
+      "settings.log_level",
+      "settings.clock_mode",
+      "settings.data_mode"
+    ],
+    "forbidden_prefixes": [
+      "safety",
+      "execution",
+      "credentials",
+      "authority_ceiling",
+      "provisioning_state",
+      "environment",
+      "inherits"
+    ],
+    "fail_on_unknown_path": true
+  },
+  "secret_reference": {
+    "scheme": "secret://",
+    "raw_secret_values_in_canonical_config": false,
+    "environment_segment_must_match_owner": true,
+    "lower_environment_can_reference_canary_or_live": false
+  },
+  "environment_policy": {
+    "DEV": {
+      "authority_ceiling": "SIMULATED_ONLY",
+      "expected_namespace": "secret://dev/"
+    },
+    "TEST": {
+      "authority_ceiling": "SIMULATED_ONLY",
+      "expected_namespace": "secret://test/"
+    },
+    "RESEARCH": {
+      "authority_ceiling": "SIMULATED_ONLY",
+      "expected_namespace": "secret://research/"
+    },
+    "DEMO": {
+      "authority_ceiling": "DEMO_ONLY",
+      "expected_namespace": "secret://demo/"
+    },
+    "SHADOW": {
+      "authority_ceiling": "SHADOW_ONLY",
+      "expected_namespace": "secret://shadow/"
+    },
+    "CANARY": {
+      "authority_ceiling": "CANARY_DISABLED",
+      "expected_namespace": "secret://canary/"
+    },
+    "LIVE": {
+      "authority_ceiling": "LIVE_DISABLED",
+      "expected_namespace": "secret://live/"
+    }
+  },
+  "universal_safety": {
+    "provisioning_state": "CONTRACT_ONLY",
+    "authority_provisioned": false,
+    "active_execution_mode": "DISABLED",
+    "external_order_submission": false,
+    "live_trading": false,
+    "auto_trading": false,
+    "withdrawals": false,
+    "transfers": false,
+    "authorization_location_dependency": false
+  },
+  "invalid_config_behavior": "FAIL_CLOSED",
+  "unknown_environment_behavior": "FAIL_CLOSED",
+  "next": "P04-E — Test Harness (NOT_STARTED)"
+}
