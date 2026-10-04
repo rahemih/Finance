@@ -1,0 +1,139 @@
+{
+  "task_id": "FIN-P01-WG-004",
+  "phase": "P01",
+  "workstream": "WG",
+  "objective": "Produce the governed Provider Baseline Decision and G1_PROVIDER_BASELINE dossier after all P01 evidence is consolidated, with final production selection blocked on explicit Owner jurisdiction/client-class and unresolved commercial/licensing facts.",
+  "scope": [
+    "Consolidate P01-A through P01-F evidence",
+    "Define hard eligibility gates for provider and execution candidates",
+    "Define deterministic soft scoring criteria used only after hard gates pass",
+    "Prepare conditional shortlists for market data, macro/context and execution",
+    "Document deferred/rejected candidate reasons",
+    "Define Owner Human Gate inputs",
+    "Prepare G1 decision dossier and machine-readable decision state",
+    "After Human Gate, revalidate legal/provider terms and select a baseline if evidence permits",
+    "Close P01 and evaluate G1_PROVIDER_BASELINE"
+  ],
+  "out_of_scope": [
+    "Infer Owner residence, citizenship, tax residency or client class",
+    "Open accounts, complete KYC, purchase subscriptions or accept contracts",
+    "Create credentials, fund accounts or place orders",
+    "Implement runtime adapters",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WA-001",
+    "FIN-P01-WB-001",
+    "FIN-P01-WC-001",
+    "FIN-P01-WD-001",
+    "FIN-P01-WE-001",
+    "FIN-P01-WF-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P01-WG-004.json",
+    "docs/03-research/P01-G-PROVIDER-BASELINE-DECISION.md",
+    "docs/03-research/p01-g-provider-baseline-decision.json",
+    "docs/00-governance/G1-PROVIDER-BASELINE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Legal Data Hunter",
+    "Wolfram"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Decision JSON parses successfully",
+    "Every final candidate must pass all hard eligibility gates",
+    "Owner jurisdiction/client class is explicit and never inferred",
+    "Required licensing/non-display rights are resolved before production baseline selection",
+    "No execution venue is selected where product/account eligibility is unknown",
+    "Soft score is not used to override a failed hard gate",
+    "Rejected/deferred reasons are documented",
+    "G1 verdict is PASS only if all mandatory evidence is current"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No account/KYC/credentials/subscriptions/funding/orders",
+    "No geofence or provider-eligibility bypass",
+    "No provider contract acceptance",
+    "No automatic live execution authorization",
+    "Live Trading remains DISABLED",
+    "Auto Trading remains DISABLED"
+  ],
+  "evidence": [
+    "P01-A universe registry",
+    "P01-B data provider scorecards",
+    "P01-C execution venue scorecards",
+    "P01-D jurisdiction/compliance matrix",
+    "P01-E cost/licensing/data-rights matrix",
+    "P01-F primary/backup strategy",
+    "Owner Human Gate inputs",
+    "Fresh official legal/provider revalidation after Human Gate",
+    "Machine-readable provider baseline decision",
+    "G1 dossier",
+    "GitHub PR/CI/post-merge evidence",
+    "Linear HOS-153 reconciliation"
+  ],
+  "rollback": "Revert P01-G research/dossier/state changes only. No provider accounts, contracts, credentials or runtime changes are permitted by this task.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "FIN-P01-WF-001 = CANONICAL_COMPLETE",
+    "P01 = READY_FOR_P01_G",
+    "No conflicting active lock",
+    "P01-A through P01-F canonical evidence available"
+  ],
+  "definition_of_done": [
+    "Owner Human Gate inputs are explicit",
+    "Required legal/provider terms are freshly revalidated",
+    "All selected baseline candidates pass hard gates",
+    "Conditional scores and tradeoffs are documented",
+    "Primary/backup/provider baseline is recorded or G1 explicitly fails/blocks with evidence",
+    "G1 dossier is committed",
+    "P01 phase state is reconciled",
+    "Governance Verify passes",
+    "PR merges and post-merge verification succeeds",
+    "Lock released",
+    "FIN-P01-WG-004 = CANONICAL_COMPLETE"
+  ]
+}

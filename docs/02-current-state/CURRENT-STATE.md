@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: READY_FOR_P01_G
+P01 state: HUMAN_GATE_P01_G
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -59,6 +59,7 @@ FIN-P01-WU-001 = CANONICAL_COMPLETE
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
 FIN-P01-WG-002 = CANONICAL_COMPLETE  
+FIN-P01-WG-004 = HUMAN_GATE  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
 FIN-P01-WT-001 = CANONICAL_COMPLETE
 
@@ -149,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WG-004 — Provider Baseline Decision & G1`  
+Active branch: `research/FIN-P01-WG-004-provider-baseline-decision`  
+Active lock: `LOCK-FIN-P01-WG-004-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -167,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-G — Provider Baseline Decision. P01-G requires the explicit Owner-jurisdiction/client-class Human Gate before any production baseline can be selected.
+P01-G preflight is complete and has reached an explicit Owner Human Gate. Final provider baseline selection is blocked until the minimum Owner account-jurisdiction/client-class/product inputs are supplied.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -396,3 +398,42 @@ Auto Trading: DISABLED
 - `FIN-P01-WF-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P01-WF-001-01 = RELEASED`
 - P01 next workstream: `P01-G — Provider Baseline Decision`
+
+
+## P01-G — Provider Baseline Decision & G1
+
+Task: `FIN-P01-WG-004`  
+Linear: `HOS-153`  
+State: HUMAN_GATE  
+Lock: `LOCK-FIN-P01-WG-004-01`
+
+Artifacts:
+- `contracts/tasks/FIN-P01-WG-004.json`
+- `docs/03-research/P01-G-PROVIDER-BASELINE-DECISION.md`
+- `docs/03-research/p01-g-provider-baseline-decision.json`
+- `docs/00-governance/G1-PROVIDER-BASELINE.md`
+
+Conditional baseline prepared:
+- Crypto data: Kaiko / CoinAPI + venue-native cross-check
+- Forex data: dxFeed + Massive/Twelve Data + execution-broker quote cross-check
+- Futures/context: Databento + dxFeed + official exchange/index authority
+- Macro/rates: direct official sources + FRED/ALFRED
+- On-chain: Blockscout supplemental + independent chain/indexer verification
+- Crypto execution candidate pool: Coinbase Advanced / Kraken / Binance
+- Forex execution candidate pool: OANDA / IBKR / Saxo
+
+G1_PROVIDER_BASELINE: HUMAN_GATE
+
+Required Owner inputs:
+- account jurisdiction / country of residence;
+- individual vs company/entity;
+- client classification if known;
+- intended products;
+- optional cost preference.
+
+Owner jurisdiction is not inferred from platform/account/network/location metadata.
+
+Production provider/broker selection: NOT_PERFORMED  
+Accounts/KYC/credentials/subscriptions/funding/orders: NONE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
