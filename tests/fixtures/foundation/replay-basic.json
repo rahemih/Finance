@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "events": [
+    {
+      "sequence": 1,
+      "event_time": "2026-01-01T00:00:00Z",
+      "event_type": "FIXTURE_OPEN",
+      "payload": {
+        "value": "alpha"
+      }
+    },
+    {
+      "sequence": 2,
+      "event_time": "2026-01-01T00:00:01Z",
+      "event_type": "FIXTURE_UPDATE",
+      "payload": {
+        "value": "beta"
+      }
+    },
+    {
+      "sequence": 3,
+      "event_time": "2026-01-01T00:00:02Z",
+      "event_type": "FIXTURE_CLOSE",
+      "payload": {
+        "value": "gamma"
+      }
+    }
+  ]
+}
