@@ -3,9 +3,9 @@
   "task_id": "FIN-P04-WH-001-R01",
   "phase": "P04",
   "audit_date": "2026-10-04",
-  "state": "AUDIT_REPAIR_ACTIVE",
+  "state": "AUDIT_CANONICAL_COMPLETE",
   "canonical_main_sha": "6a7f2c83aa14d877c8adcb7d07cf927217495935",
-  "verdict": "PASS_WITH_DOCUMENTATION_RECONCILIATION",
+  "verdict": "PASS",
   "canonical_blockers": [],
   "test_evidence": {
     "governance_run": 37214471151,
@@ -76,19 +76,19 @@
     {
       "id": "DOC-DRIFT-001",
       "severity": "LOW",
-      "status": "REPAIRING",
+      "status": "REPAIRED",
       "item": "BUILD-READINESS-CHECKLIST contained P01-era current blockers and unchecked P03/P04 readiness."
     },
     {
       "id": "DOC-DRIFT-002",
       "severity": "LOW",
-      "status": "REPAIRING",
+      "status": "REPAIRED",
       "item": "EXECUTION-ROADMAP current-position section still marked P00-E active/P00-F next."
     },
     {
       "id": "STATE-DRIFT-003",
       "severity": "LOW",
-      "status": "REPAIRING",
+      "status": "REPAIRED",
       "item": "CURRENT-STATE contained historical P01 wording that could be misread as current build authorization state."
     },
     {
@@ -110,5 +110,23 @@
     "auto_trading": "DISABLED",
     "production_credentials": "NONE"
   },
-  "next": "Complete repair PR/post-merge validation; keep P05 NOT_STARTED pending Owner authorization."
+  "next": "Merge closure reconciliation; P04 remains CANONICAL_COMPLETE and P05 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION.",
+  "canonical_main_sha_after_repair": "8dcf5a61ffb3c82de86e8e24ef14b570231f8b89",
+  "repair_evidence": {
+    "implementation_pr": 110,
+    "implementation_head_sha": "5839bbcf5befe24ac0f19db481100db0b05a1af5",
+    "pr_governance_run": 37220930187,
+    "pr_artifact_id": 11309378492,
+    "pr_artifact_digest": "sha256:7809b960396217b12689e693d49eade4e87ba92f182d00f0314f19fe5668656b",
+    "implementation_merge_sha": "8dcf5a61ffb3c82de86e8e24ef14b570231f8b89",
+    "postmerge_governance_run": 37220998573,
+    "postmerge_branch_hygiene_run": 37220998534,
+    "postmerge_artifact_id": 11310411058,
+    "postmerge_artifact_digest": "sha256:675a20119f93c31a44283046f362f87816005d90bf39b0c4f75e675799303a69",
+    "postmerge_reproducible_artifact_sha256": "3fb51a0ce3e733bc2fdad20b9ef197ff4bb2ac1d42f12d9cc9b56ea21eded9cf",
+    "postmerge_rollback_manifest_sha256": "0b7d6846bd72a5f1db803404107269aa3718f291b6c42dcedc4e83f6f15f7bd1",
+    "postmerge_file_count": 295,
+    "postmerge_inventory_sha256": "5bab5c490cf607b80bd39375b0f064cc90e7fce177136dab3d5f70e3e5777319",
+    "lock": "RELEASED_PENDING_CLOSURE_MERGE"
+  }
 }
