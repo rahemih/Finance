@@ -57,7 +57,7 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WB-001 | P03 | RBAC / MFA / Session / Device Policy | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WB-001.json` | RELEASED |
 
 
-| FIN-P03-WC-001 | P03 | Secrets / KMS / Vault & Environment Separation | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WC-001.json` | LOCK-FIN-P03-WC-001-01 |
+| FIN-P03-WC-001 | P03 | Secrets / KMS / Vault & Environment Separation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WC-001.json` | RELEASED |
 
 ## Rules
 
