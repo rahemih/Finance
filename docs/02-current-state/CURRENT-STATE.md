@@ -151,7 +151,7 @@ Agent Current-State repair:
 ## Governance
 
 Active task: `FIN-P02-WA-001 — Architecture Principles & ADR Framework`  
-Active branch: `architecture/FIN-P02-WA-001-principles-adr-framework`  
+Active branch: `docs/FIN-P02-WA-001-principles-adr-framework`  
 Active lock: `LOCK-FIN-P02-WA-001-01`  
 Open critical incidents: none
 
