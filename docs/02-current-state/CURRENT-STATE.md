@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-B implementation merge: `a527e991a53474b5ddb83668cbb0ae357a78f2ba`  
+Canonical HEAD at P03-C Fresh Live Guard: `ee25b1741ca13b519974277141a94616dfd85fc3`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WC-001 — Secrets / KMS / Vault & Environment Separation`  
+Active branch: `security/FIN-P03-WC-001-secrets-kms-env`  
+Active lock: `LOCK-FIN-P03-WC-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A and P03-B are CANONICAL_COMPLETE. Next authorized workstream: `P03-C — Secrets / KMS / Vault & Environment Separation`.
+P03-A and P03-B are CANONICAL_COMPLETE. P03-C — Secrets / KMS / Vault & Environment Separation is ACTIVE under `FIN-P03-WC-001` / `HOS-165`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1054,3 +1055,33 @@ P03-B closure:
 - `FIN-P03-WB-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WB-001-01 = RELEASED`
 - next = `P03-C — Secrets / KMS / Vault & Environment Separation`
+
+
+## P03-C — Secrets / KMS / Vault & Environment Separation
+
+Task: `FIN-P03-WC-001`  
+Linear: `HOS-165`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WC-001-secrets-kms-env`  
+Lock: `LOCK-FIN-P03-WC-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A6 Execution
+- A9 Operations
+- A10 Evidence / Audit
+
+Dependencies:
+- P03-A = CANONICAL_COMPLETE
+- P03-B = CANONICAL_COMPLETE
+- FROZEN_G2 = active baseline
+
+Safety:
+- real secrets/API keys/credentials = NONE
+- vault/KMS/HSM provisioning = NOT_PERFORMED
+- CANARY/LIVE = DISABLED
+- Auto Trading = DISABLED
