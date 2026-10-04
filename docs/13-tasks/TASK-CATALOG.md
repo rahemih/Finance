@@ -54,7 +54,7 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WA-001 | P03 | Threat Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WA-001.json` | RELEASED |
 
 
-| FIN-P03-WB-001 | P03 | RBAC / MFA / Session / Device Policy | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WB-001.json` | LOCK-FIN-P03-WB-001-01 |
+| FIN-P03-WB-001 | P03 | RBAC / MFA / Session / Device Policy | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WB-001.json` | RELEASED |
 
 ## Rules
 
