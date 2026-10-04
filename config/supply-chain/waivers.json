@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "state": "NO_ACTIVE_WAIVERS",
+  "required_fields": [
+    "id",
+    "kind",
+    "subject",
+    "severity",
+    "rationale",
+    "compensating_control",
+    "owner",
+    "environments",
+    "approved_at",
+    "expires_at",
+    "evidence",
+    "remediation_plan"
+  ],
+  "waivers": []
+}
