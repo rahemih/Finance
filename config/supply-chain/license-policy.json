@@ -60,10 +60,11 @@
   "legal_note": "This repository policy is an engineering governance baseline and does not replace legal advice.",
   "curated_assertions": [
     {
-      "identity": "pkg:npm/%40pnpm/exe@11.28.4",
+      "identity_prefix": "pkg:npm/%40pnpm/",
+      "exact_version": "11.28.4",
       "license": "MIT",
       "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
-      "scope": "P04-B canonical package-manager toolchain component only"
+      "scope": "Packages produced by the canonical pnpm 11.28.4 toolchain distribution only"
     }
   ]
 }
