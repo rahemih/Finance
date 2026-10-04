@@ -2,7 +2,7 @@
 
 STATE = GOVERNED_CURRENT_STATE_COMPANION  
 TASK = `FIN-P01-WM-001`  
-EFFECTIVE_DATE = 2026-10-03
+EFFECTIVE_DATE = 2026-10-04
 
 ## 1. Purpose
 
@@ -10,7 +10,7 @@ This checklist answers one question:
 
 > Are we ready to begin implementation with the right capabilities identified, governed and phase-owned?
 
-It is not a substitute for roadmap gates. A green tooling checklist does not bypass unfinished P01 work.
+It is not a substitute for roadmap gates. A green tooling checklist does not bypass phase dependencies, safety gates or explicit Owner authorization.
 
 ## 2. Tooling readiness
 
@@ -42,10 +42,10 @@ TOOLING_READINESS = PASS
 - [x] Environment/configuration policy requirement identified.
 - [x] Time synchronization/timestamp discipline identified.
 - [x] Feature-flag standard candidate identified: OpenFeature.
-- [ ] Final architecture selections completed.
-- [ ] Exact runtime versions pinned.
+- [x] Final P02 architecture selections completed and frozen at G2.
+- [x] Exact P04 runtime/package-manager versions pinned.
 
-ARCHITECTURE_SELECTION_READINESS = INPUTS_READY / SELECTION_DEFERRED_TO_P02_P04
+ARCHITECTURE_SELECTION_READINESS = PASS / P02_G2 + P04_B
 
 ## 4. Data-readiness inputs
 
@@ -56,10 +56,10 @@ ARCHITECTURE_SELECTION_READINESS = INPUTS_READY / SELECTION_DEFERRED_TO_P02_P04
 - [x] Arrow/Parquet candidates identified.
 - [x] Deterministic replay is registered as project-core capability.
 - [x] Synthetic/test-data requirement identified.
-- [ ] P01 provider baseline finalized.
-- [ ] P05/P06 canonical ingestion/storage architecture implemented.
+- [x] P01 provider baseline finalized.
+- [ ] P05/P06 canonical real-time/historical ingestion and storage implementation completed.
 
-DATA_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
+DATA_TOOLING_READINESS = FOUNDATION_READY / P05_P06_RUNTIME_IMPLEMENTATION_DEFERRED
 
 ## 5. Quant / ML readiness inputs
 
@@ -90,10 +90,10 @@ ML_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
 - [x] Runtime security candidate identified: Falco (conditional).
 - [x] Independent SBOM vulnerability scanner identified: Grype.
 - [x] Least-privilege / Human Gate model defined.
-- [ ] P03 security architecture completed.
-- [ ] P04 supply-chain CI gates implemented.
+- [x] P03 security architecture completed / G3_SECURITY_BASELINE PASS.
+- [x] P04 supply-chain CI gates implemented and enforced in required `governance`.
 
-SECURITY_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
+SECURITY_TOOLING_READINESS = PASS_FOR_ENGINEERING_FOUNDATION
 
 ## 7. Reliability / operations readiness inputs
 
@@ -121,35 +121,35 @@ OPERATIONS_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
 
 FRONTEND_TOOLING_READINESS = INPUTS_READY / IMPLEMENTATION_DEFERRED
 
-## 9. Current roadmap blockers to actual build start
+## 9. Current roadmap boundary
 
-The project is **not yet authorized to skip directly into broad runtime implementation**.
+P00 through P04 are canonically complete at the current baseline.
 
-Current roadmap still requires P01 completion, including:
-- P01-E — Cost / Licensing / Data Rights;
-- subsequent P01 provider strategy/baseline workstreams required by the frozen roadmap;
-- any required Human Gates.
+Engineering Foundation readiness is proven, but this does **not** authorize skipping the P05 phase boundary or later safety gates.
 
 Therefore:
 
 ```text
 TOOLING_ARSENAL_READY = PASS
-BROAD_BUILD_START_GATE = NOT_YET
-REASON = ROADMAP P01 NOT YET CANONICALLY COMPLETE
+ENGINEERING_FOUNDATION_READY = PASS
+P04 = CANONICAL_COMPLETE
+P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+LIVE_TRADING = DISABLED
+AUTO_TRADING = DISABLED
 ```
 
-## 10. Build-start rule
+## 10. Next build-start rule
 
-When the roadmap reaches P02:
+Before entering P05:
 
-1. run Fresh Live Guard;
-2. read the Master Tooling Registry;
-3. generate the P02 Tooling Plan automatically;
-4. revalidate applicable candidates;
-5. create ADRs/Task Contracts;
-6. select the minimum justified stack;
-7. install only selected/approved dependencies;
-8. establish P03/P04 security/supply-chain gates before sensitive runtime expansion.
+1. obtain explicit Owner authorization for the phase boundary;
+2. run Fresh Live Guard against canonical `main`, Linear and active locks;
+3. verify `P04_ENGINEERING_FOUNDATION_EXIT=PASS`;
+4. read the Master Tooling Registry and P05 tooling map;
+5. create the first P05 Task Contract and lock;
+6. select only the minimum provider/runtime dependencies justified for that workstream;
+7. keep provider credentials, CANARY, LIVE and AUTO_TRADING disabled unless their later governed gates authorize them;
+8. preserve P03/P04 security, supply-chain and reproducibility checks in required CI.
 
 ## 11. Readiness principle
 

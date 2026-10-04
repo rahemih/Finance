@@ -154,15 +154,17 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WH-001-R01 — Post-Closure Audit & State Reconciliation`  
+Active branch: `docs/FIN-P04-WH-001-R01-post-closure-audit`  
+Active lock: `LOCK-FIN-P04-WH-001-R01-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
 
 ## Safety
 
-Development/runtime implementation: NOT_STARTED  
+Engineering Foundation implementation: CANONICAL_COMPLETE  
+Market/application runtime implementation (P05+): NOT_STARTED  
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -254,7 +256,7 @@ Readiness evidence:
 - evaluation/red-team matrix complete with 27 scenarios;
 - security, prompt-injection, memory/state and observability requirements complete;
 - P02-F runtime implementation backlog complete;
-- runtime implementation remains deferred until P02-F is explicitly active.
+- historical P01 closure note: implementation was deferred at that time; P02-F later completed canonically.
 
 Implementation evidence:
 - implementation PR #43 = MERGED
@@ -264,8 +266,8 @@ Implementation evidence:
 - post-merge Branch Hygiene: `37133087415` = SUCCESS
 - final shared-state blocker `FIN-P01-WE-001 / HOS-117` = CANONICAL_COMPLETE / RELEASED
 
-Runtime implementation: NOT_STARTED / NOT_AUTHORIZED_BEFORE_P02_F  
-Production framework selection: DEFERRED_TO_P02_F  
+Historical P01 closure state: runtime implementation was not authorized before P02-F.  
+Current status: P02-F is CANONICAL_COMPLETE; P04 Engineering Foundation is CANONICAL_COMPLETE; market/application runtime P05+ remains NOT_STARTED pending phase authorization.  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
 
@@ -311,7 +313,7 @@ Artifacts:
 - `docs/02-current-state/BUILD-READINESS-CHECKLIST.md`
 
 Tooling arsenal readiness: PASS.  
-Broad build-start gate: NOT_YET — P01 remains active.  
+Historical P01 build-start gate: SUPERSEDED_BY_P04_CANONICAL_COMPLETION.  
 Runtime tooling installation from this task: NOT_PERFORMED.  
 Production technology selection from this task: NOT_PERFORMED.
 
@@ -323,8 +325,8 @@ Master tooling registry closure evidence:
 - Post-merge Governance run: `37125005808` = SUCCESS
 - Post-merge Branch Hygiene run: `37125005812` = SUCCESS
 - Tooling arsenal readiness: PASS
-- Broad build-start gate: NOT_YET — P01 remains active
-- Runtime tooling installation: NOT_PERFORMED
+- Historical P01 build-start gate: SUPERSEDED_BY_P04_CANONICAL_COMPLETION
+- Runtime tooling installation from FIN-P01-WM-001 itself: NOT_PERFORMED
 
 
 ## Roadmap tooling usage map
@@ -2028,3 +2030,46 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04 post-closure audit repair
+
+Task: `FIN-P04-WH-001-R01`  
+Linear: `HOS-180`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P04-WH-001-R01-01`
+
+Purpose:
+- independently re-audit P04 tests/security/CI/evidence;
+- repair documentation and project-management drift only;
+- preserve P04 canonical implementation;
+- keep P05 behind Owner authorization.
+
+Canonical audit baseline:
+- main SHA: `6a7f2c83aa14d877c8adcb7d07cf927217495935`
+- Governance `37214471151` = SUCCESS
+- Branch Hygiene `37214471169` = SUCCESS
+- 20/20 deterministic/unit tests = PASS
+- Config contract = PASS
+- NPM/Python dependency policy = PASS
+- active waivers = 0
+- CycloneDX 1.7 SBOM/license policy = PASS
+- Trivy HIGH/CRITICAL vuln/misconfig/secret gate = PASS
+- reproducible clean-source build twice = PASS
+- `P04_ENGINEERING_FOUNDATION_EXIT=PASS`
+
+Findings under repair:
+- stale P01-era Build Readiness current blockers;
+- stale P00-era Execution Roadmap current position;
+- stale historical/current wording in Current State;
+- stale Linear project current-status description (already reconciled).
+
+Residual hygiene:
+- `foundation/FIN-P04-WA-001-workspace-structure` is non-canonical, has no unique commits, and cannot override `main`;
+- connected GitHub capability exposes no safe branch-delete action, so deletion is not performed in this repair.
+
+Safety unchanged:
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
+- P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION

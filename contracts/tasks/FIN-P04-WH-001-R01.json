@@ -1,0 +1,136 @@
+{
+  "task_id": "FIN-P04-WH-001-R01",
+  "phase": "P04",
+  "workstream": "WH",
+  "objective": "Perform an independent post-closure P04 audit, repair current-state/documentation drift, preserve canonical Engineering Foundation evidence, and keep P05 behind Owner authorization.",
+  "scope": [
+    "Verify current main SHA and latest full Governance/Branch Hygiene success",
+    "Verify P04-A through P04-H machine-readable canonical states and released locks",
+    "Verify GitHub ruleset Protect main and required governance status context",
+    "Review unit, deterministic harness, config, dependency, SBOM/license, Trivy, reproducible-build and P04-exit evidence",
+    "Verify GitHub/Linear P04 issue and milestone synchronization",
+    "Repair stale current-status text in BUILD-READINESS-CHECKLIST.md",
+    "Repair stale current-execution position in EXECUTION-ROADMAP.md without changing frozen phase sequencing",
+    "Repair misleading current wording in CURRENT-STATE.md",
+    "Reconcile Linear project current-status description",
+    "Create a canonical P04 post-closure technical audit report",
+    "Record stale non-canonical branch as hygiene residual with proof of no unique commits"
+  ],
+  "out_of_scope": [
+    "P05 implementation or task activation",
+    "Provider/data adapter implementation",
+    "Production deployment, credentials, accounts or infrastructure",
+    "CANARY/LIVE/AUTO_TRADING enablement",
+    "Changing frozen Master Roadmap phase definitions",
+    "Deleting stale branches where the connected GitHub capability exposes no branch-delete action",
+    "Unrelated P01 milestone cleanup"
+  ],
+  "dependencies": [
+    "FIN-P04-WH-001 CANONICAL_COMPLETE",
+    "P04_ENGINEERING_FOUNDATION_EXIT PASS",
+    "P04 closure post-merge Governance and Branch Hygiene SUCCESS"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/06-engineering/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/FIN-P04-*.json",
+    ".github/workflows/**",
+    "scripts/ci/**",
+    "package.json",
+    "pyproject.toml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WH-001-R01.json",
+    "docs/06-engineering/P04-POST-CLOSURE-AUDIT.md",
+    "docs/06-engineering/p04-post-closure-audit.json",
+    "docs/06-engineering/P04-ENGINEERING-FOUNDATION-CLOSURE.md",
+    "docs/06-engineering/p04-engineering-foundation-closure.json",
+    "docs/02-current-state/BUILD-READINESS-CHECKLIST.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "apps/**",
+    "adapters/**",
+    "packages/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Latest Governance Verify succeeds on current canonical main",
+    "Latest Branch Hygiene succeeds on current canonical main",
+    "20 foundation deterministic/unit tests pass",
+    "Config/environment contract passes",
+    "Dependency and waiver policy passes with zero active waivers",
+    "CycloneDX 1.7 SBOM license policy passes",
+    "Trivy HIGH/CRITICAL vulnerability/misconfiguration/secret gate passes",
+    "Two independent clean-source builds are byte-identical",
+    "P04 engineering foundation exit regression guard passes",
+    "All P04-A..H task states are CANONICAL_COMPLETE and locks RELEASED",
+    "Protect main ruleset remains active and requires governance status context",
+    "Linear P04 issues are Done and milestone is complete after repair"
+  ],
+  "security_tests": [
+    "Workflow action references remain SHA pinned",
+    "Promotion remains disabled",
+    "CANARY/LIVE/AUTO_TRADING remain disabled",
+    "No secrets/credentials/accounts are introduced",
+    "No P05 task/branch/adapter implementation is created"
+  ],
+  "evidence": [
+    "Governance run 37214471151",
+    "Branch Hygiene run 37214471169",
+    "Artifact 11307314514 and digest sha256:08a3b13d88c11456c6a6019529c775c9f240c3f86cb24ab310f3efd894f1bae7",
+    "P04-A..H machine-readable closure evidence",
+    "Protect main ruleset 24412077",
+    "Linear HOS-172 through HOS-179 Done",
+    "Linear HOS-180 repair issue",
+    "Post-closure audit report"
+  ],
+  "rollback": "Revert only the post-closure documentation/state reconciliation and audit artifacts. P04-A through P04-H implementation remains canonical and unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P04 CANONICAL_COMPLETE",
+    "P05 NOT_STARTED_PENDING_OWNER_AUTHORIZATION",
+    "No canonical P04 implementation branch or PR active"
+  ],
+  "definition_of_done": [
+    "P04 test/security/CI audit PASS with no canonical blocker",
+    "Documentation drift repaired",
+    "Linear project current status reconciled",
+    "Audit report canonical",
+    "Repair PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "FIN-P04-WH-001-R01 CANONICAL_COMPLETE",
+    "Repair lock released",
+    "Linear HOS-180 Done",
+    "P04 remains CANONICAL_COMPLETE",
+    "P05 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION"
+  ]
+}
