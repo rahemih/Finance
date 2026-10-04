@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-E implementation merge: `cd536117802a376e3e2df97a002d196aecf818c9`  
+Canonical HEAD at P03-F Fresh Live Guard: `650e024b6951b1bcbc0e5318b983f3375a0386c9`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WF-001 — Supply Chain Security`  
+Active branch: `security/FIN-P03-WF-001-supply-chain-security`  
+Active lock: `LOCK-FIN-P03-WF-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A through P03-E are CANONICAL_COMPLETE. Next authorized workstream: `P03-F — Supply Chain Security`.
+P03-A through P03-E are CANONICAL_COMPLETE. P03-F — Supply Chain Security is ACTIVE under `FIN-P03-WF-001` / `HOS-168`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1200,3 +1201,40 @@ P03-E closure:
 - `FIN-P03-WE-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WE-001-01 = RELEASED`
 - next = `P03-F — Supply Chain Security`
+
+
+## P03-F — Supply Chain Security
+
+Task: `FIN-P03-WF-001`  
+Linear: `HOS-168`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WF-001-supply-chain-security`  
+Lock: `LOCK-FIN-P03-WF-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A9 Operations
+- A10 Evidence / Audit
+
+Dependencies:
+- P03-A through P03-E = CANONICAL_COMPLETE
+- Security Tooling Baseline = read-only reference
+- FROZEN_G2 = active
+
+Direction:
+- dependency/source/package trust;
+- secret scanning;
+- SAST/SCA/misconfiguration classes;
+- SBOM;
+- artifact provenance/signing/verification;
+- CI identity/workflow hardening;
+- explicit exceptions with expiry.
+
+Concrete scanner/signing activation: DEFERRED_TO_P04  
+Production release: DISABLED  
+Country/location dependency: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED
