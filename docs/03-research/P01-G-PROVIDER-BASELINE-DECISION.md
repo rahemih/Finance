@@ -1,6 +1,6 @@
 # P01-G — Provider Baseline Decision
 
-STATE = COUNTRY_NEUTRAL_BASELINE_READY  
+STATE = CANONICAL_COMPLETE  
 TASK = `FIN-P01-WG-004`  
 PHASE = `P01 — Market / Provider / Compliance Research`  
 GATE = `G1_PROVIDER_BASELINE`  
@@ -227,7 +227,7 @@ P01-G now has:
 
 Therefore:
 
-`G1_PROVIDER_BASELINE = PASS_PENDING_CANONICAL_MERGE`
+`G1_PROVIDER_BASELINE = PASS`
 
 This PASS authorizes **P02 — Master Architecture** only.
 
@@ -252,3 +252,12 @@ Demo Trading = NOT_STARTED
 Shadow Trading = NOT_STARTED  
 Live Trading = DISABLED  
 Auto Trading = DISABLED
+
+
+## 10. Canonical closure
+
+Task: `FIN-P01-WG-004 = CANONICAL_COMPLETE`  
+Lock: RELEASED  
+P01 phase: CANONICAL_COMPLETE  
+G1_PROVIDER_BASELINE: PASS  
+Next phase: `P02 — Master Architecture`
