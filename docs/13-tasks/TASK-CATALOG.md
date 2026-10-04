@@ -75,7 +75,7 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WH-001 | P03 | Security Validation + G3 Security Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WH-001.json` | RELEASED |
 
 
-| FIN-P04-WA-001 | P04 | Repository / Workspace Structure | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WA-001.json` | LOCK-FIN-P04-WA-001-01 |
+| FIN-P04-WA-001 | P04 | Repository / Workspace Structure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WA-001.json` | RELEASED |
 
 ## Rules
 

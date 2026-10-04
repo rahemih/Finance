@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WA-001 — Repository / Workspace Structure`  
-Active branch: `chore/FIN-P04-WA-001-workspace-structure`  
-Active lock: `LOCK-FIN-P04-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1362,9 +1361,8 @@ Safety:
 
 Task: `FIN-P04-WA-001`  
 Linear: `HOS-172`  
-State: ACTIVE  
-Branch: `chore/FIN-P04-WA-001-workspace-structure`  
-Lock: `LOCK-FIN-P04-WA-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A1 Architecture = LEAD
@@ -1408,3 +1406,28 @@ Dependencies installed: NONE
 Production infrastructure provisioned: NONE  
 Production identities/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED
+
+
+P04-A implementation evidence:
+- implementation PR: `#94` = MERGED
+- implementation merge SHA: `77ffe82e83a54fb9664856491759bb8f84b8a0b3`
+- PR Governance run: `37200927333` = SUCCESS
+- post-merge Governance run: `37200946376` = SUCCESS
+- post-merge Branch Hygiene run: `37200946378` = SUCCESS
+- workspace model: GOVERNED_POLYGLOT_MONOREPO
+- architecture style: MODULAR_CORE_FIRST
+- forbidden-path changes: 0
+- runtime dependencies installed: NONE
+
+P04-A closure:
+- `FIN-P04-WA-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WA-001-01 = RELEASED`
+- next workstream: `P04-B — Language / Runtime / Dependency Baseline`
+- P04-B: NOT_STARTED
+
+Safety:
+- production infrastructure = NONE
+- production identities/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED

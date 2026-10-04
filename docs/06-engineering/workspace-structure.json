@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WA-001",
-  "state": "P04-A_IMPLEMENTATION",
+  "state": "P04-A_CANONICAL_COMPLETE",
   "architecture_baseline": "FROZEN_G2",
   "security_gate": "G3_SECURITY_BASELINE_PASS",
   "workspace_model": "GOVERNED_POLYGLOT_MONOREPO",
@@ -122,8 +122,16 @@
     "release_artifacts_committed_to_source": false,
     "reproducible_generator_required_for_source_controlled_generated_files": true
   },
-  "next": "P04-B — Language / Runtime / Dependency Baseline",
+  "next": "P04-B — Language / Runtime / Dependency Baseline (NOT_STARTED)",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 94,
+    "implementation_merge_sha": "77ffe82e83a54fb9664856491759bb8f84b8a0b3",
+    "pr_governance_run": 37200927333,
+    "postmerge_governance_run": 37200946376,
+    "postmerge_branch_hygiene_run": 37200946378,
+    "lock": "RELEASED"
+  }
 }
