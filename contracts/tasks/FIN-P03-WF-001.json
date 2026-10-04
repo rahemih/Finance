@@ -1,0 +1,126 @@
+{
+  "task_id": "FIN-P03-WF-001",
+  "phase": "P03",
+  "workstream": "WF",
+  "objective": "Define the canonical software supply-chain security baseline for NEXUS QUANT; defer concrete scanner/tool activation to P04.",
+  "scope": [
+    "Dependency/source/package trust policy",
+    "CI workflow/action provenance and least privilege",
+    "Lockfile/pinning/reproducibility requirements",
+    "SAST/SCA/vulnerability/misconfiguration control classes",
+    "Secret scanning and push-protection direction",
+    "SBOM format/generation/retention requirements",
+    "Artifact digest/provenance/attestation requirements",
+    "Signing/verification and trust-root direction",
+    "Dependency update/exception/expiry policy",
+    "Release blocking conditions",
+    "Open-source dependency health/license/security evaluation",
+    "Compromised dependency/action/package response",
+    "Machine-readable control matrix and diagrams",
+    "P04 implementation handoff"
+  ],
+  "out_of_scope": [
+    "Install scanners or signing infrastructure",
+    "Pin concrete runtime versions",
+    "Provision CI/signing credentials",
+    "Build/release production artifacts",
+    "Enable CANARY/LIVE/Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "FIN-P03-WC-001",
+    "FIN-P03-WD-001",
+    "FIN-P03-WE-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**",
+    ".github/**",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WF-001.json",
+    "docs/05-security/SUPPLY-CHAIN-SECURITY.md",
+    "docs/05-security/supply-chain-security.json",
+    "docs/05-security/SUPPLY-CHAIN-SECURITY-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    ".github/workflows/**",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "Critical unresolved supply-chain issue direction blocks release",
+    "Required SBOM/provenance/signature mismatch blocks promotion when controls activate",
+    "Third-party actions/tools must be version/digest pinned per policy",
+    "CI tokens are least privilege and separated from runtime identities",
+    "Untrusted PR/fork cannot access protected secrets",
+    "Dependency exceptions have owner/evidence/expiry",
+    "Lockfile/package-source integrity requirements are explicit",
+    "No scanner/signing control is falsely claimed active",
+    "Country/location is not a supply-chain trust assumption"
+  ],
+  "evidence": [
+    "P03-A through P03-E canonical baselines",
+    "Security Tooling Baseline",
+    "SLSA v1.2",
+    "Sigstore/Cosign",
+    "CycloneDX 1.7",
+    "SPDX interoperability",
+    "NIST SSDF",
+    "machine-readable supply-chain matrix",
+    "diagrams",
+    "GitHub PR/check evidence",
+    "Linear HOS-168 reconciliation"
+  ],
+  "rollback": "Revert P03-F baseline artifacts and shared state/catalog changes. No runtime/CI scanner or signing infrastructure is changed.",
+  "definition_of_ready": [
+    "P03-A through P03-E CANONICAL_COMPLETE",
+    "P03-E lock RELEASED",
+    "FROZEN_G2 active",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Supply-chain baseline canonical",
+    "Machine-readable matrix and diagrams canonical",
+    "Current State/Task Catalog reconciled",
+    "Governance Verify passes",
+    "Implementation PR merges",
+    "Post-merge verification passes",
+    "Closure PR merges",
+    "Lock released",
+    "FIN-P03-WF-001 CANONICAL_COMPLETE"
+  ]
+}
