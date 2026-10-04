@@ -34,6 +34,7 @@ Useful capability
 | Agent authority/governance | `docs/09-agents/AGENT-GOVERNANCE-INTEGRATION.md` |
 | Automation/orchestration | `docs/03-research/AUTOMATION-ORCHESTRATION-REGISTRY.md` |
 | Automation governance | `docs/00-governance/AUTOMATION-GOVERNANCE.md` |
+| Security tooling / defense-in-depth | `docs/03-research/SECURITY-TOOLING-REGISTRY.md` |
 
 ## 3. Activation states
 
@@ -141,6 +142,12 @@ Useful capability
 | SAST/security analysis | Codex Security + CI scanner candidates | ACTIVE/CANDIDATE | P03/P04 | governed |
 | DAST/app security | later selected web/API security tooling | CONDITIONAL | P03/P24 | before production gates |
 | Policy enforcement | OPA + repository governance | ADOPT_CANDIDATE | P03/P04 | if centralized policy improves safety |
+| Primary SAST | GitHub CodeQL | ADOPT_CANDIDATE | P03/P04/P24 | CI security gate after language/runtime selection |
+| Broad vulnerability/misconfiguration scan | Trivy | ADOPT_CANDIDATE | P03/P04/P22/P24 | primary broad scanner candidate |
+| Custom project-specific SAST | Semgrep | USE_CANDIDATE + LICENSE_REVIEW | P03/P04 | NEXUS-specific rules where CodeQL is insufficient |
+| DAST / API security | OWASP ZAP | ADOPT_CANDIDATE | P23/P24 | authorized environments only |
+| Runtime threat detection | Falco | CONDITIONAL | P22/P24 | only if runtime topology benefits |
+| Independent SBOM/image vulnerability check | Grype | ALTERNATIVE | P03/P04/P24 | optional independent verification |
 
 ### Reliability / testing / validation
 
