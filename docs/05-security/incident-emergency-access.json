@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-G_IMPLEMENTATION",
+  "task_id": "FIN-P03-WG-001",
+  "linear_issue": "HOS-170",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "prior_security": "P03-A_TO_P03-F_CANONICAL",
+    "country_location_jurisdiction_assumption": "NONE",
+    "canary": "DISABLED",
+    "live": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "principles": [
+    "SAFETY_BEFORE_AVAILABILITY",
+    "A8_SECURITY_HALT_AUTHORITY",
+    "A5_RISK_VETO_AUTHORITY",
+    "A6_EXECUTION_TRUTH_RECONCILIATION",
+    "UNKNOWN_EXECUTION_REQUIRES_RECONCILIATION",
+    "RECOVERY_DOES_NOT_AUTO_RESTORE_AUTHORITY",
+    "PRESERVE_EVIDENCE_EARLY",
+    "BREAK_GLASS_IS_NOT_BYPASS"
+  ],
+  "severities": [
+    {
+      "id": "SEV0",
+      "name": "EMERGENCY",
+      "examples": [
+        "unauthorized_live_capable_execution",
+        "critical_execution_security_credential_compromise",
+        "A5_A8_firewall_bypass",
+        "destructive_audit_recovery_truth_compromise",
+        "material_unreconciled_external_exposure"
+      ]
+    },
+    {
+      "id": "SEV1",
+      "name": "CRITICAL",
+      "examples": [
+        "privileged_compromise",
+        "high_trust_supply_chain_compromise",
+        "major_data_poisoning",
+        "Z4_Z5_Z7_exposure",
+        "critical_audit_integrity_failure",
+        "ransomware_critical_domain"
+      ]
+    },
+    {
+      "id": "SEV2",
+      "name": "HIGH"
+    },
+    {
+      "id": "SEV3",
+      "name": "MODERATE"
+    },
+    {
+      "id": "SEV4",
+      "name": "LOW_OBSERVATION"
+    }
+  ],
+  "lifecycle": [
+    "PREPARE_GOVERN",
+    "DETECT",
+    "ANALYZE_DECLARE",
+    "CONTAIN",
+    "ERADICATE_REMEDIATE",
+    "RECOVER",
+    "POST_INCIDENT"
+  ],
+  "roles": {
+    "A8": [
+      "SECURITY_CONTAINMENT",
+      "SECURITY_VETO",
+      "REVOKE_COMPROMISED_SECURITY_PATH"
+    ],
+    "A5": [
+      "RISK_HALT_REDUCTION",
+      "EXPOSURE_SAFETY"
+    ],
+    "A6": [
+      "EXECUTION_LIFECYCLE_TRUTH",
+      "RECONCILIATION"
+    ],
+    "A9": [
+      "DIAGNOSTICS",
+      "RECOVERY_COORDINATION",
+      "SAFE_MODE"
+    ],
+    "A10": [
+      "EVIDENCE_COMPLETENESS",
+      "INTEGRITY_REVIEW"
+    ],
+    "A0": [
+      "INCIDENT_COORDINATION",
+      "GOVERNANCE_TRACKING"
+    ]
+  },
+  "playbooks": [
+    "CREDENTIAL_COMPROMISE",
+    "EXECUTION_BROKER_UNKNOWN",
+    "DATA_POISONING",
+    "AGENT_MODEL_MCP_COMPROMISE",
+    "SUPPLY_CHAIN_COMPROMISE",
+    "AUDIT_INTEGRITY",
+    "RANSOMWARE_DESTRUCTIVE_EVENT",
+    "AVAILABILITY_DOS"
+  ],
+  "execution_incident": {
+    "unknown_is_success": false,
+    "unknown_is_failure": false,
+    "blind_retry_reroute": false,
+    "one_unresolved_route_per_logical_exposure": true,
+    "reconciliation_required": true,
+    "fresh_risk_firewall_security_before_new_route": true
+  },
+  "emergency_access": {
+    "purpose": "CONTAINMENT_RECOVERY_ONLY",
+    "unique_principal": true,
+    "strongest_available_auth": true,
+    "exact_scope": true,
+    "time_bounded": true,
+    "minimal_privilege": true,
+    "incident_id_required": true,
+    "high_severity_audit": true,
+    "revoke_after_use": true,
+    "post_use_review": true,
+    "can_bypass_A5_A8": false,
+    "can_enable_live": false,
+    "direct_discretionary_broker_order": false
+  },
+  "halt_scopes": [
+    "tool_provider",
+    "agent",
+    "data_source",
+    "instrument",
+    "account_provider_route",
+    "execution_system",
+    "environment",
+    "global"
+  ],
+  "recovery_gates": [
+    "identity_revalidated",
+    "sessions_authenticators_revalidated",
+    "secrets_rotated_or_revalidated",
+    "network_admin_path_validated",
+    "artifacts_provenance_verified",
+    "audit_integrity_assessed",
+    "data_quality_provenance_restored",
+    "provider_broker_account_truth_reconciled",
+    "A8_permits",
+    "A5_permits",
+    "fresh_human_gate_when_required",
+    "residual_risk_documented"
+  ],
+  "drills": [
+    "privileged_account_takeover",
+    "broker_credential_leak",
+    "execution_timeout_unknown",
+    "duplicate_order_suspicion",
+    "market_data_poisoning",
+    "prompt_injection_tool_abuse",
+    "malicious_dependency_action",
+    "audit_chain_break",
+    "ransomware_restore",
+    "idp_outage_break_glass",
+    "Z4_Z5_network_exposure",
+    "provider_plus_telemetry_degradation"
+  ],
+  "implementation_state": {
+    "soc_on_call": "NOT_OPERATED",
+    "siem_edr_paging": "NOT_PROVISIONED",
+    "forensics": "NOT_SELECTED",
+    "production_emergency_credential": "NONE",
+    "production_accounts_credentials": "NONE"
+  }
+}
