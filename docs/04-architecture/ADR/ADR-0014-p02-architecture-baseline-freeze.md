@@ -1,6 +1,6 @@
 # ADR-0014 — P02 Architecture Baseline Freeze
 
-Status: ACCEPTED_PENDING_G2_CANONICAL_CLOSURE  
+Status: ACCEPTED  
 Task: `FIN-P02-WI-001`  
 Gate: `G2_ARCHITECTURE_FREEZE`
 
@@ -97,13 +97,17 @@ Negative:
 
 ## Gate effectiveness
 
-This ADR becomes fully effective only after:
-- P02-I PR merge;
-- post-merge Governance SUCCESS;
-- closure reconciliation;
-- `G2_ARCHITECTURE_FREEZE = PASS`.
+This ADR is effective with canonical P02-I closure.
 
-Until then the status is `ACCEPTED_PENDING_G2_CANONICAL_CLOSURE`.
+`G2_ARCHITECTURE_FREEZE = PASS`
+
+`P02_ARCHITECTURE_BASELINE = FROZEN_G2`
+
+Implementation review evidence:
+- PR #75 merged as `fd62cf3abdde7f4f00d5102b8170cdd7564bb74e`
+- PR Governance `37193927009` = SUCCESS
+- post-merge Governance `37193970490` = SUCCESS
+- post-merge Branch Hygiene `37193970613` = SUCCESS
 
 ## Related artifacts
 
