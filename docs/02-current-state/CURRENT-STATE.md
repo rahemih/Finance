@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WG-001 — Developer Bootstrap & Tooling`  
-Active branch: `chore/FIN-P04-WG-001-developer-tooling`  
-Active lock: `LOCK-FIN-P04-WG-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1875,9 +1874,8 @@ Safety:
 
 Task: `FIN-P04-WG-001`  
 Linear: `HOS-178`  
-State: ACTIVE  
-Branch: `chore/FIN-P04-WG-001-developer-tooling`  
-Lock: `LOCK-FIN-P04-WG-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A9 Developer Operations = LEAD
@@ -1914,3 +1912,30 @@ Third-party developer tooling dependency added: NONE
 Production infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-H: NOT_STARTED
+
+
+P04-G implementation evidence:
+- implementation PR: `#106` = MERGED
+- final PR head SHA: `a55ac1280aff97369d528c7f3659acf684cb8918`
+- implementation merge SHA: `b4ffad65d3f3f38671e776a2eb8add07785bb37b`
+- PR Governance/Foundation CI: `37209840384` = SUCCESS
+- strict developer doctor = PASS
+- developer tooling contract = PASS
+- PR artifact: `11306385795` / digest `sha256:d28ca63e9022ac81d032b26f1dfddc27327db34d6c4de59920ba91bd11cdce48`
+- post-merge Governance/Foundation CI: `37209923615` = SUCCESS
+- post-merge Branch Hygiene: `37209923616` = SUCCESS
+- post-merge artifact: `11306585482` / digest `sha256:7dbe1bddf8f5a1413413ee930251d58e9e74b7af2403888cf9010e05978d084a`
+- third-party developer tooling dependency added = NONE
+- Git hooks = opt-in / CI authoritative
+
+P04-G closure:
+- `FIN-P04-WG-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WG-001-01 = RELEASED`
+- next workstream: `P04-H — Reproducible Build / Artifact Verification`
+- P04-H: NOT_STARTED
+
+Safety:
+- production infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
