@@ -1,0 +1,2 @@
+# P04-F governed Trivy ignore list.
+# Non-comment entries MUST exactly match active VULNERABILITY waivers in config/supply-chain/waivers.json.
