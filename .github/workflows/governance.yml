@@ -84,7 +84,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          uv --version | grep -Eq '^uv 0\\.12\\.23(?: |$)'
+          uv --version | grep -Eq '^uv 0\\.12\\.23( |$)'
           uv sync --locked --no-install-project
 
       - name: Foundation lint
