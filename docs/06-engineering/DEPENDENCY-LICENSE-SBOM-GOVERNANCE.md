@@ -123,6 +123,10 @@ Canonical workflow action assertions:
 
 Each assertion is tied to the exact action/version already pinned by immutable commit SHA in the workflow. A workflow action version change requires fresh license evidence.
 
+Additional pnpm transitive assertion:
+- `detect-libc@2.1.2` → Apache-2.0
+- evidence: npm registry metadata for published version 2.1.2.
+
 ## 5. Waivers
 
 A waiver is explicit and temporary.
