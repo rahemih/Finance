@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P04 — Engineering Foundation / P04-G active  
+> Status: P04 — Engineering Foundation / P04-A through P04-G complete / P04-H active next  
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
