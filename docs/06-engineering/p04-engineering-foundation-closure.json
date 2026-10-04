@@ -73,6 +73,13 @@
     "pr_governance_run": 37220930187,
     "postmerge_governance_run": 37220998573,
     "postmerge_branch_hygiene_run": 37220998534,
-    "state": "CANONICAL_COMPLETE_PENDING_CLOSURE_MERGE"
+    "state": "CANONICAL_COMPLETE",
+    "closure_pr": 111,
+    "closure_merge_sha": "69c9275c463eb802fab9328a3d01b65c9ad2055c",
+    "closure_pr_governance_run": 37221162927,
+    "closure_postmerge_governance_run": 37221233926,
+    "closure_postmerge_branch_hygiene_run": 37221233928,
+    "final_artifact_id": 11310348403,
+    "final_artifact_digest": "sha256:76d112ce8a95f96f2aa41644f94fa7f3f870025862abfd4c34eff514cad43bbb"
   }
 }
