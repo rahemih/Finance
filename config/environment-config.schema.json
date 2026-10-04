@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rahemih/Finance/config/environment-config.schema.json",
+  "title": "NEXUS QUANT Environment Configuration Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "environment",
+    "inherits",
+    "config_version",
+    "provisioning_state",
+    "authority_ceiling",
+    "safety",
+    "execution",
+    "credentials",
+    "settings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "environment": {
+      "enum": [
+        "DEV",
+        "TEST",
+        "RESEARCH",
+        "DEMO",
+        "SHADOW",
+        "CANARY",
+        "LIVE"
+      ]
+    },
+    "inherits": {
+      "const": "config/base.json"
+    },
+    "config_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "provisioning_state": {
+      "const": "CONTRACT_ONLY"
+    },
+    "authority_ceiling": {
+      "enum": [
+        "SIMULATED_ONLY",
+        "DEMO_ONLY",
+        "SHADOW_ONLY",
+        "CANARY_DISABLED",
+        "LIVE_DISABLED"
+      ]
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "live_trading",
+        "auto_trading",
+        "withdrawals",
+        "transfers"
+      ],
+      "properties": {
+        "live_trading": {
+          "const": false
+        },
+        "auto_trading": {
+          "const": false
+        },
+        "withdrawals": {
+          "const": false
+        },
+        "transfers": {
+          "const": false
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_mode",
+        "external_order_submission"
+      ],
+      "properties": {
+        "active_mode": {
+          "const": "DISABLED"
+        },
+        "external_order_submission": {
+          "const": false
+        }
+      }
+    },
+    "credentials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_provisioned",
+        "secret_namespace",
+        "secret_refs"
+      ],
+      "properties": {
+        "authority_provisioned": {
+          "const": false
+        },
+        "secret_namespace": {
+          "type": "string",
+          "pattern": "^secret://(dev|test|research|demo|shadow|canary|live)/$"
+        },
+        "secret_refs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^secret://(dev|test|research|demo|shadow|canary|live)/[a-z0-9-]+/[a-z0-9._-]+@[a-z0-9._-]+$"
+          }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "log_level",
+        "clock_mode",
+        "data_mode"
+      ],
+      "properties": {
+        "log_level": {
+          "enum": [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        },
+        "clock_mode": {
+          "enum": [
+            "SYSTEM",
+            "DETERMINISTIC",
+            "REPLAY"
+          ]
+        },
+        "data_mode": {
+          "enum": [
+            "FIXTURE",
+            "RECORDED",
+            "EXTERNAL_READ_ONLY",
+            "NONE"
+          ]
+        }
+      }
+    }
+  }
+}
