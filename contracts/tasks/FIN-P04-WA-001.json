@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P04-WA-001",
+  "phase": "P04",
+  "workstream": "WA",
+  "objective": "Define and materialize the canonical governed polyglot monorepo/workspace structure for NEXUS QUANT without selecting exact runtimes, installing dependencies, or implementing market/trading logic.",
+  "scope": [
+    "Select one governed polyglot monorepo and record the decision",
+    "Define top-level workspace zones and ownership/purpose",
+    "Preserve FROZEN_G2 domain and Risk→Firewall→Execution authority boundaries",
+    "Keep provider/vendor SDKs at adapter edges",
+    "Define dependency/import direction and forbidden couplings",
+    "Separate governed production code from research/experiments",
+    "Define config/secrets placement rules",
+    "Define testing, generated output and evidence placement rules",
+    "Create machine-readable workspace manifest",
+    "Materialize minimal README placeholders for canonical workspace zones",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Select or pin Node, TypeScript, Python or package-manager versions",
+    "Install dependencies or create runtime lockfiles",
+    "Implement CI/CD checks",
+    "Provision infrastructure, networks, secrets or credentials",
+    "Implement market adapters, signals, risk, execution or UI",
+    "Enable Demo, Shadow, CANARY, LIVE or Auto Trading"
+  ],
+  "dependencies": [
+    "P03_CANONICAL_COMPLETE",
+    "G3_SECURITY_BASELINE_PASS",
+    "P02_ARCHITECTURE_BASELINE_FROZEN_G2"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WA-001.json",
+    "docs/06-engineering/WORKSPACE-STRUCTURE.md",
+    "docs/06-engineering/workspace-structure.json",
+    "apps/README.md",
+    "packages/README.md",
+    "adapters/README.md",
+    "quant/README.md",
+    "research/README.md",
+    "config/README.md",
+    "infra/README.md",
+    "tests/README.md",
+    "README.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "Branch naming policy passes",
+    "Workspace manifest JSON parses",
+    "No provider SDK is authorized inside core packages",
+    "No direct Strategy/Signal/UX to broker path is introduced",
+    "No production code may import research/",
+    "No raw secret file is permitted under config/",
+    "Generated/build outputs are not canonical source",
+    "Exact runtime/tool versions remain deferred to P04-B",
+    "CANARY/LIVE/Auto Trading remain disabled"
+  ],
+  "evidence": [
+    "FROZEN_G2 domain boundaries",
+    "FROZEN_G2 Risk/Firewall/Execution architecture",
+    "G3_SECURITY_BASELINE PASS",
+    "workspace structure document",
+    "machine-readable workspace manifest",
+    "repository tree evidence",
+    "GitHub PR/check evidence",
+    "Linear HOS-172 reconciliation"
+  ],
+  "rollback": "Revert P04-A structural README/manifest/documentation changes. No dependencies, runtime state, infrastructure, secrets, accounts or market logic are changed.",
+  "definition_of_ready": [
+    "P03 CANONICAL_COMPLETE",
+    "G3_SECURITY_BASELINE PASS",
+    "FROZEN_G2 active",
+    "No conflicting active lock",
+    "Fresh Live Guard branch is 0 behind main"
+  ],
+  "definition_of_done": [
+    "Workspace decision and dependency rules canonical",
+    "Minimal workspace directories materialized",
+    "Manifest valid",
+    "Governance Verify passes",
+    "Implementation PR merges",
+    "Post-merge verification passes",
+    "Closure reconciliation complete",
+    "Lock released",
+    "FIN-P04-WA-001 CANONICAL_COMPLETE"
+  ]
+}
