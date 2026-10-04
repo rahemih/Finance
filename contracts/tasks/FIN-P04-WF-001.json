@@ -1,0 +1,147 @@
+{
+  "task_id": "FIN-P04-WF-001",
+  "phase": "P04",
+  "workstream": "WF",
+  "objective": "Activate concrete dependency source/pinning, license, vulnerability and CycloneDX SBOM governance in the already-required governance CI gate, with fail-closed policy and bounded waivers.",
+  "scope": [
+    "Freeze Syft 1.54.0 as SBOM generator",
+    "Generate CycloneDX JSON 1.7 from the governed repository/build context",
+    "Freeze Trivy 0.75.0 for vulnerability/misconfiguration/secret scanning",
+    "Pin SBOM and Trivy GitHub Actions to immutable commit SHAs",
+    "Enforce exact direct dependency declarations for npm/pnpm and Python",
+    "Forbid floating/mutable dependency sources",
+    "Define ALLOW/REVIEW/BLOCK license policy",
+    "Block missing/UNKNOWN/NOASSERTION third-party licenses pending explicit review",
+    "Block HIGH/CRITICAL vulnerabilities unless represented by an exact unexpired governed waiver",
+    "Require waiver registry and .trivyignore parity",
+    "Generate deterministic supply-chain summary evidence",
+    "Upload SBOM, Trivy report and supply-chain summary with foundation CI evidence",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Full SAST rollout (CodeQL/Semgrep)",
+    "Artifact signing key/KMS provisioning",
+    "Production SLSA provenance promotion",
+    "Automatic dependency auto-merge",
+    "P04-G developer tooling/bootstrap",
+    "Market/trading logic",
+    "Production infrastructure/secrets/accounts/credentials",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P04-WE-001 CANONICAL_COMPLETE",
+    "FIN-P03-WF-001 supply-chain security baseline canonical",
+    "P04-B exact runtime/dependency baseline",
+    "P04-C required governance aggregate CI gate"
+  ],
+  "read_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "pyproject.toml",
+    "uv.lock",
+    ".github/workflows/**",
+    "config/**",
+    "contracts/**",
+    "docs/05-security/**",
+    "docs/06-engineering/**",
+    "scripts/ci/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WF-001.json",
+    "docs/06-engineering/DEPENDENCY-LICENSE-SBOM-GOVERNANCE.md",
+    "docs/06-engineering/dependency-license-sbom-governance.json",
+    "config/supply-chain/dependency-policy.json",
+    "config/supply-chain/license-policy.json",
+    "config/supply-chain/waivers.json",
+    ".trivyignore",
+    "scripts/ci/supply_chain_policy.py",
+    "scripts/ci/supply_chain_evidence.py",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Direct npm/pnpm dependencies are exact versions or workspace protocol",
+    "Direct Python dependencies use exact == pins",
+    "Mutable URLs/latest/star/caret/tilde dependency specs are rejected",
+    "License policy registry parses and has disjoint ALLOW/REVIEW/BLOCK sets",
+    "Waiver registry parses and expired/incomplete waivers fail closed",
+    ".trivyignore entries exactly match active vulnerability waivers",
+    "CycloneDX SBOM is specVersion 1.7",
+    "Every third-party SBOM component has an acceptable license or active license-review waiver",
+    "Syft tool version is fixed to 1.54.0 in CI",
+    "Trivy tool version is fixed to 0.75.0 in CI",
+    "Trivy HIGH/CRITICAL result blocks required governance context",
+    "Supply-chain summary evidence is deterministic for identical scan inputs",
+    "P04-G remains NOT_STARTED"
+  ],
+  "security_tests": [
+    "Third-party workflow action refs are immutable 40-character SHAs",
+    "Unknown/missing license fails closed",
+    "Blocked license fails closed",
+    "HIGH/CRITICAL vulnerability without active waiver fails closed",
+    "Expired waiver fails closed",
+    "No raw production secret/credential is introduced",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P03-F supply-chain baseline",
+    "Syft 1.54.0 / CycloneDX 1.7 SBOM",
+    "Trivy 0.75.0 JSON scan result",
+    "License/dependency policy validation",
+    "Deterministic supply-chain summary",
+    "Implementation/post-merge CI evidence",
+    "Linear HOS-177 reconciliation"
+  ],
+  "rollback": "Revert P04-F policies, scanners, SBOM/evidence scripts and CI integration. Existing P04-C/E required governance gate remains. No signing key, production deployment, credential, account or trading state is created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WE-001 CANONICAL_COMPLETE",
+    "P03-F supply-chain baseline available",
+    "No conflicting active lock",
+    "Task branch starts from current main"
+  ],
+  "definition_of_done": [
+    "Dependency and license policies canonical",
+    "CycloneDX 1.7 SBOM generated and validated",
+    "Trivy HIGH/CRITICAL gate passes",
+    "Required governance CI enforces P04-F",
+    "Supply-chain evidence artifact uploaded",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "Lock released",
+    "Linear HOS-177 Done",
+    "P04-G remains NOT_STARTED"
+  ]
+}
