@@ -44,7 +44,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P02-WF-001 | P02 | Agent Architecture & Authority Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WF-001.json` | RELEASED |
 
-| FIN-P02-WG-001 | P02 | Environment / Network / DR Topology | HIGH | ACTIVE | `contracts/tasks/FIN-P02-WG-001.json` | LOCK-FIN-P02-WG-001-01 |
+| FIN-P02-WG-001 | P02 | Environment / Network / DR Topology | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P02-WG-001.json` | RELEASED |
 
 ## Rules
 
