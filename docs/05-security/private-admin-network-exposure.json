@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-D_IMPLEMENTATION",
+  "task_id": "FIN-P03-WD-001",
+  "linear_issue": "HOS-166",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "threat_model": "P03-A_CANONICAL",
+    "identity_access": "P03-B_CANONICAL",
+    "secrets_key_management": "P03-C_CANONICAL",
+    "country_location_authorization_dependency": "NONE",
+    "canary": "DISABLED",
+    "live": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "zero_trust": {
+    "network_location_is_authorization": false,
+    "vpn_membership_is_authorization": false,
+    "private_ip_is_authorization": false,
+    "device_ownership_is_authorization": false,
+    "country_or_geolocation_is_authorization": false,
+    "privileged_decision_inputs": [
+      "principal_identity",
+      "mfa_assurance",
+      "role_capability",
+      "session_freshness",
+      "device_security_state_if_required",
+      "resource",
+      "action",
+      "environment",
+      "A8_security_state",
+      "human_gate_when_required"
+    ]
+  },
+  "exposure_classes": [
+    {
+      "id": "E0",
+      "name": "PUBLIC_EDGE",
+      "internet_inbound": "EXPLICIT_ONLY",
+      "admin": false
+    },
+    {
+      "id": "E1",
+      "name": "AUTHENTICATED_APPLICATION_INGRESS",
+      "internet_inbound": "CONTROLLED",
+      "admin": false
+    },
+    {
+      "id": "E2",
+      "name": "PRIVATE_ADMINISTRATIVE_ACCESS",
+      "internet_inbound": "NO_DIRECT_NATIVE_ADMIN",
+      "admin": true
+    },
+    {
+      "id": "E3",
+      "name": "INTERNAL_SERVICE_ACCESS",
+      "default": "DENY",
+      "workload_identity_required": true
+    },
+    {
+      "id": "E4",
+      "name": "CONTROLLED_EXTERNAL_EGRESS",
+      "default": "DENY_UNLESS_APPROVED"
+    },
+    {
+      "id": "E5",
+      "name": "RESTRICTED_EXECUTION_ACCESS",
+      "public_inbound": false,
+      "broker_order_egress_from": "Z4_ONLY"
+    },
+    {
+      "id": "E6",
+      "name": "RESTRICTED_SECURITY_SECRETS_ACCESS",
+      "public_inbound": false,
+      "raw_secret_public_endpoint": false
+    },
+    {
+      "id": "E7",
+      "name": "OBSERVABILITY_AUDIT_ACCESS",
+      "public_inbound": "DENY_BY_DEFAULT",
+      "business_authority": false
+    },
+    {
+      "id": "E8",
+      "name": "BACKUP_DR_ACCESS",
+      "public_inbound": false,
+      "recovery_only": true
+    }
+  ],
+  "zone_matrix": {
+    "Z0": {
+      "name": "User Edge",
+      "internet_inbound": "N/A",
+      "admin_inbound": "N/A"
+    },
+    "Z1": {
+      "name": "Application Ingress",
+      "internet_inbound": "E0_E1_ONLY",
+      "admin_inbound": "DENY_ORDINARY_ADMIN",
+      "direct_broker_or_secrets": false
+    },
+    "Z2": {
+      "name": "Control Plane",
+      "internet_inbound": "DENY",
+      "admin_inbound": "E2",
+      "service_access": "E3",
+      "external_egress": "E4_POLICY"
+    },
+    "Z3": {
+      "name": "Data Plane",
+      "internet_inbound": "DENY",
+      "admin_inbound": "E2_EXCEPTIONAL",
+      "broker_order_access": false
+    },
+    "Z4": {
+      "name": "Execution Enclave",
+      "internet_inbound": "DENY",
+      "user_inbound": "DENY",
+      "admin_inbound": "E2_EXCEPTIONAL",
+      "broker_order_egress": true
+    },
+    "Z5": {
+      "name": "Security Secrets",
+      "internet_inbound": "DENY",
+      "user_inbound": "DENY",
+      "admin_inbound": "E2_RESTRICTED",
+      "service_access": "EXACT_WORKLOAD_ONLY"
+    },
+    "Z6": {
+      "name": "Observability Audit",
+      "internet_inbound": "DENY_BY_DEFAULT",
+      "admin_inbound": "E2",
+      "business_authority": false
+    },
+    "Z7": {
+      "name": "Backup DR",
+      "internet_inbound": "DENY",
+      "user_inbound": "DENY",
+      "admin_inbound": "E2_RECOVERY_ONLY"
+    }
+  },
+  "administration": {
+    "future_patterns": [
+      "IDENTITY_AWARE_PROXY_ZTNA",
+      "VPN_PLUS_IDENTITY_AUTHZ",
+      "BASTION_JUMP_HOST",
+      "MANAGED_SESSION_BROKER",
+      "PAM_CLASS"
+    ],
+    "vendor": "NOT_SELECTED",
+    "requirements": [
+      "PHISHING_RESISTANT_MFA",
+      "VALID_PRIVILEGED_ROLE",
+      "SESSION_POLICY",
+      "DEVICE_SECURITY_CONTEXT_WHEN_REQUIRED",
+      "EXACT_ENVIRONMENT_RESOURCE_ACTION",
+      "AUDIT",
+      "A8_VETO",
+      "HUMAN_GATE_WHEN_REQUIRED"
+    ],
+    "jit_time_bounded_privilege_preferred": true,
+    "standing_broad_personal_ip_allowlist": "NOT_CANONICAL_CONTROL"
+  },
+  "management_plane": {
+    "separate_from_public_user_ingress": true,
+    "hidden_url_alone_sufficient": false,
+    "native_db_cache_queue_kms_host_admin_ports_internet_exposed": false,
+    "diagnostics_private_or_strongly_mediated": true,
+    "health_information_minimized": true
+  },
+  "east_west": {
+    "default": "DENY",
+    "workload_identity_required": true,
+    "flat_network_trust": false,
+    "required_context": [
+      "source_identity",
+      "destination_service_api",
+      "environment",
+      "allowed_action",
+      "policy_version"
+    ]
+  },
+  "egress": {
+    "default": "DENY_UNLESS_APPROVED",
+    "data_sources": "DESIGNATED_ADAPTERS_ONLY",
+    "model_tool_mcp": "TOOL_GATEWAY_OR_GOVERNED_INTEGRATION",
+    "broker_order_submission": "Z4_ONLY",
+    "notifications": "SANITIZED_MINIMUM_NECESSARY",
+    "unknown_sensitive_destination": "DENY"
+  },
+  "public_ingress_direction": [
+    "TLS",
+    "DDOS_PROTECTION_CLASS",
+    "RATE_LIMITING",
+    "WAF_OR_API_SCHEMA_AS_APPLICABLE",
+    "REQUEST_BOUNDS",
+    "AUTHENTICATION_BOUNDARY",
+    "SAFE_ERRORS",
+    "OBSERVABILITY_WITH_REDACTION"
+  ],
+  "break_glass": {
+    "purpose": "RECOVERY_OR_CONTAINMENT_ONLY",
+    "can_bypass_trading_controls": false,
+    "exact_scope": true,
+    "time_limited": true,
+    "high_severity_audit": true,
+    "post_incident_revocation_review": true,
+    "shared_anonymous_credential": "FORBIDDEN"
+  },
+  "fail_closed_conditions": [
+    "identity_or_role_unverified",
+    "mfa_or_session_assurance_insufficient",
+    "revoked_compromised_device_under_policy",
+    "environment_resource_mismatch",
+    "A8_blocks_action",
+    "critical_audit_unavailable_beyond_policy",
+    "sensitive_egress_destination_identity_uncertain",
+    "unexpected_public_exposure_Z4_Z5_Z7",
+    "policy_evaluation_unavailable_for_high_critical_admin_action"
+  ],
+  "audit_fields": [
+    "principal",
+    "device_session_ref",
+    "source_connection_context",
+    "entry_point",
+    "target_zone_resource",
+    "environment",
+    "action",
+    "authorization_result",
+    "step_up_human_gate_ref",
+    "start_end_revocation",
+    "policy_version",
+    "correlation_id"
+  ],
+  "implementation_state": {
+    "ztna_vpn_bastion": "NOT_SELECTED_NOT_PROVISIONED",
+    "firewall_security_groups": "NOT_PROVISIONED_BY_THIS_TASK",
+    "waf_api_gateway": "NOT_SELECTED_NOT_PROVISIONED",
+    "service_mesh": "NOT_SELECTED_NOT_PROVISIONED",
+    "production_network_endpoints_authorized_by_task": "NONE"
+  },
+  "downstream_owners": {
+    "P04": "network/runtime technology selection, IaC/configuration and policy tests",
+    "P22": "runtime diagnostics, incident response, network observability and recovery",
+    "P23": "public application ingress, frontend/API security controls",
+    "P24": "production exposure review and CANARY/LIVE verification"
+  }
+}
