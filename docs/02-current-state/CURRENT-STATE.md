@@ -32,6 +32,7 @@ Automation/orchestration registry: `HOS-116 = Done`
 Master tooling registry: `HOS-118 = Done`  
 Roadmap tooling usage map: `HOS-119 = Done`  
 Agent Layer Build Readiness: `HOS-120 = Done`  
+Security tooling registry: `HOS-152 = In Progress`  
 P01-D: `HOS-114 = Done`  
 P01-E: `HOS-117 = Done`
 
@@ -60,7 +61,8 @@ FIN-P01-WG-001 = CANONICAL_COMPLETE
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
 FIN-P01-WG-002 = CANONICAL_COMPLETE  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
-FIN-P01-WT-001 = CANONICAL_COMPLETE
+FIN-P01-WT-001 = CANONICAL_COMPLETE  
+FIN-P01-WS-001 = IN_REVIEW
 
 ## P01-D — Jurisdiction & compliance closure
 
@@ -149,8 +151,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P01-WS-001 = IN_REVIEW`  
+Active lock: `LOCK-FIN-P01-WS-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -167,7 +169,8 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Proceed to P01-G — Provider Baseline Decision. P01-G requires the explicit Owner-jurisdiction/client-class Human Gate before any production baseline can be selected.
+1. Canonically close `FIN-P01-WS-001`.
+2. Proceed to P01-G — Provider Baseline Decision. P01-G requires the explicit Owner-jurisdiction/client-class Human Gate before any production baseline can be selected.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -396,3 +399,39 @@ Auto Trading: DISABLED
 - `FIN-P01-WF-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P01-WF-001-01 = RELEASED`
 - P01 next workstream: `P01-G — Provider Baseline Decision`
+
+
+## Security tooling registry
+
+Task: `FIN-P01-WS-001`  
+Linear: `HOS-152`  
+State: IN_REVIEW  
+Lock: `LOCK-FIN-P01-WS-001-01`
+
+Artifacts:
+- `docs/03-research/SECURITY-TOOLING-REGISTRY.md`
+- `docs/03-research/security-tooling-registry.json`
+- `docs/00-governance/SECURITY-TOOLING-BASELINE.md`
+- Linear Project Document: `NEXUS QUANT — Security Tooling Registry`
+
+New candidate coverage:
+- GitHub CodeQL;
+- Trivy;
+- Semgrep;
+- OWASP ZAP;
+- Falco;
+- Grype.
+
+Reconciled existing controls:
+- GitHub Secret Protection / Push Protection;
+- Codex Security;
+- Syft / CycloneDX;
+- Cosign / SLSA;
+- OPA;
+- Secret Manager/KMS or Vault-class candidate;
+- Promptfoo / Inspect AI.
+
+Runtime installation: NOT_PERFORMED.  
+P03 activation: NOT_PERFORMED.  
+Live Trading: DISABLED.  
+Auto Trading: DISABLED.
