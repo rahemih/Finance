@@ -1,38 +1,74 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "task_id": "FIN-P01-WG-004",
   "assessed_at": "2026-10-04",
-  "state": "HUMAN_GATE_PENDING",
-  "g1_provider_baseline": "HUMAN_GATE",
-  "owner_inputs": {
-    "country_of_residence_or_account_jurisdiction": "UNSET",
-    "account_type": "UNSET",
-    "entity_domicile_if_applicable": "UNSET",
-    "client_classification": "UNSET",
-    "intended_products": "UNSET",
-    "budget_preference": "UNSET_OPTIONAL"
+  "state": "COUNTRY_NEUTRAL_BASELINE_READY",
+  "g1_provider_baseline": "PASS_PENDING_CANONICAL_MERGE",
+  "owner_directive": {
+    "country_or_location": "DO_NOT_USE_DO_NOT_ASSUME",
+    "account_type": "INDIVIDUAL",
+    "client_classification": "UNKNOWN_DEFERRED",
+    "intended_products": [
+      "FOREX",
+      "CRYPTO_SPOT",
+      "CRYPTO_FUTURES_PERPETUALS"
+    ],
+    "budget_preference": "UNKNOWN",
+    "technical_cost_default": "BALANCED_NON_BINDING"
   },
-  "hard_gates": [
-    "JURISDICTION_AND_PRODUCT_ELIGIBLE",
-    "CLIENT_CLASS_ELIGIBLE",
-    "REQUIRED_DATA_RIGHTS_RESOLVED",
+  "governance_interpretation": {
+    "p01_scope": "Country-neutral technical/provider reference baseline",
+    "jurisdiction_specific_eligibility": "DEFERRED_TO_ACCOUNT_OPENING_OR_PRODUCTION_ACTIVATION",
+    "client_classification_effects": "DEFERRED_WHERE_PROVIDER_OR_PRODUCT_REQUIRES",
+    "p02_authorization": "ARCHITECTURE_ONLY",
+    "account_activation_authorized": false,
+    "trading_authorized": false
+  },
+  "p01_hard_gates": [
     "TECHNICAL_CAPABILITY_FIT",
-    "SECURITY_AND_PERMISSION_MODEL_ACCEPTABLE",
-    "PRIMARY_BACKUP_INDEPENDENCE_ACCEPTABLE",
-    "OPERATIONS_AND_RECOVERY_PATH_ACCEPTABLE"
+    "KNOWN_DATA_RIGHTS_CONSTRAINTS",
+    "SECURITY_AND_PERMISSION_MODEL_FIT",
+    "PRIMARY_BACKUP_INDEPENDENCE",
+    "OPERATIONS_AND_RECOVERY_PATH",
+    "COST_ENVELOPE_KNOWN_OR_EXPLICITLY_QUOTE_REQUIRED",
+    "PORTABILITY_NO_SINGLE_PROVIDER_LOCK_IN"
   ],
-  "hard_gate_rule": "Any failed or unknown mandatory hard gate blocks production-baseline selection regardless of soft score.",
-  "soft_scoring": {
-    "market_data": {
-      "coverage_and_market_fit": 20,
+  "deferred_activation_gates": [
+    "JURISDICTION_AND_PRODUCT_ELIGIBILITY",
+    "CLIENT_CLASS_ELIGIBILITY",
+    "FINAL_LEGAL_ENTITY_SELECTION",
+    "KYC_AND_ACCOUNT_APPROVAL",
+    "FINAL_DATA_LICENSE_AND_ENTITLEMENTS",
+    "PROVIDER_CONTRACT_ACCEPTANCE",
+    "LIVE_API_PERMISSION_REVIEW"
+  ],
+  "scoring_method": {
+    "rule": "Scores are evidence-derived technical/reference scores only. They do not override future legal/account eligibility.",
+    "evidence_mapping": {
+      "strong_documented": 1,
+      "documented": 0.8,
+      "partial": 0.5,
+      "unknown": 0
+    },
+    "market_data_default_weights": {
+      "coverage_market_fit": 20,
       "data_quality_provenance_timestamps": 20,
-      "realtime_historical_replay_depth": 15,
+      "realtime_history_replay_depth": 15,
       "licensing_rights_clarity": 15,
       "resilience_backup_fit": 10,
-      "cost_transparency_and_economics": 10,
-      "operational_support_sla": 10
+      "cost_transparency_economics": 10,
+      "operations_sla_support": 10
     },
-    "execution": {
+    "forex_adjusted_weights": {
+      "coverage_market_fit": 30,
+      "data_quality_provenance_timestamps": 25,
+      "realtime_history": 15,
+      "licensing_rights_clarity": 10,
+      "resilience_backup_fit": 10,
+      "cost_transparency_economics": 5,
+      "operations_sla_support": 5
+    },
+    "execution_weights": {
       "api_order_lifecycle_reconciliation": 25,
       "market_liquidity_product_fit": 20,
       "sandbox_test_certification": 15,
@@ -42,99 +78,197 @@
       "integration_complexity": 5
     }
   },
-  "conditional_shortlist": {
+  "reference_scores": {
+    "crypto_market_data": [
+      {
+        "candidate": "KAIKO",
+        "score": 80.5,
+        "role": "PRIMARY_REFERENCE"
+      },
+      {
+        "candidate": "COINAPI",
+        "score": 78.5,
+        "role": "BACKUP_REFERENCE"
+      }
+    ],
+    "forex_market_data": [
+      {
+        "candidate": "DXFEED",
+        "score": 77.5,
+        "role": "PRIMARY_REFERENCE"
+      },
+      {
+        "candidate": "TWELVE_DATA",
+        "score": 77,
+        "role": "BACKUP_REFERENCE"
+      },
+      {
+        "candidate": "MASSIVE",
+        "score": 72,
+        "role": "SECONDARY_VALIDATION"
+      }
+    ],
+    "futures_context": [
+      {
+        "candidate": "DATABENTO",
+        "score": 88.5,
+        "role": "PRIMARY_REFERENCE"
+      },
+      {
+        "candidate": "DXFEED",
+        "score": null,
+        "role": "BACKUP_REFERENCE",
+        "note": "Retain as qualitative backup; domain-specific entitlement mix differs from Databento."
+      }
+    ],
+    "macro_rates": [
+      {
+        "candidate": "DIRECT_OFFICIAL_SOURCES",
+        "score": null,
+        "role": "PRIMARY_AUTHORITY"
+      },
+      {
+        "candidate": "FRED_ALFRED",
+        "score": 92,
+        "role": "SECONDARY_REVISION_AWARE_AGGREGATOR"
+      }
+    ],
+    "crypto_execution_reference": [
+      {
+        "candidate": "KRAKEN",
+        "score": 84.5,
+        "role": "REFERENCE_ADAPTER_1"
+      },
+      {
+        "candidate": "BINANCE",
+        "score": 83.5,
+        "role": "REFERENCE_ADAPTER_2"
+      },
+      {
+        "candidate": "COINBASE_ADVANCED",
+        "score": 76.5,
+        "role": "REFERENCE_ADAPTER_3"
+      }
+    ],
+    "forex_execution_reference": [
+      {
+        "candidate": "SAXO_OPENAPI",
+        "score": 89.5,
+        "role": "REFERENCE_ADAPTER_1"
+      },
+      {
+        "candidate": "OANDA_V20",
+        "score": 86.5,
+        "role": "REFERENCE_ADAPTER_2"
+      },
+      {
+        "candidate": "IBKR",
+        "score": 85,
+        "role": "REFERENCE_ADAPTER_3"
+      }
+    ]
+  },
+  "baseline_decision": {
     "crypto_market_data": {
-      "institutional_primary_candidate": "KAIKO",
-      "secondary_candidate": "COINAPI",
-      "mandatory_cross_check": "VENUE_NATIVE_FEED_FOR_TRADED_VENUE",
-      "status": "BLOCKED_ON_RIGHTS_QUOTE_AND_JURISDICTION"
+      "primary_reference": "KAIKO",
+      "backup_reference": "COINAPI",
+      "mandatory_cross_check": "VENUE_NATIVE_FEED_FOR_ANY_ACTUALLY_TRADED_VENUE",
+      "activation_blockers": [
+        "commercial quote/SLA where applicable",
+        "non-display/algorithmic/raw-retention/model-use rights",
+        "actual venue legal/account eligibility"
+      ]
     },
     "forex_market_data": {
-      "primary_candidate": "DXFEED",
-      "backup_candidates": [
-        "MASSIVE",
-        "TWELVE_DATA"
-      ],
-      "mandatory_cross_check": "ELIGIBLE_EXECUTION_BROKER_QUOTE",
-      "status": "BLOCKED_ON_COMMERCIAL_RIGHTS_AND_JURISDICTION"
+      "primary_reference": "DXFEED",
+      "backup_reference": "TWELVE_DATA",
+      "secondary_validation": "MASSIVE",
+      "mandatory_cross_check": "ACTUAL_EXECUTION_BROKER_QUOTE_AT_ACTIVATION",
+      "activation_blockers": [
+        "commercial quote/SLA",
+        "exact contributor/coverage semantics",
+        "business non-display/automated-use rights",
+        "actual broker/account eligibility"
+      ]
     },
     "futures_context": {
-      "primary_candidate": "DATABENTO",
-      "backup_candidate": "DXFEED",
-      "authority": "CME_ICE_CBOE_AS_APPLICABLE",
-      "status": "BLOCKED_ON_EXCHANGE_INDEX_ENTITLEMENTS"
+      "primary_reference": "DATABENTO",
+      "backup_reference": "DXFEED",
+      "authority": "CME_ICE_CBOE_INDEX_OWNER_AS_APPLICABLE",
+      "activation_blockers": [
+        "exchange/index entitlements",
+        "required depth/history tier",
+        "production SLA/support"
+      ]
     },
     "macro_rates": {
       "primary_authority": "DIRECT_OFFICIAL_SOURCES",
-      "secondary_aggregator": "FRED_ALFRED",
-      "status": "BASELINE_READY_SUBJECT_TO_SERIES_RIGHTS"
+      "secondary_reference": "FRED_ALFRED",
+      "activation_blockers": [
+        "series-specific third-party rights where applicable"
+      ]
     },
     "onchain": {
-      "supplemental_candidate": "BLOCKSCOUT",
-      "independent_verification": "DIRECT_NODE_OR_SECOND_INDEXER_TBD",
-      "status": "SUPPLEMENTAL_NOT_PRODUCTION_MARKET_FEED"
+      "supplemental_reference": "BLOCKSCOUT",
+      "independent_validation": "DIRECT_NODE_OR_SECOND_INDEXER_TBD",
+      "activation_blockers": [
+        "selected chain set",
+        "production retention/rate limits"
+      ]
     },
     "crypto_execution": {
-      "candidate_pool": [
-        "COINBASE_ADVANCED",
+      "architecture_reference_order": [
         "KRAKEN",
-        "BINANCE"
+        "BINANCE",
+        "COINBASE_ADVANCED"
       ],
-      "ordering": "NO_FINAL_ORDER_BEFORE_OWNER_JURISDICTION",
-      "status": "HUMAN_GATE"
+      "production_selection": "DEFERRED",
+      "reason": "Actual venue legal entity/product/account eligibility is deliberately outside country-neutral P01-G."
     },
     "forex_execution": {
-      "candidate_pool": [
+      "architecture_reference_order": [
+        "SAXO_OPENAPI",
         "OANDA_V20",
-        "IBKR",
-        "SAXO_OPENAPI"
+        "IBKR"
       ],
-      "ordering": "NO_FINAL_ORDER_BEFORE_OWNER_JURISDICTION",
-      "status": "HUMAN_GATE"
+      "production_selection": "DEFERRED",
+      "reason": "Actual broker legal entity/product/account eligibility is deliberately outside country-neutral P01-G."
     }
   },
-  "pre_rejected_or_deferred": [
+  "rejected_or_deferred": [
+    {
+      "item": "COUNTRY_BASED_P01_RANKING",
+      "disposition": "FORBIDDEN_BY_OWNER_DIRECTIVE"
+    },
     {
       "item": "SINGLE_PROVIDER_FOR_ALL_DOMAINS",
-      "disposition": "REJECT",
-      "reason": "Insufficient independence and no single source is authoritative across crypto, OTC FX, futures/index, macro and on-chain."
+      "disposition": "REJECT"
     },
     {
       "item": "BLIND_LIVE_CROSS_BROKER_FAILOVER",
-      "disposition": "REJECT",
-      "reason": "Can duplicate orders or create inconsistent positions when acknowledgement state is uncertain."
+      "disposition": "REJECT"
     },
     {
       "item": "BROKER_QUOTE_AS_GLOBAL_FX_MARKET_VIEW",
-      "disposition": "REJECT",
-      "reason": "Broker/ECN/tick data are partial OTC views and must remain proxy-labeled."
+      "disposition": "REJECT"
     },
     {
-      "item": "UNRESOLVED_NON_DISPLAY_OR_ALGORITHMIC_RIGHTS",
-      "disposition": "BLOCK",
-      "reason": "Technical API availability does not grant production automated-use rights."
+      "item": "UNRESOLVED_PRODUCTION_DATA_RIGHTS",
+      "disposition": "ACTIVATION_BLOCKER_NOT_P01_ARCHITECTURE_BLOCKER"
     },
     {
-      "item": "OWNER_JURISDICTION_INFERENCE_FROM_PLATFORM_METADATA",
-      "disposition": "FORBIDDEN",
-      "reason": "Owner/legal eligibility facts must be explicitly supplied."
+      "item": "FINAL_EXECUTION_VENUE",
+      "disposition": "DEFER_TO_ACCOUNT_OPENING_PRODUCTION_ACTIVATION"
     }
   ],
-  "human_gate_questions": [
-    "What country/jurisdiction will the trading/data accounts be opened and operated under?",
-    "Will the account be individual or company/entity? If entity, what country is it registered in?",
-    "What client classification applies or is expected: retail, professional/accredited/institutional, or unknown?",
-    "Which products are intended: Crypto Spot, Crypto Perpetual/Futures, Forex Spot/CFD, or a subset?",
-    "Optional: choose budget preference for market-data/provider costs: low-cost, balanced, reliability-first, or unknown."
-  ],
-  "post_human_gate_actions": [
-    "Fresh Legal Data Hunter + official regulator revalidation for supplied jurisdiction/product set",
-    "Fresh official provider eligibility/terms check",
-    "Resolve shortlisted provider rights/quotes where public information is insufficient",
-    "Apply hard gates",
-    "Compute deterministic soft scores only for gate-passing candidates",
-    "Document selected baseline, rejected alternatives and residual risks",
-    "Evaluate G1_PROVIDER_BASELINE"
+  "g1_pass_basis": [
+    "Universe and instrument taxonomy are canonical.",
+    "Provider and execution candidate evidence is canonical.",
+    "Compliance and data-right constraints are known and preserved as future activation gates.",
+    "Cost envelope and quote-required items are documented.",
+    "Primary/backup/cross-check paths are plausible and provider-portable.",
+    "Country/location is not needed to freeze an implementable provider-agnostic architecture.",
+    "No credentials/accounts/subscriptions or trading are authorized."
   ],
   "safety": {
     "accounts_created": false,
@@ -143,6 +277,8 @@
     "credentials_created": false,
     "funding": false,
     "orders": false,
+    "demo_trading": "NOT_STARTED",
+    "shadow_trading": "NOT_STARTED",
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
   }

@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: HUMAN_GATE_P01_G
+P01 state: G1_PASS_PENDING_CANONICAL_MERGE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -59,7 +59,7 @@ FIN-P01-WU-001 = CANONICAL_COMPLETE
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
 FIN-P01-WG-002 = CANONICAL_COMPLETE  
-FIN-P01-WG-004 = HUMAN_GATE  
+FIN-P01-WG-004 = IN_REVIEW  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
 FIN-P01-WT-001 = CANONICAL_COMPLETE
 
@@ -169,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P01-G preflight is complete and has reached an explicit Owner Human Gate. Final provider baseline selection is blocked until the minimum Owner account-jurisdiction/client-class/product inputs are supplied.
+P01-G country-neutral baseline is complete and under canonical review. G1 is PASS_PENDING_CANONICAL_MERGE. Actual jurisdiction/client-class eligibility is deferred to account-opening / production activation.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -404,7 +404,7 @@ Auto Trading: DISABLED
 
 Task: `FIN-P01-WG-004`  
 Linear: `HOS-153`  
-State: HUMAN_GATE  
+State: IN_REVIEW  
 Lock: `LOCK-FIN-P01-WG-004-01`
 
 Artifacts:
@@ -422,18 +422,36 @@ Conditional baseline prepared:
 - Crypto execution candidate pool: Coinbase Advanced / Kraken / Binance
 - Forex execution candidate pool: OANDA / IBKR / Saxo
 
-G1_PROVIDER_BASELINE: HUMAN_GATE
+G1_PROVIDER_BASELINE: PASS_PENDING_CANONICAL_MERGE
 
-Required Owner inputs:
-- account jurisdiction / country of residence;
-- individual vs company/entity;
-- client classification if known;
-- intended products;
-- optional cost preference.
+Owner directive:
+- country / jurisdiction = DO NOT USE / DO NOT ASSUME;
+- account type = individual;
+- client classification = unknown / deferred;
+- intended products = Forex + Crypto Spot + Crypto Futures/Perpetuals;
+- cost preference = unknown; BALANCED is only a non-binding technical default.
 
-Owner jurisdiction is not inferred from platform/account/network/location metadata.
+Country/location is excluded from P01-G ranking. Actual broker/exchange legal eligibility is deferred to account-opening / production activation.
 
 Production provider/broker selection: NOT_PERFORMED  
 Accounts/KYC/credentials/subscriptions/funding/orders: NONE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P01-G country-neutral decision update
+
+Owner directive: no country or location is used for P01-G.
+
+Reference baseline:
+- Crypto data: Kaiko primary reference / CoinAPI backup / venue-native cross-check
+- Forex data: dxFeed primary reference / Twelve Data backup / Massive secondary validation
+- Futures/context: Databento primary / dxFeed backup / exchange-index authority
+- Macro/rates: direct official sources + FRED/ALFRED
+- On-chain: Blockscout supplemental + independent verification
+- Crypto execution architecture references: Kraken, Binance, Coinbase Advanced
+- Forex execution architecture references: Saxo OpenAPI, OANDA v20, IBKR
+
+Final real-account execution provider: DEFERRED_TO_ACCOUNT_OPENING_PRODUCTION_ACTIVATION
+Country/location in ranking: FORBIDDEN
+G1_PROVIDER_BASELINE: PASS_PENDING_CANONICAL_MERGE
