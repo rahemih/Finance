@@ -154,9 +154,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WH-001-R01 — Post-Closure Audit & State Reconciliation`  
-Active branch: `docs/FIN-P04-WH-001-R01-post-closure-audit`  
-Active lock: `LOCK-FIN-P04-WH-001-R01-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2036,8 +2035,8 @@ Safety:
 
 Task: `FIN-P04-WH-001-R01`  
 Linear: `HOS-180`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P04-WH-001-R01-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Purpose:
 - independently re-audit P04 tests/security/CI/evidence;
@@ -2072,4 +2071,17 @@ Safety unchanged:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+- P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+
+
+P04 post-closure repair evidence:
+- implementation PR: `#110` = MERGED
+- implementation merge SHA: `8dcf5a61ffb3c82de86e8e24ef14b570231f8b89`
+- PR Governance: `37220930187` = SUCCESS
+- post-merge Governance: `37220998573` = SUCCESS
+- post-merge Branch Hygiene: `37220998534` = SUCCESS
+- documentation/state drift findings: 4 LOW = REPAIRED
+- residual non-canonical branch hygiene: 1 INFO
+- canonical P04 blocker: NONE
+- P04 = CANONICAL_COMPLETE
 - P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION
