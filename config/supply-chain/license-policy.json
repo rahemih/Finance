@@ -57,5 +57,13 @@
     "Python-2.0",
     "PSF-2.0"
   ],
-  "legal_note": "This repository policy is an engineering governance baseline and does not replace legal advice."
+  "legal_note": "This repository policy is an engineering governance baseline and does not replace legal advice.",
+  "curated_assertions": [
+    {
+      "identity": "pkg:npm/%40pnpm/exe@11.28.4",
+      "license": "MIT",
+      "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
+      "scope": "P04-B canonical package-manager toolchain component only"
+    }
+  ]
 }
