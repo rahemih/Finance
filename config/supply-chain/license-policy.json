@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "state": "P04-F_IMPLEMENTATION",
+  "behavior": {
+    "unknown_or_missing": "BLOCK_PENDING_REVIEW",
+    "noassertion": "BLOCK_PENDING_REVIEW",
+    "review_class": "BLOCK_UNTIL_ACTIVE_LICENSE_REVIEW_WAIVER",
+    "block_class": "BLOCK",
+    "first_party_names": [
+      "nexus-quant"
+    ]
+  },
+  "allow": [
+    "0BSD",
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Python-2.0",
+    "PSF-2.0",
+    "Unlicense",
+    "CC0-1.0",
+    "Zlib",
+    "BSL-1.0",
+    "BlueOak-1.0.0"
+  ],
+  "review": [
+    "MPL-2.0",
+    "EPL-2.0",
+    "CDDL-1.0",
+    "EUPL-1.2",
+    "LGPL-2.1-only",
+    "LGPL-2.1-or-later",
+    "LGPL-3.0-only",
+    "LGPL-3.0-or-later",
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later"
+  ],
+  "block": [
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later",
+    "SSPL-1.0",
+    "BUSL-1.1"
+  ],
+  "blocked_name_patterns": [
+    "Commons Clause",
+    "Server Side Public License",
+    "Business Source License"
+  ],
+  "notice_obligation_review": [
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "Python-2.0",
+    "PSF-2.0"
+  ],
+  "legal_note": "This repository policy is an engineering governance baseline and does not replace legal advice.",
+  "curated_assertions": [
+    {
+      "identity_prefix": "pkg:npm/%40pnpm/",
+      "exact_version": "11.28.4",
+      "license": "MIT",
+      "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
+      "scope": "Packages produced by the canonical pnpm 11.28.4 toolchain distribution only"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40reflink/reflink",
+      "exact_version": "0.1.19",
+      "license": "MIT",
+      "evidence": "npm registry metadata for @reflink/reflink platform packages 0.1.19",
+      "scope": "pnpm 11.28.4 transitive reflink toolchain packages only"
+    },
+    {
+      "identity_prefix": "pkg:github/actions/checkout",
+      "exact_version": "v7.0.1",
+      "license": "MIT",
+      "evidence": "actions/checkout tag v7.0.1 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/actions/setup-node",
+      "exact_version": "v7.0.0",
+      "license": "MIT",
+      "evidence": "actions/setup-node tag v7.0.0 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/actions/setup-python",
+      "exact_version": "v7.0.0",
+      "license": "MIT",
+      "evidence": "actions/setup-python tag v7.0.0 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/actions/upload-artifact",
+      "exact_version": "v7.0.1",
+      "license": "MIT",
+      "evidence": "actions/upload-artifact tag v7.0.1 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/actions/github-script",
+      "exact_version": "v9.0.0",
+      "license": "MIT",
+      "evidence": "actions/github-script tag v9.0.0 LICENSE.md",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/astral-sh/setup-uv",
+      "exact_version": "v10.2.0",
+      "license": "MIT",
+      "evidence": "astral-sh/setup-uv tag v10.2.0 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/anchore/sbom-action",
+      "exact_version": "v0.24.3",
+      "license": "Apache-2.0",
+      "evidence": "anchore/sbom-action tag v0.24.3 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:github/aquasecurity/trivy-action",
+      "exact_version": "v0.36.0",
+      "license": "Apache-2.0",
+      "evidence": "aquasecurity/trivy-action tag v0.36.0 LICENSE",
+      "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:npm/detect-libc",
+      "exact_version": "2.1.2",
+      "license": "Apache-2.0",
+      "evidence": "npm registry metadata for detect-libc 2.1.2",
+      "scope": "pnpm 11.28.4 transitive toolchain dependency only"
+    },
+    {
+      "identity_prefix": "pkg:npm/pnpm",
+      "exact_version": "11.28.4",
+      "license": "MIT",
+      "evidence": "pnpm/pnpm tag v11.28.4 LICENSE",
+      "scope": "Canonical pnpm 11.28.4 package-manager component only"
+    }
+  ]
+}

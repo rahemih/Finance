@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "state": "P04-F_IMPLEMENTATION",
+  "registries": {
+    "npm": {
+      "approved": [
+        "https://registry.npmjs.org/"
+      ],
+      "package_manager": "pnpm",
+      "exact_direct_versions": true
+    },
+    "python": {
+      "approved": [
+        "https://pypi.org/simple"
+      ],
+      "package_manager": "uv",
+      "exact_direct_versions": true
+    }
+  },
+  "direct_dependency_policy": {
+    "npm": [
+      "EXACT_SEMVER",
+      "WORKSPACE_PROTOCOL"
+    ],
+    "python": [
+      "EXACT_PEP440_EQ"
+    ],
+    "mutable_git_branch": false,
+    "mutable_git_tag": false,
+    "unpinned_url": false,
+    "floating_latest": false,
+    "wildcard": false,
+    "caret_range": false,
+    "tilde_range": false
+  },
+  "lockfiles": {
+    "npm": "pnpm-lock.yaml",
+    "python": "uv.lock",
+    "required": true,
+    "silent_mutation": false
+  },
+  "automation": {
+    "proposal_bot": "DEFERRED_UNTIL_FIRST_REAL_RUNTIME_DEPENDENCY",
+    "auto_merge": false,
+    "security_update_priority": "URGENT_GOVERNED",
+    "normal_update": "GOVERNED_BATCH"
+  },
+  "vulnerability_gate": {
+    "scanner": "Trivy",
+    "scanner_version": "0.75.0",
+    "block_severities": [
+      "CRITICAL",
+      "HIGH"
+    ],
+    "medium_low": "REPORT",
+    "ignore_requires_governed_waiver": true
+  },
+  "sbom": {
+    "generator": "Syft",
+    "generator_version": "1.54.0",
+    "format": "CycloneDX JSON",
+    "spec_version": "1.7",
+    "required": true
+  },
+  "next": "P04-G — Developer Bootstrap & Tooling (NOT_STARTED)"
+}

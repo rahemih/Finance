@@ -114,6 +114,42 @@ jobs:
           cmp build/test-harness-a.json build/test-harness-b.json
           sha256sum build/test-harness-a.json
 
+      - name: Dependency / waiver policy
+        run: python scripts/ci/supply_chain_policy.py manifest
+
+      - name: Generate CycloneDX 1.7 SBOM
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: build/sbom.cdx.json
+          syft-version: v1.54.0
+          dependency-snapshot: false
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Validate SBOM / license policy
+        run: python scripts/ci/supply_chain_policy.py sbom --sbom build/sbom.cdx.json
+
+      - name: Trivy supply-chain scan
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          version: v0.75.0
+          format: json
+          output: build/trivy.json
+          exit-code: '1'
+          severity: HIGH,CRITICAL
+          scanners: vuln,misconfig,secret
+          ignore-unfixed: false
+          cache: false
+          trivyignores: .trivyignore
+
+      - name: Build supply-chain evidence
+        run: |
+          python scripts/ci/supply_chain_evidence.py             --sbom build/sbom.cdx.json             --trivy build/trivy.json             --output build/supply-chain-summary.json
+
       - name: Workflow supply-chain security
         run: python scripts/ci/foundation_ci.py security
 
@@ -136,5 +172,8 @@ jobs:
           path: |
             build/foundation-a.json
             build/test-harness-a.json
+            build/sbom.cdx.json
+            build/trivy.json
+            build/supply-chain-summary.json
           if-no-files-found: error
           retention-days: 7

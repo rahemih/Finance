@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WF-001 — Dependency / License / SBOM Governance`  
+Active branch: `security/FIN-P04-WF-001-dependency-license-sbom`  
+Active lock: `LOCK-FIN-P04-WF-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1783,3 +1784,58 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-F — Dependency / License / SBOM Governance
+
+Task: `FIN-P04-WF-001`  
+Linear: `HOS-177`  
+State: ACTIVE  
+Branch: `security/FIN-P04-WF-001-dependency-license-sbom`  
+Lock: `LOCK-FIN-P04-WF-001-01`
+
+Primary agent:
+- A8 Security / Supply Chain = LEAD
+
+Supporting:
+- A9 Operations
+- A1 Architecture
+- A10 Evidence / Audit
+- A0 Governance
+
+Selected tooling:
+- Syft `1.54.0`
+- CycloneDX JSON `1.7`
+- Trivy `0.75.0`
+- immutable action SHA pins only
+
+Dependency policy:
+- exact direct npm/pnpm versions or workspace protocol
+- exact direct Python `==` pins
+- floating/latest/caret/tilde/mutable URL or Git source = forbidden
+- dependency auto-merge = disabled
+
+License policy:
+- ALLOW / REVIEW / BLOCK
+- UNKNOWN / NOASSERTION / missing third-party license = fail closed pending review
+- REVIEW requires exact active time-bounded waiver
+- BLOCK does not pass baseline policy
+
+Vulnerability policy:
+- CRITICAL = BLOCK
+- HIGH = BLOCK
+- MEDIUM/LOW = report
+- `.trivyignore` entries require exact active VULNERABILITY waiver
+
+Required CI:
+- dependency/waiver policy
+- CycloneDX SBOM generation
+- SBOM/license policy validation
+- Trivy vuln/misconfig/secret scan
+- deterministic supply-chain summary
+- artifact upload
+
+Signing/KMS/provenance promotion: NOT_PROVISIONED  
+Production infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-G: NOT_STARTED
