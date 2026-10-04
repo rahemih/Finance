@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WH-001",
+  "state": "P04-H_IMPLEMENTATION",
+  "artifact": {
+    "kind": "GOVERNED_FOUNDATION_SOURCE_CONFIG_BUNDLE",
+    "filename": "foundation-source.tar",
+    "metadata_normalization": {
+      "path_order": "LEXICAL",
+      "mtime": 0,
+      "uid": 0,
+      "gid": 0,
+      "uname": "",
+      "gname": "",
+      "regular_modes": [
+        "0644",
+        "0755"
+      ]
+    },
+    "excluded_roots": [
+      ".git",
+      "node_modules",
+      ".venv",
+      "build",
+      "dist",
+      ".cache",
+      ".pytest_cache",
+      "__pycache__",
+      ".mypy_cache",
+      ".ruff_cache",
+      ".pnpm-store",
+      ".tox"
+    ]
+  },
+  "clean_build": {
+    "source_export": "git archive HEAD",
+    "independent_exports": 2,
+    "pnpm": "install --frozen-lockfile --ignore-scripts",
+    "uv": "sync --locked --no-install-project",
+    "developer_doctor": "--ci",
+    "byte_compare_artifact": true,
+    "byte_compare_manifest": true
+  },
+  "rollback_manifest": {
+    "exact_source_sha": true,
+    "artifact_sha256": true,
+    "full_file_inventory": true,
+    "file_inventory_sha256": true,
+    "timestamps": false
+  },
+  "roadmap_gate": "NONE_DEFINED_FOR_P04",
+  "next": "P05 — Real-Time Data (NOT_STARTED_PENDING_OWNER_AUTHORIZATION)",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
