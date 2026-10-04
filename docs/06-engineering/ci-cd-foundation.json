@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WC-001",
-  "state": "P04-C_IMPLEMENTATION",
+  "state": "P04-C_CANONICAL_COMPLETE",
   "as_of": "2026-10-04",
   "enforcement": {
     "ruleset_id": 24412077,
@@ -72,5 +72,20 @@
   "next": "P04-D — Config / Environment Contract (NOT_STARTED)",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 98,
+    "final_pr_head_sha": "9b314a437215ff579dee6329cdbbb1e6186ee130",
+    "pr_governance_run": 37203479883,
+    "pr_artifact_id": 11303622136,
+    "pr_artifact_digest": "sha256:60071ec2269c78b6c2eb58b50fc6248532c90ea7f7e35b8fbef66d837022cc13",
+    "implementation_merge_sha": "c8b47ef563afe58f8746550c8cb70773e4cc1e04",
+    "postmerge_governance_run": 37203519383,
+    "postmerge_branch_hygiene_run": 37203519378,
+    "postmerge_artifact_id": 11303617311,
+    "postmerge_artifact_digest": "sha256:8cb44cd5ec62cefac90cbe11efb5eb6ff720d051f3218e329f1c84d91f66cd6e",
+    "required_ruleset_id": 24412077,
+    "required_status_context": "governance",
+    "lock": "RELEASED"
+  }
 }

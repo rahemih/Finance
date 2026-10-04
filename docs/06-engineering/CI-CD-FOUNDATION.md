@@ -1,6 +1,6 @@
 # NEXUS QUANT — CI/CD Foundation
 
-STATE = P04-C IMPLEMENTATION
+STATE = P04-C CANONICAL_BASELINE
 TASK = `FIN-P04-WC-001`
 LINEAR = `HOS-174`
 DATE = 2026-10-04
@@ -201,3 +201,30 @@ After canonical closure only:
 `P04-D — Config / Environment Contract`
 
 P04-D is not started by this task.
+
+
+## 16. Closure evidence
+
+Implementation:
+- PR: `#98` = MERGED
+- final PR head SHA: `9b314a437215ff579dee6329cdbbb1e6186ee130`
+- required Governance/Foundation CI run: `37203479883` = SUCCESS
+- PR foundation artifact: `11303622136`
+- PR artifact digest: `sha256:60071ec2269c78b6c2eb58b50fc6248532c90ea7f7e35b8fbef66d837022cc13`
+- implementation merge SHA: `c8b47ef563afe58f8746550c8cb70773e4cc1e04`
+- post-merge Governance/Foundation CI: `37203519383` = SUCCESS
+- post-merge Branch Hygiene: `37203519378` = SUCCESS
+- post-merge foundation artifact: `11303617311`
+- post-merge artifact digest: `sha256:8cb44cd5ec62cefac90cbe11efb5eb6ff720d051f3218e329f1c84d91f66cd6e`
+
+Enforcement:
+- `Protect main` ruleset `24412077` = ACTIVE
+- required context `governance` = aggregate P04-C CI gate
+- immutable third-party action pins = PASS
+- promotion state = `DISABLED_PENDING_P04_D`
+
+Closure:
+- `FIN-P04-WC-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WC-001-01 = RELEASED`
+- next workstream = `P04-D — Config / Environment Contract`
+- P04-D = `NOT_STARTED`
