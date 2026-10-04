@@ -1,0 +1,23 @@
+{
+  "name": "nexus-quant",
+  "version": "0.0.0",
+  "private": true,
+  "description": "NEXUS QUANT governed polyglot monorepo root",
+  "packageManager": "pnpm@11.28.4",
+  "engines": {
+    "node": "24.21.0",
+    "pnpm": "11.28.4"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.21.0",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.28.4",
+      "onFail": "error"
+    }
+  }
+}

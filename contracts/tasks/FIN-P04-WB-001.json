@@ -1,0 +1,94 @@
+{
+  "task_id": "FIN-P04-WB-001",
+  "phase": "P04",
+  "workstream": "WB",
+  "objective": "Establish exact language/runtime/package-manager versions, initial lockfile baselines, upgrade policy, and reproducible local dependency contracts without implementing CI/CD or market logic.",
+  "linear": "HOS-173",
+  "dependencies": [
+    "FIN-P04-WA-001_CANONICAL_COMPLETE",
+    "P03_CANONICAL_COMPLETE",
+    "G3_SECURITY_BASELINE_PASS",
+    "FROZEN_G2"
+  ],
+  "baseline": {
+    "node": "24.21.0",
+    "typescript": "7.0.2",
+    "pnpm": "11.28.4",
+    "python": "3.14.8",
+    "uv": "0.12.23",
+    "pydantic_ai": "2.54.0"
+  },
+  "scope": [
+    "pin exact runtime/tool versions",
+    "create Node/TypeScript root workspace manifest",
+    "create Python root runtime manifest",
+    "create .node-version and .python-version",
+    "establish pnpm-lock.yaml and uv.lock baselines",
+    "define exact/direct dependency and lockfile policy",
+    "define controlled upgrade cadence and exception policy",
+    "record architecture-selected PydanticAI version pin while deferring installation until the agent-control-plane package is materialized",
+    "reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "CI/CD implementation",
+    "runtime environment/config contract",
+    "full test harness",
+    "SBOM/license automation",
+    "developer bootstrap scripts beyond minimum version declarations",
+    "market data/trading logic",
+    "infrastructure provisioning",
+    "CANARY/LIVE/Auto Trading"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WB-001.json",
+    "docs/06-engineering/RUNTIME-DEPENDENCY-BASELINE.md",
+    "docs/06-engineering/runtime-dependency-baseline.json",
+    "package.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    ".npmrc",
+    ".node-version",
+    "pyproject.toml",
+    "uv.lock",
+    ".python-version",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden": [
+    "starting P04-C",
+    "workflow/CI pipeline implementation beyond existing governance workflows",
+    "production secrets or credentials",
+    "market/broker connectivity",
+    "enabling CANARY/LIVE/AUTO_TRADING"
+  ],
+  "validation": [
+    "all JSON parses",
+    "package.json exact toolchain fields match baseline",
+    ".node-version matches Node baseline",
+    ".python-version matches Python baseline",
+    "pnpm lockfile version 9.0 and root importer exist",
+    "uv.lock matches Python 3.14 baseline",
+    "no production dependency is silently installed",
+    "PydanticAI pin is recorded but installation remains deferred",
+    "pnpm 12 is explicitly deferred pending SBOM/scanner compatibility revalidation",
+    "Governance Verify passes"
+  ],
+  "definition_of_done": [
+    "baseline files canonical",
+    "implementation PR merged",
+    "post-merge Governance and Branch Hygiene pass",
+    "closure PR merged",
+    "lock released",
+    "Linear Done",
+    "P04-C remains NOT_STARTED"
+  ]
+}

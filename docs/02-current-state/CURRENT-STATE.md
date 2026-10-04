@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WB-001 — Language / Runtime / Dependency Baseline`  
+Active branch: `chore/FIN-P04-WB-001-runtime-dependency-baseline`  
+Active lock: `LOCK-FIN-P04-WB-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1431,3 +1432,56 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-B — Language / Runtime / Dependency Baseline
+
+Task: `FIN-P04-WB-001`  
+Linear: `HOS-173`  
+State: ACTIVE  
+Branch: `chore/FIN-P04-WB-001-runtime-dependency-baseline`  
+Lock: `LOCK-FIN-P04-WB-001-01`
+
+Primary agent:
+- A1 Architecture = LEAD
+
+Supporting:
+- A0 Governance
+- A8 Security / supply-chain compatibility
+- A9 Operations / reproducibility
+- A10 Evidence / audit
+
+Prerequisite:
+- `FIN-P04-WA-001 = CANONICAL_COMPLETE`
+
+Selected baseline:
+- Node.js `24.21.0` LTS
+- TypeScript `7.0.2`
+- pnpm `11.28.4`
+- Python `3.14.8`
+- uv `0.12.23`
+- PydanticAI `2.54.0` approved pin; installation deferred until owning runtime package exists
+
+pnpm 12:
+- newer release exists;
+- not canonical for P04-B;
+- state = `DEFERRED_REVALIDATION`;
+- reason = current multi-document lockfile compatibility risk with dependency/SBOM consumers.
+
+Artifacts:
+- `contracts/tasks/FIN-P04-WB-001.json`
+- `docs/06-engineering/RUNTIME-DEPENDENCY-BASELINE.md`
+- `docs/06-engineering/runtime-dependency-baseline.json`
+- `package.json`
+- `pnpm-workspace.yaml`
+- `pnpm-lock.yaml`
+- `.npmrc`
+- `.node-version`
+- `pyproject.toml`
+- `uv.lock`
+- `.python-version`
+
+Production application dependencies installed: NONE  
+Production infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-C: NOT_STARTED
