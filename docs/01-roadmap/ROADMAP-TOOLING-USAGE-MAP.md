@@ -681,3 +681,51 @@ As of 2026-10-03:
 - Next canonical workstream: P01-E — Cost / Licensing / Data Rights.
 - Production technology selections: not implied by this document.
 - Runtime installations from this documentation task: none.
+
+
+## 12. Security tooling overlay
+
+Canonical source:
+- `docs/03-research/SECURITY-TOOLING-REGISTRY.md`
+- `docs/00-governance/SECURITY-TOOLING-BASELINE.md`
+- Task: `FIN-P01-WS-001`
+- Linear: `HOS-152`
+
+### P03 — Security & Identity
+- GitHub CodeQL — primary SAST candidate.
+- Trivy — broad vulnerability / misconfiguration / secret / SBOM scan candidate.
+- Semgrep — NEXUS-specific custom security-rule candidate.
+- Syft + CycloneDX — SBOM.
+- OPA — policy-as-code.
+- Secret Manager/KMS or governed Vault-class solution — secrets/key lifecycle.
+- Promptfoo + Inspect AI — agent/LLM prompt and tool-abuse evaluation.
+- Codex Security — assisted review.
+
+### P04 — Engineering Foundation
+- CodeQL/selected SAST -> CI security gate.
+- Trivy -> dependency/image/config scan.
+- Syft/CycloneDX -> SBOM generation and evidence.
+- Grype -> optional independent SBOM vulnerability verification.
+- Cosign + SLSA-class provenance -> artifact signing/provenance.
+- OPA -> deterministic policy gate when selected.
+- Semgrep -> custom rules where justified.
+
+### P22 — Operations / Diagnostics / Recovery
+- Trivy -> governed image/artifact/runtime-adjacent checks where selected.
+- Falco -> runtime threat detection only if architecture/topology benefits.
+- security incident runbooks, evidence, alerting and credential-revocation procedures.
+
+### P23 — UX / Team / Notifications
+- OWASP ZAP -> authorized API/web DAST and attack-surface validation.
+- authentication/session/header/cookie/CSP validation according to selected architecture.
+
+### P24 — Controlled Production
+- SAST/CVE/SBOM/signing/provenance/DAST/agent-security/runtime/recovery evidence.
+- independent A8 Security verification.
+- unresolved Critical security state or A8 veto blocks production eligibility.
+
+Anti-overlap:
+- CodeQL primary SAST; Semgrep custom rules.
+- Trivy primary broad scanner; Grype optional independent check.
+- Falco conditional.
+- one primary secrets manager and one primary policy engine unless measured evidence justifies otherwise.
