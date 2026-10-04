@@ -296,8 +296,8 @@
     },
     {
       "criterion": "required diagrams",
-      "status": "PENDING_IN_THIS_TASK",
-      "evidence": "P02-ARCHITECTURE-DIAGRAMS.md"
+      "status": "PASS",
+      "evidence": "docs/04-architecture/P02-ARCHITECTURE-DIAGRAMS.md"
     }
   ],
   "freeze_policy": {
