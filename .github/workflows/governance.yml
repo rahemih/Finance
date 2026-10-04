@@ -160,6 +160,7 @@ jobs:
         shell: bash
         env:
           SOURCE_SHA: ${{ github.sha }}
+          PNPM_CONFIG_PM_ON_FAIL: 'ignore'
           PNPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS: 'false'
         run: |
           set -euo pipefail
