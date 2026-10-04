@@ -95,6 +95,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P04-WG-001 | P04 | Developer Bootstrap & Tooling | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WG-001.json` | RELEASED |
 
+
+| FIN-P04-WH-001 | P04 | Reproducible Build / Artifact Verification | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WH-001.json` | LOCK-FIN-P04-WH-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
