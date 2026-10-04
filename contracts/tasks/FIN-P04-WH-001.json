@@ -1,0 +1,141 @@
+{
+  "task_id": "FIN-P04-WH-001",
+  "phase": "P04",
+  "workstream": "WH",
+  "objective": "Close P04 with deterministic clean-source builds, byte-identical rollback-ready foundation artifacts, tamper verification and canonical engineering-foundation exit evidence.",
+  "scope": [
+    "Create deterministic foundation source/config artifact from governed tracked source",
+    "Normalize archive ordering, timestamps, ownership and modes",
+    "Generate complete per-file SHA-256 rollback inventory",
+    "Bind rollback manifest to exact source commit SHA and artifact digest",
+    "Exclude generated dependency/build/cache directories from canonical artifact",
+    "Create two independent clean source exports from the same commit",
+    "Run frozen pnpm and locked uv bootstrap in each clean export",
+    "Run strict developer doctor in each clean export",
+    "Build artifact independently in each clean export",
+    "Require byte-identical artifact and rollback manifest across both builds",
+    "Verify artifact/manifest integrity and tamper detection",
+    "Add standard-library foundation tests for reproducibility and exclusions",
+    "Enforce reproducible build in required governance CI",
+    "Upload rollback artifact/manifest with existing CI/SBOM/security evidence",
+    "Produce final P04 engineering-foundation exit evidence",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Claim or build a production application binary/container before product source exists",
+    "Container/image promotion",
+    "Signing key, KMS or production signing identity provisioning",
+    "Production deployment or environment provisioning",
+    "P05 real-time data implementation",
+    "Broker/exchange production accounts or credentials",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P04-WG-001 CANONICAL_COMPLETE",
+    "P04-C required governance aggregate CI gate",
+    "P04-F CycloneDX/Trivy supply-chain evidence",
+    "P04-G strict developer doctor and locked bootstrap tooling"
+  ],
+  "read_paths": [
+    "** tracked repository source/config/docs/contracts/workflows",
+    "scripts/ci/**",
+    "scripts/dev/**",
+    ".github/workflows/**",
+    "docs/02-current-state/**",
+    "docs/06-engineering/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WH-001.json",
+    "docs/06-engineering/REPRODUCIBLE-BUILD-EVIDENCE.md",
+    "docs/06-engineering/reproducible-build-evidence.json",
+    "scripts/ci/reproducible_build.py",
+    "tests/foundation/test_reproducible_build.py",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Same clean source tree and source SHA produces byte-identical tar artifact",
+    "Same clean source tree and source SHA produces byte-identical rollback manifest",
+    "Changing a governed source file changes artifact digest",
+    "Generated node_modules/.venv/build/cache paths are excluded",
+    "Artifact verification detects byte tampering",
+    "Rollback manifest contains full deterministic file inventory and source SHA",
+    "Two clean git exports bootstrap with frozen pnpm and locked uv successfully",
+    "Strict developer doctor passes in both clean exports",
+    "Required governance CI compares two independent artifacts and manifests",
+    "Uploaded CI evidence contains reproducible artifact and rollback manifest",
+    "P04 exit evidence confirms P04-A through P04-H canonical before P05"
+  ],
+  "security_tests": [
+    "Canonical artifact is built only from clean tracked source export",
+    "Untracked local secrets cannot enter artifact",
+    "Archive member path traversal is rejected by verifier",
+    "Artifact digest mismatch fails closed",
+    "Source SHA mismatch fails closed",
+    "No production secret/account/credential is introduced",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Two byte-identical clean-source foundation artifacts",
+    "Two byte-identical rollback manifests",
+    "Artifact SHA-256 and full file inventory",
+    "P04-F SBOM/Trivy evidence carried alongside artifact",
+    "Implementation/post-merge CI evidence",
+    "P04 final engineering-foundation closure evidence",
+    "Linear HOS-179 reconciliation"
+  ],
+  "rollback": "Revert P04-H artifact builder/tests/CI integration and closure reconciliation. Existing P04-A through P04-G remain canonical. No runtime, provider, production environment, credential or trading state is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WG-001 CANONICAL_COMPLETE",
+    "No conflicting active lock",
+    "Task branch starts from current main",
+    "P04-A through P04-G canonical"
+  ],
+  "definition_of_done": [
+    "Reproducible artifact builder and verifier canonical",
+    "Two clean-source locked builds byte-identical",
+    "Rollback artifact and manifest uploaded",
+    "Required governance CI enforces reproducibility",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "P04-A through P04-H canonical",
+    "Lock released",
+    "Linear HOS-179 Done",
+    "P04 CANONICAL_COMPLETE",
+    "P05 remains NOT_STARTED pending Owner authorization"
+  ]
+}

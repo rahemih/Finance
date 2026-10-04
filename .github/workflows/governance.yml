@@ -156,6 +156,37 @@ jobs:
         run: |
           python scripts/ci/supply_chain_evidence.py             --sbom build/sbom.cdx.json             --trivy build/trivy.json             --output build/supply-chain-summary.json
 
+      - name: Reproducible clean-source build twice
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+          PNPM_CONFIG_PM_ON_FAIL: 'ignore'
+          PNPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS: 'false'
+        run: |
+          set -euo pipefail
+          rm -rf build/repro-a build/repro-b
+          mkdir -p build/repro-a/source build/repro-b/source
+
+          git archive --format=tar HEAD | tar -xf - -C build/repro-a/source
+          git archive --format=tar HEAD | tar -xf - -C build/repro-b/source
+
+          for name in repro-a repro-b; do
+            (
+              cd "build/${name}/source"
+              pnpm install --frozen-lockfile --ignore-scripts
+              uv sync --locked --no-install-project
+              python scripts/dev/doctor.py --ci
+              python scripts/ci/reproducible_build.py build                 --root .                 --source-sha "${SOURCE_SHA}"                 --output ../foundation-source.tar                 --manifest ../rollback-manifest.json
+              python scripts/ci/reproducible_build.py verify                 --artifact ../foundation-source.tar                 --manifest ../rollback-manifest.json                 --source-sha "${SOURCE_SHA}"
+            )
+          done
+
+          cmp build/repro-a/foundation-source.tar build/repro-b/foundation-source.tar
+          cmp build/repro-a/rollback-manifest.json build/repro-b/rollback-manifest.json
+          cp build/repro-a/foundation-source.tar build/foundation-source.tar
+          cp build/repro-a/rollback-manifest.json build/rollback-manifest.json
+          sha256sum build/foundation-source.tar build/rollback-manifest.json
+
       - name: Workflow supply-chain security
         run: python scripts/ci/foundation_ci.py security
 
@@ -181,5 +212,7 @@ jobs:
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
+            build/foundation-source.tar
+            build/rollback-manifest.json
           if-no-files-found: error
           retention-days: 7
