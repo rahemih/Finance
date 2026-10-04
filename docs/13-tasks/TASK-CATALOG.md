@@ -87,7 +87,7 @@ This catalog is the canonical index of governed work.
 | FIN-P04-WD-001 | P04 | Config / Environment Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WD-001.json` | RELEASED |
 
 
-| FIN-P04-WE-001 | P04 | Test Harness | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WE-001.json` | LOCK-FIN-P04-WE-001-01 |
+| FIN-P04-WE-001 | P04 | Test Harness | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WE-001.json` | RELEASED |
 
 ## Rules
 
