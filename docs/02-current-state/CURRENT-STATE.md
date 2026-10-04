@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-D implementation merge: `b777df14f2c5026b7ea7d17d21e5c9c4db403244`  
+Canonical HEAD at P03-E Fresh Live Guard: `7580617d94b18d6640f1074132ec1f9df29f1c88`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WE-001 — Audit & Change Integrity`  
+Active branch: `security/FIN-P03-WE-001-audit-change-integrity`  
+Active lock: `LOCK-FIN-P03-WE-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A through P03-D are CANONICAL_COMPLETE. Next authorized workstream: `P03-E — Audit & Change Integrity`.
+P03-A through P03-D are CANONICAL_COMPLETE. P03-E — Audit & Change Integrity is ACTIVE under `FIN-P03-WE-001` / `HOS-167`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1150,3 +1151,38 @@ P03-D closure:
 - `FIN-P03-WD-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WD-001-01 = RELEASED`
 - next = `P03-E — Audit & Change Integrity`
+
+
+## P03-E — Audit & Change Integrity
+
+Task: `FIN-P03-WE-001`  
+Linear: `HOS-167`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WE-001-audit-change-integrity`  
+Lock: `LOCK-FIN-P03-WE-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A9 Operations
+- A10 Evidence / Audit
+
+Dependencies:
+- P03-A/B/C/D = CANONICAL_COMPLETE
+- FROZEN_G2 Z6 Observability/Audit baseline = active
+
+Objective:
+- append-only/tamper-evident canonical audit;
+- attributable HIGH/CRITICAL changes;
+- maker/checker where policy requires;
+- Human Gate action/resource/environment/digest binding;
+- fail-closed critical audit behavior;
+- sensitive-data redaction/minimization.
+
+SIEM/WORM/log infrastructure: NOT_PROVISIONED  
+Jurisdiction-specific retention: NOT_DEFINED  
+Country/location dependency: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED

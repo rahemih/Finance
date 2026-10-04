@@ -1,0 +1,119 @@
+{
+  "task_id": "FIN-P03-WE-001",
+  "phase": "P03",
+  "workstream": "WE",
+  "objective": "Define the canonical audit-integrity and high-risk change-control baseline for NEXUS QUANT without provisioning logging/SIEM infrastructure.",
+  "scope": [
+    "Classify audit/business/operational/debug evidence streams",
+    "Define canonical audit event envelope and attribution",
+    "Define append-only/tamper-evident evidence and digest-chain direction",
+    "Define event/source/receive/observed time semantics and clock confidence",
+    "Separate audit writers/readers/admins",
+    "Define audit read/write/delete/export policy",
+    "Define critical event completeness",
+    "Define high-risk change attribution and maker/checker where required",
+    "Bind Human Gate evidence to exact action/resource/environment/digest",
+    "Define policy/config/version lineage",
+    "Define fail-closed behavior when critical audit path is unavailable",
+    "Define retention placeholder without jurisdiction assumption",
+    "Define P03-C sensitive-data redaction/minimization",
+    "Define verification/drill scenarios",
+    "Create machine-readable event/control matrix and diagrams"
+  ],
+  "out_of_scope": [
+    "Provision SIEM/log storage/WORM/object-lock infrastructure",
+    "Select logging vendor",
+    "Define jurisdiction-specific retention periods",
+    "Modify production systems/accounts/credentials",
+    "Enable CANARY/LIVE/Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "FIN-P03-WB-001",
+    "FIN-P03-WC-001",
+    "FIN-P03-WD-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WE-001.json",
+    "docs/05-security/AUDIT-CHANGE-INTEGRITY.md",
+    "docs/05-security/audit-change-integrity.json",
+    "docs/05-security/AUDIT-CHANGE-INTEGRITY-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "Governance Verify",
+    "Critical audit events have canonical attribution fields",
+    "Audit records cannot be silently overwritten in canonical policy",
+    "Audit writer cannot erase its own history",
+    "Raw secrets/tokens are forbidden in audit events",
+    "High-risk changes bind actor/action/resource/environment/version/evidence",
+    "Maker/checker required for policy-defined highest-risk changes",
+    "Human Gate replay/scope substitution is detectable",
+    "Audit failure blocks HIGH/CRITICAL privileged mutation where required",
+    "Clock/time quality and source confidence are explicit",
+    "Country/location is not required as evidence",
+    "No logging infrastructure is falsely claimed provisioned"
+  ],
+  "evidence": [
+    "P03-A/B/C/D canonical baselines",
+    "FROZEN_G2 Z6 architecture",
+    "OWASP Logging Cheat Sheet",
+    "NIST SP 800-92 and current Log Management guidance",
+    "machine-readable audit/change matrix",
+    "audit/change diagrams",
+    "GitHub PR/check evidence",
+    "Linear HOS-167 reconciliation"
+  ],
+  "rollback": "Revert P03-E policy artifacts and shared state/catalog changes; no runtime log infrastructure is modified.",
+  "definition_of_ready": [
+    "P03-A/B/C/D CANONICAL_COMPLETE",
+    "P03-D lock RELEASED",
+    "FROZEN_G2 active",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Audit/change-integrity baseline canonical",
+    "Machine-readable matrix and diagrams canonical",
+    "Current State/Task Catalog reconciled",
+    "Governance Verify passes",
+    "Implementation PR merges",
+    "Post-merge verification passes",
+    "Closure PR merges",
+    "Lock released",
+    "FIN-P03-WE-001 CANONICAL_COMPLETE"
+  ]
+}
