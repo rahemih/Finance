@@ -1,6 +1,6 @@
 # NEXUS QUANT — Repository / Workspace Structure
 
-STATE = P04-A IMPLEMENTATION
+STATE = P04-A CANONICAL_BASELINE
 TASK = `FIN-P04-WA-001`
 LINEAR = `HOS-172`
 ARCHITECTURE_BASELINE = `FROZEN_G2`
@@ -302,3 +302,16 @@ Market/broker connections: NONE
 CANARY: DISABLED  
 LIVE_TRADING: DISABLED  
 AUTO_TRADING: DISABLED
+
+
+## 15. Closure evidence
+
+- implementation PR: `#94` = MERGED
+- implementation merge SHA: `77ffe82e83a54fb9664856491759bb8f84b8a0b3`
+- PR Governance: `37200927333` = SUCCESS
+- post-merge Governance: `37200946376` = SUCCESS
+- post-merge Branch Hygiene: `37200946378` = SUCCESS
+- `FIN-P04-WA-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WA-001-01 = RELEASED`
+- next workstream: `P04-B — Language / Runtime / Dependency Baseline`
+- P04-B state: `NOT_STARTED`
