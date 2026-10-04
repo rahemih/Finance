@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WC-001 — CI/CD Foundation`  
-Active branch: `chore/FIN-P04-WC-001-ci-cd-foundation`  
-Active lock: `LOCK-FIN-P04-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1518,9 +1517,8 @@ Safety:
 
 Task: `FIN-P04-WC-001`  
 Linear: `HOS-174`  
-State: ACTIVE  
-Branch: `chore/FIN-P04-WC-001-ci-cd-foundation`  
-Lock: `LOCK-FIN-P04-WC-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A9 Operations / CI execution = LEAD
@@ -1567,3 +1565,31 @@ Production deployment/environment created by P04-C: NONE
 Production infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-D: NOT_STARTED
+
+
+P04-C implementation evidence:
+- implementation PR: `#98` = MERGED
+- final PR head SHA: `9b314a437215ff579dee6329cdbbb1e6186ee130`
+- implementation merge SHA: `c8b47ef563afe58f8746550c8cb70773e4cc1e04`
+- PR Governance/Foundation CI: `37203479883` = SUCCESS
+- PR artifact: `11303622136` / digest `sha256:60071ec2269c78b6c2eb58b50fc6248532c90ea7f7e35b8fbef66d837022cc13`
+- post-merge Governance/Foundation CI: `37203519383` = SUCCESS
+- post-merge Branch Hygiene: `37203519378` = SUCCESS
+- post-merge artifact: `11303617311` / digest `sha256:8cb44cd5ec62cefac90cbe11efb5eb6ff720d051f3218e329f1c84d91f66cd6e`
+- required ruleset: `Protect main / 24412077` = ACTIVE
+- required context: `governance`
+- all third-party workflow actions = immutable SHA pinned
+- promotion = `DISABLED_PENDING_P04_D`
+
+P04-C closure:
+- `FIN-P04-WC-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WC-001-01 = RELEASED`
+- next workstream: `P04-D — Config / Environment Contract`
+- P04-D: NOT_STARTED
+
+Safety:
+- production deployment/environment = NONE
+- production infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
