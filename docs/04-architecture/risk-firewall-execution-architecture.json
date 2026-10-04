@@ -1,0 +1,396 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WE-001",
+  "state": "RISK_FIREWALL_EXECUTION_BASELINE",
+  "technology_selection": "DEFERRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "country_location_dependency": "NONE",
+  "authority_chain": [
+    "SignalCandidate",
+    "RiskEvaluation",
+    "RiskVerdict",
+    "ProposedTradeIntent",
+    "PreTradeFirewall",
+    "FirewallVerdict",
+    "ApprovedTradeIntent",
+    "OMS",
+    "RouteAttempt",
+    "ExecutionAdapter",
+    "Provider",
+    "Reconciliation"
+  ],
+  "non_bypass_rule": "No strategy, quant model, agent, UX component or execution adapter may skip Risk or Pre-Trade Firewall.",
+  "risk_engine": {
+    "owner": "A5",
+    "authority": [
+      "ALLOW_WITH_LIMITS",
+      "REDUCE",
+      "REJECT",
+      "HALT_SCOPE"
+    ],
+    "forbidden": [
+      "raise_own_limits",
+      "send_provider_order",
+      "override_security_halt",
+      "bypass_firewall"
+    ],
+    "evaluation_inputs": [
+      "SignalCandidate",
+      "ProbabilityEstimate_or_unavailable_state",
+      "data_quality_and_freshness",
+      "current_positions",
+      "open_and_uncertain_orders",
+      "portfolio_exposure",
+      "leverage_and_margin_state",
+      "drawdown_daily_loss_state",
+      "liquidity_spread_slippage_context",
+      "correlation_concentration_state",
+      "counterparty_provider_exposure",
+      "system_provider_health",
+      "risk_policy_version"
+    ],
+    "verdict_contract": {
+      "required_fields": [
+        "risk_verdict_id",
+        "signal_id",
+        "portfolio_scope",
+        "decision",
+        "policy_version",
+        "evaluated_at",
+        "valid_until",
+        "state_snapshot_refs",
+        "max_allowed_quantity_or_notional",
+        "exposure_constraints",
+        "reduce_only_requirement",
+        "reason_codes",
+        "risk_metrics_snapshot_ref"
+      ],
+      "decision_values": [
+        "ALLOW_WITH_LIMITS",
+        "REDUCE",
+        "REJECT",
+        "HALT_SCOPE"
+      ],
+      "rule": "A new or larger position cannot exceed the lesser of strategy request and Risk-authorized limits."
+    },
+    "policy_change_rule": "Risk policy/ceiling changes require governed configuration/policy change; Risk runtime cannot self-increase ceilings."
+  },
+  "intent_construction": {
+    "owner_boundary": "D11_PRETRADE_FIREWALL",
+    "input": [
+      "SignalCandidate",
+      "RiskVerdict",
+      "requested_action_context"
+    ],
+    "output": "ProposedTradeIntent",
+    "required_fields": [
+      "intent_id",
+      "environment",
+      "portfolio_scope",
+      "account_scope",
+      "instrument_id",
+      "side",
+      "quantity_or_notional",
+      "order_semantics",
+      "time_in_force_if_applicable",
+      "reduce_only",
+      "signal_ref",
+      "risk_verdict_ref",
+      "created_at",
+      "expires_at",
+      "correlation_id"
+    ],
+    "rules": [
+      "intent_id is globally stable for the logical trade intent",
+      "intent is provider-neutral",
+      "provider-specific symbol/order fields are prohibited here",
+      "quantity may be reduced to Risk-authorized maximum but never increased",
+      "expired signal/risk verdict cannot create a valid intent"
+    ]
+  },
+  "pretrade_firewall": {
+    "owner": "A5",
+    "execution_dependency": "D11_PRETRADE_FIREWALL before D12_EXECUTION_OMS",
+    "verdict_values": [
+      "APPROVE",
+      "REJECT",
+      "HALT_SCOPE"
+    ],
+    "checks": [
+      "signal still valid and not expired",
+      "RiskVerdict exists, is current and policy version is valid",
+      "requested quantity/notional <= Risk-authorized maximum",
+      "data quality/freshness passes required level",
+      "system/provider health permits execution",
+      "environment/account/provider binding is valid",
+      "kill switch state permits action",
+      "instrument is mapped and provider capability exists",
+      "order semantics/precision/minimums are valid",
+      "duplicate intent/idempotency check passes",
+      "no unresolved execution state conflicts with this intent/scope",
+      "positions/open orders snapshot is sufficiently fresh",
+      "post-intent exposure remains inside Risk limits",
+      "liquidity/spread/slippage hard bounds pass when policy requires",
+      "credential capability is valid and least privilege",
+      "market/session/trading-status constraints pass when applicable"
+    ],
+    "fail_closed_conditions": [
+      "missing critical state",
+      "stale RiskVerdict",
+      "stale critical market/account state",
+      "unknown outstanding order that can alter exposure",
+      "data quarantine",
+      "provider execution capability unknown",
+      "credential/authorization uncertainty",
+      "active halt/kill switch",
+      "idempotency ambiguity"
+    ],
+    "rule": "Firewall may reject/halt but cannot relax Risk limits or invent missing state."
+  },
+  "approved_trade_intent": {
+    "required_fields": [
+      "intent_id",
+      "firewall_verdict_id",
+      "risk_verdict_id",
+      "environment",
+      "account_scope",
+      "instrument_id",
+      "side",
+      "approved_quantity_or_notional",
+      "order_semantics",
+      "reduce_only",
+      "expires_at",
+      "idempotency_key",
+      "correlation_id"
+    ],
+    "rule": "Only an unexpired ApprovedTradeIntent may enter OMS. It remains provider-neutral."
+  },
+  "oms": {
+    "owner": "A6",
+    "responsibilities": [
+      "route approved intents",
+      "maintain deterministic order lifecycle",
+      "provider client-order-id mapping",
+      "idempotent submit/cancel/replace semantics",
+      "fill aggregation",
+      "position/order projections",
+      "timeout and crash recovery",
+      "reconciliation"
+    ],
+    "state_machine": [
+      "APPROVED",
+      "ROUTING",
+      "SUBMITTING",
+      "ACKNOWLEDGED",
+      "PARTIALLY_FILLED",
+      "FILLED",
+      "CANCEL_PENDING",
+      "CANCELED",
+      "REJECTED",
+      "EXPIRED",
+      "UNKNOWN",
+      "RECONCILING",
+      "FAILED_FINAL"
+    ],
+    "critical_state_rules": [
+      "UNKNOWN is not a retryable-success or final-reject state.",
+      "UNKNOWN blocks a new execution-capable route for the same exposure until reconciled.",
+      "PARTIALLY_FILLED updates remaining exposure; any additional routing requires fresh Risk/Firewall evaluation where material.",
+      "Local timeout does not prove provider rejection.",
+      "Provider/exchange execution facts override local assumptions, while local intent/audit history is preserved."
+    ]
+  },
+  "idempotency_and_routing": {
+    "identities": {
+      "intent_id": "Stable identity of the logical approved trade intent.",
+      "route_attempt_id": "Unique identity for one provider routing attempt.",
+      "provider_client_order_id": "Provider-facing idempotency/client order identity mapped to route attempt.",
+      "correlation_id": "End-to-end trace identity across signal/risk/firewall/OMS/audit."
+    },
+    "rules": [
+      "Retry to the same provider reuses safe idempotency semantics where provider supports them.",
+      "A network timeout never creates a new logical intent.",
+      "Only one unresolved execution-capable route attempt per intent/exposure is permitted by default.",
+      "A second provider route is forbidden while first-route execution status is UNKNOWN.",
+      "Reroute is allowed only after deterministic proof the earlier route cannot execute, or after reconciliation/cancel/fill resolution and fresh Risk/Firewall approval.",
+      "Blind cross-broker replay is forbidden."
+    ]
+  },
+  "reconciliation": {
+    "owner": "A6",
+    "triggers": [
+      "process startup/restart",
+      "provider reconnect",
+      "submission timeout",
+      "UNKNOWN order state",
+      "provider incident recovery",
+      "periodic scheduled check",
+      "material local/provider mismatch",
+      "before controlled provider failover"
+    ],
+    "provider_truth_queries": [
+      "open orders",
+      "recent orders/order history",
+      "fills/trades",
+      "positions",
+      "balances/margin/account state"
+    ],
+    "rules": [
+      "Provider/exchange is authoritative for actual external order/fill/position facts.",
+      "Local system is authoritative for original intent, Risk/Firewall decisions and audit history.",
+      "Mismatch creates ReconciliationEvidence and blocks unsafe new orders for affected scope.",
+      "Reconciliation never silently rewrites audit history.",
+      "After material reconciliation, Risk/Firewall state is refreshed before new exposure."
+    ]
+  },
+  "execution_failover": {
+    "automatic_live_cross_broker_failover": "FORBIDDEN",
+    "safe_sequence": [
+      "detect execution/provider degradation",
+      "halt new affected intents",
+      "classify all in-flight attempts",
+      "reconcile order/fill/position/account state",
+      "resolve UNKNOWN states",
+      "recompute portfolio/risk state",
+      "validate certified backup capability",
+      "obtain fresh Risk/Firewall approval for future intents",
+      "route only resolved/new exposure"
+    ],
+    "rule": "Provider failover cannot assume an unacknowledged order was not executed."
+  },
+  "kill_switches": {
+    "scopes": [
+      "STRATEGY",
+      "INSTRUMENT",
+      "ASSET_CLASS_OR_MARKET",
+      "PROVIDER_OR_BROKER",
+      "ACCOUNT",
+      "NEW_ORDERS",
+      "REDUCE_ONLY",
+      "GLOBAL_HALT",
+      "EMERGENCY_FLATTEN"
+    ],
+    "authorities": {
+      "A5_RISK": [
+        "HALT_SCOPE",
+        "NEW_ORDERS",
+        "REDUCE_ONLY",
+        "GLOBAL_HALT_REQUEST_BY_POLICY"
+      ],
+      "A6_EXECUTION": [
+        "PROVIDER_OR_BROKER_SELF_HALT_ON_UNCERTAINTY",
+        "STOP_ROUTING_ON_RECONCILIATION_FAILURE"
+      ],
+      "A8_SECURITY": [
+        "SECURITY_HALT",
+        "CREDENTIAL_DISABLE_OR_REVOCATION_REQUEST"
+      ],
+      "A9_OPERATIONS": [
+        "OPERATIONAL_HALT_REQUEST",
+        "SAFE_MODE_REQUEST"
+      ],
+      "OWNER": [
+        "GLOBAL_HALT",
+        "EMERGENCY_FLATTEN_WHEN_EXPLICITLY_CONFIGURED_AND_CONFIRMED"
+      ]
+    },
+    "rules": [
+      "Halting is easier than re-enabling.",
+      "No runtime actor may increase risk ceilings as part of recovery.",
+      "Re-enable requires health/reconciliation checks and policy-defined authorization.",
+      "EMERGENCY_FLATTEN is distinct from GLOBAL_HALT because closing positions itself creates market/execution risk.",
+      "All kill-switch transitions and authorities are audited."
+    ]
+  },
+  "system_state_integration": {
+    "states": [
+      "NORMAL",
+      "DEGRADED",
+      "SAFE_MODE",
+      "HALTED",
+      "EMERGENCY",
+      "RECOVERY"
+    ],
+    "behavior": {
+      "NORMAL": "Policy-approved execution may proceed.",
+      "DEGRADED": "Affected scopes may restrict new exposure; Risk/Firewall applies stricter policy.",
+      "SAFE_MODE": "No new risk-increasing exposure; only explicitly permitted defensive/reduce actions.",
+      "HALTED": "No new execution except explicit recovery/defensive policy.",
+      "EMERGENCY": "Emergency controls active; owner/policy-defined response.",
+      "RECOVERY": "Reconciliation and health validation before return to NORMAL."
+    }
+  },
+  "environment_binding": {
+    "environments": [
+      "DEV",
+      "TEST",
+      "RESEARCH",
+      "DEMO",
+      "SHADOW",
+      "CANARY",
+      "LIVE"
+    ],
+    "rules": [
+      "ApprovedTradeIntent includes environment and account scope.",
+      "Credential handles are environment/account/provider bound.",
+      "SHADOW can observe and simulate decisions but cannot emit live provider commands.",
+      "DEMO routes only to simulation/practice execution.",
+      "CANARY/LIVE remain disabled until later roadmap gates.",
+      "Cross-environment credential/state reuse is forbidden unless explicitly designed as read-only reference."
+    ]
+  },
+  "credential_security": {
+    "owner": "A8",
+    "rules": [
+      "Execution domains receive credential handles/references, not raw secrets in ordinary data contracts.",
+      "Trading credentials must be least privilege.",
+      "Withdrawal/transfer permission is disabled/not requested where provider supports separable permissions.",
+      "Credential validity and capability are checked before execution.",
+      "Credential compromise triggers security halt/revocation path."
+    ]
+  },
+  "audit_evidence": {
+    "required_links": [
+      "SignalCandidate",
+      "RiskVerdict",
+      "ProposedTradeIntent",
+      "FirewallVerdict",
+      "ApprovedTradeIntent",
+      "route attempts",
+      "provider acknowledgements/rejects",
+      "fills/cancels",
+      "reconciliation results",
+      "kill-switch/system-state changes",
+      "actor/agent/policy/config versions"
+    ],
+    "rule": "A material execution outcome must be traceable end-to-end by correlation_id without storing raw secrets."
+  },
+  "deferred_to_later_phases": {
+    "P15": [
+      "numerical portfolio risk limits",
+      "risk-of-ruin",
+      "allocation/correlation/counterparty models"
+    ],
+    "P16": [
+      "concrete firewall rules/thresholds",
+      "independent firewall implementation and tests"
+    ],
+    "P20": [
+      "execution adapters",
+      "OMS runtime",
+      "provider certification",
+      "idempotency/reconciliation implementation"
+    ],
+    "P21": [
+      "position management",
+      "trailing/break-even/expiry/close logic"
+    ],
+    "P22": [
+      "operational recovery/diagnostics/runbooks"
+    ],
+    "P24": [
+      "canary/live capital activation and owner gates"
+    ]
+  }
+}
