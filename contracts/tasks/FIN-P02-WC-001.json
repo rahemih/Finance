@@ -1,0 +1,139 @@
+{
+  "task_id": "FIN-P02-WC-001",
+  "phase": "P02",
+  "workstream": "WC",
+  "objective": "Define the canonical logical data-flow and storage architecture for NEXUS QUANT, including event-time semantics, immutable evidence, quality/provenance, feature lineage, replay, licensing-aware retention and recovery requirements without selecting concrete storage technologies.",
+  "scope": [
+    "Define end-to-end provider-to-replay data flow",
+    "Define event/source/receive/process time semantics",
+    "Define immutable raw evidence and licensing-aware retention rules",
+    "Define canonical normalized event ownership",
+    "Define late/out-of-order/correction/revision handling",
+    "Define macro vintage and revision semantics",
+    "Define storage classes for reference data, trades, quotes, books, bars, events, features and audit evidence",
+    "Define operational state versus historical analytical state separation",
+    "Define feature/evidence lineage and versioning",
+    "Define replay manifests and deterministic reconstruction inputs",
+    "Define logical partitioning/indexing requirements",
+    "Define data classification/access boundaries",
+    "Define backup/restore/integrity requirements",
+    "Define data deletion/retention behavior where provider rights require it"
+  ],
+  "out_of_scope": [
+    "Select concrete database, object storage, time-series engine, message bus or cloud vendor",
+    "Implement runtime ingestion/storage code",
+    "Freeze physical deployment topology",
+    "Perform final capacity sizing",
+    "Purchase provider contracts or entitlements",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WC-001.json",
+    "docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md",
+    "docs/04-architecture/data-flow-storage-architecture.json",
+    "docs/04-architecture/ADR/ADR-0008-logical-data-layers-replay-lineage.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Governance Verify",
+    "Every material event has source/provider provenance and time semantics",
+    "Raw evidence is immutable/versioned where retention rights permit",
+    "Provider retention/licensing constraints are represented explicitly",
+    "Operational mutable state is separated from immutable historical/replay evidence",
+    "Corrections/revisions never silently overwrite prior observed truth",
+    "Replay manifest can identify exact dataset/schema/config/model versions",
+    "Feature/evidence outputs retain lineage to source versions",
+    "No concrete database/message-bus/cloud technology is selected",
+    "Country/location is absent from data architecture assumptions"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Sensitive credentials are not stored in market-data datasets",
+    "Access class is explicit for raw/provider-restricted/audit data",
+    "Audit evidence is append-only/tamper-evident by design",
+    "Backups preserve integrity metadata",
+    "Deletion/retention obligations can be enforced without corrupting audit references"
+  ],
+  "evidence": [
+    "P02-A architecture principles and ADRs",
+    "P02-B domain boundaries and ownership matrix",
+    "P01 cost/licensing/data-right constraints",
+    "Data flow/storage architecture document",
+    "Machine-readable storage/data-flow matrix",
+    "ADR-0008",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-156 reconciliation"
+  ],
+  "rollback": "Revert P02-C architecture artifacts and state/catalog changes. No runtime storage or provider resources are created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WA-001 = CANONICAL_COMPLETE",
+    "FIN-P02-WB-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_C",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Logical data-flow architecture is canonical",
+    "Logical storage classes and ownership are canonical",
+    "Time/revision/provenance rules are canonical",
+    "Replay/lineage contract is canonical",
+    "Licensing-aware retention behavior is canonical",
+    "ADR-0008 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WC-001 = CANONICAL_COMPLETE"
+  ]
+}

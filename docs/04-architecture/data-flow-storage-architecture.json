@@ -1,0 +1,522 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WC-001",
+  "state": "LOGICAL_DATA_ARCHITECTURE_BASELINE",
+  "technology_selection": "DEFERRED",
+  "country_location_dependency": "NONE",
+  "principles": [
+    "immutable observed truth where rights permit",
+    "corrections append; never silently rewrite prior observations",
+    "event-time and receive-time are distinct",
+    "provider provenance survives every normalization step",
+    "operational state is a projection, not the audit source of truth",
+    "replay inputs are versioned and deterministic",
+    "retention is constrained by contractual/data rights",
+    "raw secrets never enter market datasets"
+  ],
+  "time_model": {
+    "source_time": "Timestamp supplied by original source/provider when available.",
+    "event_time": "Canonical market/economic time represented by the event.",
+    "receive_time": "Time NEXUS QUANT receives the event at the provider boundary.",
+    "process_time": "Optional time a processing stage emits a derived artifact.",
+    "observed_at": "Time a revision/correction/version became known to NEXUS QUANT.",
+    "rules": [
+      "Never substitute receive_time for source_time without explicit quality metadata.",
+      "Store timezone/clock-source metadata where source semantics require it.",
+      "Late events are retained with original event_time and later observed/receive time.",
+      "Derived outputs reference the exact input watermark/snapshot used."
+    ]
+  },
+  "logical_layers": [
+    {
+      "id": "L0_EDGE_CAPTURE",
+      "owner_domain": "D02_MARKET_DATA_ADAPTERS",
+      "purpose": "Ephemeral/bounded ingress capture and provider session metadata before normalization.",
+      "authoritative": false,
+      "mutability": "TRANSIENT",
+      "examples": [
+        "provider packet/message",
+        "session heartbeat",
+        "provider sequence metadata"
+      ],
+      "constraints": [
+        "bounded buffering",
+        "no business logic",
+        "no long-term retention assumption"
+      ]
+    },
+    {
+      "id": "L1_RAW_EVIDENCE",
+      "owner_domain": "D04_RAW_HISTORY_STORAGE",
+      "purpose": "Versioned source-faithful evidence for replay/audit where contractual rights permit.",
+      "authoritative": true,
+      "mutability": "APPEND_ONLY_VERSIONED",
+      "examples": [
+        "raw trades",
+        "raw quotes",
+        "raw book updates",
+        "raw macro release payload",
+        "provider reference snapshots"
+      ],
+      "constraints": [
+        "licensing-aware retention",
+        "source identity mandatory",
+        "integrity hash/checksum mandatory"
+      ]
+    },
+    {
+      "id": "L2_CANONICAL_EVENTS",
+      "owner_domain": "D03_CANONICAL_MARKET_DATA",
+      "purpose": "Provider-neutral normalized event history and streaming contract.",
+      "authoritative": true,
+      "mutability": "APPEND_ONLY_WITH_CORRECTION_EVENTS",
+      "examples": [
+        "CanonicalTrade",
+        "CanonicalQuote",
+        "CanonicalBookDelta",
+        "CanonicalBar",
+        "CanonicalMacroEvent"
+      ],
+      "constraints": [
+        "canonical instrument ID",
+        "source/event/receive times",
+        "schema version",
+        "provenance link"
+      ]
+    },
+    {
+      "id": "L3_QUALITY_PROVENANCE",
+      "owner_domain": "D05_DATA_QUALITY_PROVENANCE",
+      "purpose": "Quality verdicts, cross-provider comparisons, lineage, confidence and quarantine state.",
+      "authoritative": true,
+      "mutability": "APPEND_ONLY_VERDICTS_PLUS_CURRENT_PROJECTION",
+      "examples": [
+        "QualityVerdict",
+        "ProvenanceRecord",
+        "QuarantineEvent",
+        "GapRecord"
+      ],
+      "constraints": [
+        "reason codes required",
+        "critical unknown fails closed downstream"
+      ]
+    },
+    {
+      "id": "L4_OPERATIONAL_STATE",
+      "owner_domain": "DOMAIN_SPECIFIC",
+      "purpose": "Fast mutable projections needed for current system operation.",
+      "authoritative": false,
+      "mutability": "MUTABLE_PROJECTION_REBUILDABLE",
+      "examples": [
+        "latest market snapshot",
+        "current order state",
+        "current position state",
+        "current risk exposure",
+        "system health view"
+      ],
+      "constraints": [
+        "rebuildable from authoritative event/evidence sources",
+        "not used as sole historical audit truth"
+      ]
+    },
+    {
+      "id": "L5_FEATURE_EVIDENCE",
+      "owner_domain": "D06_FEATURE_EVIDENCE",
+      "purpose": "Versioned features and evidence inputs used by intelligence/quant/signal pipelines.",
+      "authoritative": true,
+      "mutability": "VERSIONED_DERIVED",
+      "examples": [
+        "FeatureValue",
+        "FeatureSetVersion",
+        "EvidenceInput"
+      ],
+      "constraints": [
+        "feature definition version",
+        "code/config version",
+        "source snapshot/watermark",
+        "quality eligibility"
+      ]
+    },
+    {
+      "id": "L6_RESEARCH_REPLAY_DATASETS",
+      "owner_domain": "D04_RAW_HISTORY_STORAGE",
+      "co_owner_domains": [
+        "D08_QUANT_STRATEGY",
+        "D13_LEARNING_EXPERIMENTATION"
+      ],
+      "purpose": "Frozen dataset manifests/snapshots for backtest, replay, shadow analysis and experiment reproducibility.",
+      "authoritative": true,
+      "mutability": "IMMUTABLE_SNAPSHOT_MANIFEST",
+      "examples": [
+        "DatasetManifest",
+        "ReplayManifest",
+        "MacroVintageSnapshot",
+        "BacktestInputSnapshot"
+      ],
+      "constraints": [
+        "content/version hashes",
+        "source coverage",
+        "time window",
+        "rights class",
+        "schema versions"
+      ]
+    },
+    {
+      "id": "L7_MODEL_EXPERIMENT_ARTIFACTS",
+      "owner_domain": "D13_LEARNING_EXPERIMENTATION",
+      "purpose": "Model/experiment/champion-challenger artifacts and metrics.",
+      "authoritative": true,
+      "mutability": "VERSIONED_IMMUTABLE_ARTIFACTS",
+      "examples": [
+        "ExperimentArtifact",
+        "CandidateModelVersion",
+        "CalibrationReport",
+        "DriftEvidence"
+      ],
+      "constraints": [
+        "training dataset manifest link",
+        "code/config version",
+        "no auto-promote-to-live"
+      ]
+    },
+    {
+      "id": "L8_AUDIT_EVIDENCE",
+      "owner_domain": "D17_AUDIT_EVIDENCE",
+      "purpose": "Append-only/tamper-evident references to material actions, decisions, approvals and closures.",
+      "authoritative": true,
+      "mutability": "APPEND_ONLY",
+      "examples": [
+        "AuditEvent",
+        "EvidenceManifest",
+        "ApprovalEvent",
+        "ClosureEvidence"
+      ],
+      "constraints": [
+        "correlation ID",
+        "actor/agent identity",
+        "related domain event IDs",
+        "no raw secret material"
+      ]
+    }
+  ],
+  "data_classes": [
+    {
+      "id": "REFERENCE_DATA",
+      "owner_domain": "D01_INSTRUMENT_REFERENCE",
+      "examples": [
+        "instrument definitions",
+        "venue aliases",
+        "precision",
+        "contract metadata",
+        "calendars"
+      ],
+      "canonical_key": "instrument_id + effective_from/version",
+      "time_semantics": "effective-time/versioned",
+      "retention": "LONG_LIVED_VERSIONED",
+      "access_class": "INTERNAL",
+      "logical_partition_hints": [
+        "instrument_id",
+        "provider_or_venue",
+        "effective_date"
+      ]
+    },
+    {
+      "id": "TRADES_QUOTES",
+      "owner_domain": "D03_CANONICAL_MARKET_DATA",
+      "examples": [
+        "trades",
+        "best bid/ask",
+        "quote updates"
+      ],
+      "canonical_key": "provider + instrument_id + event_time + provider_sequence_or_event_id",
+      "time_semantics": "event/source/receive time",
+      "retention": "POLICY_AND_RIGHTS_DRIVEN",
+      "access_class": "PROVIDER_RESTRICTED_OR_INTERNAL",
+      "logical_partition_hints": [
+        "event_date",
+        "instrument_id",
+        "provider"
+      ]
+    },
+    {
+      "id": "ORDER_BOOK",
+      "owner_domain": "D03_CANONICAL_MARKET_DATA",
+      "examples": [
+        "book snapshots",
+        "book deltas",
+        "depth levels"
+      ],
+      "canonical_key": "provider + instrument_id + book_sequence",
+      "time_semantics": "source/event/receive time + sequence",
+      "retention": "HIGH_VOLUME_RIGHTS_DRIVEN",
+      "access_class": "PROVIDER_RESTRICTED",
+      "logical_partition_hints": [
+        "event_date",
+        "instrument_id",
+        "provider",
+        "depth_or_channel"
+      ]
+    },
+    {
+      "id": "BARS_AGGREGATES",
+      "owner_domain": "D03_CANONICAL_MARKET_DATA",
+      "examples": [
+        "OHLCV",
+        "quote aggregates",
+        "derived bars"
+      ],
+      "canonical_key": "instrument_id + timeframe + interval_start + source_class + version",
+      "time_semantics": "interval event time + observed time",
+      "retention": "LONG_LIVED_DERIVED_IF_RIGHTS_ALLOW",
+      "access_class": "INTERNAL",
+      "logical_partition_hints": [
+        "timeframe",
+        "event_date",
+        "instrument_id"
+      ]
+    },
+    {
+      "id": "MACRO_VINTAGES",
+      "owner_domain": "D04_RAW_HISTORY_STORAGE",
+      "examples": [
+        "initial release",
+        "prior value as known then",
+        "revisions",
+        "official vintage snapshots"
+      ],
+      "canonical_key": "series_id + observation_period + vintage_or_observed_at",
+      "time_semantics": "reference period + release time + observed_at",
+      "retention": "LONG_LIVED_VERSIONED",
+      "access_class": "INTERNAL_OR_SOURCE_RESTRICTED",
+      "logical_partition_hints": [
+        "series_id",
+        "release_year",
+        "vintage_date"
+      ]
+    },
+    {
+      "id": "QUALITY_PROVENANCE",
+      "owner_domain": "D05_DATA_QUALITY_PROVENANCE",
+      "examples": [
+        "freshness",
+        "gap",
+        "duplicate",
+        "cross-provider divergence",
+        "confidence",
+        "quarantine"
+      ],
+      "canonical_key": "subject_event_or_range + rule_version + observed_at",
+      "time_semantics": "evaluation time plus subject event interval",
+      "retention": "LONG_LIVED_AUDIT_RELEVANT",
+      "access_class": "INTERNAL",
+      "logical_partition_hints": [
+        "date",
+        "instrument_or_series",
+        "rule_family"
+      ]
+    },
+    {
+      "id": "FEATURES_EVIDENCE",
+      "owner_domain": "D06_FEATURE_EVIDENCE",
+      "examples": [
+        "technical features",
+        "order-flow features",
+        "macro surprise features",
+        "regime features"
+      ],
+      "canonical_key": "feature_definition_version + instrument_or_entity + event_time + dataset_version",
+      "time_semantics": "as-of/event time with source cutoff",
+      "retention": "VERSIONED_REPRODUCIBLE",
+      "access_class": "INTERNAL",
+      "logical_partition_hints": [
+        "feature_set",
+        "event_date",
+        "instrument_or_entity"
+      ]
+    },
+    {
+      "id": "EXECUTION_STATE_EVENTS",
+      "owner_domain": "D12_EXECUTION_OMS",
+      "examples": [
+        "intent",
+        "order ack",
+        "reject",
+        "cancel",
+        "fill",
+        "position reconciliation"
+      ],
+      "canonical_key": "intent_id/order_id/provider_event_id",
+      "time_semantics": "intent time + provider event time + receive time",
+      "retention": "LONG_LIVED_AUDIT_CRITICAL",
+      "access_class": "SENSITIVE_INTERNAL",
+      "logical_partition_hints": [
+        "account_scope",
+        "event_date",
+        "intent_or_order_id"
+      ]
+    },
+    {
+      "id": "RISK_FIREWALL_EVENTS",
+      "owner_domain": "D10_PORTFOLIO_RISK",
+      "co_owner_domains": [
+        "D11_PRETRADE_FIREWALL"
+      ],
+      "examples": [
+        "risk verdict",
+        "risk budget",
+        "firewall verdict",
+        "rejection reason"
+      ],
+      "canonical_key": "decision_id + policy_version",
+      "time_semantics": "decision as-of time",
+      "retention": "LONG_LIVED_AUDIT_CRITICAL",
+      "access_class": "SENSITIVE_INTERNAL",
+      "logical_partition_hints": [
+        "event_date",
+        "portfolio_scope",
+        "policy_version"
+      ]
+    },
+    {
+      "id": "AUDIT_EVIDENCE",
+      "owner_domain": "D17_AUDIT_EVIDENCE",
+      "examples": [
+        "agent action",
+        "owner approval",
+        "gate evidence",
+        "security event reference",
+        "closure manifest"
+      ],
+      "canonical_key": "audit_event_id",
+      "time_semantics": "recorded_at + referenced event time",
+      "retention": "LONG_LIVED_TAMPER_EVIDENT",
+      "access_class": "RESTRICTED_INTERNAL",
+      "logical_partition_hints": [
+        "date",
+        "event_type",
+        "task_or_correlation_id"
+      ]
+    }
+  ],
+  "correction_revision_policy": {
+    "market_data": [
+      "Never overwrite an observed market event merely because a provider later corrects it.",
+      "Represent provider corrections/cancels using explicit correction/tombstone/replacement semantics linked to original event.",
+      "Current projections may reflect the latest accepted state but historical replay can reconstruct what was known at each time."
+    ],
+    "macro_data": [
+      "Initial release and each later revision are separate vintages.",
+      "Backtests use the vintage available at the simulated decision time.",
+      "Latest revised values must never leak backward into historical decision replay."
+    ],
+    "reference_data": [
+      "Effective-dated versions preserve prior symbol/contract/precision/calendar state."
+    ]
+  },
+  "replay_contract": {
+    "manifest_required_fields": [
+      "replay_id",
+      "time_range",
+      "instrument_or_series_scope",
+      "raw_or_canonical_dataset_versions",
+      "schema_versions",
+      "quality_rule_versions",
+      "feature_definition_versions",
+      "config_version",
+      "code_commit_or_artifact_version",
+      "model_versions_if_used",
+      "clock_mode",
+      "rights_class",
+      "integrity_hashes"
+    ],
+    "clock_modes": [
+      "EVENT_TIME",
+      "RECEIVE_TIME_WHEN_REQUIRED",
+      "CONTROLLED_SIMULATION_CLOCK"
+    ],
+    "determinism_rule": "Same manifest + compatible code/config must reproduce the same deterministic non-random pipeline outputs; stochastic components require recorded seed/version.",
+    "lookahead_rule": "Replay may only expose data whose observed_at/release time is <= simulated decision time."
+  },
+  "operational_vs_historical": {
+    "rule": "Mutable operational projections are optimized for current decisions; immutable/versioned event and evidence layers are the replay/audit basis.",
+    "examples": [
+      "current position is a mutable projection; fills/reconciliation events are authoritative history",
+      "current order book is a projection; snapshots+deltas are replay evidence where retained",
+      "latest macro value is a projection; vintages are historical truth",
+      "current risk exposure is a projection; risk/firewall decisions are historical evidence"
+    ]
+  },
+  "retention_rights_policy": {
+    "classifications": [
+      "UNRESTRICTED_INTERNAL",
+      "SOURCE_ATTRIBUTION_REQUIRED",
+      "NON_DISPLAY_INTERNAL",
+      "PROVIDER_RESTRICTED",
+      "RETENTION_LIMITED",
+      "DERIVED_ONLY",
+      "CONTRACT_REVIEW"
+    ],
+    "rules": [
+      "Each dataset carries rights_class and source/license reference.",
+      "Retention policy is selected per dataset/provider, never globally assumed.",
+      "If raw retention is prohibited, store only permitted derived values/metadata plus non-content audit references.",
+      "Deletion/expiry of restricted raw data must not erase immutable audit facts that a decision occurred; audit references must avoid retaining prohibited raw content.",
+      "Redistribution/public export is disabled unless explicitly licensed."
+    ]
+  },
+  "integrity_recovery": {
+    "integrity_controls": [
+      "content hashes/checksums for immutable snapshots/manifests",
+      "schema validation at boundaries",
+      "versioned manifests",
+      "duplicate/gap detection",
+      "backup verification",
+      "restore validation"
+    ],
+    "recovery_rules": [
+      "Operational projections must be rebuildable from authoritative events/snapshots.",
+      "Restore procedure must validate manifest/hash integrity before data is trusted.",
+      "Corrupt or incomplete restored data enters quarantine until verified.",
+      "Backup copy does not relax provider licensing/retention restrictions."
+    ]
+  },
+  "access_classification": {
+    "PUBLIC_REFERENCE": "Public non-sensitive reference metadata explicitly allowed for use.",
+    "INTERNAL": "Project-internal derived/reference data.",
+    "PROVIDER_RESTRICTED": "Provider-licensed raw/normalized data with use/retention restrictions.",
+    "SENSITIVE_INTERNAL": "Positions, risk, account-scoped execution state.",
+    "RESTRICTED_INTERNAL": "Audit/security/approval data requiring tight access.",
+    "SECRET": "Credentials/tokens/keys; stored only in secret systems and never in analytical datasets."
+  },
+  "flow_graph": [
+    "External Provider -> L0 Edge Capture",
+    "L0 Edge Capture -> L1 Raw Evidence (when rights permit)",
+    "L0 Edge Capture -> L2 Canonical Events",
+    "L2 Canonical Events -> L3 Quality/Provenance",
+    "L3 qualified data + L2 events -> L5 Feature/Evidence",
+    "L1/L2/L3/L5 -> L6 Research/Replay Manifests",
+    "L6 + L5 -> L7 Model/Experiment Artifacts",
+    "Material events from all layers -> L8 Audit/Evidence references",
+    "L2/L3/domain events -> L4 Operational Projections"
+  ],
+  "deferred_to_later_phases": {
+    "P02_H": [
+      "event rates",
+      "storage growth",
+      "retention volumes",
+      "latency/cost envelope"
+    ],
+    "P04": [
+      "concrete database/object store/message transport/runtime technologies"
+    ],
+    "P05": [
+      "real-time adapter/stream implementation"
+    ],
+    "P06": [
+      "physical raw/history/time-series/feature-store implementation"
+    ],
+    "P07": [
+      "data-quality runtime rules/SLO implementation"
+    ]
+  }
+}
