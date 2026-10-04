@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P01 — Market / Provider / Compliance Research  
-P01 state: ACTIVE_P01_F
+P01 state: READY_FOR_P01_G
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -53,7 +53,7 @@ FIN-P01-WB-001 = CANONICAL_COMPLETE
 FIN-P01-WC-001 = CANONICAL_COMPLETE  
 FIN-P01-WD-001 = CANONICAL_COMPLETE  
 FIN-P01-WE-001 = CANONICAL_COMPLETE  
-FIN-P01-WF-001 = ACTIVE  
+FIN-P01-WF-001 = CANONICAL_COMPLETE  
 FIN-P01-WR-001 = CANONICAL_COMPLETE  
 FIN-P01-WU-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
@@ -149,9 +149,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P01-WF-001 — Primary / Backup Provider Strategy`  
-Active branch: `research/FIN-P01-WF-001-primary-backup-provider-strategy`  
-Active lock: `LOCK-FIN-P01-WF-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +167,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-Execute P01-F — Primary / Backup Provider Strategy, then proceed to P01-G — Provider Baseline Decision.
+Proceed to P01-G — Provider Baseline Decision. P01-G requires the explicit Owner-jurisdiction/client-class Human Gate before any production baseline can be selected.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -365,8 +364,8 @@ Roadmap tooling usage map closure evidence:
 
 Task: `FIN-P01-WF-001`  
 Linear: `HOS-151`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P01-WF-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/03-research/P01-F-PRIMARY-BACKUP-PROVIDER-STRATEGY.md`
@@ -385,3 +384,15 @@ Final provider/broker selection: NOT_PERFORMED
 Owner jurisdiction: UNSET_HUMAN_GATE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P01-F closure evidence
+
+- Implementation PR: `#49`
+- Implementation merge SHA: `bdbcbe405edd1b2926177dca8f9ce8cdec256263`
+- PR Governance run: `37185241378` = SUCCESS
+- Post-merge Governance run: `37185265660` = SUCCESS
+- Post-merge Branch Hygiene run: `37185265653` = SUCCESS
+- `FIN-P01-WF-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P01-WF-001-01 = RELEASED`
+- P01 next workstream: `P01-G — Provider Baseline Decision`
