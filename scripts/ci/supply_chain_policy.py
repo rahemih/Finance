@@ -282,6 +282,23 @@ def has_license_waiver(active: list[dict[str, Any]], identity: str, license_valu
     )
 
 
+def curated_license_assertion(license_policy: dict[str, Any], identity: str) -> str | None:
+    assertions = license_policy.get("curated_assertions", [])
+    if not isinstance(assertions, list):
+        fail("LICENSE_ASSERTIONS_ARRAY_REQUIRED")
+    for item in assertions:
+        if not isinstance(item, dict):
+            fail("LICENSE_ASSERTION_OBJECT_REQUIRED")
+        required = {"identity", "license", "evidence", "scope"}
+        if set(item) != required:
+            fail(f"LICENSE_ASSERTION_FIELDS_INVALID identity={item.get('identity')}")
+        if item["identity"] == identity:
+            if not all(isinstance(item[key], str) and item[key].strip() for key in required):
+                fail(f"LICENSE_ASSERTION_VALUE_INVALID identity={identity}")
+            return item["license"]
+    return None
+
+
 def validate_sbom(path: Path, license_policy: dict[str, Any], active: list[dict[str, Any]]) -> None:
     sbom = load_json(path)
     if sbom.get("bomFormat") != "CycloneDX":
@@ -313,11 +330,15 @@ def validate_sbom(path: Path, license_policy: dict[str, Any], active: list[dict[
         identity = component_identity(component)
         licenses = component_licenses(component)
         if not licenses:
-            marker = "MISSING"
-            if has_license_waiver(active, identity, marker):
-                reviewed_count += 1
-                continue
-            fail(f"SBOM_LICENSE_MISSING component={identity}")
+            asserted = curated_license_assertion(license_policy, identity)
+            if asserted is not None:
+                licenses = [asserted]
+            else:
+                marker = "MISSING"
+                if has_license_waiver(active, identity, marker):
+                    reviewed_count += 1
+                    continue
+                fail(f"SBOM_LICENSE_MISSING component={identity}")
 
         for value in licenses:
             lowered = value.lower()
