@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: PRE-DEVELOPMENT / Phase 0 bootstrap  
+> Status: P04 — Engineering Foundation / P04-A active  
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
@@ -30,3 +30,15 @@ No live or automatic trading is authorized until the roadmap's explicit producti
 ## Repository
 
 Canonical repository: `rahemih/Finance`
+
+
+## Workspace
+
+Canonical engineering workspace decision:
+- governed polyglot monorepo;
+- modular-core-first;
+- provider/vendor SDKs isolated under `adapters/`;
+- production code never imports `research/`;
+- exact runtime/package-manager versions are selected in P04-B.
+
+See `docs/06-engineering/WORKSPACE-STRUCTURE.md`.

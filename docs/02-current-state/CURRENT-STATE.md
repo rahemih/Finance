@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WA-001 — Repository / Workspace Structure`  
+Active branch: `chore/FIN-P04-WA-001-workspace-structure`  
+Active lock: `LOCK-FIN-P04-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03 — Security & Identity is CANONICAL_COMPLETE. `G3_SECURITY_BASELINE = PASS`. Next authorized phase: `P04 — Engineering Foundation`; next workstream: `P04-A — Repository / Workspace Structure`.
+P03 — Security & Identity is CANONICAL_COMPLETE. `G3_SECURITY_BASELINE = PASS`. P04 — Engineering Foundation is ACTIVE; current workstream: `P04-A — Repository / Workspace Structure`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1355,3 +1356,55 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-A — Repository / Workspace Structure
+
+Task: `FIN-P04-WA-001`  
+Linear: `HOS-172`  
+State: ACTIVE  
+Branch: `chore/FIN-P04-WA-001-workspace-structure`  
+Lock: `LOCK-FIN-P04-WA-001-01`
+
+Primary agent:
+- A1 Architecture = LEAD
+
+Supporting:
+- A0 Governance
+- A8 Security
+- A9 Operations
+- A10 Evidence / Audit
+
+Prerequisites:
+- P03 = CANONICAL_COMPLETE
+- G3_SECURITY_BASELINE = PASS
+- P02_ARCHITECTURE_BASELINE = FROZEN_G2
+
+Workspace decision:
+- one governed polyglot monorepo;
+- modular-core-first;
+- logical domains do not imply microservices;
+- provider/vendor details terminate at `adapters/`;
+- production code cannot import `research/`;
+- config contains no raw secrets;
+- exact runtime/package-manager versions remain P04-B scope.
+
+Canonical zones materialized:
+- `apps/`
+- `packages/`
+- `adapters/`
+- `quant/`
+- `research/`
+- `config/`
+- `infra/`
+- `tests/`
+
+Artifacts:
+- `contracts/tasks/FIN-P04-WA-001.json`
+- `docs/06-engineering/WORKSPACE-STRUCTURE.md`
+- `docs/06-engineering/workspace-structure.json`
+
+Dependencies installed: NONE  
+Production infrastructure provisioned: NONE  
+Production identities/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED
