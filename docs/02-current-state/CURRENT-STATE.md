@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-C implementation merge: `d7bd6c6e584eb829903469baddb8ec448adbe1b7`  
+Canonical HEAD at P03-D Fresh Live Guard: `52b4cb958c569c2b015c3f3109939ca7e833519e`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WD-001 — Private Administration / Network Exposure`  
+Active branch: `security/FIN-P03-WD-001-private-admin-network`  
+Active lock: `LOCK-FIN-P03-WD-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A, P03-B and P03-C are CANONICAL_COMPLETE. Next authorized workstream: `P03-D — Private Admin / Network Exposure`.
+P03-A, P03-B and P03-C are CANONICAL_COMPLETE. P03-D — Private Administration / Network Exposure is ACTIVE under `FIN-P03-WD-001` / `HOS-166`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1100,3 +1101,38 @@ P03-C closure:
 - `FIN-P03-WC-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WC-001-01 = RELEASED`
 - next = `P03-D — Private Admin / Network Exposure`
+
+
+## P03-D — Private Administration / Network Exposure
+
+Task: `FIN-P03-WD-001`  
+Linear: `HOS-166`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WD-001-private-admin-network`  
+Lock: `LOCK-FIN-P03-WD-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A9 Operations
+- A10 Evidence / Audit
+
+Dependencies:
+- P03-A = CANONICAL_COMPLETE
+- P03-B = CANONICAL_COMPLETE
+- P03-C = CANONICAL_COMPLETE
+- P02-G topology = FROZEN_G2
+
+Security direction:
+- no implicit trust from private IP/VPN/network location;
+- privileged administration requires identity-aware authorization and P03-B MFA/session/device controls;
+- public/user ingress and management plane remain separated;
+- Z4 Execution, Z5 Secrets and Z7 DR have no public inbound administrative path;
+- no production network infrastructure is provisioned by this task.
+
+Country/location dependency: NONE  
+CANARY/LIVE: DISABLED  
+Auto Trading: DISABLED
