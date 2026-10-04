@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P02-WE-001 — Risk / Firewall / Execution Architecture`  
-Active branch: `docs/FIN-P02-WE-001-risk-firewall-execution-architecture`  
-Active lock: `LOCK-FIN-P02-WE-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -498,10 +497,10 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: ACTIVE_P02_E
+P02 — Master Architecture: READY_FOR_P02_F
 
-Active workstream:
-`P02-E — Risk / Firewall / Execution Architecture`
+Next workstream:
+`P02-F — Agent Architecture & Authority Model`
 
 Primary agents:
 A1 lead; A2/A4/A5/A6/A8/A9 consulted; A10 audits; A0 coordinates.
@@ -688,8 +687,8 @@ Auto Trading: DISABLED
 
 Task: `FIN-P02-WE-001`  
 Linear: `HOS-158`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P02-WE-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/04-architecture/RISK-FIREWALL-EXECUTION-ARCHITECTURE.md`
@@ -715,3 +714,15 @@ Key decisions:
 Accounts/credentials/funding/orders: NONE  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P02-E closure evidence
+
+- Implementation PR: `#67`
+- Merge SHA: `a8c1e5d93ec1081598938064b1c62cf6f3ec9215`
+- PR Governance run: `37192009223` = SUCCESS
+- Post-merge Governance run: `37192029379` = SUCCESS
+- Post-merge Branch Hygiene run: `37192029396` = SUCCESS
+- `FIN-P02-WE-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P02-WE-001-01 = RELEASED`
+- P02 next workstream: `P02-F — Agent Architecture & Authority Model`
