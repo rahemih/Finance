@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "config_version": 1,
+  "kind": "BASE_NON_SECRET_DEFAULTS",
+  "settings": {
+    "log_level": "INFO",
+    "clock_mode": "SYSTEM",
+    "data_mode": "NONE"
+  },
+  "rules": {
+    "unknown_key_behavior": "FAIL_CLOSED",
+    "secret_values": "FORBIDDEN",
+    "location_as_authorization_input": "FORBIDDEN",
+    "runtime_override_authority_widening": "FORBIDDEN"
+  }
+}
