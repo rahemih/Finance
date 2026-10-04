@@ -190,3 +190,31 @@ Final repair verdict:
 - `FIN-P04-WH-001-R01 = CANONICAL_COMPLETE` after closure merge;
 - P04 remains `CANONICAL_COMPLETE`;
 - P05 remains `NOT_STARTED_PENDING_OWNER_AUTHORIZATION`.
+
+
+## 11. Terminal closure evidence
+
+Closure reconciliation:
+- closure PR `#111` = MERGED;
+- closure head `de48ddfdcd2449b63314678819fa31685a94c5c3`;
+- closure PR Governance `37221162927` = SUCCESS;
+- closure PR artifact `11309488544`;
+- closure PR artifact digest `sha256:2729956aec4c721824cd6f98d1e8a4f3ab10d910f0b894182d37d210a6733341`;
+- closure merge SHA `69c9275c463eb802fab9328a3d01b65c9ad2055c`;
+- closure post-merge Governance `37221233926` = SUCCESS;
+- closure post-merge Branch Hygiene `37221233928` = SUCCESS;
+- final evidence artifact `11310348403`;
+- final evidence artifact digest `sha256:76d112ce8a95f96f2aa41644f94fa7f3f870025862abfd4c34eff514cad43bbb`.
+
+Final reproducibility after closure:
+- artifact SHA-256 `cff8e328cf4d56397f03bf8c782a1da989a33057f7ed7422c082cdb65caa485c`;
+- rollback manifest SHA-256 `d5c734083b5ad072df7f4f8fed7e327f2390d4d91d653d3a41e7eee7217da344`;
+- file count `295`;
+- inventory SHA-256 `33c0fd3f6b44060a4ee703006497bffd15a1c0890f4dc4017a30231344bf5215`.
+
+Terminal verdict:
+- audit = PASS;
+- repair lock = RELEASED;
+- canonical P04 blocker = NONE;
+- P04 = CANONICAL_COMPLETE;
+- P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION.
