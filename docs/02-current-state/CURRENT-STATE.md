@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WE-001 — Risk / Firewall / Execution Architecture`  
+Active branch: `docs/FIN-P02-WE-001-risk-firewall-execution-architecture`  
+Active lock: `LOCK-FIN-P02-WE-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_E
+P02 — Master Architecture: ACTIVE_P02_E
 
-Next workstream:
+Active workstream:
 `P02-E — Risk / Firewall / Execution Architecture`
 
 Primary agents:
@@ -681,3 +682,36 @@ Auto Trading: DISABLED
 - `FIN-P02-WD-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WD-001-01 = RELEASED`
 - P02 next workstream: `P02-E — Risk / Firewall / Execution Architecture`
+
+
+## P02-E — Risk / Firewall / Execution Architecture
+
+Task: `FIN-P02-WE-001`  
+Linear: `HOS-158`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WE-001-01`
+
+Artifacts:
+- `docs/04-architecture/RISK-FIREWALL-EXECUTION-ARCHITECTURE.md`
+- `docs/04-architecture/risk-firewall-execution-architecture.json`
+- `docs/04-architecture/ADR/ADR-0010-independent-risk-firewall-reconciled-oms.md`
+
+Authority path:
+SignalCandidate → RiskVerdict → ProposedTradeIntent → Pre-Trade Firewall → ApprovedTradeIntent → OMS → RouteAttempt → Provider → Reconciliation
+
+Key decisions:
+- Risk is an independent veto/reduction authority;
+- Risk cannot raise its own ceilings;
+- Firewall is deterministic/final and fails closed on critical unknown state;
+- OMS explicitly models UNKNOWN / RECONCILING;
+- timeout is not proof of provider rejection;
+- blind cross-broker replay/failover is forbidden;
+- stable intent/idempotency/correlation identity is mandatory;
+- 9 hierarchical kill-switch scopes are defined;
+- GLOBAL_HALT and EMERGENCY_FLATTEN are distinct;
+- credentials are environment/account/provider bound and least-privilege;
+- withdrawal/transfer authority is not requested where separable.
+
+Accounts/credentials/funding/orders: NONE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
