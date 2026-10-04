@@ -1,0 +1,62 @@
+{
+  "task_id":"FIN-P01-WS-001",
+  "phase":"P01",
+  "workstream":"WS",
+  "title":"Security Tooling Registry & Defense-in-Depth Baseline",
+  "objective":"Create the governed security tooling registry and defense-in-depth baseline for NEXUS QUANT without installing production security runtimes or changing production authority.",
+  "scope":[
+    "Register CodeQL, Trivy, Semgrep, OWASP ZAP, Falco and Grype",
+    "Reconcile existing Secret Protection, Codex Security, Syft, CycloneDX, Cosign, SLSA, OPA, Vault/KMS, Promptfoo and Inspect AI",
+    "Map security tooling to P03, P04, P22, P23 and P24",
+    "Define activation, CI/release, runtime and anti-overlap rules",
+    "Update master tooling and roadmap usage registries",
+    "Create Linear mirror document"
+  ],
+  "out_of_scope":[
+    "Runtime scanner installation",
+    "Production framework selection",
+    "Credentials",
+    "Broker/exchange connectivity",
+    "Live Trading",
+    "Auto Trading",
+    "Frozen roadmap mutation"
+  ],
+  "dependencies":["FIN-P00-WD-001","FIN-P01-WM-001","FIN-P01-WT-001","FIN-P01-WG-002"],
+  "write_paths":[
+    "contracts/tasks/FIN-P01-WS-001.json",
+    "docs/03-research/SECURITY-TOOLING-REGISTRY.md",
+    "docs/03-research/security-tooling-registry.json",
+    "docs/00-governance/SECURITY-TOOLING-BASELINE.md",
+    "docs/01-roadmap/TECHNOLOGY-PROVIDER-MATRIX.md",
+    "docs/01-roadmap/ROADMAP-TOOLING-USAGE-MAP.md",
+    "docs/03-research/PROJECT-CAPABILITY-TOOLING-MASTER-REGISTRY.md",
+    "docs/02-current-state/BUILD-READINESS-CHECKLIST.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "risk_level":"MEDIUM",
+  "human_gate":false,
+  "tests":[
+    "Governance Verify",
+    "Security registry JSON parses",
+    "Every security tool has state, role, phase and guardrail",
+    "No production scanner/runtime is marked installed",
+    "P03/P04/P22/P23/P24 mappings are explicit",
+    "Current State and Task Catalog reconcile"
+  ],
+  "security_tests":[
+    "No secrets or credentials",
+    "No live/auto trading changes",
+    "No A5/A8 veto bypass",
+    "No frozen-roadmap mutation"
+  ],
+  "definition_of_done":[
+    "Security registry and baseline committed",
+    "Linear mirror document created",
+    "Master/tooling maps reconciled",
+    "Governance Verify passes",
+    "PR merged",
+    "Post-merge checks pass",
+    "Task closed and lock released"
+  ]
+}
