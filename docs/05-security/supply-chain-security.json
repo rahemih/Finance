@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-F_IMPLEMENTATION",
+  "task_id": "FIN-P03-WF-001",
+  "linear_issue": "HOS-168",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "prior_security": "P03-A_TO_P03-E_CANONICAL",
+    "country_location_dependency": "NONE",
+    "canary": "DISABLED",
+    "live": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "dependency_policy": {
+    "approved_source_required": true,
+    "exact_lock_resolution_required": true,
+    "lockfile_integrity_required": true,
+    "immutable_revision_for_git_archive_dependencies": true,
+    "transitive_risk_in_scope": true,
+    "evaluate": [
+      "known_vulnerabilities",
+      "maintenance_health",
+      "license",
+      "security_posture",
+      "source_provenance"
+    ]
+  },
+  "ci": {
+    "separate_from_runtime_identity": true,
+    "short_lived_oidc_identity_preferred": true,
+    "minimal_token_permissions": true,
+    "untrusted_pr_fork_protected_secret_access": false,
+    "third_party_actions_immutable_pin_required_for_high_trust": true,
+    "mutable_tag_only_for_high_trust": "FORBIDDEN",
+    "protected_promotion_identity_separation_preferred": true
+  },
+  "control_classes": [
+    "SAST",
+    "SCA_VULNERABILITY",
+    "MISCONFIG_IAC",
+    "SECRET_SCANNING",
+    "CUSTOM_POLICY"
+  ],
+  "candidate_tools": {
+    "sast": [
+      "CodeQL",
+      "Semgrep"
+    ],
+    "sca": [
+      "Trivy",
+      "optional Grype"
+    ],
+    "sbom": [
+      "Syft",
+      "CycloneDX-compatible"
+    ],
+    "signing": [
+      "Cosign",
+      "Sigstore"
+    ],
+    "provenance": [
+      "SLSA-compatible attestation"
+    ],
+    "supporting": [
+      "OpenSSF Scorecard"
+    ]
+  },
+  "blocking_direction": {
+    "critical_unresolved": "BLOCK",
+    "high_unresolved": "BLOCK_UNLESS_EXPLICIT_BOUNDED_EXCEPTION",
+    "required_sbom_missing": "BLOCK",
+    "required_provenance_missing": "BLOCK",
+    "required_signature_mismatch": "BLOCK",
+    "artifact_digest_mismatch": "BLOCK",
+    "unknown_builder_identity_for_production_capable_artifact": "BLOCK"
+  },
+  "sbom": {
+    "primary_candidate": "CycloneDX_1.7",
+    "spdx_interoperability": true,
+    "bind_to_artifact_source_build": true,
+    "immutable_release_evidence": true,
+    "include_dependency_relationships": true
+  },
+  "provenance": {
+    "spec_lens": "SLSA_v1.2",
+    "required_for_governed_release_direction": true,
+    "generated_by_build_process": true,
+    "artifact_digest_binding": true,
+    "source_revision": true,
+    "builder_workflow_identity": true,
+    "materials_inputs": true,
+    "slsa_level": "NOT_CLAIMED_UNTIL_P04_EVIDENCE"
+  },
+  "signing": {
+    "digest_first": true,
+    "verify_before_promotion": true,
+    "expected_identity_and_issuer_policy": true,
+    "preferred_candidate": "Sigstore_Cosign",
+    "keyless_ci_preferred_where_governance_allows": true,
+    "kms_key_alternative": true,
+    "signing_root_provisioned": false
+  },
+  "build": {
+    "declared_inputs": true,
+    "pinned_toolchain_dependencies": true,
+    "clean_context": true,
+    "uncontrolled_network_fetch_minimized": true,
+    "reproducibility_preferred": true
+  },
+  "promotion_requires": [
+    "artifact_digest",
+    "source_revision",
+    "ci_run_identity",
+    "sbom",
+    "provenance",
+    "signature_or_attestation",
+    "scanner_policy_results",
+    "target_environment",
+    "rollback_artifact",
+    "approval_gate_if_required"
+  ],
+  "exception_fields": [
+    "exception_id",
+    "finding_package_control",
+    "severity",
+    "rationale",
+    "compensating_control",
+    "owner",
+    "environment_artifact",
+    "created_approved_time",
+    "expiry_review_date",
+    "evidence",
+    "remediation_plan"
+  ],
+  "exceptions": {
+    "permanent_blanket_waiver": false,
+    "expired_exception_action": "FAIL_CLOSED",
+    "critical_exception": "HIGHEST_GOVERNED_APPROVAL_AND_NORMALLY_BLOCK_PRODUCTION"
+  },
+  "implementation_state": {
+    "scanners": "NOT_ACTIVATED_BY_P03-F",
+    "sbom_generator": "NOT_SELECTED_FOR_RUNTIME_GATE",
+    "signing_infrastructure": "NOT_PROVISIONED",
+    "provenance_generator": "NOT_ACTIVATED",
+    "slsa_level": "NOT_CLAIMED",
+    "production_release": "DISABLED"
+  }
+}
