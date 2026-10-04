@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WB-001 — Domain / Module Boundaries`  
+Active branch: `docs/FIN-P02-WB-001-domain-module-boundaries`  
+Active lock: `LOCK-FIN-P02-WB-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_B
+P02 — Master Architecture: ACTIVE_P02_B
 
-Next workstream:
+Active workstream:
 `P02-B — Domain / Module Boundaries`
 
 Primary agents:
@@ -553,3 +554,35 @@ Auto Trading: DISABLED
 - `FIN-P02-WA-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WA-001-01 = RELEASED`
 - P02 next workstream: `P02-B — Domain / Module Boundaries`
+
+
+## P02-B — Domain / Module Boundaries
+
+Task: `FIN-P02-WB-001`  
+Linear: `HOS-155`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WB-001-01`
+
+Artifacts:
+- `docs/04-architecture/DOMAIN-BOUNDARIES.md`
+- `docs/04-architecture/domain-boundaries.json`
+- `docs/04-architecture/ADR/ADR-0007-domain-boundaries-dependency-direction.md`
+
+Logical domains: 18
+
+Primary decision path:
+Provider Adapter → Canonical Data → Data Quality → Feature/Evidence → Intelligence/Quant → Signal/Probability → Risk → Pre-Trade Firewall → Execution/OMS
+
+Strong physical extraction candidates:
+- Market Data Adapters
+- Execution / OMS
+- Agent Control Plane
+- Application API / UX
+
+Conditional extraction:
+- Risk / Pre-Trade Firewall
+
+Country/location dependency: NONE  
+Runtime technology selection: NOT_PERFORMED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED

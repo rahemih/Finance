@@ -1,0 +1,464 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WB-001",
+  "state": "LOGICAL_DOMAIN_BASELINE",
+  "principles": [
+    "logical boundaries before physical services",
+    "country-neutral",
+    "provider-portable",
+    "risk and firewall independent authority",
+    "event/provenance/replay first-class",
+    "least privilege",
+    "no direct strategy-to-execution path"
+  ],
+  "domains": [
+    {
+      "id": "D01_INSTRUMENT_REFERENCE",
+      "name": "Instrument & Reference Data",
+      "owner": "A2",
+      "purpose": "Canonical instrument IDs, contract metadata, symbol/venue aliases, precision and calendars.",
+      "reads": [
+        "provider metadata",
+        "official benchmark/contract references"
+      ],
+      "writes": [
+        "InstrumentDefinition",
+        "ProviderAliasMap",
+        "TradingCalendarReference"
+      ],
+      "forbidden": [
+        "provider symbol as global primary key",
+        "country-specific branching in core identity"
+      ]
+    },
+    {
+      "id": "D02_MARKET_DATA_ADAPTERS",
+      "name": "Market Data Adapters",
+      "owner": "A2",
+      "purpose": "Boundary translation from provider-native feeds into canonical ingress events.",
+      "reads": [
+        "external provider feeds",
+        "D01_INSTRUMENT_REFERENCE"
+      ],
+      "writes": [
+        "RawIngressEvent",
+        "ProviderHealthEvent"
+      ],
+      "forbidden": [
+        "business signal logic",
+        "risk decisions",
+        "provider schema leakage downstream"
+      ]
+    },
+    {
+      "id": "D03_CANONICAL_MARKET_DATA",
+      "name": "Canonical Market/Event Stream",
+      "owner": "A2",
+      "purpose": "Normalize timestamp, identity, sequence, units and provider provenance.",
+      "reads": [
+        "D02_MARKET_DATA_ADAPTERS",
+        "D01_INSTRUMENT_REFERENCE"
+      ],
+      "writes": [
+        "CanonicalMarketEvent"
+      ],
+      "forbidden": [
+        "silently dropping provenance",
+        "strategy-specific features"
+      ]
+    },
+    {
+      "id": "D04_RAW_HISTORY_STORAGE",
+      "name": "Raw / Historical Data Ownership",
+      "owner": "A2",
+      "purpose": "Immutable/versioned raw evidence and historical retrieval/replay inputs.",
+      "reads": [
+        "D02_MARKET_DATA_ADAPTERS",
+        "D03_CANONICAL_MARKET_DATA"
+      ],
+      "writes": [
+        "RawDatasetVersion",
+        "HistoricalSnapshot",
+        "ReplaySource"
+      ],
+      "forbidden": [
+        "mutating source history without versioning",
+        "signal decisions"
+      ]
+    },
+    {
+      "id": "D05_DATA_QUALITY_PROVENANCE",
+      "name": "Data Quality & Provenance",
+      "owner": "A2",
+      "purpose": "Freshness, completeness, duplicates, sequence, outliers, cross-provider checks, confidence and quarantine.",
+      "reads": [
+        "D03_CANONICAL_MARKET_DATA",
+        "D04_RAW_HISTORY_STORAGE"
+      ],
+      "writes": [
+        "QualityVerdict",
+        "ProvenanceRecord",
+        "QuarantineEvent",
+        "DataHealthState"
+      ],
+      "forbidden": [
+        "fabricating missing data as valid",
+        "bypassing quarantine"
+      ]
+    },
+    {
+      "id": "D06_FEATURE_EVIDENCE",
+      "name": "Feature / Evidence Foundation",
+      "owner": "A2",
+      "co_owners": [
+        "A4"
+      ],
+      "purpose": "Versioned derived features/evidence inputs created only from quality-qualified data.",
+      "reads": [
+        "D03_CANONICAL_MARKET_DATA",
+        "D05_DATA_QUALITY_PROVENANCE",
+        "D04_RAW_HISTORY_STORAGE"
+      ],
+      "writes": [
+        "FeatureValue",
+        "EvidenceInput",
+        "FeatureSetVersion"
+      ],
+      "forbidden": [
+        "direct orders",
+        "unversioned features",
+        "use of critically quarantined data"
+      ]
+    },
+    {
+      "id": "D07_MARKET_INTELLIGENCE",
+      "name": "Market Intelligence",
+      "owner": "A3",
+      "purpose": "Technical, macro, news, order-flow, market-memory and narrative evidence.",
+      "reads": [
+        "D06_FEATURE_EVIDENCE",
+        "D05_DATA_QUALITY_PROVENANCE",
+        "D01_INSTRUMENT_REFERENCE"
+      ],
+      "writes": [
+        "IntelligenceEvidence",
+        "RegimeEvidence",
+        "EventContext",
+        "NarrativeEvidence"
+      ],
+      "forbidden": [
+        "broker orders",
+        "risk ceiling changes",
+        "claiming causal certainty without evidence"
+      ]
+    },
+    {
+      "id": "D08_QUANT_STRATEGY",
+      "name": "Quant / Strategy Research",
+      "owner": "A4",
+      "purpose": "Models, strategies, backtests, empirical calibration inputs and candidate decision evidence.",
+      "reads": [
+        "D06_FEATURE_EVIDENCE",
+        "D05_DATA_QUALITY_PROVENANCE",
+        "D04_RAW_HISTORY_STORAGE"
+      ],
+      "writes": [
+        "StrategyEvidence",
+        "ModelOutput",
+        "BacktestArtifact",
+        "CandidateModelVersion"
+      ],
+      "forbidden": [
+        "self-promotion to Live",
+        "direct execution",
+        "risk override"
+      ]
+    },
+    {
+      "id": "D09_SIGNAL_PROBABILITY",
+      "name": "Signal / Probability / Explainability",
+      "owner": "A3",
+      "co_owners": [
+        "A4"
+      ],
+      "purpose": "Fuse independent evidence into LONG/SHORT/WAIT/NO_TRADE candidate decisions with calibrated probability and structured reasons.",
+      "reads": [
+        "D07_MARKET_INTELLIGENCE",
+        "D08_QUANT_STRATEGY",
+        "D05_DATA_QUALITY_PROVENANCE"
+      ],
+      "writes": [
+        "SignalCandidate",
+        "ProbabilityEstimate",
+        "DecisionReasons"
+      ],
+      "forbidden": [
+        "direct execution",
+        "invented LLM probability",
+        "risk override"
+      ]
+    },
+    {
+      "id": "D10_PORTFOLIO_RISK",
+      "name": "Portfolio / Risk Engine",
+      "owner": "A5",
+      "purpose": "Sizing, exposure, leverage, drawdown, counterparty, portfolio state and independent veto.",
+      "reads": [
+        "D09_SIGNAL_PROBABILITY",
+        "ExecutionStateEvents",
+        "D05_DATA_QUALITY_PROVENANCE",
+        "SystemHealthView"
+      ],
+      "writes": [
+        "RiskVerdict",
+        "RiskBudget",
+        "ExposureState",
+        "DefensiveModeRequest"
+      ],
+      "forbidden": [
+        "raising own ceilings without governed policy change",
+        "broker order submission"
+      ]
+    },
+    {
+      "id": "D11_PRETRADE_FIREWALL",
+      "name": "Pre-Trade Firewall",
+      "owner": "A5",
+      "purpose": "Deterministic final safety check immediately before executable intent.",
+      "reads": [
+        "D09_SIGNAL_PROBABILITY",
+        "D10_PORTFOLIO_RISK",
+        "D05_DATA_QUALITY_PROVENANCE",
+        "SystemHealthView",
+        "ExecutionCapabilityView"
+      ],
+      "writes": [
+        "FirewallVerdict",
+        "ApprovedTradeIntent",
+        "RejectedTradeIntent"
+      ],
+      "forbidden": [
+        "approval on unknown critical state",
+        "LLM-only safety decision"
+      ]
+    },
+    {
+      "id": "D12_EXECUTION_OMS",
+      "name": "Execution / OMS / Reconciliation",
+      "owner": "A6",
+      "purpose": "Translate approved intents to provider commands; own order lifecycle, idempotency, fills, positions and reconciliation.",
+      "reads": [
+        "D11_PRETRADE_FIREWALL",
+        "D01_INSTRUMENT_REFERENCE",
+        "SecurityCredentialHandle"
+      ],
+      "writes": [
+        "ExecutionCommand",
+        "OrderStateEvent",
+        "FillEvent",
+        "PositionStateEvent",
+        "ReconciliationEvidence"
+      ],
+      "forbidden": [
+        "accepting unapproved intents",
+        "overriding Risk/Firewall",
+        "blind cross-broker replay"
+      ]
+    },
+    {
+      "id": "D13_LEARNING_EXPERIMENTATION",
+      "name": "Learning / Experimentation / Model Registry",
+      "owner": "A7",
+      "purpose": "Demo learning, experiments, retraining, challenger/champion evidence and drift.",
+      "reads": [
+        "D04_RAW_HISTORY_STORAGE",
+        "D06_FEATURE_EVIDENCE",
+        "D07_MARKET_INTELLIGENCE",
+        "D08_QUANT_STRATEGY",
+        "D09_SIGNAL_PROBABILITY",
+        "AuditEvidenceReadModel"
+      ],
+      "writes": [
+        "ExperimentArtifact",
+        "CandidateModelVersion",
+        "DriftEvidence",
+        "PromotionProposal"
+      ],
+      "forbidden": [
+        "auto-promote to Live",
+        "direct risk-policy changes",
+        "broker execution"
+      ]
+    },
+    {
+      "id": "D14_SECURITY_IDENTITY",
+      "name": "Security / Identity / Secrets Policy",
+      "owner": "A8",
+      "purpose": "Identity, RBAC/MFA, secret handles, credential policy, security events and access enforcement.",
+      "reads": [
+        "identity sources",
+        "secret backend interfaces",
+        "audit evidence"
+      ],
+      "writes": [
+        "SecurityContext",
+        "CredentialHandle",
+        "AuthorizationVerdict",
+        "SecurityEvent"
+      ],
+      "forbidden": [
+        "trade decisions",
+        "exposing raw secrets to ordinary domain modules"
+      ]
+    },
+    {
+      "id": "D15_OPERATIONS_OBSERVABILITY",
+      "name": "Operations / Observability / Recovery",
+      "owner": "A9",
+      "purpose": "Metrics, traces, health, incidents, SLOs, backup/restore, safe-mode and recovery coordination.",
+      "reads": [
+        "telemetry from all domains",
+        "provider health",
+        "infrastructure health"
+      ],
+      "writes": [
+        "SystemHealthView",
+        "IncidentEvent",
+        "RecoveryState",
+        "OperationalHaltRequest"
+      ],
+      "forbidden": [
+        "silent risk ceiling change",
+        "strategy manipulation"
+      ]
+    },
+    {
+      "id": "D16_AGENT_CONTROL_PLANE",
+      "name": "Agent Control Plane",
+      "owner": "A0",
+      "purpose": "Bounded A0-A10/specialist routing, handoffs, tool scopes, task context and agent health.",
+      "reads": [
+        "governed task/agent contracts",
+        "domain APIs",
+        "audit state"
+      ],
+      "writes": [
+        "AgentTaskEnvelope",
+        "AgentHandoff",
+        "EscalationRequest",
+        "AgentHealthEvent"
+      ],
+      "forbidden": [
+        "direct database mutation across domains",
+        "Risk/Security/Governance bypass",
+        "self-granted tools"
+      ]
+    },
+    {
+      "id": "D17_AUDIT_EVIDENCE",
+      "name": "Evidence / Audit Ledger",
+      "owner": "A10",
+      "purpose": "Append-only evidence references, decision traceability, closure evidence and audit views.",
+      "reads": [
+        "material events/evidence references from all domains"
+      ],
+      "writes": [
+        "AuditEvent",
+        "EvidenceManifest",
+        "ClosureEvidence"
+      ],
+      "forbidden": [
+        "business decision override",
+        "destructive history rewrite"
+      ]
+    },
+    {
+      "id": "D18_UX_APPLICATION_API",
+      "name": "Application API / Persian UX / Notifications",
+      "owner": "A1",
+      "future_owner": "P23 UX/Application ownership to be finalized",
+      "purpose": "User-facing application boundary, Persian/RTL presentation, commands, explanations, team collaboration and notifications.",
+      "reads": [
+        "read models/domain query APIs"
+      ],
+      "writes": [
+        "UserCommand",
+        "ApprovalInput",
+        "Annotation",
+        "NotificationPreference"
+      ],
+      "forbidden": [
+        "direct broker/provider access",
+        "direct secrets access",
+        "bypassing Risk/Firewall"
+      ]
+    }
+  ],
+  "primary_decision_flow": [
+    "D02_MARKET_DATA_ADAPTERS",
+    "D03_CANONICAL_MARKET_DATA",
+    "D05_DATA_QUALITY_PROVENANCE",
+    "D06_FEATURE_EVIDENCE",
+    "D07_MARKET_INTELLIGENCE + D08_QUANT_STRATEGY",
+    "D09_SIGNAL_PROBABILITY",
+    "D10_PORTFOLIO_RISK",
+    "D11_PRETRADE_FIREWALL",
+    "D12_EXECUTION_OMS"
+  ],
+  "feedback_flows": [
+    "D12_EXECUTION_OMS emits execution/position events consumed by D10_PORTFOLIO_RISK",
+    "D15_OPERATIONS_OBSERVABILITY publishes health consumed by D10/D11/D12",
+    "D13_LEARNING_EXPERIMENTATION consumes historical/replay/audit evidence but only emits promotion proposals",
+    "D17_AUDIT_EVIDENCE receives evidence from all material domains without command authority"
+  ],
+  "forbidden_couplings": [
+    "D07/D08/D09 -> direct D12 broker command",
+    "D12 -> override D10 or D11 verdict",
+    "D13 -> direct Live model activation",
+    "D16 -> direct broker/provider credential use outside authorized domain API",
+    "D18 -> direct provider/broker API",
+    "provider SDK -> core intelligence/risk/strategy domain",
+    "operations health control -> silent risk-policy mutation",
+    "LLM narrative -> calibrated probability without empirical calibration"
+  ],
+  "physical_extraction_candidates": [
+    {
+      "module": "D02_MARKET_DATA_ADAPTERS",
+      "recommendation": "DEDICATED_PROCESS_CANDIDATE",
+      "reason": "continuous streaming, reconnect/backpressure and provider-failure isolation"
+    },
+    {
+      "module": "D12_EXECUTION_OMS",
+      "recommendation": "DEDICATED_SECURITY_PROCESS_CANDIDATE",
+      "reason": "credential boundary, deterministic lifecycle, crash/reconciliation isolation"
+    },
+    {
+      "module": "D16_AGENT_CONTROL_PLANE",
+      "recommendation": "DEDICATED_PROCESS_CANDIDATE",
+      "reason": "LLM/tool attack surface and independent permissions"
+    },
+    {
+      "module": "D18_UX_APPLICATION_API",
+      "recommendation": "SEPARATE_APPLICATION_PROCESS_CANDIDATE",
+      "reason": "external/user-facing attack surface and independent deployability"
+    },
+    {
+      "module": "D10_PORTFOLIO_RISK + D11_PRETRADE_FIREWALL",
+      "recommendation": "LOGICAL_INDEPENDENCE_NOW_PHYSICAL_EXTRACTION_LATER_IF_JUSTIFIED",
+      "reason": "must preserve veto authority; process isolation decision belongs to P02-E/G"
+    },
+    {
+      "module": "D07/D08/D09 intelligence/quant/signal",
+      "recommendation": "MODULAR_CORE_PLUS_JOB_WORKERS",
+      "reason": "research/CPU workloads can scale independently without forcing microservice decomposition"
+    }
+  ],
+  "rules": [
+    "Cross-domain writes use explicit command/event contracts.",
+    "Direct shared-table ownership across domains is forbidden unless P02-C explicitly defines a shared reference read model.",
+    "Only the owning domain mutates its authoritative state.",
+    "Read models may be replicated; ownership does not transfer.",
+    "Provider-specific extension metadata may be preserved but cannot become core identity.",
+    "Every material command/event carries trace/audit correlation identifiers."
+  ]
+}
