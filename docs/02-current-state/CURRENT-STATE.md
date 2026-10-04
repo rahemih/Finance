@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WI-001 — Architecture Review + G2 Freeze`  
+Active branch: `docs/FIN-P02-WI-001-architecture-review-g2-freeze`  
+Active lock: `LOCK-FIN-P02-WI-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_I
+P02 — Master Architecture: ACTIVE_P02_I
 
-Next workstream:
+Active workstream:
 `P02-I — Architecture Review + G2 Freeze`
 
 Primary agents:
@@ -864,3 +865,33 @@ Auto Trading: DISABLED
 - `FIN-P02-WH-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WH-001-01 = RELEASED`
 - P02 next workstream: `P02-I — Architecture Review + G2 Freeze`
+
+
+## P02-I — Architecture Review + G2 Freeze
+
+Task: `FIN-P02-WI-001`  
+Linear: `HOS-162`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WI-001-01`
+
+Artifacts:
+- `docs/04-architecture/P02-ARCHITECTURE-REVIEW.md`
+- `docs/04-architecture/p02-architecture-review.json`
+- `docs/04-architecture/P02-ARCHITECTURE-DIAGRAMS.md`
+- `docs/04-architecture/ADR/ADR-0014-p02-architecture-baseline-freeze.md`
+- `docs/00-governance/G2-ARCHITECTURE-FREEZE.md`
+
+Review result:
+- P02-A through P02-H = CANONICAL_COMPLETE / locks RELEASED
+- required diagrams = 7 / PASS
+- unresolved critical architecture risks = 0
+- residual risks = documented with downstream owners
+- pre-merge Gate verdict = PASS_PENDING_CANONICAL_MERGE
+
+Architecture baseline freeze:
+- effective only after P02-I canonical closure
+- post-G2 semantic changes require governed ADR/RFC/change control
+
+Runtime implementation: NOT_STARTED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
