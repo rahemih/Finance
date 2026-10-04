@@ -55,7 +55,10 @@
     ".github/workflows/governance.yml",
     "docs/02-current-state/CURRENT-STATE.md",
     "docs/13-tasks/TASK-CATALOG.md",
-    "README.md"
+    "README.md",
+    "scripts/ci/p04_exit.py",
+    "docs/06-engineering/P04-ENGINEERING-FOUNDATION-CLOSURE.md",
+    "docs/06-engineering/p04-engineering-foundation-closure.json"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
@@ -96,7 +99,8 @@
     "Strict developer doctor passes in both clean exports",
     "Required governance CI compares two independent artifacts and manifests",
     "Uploaded CI evidence contains reproducible artifact and rollback manifest",
-    "P04 exit evidence confirms P04-A through P04-H canonical before P05"
+    "P04 exit evidence confirms P04-A through P04-H canonical before P05",
+    "Persistent P04 exit regression check passes in required governance CI"
   ],
   "security_tests": [
     "Canonical artifact is built only from clean tracked source export",

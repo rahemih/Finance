@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WH-001",
-  "state": "P04-H_IMPLEMENTATION",
+  "state": "P04-H_CANONICAL_COMPLETE",
   "artifact": {
     "kind": "GOVERNED_FOUNDATION_SOURCE_CONFIG_BUNDLE",
     "filename": "foundation-source.tar",
@@ -52,5 +52,24 @@
   "next": "P05 — Real-Time Data (NOT_STARTED_PENDING_OWNER_AUTHORIZATION)",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 108,
+    "implementation_head_sha": "982d2624930b5dff3e76595dd3378b8599aac159",
+    "pr_governance_run": 37213862656,
+    "pr_artifact_id": 11307687243,
+    "pr_artifact_digest": "sha256:13eec67e42b2ef84a00ca9bf948fd8048149fef555f3f78fe65784243ae2d821",
+    "pr_reproducible_artifact_sha256": "11a86c96091043a106bd7f28a522ca34ad104dca215772be8bc1c558bfb57922",
+    "pr_rollback_manifest_sha256": "362174b9938df7c66f8cc34455269885e48ad4895e67b9e8020fc106daf1d07d",
+    "implementation_merge_sha": "55f9dd6486ea862e4f733fe71d39b6690caa3abb",
+    "postmerge_governance_run": 37213946513,
+    "postmerge_branch_hygiene_run": 37213946537,
+    "postmerge_artifact_id": 11307168552,
+    "postmerge_artifact_digest": "sha256:4ec9197932d0db3b4b45889c667491cd966b1b974f99487a37eaa344d5e134b2",
+    "postmerge_reproducible_artifact_sha256": "11a86c96091043a106bd7f28a522ca34ad104dca215772be8bc1c558bfb57922",
+    "postmerge_rollback_manifest_sha256": "83139bf61de6ebccb11fbeedf9fa5b4549e06df839e59aa598dbb0e0ab0c7e35",
+    "file_count": 289,
+    "file_inventory_sha256": "0977c66bdf306523c873154110f62a091bccef06d0d476d4d497a1b44342d483",
+    "lock": "RELEASED"
+  }
 }

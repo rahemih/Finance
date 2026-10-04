@@ -187,6 +187,9 @@ jobs:
           cp build/repro-a/rollback-manifest.json build/rollback-manifest.json
           sha256sum build/foundation-source.tar build/rollback-manifest.json
 
+      - name: P04 engineering foundation exit
+        run: python scripts/ci/p04_exit.py
+
       - name: Workflow supply-chain security
         run: python scripts/ci/foundation_ci.py security
 
