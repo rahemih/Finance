@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WB-001",
-  "state": "P04-B_IMPLEMENTATION",
+  "state": "P04-B_CANONICAL_COMPLETE",
   "as_of": "2026-10-04",
   "runtimes": {
     "node": {
@@ -56,5 +56,13 @@
   },
   "next": "P04-C — CI/CD Foundation (NOT_STARTED)",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 96,
+    "implementation_merge_sha": "ee9b7403fd6faec09dc41134b0b0cc7072b1cc47",
+    "pr_governance_run": 37202504193,
+    "postmerge_governance_run": 37202525310,
+    "postmerge_branch_hygiene_run": 37202525316,
+    "lock": "RELEASED"
+  }
 }
