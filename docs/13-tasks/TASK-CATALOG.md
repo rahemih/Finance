@@ -63,7 +63,7 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WD-001 | P03 | Private Administration / Network Exposure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WD-001.json` | RELEASED |
 
 
-| FIN-P03-WE-001 | P03 | Audit & Change Integrity | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WE-001.json` | LOCK-FIN-P03-WE-001-01 |
+| FIN-P03-WE-001 | P03 | Audit & Change Integrity | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WE-001.json` | RELEASED |
 
 ## Rules
 
