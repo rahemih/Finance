@@ -1,0 +1,1079 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-A_IMPLEMENTATION",
+  "task_id": "FIN-P03-WA-001",
+  "linear_issue": "HOS-163",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "gate": "G2_ARCHITECTURE_FREEZE=PASS",
+    "country_location_dependency": "NONE",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "method": {
+    "primary": "architecture-first STRIDE + finance/trading + agent/LLM + supply-chain + recovery abuse cases",
+    "severities": [
+      "CRITICAL",
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ]
+  },
+  "security_objectives": [
+    "CONFIDENTIALITY",
+    "INTEGRITY",
+    "AVAILABILITY",
+    "AUTHENTICITY",
+    "AUTHORIZATION",
+    "NON_REPUDIATION",
+    "REPLAY_RESISTANCE",
+    "FAIL_CLOSED_SAFETY",
+    "RECOVERABILITY",
+    "PROVENANCE"
+  ],
+  "assets": [
+    {
+      "id": "A01",
+      "name": "Owner/team identities and sessions"
+    },
+    {
+      "id": "A02",
+      "name": "Role/permission/Human-Gate/agent-tool policy"
+    },
+    {
+      "id": "A03",
+      "name": "Secrets and credential handles"
+    },
+    {
+      "id": "A04",
+      "name": "Security/Risk veto and kill-switch state"
+    },
+    {
+      "id": "A05",
+      "name": "Market/reference/macro/news/on-chain inputs"
+    },
+    {
+      "id": "A06",
+      "name": "Canonical events/raw evidence/quality verdicts"
+    },
+    {
+      "id": "A07",
+      "name": "Feature/evidence/replay/model artifacts"
+    },
+    {
+      "id": "A08",
+      "name": "Signal/Risk/Firewall decisions"
+    },
+    {
+      "id": "A09",
+      "name": "Execution intents/orders/fills/positions/reconciliation"
+    },
+    {
+      "id": "A10",
+      "name": "Audit/evidence/telemetry"
+    },
+    {
+      "id": "A11",
+      "name": "Source/dependencies/CI artifacts/SBOM/provenance"
+    },
+    {
+      "id": "A12",
+      "name": "Backup/restore manifests and recovery state"
+    }
+  ],
+  "trust_zones": [
+    {
+      "id": "Z0",
+      "name": "User Edge"
+    },
+    {
+      "id": "Z1",
+      "name": "Application Ingress"
+    },
+    {
+      "id": "Z2",
+      "name": "Control Plane"
+    },
+    {
+      "id": "Z3",
+      "name": "Data Plane"
+    },
+    {
+      "id": "Z4",
+      "name": "Execution Enclave"
+    },
+    {
+      "id": "Z5",
+      "name": "Security / Secrets"
+    },
+    {
+      "id": "Z6",
+      "name": "Observability / Audit"
+    },
+    {
+      "id": "Z7",
+      "name": "Backup / DR"
+    }
+  ],
+  "actors": [
+    "external attacker",
+    "credential thief/session hijacker",
+    "compromised dependency maintainer",
+    "compromised CI runner/workflow token",
+    "compromised provider/model/tool/MCP service",
+    "malicious external content source",
+    "malicious insider or compromised operator endpoint",
+    "compromised agent/model runtime",
+    "resource-exhaustion attacker",
+    "broker/exchange/API compromise",
+    "accidental authorized misuse"
+  ],
+  "invariants": [
+    "Tool availability is not permission",
+    "A0/agent consensus/model fallback cannot override A5 or A8 veto",
+    "Signal/Strategy/Agent/UX cannot bypass Risk -> Firewall -> OMS",
+    "Unknown critical security/data/execution truth fails closed",
+    "Raw secrets never enter model prompts, ordinary logs or analytical datasets",
+    "Execution credentials are environment-bound and no-withdrawal where separable",
+    "Lower environments cannot write CANARY/LIVE authority/state",
+    "SHADOW has no live command path",
+    "External content is untrusted data and cannot change policy/authority",
+    "UNKNOWN execution requires reconciliation before retry/reroute",
+    "Audit/evidence and historical corrections are append/versioned rather than silently rewritten",
+    "Restore never authorizes risk-increasing execution before reconciliation and security/risk revalidation"
+  ],
+  "threats": [
+    {
+      "id": "T001",
+      "title": "Privileged account or session takeover",
+      "stride": "Spoofing",
+      "severity": "CRITICAL",
+      "assets": [
+        "A01",
+        "A02"
+      ],
+      "boundaries": [
+        "Z0-Z1"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-G",
+        "P23-H"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T002",
+      "title": "RBAC or authorization bypass / confused deputy",
+      "stride": "Elevation of Privilege",
+      "severity": "CRITICAL",
+      "assets": [
+        "A02",
+        "A04"
+      ],
+      "boundaries": [
+        "Z1-Z2",
+        "Z2-internal"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-E",
+        "P04-C",
+        "P23-H"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T003",
+      "title": "Cross-environment privilege escalation or credential/state reuse",
+      "stride": "Elevation of Privilege",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A03",
+        "A09"
+      ],
+      "boundaries": [
+        "environment-boundary",
+        "Z4-Z5"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-C",
+        "P03-D",
+        "P04-D"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T004",
+      "title": "Human Gate replay, scope substitution or approval reuse",
+      "stride": "Repudiation",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A10"
+      ],
+      "boundaries": [
+        "Z1-Z2"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-E",
+        "P04-C"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T005",
+      "title": "Broker/exchange/API credential exfiltration",
+      "stride": "Information Disclosure",
+      "severity": "CRITICAL",
+      "assets": [
+        "A03",
+        "A09"
+      ],
+      "boundaries": [
+        "Z4-Z5",
+        "external-execution"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-C",
+        "P03-G",
+        "P04-D",
+        "P22-H"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T006",
+      "title": "Over-privileged execution credential permits withdrawal/transfer",
+      "stride": "Elevation of Privilege",
+      "severity": "CRITICAL",
+      "assets": [
+        "A03",
+        "A09"
+      ],
+      "boundaries": [
+        "Z4-Z5",
+        "external-execution"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-C",
+        "P20",
+        "P24"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T007",
+      "title": "Secrets leak through logs, traces, prompts, crash dumps or evidence",
+      "stride": "Information Disclosure",
+      "severity": "HIGH",
+      "assets": [
+        "A03",
+        "A10"
+      ],
+      "boundaries": [
+        "all-Z6",
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-C",
+        "P03-E",
+        "P04-C",
+        "P22-A"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T008",
+      "title": "Prompt injection causes sensitive tool use or policy bypass",
+      "stride": "Elevation of Privilege",
+      "severity": "CRITICAL",
+      "assets": [
+        "A02",
+        "A04",
+        "A10"
+      ],
+      "boundaries": [
+        "Z1-Z2",
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-E",
+        "P04-C",
+        "P04-E"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T009",
+      "title": "Compromised MCP/tool server poisons tool definitions or results",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A02",
+        "A04",
+        "A10"
+      ],
+      "boundaries": [
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-F",
+        "P04-C",
+        "P04-E"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T010",
+      "title": "Excessive agency exposes unnecessary write/delete/financial capabilities",
+      "stride": "Elevation of Privilege",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A04"
+      ],
+      "boundaries": [
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P04-E"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T011",
+      "title": "Compromised model/provider exfiltrates context or manipulates action plans",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A03",
+        "A10"
+      ],
+      "boundaries": [
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-C",
+        "P03-F",
+        "P04-B",
+        "P22-A"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T012",
+      "title": "Corrupted checkpoint/memory reintroduces stale authority or poisoned state",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A10"
+      ],
+      "boundaries": [
+        "Z2",
+        "Z7"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-E",
+        "P04-E",
+        "P22-G"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T013",
+      "title": "Unbounded model/tool loop causes cost or availability exhaustion",
+      "stride": "Denial of Service",
+      "severity": "MEDIUM",
+      "assets": [
+        "A10"
+      ],
+      "boundaries": [
+        "Z2-tool-model"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P04-E",
+        "P22-I"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T014",
+      "title": "Market-data poisoning or manipulated source feed",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A05",
+        "A06",
+        "A08"
+      ],
+      "boundaries": [
+        "external-data-Z3"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P05",
+        "P07"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T015",
+      "title": "Stale or replayed data accepted as fresh",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A05",
+        "A06",
+        "A08"
+      ],
+      "boundaries": [
+        "external-data-Z3",
+        "Z3-Z4"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P05",
+        "P07",
+        "P16"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T016",
+      "title": "Sequence gap, duplicate or correction mishandling corrupts canonical state",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A06"
+      ],
+      "boundaries": [
+        "external-data-Z3"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P05",
+        "P06",
+        "P07"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T017",
+      "title": "Macro/news historical revision leakage creates look-ahead bias",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A05",
+        "A07"
+      ],
+      "boundaries": [
+        "external-data-Z3"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P06",
+        "P10",
+        "P17"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T018",
+      "title": "Provenance or feature/model lineage tampering destroys reproducibility",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A06",
+        "A07",
+        "A10"
+      ],
+      "boundaries": [
+        "Z3",
+        "Z6"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P06",
+        "P07",
+        "P17",
+        "P22"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T019",
+      "title": "A5/A8 veto bypass via alternate tool, code or agent path",
+      "stride": "Elevation of Privilege",
+      "severity": "CRITICAL",
+      "assets": [
+        "A04",
+        "A08",
+        "A09"
+      ],
+      "boundaries": [
+        "Z2-Z4"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-E",
+        "P04-C",
+        "P16",
+        "P20"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T020",
+      "title": "Duplicate order from retry, timeout, idempotency collision or parallel route",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A09"
+      ],
+      "boundaries": [
+        "Z4-external-execution"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P16",
+        "P20"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T021",
+      "title": "Blind cross-broker reroute while prior execution status is UNKNOWN",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A09"
+      ],
+      "boundaries": [
+        "Z4-external-execution"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P20",
+        "P22"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T022",
+      "title": "Order/position/reconciliation state tampering hides external exposure",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A09",
+        "A10"
+      ],
+      "boundaries": [
+        "Z4-external-execution",
+        "Z4-Z6"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P20",
+        "P21",
+        "P22"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T023",
+      "title": "Stale RiskVerdict or FirewallVerdict replay authorizes outdated execution",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A08",
+        "A09"
+      ],
+      "boundaries": [
+        "Z3-Z4"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P15",
+        "P16",
+        "P20"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T024",
+      "title": "Precision, minimum, symbol or capability manipulation changes exposure",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A05",
+        "A09"
+      ],
+      "boundaries": [
+        "Z3-Z4",
+        "Z4-external-execution"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P05",
+        "P16",
+        "P20"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T025",
+      "title": "Compromised dependency/build/plugin introduces hidden bypass or exfiltration",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A11"
+      ],
+      "boundaries": [
+        "supply-chain"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-F",
+        "P04-B",
+        "P04-F"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T026",
+      "title": "CI token/workflow compromise modifies protected source or release artifact",
+      "stride": "Elevation of Privilege",
+      "severity": "CRITICAL",
+      "assets": [
+        "A11"
+      ],
+      "boundaries": [
+        "supply-chain"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-F",
+        "P04-C",
+        "P04-H"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T027",
+      "title": "Artifact/SBOM/provenance substitution between build and deployment",
+      "stride": "Tampering",
+      "severity": "HIGH",
+      "assets": [
+        "A11"
+      ],
+      "boundaries": [
+        "supply-chain"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P04-F",
+        "P04-H",
+        "P24"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T028",
+      "title": "Audit/evidence tampering or deletion conceals unsafe action",
+      "stride": "Repudiation",
+      "severity": "CRITICAL",
+      "assets": [
+        "A10"
+      ],
+      "boundaries": [
+        "all-Z6"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-E",
+        "P22-A",
+        "P22-H",
+        "P24"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T029",
+      "title": "Telemetry suppression leaves security/health truth unavailable",
+      "stride": "Denial of Service",
+      "severity": "HIGH",
+      "assets": [
+        "A10",
+        "A04"
+      ],
+      "boundaries": [
+        "all-Z6"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-E",
+        "P22-A",
+        "P22-J"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T030",
+      "title": "Malicious/corrupt backup or restore reintroduces compromised state",
+      "stride": "Tampering",
+      "severity": "CRITICAL",
+      "assets": [
+        "A12",
+        "A03",
+        "A09",
+        "A10"
+      ],
+      "boundaries": [
+        "Z6-Z7",
+        "Z3-Z7",
+        "Z4-Z7"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AUTHORIZATION",
+        "FAIL_CLOSED_SAFETY"
+      ],
+      "control_owner_workstreams": [
+        "P03-G",
+        "P22-E",
+        "P22-F",
+        "P22-G"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T031",
+      "title": "Destructive event affects primary and backup in same failure domain",
+      "stride": "Denial of Service",
+      "severity": "HIGH",
+      "assets": [
+        "A12"
+      ],
+      "boundaries": [
+        "Z7"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P22-E",
+        "P22-G"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T032",
+      "title": "Application ingress exploit reaches privileged internal command surface",
+      "stride": "Elevation of Privilege",
+      "severity": "HIGH",
+      "assets": [
+        "A01",
+        "A02",
+        "A04"
+      ],
+      "boundaries": [
+        "Z0-Z1",
+        "Z1-Z2"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-D",
+        "P23-G",
+        "P23-H"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T033",
+      "title": "Notification channel leaks sensitive execution/account/security data",
+      "stride": "Information Disclosure",
+      "severity": "MEDIUM",
+      "assets": [
+        "A03",
+        "A09",
+        "A10"
+      ],
+      "boundaries": [
+        "external-notification"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-E",
+        "P23-F"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T034",
+      "title": "DoS on control/data/execution/security dependency causes unsafe partial operation",
+      "stride": "Denial of Service",
+      "severity": "HIGH",
+      "assets": [
+        "A04",
+        "A05",
+        "A09"
+      ],
+      "boundaries": [
+        "multi-zone"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P04",
+        "P05",
+        "P22"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "T035",
+      "title": "Malicious insider or compromised endpoint performs high-risk change without accountable review",
+      "stride": "Elevation of Privilege",
+      "severity": "HIGH",
+      "assets": [
+        "A02",
+        "A03",
+        "A04",
+        "A10"
+      ],
+      "boundaries": [
+        "Z0-Z1",
+        "Z1-Z2",
+        "Z2-Z5"
+      ],
+      "security_objectives": [
+        "INTEGRITY",
+        "AVAILABILITY"
+      ],
+      "control_owner_workstreams": [
+        "P03-B",
+        "P03-C",
+        "P03-E",
+        "P24"
+      ],
+      "mitigation_state": "PLANNED_NOT_IMPLEMENTED"
+    }
+  ],
+  "coverage": {
+    "Z0-Z1": [
+      "T001",
+      "T002",
+      "T032",
+      "T034"
+    ],
+    "Z1-Z2": [
+      "T002",
+      "T004",
+      "T008",
+      "T035"
+    ],
+    "Z2-tool-model": [
+      "T008",
+      "T009",
+      "T010",
+      "T011",
+      "T012",
+      "T013"
+    ],
+    "external-data-Z3": [
+      "T014",
+      "T015",
+      "T016",
+      "T017"
+    ],
+    "Z2-Z3": [
+      "T002",
+      "T014",
+      "T015",
+      "T018"
+    ],
+    "Z2/Z3-Z4": [
+      "T019",
+      "T023",
+      "T024"
+    ],
+    "Z4-external-execution": [
+      "T005",
+      "T006",
+      "T020",
+      "T021",
+      "T022",
+      "T024"
+    ],
+    "Z4-Z5": [
+      "T003",
+      "T005",
+      "T006",
+      "T007"
+    ],
+    "all-Z6": [
+      "T007",
+      "T028",
+      "T029"
+    ],
+    "Z6/Z3/Z4-Z7": [
+      "T030",
+      "T031"
+    ],
+    "supply-chain": [
+      "T025",
+      "T026",
+      "T027"
+    ]
+  },
+  "references": [
+    "Microsoft Threat Modeling Tool / STRIDE",
+    "NIST SP 800-218 SSDF v1.1 final",
+    "NIST SP 800-218A final",
+    "OWASP GenAI Security Project Top 10",
+    "MITRE ATLAS"
+  ],
+  "assertions": {
+    "all_frozen_g2_trust_boundaries_have_threats": true,
+    "agent_llm_threats_explicit": true,
+    "market_data_integrity_threats_explicit": true,
+    "execution_uncertainty_threats_explicit": true,
+    "supply_chain_threats_explicit": true,
+    "backup_restore_audit_tampering_explicit": true,
+    "every_high_critical_has_future_owner": true,
+    "controls_claimed_implemented": false
+  }
+}
