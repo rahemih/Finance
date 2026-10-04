@@ -7,11 +7,14 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-
-from tests.harness import ReplayTape
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tests.harness import ReplayTape
 REPLAY = ROOT / "tests/fixtures/foundation/replay-basic.json"
 PROVIDER = ROOT / "tests/fixtures/foundation/provider-unknown.json"
 HARNESS = ROOT / "tests/harness/core.py"
