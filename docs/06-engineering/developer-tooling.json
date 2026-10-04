@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WG-001",
+  "state": "P04-G_IMPLEMENTATION",
+  "tooling": {
+    "orchestration": "PYTHON_STDLIB_ONLY",
+    "exact_versions": {
+      "node": "24.21.0",
+      "pnpm": "11.28.4",
+      "python": "3.14.8",
+      "uv": "0.12.23"
+    },
+    "commands": {
+      "doctor": "python scripts/dev/doctor.py",
+      "bootstrap": "python scripts/dev/bootstrap.py",
+      "fast": "python scripts/dev/local_gate.py fast",
+      "full": "python scripts/dev/local_gate.py full",
+      "hooks": "python scripts/dev/install_hooks.py"
+    }
+  },
+  "hooks": {
+    "opt_in": true,
+    "overwrite_default": false,
+    "force_required": true,
+    "pre_commit": "FAST_GATE",
+    "pre_push": "FULL_GATE",
+    "ci_authoritative": true
+  },
+  "safety": {
+    "environment_variable_dump": false,
+    "secret_value_inspection": false,
+    "arbitrary_remote_install_script": false
+  },
+  "next": "P04-H — Reproducible Build / Artifact Verification (NOT_STARTED)"
+}

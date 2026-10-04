@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eu
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+if command -v python >/dev/null 2>&1; then
+  exec python scripts/dev/local_gate.py full
+elif command -v py >/dev/null 2>&1; then
+  exec py -3 scripts/dev/local_gate.py full
+else
+  echo "NEXUS QUANT pre-push: Python not found" >&2
+  exit 1
+fi

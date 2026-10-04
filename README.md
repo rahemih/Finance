@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P04 — Engineering Foundation / P04-A through P04-F complete / P04-G active next  
+> Status: P04 — Engineering Foundation / P04-G active  
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
@@ -42,3 +42,17 @@ Canonical engineering workspace decision:
 - exact runtime/package-manager versions are selected in P04-B.
 
 See `docs/06-engineering/WORKSPACE-STRUCTURE.md`.
+
+
+### Developer commands
+
+```text
+pnpm doctor
+pnpm bootstrap
+pnpm check:fast
+pnpm check:full
+pnpm test:foundation
+pnpm hooks:install
+```
+
+Local commands accelerate feedback; protected GitHub CI remains authoritative.
