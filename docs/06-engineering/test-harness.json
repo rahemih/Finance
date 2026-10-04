@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WE-001",
-  "state": "P04-E_IMPLEMENTATION",
+  "state": "P04-E_CANONICAL_COMPLETE",
   "harness": {
     "runtime": "PYTHON_STDLIB_ONLY",
     "clock": "DETERMINISTIC_UTC",
@@ -27,5 +27,24 @@
   "next": "P04-F — Dependency / License / SBOM Governance (NOT_STARTED)",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 102,
+    "implementation_head_sha": "3f420c85a43b24e6b9f33d88ba44455a7e248dbf",
+    "pr_governance_run": 37205107709,
+    "pr_test_count": 15,
+    "pr_replay_sha256": "1f647e599ee382d608b7a7b41ddc061f4ba875be0d0e24a329c7ea2393b558d6",
+    "pr_test_harness_evidence_sha256": "db1c5a535eb7043e0c57015364d4a813bfa052f95873de14af5a815a9a26c060",
+    "pr_artifact_id": 11303848661,
+    "pr_artifact_digest": "sha256:3197790747f66fa184bdf26e0043c5b9a59c1039d99723fcb4cec6e11933ca00",
+    "implementation_merge_sha": "a2b3b332565b6013a26974f787948f60618adcf3",
+    "postmerge_governance_run": 37205159882,
+    "postmerge_branch_hygiene_run": 37205159878,
+    "postmerge_test_count": 15,
+    "postmerge_replay_sha256": "1f647e599ee382d608b7a7b41ddc061f4ba875be0d0e24a329c7ea2393b558d6",
+    "postmerge_test_harness_evidence_sha256": "db1c5a535eb7043e0c57015364d4a813bfa052f95873de14af5a815a9a26c060",
+    "postmerge_artifact_id": 11304412529,
+    "postmerge_artifact_digest": "sha256:e9dbe78b33c5d45a74be72dc4532d0204461c50c184b13be06aab4c648c53753",
+    "lock": "RELEASED"
+  }
 }

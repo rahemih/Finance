@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WE-001 — Test Harness`  
-Active branch: `test/FIN-P04-WE-001-test-harness`  
-Active lock: `LOCK-FIN-P04-WE-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1703,9 +1702,8 @@ Safety:
 
 Task: `FIN-P04-WE-001`  
 Linear: `HOS-176`  
-State: ACTIVE  
-Branch: `test/FIN-P04-WE-001-test-harness`  
-Lock: `LOCK-FIN-P04-WE-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A9 Test / Operations Harness = LEAD
@@ -1746,3 +1744,42 @@ External provider/network calls: NONE
 Production infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-F: NOT_STARTED
+
+
+P04-E implementation evidence:
+- implementation PR: `#102` = MERGED
+- final PR head SHA: `3f420c85a43b24e6b9f33d88ba44455a7e248dbf`
+- implementation merge SHA: `a2b3b332565b6013a26974f787948f60618adcf3`
+- PR Governance/Foundation CI: `37205107709` = SUCCESS
+- PR unittest: `15/15 PASS`
+- replay SHA-256: `1f647e599ee382d608b7a7b41ddc061f4ba875be0d0e24a329c7ea2393b558d6`
+- test-harness evidence SHA-256: `db1c5a535eb7043e0c57015364d4a813bfa052f95873de14af5a815a9a26c060`
+- PR artifact: `11303848661` / digest `sha256:3197790747f66fa184bdf26e0043c5b9a59c1039d99723fcb4cec6e11933ca00`
+- post-merge Governance/Foundation CI: `37205159882` = SUCCESS
+- post-merge Branch Hygiene: `37205159878` = SUCCESS
+- post-merge unittest: `15/15 PASS`
+- post-merge artifact: `11304412529` / digest `sha256:e9dbe78b33c5d45a74be72dc4532d0204461c50c184b13be06aab4c648c53753`
+
+P04-E harness:
+- deterministic UTC clock = canonical
+- deterministic ID sequence = canonical
+- ordered replay tape = canonical
+- offline scripted provider simulator = canonical
+- deterministic failure injection = canonical
+- network deny guard = canonical
+- UNKNOWN is neither success nor rejection
+- blind retry before reconciliation = forbidden
+- dependencies added = NONE
+
+P04-E closure:
+- `FIN-P04-WE-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WE-001-01 = RELEASED`
+- next workstream: `P04-F — Dependency / License / SBOM Governance`
+- P04-F: NOT_STARTED
+
+Safety:
+- external provider/network calls = NONE
+- production infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
