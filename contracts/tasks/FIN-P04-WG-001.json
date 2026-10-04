@@ -1,0 +1,146 @@
+{
+  "task_id": "FIN-P04-WG-001",
+  "phase": "P04",
+  "workstream": "WG",
+  "objective": "Create a cross-platform, repository-native developer bootstrap, diagnostics, local gates and safe opt-in Git hooks aligned with the canonical P04 CI/runtime/security baselines without adding third-party runtime dependencies.",
+  "scope": [
+    "Create strict developer doctor for canonical Node, pnpm, Python, uv and Git availability",
+    "Create repository-native bootstrap using locked dependency sync and lifecycle-script suppression",
+    "Create fast local gate aligned with inexpensive required CI checks",
+    "Create full local gate with locked dependency synchronization before fast checks",
+    "Add root package.json developer command aliases",
+    "Create opt-in pre-commit and pre-push hook templates",
+    "Create safe hook installer that refuses overwrite unless --force is explicit",
+    "Ensure developer diagnostics never enumerate environment variables or print secret values",
+    "Keep orchestration compatible with Windows, macOS and Linux through Python standard library",
+    "Add developer-tooling contract validation to required governance CI",
+    "Run strict doctor in required CI after runtime tools are installed",
+    "Include P04-G inputs in deterministic foundation artifact",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "IDE/editor lock-in",
+    "Mandatory external pre-commit framework",
+    "Automatic global uv installation from remote scripts",
+    "P04-H clean-machine reproducible artifact verification",
+    "Production deployment/infrastructure",
+    "Market/trading logic",
+    "Production secrets/accounts/credentials",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P04-WF-001 CANONICAL_COMPLETE",
+    "P04-B exact runtime baseline",
+    "P04-C required governance CI",
+    "P04-F dependency/supply-chain policy"
+  ],
+  "read_paths": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "pyproject.toml",
+    "uv.lock",
+    ".node-version",
+    ".python-version",
+    ".gitignore",
+    "scripts/**",
+    ".github/workflows/**",
+    "docs/06-engineering/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "contracts/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WG-001.json",
+    "docs/06-engineering/DEVELOPER-TOOLING.md",
+    "docs/06-engineering/developer-tooling.json",
+    "scripts/dev/__init__.py",
+    "scripts/dev/common.py",
+    "scripts/dev/doctor.py",
+    "scripts/dev/bootstrap.py",
+    "scripts/dev/local_gate.py",
+    "scripts/dev/install_hooks.py",
+    "scripts/dev/hooks/pre-commit",
+    "scripts/dev/hooks/pre-push",
+    "scripts/ci/developer_tooling_contract.py",
+    "package.json",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "doctor verifies exact canonical Node/pnpm/Python/uv versions and Git availability",
+    "doctor has no environment-variable enumeration or secret-value output path",
+    "bootstrap uses frozen/locked dependency synchronization",
+    "bootstrap suppresses npm/pnpm lifecycle scripts",
+    "fast local gate executes governance/lint/typecheck/unit/config/harness/dependency/security/promotion checks",
+    "full local gate performs locked dependency sync before fast gate",
+    "package.json contains canonical developer aliases",
+    "hook installer refuses to overwrite existing hook without --force",
+    "hook installer creates pre-commit fast and pre-push full wrappers",
+    "developer tooling contract is run by required governance CI",
+    "strict doctor is run by required governance CI",
+    "P04-H remains NOT_STARTED"
+  ],
+  "security_tests": [
+    "No developer script reads or dumps os.environ",
+    "No developer script resolves or prints raw secret values",
+    "Hooks cannot bypass required CI",
+    "Bootstrap does not fetch arbitrary install scripts",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Developer tooling docs and machine-readable manifest",
+    "Required CI doctor/tooling-contract output",
+    "Implementation/post-merge CI evidence",
+    "Linear HOS-178 reconciliation"
+  ],
+  "rollback": "Revert P04-G developer scripts, aliases, hooks/templates, tooling contract and CI integration. Existing P04-A-F CI/security controls remain intact; no production runtime state is created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WF-001 CANONICAL_COMPLETE",
+    "No conflicting active lock",
+    "Task branch starts from current main"
+  ],
+  "definition_of_done": [
+    "Bootstrap/doctor/local gates canonical",
+    "Package aliases canonical",
+    "Hook installer safety validated",
+    "Required governance CI validates tooling and strict doctor",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "Lock released",
+    "Linear HOS-178 Done",
+    "P04-H remains NOT_STARTED"
+  ]
+}
