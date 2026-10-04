@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WH-001 — Reproducible Build / Artifact Verification`  
+Active branch: `test/FIN-P04-WH-001-reproducible-build-evidence`  
+Active lock: `LOCK-FIN-P04-WH-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1939,3 +1940,55 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-H — Reproducible Build / Artifact Verification
+
+Task: `FIN-P04-WH-001`  
+Linear: `HOS-179`  
+State: ACTIVE  
+Branch: `test/FIN-P04-WH-001-reproducible-build-evidence`  
+Lock: `LOCK-FIN-P04-WH-001-01`
+
+Primary agent:
+- A9 Build / Operations = LEAD
+
+Supporting:
+- A10 Evidence / Audit
+- A8 Security
+- A1 Architecture
+- A0 Governance
+
+Prerequisite:
+- `FIN-P04-WG-001 = CANONICAL_COMPLETE`
+
+Reproducibility contract:
+- two independent `git archive HEAD` clean source exports
+- frozen pnpm bootstrap in each export
+- locked uv bootstrap in each export
+- strict developer doctor in each export
+- deterministic normalized tar artifact in each export
+- byte-identical artifact requirement
+- byte-identical rollback manifest requirement
+- tamper/source-SHA verification
+
+Canonical P04 artifact:
+- `foundation-source.tar`
+- `rollback-manifest.json`
+
+Important:
+- P04 contains engineering foundation source/config, not a production application binary
+- no false production artifact claim is made
+- future executable/container artifacts must extend this gate
+
+Required CI:
+- standard-library reproducibility tests
+- two clean-source locked builds
+- artifact/manifest byte comparison
+- rollback verifier
+- upload artifact/manifest with SBOM/Trivy/foundation evidence
+
+Production deployment/infrastructure/accounts/credentials: NONE  
+Signing/KMS identity: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P05: NOT_STARTED_PENDING_OWNER_AUTHORIZATION
