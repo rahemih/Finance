@@ -1,0 +1,160 @@
+{
+  "task_id": "FIN-P02-WI-001",
+  "phase": "P02",
+  "workstream": "WI",
+  "objective": "Perform the terminal P02 architecture review, produce required diagrams/evidence, verify no unresolved critical architecture risks, freeze the P02 architecture baseline under governed change control, and evaluate G2_ARCHITECTURE_FREEZE.",
+  "scope": [
+    "Audit P02-A through P02-H task closure and evidence",
+    "Review architecture principles and ADR consistency",
+    "Review domain/module boundaries and dependency direction",
+    "Review data flow/storage/replay/provenance architecture",
+    "Review intelligence/signal/probability/explainability architecture",
+    "Review Risk/Firewall/OMS/execution/reconciliation architecture",
+    "Review Agent runtime/authority/tool-security architecture",
+    "Review environment/network/DR topology",
+    "Review provisional capacity/cost envelope",
+    "Create required context/container/data/decision/execution/recovery/agent diagrams",
+    "Identify residual risks and deferred decisions",
+    "Verify no unresolved critical architecture risk",
+    "Create G2 gate dossier",
+    "Freeze P02 architecture baseline under ADR/change control",
+    "Hand off to P03 Security & Identity"
+  ],
+  "out_of_scope": [
+    "Implement runtime code",
+    "Provision cloud/network/storage/runtime infrastructure",
+    "Implement P03 security controls",
+    "Select final production account/broker/provider",
+    "Create credentials/funding/orders",
+    "Enable Demo, Shadow, Canary, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001",
+    "FIN-P02-WC-001",
+    "FIN-P02-WD-001",
+    "FIN-P02-WE-001",
+    "FIN-P02-WF-001",
+    "FIN-P02-WG-001",
+    "FIN-P02-WH-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WI-001.json",
+    "docs/04-architecture/P02-ARCHITECTURE-REVIEW.md",
+    "docs/04-architecture/p02-architecture-review.json",
+    "docs/04-architecture/P02-ARCHITECTURE-DIAGRAMS.md",
+    "docs/04-architecture/ADR/ADR-0014-p02-architecture-baseline-freeze.md",
+    "docs/00-governance/G2-ARCHITECTURE-FREEZE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "P02-A through P02-H are CANONICAL_COMPLETE with RELEASED locks",
+    "No open PR or active task/lock conflicts at review start",
+    "All required P02 architecture artifacts and ADRs are present",
+    "Required seven architecture diagram classes are present",
+    "No direct strategy/signal-to-execution bypass exists",
+    "Risk/Firewall and Security veto authority remains independent",
+    "Provider/country/cloud portability remains intact",
+    "Data replay/provenance and correction/vintage semantics are consistent",
+    "Agent runtime authority is bounded and tool availability is not permission",
+    "Environment isolation and DR reconciliation rules are consistent",
+    "Capacity values remain explicitly provisional until benchmarked",
+    "No unresolved CRITICAL architecture risk remains",
+    "G2 dossier records residual risks and deferred decisions"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No secrets/credentials/accounts were created during P02",
+    "Execution enclave has no direct public path",
+    "Live/Auto Trading remains disabled",
+    "A5/A8 vetoes are non-bypassable in architecture",
+    "Recovery cannot broaden authority",
+    "Architecture freeze changes require governed ADR/RFC/change control"
+  ],
+  "evidence": [
+    "P02-A through P02-H canonical task/PR/CI evidence",
+    "ADR-0001 through ADR-0013",
+    "Architecture review matrix",
+    "Required architecture diagrams",
+    "Residual risk/deferred decision register",
+    "ADR-0014 architecture baseline freeze",
+    "G2_ARCHITECTURE_FREEZE dossier",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-162 reconciliation"
+  ],
+  "rollback": "Revert P02-I review/gate/freeze artifacts and state/catalog changes. Previously canonical P02-A through P02-H architecture artifacts remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WA-001 through FIN-P02-WH-001 = CANONICAL_COMPLETE",
+    "All P02 A-H locks = RELEASED",
+    "P02 = READY_FOR_P02_I",
+    "No conflicting active lock",
+    "No unresolved critical incident"
+  ],
+  "definition_of_done": [
+    "Architecture review verdict is PASS",
+    "Required diagrams are canonical",
+    "No unresolved critical architecture risk",
+    "ADR-0014 is accepted",
+    "G2_ARCHITECTURE_FREEZE = PASS",
+    "P02 architecture baseline is frozen under change control",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WI-001 = CANONICAL_COMPLETE",
+    "P02 = CANONICAL_COMPLETE",
+    "P03 = READY"
+  ]
+}
