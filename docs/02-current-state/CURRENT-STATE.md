@@ -39,7 +39,7 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P02 — Master Architecture  
+Current Phase: P03 — Security & Identity  
 P01 state: CANONICAL_COMPLETE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P02-WI-001 — Architecture Review + G2 Freeze`  
-Active branch: `docs/FIN-P02-WI-001-architecture-review-g2-freeze`  
-Active lock: `LOCK-FIN-P02-WI-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -498,7 +497,7 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: ACTIVE_P02_I
+P02 — Master Architecture: CANONICAL_COMPLETE
 
 Active workstream:
 `P02-I — Architecture Review + G2 Freeze`
@@ -871,8 +870,8 @@ Auto Trading: DISABLED
 
 Task: `FIN-P02-WI-001`  
 Linear: `HOS-162`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P02-WI-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Artifacts:
 - `docs/04-architecture/P02-ARCHITECTURE-REVIEW.md`
@@ -886,12 +885,52 @@ Review result:
 - required diagrams = 7 / PASS
 - unresolved critical architecture risks = 0
 - residual risks = documented with downstream owners
-- pre-merge Gate verdict = PASS_PENDING_CANONICAL_MERGE
+- Gate verdict = PASS
 
 Architecture baseline freeze:
-- effective only after P02-I canonical closure
+- `P02_ARCHITECTURE_BASELINE = FROZEN_G2`
 - post-G2 semantic changes require governed ADR/RFC/change control
 
 Runtime implementation: NOT_STARTED  
 Live Trading: DISABLED  
 Auto Trading: DISABLED
+
+
+## P02 final closure / G2
+
+Phase: `P02 — Master Architecture`  
+State: `CANONICAL_COMPLETE`  
+Gate: `G2_ARCHITECTURE_FREEZE = PASS`  
+Architecture baseline: `FROZEN_G2`
+
+Terminal task:
+- `FIN-P02-WI-001 = CANONICAL_COMPLETE`
+- Lock: RELEASED
+
+P02-I implementation evidence:
+- PR `#75` = MERGED
+- merge SHA: `fd62cf3abdde7f4f00d5102b8170cdd7564bb74e`
+- PR Governance: `37193927009` = SUCCESS
+- post-merge Governance: `37193970490` = SUCCESS
+- post-merge Branch Hygiene: `37193970613` = SUCCESS
+
+Architecture review:
+- required diagram classes: 7 / PASS
+- unresolved critical architecture risks: 0
+- residual risks: documented with downstream owners
+- country/location architecture dependency: NONE
+- direct unreviewed architecture mutation after G2: FORBIDDEN
+
+Next phase:
+`P03 — Security & Identity`
+
+Next workstream:
+`P03-A — Threat Model`
+
+P03 state: READY
+
+Safety:
+- runtime implementation remains NOT_STARTED
+- accounts/credentials/funding/orders = NONE
+- Live Trading = DISABLED
+- Auto Trading = DISABLED
