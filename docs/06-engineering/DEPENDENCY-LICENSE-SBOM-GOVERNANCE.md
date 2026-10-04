@@ -172,6 +172,12 @@ Required:
 
 First-party package `nexus-quant` is exempt from third-party license declaration enforcement.
 
+### License enforcement scope
+
+License classification applies to SBOM components that carry a Package URL (`purl` beginning with `pkg:`), because those represent package/dependency identities.
+
+Syft may also catalog repository source artifacts such as workflow YAML files and lockfiles as SBOM components. Those artifacts remain inventoried and digest-covered, but are not treated as third-party packages requiring a package license declaration.
+
 ## 8. CI gate
 
 Required `governance` context performs:
