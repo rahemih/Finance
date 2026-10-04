@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P04-WG-001",
-  "state": "P04-G_IMPLEMENTATION",
+  "state": "P04-G_CANONICAL_COMPLETE",
   "tooling": {
     "orchestration": "PYTHON_STDLIB_ONLY",
     "exact_versions": {
@@ -31,5 +31,18 @@
     "secret_value_inspection": false,
     "arbitrary_remote_install_script": false
   },
-  "next": "P04-H — Reproducible Build / Artifact Verification (NOT_STARTED)"
+  "next": "P04-H — Reproducible Build / Artifact Verification (NOT_STARTED)",
+  "closure_evidence": {
+    "implementation_pr": 106,
+    "implementation_head_sha": "a55ac1280aff97369d528c7f3659acf684cb8918",
+    "pr_governance_run": 37209840384,
+    "pr_artifact_id": 11306385795,
+    "pr_artifact_digest": "sha256:d28ca63e9022ac81d032b26f1dfddc27327db34d6c4de59920ba91bd11cdce48",
+    "implementation_merge_sha": "b4ffad65d3f3f38671e776a2eb8add07785bb37b",
+    "postmerge_governance_run": 37209923615,
+    "postmerge_branch_hygiene_run": 37209923616,
+    "postmerge_artifact_id": 11306585482,
+    "postmerge_artifact_digest": "sha256:7dbe1bddf8f5a1413413ee930251d58e9e74b7af2403888cf9010e05978d084a",
+    "lock": "RELEASED"
+  }
 }

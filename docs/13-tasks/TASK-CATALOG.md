@@ -93,7 +93,7 @@ This catalog is the canonical index of governed work.
 | FIN-P04-WF-001 | P04 | Dependency / License / SBOM Governance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WF-001.json` | RELEASED |
 
 
-| FIN-P04-WG-001 | P04 | Developer Bootstrap & Tooling | MEDIUM | ACTIVE | `contracts/tasks/FIN-P04-WG-001.json` | LOCK-FIN-P04-WG-001-01 |
+| FIN-P04-WG-001 | P04 | Developer Bootstrap & Tooling | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WG-001.json` | RELEASED |
 
 ## Rules
 
