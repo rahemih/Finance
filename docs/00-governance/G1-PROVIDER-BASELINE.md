@@ -2,103 +2,108 @@
 
 GATE = `G1_PROVIDER_BASELINE`  
 TASK = `FIN-P01-WG-004`  
-STATE = `HUMAN_GATE`  
-DATE = `2026-10-04`
+STATE = `PASS_PENDING_CANONICAL_MERGE`  
+DATE = `2026-10-04`  
+COUNTRY_LOCATION = `NOT_USED`
 
 ## 1. Gate purpose
 
-G1 determines whether Finance / NEXUS QUANT has a sufficiently evidenced market-data / execution-provider baseline to move from P01 research into P02 architecture.
+Prove that Finance / NEXUS QUANT has a sufficiently evidenced provider baseline to enter P02 architecture while remaining portable across future account jurisdictions and provider legal entities.
 
-G1 does not create accounts, credentials, subscriptions or trading authority.
+G1 is not a trading/account activation gate.
 
-## 2. Evidence already satisfied
+## 2. Mandatory evidence
 
+PASS:
 - P01-A Market Universe = CANONICAL_COMPLETE
 - P01-B Market Data Providers = CANONICAL_COMPLETE
 - P01-C Broker / Exchange Inventory = CANONICAL_COMPLETE
-- P01-D Jurisdiction & Compliance = CANONICAL_COMPLETE
+- P01-D Compliance constraint library = CANONICAL_COMPLETE
 - P01-E Cost / Licensing / Data Rights = CANONICAL_COMPLETE
 - P01-F Primary / Backup Strategy = CANONICAL_COMPLETE
-- source-of-truth / Governance / Toolchain controls = active
+- P01-G country-neutral decision matrix = READY
+- primary/backup/cross-check architecture = PLAUSIBLE
+- cost envelope / quote-required items = DOCUMENTED
+- country/location excluded from ranking = VERIFIED
 - Live Trading = DISABLED
 - Auto Trading = DISABLED
 
-## 3. Current conditional baseline
+## 3. Provider baseline
 
-### Crypto market data
-- Kaiko — conditional primary candidate
-- CoinAPI — conditional secondary candidate
-- venue-native feed — mandatory cross-check
+### Crypto data
+Primary reference: Kaiko  
+Backup: CoinAPI  
+Cross-check: venue-native feed
 
-### Forex market data
-- dxFeed — conditional primary candidate
-- Massive / Twelve Data — conditional backup candidates
-- eligible broker quote — mandatory execution cross-check
+### Forex data
+Primary reference: dxFeed  
+Backup: Twelve Data  
+Secondary validation: Massive  
+Future execution cross-check: actual selected broker quote
 
 ### Futures / context
-- Databento — conditional primary candidate
-- dxFeed — conditional backup
-- CME / ICE / Cboe / index owner — authority
+Primary reference: Databento  
+Backup: dxFeed  
+Authority: exchange/index owner
 
 ### Macro / rates
-- direct official source — primary authority
-- FRED / ALFRED — secondary / revision-aware aggregation
+Primary: direct official sources  
+Secondary: FRED/ALFRED
 
 ### On-chain
-- Blockscout — supplemental indexer
-- chain state / second path — independent verification
+Supplemental: Blockscout  
+Independent verification: direct node / second indexer when required
 
-### Crypto execution candidate pool
-- Coinbase Advanced
-- Kraken
-- Binance
+## 4. Execution reference baseline
 
-### Forex execution candidate pool
-- OANDA
-- Interactive Brokers
-- Saxo
+Crypto adapter reference order:
+1. Kraken
+2. Binance
+3. Coinbase Advanced
 
-## 4. Blocking mandatory evidence
+Forex adapter reference order:
+1. Saxo OpenAPI
+2. OANDA v20
+3. Interactive Brokers
 
-The following cannot be inferred:
+These are architecture references only.
 
-- Owner/account jurisdiction
-- individual vs entity account
-- entity domicile if applicable
-- client classification where material
-- intended product set
+Final execution account/provider selection is explicitly deferred to account-opening / production activation.
 
-The following commercial/rights items remain conditional where they affect the final shortlist:
+## 5. Deferred activation evidence
 
-- Kaiko / dxFeed enterprise quote and SLA if shortlisted
-- non-display / algorithmic / storage / model-use rights
-- exchange/index entitlements
-- final eligible legal entity / broker product availability
+Before any real provider/broker/exchange activation:
+- actual account legal entity and product availability;
+- actual client classification where material;
+- KYC/account approval;
+- current contract/fee/rights terms;
+- live API permissions;
+- exchange/index entitlements;
+- no-withdrawal/least-privilege confirmation;
+- execution certification and later Risk/Firewall gates.
 
-## 5. Current gate result
+## 6. Owner directive
 
-`G1_PROVIDER_BASELINE = HUMAN_GATE`
+No country or location may be used or inferred for this P01-G decision.
 
-Reason:
+Any prior transient country-specific research is not part of the canonical G1 basis.
 
-The project has enough technical/research evidence to prepare a conditional shortlist, but the execution/provider baseline cannot be legally or contractually finalized without explicit Owner jurisdiction/account facts.
+## 7. Gate verdict
 
-## 6. Human Gate required
+`G1_PROVIDER_BASELINE = PASS_PENDING_CANONICAL_MERGE`
 
-Minimum inputs:
-1. account jurisdiction / country of residence;
-2. individual vs company/entity;
-3. client classification, or Unknown;
-4. intended products;
-5. optional cost preference.
+Meaning:
+- P02 architecture may start after canonical merge/closure.
+- provider portability is mandatory;
+- production execution selection remains deferred;
+- no trading authority is granted.
 
-No citizenship/tax-residency detail is requested unless later required by a specific shortlisted provider/regime.
+## 8. Safety
 
-## 7. Safety
-
-Production provider selected: NO  
+Production account selected: NO  
 Production broker/exchange selected: NO  
 Accounts/KYC: NONE  
+Subscriptions/contracts: NONE  
 Credentials: NONE  
 Funding: NONE  
 Orders: NONE  
