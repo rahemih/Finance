@@ -89,6 +89,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P04-WE-001 | P04 | Test Harness | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WE-001.json` | RELEASED |
 
+
+| FIN-P04-WF-001 | P04 | Dependency / License / SBOM Governance | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WF-001.json` | LOCK-FIN-P04-WF-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
