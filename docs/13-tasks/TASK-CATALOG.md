@@ -65,6 +65,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P03-WE-001 | P03 | Audit & Change Integrity | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WE-001.json` | RELEASED |
 
+
+| FIN-P03-WF-001 | P03 | Supply Chain Security | HIGH | ACTIVE | `contracts/tasks/FIN-P03-WF-001.json` | LOCK-FIN-P03-WF-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
