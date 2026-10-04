@@ -332,8 +332,14 @@ def validate_sbom(path: Path, license_policy: dict[str, Any], active: list[dict[
         if name in first_party:
             continue
 
+        purl = component.get("purl")
+        if not isinstance(purl, str) or not purl.startswith("pkg:"):
+            # Syft also emits source/workflow/lockfile artifacts as components.
+            # They remain in the SBOM, but are not third-party package dependencies.
+            continue
+
         third_party_count += 1
-        identity = component_identity(component)
+        identity = purl
         licenses = component_licenses(component)
 
         if not licenses:
