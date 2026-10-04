@@ -1,0 +1,150 @@
+{
+  "task_id": "FIN-P04-WD-001",
+  "phase": "P04",
+  "workstream": "WD",
+  "objective": "Define and enforce a schema-governed, non-secret configuration and environment contract with explicit environment isolation, opaque secret references, non-widening overrides, fail-closed invalid-config behavior, and CANARY/LIVE disabled.",
+  "scope": [
+    "Define DEV, TEST, RESEARCH, DEMO, SHADOW, CANARY and LIVE logical environment contracts",
+    "Define base configuration and per-environment overlays",
+    "Define machine-readable environment configuration schema and policy",
+    "Define deterministic config precedence and merge semantics",
+    "Permit raw configuration values only for approved non-secret settings",
+    "Permit secrets only as opaque secret:// references in canonical configuration",
+    "Require environment-scoped secret reference namespaces",
+    "Forbid runtime overrides from changing safety, execution or credential-authority controls",
+    "Keep all environment provisioning state CONTRACT_ONLY in P04-D",
+    "Keep CANARY/LIVE activation disabled and credential authority unprovisioned",
+    "Keep SHADOW without external order submission",
+    "Forbid location/country from becoming an authorization dependency",
+    "Validate config contracts in the already-required governance CI gate",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Provision a secret manager, vault, KMS or HSM",
+    "Create real GitHub deployment environments",
+    "Provision infrastructure, services, databases or networks",
+    "Resolve or inject raw runtime secret values",
+    "Implement application config loading code",
+    "Implement P04-E Test Harness",
+    "Implement market/trading logic",
+    "Enable CANARY, LIVE_TRADING or AUTO_TRADING"
+  ],
+  "dependencies": [
+    "FIN-P04-WC-001 CANONICAL_COMPLETE",
+    "FIN-P03-WC-001 secrets/key-management baseline canonical",
+    "FROZEN_G2",
+    "G3_SECURITY_BASELINE PASS"
+  ],
+  "read_paths": [
+    "config/**",
+    "contracts/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/06-engineering/**",
+    "docs/13-tasks/**",
+    "scripts/ci/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WD-001.json",
+    "docs/06-engineering/CONFIG-ENVIRONMENT-CONTRACT.md",
+    "docs/06-engineering/config-environment-contract.json",
+    "config/README.md",
+    "config/environment-config.schema.json",
+    "config/config-policy.json",
+    "config/base.json",
+    "config/environments/dev.json",
+    "config/environments/test.json",
+    "config/environments/research.json",
+    "config/environments/demo.json",
+    "config/environments/shadow.json",
+    "config/environments/canary.json",
+    "config/environments/live.json",
+    "config/runtime-overrides.example.json",
+    "scripts/ci/config_contract.py",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "All canonical config JSON parses",
+    "Environment schema/policy required fields validate",
+    "Environment set is exactly DEV/TEST/RESEARCH/DEMO/SHADOW/CANARY/LIVE",
+    "Every environment remains CONTRACT_ONLY and not provisioned",
+    "CANARY and LIVE remain disabled",
+    "SHADOW external order submission remains false",
+    "Runtime override keys are restricted to approved non-secret paths",
+    "Secret references use secret:// environment-scoped handles only",
+    "No raw secret-like keys or values exist in canonical config",
+    "No location/country authorization dependency exists",
+    "Required governance CI runs config validator",
+    "Foundation build includes P04-D config inputs"
+  ],
+  "security_tests": [
+    "Raw API key/token/password/private-key fields are forbidden",
+    "Secret reference environment must equal owning environment",
+    "Lower environments cannot reference CANARY/LIVE secret namespaces",
+    "Safety/execution/credential authority cannot be widened by runtime override",
+    "CANARY/LIVE credential authority is unprovisioned",
+    "AUTO_TRADING and LIVE_TRADING remain false"
+  ],
+  "evidence": [
+    "P03-C secrets/key management baseline",
+    "P04-C enforced aggregate CI gate",
+    "Environment config schema and policy",
+    "Seven canonical environment overlay documents",
+    "Config contract validator output",
+    "Implementation/post-merge CI evidence",
+    "Linear HOS-175 reconciliation"
+  ],
+  "rollback": "Revert P04-D config/schema/validator/CI integration changes. No real secret store, environment, infrastructure, credential, broker connection or trading authority is provisioned by this task.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WC-001 CANONICAL_COMPLETE",
+    "P03-C secret-reference model available",
+    "No conflicting active lock",
+    "Task branch starts from current main"
+  ],
+  "definition_of_done": [
+    "Config/environment contract artifacts canonical",
+    "Config validator passes all seven logical environments",
+    "Required governance CI enforces config validation",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "Lock released",
+    "Linear HOS-175 Done",
+    "P04-E remains NOT_STARTED"
+  ]
+}
