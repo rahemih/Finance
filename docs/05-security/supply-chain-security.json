@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P03-F_IMPLEMENTATION",
+  "state": "P03-F_CANONICAL_COMPLETE",
   "task_id": "FIN-P03-WF-001",
   "linear_issue": "HOS-168",
   "date": "2026-10-04",
@@ -145,5 +145,13 @@
     "provenance_generator": "NOT_ACTIVATED",
     "slsa_level": "NOT_CLAIMED",
     "production_release": "DISABLED"
+  },
+  "closure_evidence": {
+    "implementation_pr": 87,
+    "implementation_merge_sha": "415d6658b49f2b3c482c3daaccea99077d07479e",
+    "pr_governance_run": 37198403013,
+    "postmerge_governance_run": 37198431235,
+    "postmerge_branch_hygiene_run": 37198431195,
+    "lock": "RELEASED"
   }
 }
