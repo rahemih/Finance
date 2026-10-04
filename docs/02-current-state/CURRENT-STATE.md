@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-A implementation merge: `141821a27e74e9967883bdb6f0c936a2b3b39b6b`  
+Canonical HEAD at P03-B Fresh Live Guard: `18b2036350236e24e7e1466b5ca64cf8a6317fa4`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WB-001 — RBAC / MFA / Session / Device Policy`  
+Active branch: `security/FIN-P03-WB-001-rbac-mfa-session-device`  
+Active lock: `LOCK-FIN-P03-WB-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A — Threat Model is CANONICAL_COMPLETE. Next authorized workstream: `P03-B — RBAC / MFA / Session / Device Policy`.
+P03-A — Threat Model is CANONICAL_COMPLETE. P03-B — RBAC / MFA / Session / Device Policy is ACTIVE under `FIN-P03-WB-001` / `HOS-164`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1000,3 +1001,41 @@ Closure:
 - `FIN-P03-WA-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WA-001-01 = RELEASED`
 - next = `P03-B — RBAC / MFA / Session / Device Policy`
+
+
+## P03-B — RBAC / MFA / Session / Device Policy
+
+Task: `FIN-P03-WB-001`  
+Linear: `HOS-164`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WB-001-rbac-mfa-session-device`  
+Lock: `LOCK-FIN-P03-WB-001-01`
+
+Primary agent:
+- A8 Security = LEAD
+
+Supporting agents:
+- A0 Governance / Orchestrator
+- A1 Architecture
+- A5 Risk
+- A9 Operations
+- A10 Evidence / Audit
+
+Dependencies:
+- P03-A = CANONICAL_COMPLETE
+- G2_ARCHITECTURE_FREEZE = PASS
+- P02_ARCHITECTURE_BASELINE = FROZEN_G2
+
+Objective:
+- establish deny-by-default RBAC;
+- require phishing-resistant MFA direction for privileged access;
+- define session/device/recovery controls;
+- bind permissions to action/resource/environment;
+- preserve A5/A8 veto and Human Gate semantics;
+- define human, agent, service/workload and CI identity separation.
+
+Runtime identity provider: NOT_SELECTED  
+Production accounts/credentials: NONE  
+Country/location authorization dependency: NONE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED

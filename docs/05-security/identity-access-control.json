@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "state": "P03-B_IMPLEMENTATION",
+  "task_id": "FIN-P03-WB-001",
+  "linear_issue": "HOS-164",
+  "date": "2026-10-04",
+  "baseline": {
+    "architecture": "FROZEN_G2",
+    "threat_model": "FIN-P03-WA-001_CANONICAL",
+    "country_location_authorization_dependency": "NONE",
+    "canary": "DISABLED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "authorization_model": {
+    "default": "DENY",
+    "effective_permission_intersection": [
+      "task_scope",
+      "principal_role",
+      "agent_or_service_contract",
+      "resource_scope",
+      "environment_scope",
+      "tool_policy",
+      "current_security_state",
+      "current_risk_state",
+      "human_gate_when_required"
+    ],
+    "invariants": [
+      "tool availability is not permission",
+      "no self elevation",
+      "A5 and A8 veto are binding",
+      "Owner/Human Gate cannot suppress active A5/A8 veto",
+      "country/location is not trusted authorization evidence"
+    ]
+  },
+  "human_roles": [
+    {
+      "id": "H01",
+      "name": "OWNER_GOVERNANCE",
+      "privileged": true,
+      "mfa": "PHISHING_RESISTANT_REQUIRED",
+      "capabilities": [
+        "governance.read",
+        "human_gate.approve",
+        "policy.approve",
+        "global_halt"
+      ],
+      "denies": [
+        "broker.direct_order",
+        "audit.mutate",
+        "veto.override"
+      ]
+    },
+    {
+      "id": "H02",
+      "name": "SECURITY_OPERATOR",
+      "privileged": true,
+      "mfa": "PHISHING_RESISTANT_REQUIRED",
+      "capabilities": [
+        "security.admin",
+        "session.revoke",
+        "authenticator.manage",
+        "credential.revoke",
+        "security.halt"
+      ],
+      "denies": [
+        "risk.raise_ceiling",
+        "broker.direct_order",
+        "veto.override"
+      ]
+    },
+    {
+      "id": "H03",
+      "name": "OPERATIONS_OPERATOR",
+      "privileged": true,
+      "mfa": "PHISHING_RESISTANT_REQUIRED",
+      "capabilities": [
+        "ops.read",
+        "ops.diagnostics",
+        "ops.safe_mode_request",
+        "ops.halt_request"
+      ],
+      "denies": [
+        "risk.raise_ceiling",
+        "security.policy_mutate_unapproved",
+        "broker.direct_order"
+      ]
+    },
+    {
+      "id": "H04",
+      "name": "RESEARCH_OPERATOR",
+      "privileged": false,
+      "mfa": "MFA_REQUIRED_FOR_SENSITIVE_RESEARCH_ACTIONS",
+      "capabilities": [
+        "research.read",
+        "research.run",
+        "replay.run"
+      ],
+      "denies": [
+        "broker.direct_order",
+        "secrets.admin",
+        "live.write"
+      ]
+    },
+    {
+      "id": "H05",
+      "name": "AUDITOR_READ_ONLY",
+      "privileged": false,
+      "mfa": "MFA_REQUIRED",
+      "capabilities": [
+        "audit.read",
+        "policy.read",
+        "evidence.read"
+      ],
+      "denies": [
+        "operational.mutate",
+        "audit.mutate",
+        "secret.read_raw"
+      ]
+    },
+    {
+      "id": "H06",
+      "name": "FUTURE_EXECUTION_OPERATOR",
+      "privileged": true,
+      "state": "DISABLED",
+      "mfa": "PHISHING_RESISTANT_REQUIRED_WHEN_ACTIVATED",
+      "capabilities": [],
+      "denies": [
+        "all_until_later_gate"
+      ]
+    }
+  ],
+  "machine_principals": [
+    {
+      "id": "M01",
+      "name": "CORE_AGENT",
+      "rule": "task ∩ agent contract ∩ tool policy ∩ environment ∩ resource ∩ veto ∩ human gate"
+    },
+    {
+      "id": "M02",
+      "name": "SPECIALIST_AGENT",
+      "rule": "parent ∩ specialist contract ∩ task ∩ ttl/budgets ∩ tool/resource scope"
+    },
+    {
+      "id": "M03",
+      "name": "DOMAIN_SERVICE_WORKLOAD",
+      "rule": "distinct non-human short-lived audience/resource/environment-bound identity"
+    },
+    {
+      "id": "M04",
+      "name": "CI_BUILD",
+      "rule": "separate from runtime; workflow/repository/environment least privilege"
+    },
+    {
+      "id": "M05",
+      "name": "EXTERNAL_INTEGRATION",
+      "rule": "external authentication never implies internal project authority"
+    }
+  ],
+  "privileged_authentication": {
+    "mfa_required": true,
+    "phishing_resistant_required": true,
+    "preferred": [
+      "WEBAUTHN_PASSKEY",
+      "FIDO_SECURITY_KEY"
+    ],
+    "password_only": "FORBIDDEN",
+    "sms_voice_otp": "NOT_PRIMARY_PRIVILEGED_MFA",
+    "totp": "BOUNDED_FALLBACK_NOT_PHISHING_RESISTANT",
+    "recovery_secondary_authenticator_required_before_production": true
+  },
+  "step_up_actions": [
+    "authenticator.add",
+    "authenticator.remove",
+    "authenticator.reset",
+    "recovery.change",
+    "role.grant_privileged",
+    "role.revoke_privileged",
+    "security.policy.change",
+    "execution_credential_handle.access_or_rotate",
+    "security_control.disable",
+    "human_gate_policy.change",
+    "environment.elevate",
+    "canary.enable",
+    "live.enable",
+    "emergency_identity_recovery"
+  ],
+  "recovery": {
+    "security_questions": "FORBIDDEN",
+    "email_sms_only_privileged_recovery": "FORBIDDEN",
+    "restricted_recovery_mode_supported": true,
+    "revoke_or_revalidate_sessions_after_recovery": true,
+    "audit_severity": "HIGH",
+    "break_glass": {
+      "purpose": "IDENTITY_SECURITY_RECOVERY_ONLY",
+      "time_bounded": true,
+      "minimal_privilege": true,
+      "independently_audited": true,
+      "cannot_bypass_veto": true,
+      "cannot_enable_live_trading": true
+    }
+  },
+  "session": {
+    "strict_issuance": true,
+    "transport": "TLS_ONLY",
+    "browser_cookie": [
+      "Secure",
+      "HttpOnly",
+      "SameSite_POLICY_REQUIRED"
+    ],
+    "session_id_in_url": false,
+    "rotate_on": [
+      "authentication",
+      "reauthentication",
+      "privilege_change",
+      "recovery"
+    ],
+    "absolute_lifetime_required": true,
+    "idle_timeout_required": true,
+    "privileged_shorter_idle_than_standard": true,
+    "sensitive_action_reauth_age_stricter_than_session_lifetime": true,
+    "invalidation_triggers": [
+      "logout",
+      "authenticator_reset",
+      "privileged_role_change",
+      "suspected_compromise",
+      "admin_revoke",
+      "account_disable",
+      "major_policy_change",
+      "security_incident"
+    ],
+    "concurrent_sessions_visible_and_revocable": true,
+    "exact_production_durations": "DEFERRED_TO_P23_P24_CONFIGURATION_AND_TEST"
+  },
+  "device": {
+    "role": "RISK_CONTEXT_NOT_AUTHORITY",
+    "new_device_may_require_step_up": true,
+    "trusted_device_bypasses_privileged_mfa": false,
+    "revoked_or_compromised_device_fails_closed_for_privileged_actions": true,
+    "trust_requires_revalidation": true,
+    "browser_fingerprinting_minimized": true,
+    "geolocation_required": false,
+    "geolocation_trusted_as_authentication": false,
+    "country_location_authorization_dependency": "NONE"
+  },
+  "environments": {
+    "names": [
+      "DEV",
+      "TEST",
+      "RESEARCH",
+      "DEMO",
+      "SHADOW",
+      "CANARY",
+      "LIVE"
+    ],
+    "lower_to_higher_authoritative_write": "DENY",
+    "credentials_environment_bound": true,
+    "session_authority_auto_cross_environment": false,
+    "shadow_live_command_authority": false,
+    "canary_state": "DISABLED",
+    "live_state": "DISABLED"
+  },
+  "human_gate": {
+    "bind_fields": [
+      "approval_id",
+      "task_run_principal",
+      "exact_action",
+      "normalized_argument_digest",
+      "resource",
+      "environment",
+      "evidence_refs",
+      "expiry",
+      "one_use_replay_state"
+    ],
+    "new_approval_on_material_change": true,
+    "invalidated_by": [
+      "expiry",
+      "task_or_lock_invalidation",
+      "A5_veto",
+      "A8_veto",
+      "principal_or_session_revocation",
+      "material_security_context_change"
+    ]
+  },
+  "service_identity": {
+    "human_passwords": "FORBIDDEN",
+    "distinct_identity": true,
+    "short_lived_preferred": true,
+    "audience_bound": true,
+    "resource_scoped": true,
+    "environment_bound": true,
+    "rotatable_revocable": true,
+    "auditable": true,
+    "direct_cross_domain_db_ownership": "FORBIDDEN"
+  },
+  "audit_events": [
+    "login.success",
+    "login.failure",
+    "mfa.enroll",
+    "mfa.remove",
+    "mfa.reset",
+    "recovery.start",
+    "recovery.complete",
+    "recovery.failure",
+    "role.grant",
+    "role.revoke",
+    "session.create",
+    "session.rotate",
+    "session.revoke",
+    "step_up.success",
+    "step_up.failure",
+    "device.register",
+    "device.revoke",
+    "device.risk_change",
+    "authorization.sensitive_deny",
+    "human_gate.create",
+    "human_gate.approve",
+    "human_gate.deny",
+    "human_gate.expire",
+    "human_gate.replay_reject",
+    "service_credential.issue",
+    "service_credential.revoke",
+    "privileged_policy.change",
+    "break_glass.activate",
+    "break_glass.terminate"
+  ],
+  "never_log": [
+    "password",
+    "authenticator_secret",
+    "private_key",
+    "api_key",
+    "full_session_secret"
+  ],
+  "downstream_owners": {
+    "P03-C": "secrets/KMS/vault and credential lifecycle",
+    "P03-D": "private admin/network exposure",
+    "P03-E": "audit integrity and high-risk change",
+    "P03-G": "incident/emergency access",
+    "P04": "runtime authn/authz/service identity/policy engine tests",
+    "P23": "application login/WebAuthn/session/security UX",
+    "P24": "production assurance and CANARY/LIVE gate"
+  },
+  "implementation_state": {
+    "idp": "NOT_SELECTED",
+    "auth_runtime": "NOT_IMPLEMENTED",
+    "webauthn_runtime": "NOT_IMPLEMENTED",
+    "production_users_accounts": "NONE",
+    "production_secrets": "NONE"
+  }
+}

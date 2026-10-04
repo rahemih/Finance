@@ -1,0 +1,144 @@
+{
+  "task_id": "FIN-P03-WB-001",
+  "phase": "P03",
+  "workstream": "WB",
+  "objective": "Define the canonical identity, authentication, authorization, session and device-security policy for NEXUS QUANT against the P03-A threat model and frozen G2 architecture, without provisioning runtime identity infrastructure.",
+  "scope": [
+    "Define principal and identity classes",
+    "Define deny-by-default least-privilege RBAC and permission semantics",
+    "Separate Owner/user, A0-A10, specialists, service/workload, CI and future external integration identities",
+    "Define privileged phishing-resistant MFA direction using WebAuthn/FIDO-class authenticators",
+    "Define recovery and MFA-reset security requirements",
+    "Define session issuance, rotation, expiry, revocation, concurrency and reauthentication rules",
+    "Define step-up authentication for sensitive/high-risk actions",
+    "Define device registration, trust and risk signals without making country/location an authorization dependency",
+    "Bind authorization to resource, action and environment",
+    "Define cross-environment deny rules",
+    "Define Human Gate approval binding and anti-replay requirements",
+    "Define service/workload identity direction and non-human credential rules",
+    "Define authentication/authorization/session/device audit events",
+    "Create machine-readable role/permission/authentication policy and diagrams",
+    "Map implementation and validation ownership to downstream P03/P04/P23/P24 work"
+  ],
+  "out_of_scope": [
+    "Provision an identity provider or directory",
+    "Create production accounts, credentials or API keys",
+    "Implement frontend/backend authentication runtime",
+    "Provision private network/admin infrastructure",
+    "Activate CANARY or LIVE",
+    "Enable Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P03-WA-001",
+    "G2_ARCHITECTURE_FREEZE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P03-WB-001.json",
+    "docs/05-security/IDENTITY-ACCESS-CONTROL.md",
+    "docs/05-security/identity-access-control.json",
+    "docs/05-security/IDENTITY-ACCESS-DIAGRAMS.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "Policy traces to P03-A threats and FROZEN_G2 trust/authority boundaries",
+    "Every privileged human role requires phishing-resistant MFA direction",
+    "Authorization is deny-by-default and resource/action/environment scoped",
+    "A5/A8 veto and Owner/Human Gate authority cannot be expanded by RBAC",
+    "Agent/tool permission is bounded by Task Contract and role intersection",
+    "Cross-environment privilege/state reuse is forbidden",
+    "Session fixation/replay/long-lived privileged session risks are addressed",
+    "MFA reset/recovery cannot silently bypass normal assurance",
+    "Country/location is not required or treated as trusted authorization evidence",
+    "No production IdP/account/credential/control is claimed implemented"
+  ],
+  "security_tests": [
+    "RBAC negative/deny matrix is defined",
+    "Session revocation and credential-change invalidation requirements are defined",
+    "Privileged step-up and sensitive-action reauthentication are defined",
+    "Human Gate replay/scope substitution protections are defined",
+    "Service/workload identities cannot use human ambient sessions",
+    "Recovery path preserves auditability and fail-closed semantics"
+  ],
+  "evidence": [
+    "P03-A canonical threat model",
+    "FROZEN_G2 architecture baseline",
+    "NIST SP 800-63B-4 final authentication guidance",
+    "W3C WebAuthn Level 3 Recommendation",
+    "OWASP Authentication/MFA/Session/Authorization guidance",
+    "machine-readable identity/access policy",
+    "identity/access diagrams",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-164 reconciliation"
+  ],
+  "rollback": "Revert P03-B policy artifacts and shared state/catalog changes. No runtime identity service, credentials, accounts or trading authority are changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P03-A = CANONICAL_COMPLETE",
+    "LOCK-FIN-P03-WA-001-01 = RELEASED",
+    "G2_ARCHITECTURE_FREEZE = PASS",
+    "P02_ARCHITECTURE_BASELINE = FROZEN_G2",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Identity/principal taxonomy is canonical",
+    "RBAC/permission matrix is canonical",
+    "MFA/authenticator baseline is canonical",
+    "Session and device policy is canonical",
+    "Human Gate and service-identity rules are canonical",
+    "Machine-readable policy and diagrams are canonical",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P03-WB-001 = CANONICAL_COMPLETE"
+  ]
+}
