@@ -128,6 +128,13 @@
       "license": "Apache-2.0",
       "evidence": "aquasecurity/trivy-action tag v0.36.0 LICENSE",
       "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
+    },
+    {
+      "identity_prefix": "pkg:npm/detect-libc",
+      "exact_version": "2.1.2",
+      "license": "Apache-2.0",
+      "evidence": "npm registry metadata for detect-libc 2.1.2",
+      "scope": "pnpm 11.28.4 transitive toolchain dependency only"
     }
   ]
 }
