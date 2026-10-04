@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WC-001 — CI/CD Foundation`  
+Active branch: `chore/FIN-P04-WC-001-ci-cd-foundation`  
+Active lock: `LOCK-FIN-P04-WC-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1511,3 +1512,58 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-C — CI/CD Foundation
+
+Task: `FIN-P04-WC-001`  
+Linear: `HOS-174`  
+State: ACTIVE  
+Branch: `chore/FIN-P04-WC-001-ci-cd-foundation`  
+Lock: `LOCK-FIN-P04-WC-001-01`
+
+Primary agent:
+- A9 Operations / CI execution = LEAD
+
+Supporting:
+- A1 Architecture
+- A8 Security / supply-chain
+- A10 Evidence / audit
+- A0 Governance
+
+Prerequisite:
+- `FIN-P04-WB-001 = CANONICAL_COMPLETE`
+
+Enforcement:
+- repository ruleset `Protect main` / ID `24412077` = ACTIVE
+- existing required status context `governance` retained
+- `governance` extended into aggregate P04-C CI gate
+- strict required-status policy remains active
+
+Foundation CI coverage:
+- governance verification
+- branch-name validation
+- exact Node/pnpm/Python/uv runtime verification
+- frozen/locked dependency verification
+- foundation lint/syntax
+- typecheck readiness
+- CI foundation unit self-checks
+- forward Task Contract schema validation
+- workflow action immutable-SHA policy
+- tracked-secret-file guard
+- promotion-disabled guard
+- deterministic foundation manifest build
+- evidence artifact upload
+
+Workflow hardening:
+- mutable third-party action tags forbidden
+- checkout credentials not persisted
+- Governance/Foundation CI token = contents:read
+- no deployment permission / OIDC deployment identity
+- Branch Hygiene retains only its required maintenance permissions
+
+Promotion state: `DISABLED_PENDING_P04_D`  
+Production deployment/environment created by P04-C: NONE  
+Production infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-D: NOT_STARTED

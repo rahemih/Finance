@@ -1,0 +1,155 @@
+{
+  "task_id": "FIN-P04-WC-001",
+  "phase": "P04",
+  "workstream": "WC",
+  "objective": "Build an enforced, least-privilege CI/CD foundation by extending the already-required governance status context to cover foundation lint, typecheck readiness, unit self-tests, contract validation, workflow security, locked dependency verification, deterministic foundation build evidence, artifact upload, and fail-closed promotion policy.",
+  "scope": [
+    "Preserve the existing protected-main ruleset required status context governance and make it the aggregate P04-C CI gate",
+    "Pin all third-party GitHub Actions in repository workflows to immutable commit SHAs",
+    "Harden existing Governance Verify and Branch Hygiene workflows against mutable action tags",
+    "Use exact P04-B Node, Python, pnpm and uv versions in CI",
+    "Verify pnpm and uv lockfiles without silent mutation and suppress package lifecycle scripts where applicable",
+    "Add foundation lint/syntax validation",
+    "Add typecheck-readiness gate that blocks product source until a real typechecker is configured",
+    "Add CI foundation self-unit checks",
+    "Add forward schema validation for changed governed Task Contracts",
+    "Add workflow security policy checks and tracked-secret-file guards",
+    "Add deterministic foundation manifest build verification",
+    "Upload build evidence through an immutable action pin",
+    "Keep environment promotion disabled and fail closed until P04-D/later gates",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "P04-D config/environment contract",
+    "P04-E product test harness",
+    "P04-F SAST/SCA/SBOM/license automation",
+    "Production deployment or environment creation",
+    "Infrastructure provisioning",
+    "Market data, signal, risk, execution or trading logic",
+    "Production secrets, credentials, accounts, funding or orders",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P04-WA-001 CANONICAL_COMPLETE",
+    "FIN-P04-WB-001 CANONICAL_COMPLETE",
+    "G3_SECURITY_BASELINE PASS",
+    "P03-F supply-chain policy canonical",
+    "Protect main ruleset active with required status context governance"
+  ],
+  "read_paths": [
+    ".github/**",
+    "contracts/**",
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "docs/06-engineering/**",
+    "docs/13-tasks/**",
+    "scripts/**",
+    "package.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "pyproject.toml",
+    "uv.lock",
+    ".node-version",
+    ".python-version"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WC-001.json",
+    "docs/06-engineering/CI-CD-FOUNDATION.md",
+    "docs/06-engineering/ci-cd-foundation.json",
+    "scripts/ci/foundation_ci.py",
+    ".github/workflows/governance.yml",
+    ".github/workflows/branch-hygiene.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance baseline verify",
+    "PR branch-name validation",
+    "Exact Node/pnpm/Python/uv runtime verification",
+    "pnpm frozen lockfile install with lifecycle scripts disabled",
+    "uv locked sync",
+    "Foundation lint/syntax validation",
+    "Typecheck-readiness gate",
+    "CI foundation self-unit checks",
+    "Changed Task Contract forward schema validation",
+    "Deterministic foundation manifest build comparison",
+    "Promotion-disabled verification"
+  ],
+  "security_tests": [
+    "All workflow uses references are immutable 40-character commit SHAs",
+    "No pull_request_target trigger",
+    "No permissions write-all",
+    "No secrets inherit",
+    "Checkout does not persist credentials",
+    "No tracked raw secret/private-key filename patterns",
+    "Promotion workflow identity remains absent in P04-C"
+  ],
+  "evidence": [
+    "Protect main ruleset 24412077 required status context governance",
+    "P03-F supply-chain policy",
+    "P04-B exact runtime/dependency baseline",
+    "CI/CD foundation markdown and JSON",
+    "Workflow action immutable SHA inventory",
+    "Successful required governance workflow run",
+    "Uploaded foundation CI manifest artifact",
+    "Implementation and post-merge workflow evidence",
+    "Linear HOS-174 reconciliation"
+  ],
+  "rollback": "Revert P04-C workflow/script/documentation changes to the prior governance workflow. The existing protected-main governance context remains the rollback safety boundary; no deployment environment, production secret, infrastructure or trading state is created by this task.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P04-WA-001 CANONICAL_COMPLETE",
+    "FIN-P04-WB-001 CANONICAL_COMPLETE",
+    "No conflicting active lock",
+    "Task branch starts from current main",
+    "P03-F immutable action and least-privilege rules are available",
+    "Protected-main ruleset is active"
+  ],
+  "definition_of_done": [
+    "Task Contract validates against canonical task-contract schema",
+    "All repository workflow action references are immutable SHA pins",
+    "Required governance status executes all P04-C checks",
+    "Locked dependency verification succeeds",
+    "Foundation CI checks succeed",
+    "Deterministic foundation artifact is produced and uploaded",
+    "Promotion remains disabled",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "Lock released",
+    "Linear HOS-174 Done",
+    "P04-D remains NOT_STARTED"
+  ]
+}
