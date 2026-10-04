@@ -28,6 +28,8 @@ Before artifact build, each clean tree must pass:
 - `uv sync --locked --no-install-project`;
 - `python scripts/dev/doctor.py --ci`.
 
+Corepack owns pnpm version selection in CI. The clean-build step sets `PNPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS=false` so pnpm does not attempt to maintain a separate package-manager environment lock inside an exported source tree. This does not relax application dependency locking: `--frozen-lockfile` remains mandatory.
+
 This proves that declared toolchains and lockfiles are sufficient on a clean source export.
 
 ## 3. Canonical artifact
