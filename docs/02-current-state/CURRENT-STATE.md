@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P03-G implementation merge: `8b5946a1fa7e01a1572597d161671fc734b7340d`  
+Canonical HEAD at P03-H Fresh Live Guard: `7e84668f04608675c005089765287e6f501c2821`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P03-WH-001 — Security Validation + G3 Security Baseline`  
+Active branch: `security/FIN-P03-WH-001-security-validation-g3`  
+Active lock: `LOCK-FIN-P03-WH-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +169,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A through P03-G are CANONICAL_COMPLETE. Next authorized workstream: `P03-H — Security Validation + G3_SECURITY_BASELINE`.
+P03-A through P03-G are CANONICAL_COMPLETE. P03-H independent Security Validation / G3 is ACTIVE under `FIN-P03-WH-001` / `HOS-171`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1301,3 +1302,33 @@ P03-G closure:
 - `FIN-P03-WG-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WG-001-01 = RELEASED`
 - next = `P03-H — Security Validation + G3_SECURITY_BASELINE`
+
+
+## P03-H — Security Validation + G3_SECURITY_BASELINE
+
+Task: `FIN-P03-WH-001`  
+Linear: `HOS-171`  
+State: ACTIVE  
+Branch: `security/FIN-P03-WH-001-security-validation-g3`  
+Lock: `LOCK-FIN-P03-WH-001-01`
+
+Independent authority:
+- A8 Security = G3 verification / veto
+- A10 Evidence = evidence completeness
+- A0 = coordination only
+- A1/A5/A6/A9 = consulted boundaries
+
+Prerequisites:
+- P03-A through P03-G = CANONICAL_COMPLETE
+- all P03-A through P03-G locks = RELEASED
+- G2 = PASS / FROZEN_G2
+
+Validation:
+- G3 criteria: 20 PASS / 0 FAIL
+- unresolved Critical design/governance blockers: 0
+- unresolved High design/governance blockers: 0
+- verdict: PASS_PENDING_CANONICAL_MERGE
+
+Runtime security implementation remains deferred to P04/P22/P23/P24 as explicitly assigned.
+Production identities/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED
