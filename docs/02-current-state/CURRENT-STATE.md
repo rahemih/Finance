@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WB-001 — Language / Runtime / Dependency Baseline`  
-Active branch: `chore/FIN-P04-WB-001-runtime-dependency-baseline`  
-Active lock: `LOCK-FIN-P04-WB-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1438,9 +1437,8 @@ Safety:
 
 Task: `FIN-P04-WB-001`  
 Linear: `HOS-173`  
-State: ACTIVE  
-Branch: `chore/FIN-P04-WB-001-runtime-dependency-baseline`  
-Lock: `LOCK-FIN-P04-WB-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A1 Architecture = LEAD
@@ -1485,3 +1483,31 @@ Production application dependencies installed: NONE
 Production infrastructure/accounts/credentials: NONE  
 CANARY/LIVE/AUTO_TRADING: DISABLED  
 P04-C: NOT_STARTED
+
+
+P04-B implementation evidence:
+- implementation PR: `#96` = MERGED
+- implementation merge SHA: `ee9b7403fd6faec09dc41134b0b0cc7072b1cc47`
+- PR Governance run: `37202504193` = SUCCESS
+- post-merge Governance run: `37202525310` = SUCCESS
+- post-merge Branch Hygiene run: `37202525316` = SUCCESS
+- Node.js = `24.21.0` LTS
+- TypeScript = `7.0.2`
+- pnpm = `11.28.4`
+- Python = `3.14.8`
+- uv = `0.12.23`
+- PydanticAI approved initial pin = `2.54.0` / installation deferred
+- pnpm 12 upgrade = DEFERRED_REVALIDATION
+
+P04-B closure:
+- `FIN-P04-WB-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P04-WB-001-01 = RELEASED`
+- next workstream: `P04-C — CI/CD Foundation`
+- P04-C: NOT_STARTED
+
+Safety:
+- production application dependencies installed = NONE
+- production infrastructure/accounts/credentials = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
