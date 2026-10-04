@@ -28,7 +28,9 @@ Before artifact build, each clean tree must pass:
 - `uv sync --locked --no-install-project`;
 - `python scripts/dev/doctor.py --ci`.
 
-Corepack owns pnpm version selection in CI. The clean-build step sets `PNPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS=false` so pnpm does not attempt to maintain a separate package-manager environment lock inside an exported source tree. This does not relax application dependency locking: `--frozen-lockfile` remains mandatory.
+Corepack owns pnpm version selection in CI. In a source-only export, pnpm 11 otherwise tries to synchronize its own `packageManagerDependencies` bookkeeping even though no package-manager environment lock is part of the governed project dependency graph. The clean-build step therefore sets `PNPM_CONFIG_PM_ON_FAIL=ignore` and `PNPM_CONFIG_MANAGE_PACKAGE_MANAGER_VERSIONS=false` only for that exported tree.
+
+This does not relax application dependency locking: `--frozen-lockfile` remains mandatory, the workflow verifies pnpm is exactly `11.28.4` before the step, and `doctor.py --ci` verifies the same exact version again inside each clean export.
 
 This proves that declared toolchains and lockfiles are sufficient on a clean source export.
 
