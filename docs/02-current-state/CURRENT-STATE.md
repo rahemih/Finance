@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD at P03-A Fresh Live Guard: `4ca8fd2f511f450571bd244647bd49bcbb316bfc`  
+Canonical HEAD after P03-A implementation merge: `141821a27e74e9967883bdb6f0c936a2b3b39b6b`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P03-WA-001 — Threat Model`  
-Active branch: `security/FIN-P03-WA-001-threat-model`  
-Active lock: `LOCK-FIN-P03-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -169,7 +168,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A — Threat Model is ACTIVE under `FIN-P03-WA-001` / `HOS-163`. The task is architecture/security analysis only; it does not provision security infrastructure, credentials, accounts or trading authority.
+P03-A — Threat Model is CANONICAL_COMPLETE. Next authorized workstream: `P03-B — RBAC / MFA / Session / Device Policy`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -941,9 +940,8 @@ Safety:
 
 Task: `FIN-P03-WA-001`  
 Linear: `HOS-163`  
-State: ACTIVE  
-Branch: `security/FIN-P03-WA-001-threat-model`  
-Lock: `LOCK-FIN-P03-WA-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A8 Security = LEAD
@@ -988,5 +986,17 @@ Important:
 - Live Trading = DISABLED;
 - Auto Trading = DISABLED.
 
-Next P03-A step:
-Governance validation -> implementation PR -> merge -> post-merge verify -> closure reconciliation -> lock release.
+Implementation evidence:
+- implementation PR: `#77` = MERGED
+- implementation merge SHA: `141821a27e74e9967883bdb6f0c936a2b3b39b6b`
+- PR Governance run: `37196101262` = SUCCESS
+- post-merge Governance run: `37196131383` = SUCCESS
+- post-merge Branch Hygiene run: `37196131367` = SUCCESS
+- threat count: 35 unique
+- HIGH/CRITICAL threats: 33; all mapped to future control owners
+- forbidden-path changes: 0
+
+Closure:
+- `FIN-P03-WA-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P03-WA-001-01 = RELEASED`
+- next = `P03-B — RBAC / MFA / Session / Device Policy`
