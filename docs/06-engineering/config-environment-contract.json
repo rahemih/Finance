@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P04-WD-001",
+  "state": "P04-D_IMPLEMENTATION",
+  "environment_contract": {
+    "environments": [
+      "DEV",
+      "TEST",
+      "RESEARCH",
+      "DEMO",
+      "SHADOW",
+      "CANARY",
+      "LIVE"
+    ],
+    "provisioning_state": "CONTRACT_ONLY",
+    "inheritance": "BASE_PLUS_ENVIRONMENT_OVERLAY",
+    "runtime_override": "NON_SECRET_ALLOWLIST_ONLY",
+    "secret_resolution": "OPAQUE_HANDLE_OUTSIDE_CANONICAL_CONFIG",
+    "invalid_behavior": "FAIL_CLOSED"
+  },
+  "safety": {
+    "canary": "DISABLED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "external_order_submission": false,
+    "credentials_provisioned": false,
+    "location_authorization_dependency": false
+  },
+  "next": "P04-E — Test Harness (NOT_STARTED)"
+}
