@@ -289,12 +289,14 @@ def curated_license_assertion(license_policy: dict[str, Any], identity: str) -> 
     for item in assertions:
         if not isinstance(item, dict):
             fail("LICENSE_ASSERTION_OBJECT_REQUIRED")
-        required = {"identity", "license", "evidence", "scope"}
+        required = {"identity_prefix", "exact_version", "license", "evidence", "scope"}
         if set(item) != required:
-            fail(f"LICENSE_ASSERTION_FIELDS_INVALID identity={item.get('identity')}")
-        if item["identity"] == identity:
-            if not all(isinstance(item[key], str) and item[key].strip() for key in required):
-                fail(f"LICENSE_ASSERTION_VALUE_INVALID identity={identity}")
+            fail(f"LICENSE_ASSERTION_FIELDS_INVALID prefix={item.get('identity_prefix')}")
+        if not all(isinstance(item[key], str) and item[key].strip() for key in required):
+            fail(f"LICENSE_ASSERTION_VALUE_INVALID prefix={item.get('identity_prefix')}")
+        prefix = item["identity_prefix"]
+        version = item["exact_version"]
+        if identity.startswith(prefix) and identity.endswith(f"@{version}"):
             return item["license"]
     return None
 
