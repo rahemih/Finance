@@ -1,0 +1,150 @@
+{
+  "task_id": "FIN-P02-WE-001",
+  "phase": "P02",
+  "workstream": "WE",
+  "objective": "Define the canonical independent Risk Engine, deterministic Pre-Trade Firewall, provider-neutral OMS/execution, reconciliation, uncertainty handling and kill-switch architecture for NEXUS QUANT without setting production risk limits or connecting real accounts.",
+  "scope": [
+    "Define SignalCandidate to Risk to Firewall to OMS to execution-adapter path",
+    "Define independent Risk veto/reduction authority",
+    "Define portfolio/exposure/leverage/drawdown/liquidity/counterparty input categories",
+    "Define risk-policy versioning/freshness requirements",
+    "Define deterministic Pre-Trade Firewall checks and fail-closed behavior",
+    "Define provider-neutral ApprovedTradeIntent contract",
+    "Define stable intent IDs, idempotency and duplicate prevention",
+    "Define provider-neutral OMS order lifecycle/state machine",
+    "Define timeout/crash/uncertain acknowledgement handling",
+    "Define order/fill/position/balance reconciliation",
+    "Define startup/reconnect/periodic reconciliation",
+    "Define no-blind-cross-broker failover rule",
+    "Define hierarchical kill switches and safe-mode behavior",
+    "Define environment/account/credential binding",
+    "Define audit/evidence requirements",
+    "Define least-privilege/withdrawal-disabled execution credential principle"
+  ],
+  "out_of_scope": [
+    "Set final numerical risk limits or sizing policy",
+    "Implement P15 portfolio risk models",
+    "Implement P16 firewall rules",
+    "Implement P20 runtime execution adapters",
+    "Implement P21 position-management strategy",
+    "Open broker/exchange accounts or create credentials",
+    "Fund accounts or place orders",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001",
+    "FIN-P02-WC-001",
+    "FIN-P02-WD-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WE-001.json",
+    "docs/04-architecture/RISK-FIREWALL-EXECUTION-ARCHITECTURE.md",
+    "docs/04-architecture/risk-firewall-execution-architecture.json",
+    "docs/04-architecture/ADR/ADR-0010-independent-risk-firewall-reconciled-oms.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "Signal/strategy cannot call execution directly",
+    "Risk can reject/reduce/halt but cannot raise its own ceilings",
+    "Firewall is deterministic and final before OMS",
+    "Unknown critical state fails closed",
+    "ApprovedTradeIntent is provider-neutral and has stable idempotency identity",
+    "OMS explicitly models UNKNOWN/RECONCILING states",
+    "Uncertain submissions are never blindly replayed",
+    "Broker/exchange truth is reconciled before rerouting/retry where execution may have occurred",
+    "Cross-broker failover cannot duplicate uncertain orders",
+    "Kill switches have explicit scope/authority/audit",
+    "Execution credentials require least privilege and no withdrawal authority where supported"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "Credential handles, not raw secrets, flow to execution",
+    "Environment/account binding is explicit",
+    "Shadow environment cannot produce live broker commands",
+    "Security/Operations may request halt but cannot increase risk limits",
+    "Execution cannot override Risk/Firewall",
+    "All high-risk transitions are auditable"
+  ],
+  "evidence": [
+    "P02-A ADR-0003 independent Risk/Firewall authority",
+    "P02-B D10/D11/D12 domain boundaries",
+    "P02-C event/replay/audit architecture",
+    "P02-D SignalCandidate contract",
+    "Machine-readable Risk/Firewall/Execution architecture",
+    "ADR-0010",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-158 reconciliation"
+  ],
+  "rollback": "Revert P02-E architecture artifacts and state/catalog changes. No accounts, credentials, runtime adapters or orders are created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WA-001 = CANONICAL_COMPLETE",
+    "FIN-P02-WB-001 = CANONICAL_COMPLETE",
+    "FIN-P02-WC-001 = CANONICAL_COMPLETE",
+    "FIN-P02-WD-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_E",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Risk authority and contracts are canonical",
+    "Firewall contract/check categories are canonical",
+    "ApprovedTradeIntent/idempotency rules are canonical",
+    "OMS lifecycle/uncertainty/reconciliation rules are canonical",
+    "Kill-switch hierarchy is canonical",
+    "ADR-0010 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WE-001 = CANONICAL_COMPLETE"
+  ]
+}
