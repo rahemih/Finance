@@ -59,6 +59,7 @@ FIN-P01-WU-001 = CANONICAL_COMPLETE
 FIN-P01-WG-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-001-R01 = CANONICAL_COMPLETE  
 FIN-P01-WG-002 = CANONICAL_COMPLETE  
+FIN-P01-WS-001 = CANONICAL_COMPLETE  
 FIN-P01-WG-004 = CANONICAL_COMPLETE  
 FIN-P01-WM-001 = CANONICAL_COMPLETE  
 FIN-P01-WT-001 = CANONICAL_COMPLETE
@@ -1301,3 +1302,29 @@ P03-G closure:
 - `FIN-P03-WG-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P03-WG-001-01 = RELEASED`
 - next = `P03-H — Security Validation + G3_SECURITY_BASELINE`
+
+
+## P01-WS — Security Tooling Registry Closure
+
+Task: `FIN-P01-WS-001`  
+Linear: `HOS-152`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+Purpose:
+- governed security-tooling registry and defense-in-depth companion baseline;
+- candidate/tool ownership mapping for P03/P04/P22/P23/P24;
+- no production scanner/runtime installation.
+
+Implementation evidence:
+- implementation PR: `#54` = MERGED
+- merge SHA: `ba9b53ea86313100ac51429d935b24ba07208ee7`
+- PR Governance run: `37185779721` = SUCCESS
+- post-merge Governance run: `37185812546` = SUCCESS
+- post-merge Branch Hygiene run: `37185812547` = SUCCESS
+
+Closure note:
+- original reconciliation was deferred because P01-G owned shared Current State / Task Catalog paths;
+- that lock is no longer active;
+- this closure reconciles the previously deferred operational state only;
+- no runtime security tooling, credentials or trading authority is enabled.
