@@ -6,7 +6,7 @@ Last reconciled: 2026-10-04
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD at P03-C Fresh Live Guard: `ee25b1741ca13b519974277141a94616dfd85fc3`  
+Canonical HEAD after P03-C implementation merge: `d7bd6c6e584eb829903469baddb8ec448adbe1b7`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -150,9 +150,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P03-WC-001 — Secrets / KMS / Vault & Environment Separation`  
-Active branch: `security/FIN-P03-WC-001-secrets-kms-env`  
-Active lock: `LOCK-FIN-P03-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -169,7 +168,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P03-A and P03-B are CANONICAL_COMPLETE. P03-C — Secrets / KMS / Vault & Environment Separation is ACTIVE under `FIN-P03-WC-001` / `HOS-165`.
+P03-A, P03-B and P03-C are CANONICAL_COMPLETE. Next authorized workstream: `P03-D — Private Admin / Network Exposure`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -1061,9 +1060,8 @@ P03-B closure:
 
 Task: `FIN-P03-WC-001`  
 Linear: `HOS-165`  
-State: ACTIVE  
-Branch: `security/FIN-P03-WC-001-secrets-kms-env`  
-Lock: `LOCK-FIN-P03-WC-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Primary agent:
 - A8 Security = LEAD
@@ -1085,3 +1083,20 @@ Safety:
 - vault/KMS/HSM provisioning = NOT_PERFORMED
 - CANARY/LIVE = DISABLED
 - Auto Trading = DISABLED
+
+
+P03-C implementation evidence:
+- implementation PR: `#81` = MERGED
+- implementation merge SHA: `d7bd6c6e584eb829903469baddb8ec448adbe1b7`
+- PR Governance run: `37197112568` = SUCCESS
+- post-merge Governance run: `37197135803` = SUCCESS
+- post-merge Branch Hygiene run: `37197135776` = SUCCESS
+- raw production secrets created: NONE
+- cross-environment secret reuse: FORBIDDEN
+- execution credential withdrawal/transfer permission: FORBIDDEN_WHERE_SEPARABLE
+- LIVE/AUTO_TRADING: DISABLED
+
+P03-C closure:
+- `FIN-P03-WC-001 = CANONICAL_COMPLETE`
+- `LOCK-FIN-P03-WC-001-01 = RELEASED`
+- next = `P03-D — Private Admin / Network Exposure`
