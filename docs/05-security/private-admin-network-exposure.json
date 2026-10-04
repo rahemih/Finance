@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P03-D_IMPLEMENTATION",
+  "state": "P03-D_CANONICAL_COMPLETE",
   "task_id": "FIN-P03-WD-001",
   "linear_issue": "HOS-166",
   "date": "2026-10-04",
@@ -245,5 +245,13 @@
     "P22": "runtime diagnostics, incident response, network observability and recovery",
     "P23": "public application ingress, frontend/API security controls",
     "P24": "production exposure review and CANARY/LIVE verification"
+  },
+  "closure_evidence": {
+    "implementation_pr": 83,
+    "implementation_merge_sha": "b777df14f2c5026b7ea7d17d21e5c9c4db403244",
+    "pr_governance_run": 37197652189,
+    "postmerge_governance_run": 37197675576,
+    "postmerge_branch_hygiene_run": 37197675589,
+    "lock": "RELEASED"
   }
 }
