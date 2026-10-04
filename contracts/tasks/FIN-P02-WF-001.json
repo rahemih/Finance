@@ -1,0 +1,153 @@
+{
+  "task_id": "FIN-P02-WF-001",
+  "phase": "P02",
+  "workstream": "WF",
+  "objective": "Freeze the runtime agent architecture and authority model for A0-A10 and bounded specialists using the canonical P01 readiness package, selecting one minimal primary runtime approach while preserving deterministic governance/risk/security authority outside framework mechanics.",
+  "scope": [
+    "Revalidate current agent runtime/orchestration candidates",
+    "Select one minimal primary runtime approach and document rejected alternatives",
+    "Preserve canonical A0-A10 authority independent of framework",
+    "Define agent identity, authorization and tool-permission enforcement",
+    "Define typed Agent Message Envelope runtime usage",
+    "Define handoff and specialist spawn/termination rules",
+    "Define state/checkpoint/resume freshness behavior",
+    "Define A5/A8 deterministic non-bypassable veto integration",
+    "Define prompt-injection and untrusted-content boundary",
+    "Define observability/tracing/cost/token/concurrency budgets",
+    "Define agent health/degraded/quarantine/paused states",
+    "Define MCP tool/context boundary",
+    "Define A2A adoption stance and non-adoption by default",
+    "Define Human Gate integration",
+    "Define recovery/replay behavior",
+    "Define dependency-installation handoff to P04"
+  ],
+  "out_of_scope": [
+    "Install or pin agent framework/runtime dependencies",
+    "Implement production agent runtime code",
+    "Grant new tool/plugin permissions",
+    "Create broker/provider credentials",
+    "Place orders or enable execution",
+    "Enable Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P01-WG-001",
+    "FIN-P01-WG-002",
+    "FIN-P02-WA-001",
+    "FIN-P02-WB-001",
+    "FIN-P02-WC-001",
+    "FIN-P02-WD-001",
+    "FIN-P02-WE-001"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "docs/09-agents/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P02-WF-001.json",
+    "docs/04-architecture/AGENT-RUNTIME-AUTHORITY-ARCHITECTURE.md",
+    "docs/04-architecture/agent-runtime-authority-architecture.json",
+    "docs/04-architecture/ADR/ADR-0011-governed-agent-runtime.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "src/**",
+    "frontend/**",
+    "backend/**",
+    "quant/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear",
+    "Exa",
+    "Context7"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED",
+    "EXTERNAL_RESEARCH_READ",
+    "CI_READ",
+    "CI_EXECUTE"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify",
+    "Framework mechanics cannot redefine A0-A10 authority",
+    "A5/A8 vetoes remain deterministic and non-bypassable",
+    "Tool availability is separate from permission",
+    "Specialist spawning is bounded and non-recursive by default",
+    "Resume revalidates freshness-sensitive facts",
+    "Untrusted external content cannot alter tool/system/agent policy",
+    "Agent memory cannot become canonical market/account/order truth",
+    "Agent health includes degraded/quarantine/paused behavior",
+    "Human Gate events are explicit and auditable",
+    "Framework sprawl is avoided",
+    "Dependency installation is deferred to P04"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No ambient credential inheritance",
+    "Secrets are not injected into prompts by default",
+    "Tool calls are policy/role/task/resource checked",
+    "Prompt injection routes to A8/quarantine",
+    "Risk/Security veto cannot be overridden by agent consensus",
+    "No Live/Auto execution authority is granted"
+  ],
+  "evidence": [
+    "P01 Agent Governance Integration Baseline",
+    "P01 Agent Layer Build Readiness",
+    "A0-A10 contracts",
+    "Interaction/Handoff Matrix",
+    "Observability/Security/Memory requirements",
+    "P02-F Implementation Backlog",
+    "Fresh official/framework documentation research",
+    "Machine-readable runtime authority architecture",
+    "ADR-0011",
+    "GitHub PR and Governance Verify",
+    "Post-merge Governance Verify",
+    "Linear HOS-159 reconciliation"
+  ],
+  "rollback": "Revert P02-F architecture artifacts and state/catalog changes. No agent runtime dependencies or production permissions are installed by this task.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P02-WE-001 = CANONICAL_COMPLETE",
+    "P02 = READY_FOR_P02_F",
+    "P01 agent readiness package is canonical",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Primary runtime approach is selected with exit strategy",
+    "Canonical authority model remains framework-independent",
+    "Tool/authz/handoff/spawn/state/health/recovery design is canonical",
+    "MCP/A2A stance is canonical",
+    "A5/A8 veto integration is canonical",
+    "ADR-0011 is accepted",
+    "Task Catalog and Current State are reconciled",
+    "Governance Verify passes",
+    "PR merges",
+    "Post-merge Governance Verify passes",
+    "Lock released",
+    "FIN-P02-WF-001 = CANONICAL_COMPLETE"
+  ]
+}

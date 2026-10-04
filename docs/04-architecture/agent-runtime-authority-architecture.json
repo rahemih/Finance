@@ -1,0 +1,574 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "FIN-P02-WF-001",
+  "assessed_at": "2026-10-04",
+  "state": "AGENT_RUNTIME_ARCHITECTURE_BASELINE",
+  "primary_runtime_decision": {
+    "approach": "PROJECT_GOVERNANCE_KERNEL_PLUS_PYDANTIC_AI_RUNTIME_ADAPTER",
+    "framework": "PydanticAI",
+    "exact_version": "DEFERRED_TO_P04",
+    "dependency_installation": "NOT_PERFORMED",
+    "rationale": [
+      "typed dependencies and structured outputs",
+      "model/provider abstraction supports provider portability",
+      "dynamic/filterable toolsets and approval-required tools",
+      "MCP support",
+      "durable-execution integration options without forcing one backend now",
+      "fits Python-oriented typed contracts",
+      "allows canonical authority to remain in project-owned deterministic governance code"
+    ],
+    "non_authority_rule": "PydanticAI provides model/tool runtime mechanics only. It does not define A0-A10 authority, Risk/Security veto, Task Contracts or Human Gates."
+  },
+  "candidate_dispositions": [
+    {
+      "candidate": "PydanticAI",
+      "disposition": "SELECT_PRIMARY_RUNTIME_ADAPTER",
+      "strengths": [
+        "typed outputs",
+        "dependency injection",
+        "provider abstraction",
+        "toolset filtering",
+        "tool approval/deferred tools",
+        "MCP",
+        "durable execution options",
+        "observability ecosystem"
+      ],
+      "caveats": [
+        "exact version/license/security revalidated in P04",
+        "durable backend not selected here",
+        "project-owned governance still required"
+      ]
+    },
+    {
+      "candidate": "OpenAI Agents SDK",
+      "disposition": "RETAIN_AS_ALTERNATIVE_OR_OPENAI_SPECIFIC_ADAPTER",
+      "strengths": [
+        "lightweight handoffs",
+        "guardrails",
+        "sessions",
+        "tracing",
+        "MCP approvals",
+        "typed handoff inputs"
+      ],
+      "caveats": [
+        "more OpenAI-centered runtime surface",
+        "project prioritizes model/provider portability"
+      ]
+    },
+    {
+      "candidate": "LangGraph",
+      "disposition": "DEFER_OPTIONAL_COMPLEX_WORKFLOW_ENGINE",
+      "strengths": [
+        "durable checkpoints",
+        "graph state",
+        "interrupts",
+        "resume",
+        "subgraphs",
+        "human-in-loop"
+      ],
+      "caveats": [
+        "greater orchestration complexity than current scope requires",
+        "do not introduce unless measured workflow complexity justifies it"
+      ]
+    },
+    {
+      "candidate": "Microsoft Agent Framework",
+      "disposition": "DEFER_ENTERPRISE_ALTERNATIVE",
+      "strengths": [
+        "workflow/orchestration patterns",
+        "checkpointing",
+        "durable execution",
+        "human-in-loop",
+        "self-hosting options"
+      ],
+      "caveats": [
+        "larger framework/hosting surface than current private-system needs",
+        "Azure/Durable Task choices not justified at P02 baseline"
+      ]
+    },
+    {
+      "candidate": "Fully custom agent framework",
+      "disposition": "REJECT_AS_PRIMARY",
+      "strengths": [
+        "maximum control"
+      ],
+      "caveats": [
+        "unnecessary implementation burden for tools, models, approvals, typed outputs, tracing and durable mechanics"
+      ],
+      "replacement": "Keep only a thin project-owned Governance Kernel around PydanticAI."
+    }
+  ],
+  "runtime_components": [
+    {
+      "id": "AG_GOVERNANCE_KERNEL",
+      "owner": "A0",
+      "implementation_owner": "project-owned deterministic code",
+      "responsibilities": [
+        "load active Task Contract and lock/gate state",
+        "resolve canonical agent/specialist contract",
+        "compute effective capabilities",
+        "authorize tool/resource actions",
+        "enforce budgets/timeouts/circuit breakers",
+        "enforce A5/A8 veto state",
+        "manage Human Gate requests",
+        "coordinate checkpoint/resume validation",
+        "emit audit/trace metadata"
+      ],
+      "authority": "CAN_DENY_OR_ROUTE; CANNOT_BYPASS_SPECIALIST_VETOES"
+    },
+    {
+      "id": "AG_RUNTIME_ADAPTER",
+      "owner": "A1",
+      "implementation": "PydanticAI-compatible adapter",
+      "responsibilities": [
+        "model invocation",
+        "typed structured output validation",
+        "dependency injection",
+        "toolset wiring",
+        "deferred/approval tool mechanics",
+        "model fallback mechanics where policy allows"
+      ],
+      "authority": "MECHANICS_ONLY"
+    },
+    {
+      "id": "AG_TOOL_GATEWAY",
+      "owner": "A8",
+      "co_owner": "A0",
+      "responsibilities": [
+        "allowlist tools/MCP servers",
+        "filter tool definitions per run",
+        "validate inputs/outputs",
+        "enforce tool approvals",
+        "apply timeout/rate/budget limits",
+        "redact secrets",
+        "audit tool usage"
+      ]
+    },
+    {
+      "id": "AG_VETO_GATE",
+      "owners": [
+        "A5",
+        "A8"
+      ],
+      "responsibilities": [
+        "evaluate independent Risk/Security veto state",
+        "stop prohibited high-stakes action paths",
+        "produce deterministic veto evidence"
+      ],
+      "rule": "Agent consensus, model output or A0 routing cannot override a veto."
+    },
+    {
+      "id": "AG_STATE_CHECKPOINT",
+      "owner": "A9",
+      "co_owner": "A0",
+      "responsibilities": [
+        "workflow checkpoint abstraction",
+        "resume state",
+        "pending approval/tool references",
+        "retry/budget counters",
+        "freshness revalidation coordination"
+      ],
+      "rule": "Checkpoint state is workflow state, not canonical market/account/order truth."
+    },
+    {
+      "id": "AG_TRACE_EVIDENCE",
+      "owner": "A10",
+      "co_owner": "A9",
+      "responsibilities": [
+        "OpenTelemetry-compatible trace context",
+        "evidence manifests",
+        "run/tool/handoff/veto/human-gate trace",
+        "cost/token/latency/retry metrics",
+        "closure evidence"
+      ],
+      "rule": "Framework-specific tracing may enrich but cannot be the sole audit source."
+    },
+    {
+      "id": "AG_MODEL_ROUTER",
+      "owner": "A1",
+      "co_owner": "A9",
+      "responsibilities": [
+        "capability/cost/latency-based model selection",
+        "provider fallback when allowed",
+        "model identity/version trace"
+      ],
+      "rule": "Model selection never changes agent authority or evidence independence by itself."
+    },
+    {
+      "id": "AG_SPECIALIST_FACTORY",
+      "owner": "A0",
+      "responsibilities": [
+        "instantiate only catalog-listed specialists",
+        "derive child capability subset",
+        "apply TTL/budget/depth limits",
+        "terminate specialist on completion/veto/cancel/timeout"
+      ]
+    }
+  ],
+  "authorization_pipeline": {
+    "before_tool_or_write": [
+      "active governed Task Contract",
+      "task state READY/ACTIVE and valid lock where required",
+      "canonical agent role permits capability",
+      "specialist contract permits capability if specialist",
+      "requested tool/plugin is allowed",
+      "resource/path/domain is in read/write scope",
+      "environment/gate permits action",
+      "required Human Gate approval exists and matches exact action",
+      "A8 Security policy permits action",
+      "A5 Risk policy permits financial/action path where applicable",
+      "budget/time/rate/circuit state permits action"
+    ],
+    "after_tool": [
+      "validate output schema",
+      "classify source/provenance",
+      "scan for prompt-injection/tool-instruction content when external/untrusted",
+      "redact sensitive output where required",
+      "write audit/trace event",
+      "update budget/retry/health state"
+    ],
+    "rule": "Tool availability is never treated as permission."
+  },
+  "agent_roles": {
+    "A0": "Governance / Orchestrator; routes and enforces task bounds; cannot bypass gates/vetoes.",
+    "A1": "Architecture; interfaces/runtime design; no trading authority.",
+    "A2": "Data; canonical data/provenance operations; no execution.",
+    "A3": "Market Intelligence; evidence synthesis; no execution.",
+    "A4": "Quant; models/backtests/calibration; no self-promotion to Live.",
+    "A5": "Risk; independent binding veto/reduction; no broker submission.",
+    "A6": "Execution; consumes only deterministic approved execution contracts; cannot override Risk/Firewall.",
+    "A7": "Learning; experiment/drift/retraining proposals; no auto-promotion.",
+    "A8": "Security; access/tool/security veto and quarantine authority; no trade decision.",
+    "A9": "Operations; health/degraded/recovery control; cannot change risk ceilings.",
+    "A10": "Evidence/Audit; trace/closure validation; no business/action authority."
+  },
+  "role_health_states": [
+    "READY",
+    "DEGRADED",
+    "PAUSED",
+    "QUARANTINED",
+    "RETIRED"
+  ],
+  "run_states": [
+    "CREATED",
+    "RUNNING",
+    "WAITING_TOOL",
+    "WAITING_HUMAN",
+    "WAITING_DEPENDENCY",
+    "DEGRADED",
+    "VETOED",
+    "BLOCKED",
+    "COMPLETED",
+    "FAILED",
+    "CANCELED"
+  ],
+  "specialist_lifecycle": {
+    "spawn_authority": "A0 or explicitly authorized core parent",
+    "catalog_requirement": true,
+    "default_max_spawn_depth": 1,
+    "specialist_can_spawn_children_by_default": false,
+    "child_authority_rule": "intersection(active_task, parent_authority, specialist_contract, tool_access_policy)",
+    "persistence": "EPHEMERAL_BY_DEFAULT",
+    "required_limits": [
+      "TTL",
+      "max turns",
+      "max tool calls",
+      "token budget",
+      "cost budget",
+      "wall-clock timeout",
+      "concurrency"
+    ],
+    "termination_conditions": [
+      "deliverable returned",
+      "scope expired",
+      "budget/timeout",
+      "parent cancel",
+      "A5/A8 veto",
+      "required evidence unavailable",
+      "security quarantine"
+    ]
+  },
+  "message_envelope": {
+    "canonical_schema": "docs/09-agents/schemas/AGENT-MESSAGE-ENVELOPE.schema.json",
+    "required_usage": "All production-relevant handoffs use typed/schema-validated envelopes or typed domain-specific supersets.",
+    "trace_propagation": [
+      "run_id",
+      "task_id",
+      "agent_id",
+      "specialist_id",
+      "tool_trace_id",
+      "source refs",
+      "freshness",
+      "conflicts",
+      "risk flags",
+      "limitations"
+    ],
+    "rule": "Natural-language handoff text alone is not sufficient for material actions."
+  },
+  "memory_and_state": {
+    "layers": [
+      {
+        "name": "Ephemeral Working Memory",
+        "purpose": "Current reasoning/conversation context",
+        "canonical_truth": false
+      },
+      {
+        "name": "Workflow Checkpoint State",
+        "purpose": "Correctly resume active workflow",
+        "canonical_truth": false
+      },
+      {
+        "name": "Governed Evidence History",
+        "purpose": "Auditable evidence/outputs/references",
+        "canonical_truth": "EVIDENCE_ONLY"
+      },
+      {
+        "name": "User Preference Context",
+        "purpose": "UX/workflow preferences",
+        "canonical_truth": false
+      }
+    ],
+    "prohibited_memory_truth": [
+      "market price",
+      "account balance",
+      "open position",
+      "order state",
+      "fill state",
+      "risk ceilings",
+      "credential permissions"
+    ],
+    "resume_revalidation": [
+      "active task/lock/gates",
+      "tool/plugin permissions",
+      "A5/A8 veto state",
+      "freshness-sensitive market/data facts",
+      "account/order/risk truth if relevant",
+      "model/tool availability",
+      "pending Human Gate validity/expiry"
+    ]
+  },
+  "checkpoint_policy": {
+    "contents": [
+      "run/task/agent identity",
+      "validated message-envelope references",
+      "workflow step/state",
+      "pending tool/approval identifiers",
+      "evidence refs",
+      "budget/retry/circuit counters",
+      "model/tool trace references"
+    ],
+    "excluded": [
+      "raw secrets",
+      "assumed canonical market/account truth",
+      "unbounded conversation history when unnecessary",
+      "provider credentials"
+    ],
+    "integrity": "schema-versioned + integrity metadata; corrupted/untrusted checkpoint fails closed",
+    "backend_selection": "DEFERRED_TO_P04"
+  },
+  "veto_integration": {
+    "A5_RISK": {
+      "applies_to": [
+        "risk-sensitive proposals",
+        "trading/action path"
+      ],
+      "effect": "VETOED or NO_TRADE; binding",
+      "bypass": "FORBIDDEN"
+    },
+    "A8_SECURITY": {
+      "applies_to": [
+        "tool/resource/secret/security-sensitive actions",
+        "prompt-injection/quarantine"
+      ],
+      "effect": "VETOED / QUARANTINED / DENIED; binding",
+      "bypass": "FORBIDDEN"
+    },
+    "consensus_rule": "Majority/agent consensus cannot override deterministic veto."
+  },
+  "human_gate": {
+    "request_fields": [
+      "approval_request_id",
+      "task_id",
+      "agent/run",
+      "exact action/tool",
+      "normalized arguments digest",
+      "resource/environment scope",
+      "supporting evidence refs",
+      "risk/security flags",
+      "rollback/stop controls",
+      "expires_at"
+    ],
+    "rules": [
+      "approval is bound to the exact action digest/scope",
+      "argument/scope changes require new approval",
+      "expiry/denial fails closed",
+      "approval does not grant unrelated future authority",
+      "every approval/denial is audited"
+    ]
+  },
+  "tool_and_mcp_boundary": {
+    "MCP": "ADOPT_AS_TOOL_CONTEXT_PROTOCOL_BEHIND_AG_TOOL_GATEWAY",
+    "rules": [
+      "allowlisted servers only",
+      "per-run filtered tools",
+      "tool annotations/descriptions treated as untrusted unless server is trusted",
+      "validate all inputs and outputs",
+      "remote authorization uses least-privilege scopes and resource/audience validation",
+      "sensitive operations require project policy/Human Gate approval where configured",
+      "timeouts/rate limits/audit required",
+      "tool output is untrusted data until validated"
+    ],
+    "source_basis": "MCP current specification explicitly recommends user control, access controls, input/output validation, timeouts and tool-use audit."
+  },
+  "a2a_boundary": {
+    "disposition": "DEFER",
+    "reason": "A0-A10 are internal governed roles inside one system and do not currently require network agent-to-agent discovery/interoperability.",
+    "adoption_trigger": [
+      "external independently deployed agent service",
+      "cross-organization agent integration",
+      "clear need for Agent Card/task protocol across network trust boundaries"
+    ],
+    "if_adopted_later": [
+      "authentication/authorization",
+      "capability advertisement",
+      "trace propagation",
+      "schema validation",
+      "task lifecycle",
+      "network rate limits",
+      "security review"
+    ]
+  },
+  "untrusted_content_security": {
+    "rule": "External text/data never becomes agent policy or tool authority.",
+    "sources": [
+      "web",
+      "news",
+      "social",
+      "email",
+      "PDF",
+      "filing",
+      "repository content outside trusted policy paths",
+      "third-party prompts",
+      "MCP tool descriptions/results"
+    ],
+    "controls": [
+      "separate system/task policy from retrieved content",
+      "input/source provenance",
+      "prompt-injection detection/heuristics",
+      "tool call policy enforcement independent of model text",
+      "A8 quarantine/escalation for suspicious content"
+    ]
+  },
+  "health_quarantine": {
+    "quarantine_triggers": [
+      "prompt-injection indicators targeting policy/tools",
+      "repeated forbidden tool attempts",
+      "schema-contract violations",
+      "permission/resource mismatch",
+      "corrupted/untrusted checkpoint",
+      "provenance loss on decision-relevant output",
+      "unexpected secret exposure",
+      "repeated model/tool failure beyond circuit threshold"
+    ],
+    "quarantine_behavior": [
+      "disable writes and sensitive tools",
+      "preserve evidence/trace",
+      "route to A8/A9/A10",
+      "require explicit health/security clearance before READY"
+    ],
+    "degraded_behavior": "Use reduced capability/read-only/information-only path or fail closed according to contract."
+  },
+  "observability_budgets": {
+    "tracing": "OpenTelemetry-compatible canonical tracing; framework tracing optional enrichment.",
+    "required_dimensions": [
+      "task/run",
+      "parent/child agent",
+      "model/provider",
+      "prompt/template version",
+      "tool calls",
+      "handoffs",
+      "guardrails",
+      "approvals",
+      "vetoes",
+      "latency",
+      "token/cost",
+      "retries",
+      "errors",
+      "terminal state"
+    ],
+    "budgets_per_contract": [
+      "max turns",
+      "max tool calls",
+      "max wall-clock",
+      "token budget",
+      "cost budget",
+      "concurrency",
+      "retry limit",
+      "circuit threshold"
+    ],
+    "over_budget_behavior": "DEGRADED/BLOCKED; never infinite loop."
+  },
+  "model_routing": {
+    "criteria": [
+      "task capability",
+      "quality requirement",
+      "latency",
+      "cost",
+      "availability",
+      "provider policy"
+    ],
+    "fallback": "Allowed only under policy and recorded with model identity/version.",
+    "authority_rule": "Fallback/model change does not expand tools, resources or role authority.",
+    "evidence_independence_rule": "Different personas or models are not automatically independent evidence; independence must be empirically/architecturally justified."
+  },
+  "runtime_replay_recovery": {
+    "replayable_inputs": [
+      "task/agent contracts and versions",
+      "message envelopes",
+      "evidence/source refs",
+      "tool call/result refs",
+      "model identity/version",
+      "policy/gate/veto events",
+      "Human Gate decisions",
+      "checkpoint version"
+    ],
+    "recovery_rule": "On resume, revalidate all freshness/permission/security/risk-sensitive state before continuing.",
+    "side_effect_rule": "Side-effecting tools require idempotency-aware retry semantics; uncertain side effects are reconciled before retry."
+  },
+  "p04_handoff": [
+    "pin exact PydanticAI version and license",
+    "define package lock and Python runtime version",
+    "implement Governance Kernel interfaces",
+    "select checkpoint persistence backend",
+    "implement Tool Gateway/MCP client policy",
+    "wire OpenTelemetry/evidence sinks",
+    "build agent evaluation/red-team harness",
+    "do not install LangGraph/Microsoft/OpenAI Agents SDK unless a bounded justified task requires them"
+  ],
+  "research_evidence": [
+    {
+      "source": "Context7 / PydanticAI v2.0.0 docs",
+      "finding": "Typed dependency injection/output models, MCP, approval-required/deferred tools and Temporal durable integration are documented."
+    },
+    {
+      "source": "Context7 / OpenAI Agents SDK v0.7.0 docs",
+      "finding": "Handoffs, guardrails, human tool approvals, tracing and configurable models are documented."
+    },
+    {
+      "source": "Context7 / LangGraph 1.0.8 docs",
+      "finding": "Typed graph state, interrupts, checkpoint durability, subgraphs and resume are documented."
+    },
+    {
+      "source": "Microsoft Agent Framework official docs",
+      "finding": "Workflows, checkpoints/resume, human-in-loop and durable/self-hosted execution are documented; capability breadth exceeds current minimal needs."
+    },
+    {
+      "source": "MCP specification 2026-07-28",
+      "finding": "Tool annotations are untrusted unless from trusted servers; servers validate/access-control/rate-limit/sanitize; clients validate results, use timeouts, audit, and obtain control/approval for sensitive operations."
+    },
+    {
+      "source": "A2A Protocol official v1.0 material",
+      "finding": "A2A provides network agent discovery/auth/task lifecycle; not required for current internal single-system role architecture."
+    }
+  ]
+}

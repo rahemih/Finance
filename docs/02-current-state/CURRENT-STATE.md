@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WF-001 — Agent Architecture & Authority Model`  
+Active branch: `docs/FIN-P02-WF-001-agent-architecture-authority-model`  
+Active lock: `LOCK-FIN-P02-WF-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_F
+P02 — Master Architecture: ACTIVE_P02_F
 
-Next workstream:
+Active workstream:
 `P02-F — Agent Architecture & Authority Model`
 
 Primary agents:
@@ -726,3 +727,40 @@ Auto Trading: DISABLED
 - `FIN-P02-WE-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WE-001-01 = RELEASED`
 - P02 next workstream: `P02-F — Agent Architecture & Authority Model`
+
+
+## P02-F — Agent Architecture & Authority Model
+
+Task: `FIN-P02-WF-001`  
+Linear: `HOS-159`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WF-001-01`
+
+Artifacts:
+- `docs/04-architecture/AGENT-RUNTIME-AUTHORITY-ARCHITECTURE.md`
+- `docs/04-architecture/agent-runtime-authority-architecture.json`
+- `docs/04-architecture/ADR/ADR-0011-governed-agent-runtime.md`
+
+Primary runtime architecture:
+- project-owned deterministic Governance Kernel;
+- PydanticAI as replaceable primary runtime adapter;
+- exact version/dependency pinning deferred to P04;
+- canonical A0-A10 authority remains framework-independent.
+
+Protocol decisions:
+- MCP = adopted behind Tool Gateway only;
+- A2A = deferred until external/network agent interoperability is justified.
+
+Key safety:
+- A5/A8 veto cannot be bypassed by agent consensus/A0/model fallback;
+- tool availability != permission;
+- Specialist default spawn depth = 1;
+- specialists cannot spawn children by default;
+- resume revalidates freshness/permissions/veto state;
+- Quarantine disables sensitive writes/tools while preserving evidence;
+- OpenTelemetry-compatible tracing is canonical; framework tracing is optional.
+
+Runtime dependencies installed: NONE  
+New permissions granted: NONE  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
