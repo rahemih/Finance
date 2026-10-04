@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WG-001 — Developer Bootstrap & Tooling`  
+Active branch: `chore/FIN-P04-WG-001-developer-tooling`  
+Active lock: `LOCK-FIN-P04-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1868,3 +1869,48 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-G — Developer Bootstrap & Tooling
+
+Task: `FIN-P04-WG-001`  
+Linear: `HOS-178`  
+State: ACTIVE  
+Branch: `chore/FIN-P04-WG-001-developer-tooling`  
+Lock: `LOCK-FIN-P04-WG-001-01`
+
+Primary agent:
+- A9 Developer Operations = LEAD
+
+Supporting:
+- A1 Architecture
+- A8 Security
+- A10 Evidence / Audit
+- A0 Governance
+
+Canonical developer commands:
+- `pnpm doctor`
+- `pnpm bootstrap`
+- `pnpm check:fast`
+- `pnpm check:full`
+- `pnpm test:foundation`
+- `pnpm hooks:install`
+
+Developer tooling:
+- Python standard-library orchestration
+- exact runtime doctor
+- locked bootstrap
+- fast/full local gates
+- safe opt-in Git hooks
+- existing hooks are not overwritten without explicit `--force`
+- CI remains authoritative
+
+Required CI:
+- strict developer doctor
+- developer-tooling contract validation
+- all P04-A..F controls retained
+
+Third-party developer tooling dependency added: NONE  
+Production infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-H: NOT_STARTED
