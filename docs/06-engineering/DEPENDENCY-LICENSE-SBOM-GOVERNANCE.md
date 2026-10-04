@@ -103,6 +103,12 @@ Baseline assertion:
 - license: `MIT`
 - evidence: official `pnpm/pnpm` tag `v11.28.4` LICENSE.
 
+Additional exact transitive toolchain assertion:
+- identity prefix: `pkg:npm/%40reflink/reflink`
+- exact version: `0.1.19`
+- license: `MIT`
+- evidence: npm registry metadata for the published 0.1.19 platform packages.
+
 The assertion is constrained by both namespace and exact version. A pnpm version change requires a new review/assertion; components outside the `@pnpm` namespace are unaffected. Unknown-license fail-closed behavior remains unchanged.
 
 ## 5. Waivers
