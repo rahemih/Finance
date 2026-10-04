@@ -99,6 +99,9 @@ jobs:
       - name: Forward Task Contract validation
         run: python scripts/ci/foundation_ci.py contract
 
+      - name: Config / environment contract
+        run: python scripts/ci/config_contract.py
+
       - name: Workflow supply-chain security
         run: python scripts/ci/foundation_ci.py security
 

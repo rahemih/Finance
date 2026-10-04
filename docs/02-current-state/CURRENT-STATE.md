@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WD-001 — Config / Environment Contract`  
+Active branch: `chore/FIN-P04-WD-001-config-environment-contract`  
+Active lock: `LOCK-FIN-P04-WD-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -1593,3 +1594,77 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+## P04-D — Config / Environment Contract
+
+Task: `FIN-P04-WD-001`  
+Linear: `HOS-175`  
+State: ACTIVE  
+Branch: `chore/FIN-P04-WD-001-config-environment-contract`  
+Lock: `LOCK-FIN-P04-WD-001-01`
+
+Primary agent:
+- A1 Architecture / Configuration Contract = LEAD
+
+Supporting:
+- A8 Security
+- A9 Operations
+- A10 Evidence / Audit
+- A0 Governance
+
+Prerequisite:
+- `FIN-P04-WC-001 = CANONICAL_COMPLETE`
+
+Logical environments:
+- DEV
+- TEST
+- RESEARCH
+- DEMO
+- SHADOW
+- CANARY
+- LIVE
+
+P04-D state for every environment:
+- `provisioning_state = CONTRACT_ONLY`
+- credential authority = unprovisioned
+- active execution = DISABLED
+- external order submission = false
+- CANARY/LIVE = disabled
+
+Config precedence:
+1. base non-secret defaults
+2. environment overlay
+3. allowlisted non-secret runtime override
+4. opaque secret-handle resolution outside canonical config
+
+Runtime override allowlist:
+- `settings.log_level`
+- `settings.clock_mode`
+- `settings.data_mode`
+
+Forbidden override classes:
+- safety
+- execution
+- credential authority
+- environment identity
+- provisioning state
+- authority ceiling
+- secret namespace/references
+
+Secret model:
+- canonical config stores `secret://...` handles only
+- raw secrets forbidden
+- environment segment must match owning environment
+- lower environments cannot reference CANARY/LIVE namespaces
+
+Authorization:
+- country/location/geolocation is not an authorization dependency
+
+Required CI:
+- `governance` runs `scripts/ci/config_contract.py`
+- deterministic foundation artifact includes all P04-D config inputs
+
+Production environment/infrastructure/accounts/credentials: NONE  
+CANARY/LIVE/AUTO_TRADING: DISABLED  
+P04-E: NOT_STARTED

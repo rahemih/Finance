@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "environment": "SHADOW",
+  "inherits": "config/base.json",
+  "config_version": 1,
+  "provisioning_state": "CONTRACT_ONLY",
+  "authority_ceiling": "SHADOW_ONLY",
+  "safety": {
+    "live_trading": false,
+    "auto_trading": false,
+    "withdrawals": false,
+    "transfers": false
+  },
+  "execution": {
+    "active_mode": "DISABLED",
+    "external_order_submission": false
+  },
+  "credentials": {
+    "authority_provisioned": false,
+    "secret_namespace": "secret://shadow/",
+    "secret_refs": {}
+  },
+  "settings": {
+    "log_level": "INFO",
+    "clock_mode": "SYSTEM",
+    "data_mode": "EXTERNAL_READ_ONLY"
+  }
+}

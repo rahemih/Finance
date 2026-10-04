@@ -83,6 +83,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P04-WC-001 | P04 | CI/CD Foundation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WC-001.json` | RELEASED |
 
+
+| FIN-P04-WD-001 | P04 | Config / Environment Contract | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WD-001.json` | LOCK-FIN-P04-WD-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
