@@ -150,8 +150,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P02-WC-001 — Data Flow & Storage Architecture`  
+Active branch: `docs/FIN-P02-WC-001-data-flow-storage-architecture`  
+Active lock: `LOCK-FIN-P02-WC-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -497,9 +498,9 @@ Safety:
 
 ## P02 readiness
 
-P02 — Master Architecture: READY_FOR_P02_C
+P02 — Master Architecture: ACTIVE_P02_C
 
-Next workstream:
+Active workstream:
 `P02-C — Data Flow & Storage Architecture`
 
 Primary agents:
@@ -597,3 +598,34 @@ Auto Trading: DISABLED
 - `FIN-P02-WB-001 = CANONICAL_COMPLETE`
 - `LOCK-FIN-P02-WB-001-01 = RELEASED`
 - P02 next workstream: `P02-C — Data Flow & Storage Architecture`
+
+
+## P02-C — Data Flow & Storage Architecture
+
+Task: `FIN-P02-WC-001`  
+Linear: `HOS-156`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P02-WC-001-01`
+
+Artifacts:
+- `docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md`
+- `docs/04-architecture/data-flow-storage-architecture.json`
+- `docs/04-architecture/ADR/ADR-0008-logical-data-layers-replay-lineage.md`
+
+Logical data layers: 9
+
+Key decisions:
+- event/source/receive/observed time are distinct;
+- raw evidence is immutable/versioned where rights permit;
+- corrections/revisions append rather than silently overwrite;
+- operational state is a rebuildable projection;
+- replay uses explicit versioned manifests;
+- feature/model artifacts retain full lineage;
+- retention is provider/data-right specific;
+- audit facts survive permitted raw-content expiry without retaining prohibited content;
+- concrete database/object store/message bus selection is deferred.
+
+Country/location dependency: NONE  
+Runtime storage implementation: NOT_STARTED  
+Live Trading: DISABLED  
+Auto Trading: DISABLED
