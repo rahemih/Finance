@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WB-001",
+  "state": "P05-B_IMPLEMENTATION",
+  "lead_agent": "A2",
+  "provider": {
+    "name": "dxFeed",
+    "role": "P01-G_FOREX_PRIMARY_REFERENCE",
+    "event_type": "Quote",
+    "transport_direction": "dxLink.WebSocket",
+    "production_transport": "NOT_SELECTED",
+    "production_endpoint": "NOT_SELECTED",
+    "entitlement": "NOT_PROVISIONED",
+    "credential": "NONE",
+    "canonical_ci_network_required": false
+  },
+  "first_instrument": {
+    "canonical_id": "FX:EUR/USD:SPOT_OTC",
+    "provider_symbol": "EUR/USD",
+    "provider_scope": "COMPOSITE_OTC",
+    "execution_selection": false
+  },
+  "quote_semantics": {
+    "price": "BEST_BID_ASK_PROVIDER_QUOTE",
+    "bid_ask_times": "PRESERVE_INDEPENDENT_SOURCE_MILLISECONDS",
+    "time_nano_part": "PRESERVE_SEPARATELY_NO_SYNTHETIC_SIDE_PRECISION",
+    "event_time_zero": "UNAVAILABLE_NONE",
+    "size_nan": "NONE",
+    "size_finite": "PROVIDER_QUOTE_SIZE_ONLY",
+    "global_spot_fx_volume": "FORBIDDEN"
+  },
+  "subscription_spec": {
+    "transport": "DXLINK_WEBSOCKET_REFERENCE",
+    "event_type": "Quote",
+    "endpoint_ref": null,
+    "credential_ref": null,
+    "intended_use": "OFFLINE_CONTRACT_ONLY"
+  },
+  "p05_c": "NOT_STARTED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
