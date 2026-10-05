@@ -1,0 +1,34 @@
+{
+  "exchange": "cbse",
+  "class": "spot",
+  "code": "btc-usd",
+  "sequenceId": "b000001",
+  "updateType": "SNAPSHOT",
+  "asks": [
+    {
+      "price": "61235.00",
+      "amount": "0.20"
+    },
+    {
+      "price": "61236.00",
+      "amount": "0.30"
+    }
+  ],
+  "bids": [
+    {
+      "price": "61234.00",
+      "amount": "0.10"
+    },
+    {
+      "price": "61233.00",
+      "amount": "0.25"
+    }
+  ],
+  "tsExchange": "2026-10-05T09:00:01.000000001Z",
+  "tsCollection": "2026-10-05T09:00:01.000100001Z",
+  "tsEvent": "2026-10-05T09:00:01.000200001Z",
+  "additionalProperties": {
+    "source": "fixture",
+    "snapshot": true
+  }
+}
