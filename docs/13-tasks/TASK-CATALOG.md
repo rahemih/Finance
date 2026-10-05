@@ -101,6 +101,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P04-WH-001-R01 | P04 | Post-Closure Audit & State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001-R01.json` | RELEASED |
 
+
+| FIN-P04-WH-001-R02 | P04 | Safe absorbed-branch hygiene repair | HIGH | ACTIVE | `contracts/tasks/FIN-P04-WH-001-R02.json` | LOCK-FIN-P04-WH-001-R02-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
