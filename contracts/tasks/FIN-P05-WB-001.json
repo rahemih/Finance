@@ -1,0 +1,153 @@
+{
+  "task_id": "FIN-P05-WB-001",
+  "phase": "P05",
+  "workstream": "WB",
+  "objective": "Establish the first governed Forex real-time adapter baseline using dxFeed Quote for EUR/USD, preserving OTC quote provenance and explicitly forbidding any interpretation of provider quote size as consolidated global Spot FX volume.",
+  "scope": [
+    "Extend provider-neutral market-data contracts with QUOTE and top-of-book payload/envelope",
+    "Use canonical first instrument FX:EUR/USD:SPOT_OTC with dxFeed symbol EUR/USD",
+    "Implement deterministic dxFeed Quote parser for direct Quote objects and REST testing wrappers",
+    "Preserve bid/ask price, side timestamps, side exchange/source codes, sizes, provider sequence and eventTime when available",
+    "Preserve timeNanoPart without fabricating side timestamp precision",
+    "Map missing/NaN quote size to None rather than fabricating liquidity",
+    "Label quote sizes PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME",
+    "Provide an offline dxLink/WebSocket subscription descriptor without resolving endpoint/token",
+    "Reject raw or empty credential handles when a credential reference is supplied",
+    "Add offline deterministic fixtures, negative tests and evidence generation",
+    "Keep strict Pyright, dependency/SBOM/Trivy and reproducible-build gates active",
+    "Reconcile Current State, Task Catalog and Linear"
+  ],
+  "out_of_scope": [
+    "Production dxFeed endpoint or entitlement provisioning",
+    "Production token/credential creation",
+    "Opening a live WebSocket connection",
+    "Twelve Data or Massive backup implementation",
+    "Broker executable quote integration",
+    "Treating Quote size, tick count or any proxy as GLOBAL_SPOT_FX_VOLUME",
+    "Final cross-provider symbol normalization and clock model (P05-D)",
+    "Streaming runtime/backpressure (P05-E)",
+    "Reconnect/gap/failover logic (P05-F)",
+    "Latency/soak closure (P05-G)",
+    "G4_REALTIME_DATA closure (P05-H)",
+    "Trading/order execution"
+  ],
+  "dependencies": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "G1_PROVIDER_BASELINE PASS",
+    "P01-A canonical FX identity FX:EUR/USD:SPOT_OTC",
+    "P01-G dxFeed primary Forex market-data reference",
+    "FROZEN_G2 D02 Market Data Adapter boundary"
+  ],
+  "read_paths": [
+    "docs/03-research/P01-A-MARKET-UNIVERSE.md",
+    "docs/03-research/P01-G-PROVIDER-BASELINE-DECISION.md",
+    "docs/03-research/P01-F-PRIMARY-BACKUP-PROVIDER-STRATEGY.md",
+    "docs/04-architecture/DOMAIN-BOUNDARIES.md",
+    "packages/contracts/market_data.py",
+    ".github/workflows/**",
+    "scripts/ci/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P05-WB-001.json",
+    "packages/contracts/market_data.py",
+    "adapters/market_data/dxfeed.py",
+    "tests/p05/test_dxfeed_adapter.py",
+    "tests/p05/fixtures/dxfeed_eurusd_quote.json",
+    "scripts/ci/p05b_evidence.py",
+    "docs/07-data/P05-B-FOREX-REALTIME-ADAPTER.md",
+    "docs/07-data/p05-b-forex-realtime-adapter.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "WEB_OFFICIAL_DOCS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P05 product source/tests",
+    "EUR/USD dxFeed Quote maps to provider-neutral Quote envelope",
+    "Bid/ask prices and independent bidTime/askTime are preserved exactly from millisecond source values",
+    "timeNanoPart is preserved but is not silently added to both side timestamps",
+    "Quote eventTime 0 maps to provider_event_time=None",
+    "Nonzero eventTime is preserved",
+    "NaN/None quote sizes map to None",
+    "Finite nonnegative quote sizes are preserved",
+    "Negative quote size and nonpositive/nonfinite prices are rejected",
+    "Wrong symbol is rejected",
+    "Raw/empty credential handles are rejected",
+    "Direct Quote object and REST Quote wrapper parse identically",
+    "Volume semantics can never equal GLOBAL_SPOT_FX_VOLUME",
+    "Repeated parsing with identical receive time is deterministic",
+    "P05-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No raw dxFeed token/credential is committed",
+    "No network call is required by canonical CI",
+    "Production endpoint remains NOT_SELECTED",
+    "Provider-specific code remains under adapters/",
+    "Provider-neutral contracts do not import dxFeed",
+    "FX quote size is explicitly non-global-volume semantics",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Current official dxFeed dxLink/Quote/FX event model documentation",
+    "P01-A FX taxonomy and P01-G provider baseline",
+    "Offline EUR/USD Quote fixture and deterministic P05-B evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-184 reconciliation"
+  ],
+  "rollback": "Revert P05-B quote contract extension, dxFeed adapter/tests/evidence and P05-B CI/state wiring. P05-A remains canonical; no production endpoint, credential, subscription or trading state is created.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "P05 Owner phase authorization remains valid",
+    "No conflicting P05-B task/branch/PR",
+    "dxFeed official documentation freshly revalidated"
+  ],
+  "definition_of_done": [
+    "Provider-neutral Quote contract canonical",
+    "dxFeed EUR/USD Quote adapter canonical",
+    "Strict Pyright and offline deterministic tests pass",
+    "No global FX volume claim exists",
+    "SBOM/Trivy/reproducible CI remains green",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P05-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-184 Done",
+    "P05-C becomes next workstream"
+  ]
+}
