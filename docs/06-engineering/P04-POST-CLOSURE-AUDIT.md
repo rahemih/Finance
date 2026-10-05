@@ -218,3 +218,32 @@ Terminal verdict:
 - canonical P04 blocker = NONE;
 - P04 = CANONICAL_COMPLETE;
 - P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION.
+
+
+## 12. Branch Hygiene R02
+
+A later scheduled hygiene audit detected a governance-only blocker:
+
+- run `37288381827` = FAILURE;
+- audit job `111692745435`;
+- non-canonical branches = `14`;
+- configured threshold = `12`;
+- stale branches >= 30 days = `0`.
+
+All 14 branches were independently compared with canonical `main`.
+
+Safe absorbed candidates:
+- `foundation/FIN-P04-WA-001-workspace-structure` → `ahead_by=0`;
+- `research/FIN-P01-WR-001-open-source-repository-registry-R01` → `ahead_by=0`.
+
+All other branches have unique commits (`ahead_by>0`) and are not eligible for automatic deletion.
+
+R02 changes the cleanup rule to allow deletion only when:
+1. branch is not default/main;
+2. branch has no open PR;
+3. branch is not protected;
+4. either exact merged-PR proof exists or GitHub compare proves `ahead_by=0`.
+
+The branch-count threshold remains `12`; the repair does not silence or weaken the guard.
+
+Owner has authorized entry to P05, but P05 implementation remains paused until R02 is canonical and Branch Hygiene is clean.
