@@ -8,7 +8,9 @@
     "role": "P01-G_CRYPTO_PRIMARY_REFERENCE",
     "implementation": "OFFLINE_CERTIFIED_ADAPTER_BASELINE",
     "live_connectivity": "DISABLED_ENTITLEMENT_REQUIRED",
-    "credential_ref_example": "secret://market-data/kaiko/api-key"
+    "credential_ref_example": "secret://market-data/kaiko/api-key",
+    "production_transport": "NOT_SELECTED",
+    "http_response_wrapper": "DIRECT_OR_RESULT_OBJECT_SUPPORTED"
   },
   "first_instrument": {
     "exchange": "cbse",
@@ -18,10 +20,29 @@
   },
   "streams": {
     "trades": {
-      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/market_update_v1"
+      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/market_update_v1",
+      "transport_contract": "HTTP_API_TESTING_ONLY",
+      "request_body": {
+        "instrumentCriteria": {
+          "exchange": "cbse",
+          "instrumentClass": "spot",
+          "code": "btc-usd"
+        },
+        "commodities": [
+          "SMUC_TRADE"
+        ]
+      }
     },
     "orderbook_l2": {
-      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/orderbookl2_v1"
+      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/orderbookl2_v1",
+      "transport_contract": "HTTP_API_TESTING_ONLY",
+      "request_body": {
+        "instrumentCriteria": {
+          "exchange": "cbse",
+          "instrumentClass": "spot",
+          "code": "btc-usd"
+        }
+      }
     }
   },
   "timestamps": [
@@ -44,5 +65,11 @@
   "p05_b": "NOT_STARTED",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "credential_policy": {
+    "reference_scheme": "secret://",
+    "empty_handle": "REJECT",
+    "raw_secret": "REJECT",
+    "resolution_in_adapter": "FORBIDDEN"
+  }
 }
