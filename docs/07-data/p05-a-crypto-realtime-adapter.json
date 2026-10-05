@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WA-001",
-  "state": "P05-A_IMPLEMENTATION",
+  "state": "P05-A_CANONICAL_COMPLETE",
   "lead_agent": "A2",
   "provider": {
     "name": "Kaiko",
@@ -62,7 +62,7 @@
     "license": "MIT"
   },
   "canonical_ci_network_required": false,
-  "p05_b": "NOT_STARTED",
+  "p05_b": "NOT_STARTED_READY",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
@@ -71,5 +71,25 @@
     "empty_handle": "REJECT",
     "raw_secret": "REJECT",
     "resolution_in_adapter": "FORBIDDEN"
+  },
+  "closure_evidence": {
+    "implementation_pr": 115,
+    "implementation_head_sha": "9254ee3f6702ebee2abf7c06e9f05598d75b5bb7",
+    "pr_governance_run": 37295694293,
+    "pr_artifact_id": 11337813810,
+    "pr_artifact_digest": "sha256:da7cbba2f5c06ac50fc52f6e2140bf4de30cba1e92b21b04677edc55cccc21b5",
+    "implementation_merge_sha": "163de8942e2b3382c7df8d416263a599e92eb1e6",
+    "postmerge_governance_run": 37295876778,
+    "postmerge_branch_hygiene_run": 37295876816,
+    "postmerge_artifact_id": 11338213207,
+    "postmerge_artifact_digest": "sha256:646b44af473c54b38f8c765324742376d5fc4e34bc00f7cba8708a525c6ad799",
+    "pyright": "0 errors / 0 warnings",
+    "p05a_tests": "17/17 PASS",
+    "deterministic_evidence_sha256": "85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3",
+    "reproducible_artifact_sha256": "f6df8a2099ea9aaf7d332d4eebf6c64a86b6e8e429a11f882bb1071f5c4c8ade",
+    "postmerge_rollback_manifest_sha256": "0adf25329fc86f4afe22ec0d653685d376869c15dc2cdd187188f41f935aaeb0",
+    "file_count": 311,
+    "inventory_sha256": "81efa4a61846202af3d23b6a555eb531343fc20cb91750d4786bc0f6199c72f7",
+    "lock": "RELEASED"
   }
 }
