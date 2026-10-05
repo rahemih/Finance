@@ -26,6 +26,7 @@
     "check:fast": "python scripts/dev/local_gate.py fast",
     "check:full": "python scripts/dev/local_gate.py full",
     "test:foundation": "python -m unittest discover -s tests/foundation -p \"test_*.py\" -v",
-    "hooks:install": "python scripts/dev/install_hooks.py"
+    "hooks:install": "python scripts/dev/install_hooks.py",
+    "test:p05": "python -m unittest discover -s tests/p05 -p \"test_*.py\" -v"
   }
 }

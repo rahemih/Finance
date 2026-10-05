@@ -43,6 +43,7 @@ def fast_gate() -> None:
         [sys.executable, "scripts/ci/foundation_ci.py", "contract"],
         [sys.executable, "scripts/ci/config_contract.py"],
         [sys.executable, "-m", "unittest", "discover", "-s", "tests/foundation", "-p", "test_*.py", "-v"],
+        [sys.executable, "-m", "unittest", "discover", "-s", "tests/p05", "-p", "test_*.py", "-v"],
         [sys.executable, "scripts/ci/supply_chain_policy.py", "manifest"],
         [sys.executable, "scripts/ci/developer_tooling_contract.py"],
         [sys.executable, "scripts/ci/foundation_ci.py", "security"],

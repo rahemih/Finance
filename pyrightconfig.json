@@ -1,0 +1,21 @@
+{
+  "include": [
+    "apps",
+    "packages",
+    "adapters",
+    "quant"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "build",
+    ".venv",
+    "research"
+  ],
+  "pythonVersion": "3.14",
+  "pythonPlatform": "Linux",
+  "typeCheckingMode": "strict",
+  "reportMissingTypeStubs": "error",
+  "reportUnknownMemberType": "error",
+  "reportUnknownArgumentType": "error",
+  "reportUnknownVariableType": "error"
+}

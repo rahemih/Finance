@@ -104,6 +104,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P04-WH-001-R02 | P04 | Safe absorbed-branch hygiene repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001-R02.json` | RELEASED |
 
+
+| FIN-P05-WA-001 | P05 | Crypto Real-Time Adapter / Kaiko Baseline | HIGH | ACTIVE | `contracts/tasks/FIN-P05-WA-001.json` | LOCK-FIN-P05-WA-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

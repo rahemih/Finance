@@ -258,3 +258,17 @@ Closure:
 - `LOCK-FIN-P04-WF-001-01 = RELEASED`
 - next workstream = `P04-G — Developer Bootstrap & Tooling`
 - P04-G = `NOT_STARTED`
+
+
+### P05-A typecheck action
+
+P05-A introduces the first product-source Python modules and therefore activates real static type checking in required CI.
+
+Canonical action:
+- `jakebailey/pyright-action@v3.0.2`
+- immutable commit: `8ec14b5cfe41f26e5f41686a31eb6012758217ef`
+- action license: MIT
+- Pyright version: `1.1.414`
+- mode: strict
+
+This action is CI tooling only; it is not a runtime dependency and does not weaken exact runtime/dependency policy.
