@@ -1,0 +1,19 @@
+{
+  "exchange": "cbse",
+  "class": "spot",
+  "code": "btc-usd",
+  "sequenceId": "a000001",
+  "id": "trade-001",
+  "price": "61234.50",
+  "amount": "0.015",
+  "side": "BUY",
+  "tsExchange": "2026-10-05T09:00:00.123456789Z",
+  "tsCollection": {
+    "value": "2026-10-05T09:00:00.123556789Z"
+  },
+  "tsEvent": "2026-10-05T09:00:00.123656789Z",
+  "additionalProperties": {
+    "source": "fixture",
+    "partition": 1
+  }
+}
