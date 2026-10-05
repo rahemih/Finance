@@ -1,0 +1,14 @@
+{
+  "eventSymbol": "EUR/USD",
+  "eventTime": 0,
+  "timeNanoPart": 123456,
+  "bidTime": 1780820400000,
+  "bidExchangeCode": "",
+  "bidPrice": 1.17642,
+  "bidSize": "NaN",
+  "askTime": 1780820401000,
+  "askExchangeCode": "",
+  "askPrice": 1.17647,
+  "askSize": "NaN",
+  "sequence": 0
+}
