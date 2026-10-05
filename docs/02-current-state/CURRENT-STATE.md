@@ -154,9 +154,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WA-001 — Crypto Real-Time Adapter / Kaiko Baseline`  
-Active branch: `feat/FIN-P05-WA-001-kaiko-realtime-adapter`  
-Active lock: `LOCK-FIN-P05-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2155,9 +2154,8 @@ P04 branch-hygiene R02 closure evidence:
 
 Task: `FIN-P05-WA-001`  
 Linear: `HOS-183`  
-State: ACTIVE  
-Branch: `feat/FIN-P05-WA-001-kaiko-realtime-adapter`  
-Lock: `LOCK-FIN-P05-WA-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Agents:
 - A2 Data Agent = LEAD
@@ -2197,3 +2195,19 @@ Safety:
 
 Next after closure:
 - `P05-B — Forex Real-Time Adapters`
+
+
+P05-A closure evidence:
+- implementation PR: `#115` = MERGED
+- implementation head: `9254ee3f6702ebee2abf7c06e9f05598d75b5bb7`
+- merge SHA: `163de8942e2b3382c7df8d416263a599e92eb1e6`
+- PR Governance: `37295694293` = SUCCESS
+- post-merge Governance: `37295876778` = SUCCESS
+- post-merge Branch Hygiene: `37295876816` = SUCCESS
+- 17/17 P05-A tests = PASS
+- strict Pyright = 0 errors / 0 warnings
+- deterministic P05-A evidence SHA-256: `85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3`
+- SBOM/license/Trivy = PASS
+- reproducible build = PASS
+- `FIN-P05-WA-001 = CANONICAL_COMPLETE / RELEASED`
+- P05-B = NOT_STARTED / READY
