@@ -247,3 +247,31 @@ R02 changes the cleanup rule to allow deletion only when:
 The branch-count threshold remains `12`; the repair does not silence or weaken the guard.
 
 Owner has authorized entry to P05, but P05 implementation remains paused until R02 is canonical and Branch Hygiene is clean.
+
+
+## 13. Branch Hygiene R02 closure
+
+Implementation:
+- PR `#113` = MERGED;
+- merge SHA `1dd35b5b751e8fa0c80504a31374dea04a67ee55`;
+- PR Governance `37292564154` = SUCCESS;
+- post-merge Governance `37292671206` = SUCCESS;
+- Branch Hygiene push-run `37292671255` = SUCCESS.
+
+Cleanup proof:
+- `foundation/FIN-P04-WA-001-workspace-structure` deleted after GitHub compare proved `ahead_by=0`;
+- `research/FIN-P01-WR-001-open-source-repository-registry-R01` deleted after GitHub compare proved `ahead_by=0`;
+- every branch with `ahead_by>0` was retained;
+- configured threshold remained `12`.
+
+Audit:
+- original scheduled run `37288381827`, attempt 1 = FAILURE at count 14;
+- attempt 2 after repair = SUCCESS at count 12;
+- automated Issue `#62` = CLOSED.
+
+Closure:
+- `FIN-P04-WH-001-R02 = CANONICAL_COMPLETE`;
+- `LOCK-FIN-P04-WH-001-R02-01 = RELEASED`;
+- P04 remains `CANONICAL_COMPLETE`;
+- Owner authorization for P05 is recorded;
+- P05-A may now start under a new governed Task Contract.
