@@ -213,7 +213,8 @@ jobs:
               '',
               '### Safety policy',
               '- Branches with exact proof of a merged same-repository PR are deleted automatically.',
-              '- Unmerged stale branches are **report-only** and are never deleted automatically.',
+              '- Unprotected branches with no open PR and GitHub compare `ahead_by=0` are also deleted automatically because they contain no unique commits.',
+              '- Unmerged branches with unique commits are **report-only** and are never deleted automatically.',
               '',
               '### Stale branches without an open PR',
               stale.length
