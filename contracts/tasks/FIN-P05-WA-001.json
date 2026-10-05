@@ -17,7 +17,10 @@
     "Enable strict Pyright product typecheck in required governance CI",
     "Pin Pyright action to immutable commit and Pyright version 1.1.414",
     "Add P05-A deterministic evidence generation",
-    "Reconcile Current State, Task Catalog, Linear and project status"
+    "Reconcile Current State, Task Catalog, Linear and project status",
+    "Match current official Kaiko HTTP testing request bodies exactly",
+    "Support both direct Stream message objects and HTTP result wrappers",
+    "Mark HTTP request specs as testing-only and defer production transport selection"
   ],
   "out_of_scope": [
     "Provisioning a Kaiko subscription, trial, API key or credential",
@@ -123,7 +126,12 @@
     "Raw credential values are rejected; secret:// handle required",
     "Request spec contains credential handle/header name but never resolved secret",
     "Repeated parsing with identical received_at is deterministic",
-    "P05-A evidence is byte-identical across two runs"
+    "P05-A evidence is byte-identical across two runs",
+    "Trade HTTP test request body matches instrumentCriteria + SMUC_TRADE contract",
+    "L2 HTTP test request body matches instrumentCriteria-only contract",
+    "HTTP result wrapper parses identically to direct provider payload",
+    "Empty secret:// credential handle is rejected",
+    "Non-integer received_at_ns fails with KaikoAdapterError"
   ],
   "security_tests": [
     "No raw API key/token is committed",
@@ -133,7 +141,8 @@
     "Pyright version is exact 1.1.414",
     "Provider-specific code remains under adapters/",
     "Core/provider-neutral contract does not import Kaiko modules",
-    "CANARY/LIVE/AUTO_TRADING remain disabled"
+    "CANARY/LIVE/AUTO_TRADING remain disabled",
+    "HTTP API testing request spec cannot be mistaken for selected production transport"
   ],
   "evidence": [
     "Official Kaiko current Stream documentation revalidation",
