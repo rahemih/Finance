@@ -154,9 +154,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P04-WH-001-R02 — Safe absorbed-branch hygiene repair`  
-Active branch: `fix/FIN-P04-WH-001-R02-absorbed-branch-hygiene`  
-Active lock: `LOCK-FIN-P04-WH-001-R02-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2072,7 +2071,7 @@ Safety unchanged:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
-- P05 = AUTHORIZED_BY_OWNER / IMPLEMENTATION_NOT_STARTED_PENDING_HYGIENE_REPAIR
+- P05 = AUTHORIZED_BY_OWNER / READY_TO_START_P05-A
 
 
 P04 post-closure repair evidence:
@@ -2104,8 +2103,8 @@ P04 post-closure terminal reconciliation:
 
 Task: `FIN-P04-WH-001-R02`  
 Linear: `HOS-182`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P04-WH-001-R02-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Trigger:
 - scheduled Branch Hygiene run `37288381827` = FAILURE;
@@ -2131,3 +2130,21 @@ Safety unchanged:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+P04 branch-hygiene R02 closure evidence:
+- implementation PR: `#113` = MERGED
+- implementation merge SHA: `1dd35b5b751e8fa0c80504a31374dea04a67ee55`
+- PR Governance: `37292564154` = SUCCESS
+- post-merge Governance: `37292671206` = SUCCESS
+- Branch Hygiene push-run: `37292671255` = SUCCESS
+- rerun of scheduled audit `37288381827` attempt 2 = SUCCESS
+- non-canonical branch count: `12`
+- Issue `#62` = CLOSED
+- absorbed branches deleted:
+  - `foundation/FIN-P04-WA-001-workspace-structure`
+  - `research/FIN-P01-WR-001-open-source-repository-registry-R01`
+- unique-commit branches retained
+- threshold remains `12`
+- `FIN-P04-WH-001-R02 = CANONICAL_COMPLETE / RELEASED`
+- P05 = AUTHORIZED_BY_OWNER / READY_TO_START_P05-A
