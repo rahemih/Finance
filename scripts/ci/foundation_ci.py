@@ -104,13 +104,33 @@ def product_source_files() -> list[Path]:
 
 def check_typecheck_readiness() -> None:
     sources = product_source_files()
-    if sources:
+    if not sources:
+        print("TYPECHECK_READINESS=PASS_NO_PRODUCT_SOURCE")
+        return
+
+    config_path = ROOT / "pyrightconfig.json"
+    if not config_path.is_file():
         listing = ", ".join(str(p.relative_to(ROOT)) for p in sources[:20])
         fail(
-            "TYPECHECK_READINESS_FAIL product source exists before governed real "
-            f"typechecker configuration: {listing}"
+            "TYPECHECK_READINESS_FAIL product source exists without governed "
+            f"pyrightconfig.json: {listing}"
         )
-    print("TYPECHECK_READINESS=PASS_NO_PRODUCT_SOURCE")
+
+    config = read_json(config_path)
+    if config.get("typeCheckingMode") != "strict":
+        fail("TYPECHECK_READINESS_FAIL pyright typeCheckingMode must be strict")
+    if config.get("pythonVersion") != "3.14":
+        fail("TYPECHECK_READINESS_FAIL pyright pythonVersion must be 3.14")
+    includes = config.get("include")
+    if not isinstance(includes, list):
+        fail("TYPECHECK_READINESS_FAIL pyright include must be an array")
+    required_zones = set(PRODUCTION_ZONES)
+    actual_zones = {item for item in includes if isinstance(item, str)}
+    if not required_zones.issubset(actual_zones):
+        missing = sorted(required_zones - actual_zones)
+        fail(f"TYPECHECK_READINESS_FAIL pyright missing production zones: {missing}")
+
+    print(f"TYPECHECK_READINESS=PASS_PYRIGHT_CONFIGURED sources={len(sources)}")
 
 
 def check_unit() -> None:
@@ -354,6 +374,17 @@ BUILD_INPUTS = [
     "scripts/ci/reproducible_build.py",
     "tests/foundation/test_reproducible_build.py",
     "scripts/ci/p04_exit.py",
+    "contracts/tasks/FIN-P05-WA-001.json",
+    "docs/07-data/P05-A-CRYPTO-REALTIME-ADAPTER.md",
+    "docs/07-data/p05-a-crypto-realtime-adapter.json",
+    "packages/contracts/market_data.py",
+    "adapters/market_data/kaiko.py",
+    "tests/p05/test_kaiko_adapter.py",
+    "tests/p05/fixtures/kaiko_trade.json",
+    "tests/p05/fixtures/kaiko_orderbook_snapshot.json",
+    "tests/p05/fixtures/kaiko_orderbook_update.json",
+    "scripts/ci/p05a_evidence.py",
+    "pyrightconfig.json",
     "docs/06-engineering/P04-ENGINEERING-FOUNDATION-CLOSURE.md",
     "docs/06-engineering/p04-engineering-foundation-closure.json",
     "contracts/tasks/FIN-P04-WH-001-R01.json",
