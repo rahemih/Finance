@@ -100,8 +100,8 @@
     {
       "id": "BRANCH-HYGIENE-005",
       "severity": "INFO",
-      "status": "REPAIRING_R02",
-      "item": "Legacy non-canonical branches caused Branch Hygiene count threshold failure (14 > 12). R02 safely deletes only branches proven fully absorbed into main with ahead_by=0; unique-commit branches remain protected/report-only."
+      "status": "REPAIRED",
+      "item": "Branch Hygiene threshold failure was repaired by safely deleting only fully absorbed branches (ahead_by=0). Final non-canonical count=12; unique-commit branches retained."
     }
   ],
   "safety": {
@@ -150,7 +150,7 @@
   "r02": {
     "task_id": "FIN-P04-WH-001-R02",
     "linear": "HOS-182",
-    "state": "ACTIVE",
+    "state": "CANONICAL_COMPLETE",
     "trigger_run": 37288381827,
     "trigger_job": 111692745435,
     "trigger_reason": "NON_CANONICAL_BRANCH_COUNT_14_GT_12",
@@ -161,7 +161,23 @@
       "research/FIN-P01-WR-001-open-source-repository-registry-R01"
     ],
     "deletion_rule": "UNPROTECTED + NO_OPEN_PR + (EXACT_MERGED_PR_PROOF OR AHEAD_BY_ZERO)",
-    "unique_commit_branches": "RETAIN",
-    "p05_implementation": "NOT_STARTED_PENDING_R02_CLOSURE"
+    "unique_commit_branches": "RETAINED",
+    "p05_implementation": "NOT_STARTED_PENDING_R02_CLOSURE",
+    "implementation_pr": 113,
+    "implementation_merge_sha": "1dd35b5b751e8fa0c80504a31374dea04a67ee55",
+    "pr_governance_run": 37292564154,
+    "postmerge_governance_run": 37292671206,
+    "branch_hygiene_push_run": 37292671255,
+    "audit_rerun": 37288381827,
+    "audit_rerun_attempt": 2,
+    "audit_result": "SUCCESS",
+    "final_noncanonical_count": 12,
+    "github_issue_62": "CLOSED",
+    "deleted_branches": [
+      "foundation/FIN-P04-WA-001-workspace-structure",
+      "research/FIN-P01-WR-001-open-source-repository-registry-R01"
+    ],
+    "lock": "RELEASED",
+    "p05": "AUTHORIZED_BY_OWNER_READY_TO_START_P05-A"
   }
 }
