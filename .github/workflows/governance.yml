@@ -99,6 +99,14 @@ jobs:
       - name: Typecheck readiness
         run: python scripts/ci/foundation_ci.py typecheck
 
+      - name: Strict product typecheck
+        uses: jakebailey/pyright-action@8ec14b5cfe41f26e5f41686a31eb6012758217ef # v3.0.2
+        with:
+          version: '1.1.414'
+          project: pyrightconfig.json
+          python-version: '3.14'
+          annotate: errors
+
       - name: CI foundation unit self-checks
         run: python scripts/ci/foundation_ci.py unit
 
@@ -110,6 +118,18 @@ jobs:
 
       - name: Foundation test harness
         run: python -m unittest discover -s tests/foundation -p 'test_*.py' -v
+
+      - name: P05 real-time data tests
+        run: python -m unittest discover -s tests/p05 -p 'test_*.py' -v
+
+      - name: P05-A deterministic adapter evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05a_evidence.py --output build/p05a-a.json
+          python scripts/ci/p05a_evidence.py --output build/p05a-b.json
+          cmp build/p05a-a.json build/p05a-b.json
+          sha256sum build/p05a-a.json
 
       - name: Deterministic test-harness evidence twice
         shell: bash
@@ -212,6 +232,7 @@ jobs:
           path: |
             build/foundation-a.json
             build/test-harness-a.json
+            build/p05a-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
