@@ -1,6 +1,6 @@
 # NEXUS QUANT — P05-A Crypto Real-Time Adapter / Kaiko Baseline
 
-STATE = P05-A IMPLEMENTATION  
+STATE = P05-A CANONICAL_COMPLETE  
 TASK = `FIN-P05-WA-001`  
 LINEAR = `HOS-183`  
 DATE = 2026-10-05  
@@ -215,3 +215,43 @@ After canonical closure:
 `P05-B — Forex Real-Time Adapters`
 
 P05-A does not start P05-B itself.
+
+
+## 13. Canonical closure evidence
+
+Implementation:
+- PR `#115` = MERGED;
+- final head `9254ee3f6702ebee2abf7c06e9f05598d75b5bb7`;
+- PR Governance `37295694293` = SUCCESS;
+- PR artifact `11337813810`;
+- PR artifact digest `sha256:da7cbba2f5c06ac50fc52f6e2140bf4de30cba1e92b21b04677edc55cccc21b5`;
+- implementation merge SHA `163de8942e2b3382c7df8d416263a599e92eb1e6`;
+- post-merge Governance `37295876778` = SUCCESS;
+- post-merge Branch Hygiene `37295876816` = SUCCESS;
+- post-merge artifact `11338213207`;
+- post-merge artifact digest `sha256:646b44af473c54b38f8c765324742376d5fc4e34bc00f7cba8708a525c6ad799`.
+
+Certification:
+- strict Pyright 1.1.414 = `0 errors / 0 warnings`;
+- P05-A adapter tests = `17/17 PASS`;
+- deterministic adapter evidence SHA-256 = `85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3`;
+- CycloneDX/license policy = PASS;
+- Trivy HIGH/CRITICAL gate = PASS;
+- reproducible build = PASS;
+- reproducible artifact SHA-256 = `f6df8a2099ea9aaf7d332d4eebf6c64a86b6e8e429a11f882bb1071f5c4c8ade`;
+- post-merge rollback manifest SHA-256 = `0adf25329fc86f4afe22ec0d653685d376869c15dc2cdd187188f41f935aaeb0`.
+
+Code-review repairs before merge:
+- Kaiko HTTP testing request contract aligned to current official `instrumentCriteria` shapes;
+- trade test request includes `SMUC_TRADE`;
+- direct payload + HTTP `result` wrapper both supported;
+- HTTP request specs explicitly marked `HTTP_API_TESTING_ONLY`;
+- empty/raw credential handles rejected;
+- invalid receive timestamp types fail closed with adapter-domain error;
+- production transport remains `NOT_SELECTED`.
+
+Closure:
+- `FIN-P05-WA-001 = CANONICAL_COMPLETE`;
+- `LOCK-FIN-P05-WA-001-01 = RELEASED`;
+- P05 remains ACTIVE;
+- next workstream: `P05-B — Forex Real-Time Adapters`.
