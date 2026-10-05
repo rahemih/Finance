@@ -154,8 +154,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WB-001 — Forex Real-Time Adapter / dxFeed Quote Baseline`  
+Active branch: `feat/FIN-P05-WB-001-dxfeed-forex-quote`  
+Active lock: `LOCK-FIN-P05-WB-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2211,3 +2212,49 @@ P05-A closure evidence:
 - reproducible build = PASS
 - `FIN-P05-WA-001 = CANONICAL_COMPLETE / RELEASED`
 - P05-B = NOT_STARTED / READY
+
+
+## P05-B — Forex Real-Time Adapter / dxFeed Quote Baseline
+
+Task: `FIN-P05-WB-001`  
+Linear: `HOS-184`  
+State: ACTIVE  
+Branch: `feat/FIN-P05-WB-001-dxfeed-forex-quote`  
+Lock: `LOCK-FIN-P05-WB-001-01`
+
+Agents:
+- A2 Data Agent = LEAD
+- A1 Architecture = provider-neutral boundary
+- A8 Security = token/secret boundary
+- A9 Operations = CI/transport operability
+- A10 Evidence = deterministic certification
+- A0 Governance = orchestration
+
+First controlled identity:
+- canonical: `FX:EUR/USD:SPOT_OTC`
+- provider: dxFeed
+- provider symbol: `EUR/USD`
+- event: `Quote`
+- execution broker/venue: NONE
+
+Data truth:
+- FX is OTC/decentralized;
+- provider Quote size is not consolidated/global Spot FX volume;
+- `GLOBAL_SPOT_FX_VOLUME` remains forbidden;
+- missing/NaN size remains unknown/None;
+- bid and ask source times are preserved independently;
+- no synthetic precision is added.
+
+Connectivity:
+- dxLink.WebSocket = reference transport direction;
+- production endpoint = NOT_SELECTED;
+- entitlement/token = NOT_PROVISIONED;
+- canonical CI network dependency = NONE.
+
+Safety:
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
+
+Next after closure:
+- `P05-C — Context Market Ingestion`
