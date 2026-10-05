@@ -243,7 +243,11 @@ class KaikoAdapter:
         ProviderTimestamp,
         tuple[tuple[str, str], ...],
     ]:
-        if isinstance(received_at_ns, bool) or received_at_ns < 0:
+        if (
+            isinstance(received_at_ns, bool)
+            or not isinstance(received_at_ns, int)
+            or received_at_ns < 0
+        ):
             raise KaikoAdapterError("received_at_ns must be a non-negative integer")
         instrument = self._instrument(message)
         sequence_id = _require_text(message.get("sequenceId"), field="sequenceId")
