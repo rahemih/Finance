@@ -1,12 +1,12 @@
 # Current State
 
-Last reconciled: 2026-10-04
+Last reconciled: 2026-10-05
 
 ## Repository
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD: `main` (P04-H implementation baseline merged at `55f9dd6486ea862e4f733fe71d39b6690caa3abb`; closure evidence below)  
+Canonical HEAD before P05-A branch: `3ae30f2ed01a4442d078c8473bd132a09a77dc91`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P04 — Engineering Foundation / CANONICAL_COMPLETE  
-Next Phase: P05 — Real-Time Data / NOT_STARTED_PENDING_OWNER_AUTHORIZATION  
+Current Phase: P05 — Real-Time Data / ACTIVE  
+Current Workstream: P05-A — Crypto Real-Time Adapters / ACTIVE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -154,8 +154,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WA-001 — Crypto Real-Time Adapter / Kaiko Baseline`  
+Active branch: `feat/FIN-P05-WA-001-kaiko-realtime-adapter`  
+Active lock: `LOCK-FIN-P05-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -173,7 +174,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. P05 — Real-Time Data is NOT_STARTED_PENDING_OWNER_AUTHORIZATION. No P05 task/branch/adapter implementation may begin until Owner authorizes the phase boundary.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A — Crypto Real-Time Adapters is ACTIVE under `FIN-P05-WA-001`; P05-B and later workstreams remain NOT_STARTED until their dependencies are satisfied.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2148,3 +2149,51 @@ P04 branch-hygiene R02 closure evidence:
 - threshold remains `12`
 - `FIN-P04-WH-001-R02 = CANONICAL_COMPLETE / RELEASED`
 - P05 = AUTHORIZED_BY_OWNER / READY_TO_START_P05-A
+
+
+## P05-A — Crypto Real-Time Adapter / Kaiko Baseline
+
+Task: `FIN-P05-WA-001`  
+Linear: `HOS-183`  
+State: ACTIVE  
+Branch: `feat/FIN-P05-WA-001-kaiko-realtime-adapter`  
+Lock: `LOCK-FIN-P05-WA-001-01`
+
+Agents:
+- A2 Data Agent = LEAD
+- A1 Architecture = boundary review
+- A8 Security = credential/supply-chain review
+- A9 Operations = CI/runtime operability
+- A10 Evidence = deterministic certification
+- A0 Governance = orchestration
+
+Provider baseline:
+- crypto primary reference: Kaiko (from P01-G)
+- backup reference: CoinAPI (not implemented in P05-A)
+- first controlled feed identity: `cbse / spot / btc-usd`
+- execution venue selection: NONE
+
+Implementation:
+- provider-neutral market-data envelope under `packages/contracts`;
+- Kaiko-specific parser under `adapters/market_data`;
+- trade + L2 snapshot/update mapping;
+- nanosecond provider timestamps preserved;
+- lexicographic sequence ordering/duplicate/out-of-order semantics;
+- secret-reference-only request specs;
+- canonical tests are offline/deterministic;
+- strict Pyright `1.1.414` required in CI.
+
+Connectivity:
+- Kaiko subscription: NOT_PROVISIONED
+- Kaiko credential: NONE
+- provider network connection: DISABLED_ENTITLEMENT_REQUIRED
+- canonical CI network dependency for provider feed: NONE
+
+Safety:
+- account/KYC/funding/orders = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
+
+Next after closure:
+- `P05-B — Forex Real-Time Adapters`
