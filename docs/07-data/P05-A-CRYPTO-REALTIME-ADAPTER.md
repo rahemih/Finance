@@ -114,13 +114,39 @@ P05-A configuration accepts only a secret handle such as:
 No raw API key is stored in config, source, fixture or test.
 
 Request specifications expose:
-- endpoint;
+- the Kaiko **HTTP API testing endpoint** only;
 - HTTP method;
 - required API-key header name;
 - secret handle;
-- deterministic request JSON.
+- deterministic request JSON;
+- explicit `HTTP_API_TESTING_ONLY` intended-use marker.
 
-They do not resolve the secret.
+Current official HTTP testing request shapes are preserved exactly:
+
+Trade:
+```json
+{
+  "instrumentCriteria": {
+    "exchange": "cbse",
+    "instrumentClass": "spot",
+    "code": "btc-usd"
+  },
+  "commodities": ["SMUC_TRADE"]
+}
+```
+
+Level 2:
+```json
+{
+  "instrumentCriteria": {
+    "exchange": "cbse",
+    "instrumentClass": "spot",
+    "code": "btc-usd"
+  }
+}
+```
+
+They do not resolve the secret. The HTTP/cURL path is not declared production transport; Kaiko documents this API path as testing-oriented. Production stream transport selection remains a later governed connectivity concern.
 
 ## 8. Live connectivity
 
@@ -155,6 +181,8 @@ The prior P04 `PASS_NO_PRODUCT_SOURCE` readiness state becomes a real enforced t
 ## 10. Deterministic certification
 
 Canonical tests are offline and cover:
+- current Kaiko HTTP testing request contract;
+- direct provider payload and HTTP `result` wrapper equivalence;
 - valid trade mapping;
 - valid snapshot/update mapping;
 - nanosecond timestamp preservation;
@@ -163,7 +191,7 @@ Canonical tests are offline and cover:
 - invalid instrument;
 - invalid timestamp;
 - invalid levels;
-- raw-secret rejection;
+- raw-secret and empty-secret-handle rejection;
 - request-spec secret isolation;
 - deterministic repeated parsing.
 
