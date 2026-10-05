@@ -31,6 +31,7 @@ _TIMESTAMP_RE = re.compile(
     r"(?:\.(?P<fraction>\d{1,9}))?"
     r"(?P<zone>Z|[+-]\d{2}:\d{2})$"
 )
+_SECRET_REF_RE = re.compile(r"^secret://[A-Za-z0-9][A-Za-z0-9._/-]*$")
 
 
 class KaikoAdapterError(ValueError):
@@ -50,11 +51,14 @@ class KaikoSubscription:
             ("instrument_class", self.instrument_class),
             ("code", self.code),
         ):
-            if not value.strip():
-                raise KaikoAdapterError(f"{field_name} must be non-empty")
-        if not self.credential_ref.startswith("secret://"):
+            if not isinstance(value, str) or not value.strip():
+                raise KaikoAdapterError(f"{field_name} must be a non-empty string")
+        if (
+            not isinstance(self.credential_ref, str)
+            or _SECRET_REF_RE.fullmatch(self.credential_ref) is None
+        ):
             raise KaikoAdapterError(
-                "credential_ref must be a secret:// handle; raw API keys are forbidden"
+                "credential_ref must be a non-empty secret:// handle; raw API keys are forbidden"
             )
 
 
@@ -65,12 +69,21 @@ class KaikoRequestSpec:
     api_key_header: str
     credential_ref: str
     body_json: str
+    intended_use: str
 
 
 def _require_mapping(value: object, *, field: str) -> Mapping[str, object]:
     if not isinstance(value, Mapping):
         raise KaikoAdapterError(f"{field} must be an object")
     return cast(Mapping[str, object], value)
+
+
+def _unwrap_stream_message(message: Mapping[str, object]) -> Mapping[str, object]:
+    if "result" in message and not any(
+        field in message for field in ("exchange", "class", "code", "sequenceId")
+    ):
+        return _require_mapping(message.get("result"), field="result")
+    return message
 
 
 def _require_sequence(value: object, *, field: str) -> Sequence[object]:
@@ -241,7 +254,11 @@ class KaikoAdapter:
         ProviderTimestamp,
         tuple[tuple[str, str], ...],
     ]:
-        if isinstance(received_at_ns, bool) or received_at_ns < 0:
+        if (
+            isinstance(received_at_ns, bool)
+            or not isinstance(received_at_ns, int)
+            or received_at_ns < 0
+        ):
             raise KaikoAdapterError("received_at_ns must be a non-negative integer")
         instrument = self._instrument(message)
         sequence_id = _require_text(message.get("sequenceId"), field="sequenceId")
@@ -260,6 +277,7 @@ class KaikoAdapter:
         *,
         received_at_ns: int,
     ) -> ProviderEventEnvelope:
+        message = _unwrap_stream_message(message)
         (
             instrument,
             sequence_id,
@@ -293,6 +311,7 @@ class KaikoAdapter:
         *,
         received_at_ns: int,
     ) -> ProviderEventEnvelope:
+        message = _unwrap_stream_message(message)
         (
             instrument,
             sequence_id,
@@ -320,30 +339,32 @@ class KaikoAdapter:
         )
 
     def trade_request_spec(self) -> KaikoRequestSpec:
-        return self._request_spec(TRADE_ENDPOINT)
+        return self._request_spec(TRADE_ENDPOINT, commodities=("SMUC_TRADE",))
 
     def order_book_request_spec(self) -> KaikoRequestSpec:
         return self._request_spec(ORDER_BOOK_L2_ENDPOINT)
 
-    def _request_spec(self, url: str) -> KaikoRequestSpec:
-        body = {
-            "data": {
-                "callback_url": "http://localhost:0000/callback",
-                "query": {
-                    "instruments": [
-                        {
-                            "exchange": self.subscription.exchange,
-                            "class": self.subscription.instrument_class,
-                            "code": self.subscription.code,
-                        }
-                    ]
-                },
+    def _request_spec(
+        self,
+        url: str,
+        *,
+        commodities: tuple[str, ...] = (),
+    ) -> KaikoRequestSpec:
+        body: dict[str, object] = {
+            "instrumentCriteria": {
+                "exchange": self.subscription.exchange,
+                "instrumentClass": self.subscription.instrument_class,
+                "code": self.subscription.code,
             }
         }
+        if commodities:
+            body["commodities"] = list(commodities)
+
         return KaikoRequestSpec(
             method="POST",
             url=url,
             api_key_header=API_KEY_HEADER,
             credential_ref=self.subscription.credential_ref,
             body_json=json.dumps(body, sort_keys=True, separators=(",", ":")),
+            intended_use="HTTP_API_TESTING_ONLY",
         )
