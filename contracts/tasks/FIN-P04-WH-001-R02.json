@@ -1,0 +1,123 @@
+{
+  "task_id": "FIN-P04-WH-001-R02",
+  "phase": "P04",
+  "workstream": "WH",
+  "objective": "Repair pre-P05 Branch Hygiene by safely auto-deleting non-canonical branches proven fully absorbed into main, without deleting any branch that contains unique commits or has an open PR.",
+  "scope": [
+    "Add fully-absorbed branch proof using GitHub compare against canonical main",
+    "Delete only non-protected branches with no open PR and ahead_by=0",
+    "Retain exact merged-PR proof deletion path",
+    "Preserve report-only behavior for unmerged branches with unique commits",
+    "Reduce non-canonical branch count from 14 to <=12",
+    "Re-run Branch Hygiene audit and close issue #62 when clean",
+    "Reconcile Current State, Task Catalog and Linear",
+    "Keep P05 implementation NOT_STARTED until repair closes"
+  ],
+  "out_of_scope": [
+    "Deleting any branch with ahead_by>0",
+    "Deleting protected/default/main branches",
+    "Rewriting unique historical branch commits",
+    "Raising the branch-count threshold to hide the failure",
+    "P05 adapter implementation",
+    "Production credentials/accounts/deployment",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "P04 CANONICAL_COMPLETE",
+    "P04 post-closure audit PASS",
+    "Branch Hygiene run 37288381827 failed only on non-canonical count 14 > 12",
+    "Two branches independently proven ahead_by=0 against main"
+  ],
+  "read_paths": [
+    ".github/workflows/branch-hygiene.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/06-engineering/p04-post-closure-audit.json",
+    "docs/06-engineering/P04-POST-CLOSURE-AUDIT.md"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WH-001-R02.json",
+    ".github/workflows/branch-hygiene.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/06-engineering/p04-post-closure-audit.json",
+    "docs/06-engineering/P04-POST-CLOSURE-AUDIT.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "apps/**",
+    "adapters/**",
+    "packages/**",
+    "config/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Workflow security validation passes",
+    "Open-PR branches are never deleted",
+    "Protected/default/main branches are never deleted",
+    "Branch with ahead_by>0 is retained",
+    "Branch with ahead_by=0 is eligible for safe deletion",
+    "Existing exact merged-PR proof path remains valid",
+    "Post-merge cleanup removes absorbed branches",
+    "Branch Hygiene audit count <=12",
+    "Branch Hygiene issue #62 closes when inventory is clean",
+    "P05 remains NOT_STARTED during repair"
+  ],
+  "security_tests": [
+    "No force ref update is performed by workflow",
+    "No unique branch commit is deleted by absorbed-branch path",
+    "Workflow action remains immutable-SHA pinned",
+    "No production secret/credential/account is introduced",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Run 37288381827 / job 111692745435 failure evidence",
+    "Issue #62 branch inventory report",
+    "GitHub compare proof for fully absorbed branches",
+    "Implementation PR required governance result",
+    "Post-merge Branch Hygiene cleanup result",
+    "Re-run audit result <=12",
+    "Linear HOS-182 reconciliation"
+  ],
+  "rollback": "Revert the branch-hygiene workflow change. Already-deleted branches are recoverable from their recorded commit SHAs if ever required; no branch with unique commits is eligible for this repair path.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P04 remains CANONICAL_COMPLETE",
+    "P05 has no active task/branch/PR",
+    "Issue #62 open",
+    "Two candidate branches have ahead_by=0 proof",
+    "No active conflicting repair lock"
+  ],
+  "definition_of_done": [
+    "Workflow safely supports fully absorbed branch cleanup",
+    "Implementation PR merged with governance PASS",
+    "Absorbed branches removed",
+    "Non-canonical branch count <=12",
+    "Branch Hygiene audit PASS",
+    "Issue #62 closed",
+    "Repair task CANONICAL_COMPLETE and lock RELEASED",
+    "Linear HOS-182 Done",
+    "P05 remains NOT_STARTED until subsequent P05-A activation"
+  ]
+}

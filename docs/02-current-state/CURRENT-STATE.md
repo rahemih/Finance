@@ -154,8 +154,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P04-WH-001-R02 — Safe absorbed-branch hygiene repair`  
+Active branch: `fix/FIN-P04-WH-001-R02-absorbed-branch-hygiene`  
+Active lock: `LOCK-FIN-P04-WH-001-R02-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2071,7 +2072,7 @@ Safety unchanged:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
-- P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+- P05 = AUTHORIZED_BY_OWNER / IMPLEMENTATION_NOT_STARTED_PENDING_HYGIENE_REPAIR
 
 
 P04 post-closure repair evidence:
@@ -2097,3 +2098,36 @@ P04 post-closure terminal reconciliation:
 - canonical P04 blockers = NONE
 - P04 = CANONICAL_COMPLETE
 - P05 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+
+
+## P04 branch-hygiene repair R02
+
+Task: `FIN-P04-WH-001-R02`  
+Linear: `HOS-182`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P04-WH-001-R02-01`
+
+Trigger:
+- scheduled Branch Hygiene run `37288381827` = FAILURE;
+- audit job `111692745435`;
+- reason: `14 > 12` non-canonical branches;
+- stale branches >=30 days: NONE.
+
+Safety proof:
+- `foundation/FIN-P04-WA-001-workspace-structure`: ahead_by=0 / fully absorbed in main;
+- `research/FIN-P01-WR-001-open-source-repository-registry-R01`: ahead_by=0 / fully absorbed in main;
+- all other non-canonical branches checked have ahead_by>0 and are retained.
+
+Repair:
+- extend Branch Hygiene cleanup to delete only unprotected/no-open-PR branches with exact merged-PR proof OR GitHub compare `ahead_by=0`;
+- unique-commit branches remain report-only;
+- threshold remains `12` (not weakened).
+
+P05 authorization:
+- Owner authorized entry to P05;
+- implementation task/branch/PR remains NOT_STARTED until this hygiene repair closes.
+
+Safety unchanged:
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED

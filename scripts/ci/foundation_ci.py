@@ -357,6 +357,7 @@ BUILD_INPUTS = [
     "docs/06-engineering/P04-ENGINEERING-FOUNDATION-CLOSURE.md",
     "docs/06-engineering/p04-engineering-foundation-closure.json",
     "contracts/tasks/FIN-P04-WH-001-R01.json",
+    "contracts/tasks/FIN-P04-WH-001-R02.json",
     "docs/06-engineering/P04-POST-CLOSURE-AUDIT.md",
     "docs/06-engineering/p04-post-closure-audit.json",
     "docs/02-current-state/BUILD-READINESS-CHECKLIST.md",
