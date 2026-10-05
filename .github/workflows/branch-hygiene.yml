@@ -104,10 +104,30 @@ jobs:
                 pr.head.sha === branch.commit.sha
               );
 
-              if (!provenMerged) {
-                core.info(`Keep branch without exact merged-PR proof: ${branch.name}`);
-                continue;
+              let deleteReason = null;
+
+              if (provenMerged) {
+                deleteReason = 'exact merged-PR proof';
+              } else if (!branch.protected) {
+                const comparison = await github.rest.repos.compareCommitsWithBasehead({
+                  owner,
+                  repo,
+                  basehead: `${defaultBranch}...${branch.name}`,
+                });
+
+                if (comparison.data.ahead_by === 0) {
+                  deleteReason = `fully absorbed into ${defaultBranch}; ahead_by=0`;
+                } else {
+                  core.info(
+                    `Keep branch with unique commits: ${branch.name} ` +
+                    `(ahead=${comparison.data.ahead_by}, behind=${comparison.data.behind_by})`
+                  );
+                }
+              } else {
+                core.info(`Keep protected branch without exact merged-PR proof: ${branch.name}`);
               }
+
+              if (!deleteReason) continue;
 
               try {
                 await github.rest.git.deleteRef({
@@ -115,7 +135,7 @@ jobs:
                   repo,
                   ref: `heads/${branch.name}`,
                 });
-                core.notice(`Deleted previously merged branch: ${branch.name}`);
+                core.notice(`Deleted branch ${branch.name}: ${deleteReason}`);
               } catch (error) {
                 if (error.status === 404 || error.status === 422) {
                   core.info(`Branch already absent or not deletable: ${branch.name}`);
