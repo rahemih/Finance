@@ -9,6 +9,12 @@ from decimal import Decimal
 from enum import Enum
 import json
 from pathlib import Path
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from adapters.market_data.kaiko import (
     KaikoAdapter,
@@ -17,7 +23,6 @@ from adapters.market_data.kaiko import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "tests/p05/fixtures"
 RECEIVED_AT_NS = 1_780_820_400_999_000_111
 
