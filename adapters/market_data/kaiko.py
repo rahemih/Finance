@@ -46,20 +46,10 @@ class KaikoSubscription:
     credential_ref: str
 
     def __post_init__(self) -> None:
-        for field_name, value in (
-            ("exchange", self.exchange),
-            ("instrument_class", self.instrument_class),
-            ("code", self.code),
-        ):
-            if not isinstance(value, str) or not value.strip():
-                raise KaikoAdapterError(f"{field_name} must be a non-empty string")
-        if (
-            not isinstance(self.credential_ref, str)
-            or _SECRET_REF_RE.fullmatch(self.credential_ref) is None
-        ):
-            raise KaikoAdapterError(
-                "credential_ref must be a non-empty secret:// handle; raw API keys are forbidden"
-            )
+        _require_text(self.exchange, field="exchange")
+        _require_text(self.instrument_class, field="instrument_class")
+        _require_text(self.code, field="code")
+        _require_secret_ref(self.credential_ref)
 
 
 @dataclass(frozen=True, slots=True)
@@ -95,6 +85,21 @@ def _require_sequence(value: object, *, field: str) -> Sequence[object]:
 def _require_text(value: object, *, field: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise KaikoAdapterError(f"{field} must be a non-empty string")
+    return value
+
+
+def _require_secret_ref(value: object) -> str:
+    text = _require_text(value, field="credential_ref")
+    if _SECRET_REF_RE.fullmatch(text) is None:
+        raise KaikoAdapterError(
+            "credential_ref must be a non-empty secret:// handle; raw API keys are forbidden"
+        )
+    return text
+
+
+def _require_received_at_ns(value: object) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        raise KaikoAdapterError("received_at_ns must be a non-negative integer")
     return value
 
 
@@ -254,12 +259,7 @@ class KaikoAdapter:
         ProviderTimestamp,
         tuple[tuple[str, str], ...],
     ]:
-        if (
-            isinstance(received_at_ns, bool)
-            or not isinstance(received_at_ns, int)
-            or received_at_ns < 0
-        ):
-            raise KaikoAdapterError("received_at_ns must be a non-negative integer")
+        _require_received_at_ns(received_at_ns)
         instrument = self._instrument(message)
         sequence_id = _require_text(message.get("sequenceId"), field="sequenceId")
         return (
