@@ -131,6 +131,15 @@ jobs:
           cmp build/p05a-a.json build/p05a-b.json
           sha256sum build/p05a-a.json
 
+      - name: P05-B deterministic Forex Quote evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05b_evidence.py --output build/p05b-a.json
+          python scripts/ci/p05b_evidence.py --output build/p05b-b.json
+          cmp build/p05b-a.json build/p05b-b.json
+          sha256sum build/p05b-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
@@ -233,6 +242,7 @@ jobs:
             build/foundation-a.json
             build/test-harness-a.json
             build/p05a-a.json
+            build/p05b-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
