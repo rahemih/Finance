@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WA-001",
+  "state": "P05-A_IMPLEMENTATION",
+  "lead_agent": "A2",
+  "provider": {
+    "name": "Kaiko",
+    "role": "P01-G_CRYPTO_PRIMARY_REFERENCE",
+    "implementation": "OFFLINE_CERTIFIED_ADAPTER_BASELINE",
+    "live_connectivity": "DISABLED_ENTITLEMENT_REQUIRED",
+    "credential_ref_example": "secret://market-data/kaiko/api-key"
+  },
+  "first_instrument": {
+    "exchange": "cbse",
+    "instrument_class": "spot",
+    "code": "btc-usd",
+    "execution_selection": false
+  },
+  "streams": {
+    "trades": {
+      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/market_update_v1"
+    },
+    "orderbook_l2": {
+      "endpoint": "https://gateway-v0-http.kaiko.ovh/api/stream/orderbookl2_v1"
+    }
+  },
+  "timestamps": [
+    "tsExchange",
+    "tsCollection",
+    "tsEvent",
+    "received_at_ns"
+  ],
+  "sequence_semantics": "LEXICOGRAPHIC_SORTABLE_NOT_ASSUMED_CONTIGUOUS",
+  "typecheck": {
+    "engine": "Pyright",
+    "version": "1.1.414",
+    "mode": "strict",
+    "action": "jakebailey/pyright-action",
+    "action_release": "v3.0.2",
+    "action_commit": "8ec14b5cfe41f26e5f41686a31eb6012758217ef",
+    "license": "MIT"
+  },
+  "canonical_ci_network_required": false,
+  "p05_b": "NOT_STARTED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
