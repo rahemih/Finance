@@ -101,26 +101,53 @@ class KaikoAdapterTests(unittest.TestCase):
         self.assertEqual(guard.observe("book", "a000002"), SequenceDisposition.OUT_OF_ORDER)
         self.assertEqual(guard.observe("book", "z999999"), SequenceDisposition.ADVANCING)
 
-    def test_raw_secret_is_rejected(self) -> None:
-        with self.assertRaises(KaikoAdapterError):
-            KaikoSubscription(
-                exchange="cbse",
-                instrument_class="spot",
-                code="btc-usd",
-                credential_ref="real-looking-api-key",
-            )
+    def test_raw_or_empty_secret_handle_is_rejected(self) -> None:
+        for credential_ref in ("real-looking-api-key", "secret://", "secret:// "):
+            with self.subTest(credential_ref=credential_ref):
+                with self.assertRaises(KaikoAdapterError):
+                    KaikoSubscription(
+                        exchange="cbse",
+                        instrument_class="spot",
+                        code="btc-usd",
+                        credential_ref=credential_ref,
+                    )
 
-    def test_request_specs_expose_only_secret_handle_and_required_header(self) -> None:
+    def test_request_specs_match_current_kaiko_http_testing_contract(self) -> None:
         instance = adapter()
         trade = instance.trade_request_spec()
         book = instance.order_book_request_spec()
+
         self.assertEqual(trade.url, TRADE_ENDPOINT)
         self.assertEqual(book.url, ORDER_BOOK_L2_ENDPOINT)
         self.assertEqual(trade.api_key_header, API_KEY_HEADER)
         self.assertEqual(trade.credential_ref, "secret://market-data/kaiko/api-key")
+        self.assertEqual(trade.intended_use, "HTTP_API_TESTING_ONLY")
+        self.assertEqual(book.intended_use, "HTTP_API_TESTING_ONLY")
         self.assertNotIn("secret://", trade.body_json)
-        body = json.loads(trade.body_json)
-        self.assertEqual(body["data"]["query"]["instruments"][0]["code"], "btc-usd")
+        self.assertNotIn("callback_url", trade.body_json)
+
+        trade_body = json.loads(trade.body_json)
+        book_body = json.loads(book.body_json)
+        expected_criteria = {
+            "exchange": "cbse",
+            "instrumentClass": "spot",
+            "code": "btc-usd",
+        }
+        self.assertEqual(trade_body["instrumentCriteria"], expected_criteria)
+        self.assertEqual(trade_body["commodities"], ["SMUC_TRADE"])
+        self.assertEqual(book_body, {"instrumentCriteria": expected_criteria})
+
+    def test_http_result_wrapper_maps_to_same_trade_event(self) -> None:
+        fixture = load_fixture("kaiko_trade.json")
+        direct = adapter().parse_trade(copy.deepcopy(fixture), received_at_ns=RECEIVED_AT_NS)
+        wrapped = adapter().parse_trade({"result": copy.deepcopy(fixture)}, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(wrapped, direct)
+
+    def test_http_result_wrapper_maps_to_same_orderbook_event(self) -> None:
+        fixture = load_fixture("kaiko_orderbook_snapshot.json")
+        direct = adapter().parse_order_book(copy.deepcopy(fixture), received_at_ns=RECEIVED_AT_NS)
+        wrapped = adapter().parse_order_book({"result": copy.deepcopy(fixture)}, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(wrapped, direct)
 
     def test_wrong_instrument_is_rejected(self) -> None:
         fixture = load_fixture("kaiko_trade.json")
@@ -160,8 +187,10 @@ class KaikoAdapterTests(unittest.TestCase):
 
     def test_received_at_must_be_nonnegative_integer(self) -> None:
         fixture = load_fixture("kaiko_trade.json")
-        with self.assertRaises(KaikoAdapterError):
-            adapter().parse_trade(fixture, received_at_ns=-1)
+        for invalid in (-1, True, "1780820400999000111"):
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(KaikoAdapterError):
+                    adapter().parse_trade(fixture, received_at_ns=invalid)  # type: ignore[arg-type]
 
     def test_parsing_is_deterministic_for_same_input_and_receive_time(self) -> None:
         fixture = load_fixture("kaiko_trade.json")
