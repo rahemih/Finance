@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-D implementation merge: `5184ff9cf6f9a85cba265f16e62368a47f887379`  
+Canonical HEAD before P05-E implementation: `b7a12f2a9e459ebbe63fec9439470300c610bc7f`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-E — Streaming / Heartbeat / Backpressure / READY_TO_START  
+Current Workstream: P05-E — Streaming / Heartbeat / Backpressure / IN_PROGRESS  
 Previous Workstream: P05-D — Canonical Normalization / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WE-001 — Streaming / Heartbeat / Backpressure`  
+Linear: `HOS-191 = In Progress`  
+Branch: `feat/FIN-P05-WE-001-streaming-heartbeat-backpressure`  
+Active lock: `LOCK-FIN-P05-WE-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +166,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-D CANONICAL_COMPLETE / P05-E READY_TO_START
+Market/application runtime implementation (P05): ACTIVE / P05-A through P05-D CANONICAL_COMPLETE / P05-E IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +176,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-D are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-E is the next ready workstream.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-D are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-E is ACTIVE under FIN-P05-WE-001 / HOS-191; P05-F remains blocked until P05-E canonical closure.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2439,3 +2441,40 @@ Closure evidence:
 
 Next ready workstream:
 - `P05-E — Streaming / Heartbeat / Backpressure`
+
+## P05-E — Streaming / Heartbeat / Backpressure
+
+Task: `FIN-P05-WE-001`  
+Linear: `HOS-191`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P05-WE-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P05-WE-001-streaming-heartbeat-backpressure`
+
+Agents:
+- A2 Data — lead;
+- A1 Architecture — architecture consistency;
+- A8 Security — safety boundary review;
+- A9 Operations — liveness/backpressure semantics;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation scope:
+- provider-neutral bounded FIFO canonical stream bus;
+- explicit NORMAL/HIGH/CRITICAL/FULL pressure states;
+- explicit overflow rejection with no silent event loss;
+- per-stream heartbeat states NEVER_SEEN/HEALTHY/STALE;
+- deterministic queue/high-water/rejection metrics;
+- P02-H 60-second OPERATING-peak capacity baseline.
+
+Deferred:
+- reconnect/failover/gap recovery -> P05-F;
+- throughput/latency/soak certification -> P05-G;
+- G4 closure -> P05-H;
+- external stream broker and disk-spill implementation -> not selected in P05-E.
+
+Safety:
+- provider network connection: NONE;
+- live credentials: NONE;
+- CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
