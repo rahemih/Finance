@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WB-001",
+  "mode": "REFERENCE_OFFLINE_PAGED_PAYLOADS_ONLY",
+  "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
+  "require_contiguous_ordinals": true,
+  "max_pages_per_run": 10000,
+  "max_total_bytes_per_run": 536870912,
+  "archive_exact_provider_payload_bytes": true,
+  "production_historical_provider_entitlement": "NOT_ASSUMED",
+  "production_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
