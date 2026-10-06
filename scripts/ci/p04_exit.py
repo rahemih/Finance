@@ -109,7 +109,7 @@ def check_manifests() -> None:
     if next_phase.get("phase") != "P05 — Real-Time Data":
         fail("P04_NEXT_PHASE_INVALID")
     if next_phase.get("state") != "NOT_STARTED_PENDING_OWNER_AUTHORIZATION":
-        fail("P05_BOUNDARY_NOT_PRESERVED")
+        fail("P04_CLOSURE_NEXT_PHASE_SNAPSHOT_CHANGED")
 
     print("P04_MANIFESTS=PASS")
 
@@ -155,7 +155,7 @@ def main() -> int:
 
     print("P04_ENGINEERING_FOUNDATION_EXIT=PASS")
     print("P04_STATE=CANONICAL_COMPLETE")
-    print("P05_STATE=NOT_STARTED_PENDING_OWNER_AUTHORIZATION")
+    print("P04_CLOSURE_NEXT_PHASE_STATE=NOT_STARTED_PENDING_OWNER_AUTHORIZATION")
     return 0
 
 
