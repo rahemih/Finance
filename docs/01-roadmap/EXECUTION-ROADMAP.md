@@ -36,8 +36,10 @@ Canonical completion:
 - P05 — Real-Time Data: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 
 Active phase:
-- none — P06 requires explicit Owner phase authorization
-- active governed task: none
+- P06 — Historical Data & Feature Store: ACTIVE
+- active governed task: `FIN-P06-WA-001 — Immutable Raw Archive`
+- Linear: `HOS-195`
+- lock: `LOCK-FIN-P06-WA-001-01 / ACQUIRED`
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -50,8 +52,9 @@ Completed P05 baselines:
 - P05-H — Real-Time Data Gate Closure / G4: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Next phase boundary:
-- P06 — Historical Data & Feature Store: NOT_STARTED_PENDING_OWNER_AUTHORIZATION
+Active P06 boundary:
+- P06-A — Immutable Raw Archive: IN_PROGRESS
+- P06-B — Historical Backfill: BLOCKED_UNTIL_P06_A_CANONICAL_COMPLETE
 
 ---
 

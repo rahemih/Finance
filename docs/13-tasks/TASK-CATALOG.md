@@ -128,6 +128,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WH-001 | P05 | Real-Time Data Gate Closure / G4 | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WH-001.json` | RELEASED |
 
+| FIN-P06-WA-001 | P06 | Immutable Raw Archive | HIGH | ACTIVE | `contracts/tasks/FIN-P06-WA-001.json` | LOCK-FIN-P06-WA-001-01 |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

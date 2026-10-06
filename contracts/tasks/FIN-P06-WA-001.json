@@ -1,0 +1,158 @@
+{
+  "task_id": "FIN-P06-WA-001",
+  "phase": "P06",
+  "workstream": "WA",
+  "objective": "Establish a governed provider-neutral immutable raw-evidence archive baseline with exact-byte integrity, rights-aware retention metadata, deterministic offline certification and no production storage-vendor commitment.",
+  "scope": [
+    "Define provider-neutral raw-evidence record and archive result contracts",
+    "Implement content-addressed SHA-256 raw-object storage in an offline reference filesystem archive",
+    "Preserve exact raw bytes without transformation",
+    "Persist provider, source stream, capture time, source event/time metadata, media type, rights state, retention class and optional retention expiry",
+    "Reject path-unsafe provider identifiers",
+    "Fail closed when raw retention is forbidden or unverified",
+    "Require explicit expiry metadata when retention is allowed only with a limit",
+    "Make same-content/same-metadata archive writes idempotent",
+    "Reject incomplete, tampered or conflicting existing archive objects",
+    "Add deterministic P06-A evidence and CI regression tests",
+    "Reconcile P06 authorization, task lock, Current State, Task Catalog, README and Execution Roadmap"
+  ],
+  "out_of_scope": [
+    "Selecting or provisioning a production object-store/database vendor",
+    "Historical provider backfill (P06-B)",
+    "Time-series query layer (P06-C)",
+    "Dataset manifests/versioning (P06-D)",
+    "Macro vintage implementation (P06-E)",
+    "Feature materialization (P06-F)",
+    "Replay snapshot interfaces (P06-G)",
+    "Retention deletion/compaction execution and storage-cost certification (P06-H)",
+    "Claiming provider raw-retention rights not established by contract/licensing evidence",
+    "Provider credentials, network connectivity, cloud credentials, trading or order execution"
+  ],
+  "dependencies": [
+    "P05 Real-Time Data CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "P02 D04 Raw / Historical Data architecture frozen",
+    "P02-C source-faithful raw evidence and replay architecture",
+    "P01-E data-rights/retention uncertainty remains fail-closed",
+    "Owner P06 phase authorization granted 2026-10-06",
+    "Fresh Live Guard: no active task, active lock or open PR"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/P01-E-COST-LICENSING-DATA-RIGHTS.md",
+    "docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md",
+    "docs/04-architecture/DOMAIN-BOUNDARIES.md",
+    "docs/04-architecture/CAPACITY-COST-ENVELOPE.md",
+    "docs/07-data/P05-*.md",
+    "packages/market_data/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P06-WA-001.json",
+    "config/historical-data/raw-archive-policy.json",
+    "packages/historical_data/__init__.py",
+    "packages/historical_data/raw_archive.py",
+    "tests/p06/__init__.py",
+    "tests/p06/test_raw_archive.py",
+    "scripts/ci/p06a_evidence.py",
+    "docs/07-data/P06-A-IMMUTABLE-RAW-ARCHIVE.md",
+    "docs/07-data/p06-a-immutable-raw-archive.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P06 product source",
+    "Raw payload bytes are preserved exactly",
+    "SHA-256 content address matches exact payload bytes",
+    "Archive metadata is deterministic and records provenance/rights/retention fields",
+    "RETENTION_ALLOWED archives successfully",
+    "RETENTION_ALLOWED_WITH_LIMIT requires explicit retention expiry",
+    "RETENTION_FORBIDDEN fails closed",
+    "RETENTION_UNVERIFIED fails closed",
+    "Same payload and metadata are idempotent",
+    "Tampered existing payload fails closed",
+    "Incomplete object/metadata pairs fail closed",
+    "Path-unsafe provider identifiers are rejected",
+    "No provider-specific adapter import exists in historical-data core",
+    "P06-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential or network access is required",
+    "Raw rights uncertainty fails closed",
+    "Archive writes never overwrite an existing object",
+    "Production storage vendor remains NOT_SELECTED",
+    "CANARY/LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P02-C data-flow/storage architecture",
+    "P02-H capacity/retention assumptions",
+    "G4_REALTIME_DATA PASS",
+    "Deterministic P06-A evidence artifact",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-195 reconciliation"
+  ],
+  "rollback": "Revert P06-A reference archive module, policy, tests, evidence/CI wiring and P06 active-state reconciliation. P05/G4 remain canonical; no production storage, provider credential, network connection or trading state is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P05 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P06 authorization recorded",
+    "No active governed task or lock",
+    "No open pull request conflicting with shared state",
+    "Post-reconciliation Governance and Branch Hygiene pass"
+  ],
+  "definition_of_done": [
+    "Provider-neutral immutable raw archive baseline implemented",
+    "Rights-aware fail-closed retention behavior tested",
+    "Deterministic P06-A evidence passes",
+    "Strict Pyright and governance CI pass",
+    "No network/credential/production-vendor dependency introduced",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P06-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-195 Done",
+    "P06-B becomes next workstream"
+  ]
+}

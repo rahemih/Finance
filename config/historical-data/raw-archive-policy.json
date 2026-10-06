@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WA-001",
+  "mode": "REFERENCE_FILESYSTEM_OFFLINE_ONLY",
+  "digest_algorithm": "sha256",
+  "object_layout": "provider/YYYY/MM/DD/source_hash/payload_sha256.raw",
+  "metadata_sidecar": "payload_sha256.metadata.json",
+  "allowed_rights_states": [
+    "RETENTION_ALLOWED",
+    "RETENTION_ALLOWED_WITH_LIMIT"
+  ],
+  "denied_rights_states": [
+    "RETENTION_FORBIDDEN",
+    "RETENTION_UNVERIFIED"
+  ],
+  "limited_retention_requires_expiry": true,
+  "immutability": {
+    "overwrite": "FORBIDDEN",
+    "same_content_same_metadata": "IDEMPOTENT",
+    "partial_pair": "FAIL_CLOSED",
+    "tampered_existing_object": "FAIL_CLOSED"
+  },
+  "production_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
