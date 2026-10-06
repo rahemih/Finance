@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: governance-${{ github.ref }}
+  group: governance-v2-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
