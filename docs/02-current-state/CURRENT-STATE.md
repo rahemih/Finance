@@ -39,15 +39,16 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-H — Retention / Compaction / Storage-Cost Tests / IN_PROGRESS  
-Previous Workstream: P06-G — Replay Snapshot Interfaces / CANONICAL_COMPLETE  
+Current Phase: P06 — Historical Data & Feature Store / CANONICAL_COMPLETE  
+Current Workstream: none — P06 closed; P07 requires Owner phase authorization  
+Previous Workstream: P06-H — Retention / Compaction / Storage-Cost Tests / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H IN_PROGRESS
+P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
+P07 state: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WH-001 — Retention / Compaction / Storage-Cost Tests`  
-Linear: `HOS-202 = In Progress`  
-Branch: `feat/FIN-P06-WH-001-retention-capacity-tests`  
-Active lock: `LOCK-FIN-P06-WH-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +169,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H IN_PROGRESS
+Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +179,40 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-G — Replay Snapshot Interfaces is CANONICAL_COMPLETE and its lock is RELEASED. P06-H — Retention / Compaction / Storage-Cost Tests is ACTIVE under FIN-P06-WH-001 / HOS-202 with LOCK-FIN-P06-WH-001-01 ACQUIRED. Raw retention remains rights-aware and fail-closed, production cost rates remain UNRESOLVED_RATE_REQUIRED, production storage vendor remains NOT_SELECTED, and P07 cannot start before P06 canonical closure plus explicit Owner phase authorization.
+P06-H — Retention / Compaction / Storage-Cost Tests is CANONICAL_COMPLETE and LOCK-FIN-P06-WH-001-01 is RELEASED. P06 — Historical Data & Feature Store is CANONICAL_COMPLETE. P07 — Data Quality & Provenance remains NOT_STARTED and requires explicit Owner phase authorization before any P07 governed task begins. Production cost rates remain UNRESOLVED_RATE_REQUIRED, production storage vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+
+## P06-H — Retention / Compaction / Storage-Cost Tests
+
+Task: `FIN-P06-WH-001`  
+Linear: `HOS-202`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#149` = MERGED  
+Final implementation head: `26ae0426fa1b264e0ce8a097884a6c5fbb0a0877`  
+Implementation merge SHA: `8f375b7b617589ec3786f2a45208182e138c826b`  
+PR Governance: `37529299317` = SUCCESS  
+PR artifact: `sha256:ca0655e9fb0ff2857a1151ac68d3cf556524ccba64a7fa3deb9a530a2b6ff3e9`  
+Post-merge Governance: `37529493611` = SUCCESS  
+Post-merge artifact: `sha256:f3eac59a29f6f8cafe6f2b10a572982548a4dcba49fb433266b40899ac8e770e`  
+Post-merge Branch Hygiene: `37529493711` = SUCCESS
+
+Certification:
+- P02-H BOOTSTRAP / OPERATING / STRESS storage arithmetic: PASS;
+- P02-H 3:1 / 5:1 compression arithmetic: PASS;
+- rights-forbidden / rights-unverified raw retention: FAIL_CLOSED as required;
+- storage growth deviation >50% architecture-review trigger: PASS;
+- production cost without authoritative rates: `UNRESOLVED_RATE_REQUIRED`;
+- synthetic replay-scan benchmark: PASS;
+- synthetic feature-rebuild benchmark: PASS;
+- production data mutation: NONE.
+
+Safety:
+- production storage vendor: NOT_SELECTED;
+- production monetary rates: NOT_EMBEDDED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P06-G — Replay Snapshot Interfaces
 
