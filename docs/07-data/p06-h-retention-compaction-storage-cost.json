@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WH-001",
+  "state": "P06-H_IN_PROGRESS",
+  "linear_issue": "HOS-202",
+  "owner_domain": "D04_RAW_HISTORICAL_DATA",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "depends_on": [
+    "P06-A_CANONICAL_COMPLETE",
+    "P06-B_CANONICAL_COMPLETE",
+    "P06-C_CANONICAL_COMPLETE",
+    "P06-D_CANONICAL_COMPLETE",
+    "P06-E_CANONICAL_COMPLETE",
+    "P06-F_CANONICAL_COMPLETE",
+    "P06-G_CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA_PASS"
+  ],
+  "execution_mode": "OFFLINE_REFERENCE_CAPACITY_CERTIFICATION",
+  "rights_rule": "RAW_RETENTION_FAILS_CLOSED_WHEN_FORBIDDEN_OR_UNVERIFIED",
+  "cost_mode": "PARAMETRIC_NO_VENDOR_PRICE",
+  "production_cost_rates": "UNRESOLVED_RATE_REQUIRED",
+  "measured_benchmarks": [
+    "SYNTHETIC_REPLAY_SCAN",
+    "SYNTHETIC_FEATURE_REBUILD"
+  ],
+  "production_storage_vendor": "NOT_SELECTED",
+  "production_mutation": false,
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07": "NOT_STARTED_OWNER_AUTHORIZATION_REQUIRED_AFTER_P06_CLOSURE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
