@@ -150,9 +150,10 @@ class DatabentoGoldContextAdapter:
         side = _require_text(record.get("side"), field="side")
         event_size = _nonnegative_int(record.get("size"), field="size")
 
-        levels = record.get("levels")
-        if not isinstance(levels, list) or not levels:
+        levels_value = record.get("levels")
+        if not isinstance(levels_value, list) or not levels_value:
             raise DatabentoAdapterError("levels must be a non-empty array")
+        levels = cast(list[object], levels_value)
         level = _require_mapping(levels[0], field="levels[0]")
 
         bid_px = _price(level.get("bid_px"), field="bid_px")
