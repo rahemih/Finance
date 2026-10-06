@@ -2441,3 +2441,40 @@ Closure evidence:
 
 Next ready workstream:
 - `P05-E — Streaming / Heartbeat / Backpressure`
+
+## P05-E — Streaming / Heartbeat / Backpressure
+
+Task: `FIN-P05-WE-001`  
+Linear: `HOS-191`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P05-WE-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P05-WE-001-streaming-heartbeat-backpressure`
+
+Agents:
+- A2 Data — lead;
+- A1 Architecture — architecture consistency;
+- A8 Security — safety boundary review;
+- A9 Operations — liveness/backpressure semantics;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation scope:
+- provider-neutral bounded FIFO canonical stream bus;
+- explicit NORMAL/HIGH/CRITICAL/FULL pressure states;
+- explicit overflow rejection with no silent event loss;
+- per-stream heartbeat states NEVER_SEEN/HEALTHY/STALE;
+- deterministic queue/high-water/rejection metrics;
+- P02-H 60-second OPERATING-peak capacity baseline.
+
+Deferred:
+- reconnect/failover/gap recovery -> P05-F;
+- throughput/latency/soak certification -> P05-G;
+- G4 closure -> P05-H;
+- external stream broker and disk-spill implementation -> not selected in P05-E.
+
+Safety:
+- provider network connection: NONE;
+- live credentials: NONE;
+- CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
