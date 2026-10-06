@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WA-001-R01",
-  "state": "P05-A_FRESH_REVALIDATION_ACTIVE",
+  "state": "P05-A_FRESH_REVALIDATION_CANONICAL_COMPLETE",
   "baseline_main_sha": "29264269488f414f9f333abe0eeaaa91f8516c21",
   "original_task": "FIN-P05-WA-001",
   "original_linear": "HOS-183",
@@ -45,15 +45,38 @@
     {
       "id": "PHASE-BOUNDARY-DRIFT-001",
       "severity": "MEDIUM",
-      "status": "REPAIRING",
+      "status": "REPAIRED",
       "detail": "scripts/ci/p04_exit.py still reports P05_STATE=NOT_STARTED_PENDING_OWNER_AUTHORIZATION after P05 became ACTIVE. Historical P04 handoff remains valid but must not be emitted as current phase state."
     }
   ],
-  "p05_d": "PAUSED_TODO_DURING_REVALIDATION",
+  "p05_d": "PAUSED_TODO_AFTER_REVALIDATION",
   "safety": {
     "canary": "DISABLED",
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED",
     "provider_credential": "NONE"
-  }
+  },
+  "verdict": "PASS",
+  "implementation_evidence": {
+    "pr": 122,
+    "head_sha": "200901c3f32b65155f0536a5664b59bf11d41109",
+    "pr_governance_run": 37430457151,
+    "pr_artifact_id": 11396348740,
+    "pr_artifact_digest": "sha256:b976f1f8dff026fbb177b151cc03f5bc01b953d44492a7cfb26d02eed7486192",
+    "merge_sha": "a72391a0889150f69080e9eb7e31b5d1d050b422",
+    "postmerge_governance_run": 37430728907,
+    "postmerge_branch_hygiene_run": 37430728968,
+    "postmerge_artifact_id": 11396084336,
+    "postmerge_artifact_digest": "sha256:67faadef077183adea27d5e5e5cda6a35b28d78e2117bec8933faea49588cc09",
+    "p05_tests": "58/58 PASS",
+    "foundation_tests": "22/22 PASS",
+    "pyright": "0 errors / 0 warnings",
+    "p05a_revalidation": "PASS",
+    "p05a_evidence_sha256": "85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3",
+    "reproducible_artifact_sha256": "43be33e5b321dc8c3aba4e390c107dfbb70c7a2f43d3c791a3dd485b3e7f644d",
+    "rollback_manifest_sha256": "8fa4c32b6cf1b85a64fe61708e621ef130d901c8a40c82ed78c71bd1211581b2",
+    "file_count": 330,
+    "inventory_sha256": "84609958458f50178045df41f42d8c1498ea30b4e6e3d818ae56fa4d7245b3fb"
+  },
+  "lock": "RELEASED_PENDING_CLOSURE_MERGE"
 }
