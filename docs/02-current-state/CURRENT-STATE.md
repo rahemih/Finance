@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-C — Time-Series Optimized Query Layer / IN_PROGRESS  
-Previous Workstream: P06-B — Historical Backfill / CANONICAL_COMPLETE  
+Current Workstream: none — P06-C canonical closed; P06-D next  
+Previous Workstream: P06-C — Time-Series Optimized Query Layer / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WC-001 — Time-Series Optimized Query Layer`  
-Linear: `HOS-197 = In Progress`  
-Branch: `feat/FIN-P06-WC-001-time-series-query-layer`  
-Active lock: `LOCK-FIN-P06-WC-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-B — Historical Backfill is CANONICAL_COMPLETE and its lock is RELEASED. P06-C — Time-Series Optimized Query Layer is ACTIVE under FIN-P06-WC-001 / HOS-197 with LOCK-FIN-P06-WC-001-01 ACQUIRED. The implementation is a vendor-neutral offline reference index; production query/storage vendor remains NOT_SELECTED, credentials/network are not required, and P06-D remains blocked until P06-C canonical closure.
+P06-C — Time-Series Optimized Query Layer is CANONICAL_COMPLETE and LOCK-FIN-P06-WC-001-01 is RELEASED. P06 remains the active authorized phase. P06-D — Dataset Manifests & Versioning is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-D. Production query/storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
 
 ## P06-B — Historical Backfill
 
