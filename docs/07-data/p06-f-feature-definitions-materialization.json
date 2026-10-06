@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WF-001",
+  "state": "P06-F_IN_PROGRESS",
+  "linear_issue": "HOS-200",
+  "owner_domain": "D06_FEATURE_EVIDENCE",
+  "lead_agent": "A4",
+  "supporting_agents": ["A0", "A1", "A2", "A3", "A8", "A9", "A10"],
+  "depends_on": [
+    "P06-D_CANONICAL_COMPLETE",
+    "P06-E_CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA_PASS"
+  ],
+  "execution_mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_FEATURES",
+  "definition_identity": "SHA256_CANONICAL_DEFINITION_BODY",
+  "materialization_identity": "SHA256_CANONICAL_MATERIALIZATION_BODY",
+  "quality_rule": "MATERIALIZE_ONLY_EXPLICIT_ELIGIBLE",
+  "point_in_time_rule": "EVENT_AND_SOURCE_CUTOFF_NOT_AFTER_AS_OF",
+  "lineage": "P06-D_DATASET_VERSION_PLUS_OPTIONAL_P06-E_VINTAGE_IDS_PLUS_CODE_CONFIG_QUALITY_EVIDENCE",
+  "production_feature_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p06_g": "BLOCKED_UNTIL_P06_F_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
