@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WC-001",
-  "state": "P05-C_IMPLEMENTATION",
+  "state": "P05-C_CANONICAL_COMPLETE",
   "lead_agent": "A2",
   "provider": {
     "name": "Databento",
@@ -32,8 +32,27 @@
     "depth": "REQUIRE_TOP_OF_BOOK_DEPTH_0",
     "fixture_mapped_symbol": "TEST_ONLY_NOT_LIVE_MAPPING_CLAIM"
   },
-  "p05_d": "NOT_STARTED",
+  "p05_d": "NOT_STARTED_READY",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 119,
+    "implementation_head_sha": "9105f9fc6b9524d538b33aae45cb30d0a11f65f5",
+    "pr_governance_run": 37425988146,
+    "pr_artifact_id": 11395396532,
+    "pr_artifact_digest": "sha256:896d4ef9b3a61d24ade39499eafb931aaa0cd0f6519ff1e6ad3a7c84fcc70939",
+    "implementation_merge_sha": "ca835d18ba1628d9ffc5f1ba6e70d356b3181fa8",
+    "postmerge_governance_run": 37426163187,
+    "postmerge_branch_hygiene_run": 37426163231,
+    "postmerge_artifact_id": 11395128218,
+    "postmerge_artifact_digest": "sha256:8ef849bfcacc5f7630a63e5bd5ac29e948d961aa7c343e1aee1f763871d816cf",
+    "p05_tests": "54/54 PASS",
+    "strict_pyright": "0 errors / 0 warnings",
+    "deterministic_evidence_sha256": "ba1072b53db0abb3f36caff02962bb3bfdd95ac35bd87f11ae6c9f022df405c8",
+    "reproducible_artifact_sha256": "cc59078d27cdb1a0198607366b987213bb66a7d38115002b8434526e6af0eb2a",
+    "rollback_manifest_sha256": "a8c03077677eea74f076160da8947facad18e3777e565bfbad1dcf4a92602e1b",
+    "file_count": 325,
+    "lock": "RELEASED"
+  }
 }
