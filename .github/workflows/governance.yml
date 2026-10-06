@@ -219,6 +219,18 @@ jobs:
           cmp build/p06b-a.json build/p06b-b.json
           sha256sum build/p06b-a.json
 
+      - name: P06-C deterministic time-series query evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06c_evidence.py --output build/p06c-a.json
+          python scripts/ci/p06c_evidence.py --output build/p06c-b.json
+          cmp build/p06c-a.json build/p06c-b.json
+          sha256sum build/p06c-a.json
+
+      - name: P06-C measured synthetic query benchmark
+        run: python scripts/ci/p06c_performance.py --output build/p06c-performance.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
