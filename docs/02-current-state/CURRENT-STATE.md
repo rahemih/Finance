@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-E — Macro Vintage Model / IN_PROGRESS  
-Previous Workstream: P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE  
+Current Workstream: none — P06-E canonical closed; P06-F next  
+Previous Workstream: P06-E — Macro Vintage Model / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WE-001 — Macro Vintage Model`  
-Linear: `HOS-199 = In Progress`  
-Branch: `feat/FIN-P06-WE-001-macro-vintage-model`  
-Active lock: `LOCK-FIN-P06-WE-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,29 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-D — Dataset Manifests & Versioning is CANONICAL_COMPLETE and its lock is RELEASED. P06-E — Macro Vintage Model is ACTIVE under FIN-P06-WE-001 / HOS-199 with LOCK-FIN-P06-WE-001-01 ACQUIRED. Revision history is immutable and replay eligibility requires both release_time and observed_at not later than simulated decision time. Production macro storage vendor remains NOT_SELECTED; P06-F remains blocked until P06-E canonical closure.
+P06-E — Macro Vintage Model is CANONICAL_COMPLETE and LOCK-FIN-P06-WE-001-01 is RELEASED. P06 remains the active authorized phase. P06-F — Feature Definitions & Materialization is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-F. Production macro/feature storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
+
+## P06-E — Macro Vintage Model
+
+Task: `FIN-P06-WE-001`  
+Linear: `HOS-199`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#143` = MERGED  
+Final implementation head: `4c8870a0faa6d50ca62a30002ad603f3bd2f9db5`  
+Implementation merge SHA: `c047c0346aac7bd8c9f2d829ee1872ddc2d60298`  
+PR Governance: `37485627547` = SUCCESS  
+PR artifact: `sha256:eced57b49c1c6c111389240ea8f34ef030275b7c975961346f867f04a0d003a6`  
+Post-merge Governance: `37485983928` = SUCCESS  
+Post-merge artifact: `sha256:413386ec7b9e38616c052bf00750c733c23883d07cbb9f0caa4b7db36f971074`  
+Post-merge Branch Hygiene: `37485984069` = SUCCESS
+
+Safety:
+- production macro/feature storage vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P06-D — Dataset Manifests & Versioning
 
