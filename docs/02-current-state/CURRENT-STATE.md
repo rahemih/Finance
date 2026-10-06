@@ -39,14 +39,15 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P05 — Real-Time Data / CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Current Workstream: none — phase closed  
+Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
+Current Workstream: P06-A — Immutable Raw Archive / IN_PROGRESS  
 Previous Workstream: P05-H — Real-Time Data Gate Closure / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
-P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
+P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
+P06 state: ACTIVE / P06-A IN_PROGRESS
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -157,8 +158,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P06-WA-001 — Immutable Raw Archive`  
+Linear: `HOS-195 = In Progress`  
+Branch: `feat/FIN-P06-WA-001-immutable-raw-archive`  
+Active lock: `LOCK-FIN-P06-WA-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -166,7 +169,8 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
+Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
+Historical data implementation (P06): ACTIVE / P06-A IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -176,7 +180,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P05 — Real-Time Data is CANONICAL_COMPLETE with G4_REALTIME_DATA PASS. P06 — Historical Data & Feature Store remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION. No P06 task, branch or implementation is authorized by this closure.
+P05 — Real-Time Data is CANONICAL_COMPLETE with G4_REALTIME_DATA PASS. Owner authorization for P06 was granted on 2026-10-06. P06-A — Immutable Raw Archive is ACTIVE under FIN-P06-WA-001 / HOS-195 with LOCK-FIN-P06-WA-001-01 ACQUIRED. P06-B remains blocked until P06-A canonical closure.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2710,3 +2714,45 @@ Closure note:
 - that lock is no longer active;
 - this closure reconciles the previously deferred operational state only;
 - no runtime security tooling, credentials or trading authority is enabled.
+
+
+## P06-A — Immutable Raw Archive
+
+Task: `FIN-P06-WA-001`  
+Linear: `HOS-195`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P06-WA-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P06-WA-001-immutable-raw-archive`
+
+Authorization:
+- Owner authorized P06 on 2026-10-06 after P05/G4 verification;
+- Fresh Live Guard: PASS;
+- open PRs at activation: 0;
+- previous active locks: 0;
+- post-reconciliation Governance + Branch Hygiene: PASS.
+
+Agents:
+- A2 Data — lead;
+- A1 Architecture — frozen D04/D06 boundary consistency;
+- A4 Quant — future dataset/replay compatibility consult;
+- A8 Security — rights/retention fail-closed review;
+- A9 Operations — archive integrity/operability review;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation boundary:
+- exact raw bytes + SHA-256 content address;
+- provider/source/capture metadata;
+- explicit rights/retention classification;
+- unknown/forbidden retention fails closed;
+- limited retention requires expiry metadata;
+- offline filesystem implementation is reference-only;
+- production storage vendor remains NOT_SELECTED;
+- P06-B through P06-H remain out of scope.
+
+Safety:
+- network: NONE;
+- credentials: NONE;
+- CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
