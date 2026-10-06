@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-G — Replay Snapshot Interfaces / IN_PROGRESS  
-Previous Workstream: P06-F — Feature Definitions & Materialization / CANONICAL_COMPLETE  
+Current Workstream: none — P06-G canonical closed; P06-H next  
+Previous Workstream: P06-G — Replay Snapshot Interfaces / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WG-001 — Replay Snapshot Interfaces`  
-Linear: `HOS-201 = In Progress`  
-Branch: `feat/FIN-P06-WG-001-replay-snapshot-interfaces`  
-Active lock: `LOCK-FIN-P06-WG-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,29 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-F — Feature Definitions & Materialization is CANONICAL_COMPLETE and its lock is RELEASED. P06-G — Replay Snapshot Interfaces is ACTIVE under FIN-P06-WG-001 / HOS-201 with LOCK-FIN-P06-WG-001-01 ACQUIRED. Replay snapshot identity is immutable and point-in-time visibility filters feature/vintage information by simulated decision time. Production replay storage vendor remains NOT_SELECTED; P06-H remains blocked until P06-G canonical closure.
+P06-G — Replay Snapshot Interfaces is CANONICAL_COMPLETE and LOCK-FIN-P06-WG-001-01 is RELEASED. P06 remains the active authorized phase. P06-H — Retention / Compaction / Storage-Cost Tests is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-H. Production replay/storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
+
+## P06-G — Replay Snapshot Interfaces
+
+Task: `FIN-P06-WG-001`  
+Linear: `HOS-201`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#147` = MERGED  
+Final implementation head: `4a366db54977a2d69ab31e6f301645a6ad409abb`  
+Implementation merge SHA: `31c09685fc7ec3bace014e896a4c4cee5cd5e612`  
+PR Governance: `37527325621` = SUCCESS  
+PR artifact: `sha256:bdc1ea320c0aab97cacc24ae67296fb31f4e3b1458f6492f5809d7f8b388a8aa`  
+Post-merge Governance: `37527480280` = SUCCESS  
+Post-merge artifact: `sha256:9d434d13aa9a120ac71538bca3f25907924ed2cd31be88088f3b8186f1e8f8a5`  
+Post-merge Branch Hygiene: `37527480239` = SUCCESS
+
+Safety:
+- production replay/storage vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P06-F — Feature Definitions & Materialization
 
