@@ -179,6 +179,22 @@ jobs:
           cmp build/p05f-a.json build/p05f-b.json
           sha256sum build/p05f-a.json
 
+      - name: P05-G deterministic performance contract evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05g_contract_evidence.py --output build/p05g-contract-a.json
+          python scripts/ci/p05g_contract_evidence.py --output build/p05g-contract-b.json
+          cmp build/p05g-contract-a.json build/p05g-contract-b.json
+          sha256sum build/p05g-contract-a.json
+
+      - name: P05-G measured performance validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05g_performance.py --output build/p05g-performance.json
+          sha256sum build/p05g-performance.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
@@ -286,6 +302,8 @@ jobs:
             build/p05d-a.json
             build/p05e-a.json
             build/p05f-a.json
+            build/p05g-contract-a.json
+            build/p05g-performance.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
