@@ -91,5 +91,13 @@
     "file_count": 311,
     "inventory_sha256": "81efa4a61846202af3d23b6a555eb531343fc20cb91750d4786bc0f6199c72f7",
     "lock": "RELEASED"
+  },
+  "fresh_revalidation": {
+    "task_id": "FIN-P05-WA-001-R01",
+    "linear": "HOS-190",
+    "state": "ACTIVE",
+    "baseline_main_sha": "29264269488f414f9f333abe0eeaaa91f8516c21",
+    "p05_d": "PAUSED_TODO",
+    "finding": "PHASE_BOUNDARY_DRIFT_001_REPAIRING"
   }
 }
