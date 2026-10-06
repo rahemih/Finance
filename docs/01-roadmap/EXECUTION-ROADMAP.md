@@ -36,7 +36,9 @@ Canonical completion:
 
 Active phase:
 - P05 — Real-Time Data: ACTIVE
-- active governed task: none (between P05 workstreams)
+- active governed task: `FIN-P05-WH-001 — Real-Time Data Gate Closure / G4`
+- Linear: `HOS-194`
+- branch: `docs/FIN-P05-WH-001-realtime-data-gate`
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -48,8 +50,9 @@ Completed P05 baselines:
 - P05-G — Latency / Throughput / Soak Validation: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Next workstream boundary:
-- P05-H — Real-Time Data Gate Closure: READY_TO_START
+Active workstream boundary:
+- P05-H — Real-Time Data Gate Closure: IN_PROGRESS
+- P06 — Historical Data & Feature Store: BLOCKED_UNTIL_G4_AND_OWNER_PHASE_AUTHORIZATION
 
 ---
 

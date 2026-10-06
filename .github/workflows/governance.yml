@@ -195,6 +195,9 @@ jobs:
           python scripts/ci/p05g_performance.py --output build/p05g-performance.json
           sha256sum build/p05g-performance.json
 
+      - name: P05 real-time data gate
+        run: python scripts/ci/p05_exit.py
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
