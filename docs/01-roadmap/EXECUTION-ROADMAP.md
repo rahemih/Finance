@@ -33,12 +33,11 @@ Canonical completion:
 - P02 — Master Architecture: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS
 - P03 — Security & Identity: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 - P04 — Engineering Foundation: CANONICAL_COMPLETE / Engineering Foundation exit PASS
+- P05 — Real-Time Data: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 
 Active phase:
-- P05 — Real-Time Data: ACTIVE
-- active governed task: `FIN-P05-WH-001 — Real-Time Data Gate Closure / G4`
-- Linear: `HOS-194`
-- branch: `docs/FIN-P05-WH-001-realtime-data-gate`
+- none — P06 requires explicit Owner phase authorization
+- active governed task: none
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -48,11 +47,11 @@ Completed P05 baselines:
 - P05-E — Streaming / Heartbeat / Backpressure: CANONICAL_COMPLETE
 - P05-F — Reconnect / Failover / Gap Recovery: CANONICAL_COMPLETE
 - P05-G — Latency / Throughput / Soak Validation: CANONICAL_COMPLETE
+- P05-H — Real-Time Data Gate Closure / G4: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Active workstream boundary:
-- P05-H — Real-Time Data Gate Closure: IN_PROGRESS
-- P06 — Historical Data & Feature Store: BLOCKED_UNTIL_G4_AND_OWNER_PHASE_AUTHORIZATION
+Next phase boundary:
+- P06 — Historical Data & Feature Store: NOT_STARTED_PENDING_OWNER_AUTHORIZATION
 
 ---
 
