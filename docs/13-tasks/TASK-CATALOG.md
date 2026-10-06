@@ -21,6 +21,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WG-001 | P01 | Agent framework, ready-agent & interoperability registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001.json` | RELEASED |
 | FIN-P01-WG-001-R01 | P01 | Agent registry Current State reconciliation repair | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001-R01.json` | RELEASED |
 | FIN-P01-WG-002 | P01 | Agent Layer Build Readiness | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-002.json` | RELEASED |
+| FIN-P01-WS-001 | P01 | Security Tooling Registry & Defense-in-Depth Baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WS-001.json` | RELEASED |
 
 | FIN-P01-WD-001 | P01 | Jurisdiction & compliance matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WD-001.json` | RELEASED |
 | FIN-P01-WE-001 | P01 | Cost / Licensing / Data Rights | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WE-001.json` | RELEASED |
