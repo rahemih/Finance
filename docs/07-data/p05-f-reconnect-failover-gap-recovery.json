@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WF-001",
-  "state": "P05-F_IN_PROGRESS",
+  "state": "P05-F_CANONICAL_COMPLETE",
   "linear_issue": "HOS-192",
   "lead_agent": "A2",
   "sequence_policy": {
@@ -25,8 +25,28 @@
   "backup_activation": "VALIDATION_REQUIRED_FAIL_CLOSED",
   "network_runtime": "NOT_IMPLEMENTED",
   "credentials_required": false,
-  "p05_g": "BLOCKED_UNTIL_P05_F_CANONICAL_COMPLETE",
+  "p05_g": "READY_TO_START",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 128,
+    "implementation_head_sha": "d3eb774e22618c3fb8a7b94ed675e827d1d772b1",
+    "implementation_merge_sha": "e2283b344f21b533395df1c6194c5c8ca74b9e59",
+    "pr_governance_run": 37449455344,
+    "pr_artifact_id": 11405795185,
+    "pr_artifact_digest": "sha256:00c2f97b3bef457eb8738d709aa12eecbef5773c6b017d53a3cd18580a848f20",
+    "postmerge_governance_run": 37449575606,
+    "postmerge_artifact_id": 11405835208,
+    "postmerge_artifact_digest": "sha256:9b34690a418313b51d90018f7ac23ebf40d275086a7e1c9d505241daf2bcc7d7",
+    "postmerge_branch_hygiene_run": 37449575567,
+    "pyright": "0 errors / 0 warnings",
+    "foundation_tests": "22/22 PASS",
+    "p05_tests": "95/95 PASS",
+    "sequence_observations": 5,
+    "implementation_evidence_sha256": "0d1f7d3cd22a2c4409f0586b95244aa3cf22a2fd63faa27cdb8348f399e4f22f",
+    "reproducible_artifact_sha256": "c2e05c4b1e0b25c3eb5041c9e890c35b18973e90371ca71900dc7be5b309145f",
+    "rollback_manifest_sha256": "8540fda3cd2e809831b0899393c8d92562493be7ce4f9f35f8e873997fdea74c",
+    "verdict": "PASS"
+  }
 }
