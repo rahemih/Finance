@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-D — Dataset Manifests & Versioning / IN_PROGRESS  
-Previous Workstream: P06-C — Time-Series Optimized Query Layer / CANONICAL_COMPLETE  
+Current Workstream: none — P06-D canonical closed; P06-E next  
+Previous Workstream: P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WD-001 — Dataset Manifests & Versioning`  
-Linear: `HOS-198 = In Progress`  
-Branch: `feat/FIN-P06-WD-001-dataset-manifests`  
-Active lock: `LOCK-FIN-P06-WD-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,28 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-C — Time-Series Optimized Query Layer is CANONICAL_COMPLETE and its lock is RELEASED. P06-D — Dataset Manifests & Versioning is ACTIVE under FIN-P06-WD-001 / HOS-198 with LOCK-FIN-P06-WD-001-01 ACQUIRED. The implementation is content-addressed and vendor-neutral; production manifest/query storage vendor remains NOT_SELECTED, credentials/network are not required, and P06-E remains blocked until P06-D canonical closure.
+P06-D — Dataset Manifests & Versioning is CANONICAL_COMPLETE and LOCK-FIN-P06-WD-001-01 is RELEASED. P06 remains the active authorized phase. P06-E — Macro Vintage Model is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-E. Production manifest/query storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
+
+## P06-D — Dataset Manifests & Versioning
+
+Task: `FIN-P06-WD-001`  
+Linear: `HOS-198`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#141` = MERGED  
+Final implementation head: `ab32444222dac7fedec7117ee16bb225d0fa1ec0`  
+Implementation merge SHA: `8ca5faf7c82a86a47784fe7748c731fd67f78719`  
+PR Governance: `37482853727` = SUCCESS  
+PR artifact: `sha256:5d6fc6470729890099bd6ff123fb3c3f1aa0d4f656cecd047b0fef444644b7a1`  
+Post-merge Governance: `37483116686` = SUCCESS  
+Post-merge artifact: `sha256:1a79010d0cc32a8020085cbff52beec3606248bae9d791b20187e8a226355250`  
+Post-merge Branch Hygiene: `37483116634` = SUCCESS
+
+Safety:
+- production manifest/query storage vendor: NOT_SELECTED;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P06-C — Time-Series Optimized Query Layer
 
