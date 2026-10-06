@@ -47,12 +47,12 @@
     "postmerge_branch_hygiene_run": 37426163231,
     "postmerge_artifact_id": 11395128218,
     "postmerge_artifact_digest": "sha256:8ef849bfcacc5f7630a63e5bd5ac29e948d961aa7c343e1aee1f763871d816cf",
+    "pyright": "0 errors / 0 warnings / 0 informations",
     "p05_tests": "54/54 PASS",
-    "strict_pyright": "0 errors / 0 warnings",
     "deterministic_evidence_sha256": "ba1072b53db0abb3f36caff02962bb3bfdd95ac35bd87f11ae6c9f022df405c8",
-    "reproducible_artifact_sha256": "cc59078d27cdb1a0198607366b987213bb66a7d38115002b8434526e6af0eb2a",
-    "rollback_manifest_sha256": "a8c03077677eea74f076160da8947facad18e3777e565bfbad1dcf4a92602e1b",
-    "file_count": 325,
-    "lock": "RELEASED"
+    "sbom_license": "PASS",
+    "trivy": "PASS",
+    "reproducible_build": "PASS",
+    "lock": "RELEASED_PENDING_CLOSURE_MERGE"
   }
 }
