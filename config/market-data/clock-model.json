@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "state": "P05-D_IMPLEMENTATION",
+  "precision_policy": "SOURCE_PRESERVED_NO_SYNTHETIC_PRECISION",
+  "canonical_event_time": {
+    "provider_event_envelope": "ts_event",
+    "provider_quote_envelope": "provider_event_time_OR_NONE_NO_FALLBACK",
+    "provider_context_envelope": "provider_event_time_OR_NONE_NO_FALLBACK"
+  },
+  "provider_receive_time": {
+    "kaiko": "NOT_AVAILABLE_SEPARATELY_COLLECTION_TIME_PRESERVED",
+    "dxfeed": "NOT_AVAILABLE",
+    "databento": "provider_receive_time"
+  },
+  "auxiliary_source_times": {
+    "dxfeed": [
+      "bid_time",
+      "ask_time"
+    ]
+  },
+  "rules": [
+    "Never substitute local receive time for provider event time",
+    "Never substitute provider receive time for provider event time",
+    "Never merge dxFeed bid_time and ask_time into a synthetic event time",
+    "Preserve raw provider timestamp representation and exact epoch_ns",
+    "Local receive time is a non-negative integer epoch nanoseconds",
+    "Signed deltas are observations, not pure network latency claims"
+  ],
+  "signed_deltas": [
+    "event_to_local_delta_ns = local_receive_ns - provider_event_time_ns when event time exists",
+    "provider_receive_to_local_delta_ns = local_receive_ns - provider_receive_time_ns when provider receive time exists"
+  ]
+}
