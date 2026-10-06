@@ -34,21 +34,19 @@ Canonical completion:
 - P03 — Security & Identity: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 - P04 — Engineering Foundation: CANONICAL_COMPLETE / Engineering Foundation exit PASS
 
-Active implementation:
+Active phase:
 - P05 — Real-Time Data: ACTIVE
-- P05-D — Canonical Normalization / Symbol Master / Clock Model: IN_PROGRESS
-- Governed task: FIN-P05-WD-001
-- Linear: HOS-188
-- Branch: feat/FIN-P05-WD-001-canonical-normalization
+- active governed task: none (between P05 workstreams)
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
 - P05-B — dxFeed Forex quote adapter: CANONICAL_COMPLETE
 - P05-C — Databento Gold context adapter: CANONICAL_COMPLETE
+- P05-D — Canonical Normalization / Symbol Master / Clock Model: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
 Next workstream boundary:
-- P05-E — Streaming / Heartbeat / Backpressure begins only after P05-D canonical closure
+- P05-E — Streaming / Heartbeat / Backpressure: READY_TO_START
 - P05-H will produce the roadmap-defined G4_REALTIME_DATA evidence after P05 implementation/validation
 
 ---
