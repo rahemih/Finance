@@ -9,6 +9,15 @@ from .backfill import (
     HistoricalBackfillError,
     HistoricalBackfillRunner,
 )
+from .dataset_manifest import (
+    DatasetManifest,
+    DatasetManifestError,
+    DatasetManifestIntegrityError,
+    DatasetManifestPolicy,
+    DatasetMember,
+    FilesystemDatasetManifestStore,
+    StoredDatasetManifest,
+)
 from .query_layer import (
     TimeSeriesQuery,
     TimeSeriesQueryError,
@@ -36,6 +45,13 @@ __all__ = [
     "BackfillRunResult",
     "HistoricalBackfillError",
     "HistoricalBackfillRunner",
+    "DatasetManifest",
+    "DatasetManifestError",
+    "DatasetManifestIntegrityError",
+    "DatasetManifestPolicy",
+    "DatasetMember",
+    "FilesystemDatasetManifestStore",
+    "StoredDatasetManifest",
     "TimeSeriesQuery",
     "TimeSeriesQueryError",
     "TimeSeriesQueryIndex",
