@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-G closure: `8d1a5195867995ab41ea6e9d844c8238f64da265`  
+Canonical P05-H gate implementation merge: `c1473f8d8599b3485416a50ca3d895a8b9ccee46`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -39,13 +39,14 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-H — Real-Time Data Gate Closure / IN_PROGRESS  
-Previous Workstream: P05-G — Latency / Throughput / Soak Validation / CANONICAL_COMPLETE  
+Current Phase: P05 — Real-Time Data / CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
+Current Workstream: none — phase closed  
+Previous Workstream: P05-H — Real-Time Data Gate Closure / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
-P04 state: CANONICAL_COMPLETE
+P04 state: CANONICAL_COMPLETE  
+P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -155,10 +156,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WH-001 — Real-Time Data Gate Closure / G4`  
-Linear: `HOS-194 = In Progress`  
-Branch: `docs/FIN-P05-WH-001-realtime-data-gate`  
-Active lock: `LOCK-FIN-P05-WH-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -166,7 +165,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-G CANONICAL_COMPLETE / P05-H G4 REVIEW IN_PROGRESS
+Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -176,7 +175,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-G are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-H is ACTIVE under FIN-P05-WH-001 / HOS-194; P06 remains blocked until final G4 PASS and explicit Owner phase authorization.
+P05 — Real-Time Data is CANONICAL_COMPLETE with G4_REALTIME_DATA PASS. P06 — Historical Data & Feature Store remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION. No P06 task, branch or implementation is authorized by this closure.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2636,10 +2635,10 @@ Next ready workstream:
 
 Task: `FIN-P05-WH-001`  
 Linear: `HOS-194`  
-State: CANONICAL_REVIEW_PASS / IN_PROGRESS  
-Gate: `G4_REALTIME_DATA = PASS_PENDING_CANONICAL_MERGE`  
-Lock: `LOCK-FIN-P05-WH-001-01 / ACQUIRED`  
-Branch: `docs/FIN-P05-WH-001-realtime-data-gate`
+State: CANONICAL_COMPLETE  
+Gate: `G4_REALTIME_DATA = PASS`  
+Lock: RELEASED  
+Implementation branch: `docs/FIN-P05-WH-001-realtime-data-gate` / MERGED
 
 Independent validation:
 - P05-A through P05-G = CANONICAL_COMPLETE / locks RELEASED;
@@ -2658,15 +2657,26 @@ Scope truth:
 - provider/network SLA certification = NOT CLAIMED;
 - automatic data failover = DISABLED.
 
-Final PASS requires:
-- P05-H PR Governance SUCCESS;
-- merge to main;
-- post-merge Governance + Branch Hygiene SUCCESS;
-- closure reconciliation;
-- lock release.
+Canonical closure evidence:
+- implementation PR `#132` = MERGED;
+- implementation head: `7ec05764036cf61491e9772fd43790736aed53c0`;
+- implementation merge SHA: `c1473f8d8599b3485416a50ca3d895a8b9ccee46`;
+- PR Governance `37460756520` = SUCCESS;
+- PR artifact `11411557716`;
+- PR artifact digest: `sha256:6a07193595136812c5516d2a24f09ee674777b2477371052fb9eb7730ae66dec`;
+- post-merge Governance `37460902616` = SUCCESS;
+- post-merge artifact `11412612139`;
+- post-merge artifact digest: `sha256:bf7c5782974a517e7c66acda4a9581e3a0569bc0e38f5149c2b240bbf6e4e0a9`;
+- post-merge Branch Hygiene `37460902622` = SUCCESS;
+- strict Pyright: `0 errors / 0 warnings`;
+- foundation tests: `22/22 PASS`;
+- P05 tests: `100/100 PASS`;
+- persistent P05 exit guard: PASS;
+- G4 criteria: `16 PASS / 0 FAIL`;
+- unresolved Critical/High engineering or governance blockers: `0 / 0`.
 
-Phase boundary after final PASS:
-- P05 = CANONICAL_COMPLETE;
+Phase boundary:
+- P05 = CANONICAL_COMPLETE / G4_REALTIME_DATA PASS;
 - P06 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION.
 
 Safety:
