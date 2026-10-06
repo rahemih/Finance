@@ -9,7 +9,13 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from adapters.market_data.databento import DatabentoGoldContextAdapter
 from adapters.market_data.dxfeed import DxFeedForexQuoteAdapter, DxFeedForexSubscription
@@ -17,7 +23,6 @@ from adapters.market_data.kaiko import KaikoAdapter, KaikoSubscription
 from packages.market_data import CanonicalNormalizer, SymbolMaster
 
 
-ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "tests/p05/fixtures"
 SYMBOLS = ROOT / "config/market-data/symbol-master.json"
 CLOCK = ROOT / "config/market-data/clock-model.json"
