@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P05 — Real-Time Data / P05-G Latency / Throughput / Soak Validation IN_PROGRESS
+> Status: P05 — Real-Time Data / P05-G CANONICAL_COMPLETE / P05-H READY_TO_START
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
