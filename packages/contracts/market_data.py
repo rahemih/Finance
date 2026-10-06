@@ -10,6 +10,7 @@ class MarketEventKind(StrEnum):
     TRADE = "TRADE"
     ORDER_BOOK = "ORDER_BOOK"
     QUOTE = "QUOTE"
+    CONTEXT_TOP_OF_BOOK = "CONTEXT_TOP_OF_BOOK"
 
 
 class TradeSide(StrEnum):
@@ -34,6 +35,14 @@ class QuoteSizeSemantics(StrEnum):
     PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME = (
         "PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME"
     )
+
+
+class ContextQuantitySemantics(StrEnum):
+    CENTRALIZED_FUTURES_VENUE_QUANTITY = "CENTRALIZED_FUTURES_VENUE_QUANTITY"
+
+
+class ContextMarketRole(StrEnum):
+    CONTEXT_ONLY = "CONTEXT_ONLY"
 
 
 @dataclass(frozen=True, slots=True)
@@ -85,7 +94,26 @@ class QuotePayload:
     size_semantics: QuoteSizeSemantics
 
 
-MarketPayload: TypeAlias = TradePayload | OrderBookPayload | QuotePayload
+@dataclass(frozen=True, slots=True)
+class ContextTopOfBookPayload:
+    action: str
+    side: str
+    depth: int
+    event_price: Decimal | None
+    event_size: int
+    bid_price: Decimal | None
+    ask_price: Decimal | None
+    bid_size: int
+    ask_size: int
+    bid_count: int
+    ask_count: int
+    flags: int
+    ts_in_delta_ns: int
+    quantity_semantics: ContextQuantitySemantics
+    role: ContextMarketRole
+
+
+MarketPayload: TypeAlias = TradePayload | OrderBookPayload | QuotePayload | ContextTopOfBookPayload
 
 
 @dataclass(frozen=True, slots=True)
@@ -112,4 +140,20 @@ class ProviderQuoteEnvelope:
     metadata: tuple[tuple[str, str], ...] = ()
 
 
-ProviderMarketEnvelope: TypeAlias = ProviderEventEnvelope | ProviderQuoteEnvelope
+@dataclass(frozen=True, slots=True)
+class ProviderContextEnvelope:
+    kind: MarketEventKind
+    instrument: ProviderInstrument
+    sequence_id: str
+    provider_event_time: ProviderTimestamp | None
+    provider_receive_time: ProviderTimestamp
+    received_at_ns: int
+    publisher_id: int
+    provider_instrument_id: int
+    payload: ContextTopOfBookPayload
+    metadata: tuple[tuple[str, str], ...] = ()
+
+
+ProviderMarketEnvelope: TypeAlias = (
+    ProviderEventEnvelope | ProviderQuoteEnvelope | ProviderContextEnvelope
+)

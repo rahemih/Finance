@@ -1,0 +1,25 @@
+{
+  "ts_event": 1780820499999900000,
+  "ts_recv": 1780820500000000000,
+  "rtype": 1,
+  "publisher_id": 1,
+  "instrument_id": 424242,
+  "action": "T",
+  "side": "B",
+  "depth": 0,
+  "price": 2400100000000,
+  "size": 5,
+  "flags": 128,
+  "ts_in_delta": 50000,
+  "sequence": 12345,
+  "levels": [
+    {
+      "bid_px": 2400000000000,
+      "ask_px": 2400200000000,
+      "bid_sz": 7,
+      "ask_sz": 6,
+      "bid_ct": 4,
+      "ask_ct": 3
+    }
+  ]
+}

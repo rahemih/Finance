@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: governance-${{ github.ref }}
+  group: governance-v2-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -140,6 +140,15 @@ jobs:
           cmp build/p05b-a.json build/p05b-b.json
           sha256sum build/p05b-a.json
 
+      - name: P05-C deterministic context evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05c_evidence.py --output build/p05c-a.json
+          python scripts/ci/p05c_evidence.py --output build/p05c-b.json
+          cmp build/p05c-a.json build/p05c-b.json
+          sha256sum build/p05c-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
@@ -243,6 +252,7 @@ jobs:
             build/test-harness-a.json
             build/p05a-a.json
             build/p05b-a.json
+            build/p05c-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
