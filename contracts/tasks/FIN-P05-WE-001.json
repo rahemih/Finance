@@ -1,0 +1,146 @@
+{
+  "task_id": "FIN-P05-WE-001",
+  "phase": "P05",
+  "workstream": "WE",
+  "objective": "Establish a provider-neutral deterministic streaming baseline with bounded FIFO buffering, explicit heartbeat/liveness semantics and fail-loud backpressure for canonical P05 market events.",
+  "scope": [
+    "Create a provider-neutral canonical stream bus for CanonicalMarketEvent",
+    "Define stable stream identity from provider plus canonical instrument ID",
+    "Implement bounded FIFO buffering without preallocation",
+    "Expose deterministic NORMAL, HIGH, CRITICAL and FULL pressure states",
+    "Reject overflow explicitly without silent drop or implicit overwrite",
+    "Track per-stream accepted local receive time for heartbeat/liveness evaluation",
+    "Expose NEVER_SEEN, HEALTHY and STALE liveness states",
+    "Reject per-stream local receive time regression",
+    "Expose deterministic queue depth, high-water mark and rejected-event metrics",
+    "Bind default buffer capacity to the P02-H OPERATING peak envelope for at least 60 seconds",
+    "Add offline deterministic unit tests and byte-identical P05-E evidence",
+    "Keep P04/P05 governance, SBOM, Trivy and reproducible-build gates active",
+    "Reconcile Current State, Task Catalog, README and Execution Roadmap to active P05-E"
+  ],
+  "out_of_scope": [
+    "Provider reconnect, failover and gap recovery P05-F",
+    "Latency, throughput and soak certification P05-G",
+    "G4_REALTIME_DATA closure P05-H",
+    "External stream broker or queue technology selection",
+    "Disk spill implementation",
+    "New provider or live network connection",
+    "Live provider credentials",
+    "Trading or order execution"
+  ],
+  "dependencies": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "FIN-P05-WB-001 CANONICAL_COMPLETE",
+    "FIN-P05-WC-001 CANONICAL_COMPLETE",
+    "FIN-P05-WD-001 CANONICAL_COMPLETE",
+    "FROZEN_G2 Data Flow and Storage Architecture",
+    "P02-H Capacity and Cost Envelope",
+    "Owner P05 phase authorization"
+  ],
+  "read_paths": [
+    "packages/contracts/market_data.py",
+    "packages/market_data/normalization.py",
+    "packages/market_data/symbol_master.py",
+    "config/market-data/symbol-master.json",
+    "config/market-data/clock-model.json",
+    "docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md",
+    "docs/04-architecture/CAPACITY-COST-ENVELOPE.md",
+    "docs/07-data/P05-D-CANONICAL-NORMALIZATION-SYMBOL-CLOCK.md",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P05-WE-001.json",
+    "config/market-data/streaming-policy.json",
+    "packages/market_data/__init__.py",
+    "packages/market_data/streaming.py",
+    "tests/p05/test_streaming_heartbeat_backpressure.py",
+    "scripts/ci/p05e_evidence.py",
+    "docs/07-data/P05-E-STREAMING-HEARTBEAT-BACKPRESSURE.md",
+    "docs/07-data/p05-e-streaming-heartbeat-backpressure.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for product source",
+    "Default streaming policy loads deterministically",
+    "Configured capacity covers at least 60 seconds of P02-H OPERATING peak ingress",
+    "FIFO order is preserved",
+    "Pressure transitions are deterministic",
+    "Overflow raises BackpressureError and never silently drops or overwrites an accepted event",
+    "Heartbeat state transitions NEVER_SEEN to HEALTHY to STALE deterministically",
+    "Per-stream local receive time regression is rejected",
+    "Health evaluation before the last accepted receive time is rejected",
+    "Queue depth, high-water mark and rejected-event metrics are deterministic",
+    "P05-E evidence is byte-identical across two runs",
+    "Provider-neutral streaming package imports no provider adapters"
+  ],
+  "performance_tests": [
+    "P05-E establishes bounded capacity semantics only; throughput and soak certification remains P05-G"
+  ],
+  "security_tests": [
+    "No raw provider credential is introduced",
+    "No network call is required by canonical CI",
+    "No provider adapter import exists in packages/market_data/streaming.py",
+    "No silent event loss policy exists",
+    "No timestamp synthesis is introduced",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P02-C data-flow/storage bounded-ingress architecture",
+    "P02-H OPERATING capacity envelope",
+    "P05-D canonical event baseline",
+    "Offline P05-E tests",
+    "Deterministic P05-E evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-191 reconciliation"
+  ],
+  "rollback": "Revert P05-E streaming policy, provider-neutral stream bus, tests/evidence and P05-E CI/state wiring. P05-A through P05-D remain canonical; no provider entitlement, credential, live connection or trading state is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P05-A through P05-D CANONICAL_COMPLETE",
+    "P05 Owner authorization remains valid",
+    "No conflicting P05-E task, branch or PR",
+    "P02-C and P02-H architecture baselines are canonical"
+  ],
+  "definition_of_done": [
+    "Provider-neutral bounded stream bus canonical",
+    "Heartbeat and backpressure policy canonical",
+    "Strict Pyright and offline deterministic tests pass",
+    "No silent drop or provider-specific import behavior remains",
+    "SBOM, Trivy and reproducible CI remains green",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P05-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-191 Done",
+    "P05-F becomes next workstream"
+  ]
+}
