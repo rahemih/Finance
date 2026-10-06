@@ -95,7 +95,7 @@
   "fresh_revalidation": {
     "task_id": "FIN-P05-WA-001-R01",
     "linear": "HOS-190",
-    "state": "CANONICAL_COMPLETE_PENDING_CLOSURE_MERGE",
+    "state": "CANONICAL_COMPLETE",
     "verdict": "PASS",
     "implementation_pr": 122,
     "implementation_merge_sha": "a72391a0889150f69080e9eb7e31b5d1d050b422",
