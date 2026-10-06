@@ -110,7 +110,9 @@
     "raw/empty credential references are rejected",
     "offline subscription descriptor never resolves credential or selects endpoint",
     "repeated parsing is deterministic",
-    "P05-C evidence is byte-identical across two runs"
+    "P05-C evidence is byte-identical across two runs",
+    "Non-MBP-1 rtype is rejected",
+    "Nonzero depth is rejected for the MBP-1 top-of-book baseline"
   ],
   "security_tests": [
     "No raw Databento API key is committed",
