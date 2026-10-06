@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WG-001",
+  "state": "P06-G_IN_PROGRESS",
+  "linear_issue": "HOS-201",
+  "owner_domain": "D04_RESEARCH_REPLAY_DATASETS",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A7", "A8", "A9", "A10"],
+  "depends_on": [
+    "P06-D_CANONICAL_COMPLETE",
+    "P06-E_CANONICAL_COMPLETE",
+    "P06-F_CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA_PASS"
+  ],
+  "execution_mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_REPLAY_SNAPSHOTS",
+  "snapshot_identity": "SHA256_CANONICAL_REPLAY_SNAPSHOT_BODY",
+  "clock_modes": ["EVENT_TIME", "RECEIVE_TIME", "CONTROLLED_SIMULATION_CLOCK"],
+  "anti_lookahead_rule": "INFORMATION_TIME_NOT_AFTER_SIMULATED_DECISION_TIME",
+  "lineage": "P06-D_DATASET_PLUS_P06-E_VINTAGE_PLUS_P06-F_FEATURE_PLUS_CODE_CONFIG_QUALITY_RIGHTS",
+  "production_replay_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p06_h": "BLOCKED_UNTIL_P06_G_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
