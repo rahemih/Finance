@@ -80,16 +80,64 @@ def _require_secret_ref(value: object) -> str:
     return text
 
 
-def _require_int(value: object, *, field: str, minimum: int | None = None) -> int:
+def _require_int(
+    value: object,
+    *,
+    field: str,
+    minimum: int | None = None,
+    maximum: int | None = None,
+) -> int:
     if isinstance(value, bool) or not isinstance(value, int):
         raise DatabentoAdapterError(f"{field} must be an integer")
     if minimum is not None and value < minimum:
         raise DatabentoAdapterError(f"{field} must be >= {minimum}")
+    if maximum is not None and value > maximum:
+        raise DatabentoAdapterError(f"{field} must be <= {maximum}")
     return value
 
 
+def _uint8(value: object, *, field: str) -> int:
+    return _require_int(value, field=field, minimum=0, maximum=(1 << 8) - 1)
+
+
+def _uint16(value: object, *, field: str, allow_zero: bool = True) -> int:
+    return _require_int(
+        value,
+        field=field,
+        minimum=0 if allow_zero else 1,
+        maximum=(1 << 16) - 1,
+    )
+
+
+def _uint32(value: object, *, field: str, allow_zero: bool = True) -> int:
+    return _require_int(
+        value,
+        field=field,
+        minimum=0 if allow_zero else 1,
+        maximum=(1 << 32) - 1,
+    )
+
+
+def _uint64(value: object, *, field: str, allow_zero: bool = True) -> int:
+    return _require_int(
+        value,
+        field=field,
+        minimum=0 if allow_zero else 1,
+        maximum=(1 << 64) - 1,
+    )
+
+
+def _int32(value: object, *, field: str) -> int:
+    return _require_int(
+        value,
+        field=field,
+        minimum=-(1 << 31),
+        maximum=(1 << 31) - 1,
+    )
+
+
 def _timestamp(value: object, *, field: str, allow_undefined: bool) -> ProviderTimestamp | None:
-    raw = _require_int(value, field=field, minimum=0)
+    raw = _uint64(value, field=field)
     if raw == UNDEF_TIMESTAMP:
         if allow_undefined:
             return None
@@ -98,14 +146,36 @@ def _timestamp(value: object, *, field: str, allow_undefined: bool) -> ProviderT
 
 
 def _price(value: object, *, field: str) -> Decimal | None:
-    raw = _require_int(value, field=field)
+    raw = _require_int(
+        value,
+        field=field,
+        minimum=-(1 << 63),
+        maximum=(1 << 63) - 1,
+    )
     if raw == UNDEF_PRICE:
         return None
-    return Decimal(raw) / PRICE_SCALE
+    price = Decimal(raw) / PRICE_SCALE
+    if price <= 0:
+        raise DatabentoAdapterError(f"{field} must be > 0 when defined")
+    return price
 
 
 def _nonnegative_int(value: object, *, field: str) -> int:
     return _require_int(value, field=field, minimum=0)
+
+
+def _action(value: object) -> str:
+    action = _require_text(value, field="action").upper()
+    if action not in {"A", "C", "M", "R", "T"}:
+        raise DatabentoAdapterError("action must be one of A, C, M, R, T")
+    return action
+
+
+def _side(value: object) -> str:
+    side = _require_text(value, field="side").upper()
+    if side not in {"A", "B", "N"}:
+        raise DatabentoAdapterError("side must be one of A, B, N")
+    return side
 
 
 class DatabentoGoldContextAdapter:
@@ -134,7 +204,13 @@ class DatabentoGoldContextAdapter:
     ) -> ProviderContextEnvelope:
         record = _require_mapping(message, field="message")
         mapped = _require_text(mapped_symbol, field="mapped_symbol")
-        local_receive = _nonnegative_int(received_at_ns, field="received_at_ns")
+        if mapped == self.subscription.symbol:
+            raise DatabentoAdapterError(
+                "mapped_symbol must be a concrete contract, not the continuous subscription symbol"
+            )
+        local_receive = _uint64(received_at_ns, field="received_at_ns")
+        if local_receive == UNDEF_TIMESTAMP:
+            raise DatabentoAdapterError("received_at_ns must be defined")
 
         rtype = _require_int(record.get("rtype"), field="rtype", minimum=0)
         if rtype != 1:
@@ -164,10 +240,10 @@ class DatabentoGoldContextAdapter:
 
         bid_px = _price(level.get("bid_px"), field="bid_px")
         ask_px = _price(level.get("ask_px"), field="ask_px")
-        bid_sz = _nonnegative_int(level.get("bid_sz"), field="bid_sz")
-        ask_sz = _nonnegative_int(level.get("ask_sz"), field="ask_sz")
-        bid_ct = _nonnegative_int(level.get("bid_ct"), field="bid_ct")
-        ask_ct = _nonnegative_int(level.get("ask_ct"), field="ask_ct")
+        bid_sz = _uint32(level.get("bid_sz"), field="bid_sz")
+        ask_sz = _uint32(level.get("ask_sz"), field="ask_sz")
+        bid_ct = _uint32(level.get("bid_ct"), field="bid_ct")
+        ask_ct = _uint32(level.get("ask_ct"), field="ask_ct")
         if bid_px is not None and ask_px is not None and bid_px > ask_px:
             raise DatabentoAdapterError("defined bid price must be <= defined ask price")
 
