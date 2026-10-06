@@ -114,7 +114,7 @@ This catalog is the canonical index of governed work.
 | FIN-P05-WC-001 | P05 | Context Market Adapter / Databento Gold MBP-1 Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WC-001.json` | RELEASED |
 
 
-| FIN-P05-WA-001-R01 | P05 | Fresh P05-A Revalidation & Phase-Boundary Repair | HIGH | ACTIVE | `contracts/tasks/FIN-P05-WA-001-R01.json` | LOCK-FIN-P05-WA-001-R01-01 |
+| FIN-P05-WA-001-R01 | P05 | Fresh P05-A Revalidation & Phase-Boundary Repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WA-001-R01.json` | RELEASED |
 
 ## Rules
 
