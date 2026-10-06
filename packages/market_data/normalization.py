@@ -6,7 +6,6 @@ from enum import StrEnum
 from packages.contracts.market_data import (
     MarketEventKind,
     MarketPayload,
-    ProviderContextEnvelope,
     ProviderEventEnvelope,
     ProviderMarketEnvelope,
     ProviderQuoteEnvelope,
