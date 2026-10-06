@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-B — Forex Real-Time Adapters / CANONICAL_COMPLETE  
-Next Workstream: P05-C — Context Market Ingestion / READY  
+Current Workstream: P05-C — Context Market Ingestion / ACTIVE  
+Next Workstream: P05-D — Canonical Normalization / Symbol Master / Clock Model / NOT_STARTED  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -155,8 +155,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WC-001 — Context Market Adapter / Databento Gold MBP-1 Baseline`  
+Active branch: `feat/FIN-P05-WC-001-databento-gold-context`  
+Active lock: `LOCK-FIN-P05-WC-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -174,7 +175,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A and P05-B are CANONICAL_COMPLETE; P05-C — Context Market Ingestion is the next workstream.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A and P05-B are CANONICAL_COMPLETE; P05-C — Context Market Ingestion is ACTIVE under `FIN-P05-WC-001`.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2273,3 +2274,50 @@ P05-B closure evidence:
 - reproducible build = PASS
 - `FIN-P05-WB-001 = CANONICAL_COMPLETE / RELEASED`
 - P05-C = NOT_STARTED / READY
+
+
+## P05-C — Context Market Adapter / Databento Gold MBP-1 Baseline
+
+Task: `FIN-P05-WC-001`  
+Linear: `HOS-185`  
+State: ACTIVE  
+Branch: `feat/FIN-P05-WC-001-databento-gold-context`  
+Lock: `LOCK-FIN-P05-WC-001-01`
+
+Agents:
+- A2 Data Agent = LEAD
+- A1 Architecture = provider-neutral boundary
+- A8 Security = credential/licensing boundary
+- A9 Operations = CI/transport operability
+- A10 Evidence = deterministic certification
+- A0 Governance = orchestration
+
+First controlled context:
+- canonical: `COMMODITY:GOLD:GC:FUTURES:COMEX`
+- provider: Databento
+- dataset: `GLBX.MDP3`
+- schema: `mbp-1`
+- subscription symbol: `GC.v.0`
+- role: CONTEXT_ONLY
+- trading authority: NONE
+
+Data truth:
+- provider timestamps remain nanosecond integers;
+- fixed-point prices decode exactly at 1e-9;
+- Databento undefined price/timestamp sentinels never become real market values;
+- continuous subscription symbol and mapped concrete contract are preserved separately;
+- GC quantities are centralized futures venue quantities, not Spot Gold OTC volume.
+
+Connectivity:
+- Databento entitlement = NOT_PROVISIONED
+- production endpoint = NOT_SELECTED
+- credential = NONE
+- canonical CI network dependency = NONE
+
+Safety:
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
+
+Next after closure:
+- `P05-D — Canonical Normalization / Symbol Master / Clock Model`
