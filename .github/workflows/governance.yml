@@ -258,6 +258,15 @@ jobs:
           cmp build/p06f-a.json build/p06f-b.json
           sha256sum build/p06f-a.json
 
+      - name: P06-G deterministic replay snapshot evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06g_evidence.py --output build/p06g-a.json
+          python scripts/ci/p06g_evidence.py --output build/p06g-b.json
+          cmp build/p06g-a.json build/p06g-b.json
+          sha256sum build/p06g-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |

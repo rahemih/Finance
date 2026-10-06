@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WG-001",
+  "mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_REPLAY_SNAPSHOTS",
+  "allowed_clock_modes": [
+    "CONTROLLED_SIMULATION_CLOCK",
+    "EVENT_TIME",
+    "RECEIVE_TIME"
+  ],
+  "anti_lookahead_rule": "INFORMATION_TIME_NOT_AFTER_SIMULATED_DECISION_TIME",
+  "max_dataset_refs": 10000,
+  "max_feature_refs": 100000,
+  "max_vintage_refs": 100000,
+  "max_snapshot_bytes": 52428800,
+  "production_replay_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

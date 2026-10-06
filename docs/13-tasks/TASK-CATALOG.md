@@ -134,6 +134,7 @@ This catalog is the canonical index of governed work.
 | FIN-P06-WD-001 | P06 | Dataset Manifests & Versioning | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WD-001.json` | RELEASED |
 | FIN-P06-WE-001 | P06 | Macro Vintage Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WE-001.json` | RELEASED |
 | FIN-P06-WF-001 | P06 | Feature Definitions & Materialization | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WF-001.json` | RELEASED |
+| FIN-P06-WG-001 | P06 | Replay Snapshot Interfaces | HIGH | ACTIVE | `contracts/tasks/FIN-P06-WG-001.json` | LOCK-FIN-P06-WG-001-01 |
 
 ## Rules
 
