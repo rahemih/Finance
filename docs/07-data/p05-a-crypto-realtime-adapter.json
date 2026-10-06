@@ -95,9 +95,18 @@
   "fresh_revalidation": {
     "task_id": "FIN-P05-WA-001-R01",
     "linear": "HOS-190",
-    "state": "ACTIVE",
-    "baseline_main_sha": "29264269488f414f9f333abe0eeaaa91f8516c21",
-    "p05_d": "PAUSED_TODO",
-    "finding": "PHASE_BOUNDARY_DRIFT_001_REPAIRING"
+    "state": "CANONICAL_COMPLETE",
+    "verdict": "PASS",
+    "implementation_pr": 122,
+    "implementation_merge_sha": "a72391a0889150f69080e9eb7e31b5d1d050b422",
+    "pr_governance_run": 37430457151,
+    "postmerge_governance_run": 37430728907,
+    "postmerge_branch_hygiene_run": 37430728968,
+    "p05_tests": "58/58 PASS",
+    "foundation_tests": "22/22 PASS",
+    "pyright": "0 errors / 0 warnings",
+    "deterministic_evidence_sha256": "85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3",
+    "phase_boundary_drift": "REPAIRED",
+    "p05_d": "PAUSED_TODO"
   }
 }
