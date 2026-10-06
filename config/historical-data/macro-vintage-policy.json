@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WE-001",
+  "mode": "REFERENCE_IN_MEMORY_REVISION_AWARE_VINTAGES",
+  "as_of_rule": "RELEASE_AND_OBSERVED_AT_NOT_AFTER_DECISION_TIME",
+  "revision_rule": "ZERO_BASED_CONTIGUOUS_PER_OBSERVATION",
+  "time_rule": "NON_DECREASING_RELEASE_AND_OBSERVED_AT_ACROSS_REVISIONS",
+  "max_vintages_per_store": 100000,
+  "production_macro_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

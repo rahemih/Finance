@@ -18,6 +18,13 @@ from .dataset_manifest import (
     FilesystemDatasetManifestStore,
     StoredDatasetManifest,
 )
+from .macro_vintage import (
+    MacroAsOfSnapshot,
+    MacroVintage,
+    MacroVintageError,
+    MacroVintagePolicy,
+    MacroVintageStore,
+)
 from .query_layer import (
     TimeSeriesQuery,
     TimeSeriesQueryError,
@@ -52,6 +59,11 @@ __all__ = [
     "DatasetMember",
     "FilesystemDatasetManifestStore",
     "StoredDatasetManifest",
+    "MacroAsOfSnapshot",
+    "MacroVintage",
+    "MacroVintageError",
+    "MacroVintagePolicy",
+    "MacroVintageStore",
     "TimeSeriesQuery",
     "TimeSeriesQueryError",
     "TimeSeriesQueryIndex",

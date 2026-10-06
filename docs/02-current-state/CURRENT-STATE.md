@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: none — P06-D canonical closed; P06-E next  
+Current Workstream: P06-E — Macro Vintage Model / IN_PROGRESS  
 Previous Workstream: P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E READY_NOT_STARTED
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E IN_PROGRESS
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,8 +158,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P06-WE-001 — Macro Vintage Model`  
+Linear: `HOS-199 = In Progress`  
+Branch: `feat/FIN-P06-WE-001-macro-vintage-model`  
+Active lock: `LOCK-FIN-P06-WE-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -178,7 +180,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-D — Dataset Manifests & Versioning is CANONICAL_COMPLETE and LOCK-FIN-P06-WD-001-01 is RELEASED. P06 remains the active authorized phase. P06-E — Macro Vintage Model is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-E. Production manifest/query storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
+P06-D — Dataset Manifests & Versioning is CANONICAL_COMPLETE and its lock is RELEASED. P06-E — Macro Vintage Model is ACTIVE under FIN-P06-WE-001 / HOS-199 with LOCK-FIN-P06-WE-001-01 ACQUIRED. Revision history is immutable and replay eligibility requires both release_time and observed_at not later than simulated decision time. Production macro storage vendor remains NOT_SELECTED; P06-F remains blocked until P06-E canonical closure.
 
 ## P06-D — Dataset Manifests & Versioning
 
