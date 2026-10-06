@@ -1,11 +1,19 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P06-WG-001",
-  "state": "P06-G_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-201",
   "owner_domain": "D04_RESEARCH_REPLAY_DATASETS",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A4", "A7", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A4",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "depends_on": [
     "P06-D_CANONICAL_COMPLETE",
     "P06-E_CANONICAL_COMPLETE",
@@ -14,15 +22,30 @@
   ],
   "execution_mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_REPLAY_SNAPSHOTS",
   "snapshot_identity": "SHA256_CANONICAL_REPLAY_SNAPSHOT_BODY",
-  "clock_modes": ["EVENT_TIME", "RECEIVE_TIME", "CONTROLLED_SIMULATION_CLOCK"],
+  "clock_modes": [
+    "EVENT_TIME",
+    "RECEIVE_TIME",
+    "CONTROLLED_SIMULATION_CLOCK"
+  ],
   "anti_lookahead_rule": "INFORMATION_TIME_NOT_AFTER_SIMULATED_DECISION_TIME",
   "lineage": "P06-D_DATASET_PLUS_P06-E_VINTAGE_PLUS_P06-F_FEATURE_PLUS_CODE_CONFIG_QUALITY_RIGHTS",
   "production_replay_storage_vendor": "NOT_SELECTED",
   "network_required": false,
   "credentials_required": false,
   "country_assumption": "NONE",
-  "p06_h": "BLOCKED_UNTIL_P06_G_CANONICAL_COMPLETE",
+  "p06_h": "READY_NOT_STARTED",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 147,
+    "final_head_sha": "4a366db54977a2d69ab31e6f301645a6ad409abb",
+    "merge_sha": "31c09685fc7ec3bace014e896a4c4cee5cd5e612",
+    "pr_governance_run": 37527325621,
+    "pr_artifact_digest": "sha256:bdc1ea320c0aab97cacc24ae67296fb31f4e3b1458f6492f5809d7f8b388a8aa",
+    "post_merge_governance_run": 37527480280,
+    "post_merge_artifact_digest": "sha256:9d434d13aa9a120ac71538bca3f25907924ed2cd31be88088f3b8186f1e8f8a5",
+    "post_merge_branch_hygiene_run": 37527480239,
+    "lock": "RELEASED"
+  }
 }
