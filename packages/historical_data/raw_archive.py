@@ -47,8 +47,9 @@ def _text(value: object, *, field: str) -> str:
 def _string_set(value: object, *, field: str) -> frozenset[str]:
     if not isinstance(value, list) or not value:
         raise RawArchiveError(f"{field} must be a non-empty array")
+    raw_items = cast(list[object], value)
     items: list[str] = []
-    for index, item in enumerate(value):
+    for index, item in enumerate(raw_items):
         items.append(_text(item, field=f"{field}[{index}]"))
     return frozenset(items)
 
@@ -109,7 +110,7 @@ class RawEvidence:
     def __post_init__(self) -> None:
         _safe_component(_text(self.provider, field="provider"), field="provider")
         _text(self.source_stream, field="source_stream")
-        if isinstance(self.captured_at_ns, bool) or not isinstance(self.captured_at_ns, int) or self.captured_at_ns < 0:
+        if isinstance(self.captured_at_ns, bool) or self.captured_at_ns < 0:
             raise RawArchiveError("captured_at_ns must be a non-negative integer")
         _text(self.retention_class, field="retention_class")
         _text(self.media_type, field="media_type")
@@ -158,7 +159,7 @@ class FilesystemRawArchive:
         }
 
     def archive(self, payload: bytes, evidence: RawEvidence) -> ArchivedRawEvidence:
-        if not isinstance(payload, bytes) or not payload:
+        if not payload:
             raise RawArchiveError("payload must be non-empty bytes")
         self._authorize(evidence)
         digest = hashlib.sha256(payload).hexdigest()
