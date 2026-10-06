@@ -9,6 +9,14 @@ from .backfill import (
     HistoricalBackfillError,
     HistoricalBackfillRunner,
 )
+from .query_layer import (
+    TimeSeriesQuery,
+    TimeSeriesQueryError,
+    TimeSeriesQueryIndex,
+    TimeSeriesQueryPolicy,
+    TimeSeriesQueryResult,
+    TimeSeriesRecord,
+)
 from .raw_archive import (
     ArchivedRawEvidence,
     FilesystemRawArchive,
@@ -28,6 +36,12 @@ __all__ = [
     "BackfillRunResult",
     "HistoricalBackfillError",
     "HistoricalBackfillRunner",
+    "TimeSeriesQuery",
+    "TimeSeriesQueryError",
+    "TimeSeriesQueryIndex",
+    "TimeSeriesQueryPolicy",
+    "TimeSeriesQueryResult",
+    "TimeSeriesRecord",
     "ArchivedRawEvidence",
     "FilesystemRawArchive",
     "RawArchiveError",
