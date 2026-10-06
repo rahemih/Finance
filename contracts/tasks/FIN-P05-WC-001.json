@@ -18,7 +18,8 @@
     "Document that live continuous subscriptions require explicit remap/resubscribe lifecycle later",
     "Add offline deterministic fixture/tests/evidence",
     "Keep strict Pyright/SBOM/Trivy/reproducible gates active",
-    "Reconcile Current State, Task Catalog and README"
+    "Reconcile Current State, Task Catalog and README",
+    "Clarify P04 exit output so historical P05 authorization snapshot is not reported as live P05 state"
   ],
   "out_of_scope": [
     "Production Databento entitlement/API key or live network connection",
@@ -59,7 +60,8 @@
     "scripts/ci/foundation_ci.py",
     "docs/02-current-state/CURRENT-STATE.md",
     "docs/13-tasks/TASK-CATALOG.md",
-    "README.md"
+    "README.md",
+    "scripts/ci/p04_exit.py"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
