@@ -1,5 +1,14 @@
 """Provider-neutral historical/raw-data foundations."""
 
+from .backfill import (
+    BackfilledPage,
+    BackfillPage,
+    BackfillPolicy,
+    BackfillRequest,
+    BackfillRunResult,
+    HistoricalBackfillError,
+    HistoricalBackfillRunner,
+)
 from .raw_archive import (
     ArchivedRawEvidence,
     FilesystemRawArchive,
@@ -12,6 +21,13 @@ from .raw_archive import (
 )
 
 __all__ = [
+    "BackfilledPage",
+    "BackfillPage",
+    "BackfillPolicy",
+    "BackfillRequest",
+    "BackfillRunResult",
+    "HistoricalBackfillError",
+    "HistoricalBackfillRunner",
     "ArchivedRawEvidence",
     "FilesystemRawArchive",
     "RawArchiveError",
