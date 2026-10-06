@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: none — P06-G canonical closed; P06-H next  
+Current Workstream: P06-H — Retention / Compaction / Storage-Cost Tests / IN_PROGRESS  
 Previous Workstream: P06-G — Replay Snapshot Interfaces / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H READY_NOT_STARTED
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H IN_PROGRESS
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,8 +158,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P06-WH-001 — Retention / Compaction / Storage-Cost Tests`  
+Linear: `HOS-202 = In Progress`  
+Branch: `feat/FIN-P06-WH-001-retention-capacity-tests`  
+Active lock: `LOCK-FIN-P06-WH-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -168,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -178,7 +180,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-G — Replay Snapshot Interfaces is CANONICAL_COMPLETE and LOCK-FIN-P06-WG-001-01 is RELEASED. P06 remains the active authorized phase. P06-H — Retention / Compaction / Storage-Cost Tests is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-H. Production replay/storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
+P06-G — Replay Snapshot Interfaces is CANONICAL_COMPLETE and its lock is RELEASED. P06-H — Retention / Compaction / Storage-Cost Tests is ACTIVE under FIN-P06-WH-001 / HOS-202 with LOCK-FIN-P06-WH-001-01 ACQUIRED. Raw retention remains rights-aware and fail-closed, production cost rates remain UNRESOLVED_RATE_REQUIRED, production storage vendor remains NOT_SELECTED, and P07 cannot start before P06 canonical closure plus explicit Owner phase authorization.
 
 ## P06-G — Replay Snapshot Interfaces
 

@@ -267,6 +267,18 @@ jobs:
           cmp build/p06g-a.json build/p06g-b.json
           sha256sum build/p06g-a.json
 
+      - name: P06-H deterministic retention capacity evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06h_evidence.py --output build/p06h-a.json
+          python scripts/ci/p06h_evidence.py --output build/p06h-b.json
+          cmp build/p06h-a.json build/p06h-b.json
+          sha256sum build/p06h-a.json
+
+      - name: P06-H measured replay and feature rebuild benchmark
+        run: python scripts/ci/p06h_performance.py --output build/p06h-performance.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
