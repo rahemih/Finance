@@ -104,7 +104,16 @@ class DatasetManifestTests(unittest.TestCase):
     def test_duplicate_record_ids_fail_closed(self):
         duplicate = (record("dup", 10), record("dup", 20))
         with self.assertRaises(DatasetManifestError):
-            manifest(duplicate)
+            DatasetManifest.build(
+                dataset_name="btc-trades",
+                dataset_schema_version="1.0",
+                window_start_ns=0,
+                window_end_ns=100,
+                rights_class="NON_DISPLAY_INTERNAL",
+                query_index_fingerprint="0" * 64,
+                records=duplicate,
+                policy=self.policy,
+            )
 
     def test_member_outside_window_fails_closed(self):
         records = (record("late", 100),)
