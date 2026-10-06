@@ -1,6 +1,7 @@
 {
   "ts_event": 1780820499999900000,
   "ts_recv": 1780820500000000000,
+  "rtype": 1,
   "publisher_id": 1,
   "instrument_id": 424242,
   "action": "T",
@@ -20,6 +21,5 @@
       "bid_ct": 4,
       "ask_ct": 3
     }
-  ],
-  "rtype": 1
+  ]
 }
