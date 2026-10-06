@@ -1,6 +1,6 @@
 # NEXUS QUANT — P05-D Canonical Normalization / Symbol Master / Clock Model
 
-STATE = P05-D IMPLEMENTATION  
+STATE = CANONICAL_COMPLETE  
 TASK = `FIN-P05-WD-001`  
 LINEAR = `HOS-188`
 
@@ -190,3 +190,36 @@ AUTO_TRADING: DISABLED
 After canonical closure:
 
 `P05-E — Streaming / Heartbeat / Backpressure`
+
+
+## 11. Canonical closure evidence
+
+Implementation:
+- PR `#124` = MERGED;
+- final implementation head = `ad98e117278b5f4db2425ec8a29d9c258a1a7dd5`;
+- implementation merge SHA = `5184ff9cf6f9a85cba265f16e62368a47f887379`;
+- PR Governance run `37433630157` = SUCCESS;
+- PR artifact `11398490339`;
+- PR artifact digest = `sha256:47d41a7e59f6a4f0e81726470cb5440536f50ad3a608e2baccbafb2644a60cb8`;
+- post-merge Governance run `37433776523` = SUCCESS;
+- post-merge Branch Hygiene run `37433776792` = SUCCESS.
+
+Validation:
+- strict Pyright = `0 errors / 0 warnings`;
+- foundation tests = `22/22 PASS`;
+- P05 tests = `74/74 PASS`;
+- deterministic normalization evidence = `3 events`;
+- implementation evidence SHA-256 = `a87b51d402275b9f23995b5766101d68f9d8392af82218316a4ea4f78f2415e4`;
+- SBOM / license / Trivy = PASS;
+- reproducible clean-source build = PASS;
+- P04 engineering foundation exit = PASS;
+- workflow security = PASS;
+- promotion fail-closed verification = PASS.
+
+Terminal state:
+- `FIN-P05-WD-001 = CANONICAL_COMPLETE`;
+- lock = RELEASED;
+- `P05-E — Streaming / Heartbeat / Backpressure = READY_TO_START`;
+- CANARY = DISABLED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
