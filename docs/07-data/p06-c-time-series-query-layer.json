@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WC-001",
+  "state": "P06-C_IN_PROGRESS",
+  "linear_issue": "HOS-197",
+  "owner_domain": "D04_RAW_HISTORICAL_DATA",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "depends_on": ["P06-A_CANONICAL_COMPLETE", "P06-B_CANONICAL_COMPLETE", "G4_REALTIME_DATA_PASS"],
+  "execution_mode": "REFERENCE_IN_MEMORY_TIME_PARTITION_INDEX_ONLY",
+  "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
+  "primary_partition": "CANONICAL_ID_PLUS_FIXED_EVENT_TIME_BUCKET",
+  "time_slice": "BINARY_SEARCH",
+  "stable_order": "EVENT_TIME_CANONICAL_ID_SEQUENCE_ID_RECORD_ID",
+  "raw_lineage": "SOURCE_PAYLOAD_SHA256_PLUS_SAFE_OBJECT_REFERENCE",
+  "production_query_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "p06_d": "BLOCKED_UNTIL_P06_C_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
