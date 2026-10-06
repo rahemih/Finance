@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-A — Immutable Raw Archive / IN_PROGRESS  
-Previous Workstream: P05-H — Real-Time Data Gate Closure / CANONICAL_COMPLETE  
+Current Workstream: none — P06-A canonical closed; P06-B next  
+Previous Workstream: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WA-001 — Immutable Raw Archive`  
-Linear: `HOS-195 = In Progress`  
-Branch: `feat/FIN-P06-WA-001-immutable-raw-archive`  
-Active lock: `LOCK-FIN-P06-WA-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P05 — Real-Time Data is CANONICAL_COMPLETE with G4_REALTIME_DATA PASS. Owner authorization for P06 was granted on 2026-10-06. P06-A — Immutable Raw Archive is ACTIVE under FIN-P06-WA-001 / HOS-195 with LOCK-FIN-P06-WA-001-01 ACQUIRED. P06-B remains blocked until P06-A canonical closure.
+P06-A — Immutable Raw Archive is CANONICAL_COMPLETE and LOCK-FIN-P06-WA-001-01 is RELEASED. P06 remains the active authorized phase. P06-B — Historical Backfill is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-B.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2483,6 +2481,17 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
+Closure evidence:
+- implementation PR: `#135` = MERGED;
+- final implementation head: `b79b44c0bf32b5077ce1bda0518a1555e82d10c3`;
+- implementation merge SHA: `d9080cf3a9ec6a2456c7697cc0029feebb2976d0`;
+- PR Governance run: `37467639427` = SUCCESS;
+- PR evidence artifact: `sha256:3bdbeb2bb6dff77eb9a7bca06ed0ce0b1ddaf04abede55e82c674646b57c0a0b`;
+- post-merge Governance run: `37467800764` = SUCCESS;
+- post-merge evidence artifact: `sha256:72d1b4252fa9ac3d8bf2de43070bfd5edd8584ee5e7d3806f787ed3eedd430c7`;
+- post-merge Branch Hygiene run: `37467800591` = SUCCESS;
+- strict Pyright, P06 unit tests, deterministic evidence, SBOM, Trivy and reproducible build = PASS.
+
 
 Closure evidence:
 - implementation PR `#126` = MERGED;
@@ -2720,9 +2729,9 @@ Closure note:
 
 Task: `FIN-P06-WA-001`  
 Linear: `HOS-195`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P06-WA-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P06-WA-001-immutable-raw-archive`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation branch: `feat/FIN-P06-WA-001-immutable-raw-archive` / MERGED
 
 Authorization:
 - Owner authorized P06 on 2026-10-06 after P05/G4 verification;
