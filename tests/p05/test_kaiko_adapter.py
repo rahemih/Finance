@@ -14,6 +14,7 @@ from adapters.market_data.kaiko import (
     KaikoAdapterError,
     KaikoLexicographicSequenceGuard,
     KaikoSubscription,
+    parse_provider_timestamp,
 )
 from packages.contracts.market_data import (
     MarketEventKind,
@@ -206,6 +207,27 @@ class KaikoAdapterTests(unittest.TestCase):
         payload = event.payload
         assert isinstance(payload, TradePayload)
         self.assertEqual(payload.side, TradeSide.UNKNOWN)
+
+    def test_timestamp_with_offset_maps_to_correct_epoch_ns(self) -> None:
+        utc = parse_provider_timestamp("2026-10-05T09:00:00.123456789Z", field="ts")
+        offset = parse_provider_timestamp("2026-10-05T11:00:00.123456789+02:00", field="ts")
+        self.assertEqual(offset.epoch_ns, utc.epoch_ns)
+
+    def test_timestamp_more_than_nine_fractional_digits_is_rejected(self) -> None:
+        with self.assertRaises(KaikoAdapterError):
+            parse_provider_timestamp("2026-10-05T09:00:00.1234567891Z", field="ts")
+
+    def test_non_finite_numeric_values_are_rejected(self) -> None:
+        for value in ("NaN", "Infinity", "-Infinity"):
+            with self.subTest(value=value):
+                fixture = load_fixture("kaiko_trade.json")
+                fixture["price"] = value
+                with self.assertRaises(KaikoAdapterError):
+                    adapter().parse_trade(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_http_result_wrapper_requires_object(self) -> None:
+        with self.assertRaises(KaikoAdapterError):
+            adapter().parse_trade({"result": []}, received_at_ns=RECEIVED_AT_NS)
 
 
 if __name__ == "__main__":
