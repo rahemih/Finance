@@ -16,7 +16,6 @@ from packages.market_data.symbol_master import (
     CanonicalInstrument,
     InstrumentRole,
     SymbolMaster,
-    metadata_mapping,
 )
 
 
@@ -46,11 +45,7 @@ class CanonicalClock:
     precision_policy: str = PRECISION_POLICY
 
     def __post_init__(self) -> None:
-        if (
-            isinstance(self.local_receive_time_ns, bool)
-            or not isinstance(self.local_receive_time_ns, int)
-            or self.local_receive_time_ns < 0
-        ):
+        if isinstance(self.local_receive_time_ns, bool) or self.local_receive_time_ns < 0:
             raise NormalizationError(
                 "local_receive_time_ns must be a non-negative integer"
             )
@@ -91,7 +86,7 @@ def _signed_delta(local_ns: int, source: ProviderTimestamp | None) -> int | None
 
 def _clock_for(envelope: ProviderMarketEnvelope) -> tuple[CanonicalClock, SourceEnvelopeKind]:
     local_ns = envelope.received_at_ns
-    if isinstance(local_ns, bool) or not isinstance(local_ns, int) or local_ns < 0:
+    if isinstance(local_ns, bool) or local_ns < 0:
         raise NormalizationError("received_at_ns must be a non-negative integer")
 
     if isinstance(envelope, ProviderEventEnvelope):
@@ -129,24 +124,21 @@ def _clock_for(envelope: ProviderMarketEnvelope) -> tuple[CanonicalClock, Source
             SourceEnvelopeKind.QUOTE,
         )
 
-    if isinstance(envelope, ProviderContextEnvelope):
-        event = envelope.provider_event_time
-        receive = envelope.provider_receive_time
-        return (
-            CanonicalClock(
-                provider_event_time=event,
-                exchange_time=None,
-                collection_time=None,
-                provider_receive_time=receive,
-                local_receive_time_ns=local_ns,
-                auxiliary_source_times=(),
-                event_to_local_delta_ns=_signed_delta(local_ns, event),
-                provider_receive_to_local_delta_ns=_signed_delta(local_ns, receive),
-            ),
-            SourceEnvelopeKind.CONTEXT,
-        )
-
-    raise NormalizationError(f"unsupported provider envelope type: {type(envelope).__name__}")
+    event = envelope.provider_event_time
+    receive = envelope.provider_receive_time
+    return (
+        CanonicalClock(
+            provider_event_time=event,
+            exchange_time=None,
+            collection_time=None,
+            provider_receive_time=receive,
+            local_receive_time_ns=local_ns,
+            auxiliary_source_times=(),
+            event_to_local_delta_ns=_signed_delta(local_ns, event),
+            provider_receive_to_local_delta_ns=_signed_delta(local_ns, receive),
+        ),
+        SourceEnvelopeKind.CONTEXT,
+    )
 
 
 def _provenance(
