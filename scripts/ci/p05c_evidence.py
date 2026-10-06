@@ -6,11 +6,15 @@ from dataclasses import asdict
 from decimal import Decimal
 import json
 from pathlib import Path
-
-from adapters.market_data.databento import DatabentoGoldContextAdapter
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from adapters.market_data.databento import DatabentoGoldContextAdapter
+
 FIXTURE = ROOT / "tests/p05/fixtures/databento_gc_mbp1.json"
 RECEIVED_AT_NS = 1_780_820_500_000_123_456
 
