@@ -112,7 +112,13 @@
     "repeated parsing is deterministic",
     "P05-C evidence is byte-identical across two runs",
     "Non-MBP-1 rtype is rejected",
-    "Nonzero depth is rejected for the MBP-1 top-of-book baseline"
+    "Nonzero depth is rejected for the MBP-1 top-of-book baseline",
+    "MBP-1 rtype must equal 1",
+    "action must be one of A/C/M/R/T and side one of A/B/N",
+    "uint8/uint16/uint32/int32 provider field ranges are enforced",
+    "P05-C baseline depth must equal 0",
+    "continuous subscription symbol cannot be reused as resolved mapped contract",
+    "defined event/BBO prices must be positive"
   ],
   "security_tests": [
     "No raw Databento API key is committed",
