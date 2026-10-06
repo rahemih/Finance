@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-G implementation merge: `d649a649a4c1a0a4af7828e138e1a3d3a47ab215`  
+Canonical HEAD after P05-G closure: `8d1a5195867995ab41ea6e9d844c8238f64da265`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-H — Real-Time Data Gate Closure / READY_TO_START  
+Current Workstream: P05-H — Real-Time Data Gate Closure / IN_PROGRESS  
 Previous Workstream: P05-G — Latency / Throughput / Soak Validation / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WH-001 — Real-Time Data Gate Closure / G4`  
+Linear: `HOS-194 = In Progress`  
+Branch: `docs/FIN-P05-WH-001-realtime-data-gate`  
+Active lock: `LOCK-FIN-P05-WH-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +166,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-G CANONICAL_COMPLETE / P05-H READY_TO_START
+Market/application runtime implementation (P05): ACTIVE / P05-A through P05-G CANONICAL_COMPLETE / P05-H G4 REVIEW IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +176,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-G are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-H is the next ready workstream.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-G are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-H is ACTIVE under FIN-P05-WH-001 / HOS-194; P06 remains blocked until final G4 PASS and explicit Owner phase authorization.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2629,3 +2631,45 @@ Closure evidence:
 
 Next ready workstream:
 - `P05-H — Real-Time Data Gate Closure`.
+
+## P05-H — Real-Time Data Gate Closure / G4
+
+Task: `FIN-P05-WH-001`  
+Linear: `HOS-194`  
+State: CANONICAL_REVIEW_PASS / IN_PROGRESS  
+Gate: `G4_REALTIME_DATA = PASS_PENDING_CANONICAL_MERGE`  
+Lock: `LOCK-FIN-P05-WH-001-01 / ACQUIRED`  
+Branch: `docs/FIN-P05-WH-001-realtime-data-gate`
+
+Independent validation:
+- P05-A through P05-G = CANONICAL_COMPLETE / locks RELEASED;
+- G4 criteria = 16 PASS / 0 FAIL;
+- unresolved Critical engineering/governance blockers = 0;
+- unresolved High engineering/governance blockers = 0;
+- measured L_FAST_DATA / throughput / burst / soak requirements = PASS;
+- provider/source/provenance truth = PASS;
+- streaming/recovery/fail-closed controls = PASS.
+
+Scope truth:
+- G4 is an engineering real-time-data baseline gate;
+- production provider entitlements = NOT_PROVISIONED;
+- production provider endpoints = NOT_SELECTED_OR_ACTIVATED;
+- production provider credentials = NONE;
+- provider/network SLA certification = NOT CLAIMED;
+- automatic data failover = DISABLED.
+
+Final PASS requires:
+- P05-H PR Governance SUCCESS;
+- merge to main;
+- post-merge Governance + Branch Hygiene SUCCESS;
+- closure reconciliation;
+- lock release.
+
+Phase boundary after final PASS:
+- P05 = CANONICAL_COMPLETE;
+- P06 = NOT_STARTED_PENDING_OWNER_AUTHORIZATION.
+
+Safety:
+- CANARY = DISABLED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
