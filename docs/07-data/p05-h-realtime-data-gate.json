@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P05-H_CANONICAL_REVIEW_PASS",
+  "state": "P05-H_CANONICAL_COMPLETE",
   "task_id": "FIN-P05-WH-001",
   "linear_issue": "HOS-194",
   "gate": "G4_REALTIME_DATA",
@@ -13,22 +13,102 @@
     "p05_g_measured_performance_pass": true
   },
   "criteria": [
-    {"id":"C01","criterion":"P05-A through P05-G canonical complete and locks released","status":"PASS","evidence":"Task Catalog + P05 manifests"},
-    {"id":"C02","criterion":"Crypto adapter baseline preserves Kaiko provenance, sequence and timestamps","status":"PASS","evidence":"P05-A"},
-    {"id":"C03","criterion":"Forex baseline preserves Quote semantics and never claims global Spot FX volume","status":"PASS","evidence":"P05-B"},
-    {"id":"C04","criterion":"Context baseline preserves Databento futures provenance and CONTEXT_ONLY role","status":"PASS","evidence":"P05-C"},
-    {"id":"C05","criterion":"Canonical normalization, Symbol Master and Clock Model preserve source truth without synthetic precision","status":"PASS","evidence":"P05-D"},
-    {"id":"C06","criterion":"Streaming buffer is bounded, FIFO and rejects overflow without silent loss","status":"PASS","evidence":"P05-E"},
-    {"id":"C07","criterion":"Heartbeat/liveness uses canonical local-receive observation and explicit stale state","status":"PASS","evidence":"P05-E"},
-    {"id":"C08","criterion":"Reconnect/recovery is bounded and successful transport reconnect still requires recovery validation","status":"PASS","evidence":"P05-F"},
-    {"id":"C09","criterion":"Gap semantics do not invent continuity and automatic data failover remains disabled","status":"PASS","evidence":"P05-F"},
-    {"id":"C10","criterion":"L_FAST_DATA measured p95 and p99 meet P02-H OPERATING targets","status":"PASS","evidence":"P05-G"},
-    {"id":"C11","criterion":"Canonical stream throughput and peak burst meet OPERATING 20,000 events/s design point","status":"PASS","evidence":"P05-G"},
-    {"id":"C12","criterion":"Soak-equivalent workload meets OPERATING average with zero rejection","status":"PASS","evidence":"P05-G"},
-    {"id":"C13","criterion":"Governance, dependency, SBOM, Trivy and reproducible-build controls remain active","status":"PASS","evidence":"Governance CI"},
-    {"id":"C14","criterion":"No production endpoint, entitlement or credential is falsely claimed active","status":"PASS","evidence":"P05 artifacts + Current State"},
-    {"id":"C15","criterion":"No unresolved Critical/High engineering or governance blocker","status":"PASS","evidence":"Independent P05-H review"},
-    {"id":"C16","criterion":"CANARY, LIVE_TRADING and AUTO_TRADING remain disabled; G4 grants no execution authority","status":"PASS","evidence":"Current State + P05 artifacts"}
+    {
+      "id": "C01",
+      "criterion": "P05-A through P05-G canonical complete and locks released",
+      "status": "PASS",
+      "evidence": "Task Catalog + P05 manifests"
+    },
+    {
+      "id": "C02",
+      "criterion": "Crypto adapter baseline preserves Kaiko provenance, sequence and timestamps",
+      "status": "PASS",
+      "evidence": "P05-A"
+    },
+    {
+      "id": "C03",
+      "criterion": "Forex baseline preserves Quote semantics and never claims global Spot FX volume",
+      "status": "PASS",
+      "evidence": "P05-B"
+    },
+    {
+      "id": "C04",
+      "criterion": "Context baseline preserves Databento futures provenance and CONTEXT_ONLY role",
+      "status": "PASS",
+      "evidence": "P05-C"
+    },
+    {
+      "id": "C05",
+      "criterion": "Canonical normalization, Symbol Master and Clock Model preserve source truth without synthetic precision",
+      "status": "PASS",
+      "evidence": "P05-D"
+    },
+    {
+      "id": "C06",
+      "criterion": "Streaming buffer is bounded, FIFO and rejects overflow without silent loss",
+      "status": "PASS",
+      "evidence": "P05-E"
+    },
+    {
+      "id": "C07",
+      "criterion": "Heartbeat/liveness uses canonical local-receive observation and explicit stale state",
+      "status": "PASS",
+      "evidence": "P05-E"
+    },
+    {
+      "id": "C08",
+      "criterion": "Reconnect/recovery is bounded and successful transport reconnect still requires recovery validation",
+      "status": "PASS",
+      "evidence": "P05-F"
+    },
+    {
+      "id": "C09",
+      "criterion": "Gap semantics do not invent continuity and automatic data failover remains disabled",
+      "status": "PASS",
+      "evidence": "P05-F"
+    },
+    {
+      "id": "C10",
+      "criterion": "L_FAST_DATA measured p95 and p99 meet P02-H OPERATING targets",
+      "status": "PASS",
+      "evidence": "P05-G"
+    },
+    {
+      "id": "C11",
+      "criterion": "Canonical stream throughput and peak burst meet OPERATING 20,000 events/s design point",
+      "status": "PASS",
+      "evidence": "P05-G"
+    },
+    {
+      "id": "C12",
+      "criterion": "Soak-equivalent workload meets OPERATING average with zero rejection",
+      "status": "PASS",
+      "evidence": "P05-G"
+    },
+    {
+      "id": "C13",
+      "criterion": "Governance, dependency, SBOM, Trivy and reproducible-build controls remain active",
+      "status": "PASS",
+      "evidence": "Governance CI"
+    },
+    {
+      "id": "C14",
+      "criterion": "No production endpoint, entitlement or credential is falsely claimed active",
+      "status": "PASS",
+      "evidence": "P05 artifacts + Current State"
+    },
+    {
+      "id": "C15",
+      "criterion": "No unresolved Critical/High engineering or governance blocker",
+      "status": "PASS",
+      "evidence": "Independent P05-H review"
+    },
+    {
+      "id": "C16",
+      "criterion": "CANARY, LIVE_TRADING and AUTO_TRADING remain disabled; G4 grants no execution authority",
+      "status": "PASS",
+      "evidence": "Current State + P05 artifacts"
+    }
   ],
   "criteria_passed": 16,
   "criteria_failed": 0,
@@ -81,14 +161,7 @@
       "reason": "CANARY/LIVE/AUTO remain disabled and require later gates/Human approval."
     }
   ],
-  "final_pass_requires": [
-    "P05-H PR Governance SUCCESS",
-    "merge to main",
-    "post-merge Governance SUCCESS",
-    "post-merge Branch Hygiene SUCCESS",
-    "closure reconciliation",
-    "lock release"
-  ],
+  "final_pass_requires": [],
   "next_phase": {
     "phase": "P06 — Historical Data & Feature Store",
     "state": "NOT_STARTED_PENDING_OWNER_AUTHORIZATION"
@@ -99,5 +172,34 @@
   "automatic_data_failover": "DISABLED",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation_evidence": {
+    "implementation_pr": 132,
+    "implementation_head_sha": "7ec05764036cf61491e9772fd43790736aed53c0",
+    "implementation_merge_sha": "c1473f8d8599b3485416a50ca3d895a8b9ccee46",
+    "pr_governance_run": 37460756520,
+    "pr_artifact_id": 11411557716,
+    "pr_artifact_digest": "sha256:6a07193595136812c5516d2a24f09ee674777b2477371052fb9eb7730ae66dec",
+    "postmerge_governance_run": 37460902616,
+    "postmerge_artifact_id": 11412612139,
+    "postmerge_artifact_digest": "sha256:bf7c5782974a517e7c66acda4a9581e3a0569bc0e38f5149c2b240bbf6e4e0a9",
+    "postmerge_branch_hygiene_run": 37460902622,
+    "pyright": "0 errors / 0 warnings",
+    "foundation_tests": "22/22 PASS",
+    "p05_tests": "100/100 PASS",
+    "p05_exit": "PASS",
+    "postmerge_performance": {
+      "p95_ms": 0.066364,
+      "p99_ms": 0.081703,
+      "stream_events_per_sec": 386484.93,
+      "soak_events_per_sec": 388043.72
+    }
+  },
+  "phase_closure": {
+    "phase": "P05 — Real-Time Data",
+    "state": "CANONICAL_COMPLETE",
+    "gate": "G4_REALTIME_DATA",
+    "gate_verdict": "PASS",
+    "next": "P06 — Historical Data & Feature Store / NOT_STARTED_PENDING_OWNER_AUTHORIZATION"
+  }
 }
