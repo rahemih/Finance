@@ -1,12 +1,23 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P06-WC-001",
-  "state": "P06-C_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-197",
   "owner_domain": "D04_RAW_HISTORICAL_DATA",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
-  "depends_on": ["P06-A_CANONICAL_COMPLETE", "P06-B_CANONICAL_COMPLETE", "G4_REALTIME_DATA_PASS"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "depends_on": [
+    "P06-A_CANONICAL_COMPLETE",
+    "P06-B_CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA_PASS"
+  ],
   "execution_mode": "REFERENCE_IN_MEMORY_TIME_PARTITION_INDEX_ONLY",
   "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
   "primary_partition": "CANONICAL_ID_PLUS_FIXED_EVENT_TIME_BUCKET",
@@ -16,8 +27,19 @@
   "production_query_storage_vendor": "NOT_SELECTED",
   "network_required": false,
   "credentials_required": false,
-  "p06_d": "BLOCKED_UNTIL_P06_C_CANONICAL_COMPLETE",
+  "p06_d": "READY_NOT_STARTED",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 139,
+    "final_head_sha": "78c41e5849c11a9493b5c839ac4d5a4f0d6bedbd",
+    "merge_sha": "b430a8a1cf2cae11c05c4796dff28b472fb196e3",
+    "pr_governance_run": 37479773448,
+    "pr_artifact_digest": "sha256:479a70595cd1363118ed36374f88f6d0444a22dcb75f8512617c89304d5226eb",
+    "post_merge_governance_run": 37480045004,
+    "post_merge_artifact_digest": "sha256:166b40d458d5fbfabd517b1798e6875df6e7bc16ce0a3eb7735a05da6d61755d",
+    "post_merge_branch_hygiene_run": 37480044940,
+    "lock": "RELEASED"
+  }
 }
