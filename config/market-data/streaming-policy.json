@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WE-001",
+  "capacity_basis": {
+    "scenario": "OPERATING",
+    "peak_events_per_sec": 20000,
+    "minimum_buffer_seconds": 60,
+    "minimum_event_capacity": 1200000
+  },
+  "runtime_policy": {
+    "max_buffer_events": 1200000,
+    "high_watermark_events": 840000,
+    "critical_watermark_events": 1080000,
+    "heartbeat_timeout_ns": 30000000000,
+    "overflow_policy": "REJECT_EXPLICIT_NO_SILENT_DROP",
+    "ordering": "FIFO",
+    "heartbeat_clock": "CANONICAL_LOCAL_RECEIVE_TIME"
+  },
+  "implementation_scope": "IN_PROCESS_PROVIDER_NEUTRAL_BASELINE",
+  "preallocation": false,
+  "disk_spill": "DEFERRED",
+  "reconnect_failover_gap_recovery": "P05-F",
+  "performance_certification": "P05-G",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
