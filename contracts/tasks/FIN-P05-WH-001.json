@@ -1,0 +1,134 @@
+{
+  "task_id": "FIN-P05-WH-001",
+  "phase": "P05",
+  "workstream": "WH",
+  "objective": "Independently validate P05-A through P05-G and decide G4_REALTIME_DATA for the governed engineering real-time-data baseline without falsely claiming production provider connectivity, entitlement or trading authority.",
+  "scope": [
+    "Verify P05-A through P05-G CANONICAL_COMPLETE and locks RELEASED",
+    "Verify crypto, Forex and context provider adapter baselines remain provider-neutral and provenance-preserving",
+    "Verify canonical normalization, Symbol Master and source-preserving Clock Model",
+    "Verify bounded streaming, heartbeat/liveness and fail-loud backpressure",
+    "Verify reconnect, circuit, recovery-validation and conservative gap semantics",
+    "Verify automatic data failover remains disabled and fail-closed",
+    "Verify P05-G measured OPERATING latency, throughput, burst and soak-equivalent certification",
+    "Verify supply-chain, reproducible-build and governance gates remain installed and green",
+    "Classify production provider entitlement/connectivity as downstream activation work, not falsely complete",
+    "Produce P05-H validation report, machine-readable gate matrix and G4 dossier",
+    "Add persistent P05 exit regression guard",
+    "Reconcile Current State, Task Catalog, README and Execution Roadmap"
+  ],
+  "out_of_scope": [
+    "Provision production market-data entitlements",
+    "Create or resolve provider credentials",
+    "Open production provider network connections",
+    "Enable automatic provider failover",
+    "Implement P06 Historical Data",
+    "Enable CANARY, LIVE_TRADING or AUTO_TRADING"
+  ],
+  "dependencies": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "FIN-P05-WB-001 CANONICAL_COMPLETE",
+    "FIN-P05-WC-001 CANONICAL_COMPLETE",
+    "FIN-P05-WD-001 CANONICAL_COMPLETE",
+    "FIN-P05-WE-001 CANONICAL_COMPLETE",
+    "FIN-P05-WF-001 CANONICAL_COMPLETE",
+    "FIN-P05-WG-001 CANONICAL_COMPLETE",
+    "G3_SECURITY_BASELINE PASS",
+    "P04 Engineering Foundation CANONICAL_COMPLETE"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/**",
+    "docs/07-data/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/FIN-P05-*.json",
+    "config/market-data/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P05-WH-001.json",
+    "docs/07-data/P05-H-REALTIME-DATA-GATE.md",
+    "docs/07-data/p05-h-realtime-data-gate.json",
+    "docs/00-governance/G4-REALTIME-DATA.md",
+    "scripts/ci/p05_exit.py",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "human_gate": false,
+  "tests": [
+    "P05-A through P05-G canonical complete and locks released",
+    "All seven P05 machine-readable manifests are canonical complete",
+    "Crypto/Forex/context semantics remain source/provenance truthful",
+    "Clock model preserves source time and forbids synthetic precision",
+    "Bounded buffering rejects overflow explicitly and heartbeat is canonical",
+    "Recovery semantics forbid unsupported sequence-contiguity claims",
+    "Automatic data failover remains disabled",
+    "P05-G p95/p99 meet L_FAST_DATA targets",
+    "P05-G canonical stream throughput meets OPERATING peak 20000 events/s",
+    "P05-G soak-equivalent throughput meets OPERATING average 2000 events/s",
+    "No production provider endpoint, credential or entitlement is falsely claimed",
+    "No unresolved Critical/High engineering or governance blocker",
+    "CANARY/LIVE_TRADING/AUTO_TRADING remain disabled",
+    "P05 gate matrix has zero failed criteria",
+    "Persistent P05 exit guard passes in Governance CI"
+  ],
+  "performance_tests": [
+    "Consume canonical P05-G measured evidence; do not rerun or reinterpret upstream provider latency"
+  ],
+  "security_tests": [
+    "No raw provider credential introduced",
+    "No production provider network connection enabled",
+    "Automatic data failover remains disabled",
+    "No trading authority granted by G4"
+  ],
+  "evidence": [
+    "P05-A through P05-G canonical artifacts and closure evidence",
+    "P05-G measured performance evidence",
+    "Governance / SBOM / Trivy / reproducible-build evidence",
+    "G4 gate matrix",
+    "Linear HOS-194 reconciliation"
+  ],
+  "rollback": "Revert P05-H gate artifacts, persistent exit guard and phase-state reconciliation. P05-A through P05-G remain canonical; no runtime provider connection or trading state changes.",
+  "definition_of_ready": [
+    "P05-A through P05-G CANONICAL_COMPLETE",
+    "all P05-A through P05-G locks RELEASED",
+    "no conflicting active P05 lock",
+    "P05-G measured certification PASS"
+  ],
+  "definition_of_done": [
+    "independent P05 validation complete",
+    "G4_REALTIME_DATA final PASS after canonical merge/post-merge verification",
+    "P05 CANONICAL_COMPLETE",
+    "FIN-P05-WH-001 CANONICAL_COMPLETE",
+    "lock released",
+    "Current State/Task Catalog/Linear reconciled",
+    "P06 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION"
+  ]
+}
