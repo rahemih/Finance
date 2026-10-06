@@ -108,7 +108,7 @@ This catalog is the canonical index of governed work.
 | FIN-P05-WA-001 | P05 | Crypto Real-Time Adapter / Kaiko Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WA-001.json` | RELEASED |
 
 
-| FIN-P05-WB-001 | P05 | Forex Real-Time Adapter / dxFeed Quote Baseline | HIGH | ACTIVE | `contracts/tasks/FIN-P05-WB-001.json` | LOCK-FIN-P05-WB-001-01 |
+| FIN-P05-WB-001 | P05 | Forex Real-Time Adapter / dxFeed Quote Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WB-001.json` | RELEASED |
 
 ## Rules
 
