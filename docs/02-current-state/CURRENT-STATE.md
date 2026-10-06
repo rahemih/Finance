@@ -180,6 +180,28 @@ Accounts/KYC/funding/orders: NONE
 
 P06-B — Historical Backfill is CANONICAL_COMPLETE and LOCK-FIN-P06-WB-001-01 is RELEASED. P06 remains the active authorized phase. P06-C — Time-Series Optimized Query Layer is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-C. Production historical entitlement remains NOT_ASSUMED, production storage vendor remains NOT_SELECTED, and Live/Auto Trading remain DISABLED.
 
+## P06-B — Historical Backfill
+
+Task: `FIN-P06-WB-001`  
+Linear: `HOS-196`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#137` = MERGED  
+Final implementation head: `005f89cf0475708f396f49744f44e0e879117e26`  
+Implementation merge SHA: `f9ba46b076fafd448fe8b5ed7edfbaaa30d83d95`  
+PR Governance: `37476310712` = SUCCESS  
+PR artifact: `sha256:65056f011afa75b8e3207c779ac841eee18cf57069695297a21c8aa9088b95fe`  
+Post-merge Governance: `37476473700` = SUCCESS  
+Post-merge artifact: `sha256:8f9cac3e5fcdcd58f3f7a0f007e7640582274b363892d3048aef97a9de688990`  
+Post-merge Branch Hygiene: `37476473587` = SUCCESS
+
+Safety:
+- production historical provider entitlement: NOT_ASSUMED;
+- production storage vendor: NOT_SELECTED;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
 
 ## P01-E — Cost / Licensing / Data Rights
 
