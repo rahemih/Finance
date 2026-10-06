@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WD-001",
+  "mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_MANIFESTS",
+  "version_algorithm": "SHA256_CANONICAL_MANIFEST_BODY",
+  "membership_root_algorithm": "SHA256_SORTED_MEMBER_DIGESTS",
+  "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
+  "require_non_empty_dataset": true,
+  "max_members_per_manifest": 100000,
+  "max_manifest_bytes": 52428800,
+  "production_manifest_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
