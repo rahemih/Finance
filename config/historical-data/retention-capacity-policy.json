@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WH-001",
+  "mode": "OFFLINE_REFERENCE_CAPACITY_CERTIFICATION",
+  "seconds_per_day": 86400,
+  "decimal_bytes_per_gb": 1000000000,
+  "decimal_bytes_per_tb": 1000000000000,
+  "retention_tiers": {
+    "HOT": {
+      "provisional_days": 7
+    },
+    "WARM": {
+      "provisional_min_days": 30,
+      "provisional_max_days": 90
+    },
+    "COLD": {
+      "provisional_min_days": 90,
+      "maximum_days": null
+    }
+  },
+  "planning_compression_ratios": ["3", "5"],
+  "storage_growth_review_deviation_percent": "50",
+  "reference_partition_seconds": 3600,
+  "reference_performance_floors": {
+    "replay_scan_mib_per_sec": "1",
+    "feature_rebuild_per_sec": "100"
+  },
+  "cost_mode": "PARAMETRIC_NO_VENDOR_PRICE",
+  "production_cost_rates": "UNRESOLVED_RATE_REQUIRED",
+  "production_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "production_mutation": false,
+  "country_assumption": "NONE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
