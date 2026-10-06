@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WA-001-R01",
+  "state": "P05-A_FRESH_REVALIDATION_ACTIVE",
+  "baseline_main_sha": "29264269488f414f9f333abe0eeaaa91f8516c21",
+  "original_task": "FIN-P05-WA-001",
+  "original_linear": "HOS-183",
+  "provider": {
+    "name": "Kaiko",
+    "p01_g_role": "CRYPTO_PRIMARY_REFERENCE",
+    "backup": "CoinAPI",
+    "first_instrument": "cbse/spot/btc-usd",
+    "production_transport": "NOT_SELECTED",
+    "live_connectivity": "DISABLED_ENTITLEMENT_REQUIRED",
+    "credential": "NONE"
+  },
+  "fresh_official_evidence": {
+    "checked_on": "2026-10-06",
+    "market_update_v1": "CURRENT",
+    "orderbook_l2_v1": "CURRENT",
+    "stream_reference_transport": "gRPC/Kaiko SDK",
+    "http_gateway_contract": "TESTING_ONLY_IN_PROJECT",
+    "message_fields": [
+      "exchange",
+      "class",
+      "code",
+      "sequenceId",
+      "tsExchange",
+      "tsCollection",
+      "tsEvent"
+    ],
+    "http_auth_header": "X-Api-Key"
+  },
+  "baseline_ci": {
+    "governance_run": 37426742704,
+    "result": "SUCCESS",
+    "p05_tests": "54/54 PASS",
+    "p05a_evidence_sha256": "85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3",
+    "pyright": "0 errors / 0 warnings",
+    "sbom_license": "PASS",
+    "trivy_high_critical": "PASS",
+    "reproducible_build": "PASS"
+  },
+  "findings": [
+    {
+      "id": "PHASE-BOUNDARY-DRIFT-001",
+      "severity": "MEDIUM",
+      "status": "REPAIRING",
+      "detail": "scripts/ci/p04_exit.py still reports P05_STATE=NOT_STARTED_PENDING_OWNER_AUTHORIZATION after P05 became ACTIVE. Historical P04 handoff remains valid but must not be emitted as current phase state."
+    }
+  ],
+  "p05_d": "PAUSED_TODO_DURING_REVALIDATION",
+  "safety": {
+    "canary": "DISABLED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "provider_credential": "NONE"
+  }
+}
