@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P05-D_IMPLEMENTATION",
+  "state": "P05-D_CANONICAL_COMPLETE",
   "instruments": [
     {
       "canonical_id": "CRYPTO:BTC/USD:SPOT",

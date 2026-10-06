@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "state": "P05-D_IMPLEMENTATION",
+  "state": "P05-D_CANONICAL_COMPLETE",
   "precision_policy": "SOURCE_PRESERVED_NO_SYNTHETIC_PRECISION",
   "canonical_event_time": {
     "provider_event_envelope": "ts_event",

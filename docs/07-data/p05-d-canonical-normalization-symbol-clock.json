@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WD-001",
-  "state": "P05-D_IMPLEMENTATION",
+  "state": "P05-D_CANONICAL_COMPLETE",
   "lead_agent": "A2",
   "canonical_instruments": [
     "CRYPTO:BTC/USD:SPOT",
@@ -30,8 +30,24 @@
     "signed_deltas": true
   },
   "provider_imports_in_canonical_package": false,
-  "p05_e": "NOT_STARTED",
+  "p05_e": "READY_TO_START",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 124,
+    "implementation_head_sha": "ad98e117278b5f4db2425ec8a29d9c258a1a7dd5",
+    "implementation_merge_sha": "5184ff9cf6f9a85cba265f16e62368a47f887379",
+    "pr_governance_run": 37433630157,
+    "pr_artifact_id": 11398490339,
+    "pr_artifact_digest": "sha256:47d41a7e59f6a4f0e81726470cb5440536f50ad3a608e2baccbafb2644a60cb8",
+    "postmerge_governance_run": 37433776523,
+    "postmerge_branch_hygiene_run": 37433776792,
+    "pyright": "0 errors / 0 warnings",
+    "foundation_tests": "22/22 PASS",
+    "p05_tests": "74/74 PASS",
+    "normalized_events": 3,
+    "implementation_evidence_sha256": "a87b51d402275b9f23995b5766101d68f9d8392af82218316a4ea4f78f2415e4",
+    "verdict": "PASS"
+  }
 }
