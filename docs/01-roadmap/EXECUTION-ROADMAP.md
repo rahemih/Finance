@@ -36,20 +36,18 @@ Canonical completion:
 
 Active phase:
 - P05 — Real-Time Data: ACTIVE
-- active governed task: `FIN-P05-WE-001 — Streaming / Heartbeat / Backpressure`
-- Linear: `HOS-191`
-- branch: `feat/FIN-P05-WE-001-streaming-heartbeat-backpressure`
+- active governed task: none (between P05 workstreams)
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
 - P05-B — dxFeed Forex quote adapter: CANONICAL_COMPLETE
 - P05-C — Databento Gold context adapter: CANONICAL_COMPLETE
 - P05-D — Canonical Normalization / Symbol Master / Clock Model: CANONICAL_COMPLETE
+- P05-E — Streaming / Heartbeat / Backpressure: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Active workstream boundary:
-- P05-E — Streaming / Heartbeat / Backpressure: IN_PROGRESS
-- P05-F — Reconnect / Failover / Gap Recovery: BLOCKED_UNTIL_P05_E_CANONICAL_COMPLETE
+Next workstream boundary:
+- P05-F — Reconnect / Failover / Gap Recovery: READY_TO_START
 - P05-H will produce the roadmap-defined G4_REALTIME_DATA evidence after P05 implementation/validation
 
 ---
