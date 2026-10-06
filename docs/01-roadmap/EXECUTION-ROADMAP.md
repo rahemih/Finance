@@ -34,13 +34,13 @@ Canonical completion:
 - P03 — Security & Identity: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 - P04 — Engineering Foundation: CANONICAL_COMPLETE / Engineering Foundation exit PASS
 - P05 — Real-Time Data: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
+- P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
 
-Active phase:
-- P06 — Historical Data & Feature Store: ACTIVE
-- active governed task: `FIN-P06-WH-001 — Retention / Compaction / Storage-Cost Tests`
-- Linear: `HOS-202`
-- lock: `LOCK-FIN-P06-WH-001-01 / ACQUIRED`
-- completed workstreams: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE; P06-B — Historical Backfill / CANONICAL_COMPLETE; P06-C — Time-Series Optimized Query Layer / CANONICAL_COMPLETE; P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE; P06-E — Macro Vintage Model / CANONICAL_COMPLETE; P06-F — Feature Definitions & Materialization / CANONICAL_COMPLETE; P06-G — Replay Snapshot Interfaces / CANONICAL_COMPLETE
+Phase transition:
+- P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
+- active governed task: none
+- active lock: none
+- P07 — Data Quality & Provenance: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -53,7 +53,7 @@ Completed P05 baselines:
 - P05-H — Real-Time Data Gate Closure / G4: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Active P06 boundary:
+P06 canonical boundary:
 - P06-A — Immutable Raw Archive: CANONICAL_COMPLETE
 - P06-B — Historical Backfill: CANONICAL_COMPLETE
 - P06-C — Time-Series Optimized Query Layer: CANONICAL_COMPLETE
@@ -61,8 +61,8 @@ Active P06 boundary:
 - P06-E — Macro Vintage Model: CANONICAL_COMPLETE
 - P06-F — Feature Definitions & Materialization: CANONICAL_COMPLETE
 - P06-G — Replay Snapshot Interfaces: CANONICAL_COMPLETE
-- P06-H — Retention / Compaction / Storage-Cost Tests: IN_PROGRESS
-- P07 — Data Quality & Provenance: BLOCKED_PENDING_P06_CLOSURE_AND_OWNER_PHASE_AUTHORIZATION
+- P06-H — Retention / Compaction / Storage-Cost Tests: CANONICAL_COMPLETE
+- P07 — Data Quality & Provenance: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 ---
 
