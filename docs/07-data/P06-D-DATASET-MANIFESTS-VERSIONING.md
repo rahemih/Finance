@@ -3,6 +3,7 @@
 Task: `FIN-P06-WD-001`  
 Linear: `HOS-198`  
 State: IN_PROGRESS  
+Implementation PR: `#141` / OPEN  
 Lead: A2 Data  
 Supporting: A0 Governance, A1 Architecture, A4 Quant, A8 Security, A9 Operations, A10 Evidence/Audit
 
