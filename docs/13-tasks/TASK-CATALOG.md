@@ -131,7 +131,7 @@ This catalog is the canonical index of governed work.
 | FIN-P06-WA-001 | P06 | Immutable Raw Archive | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WA-001.json` | RELEASED |
 | FIN-P06-WB-001 | P06 | Historical Backfill | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WB-001.json` | RELEASED |
 | FIN-P06-WC-001 | P06 | Time-Series Optimized Query Layer | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WC-001.json` | RELEASED |
-| FIN-P06-WD-001 | P06 | Dataset Manifests & Versioning | HIGH | ACTIVE | `contracts/tasks/FIN-P06-WD-001.json` | LOCK-FIN-P06-WD-001-01 |
+| FIN-P06-WD-001 | P06 | Dataset Manifests & Versioning | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WD-001.json` | RELEASED |
 
 ## Rules
 
