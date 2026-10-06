@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WA-001",
+  "state": "P06-A_IN_PROGRESS",
+  "linear_issue": "HOS-195",
+  "owner_domain": "D04_RAW_HISTORICAL_DATA",
+  "lead_agent": "A2",
+  "archive": {
+    "mode": "REFERENCE_FILESYSTEM_OFFLINE_ONLY",
+    "content_address": "SHA256_EXACT_RAW_BYTES",
+    "exact_raw_bytes": true,
+    "object_mutation": "FORBIDDEN",
+    "identical_rearchive": "IDEMPOTENT",
+    "partial_pair": "FAIL_CLOSED",
+    "tamper": "FAIL_CLOSED"
+  },
+  "rights": {
+    "allowed": [
+      "RETENTION_ALLOWED",
+      "RETENTION_ALLOWED_WITH_LIMIT"
+    ],
+    "denied": [
+      "RETENTION_FORBIDDEN",
+      "RETENTION_UNVERIFIED"
+    ],
+    "limited_requires_expiry": true,
+    "provider_rights_claim": "NONE"
+  },
+  "production_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "p06_b": "BLOCKED_UNTIL_P06_A_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
