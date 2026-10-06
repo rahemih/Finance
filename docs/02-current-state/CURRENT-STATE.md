@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-C — Context Market Ingestion / ACTIVE  
-Next Workstream: P05-D — Canonical Normalization / Symbol Master / Clock Model / NOT_STARTED  
+Current Workstream: P05-D — Canonical Normalization / Symbol Master / Clock Model / READY  
+Previous Workstream: P05-C — Context Market Ingestion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -155,9 +155,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WC-001 — Context Market Adapter / Databento Gold MBP-1 Baseline`  
-Active branch: `feat/FIN-P05-WC-001-databento-gold-context`  
-Active lock: `LOCK-FIN-P05-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -175,7 +174,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A and P05-B are CANONICAL_COMPLETE; P05-C — Context Market Ingestion is ACTIVE under `FIN-P05-WC-001`.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A, P05-B and P05-C are CANONICAL_COMPLETE. P05-D — Canonical Normalization / Symbol Master / Clock Model is READY.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2280,9 +2279,8 @@ P05-B closure evidence:
 
 Task: `FIN-P05-WC-001`  
 Linear: `HOS-185`  
-State: ACTIVE  
-Branch: `feat/FIN-P05-WC-001-databento-gold-context`  
-Lock: `LOCK-FIN-P05-WC-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Agents:
 - A2 Data Agent = LEAD
@@ -2321,3 +2319,19 @@ Safety:
 
 Next after closure:
 - `P05-D — Canonical Normalization / Symbol Master / Clock Model`
+
+
+P05-C closure evidence:
+- implementation PR: `#119` = MERGED
+- implementation head: `9105f9fc6b9524d538b33aae45cb30d0a11f65f5`
+- implementation merge SHA: `ca835d18ba1628d9ffc5f1ba6e70d356b3181fa8`
+- PR Governance: `37425988146` = SUCCESS
+- post-merge Governance: `37426163187` = SUCCESS
+- post-merge Branch Hygiene: `37426163231` = SUCCESS
+- P05 tests: `54/54 PASS`
+- strict Pyright: `0 errors / 0 warnings`
+- deterministic P05-C evidence SHA-256: `ba1072b53db0abb3f36caff02962bb3bfdd95ac35bd87f11ae6c9f022df405c8`
+- SBOM/license/Trivy = PASS
+- reproducible build = PASS
+- `FIN-P05-WC-001 = CANONICAL_COMPLETE / RELEASED`
+- next = `P05-D — Canonical Normalization / Symbol Master / Clock Model`

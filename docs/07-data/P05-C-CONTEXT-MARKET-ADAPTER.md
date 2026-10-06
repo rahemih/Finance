@@ -1,6 +1,6 @@
 # NEXUS QUANT — P05-C Context Market Adapter / Databento Gold MBP-1 Baseline
 
-STATE = P05-C IMPLEMENTATION  
+STATE = P05-C CANONICAL_BASELINE  
 TASK = `FIN-P05-WC-001`  
 LINEAR = `HOS-185`  
 DATE = 2026-10-06  
@@ -124,3 +124,40 @@ AUTO_TRADING: DISABLED
 After canonical closure:
 
 `P05-D — Canonical Normalization / Symbol Master / Clock Model`
+
+
+## 11. Canonical closure evidence
+
+Implementation:
+- PR `#119` = MERGED;
+- final implementation head: `9105f9fc6b9524d538b33aae45cb30d0a11f65f5`;
+- implementation merge SHA: `ca835d18ba1628d9ffc5f1ba6e70d356b3181fa8`;
+- PR Governance: `37425988146` = SUCCESS;
+- PR artifact: `11395396532`;
+- PR artifact digest: `sha256:896d4ef9b3a61d24ade39499eafb931aaa0cd0f6519ff1e6ad3a7c84fcc70939`;
+- post-merge Governance: `37426163187` = SUCCESS;
+- post-merge Branch Hygiene: `37426163231` = SUCCESS;
+- post-merge artifact: `11395128218`;
+- post-merge artifact digest: `sha256:8ef849bfcacc5f7630a63e5bd5ac29e948d961aa7c343e1aee1f763871d816cf`.
+
+Validation:
+- P05 tests: `54/54 PASS`;
+- strict Pyright: `0 errors / 0 warnings`;
+- deterministic P05-C evidence SHA-256: `ba1072b53db0abb3f36caff02962bb3bfdd95ac35bd87f11ae6c9f022df405c8`;
+- SBOM/license/Trivy: PASS;
+- reproducible artifact SHA-256: `cc59078d27cdb1a0198607366b987213bb66a7d38115002b8434526e6af0eb2a`;
+- rollback manifest SHA-256: `a8c03077677eea74f076160da8947facad18e3777e565bfbad1dcf4a92602e1b`;
+- reproducible file count: `325`.
+
+Closure:
+- `FIN-P05-WC-001 = CANONICAL_COMPLETE`;
+- `LOCK-FIN-P05-WC-001-01 = RELEASED`;
+- P05-D = `NOT_STARTED / READY`.
+
+Safety unchanged:
+- Databento production entitlement/API key = NOT_PROVISIONED;
+- provider live network = DISABLED;
+- trading authority = NONE;
+- CANARY = DISABLED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
