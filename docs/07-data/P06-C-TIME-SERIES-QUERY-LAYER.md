@@ -74,3 +74,4 @@ P06-C closure is canonical. P06-D is READY_NOT_STARTED under the existing P06 Ow
 - Post-merge artifact digest: `sha256:166b40d458d5fbfabd517b1798e6875df6e7bc16ce0a3eb7735a05da6d61755d`
 - Post-merge Branch Hygiene: `37480044940` = SUCCESS
 - Lock: RELEASED
+- Canonical closure PR: `#140`
