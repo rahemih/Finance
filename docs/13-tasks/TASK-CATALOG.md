@@ -121,6 +121,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WE-001 | P05 | Streaming / Heartbeat / Backpressure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WE-001.json` | RELEASED |
 
+| FIN-P05-WF-001 | P05 | Reconnect / Failover / Gap Recovery | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P05-WF-001.json` | ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

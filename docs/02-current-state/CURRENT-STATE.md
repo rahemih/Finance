@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-E implementation merge: `097036db75b91f914d3793b659264cf1eb885242`  
+Canonical HEAD after P05-E closure: `20278bb7830b53cc2ac38297d9a1327959fa2d4e`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-F — Reconnect / Failover / Gap Recovery / READY_TO_START  
+Current Workstream: P05-F — Reconnect / Failover / Gap Recovery / IN_PROGRESS  
 Previous Workstream: P05-E — Streaming / Heartbeat / Backpressure / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WF-001 — Reconnect / Failover / Gap Recovery`  
+Linear: `HOS-192 = In Progress`  
+Branch: `feat/FIN-P05-WF-001-reconnect-failover-gap-recovery`  
+Active lock: `LOCK-FIN-P05-WF-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +166,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-E CANONICAL_COMPLETE / P05-F READY_TO_START
+Market/application runtime implementation (P05): ACTIVE / P05-A through P05-E CANONICAL_COMPLETE / P05-F IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +176,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-E are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-F is the next ready workstream.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-E are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-F is ACTIVE under FIN-P05-WF-001 / HOS-192; P05-G remains blocked until P05-F canonical closure.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2500,3 +2502,43 @@ Closure evidence:
 
 Next ready workstream:
 - `P05-F — Reconnect / Failover / Gap Recovery`.
+
+## P05-F — Reconnect / Failover / Gap Recovery
+
+Task: `FIN-P05-WF-001`  
+Linear: `HOS-192`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P05-WF-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P05-WF-001-reconnect-failover-gap-recovery`
+
+Agents:
+- A2 Data — lead;
+- A9 Operations — reconnect/circuit/recovery semantics;
+- A8 Security — fail-closed provider-switch boundary;
+- A10 Evidence/Audit — deterministic evidence;
+- A1 Architecture — architecture consistency;
+- A0 Governance — task/lock/state coordination.
+
+Implementation scope:
+- provider-neutral sequence observation with no unsupported contiguity claims;
+- deterministic retry budget and capped exponential reconnect backoff;
+- circuit-open cooldown and controlled probe;
+- reconnect success requires RECOVERY_VALIDATION before ACTIVE;
+- Kaiko order-book reconnect requires a fresh full SNAPSHOT;
+- candidate backup health can only produce BACKUP_VALIDATION_REQUIRED, never automatic activation;
+- P01-F candidate redundancy metadata remains conditional.
+
+Deferred:
+- live provider network reconnect/credentials: not implemented;
+- automatic data-source switching and divergence thresholds -> P07;
+- latency/throughput/soak certification -> P05-G;
+- G4 closure -> P05-H.
+
+Safety:
+- synthetic sequence continuity: FORBIDDEN;
+- automatic data failover: DISABLED;
+- provider network connection: NONE;
+- live credentials: NONE;
+- CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.

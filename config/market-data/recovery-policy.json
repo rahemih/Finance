@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WF-001",
+  "retry": {
+    "max_attempts": 5,
+    "base_backoff_ns": 1000000000,
+    "max_backoff_ns": 30000000000,
+    "circuit_open_ns": 60000000000,
+    "jitter": "NONE_DETERMINISTIC_BASELINE"
+  },
+  "automatic_data_failover": false,
+  "failover_policy": "VALIDATE_BACKUP_THEN_FAIL_CLOSED_UNTIL_P07_AUTHORIZATION",
+  "providers": [
+    {
+      "provider": "kaiko",
+      "sequence_mode": "LEXICOGRAPHIC",
+      "contiguous": false,
+      "snapshot_required_kinds": ["ORDER_BOOK"],
+      "backup_candidates": ["coinapi"],
+      "backup_status": "CONDITIONAL_SHORTLIST_ONLY"
+    },
+    {
+      "provider": "dxfeed",
+      "sequence_mode": "INTEGER",
+      "contiguous": false,
+      "snapshot_required_kinds": [],
+      "backup_candidates": ["massive", "twelve_data"],
+      "backup_status": "CONDITIONAL_SHORTLIST_ONLY"
+    },
+    {
+      "provider": "databento",
+      "sequence_mode": "INTEGER",
+      "contiguous": false,
+      "snapshot_required_kinds": [],
+      "backup_candidates": ["dxfeed"],
+      "backup_status": "CONDITIONAL_SHORTLIST_ONLY"
+    }
+  ],
+  "network_runtime": "NOT_IMPLEMENTED",
+  "credentials_required": false,
+  "p07_cross_provider_validation": "REQUIRED_BEFORE_AUTOMATIC_FAILOVER",
+  "p05_g": "LATENCY_THROUGHPUT_SOAK_DEFERRED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

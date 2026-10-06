@@ -36,7 +36,9 @@ Canonical completion:
 
 Active phase:
 - P05 — Real-Time Data: ACTIVE
-- active governed task: none (between P05 workstreams)
+- active governed task: `FIN-P05-WF-001 — Reconnect / Failover / Gap Recovery`
+- Linear: `HOS-192`
+- branch: `feat/FIN-P05-WF-001-reconnect-failover-gap-recovery`
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -46,8 +48,9 @@ Completed P05 baselines:
 - P05-E — Streaming / Heartbeat / Backpressure: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Next workstream boundary:
-- P05-F — Reconnect / Failover / Gap Recovery: READY_TO_START
+Active workstream boundary:
+- P05-F — Reconnect / Failover / Gap Recovery: IN_PROGRESS
+- P05-G — Latency / Throughput / Soak Validation: BLOCKED_UNTIL_P05_F_CANONICAL_COMPLETE
 - P05-H will produce the roadmap-defined G4_REALTIME_DATA evidence after P05 implementation/validation
 
 ---
