@@ -163,6 +163,72 @@ class DatabentoContextAdapterTests(unittest.TestCase):
                 with self.assertRaises(DatabentoAdapterError):
                     adapter().parse_mbp1(fixture(), mapped_symbol="GCZ6", received_at_ns=value)  # type: ignore[arg-type]
 
+    def test_invalid_rtype_is_rejected(self) -> None:
+        data = fixture()
+        data["rtype"] = 0
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_invalid_action_or_side_is_rejected(self) -> None:
+        for field, value in (("action", "X"), ("side", "X")):
+            with self.subTest(field=field):
+                data = fixture()
+                data[field] = value
+                with self.assertRaises(DatabentoAdapterError):
+                    adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_out_of_range_provider_integers_are_rejected(self) -> None:
+        cases = (
+            ("publisher_id", 1 << 16),
+            ("instrument_id", 1 << 32),
+            ("sequence", 1 << 32),
+            ("flags", 1 << 8),
+            ("depth", 1 << 8),
+            ("ts_in_delta", 1 << 31),
+        )
+        for field, value in cases:
+            with self.subTest(field=field):
+                data = fixture()
+                data[field] = value
+                with self.assertRaises(DatabentoAdapterError):
+                    adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_nonzero_depth_is_rejected_for_mbp1_baseline(self) -> None:
+        data = fixture()
+        data["depth"] = 1
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_continuous_symbol_cannot_be_used_as_mapped_contract(self) -> None:
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(
+                fixture(), mapped_symbol="GC.v.0", received_at_ns=RECEIVED_AT_NS
+            )
+
+    def test_nonpositive_defined_prices_are_rejected(self) -> None:
+        for field in ("price",):
+            with self.subTest(field=field):
+                data = fixture()
+                data[field] = 0
+                with self.assertRaises(DatabentoAdapterError):
+                    adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+        for field in ("bid_px", "ask_px"):
+            with self.subTest(field=field):
+                data = fixture()
+                levels = data["levels"]
+                assert isinstance(levels, list)
+                assert isinstance(levels[0], dict)
+                levels[0][field] = 0
+                with self.assertRaises(DatabentoAdapterError):
+                    adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_undef_local_receive_timestamp_is_rejected(self) -> None:
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(
+                fixture(), mapped_symbol="GCZ6", received_at_ns=UNDEF_TIMESTAMP
+            )
+
     def test_parsing_is_deterministic(self) -> None:
         first = adapter().parse_mbp1(copy.deepcopy(fixture()), mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
         second = adapter().parse_mbp1(copy.deepcopy(fixture()), mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
