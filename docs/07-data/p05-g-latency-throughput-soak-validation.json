@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WG-001",
+  "state": "P05-G_IN_PROGRESS",
+  "linear_issue": "HOS-193",
+  "lead_agent": "A2",
+  "operating_average_events_per_sec": 2000,
+  "operating_peak_events_per_sec": 20000,
+  "stress_review_boundary_events_per_sec": 50000,
+  "l_fast_data": {
+    "p95_max_ms": 250,
+    "p99_max_ms": 1000,
+    "upstream_provider_latency_excluded": true
+  },
+  "benchmark": {
+    "latency_measurement": "DECODED_PROVIDER_MESSAGE_TO_CANONICAL_EVENT",
+    "peak_burst_events": 20000,
+    "soak_equivalent_seconds": 60,
+    "soak_equivalent_events": 120000,
+    "timing_evidence": "NON_DETERMINISTIC_NOT_BYTE_COMPARED",
+    "contract_evidence": "DETERMINISTIC_BYTE_COMPARED"
+  },
+  "network_required": false,
+  "credentials_required": false,
+  "automatic_data_failover": "DISABLED",
+  "p05_h": "BLOCKED_UNTIL_P05_G_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WG-001",
+  "source_envelope": "FIN-P02-WH-001",
+  "certification_scope": "OFFLINE_ENGINEERING_CURRENT_PIPELINE",
+  "operating": {
+    "average_events_per_sec": 2000,
+    "peak_events_per_sec": 20000,
+    "active_streams_provisional": 75
+  },
+  "stress_review_boundary": {
+    "peak_events_per_sec": 50000,
+    "certification_required": false,
+    "exceeding_requires_architecture_review": true
+  },
+  "l_fast_data": {
+    "path": "decoded provider message mapping -> canonical event availability",
+    "p95_max_ms": 250.0,
+    "p99_max_ms": 1000.0,
+    "upstream_provider_latency_excluded": true,
+    "internet_distance_excluded": true
+  },
+  "benchmark": {
+    "warmup_events": 120,
+    "latency_sample_events": 1200,
+    "throughput_events": 20000,
+    "operating_peak_burst_events": 20000,
+    "soak_equivalent_seconds": 60,
+    "soak_equivalent_events": 120000
+  },
+  "pass_requirements": {
+    "canonical_stream_min_events_per_sec": 20000,
+    "soak_min_events_per_sec": 2000,
+    "burst_rejected_events": 0,
+    "soak_rejected_events": 0
+  },
+  "timing_evidence": "NON_DETERMINISTIC_MEASUREMENT_NOT_BYTE_COMPARED",
+  "contract_evidence": "DETERMINISTIC_BYTE_COMPARED",
+  "network_required": false,
+  "credentials_required": false,
+  "automatic_data_failover": "DISABLED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

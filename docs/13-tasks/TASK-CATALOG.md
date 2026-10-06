@@ -123,6 +123,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WF-001 | P05 | Reconnect / Failover / Gap Recovery | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WF-001.json` | RELEASED |
 
+| FIN-P05-WG-001 | P05 | Latency / Throughput / Soak Validation | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P05-WG-001.json` | ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
