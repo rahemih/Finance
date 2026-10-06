@@ -40,14 +40,14 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P06 — Historical Data & Feature Store / ACTIVE  
-Current Workstream: P06-B — Historical Backfill / IN_PROGRESS  
-Previous Workstream: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE  
+Current Workstream: none — P06-B canonical closed; P06-C next  
+Previous Workstream: P06-B — Historical Backfill / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B IN_PROGRESS
+P06 state: ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -158,10 +158,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P06-WB-001 — Historical Backfill`  
-Linear: `HOS-196 = In Progress`  
-Branch: `feat/FIN-P06-WB-001-historical-backfill`  
-Active lock: `LOCK-FIN-P06-WB-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +168,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
-Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B IN_PROGRESS
+Historical data implementation (P06): ACTIVE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +178,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06-A — Immutable Raw Archive is CANONICAL_COMPLETE and its lock is RELEASED. P06-B — Historical Backfill is ACTIVE under FIN-P06-WB-001 / HOS-196 with LOCK-FIN-P06-WB-001-01 ACQUIRED. The reference implementation remains offline/provider-neutral, production historical entitlement is NOT_ASSUMED, production storage vendor is NOT_SELECTED, and P06-C remains blocked until P06-B canonical closure.
+P06-B — Historical Backfill is CANONICAL_COMPLETE and LOCK-FIN-P06-WB-001-01 is RELEASED. P06 remains the active authorized phase. P06-C — Time-Series Optimized Query Layer is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-C. Production historical entitlement remains NOT_ASSUMED, production storage vendor remains NOT_SELECTED, and Live/Auto Trading remain DISABLED.
 
 
 ## P01-E — Cost / Licensing / Data Rights
