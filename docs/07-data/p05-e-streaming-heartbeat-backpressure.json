@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WE-001",
+  "state": "P05-E_IN_PROGRESS",
+  "lead_agent": "A2",
+  "linear_issue": "HOS-191",
+  "stream_identity": "provider + canonical_id",
+  "buffer": {
+    "ordering": "FIFO",
+    "max_events": 1200000,
+    "high_watermark_events": 840000,
+    "critical_watermark_events": 1080000,
+    "minimum_operating_peak_seconds": 60,
+    "preallocation": false,
+    "overflow": "REJECT_EXPLICIT_NO_SILENT_DROP"
+  },
+  "heartbeat": {
+    "clock": "CANONICAL_LOCAL_RECEIVE_TIME",
+    "timeout_ns": 30000000000,
+    "states": ["NEVER_SEEN", "HEALTHY", "STALE"],
+    "timestamp_regression": "REJECT"
+  },
+  "deferred": {
+    "reconnect_failover_gap_recovery": "P05-F",
+    "throughput_latency_soak_certification": "P05-G",
+    "external_stream_broker_selection": true,
+    "disk_spill": true
+  },
+  "provider_imports_in_streaming_package": false,
+  "network_required": false,
+  "credentials_required": false,
+  "p05_f": "BLOCKED_UNTIL_P05_E_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
