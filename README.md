@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P05 — Real-Time Data CANONICAL_COMPLETE / G4_REALTIME_DATA PASS / P06 PENDING OWNER AUTHORIZATION
+> Status: P06 — Historical Data & Feature Store / P06-A Immutable Raw Archive IN_PROGRESS
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
