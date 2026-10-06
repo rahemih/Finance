@@ -273,4 +273,19 @@ R01 also repairs a cross-phase CI drift where the persistent P04 exit guard was 
 
 Linear: `HOS-190`  
 Task: `FIN-P05-WA-001-R01`  
-State: ACTIVE
+State: CANONICAL_COMPLETE / PENDING CLOSURE MERGE
+
+
+Fresh revalidation implementation evidence:
+- R01 PR `#122` = MERGED;
+- merge SHA `a72391a0889150f69080e9eb7e31b5d1d050b422`;
+- PR Governance `37430457151` = SUCCESS;
+- post-merge Governance `37430728907` = SUCCESS;
+- post-merge Branch Hygiene `37430728968` = SUCCESS;
+- P05 tests `58/58 PASS`;
+- foundation tests `22/22 PASS`;
+- strict Pyright `0 errors / 0 warnings`;
+- persistent P05-A boundary guard = PASS;
+- original deterministic evidence digest unchanged;
+- phase-boundary CI drift = REPAIRED;
+- original P05-A adapter = NO DEFECT FOUND.
