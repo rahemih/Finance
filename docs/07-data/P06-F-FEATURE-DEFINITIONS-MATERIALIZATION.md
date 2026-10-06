@@ -2,7 +2,7 @@
 
 Task: `FIN-P06-WF-001`  
 Linear: `HOS-200`  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Lead: A4 Quant  
 Supporting: A0 Governance, A1 Architecture, A2 Data, A3 Fundamental/Macro, A8 Security, A9 Operations, A10 Evidence/Audit
 
@@ -80,4 +80,16 @@ CANARY: DISABLED.
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
 
-P06-G remains blocked until P06-F canonical closure.
+P06-F closure is canonical. P06-G is READY_NOT_STARTED under the existing P06 Owner authorization.
+
+## Closure evidence
+
+- Implementation PR: `#145` = MERGED
+- Final implementation head: `6530e3027e51d9ba0ef9e2cbc695212e78ae2552`
+- Implementation merge SHA: `fdf85a186140de7ad71cfe528acbd6548c475006`
+- PR Governance: `37510681494` = SUCCESS
+- PR artifact digest: `sha256:2001df8d01435d01b470c9b87256a038a7eb1d18637945252a0d4a65745cc207`
+- Post-merge Governance: `37510874201` = SUCCESS
+- Post-merge artifact digest: `sha256:1ac76dfe0f212529350cf036a51e1788c719d9d46e4d138e6127a8cfe029c4f8`
+- Post-merge Branch Hygiene: `37510874022` = SUCCESS
+- Lock: RELEASED
