@@ -210,6 +210,15 @@ jobs:
           cmp build/p06a-a.json build/p06a-b.json
           sha256sum build/p06a-a.json
 
+      - name: P06-B deterministic historical backfill evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06b_evidence.py --output build/p06b-a.json
+          python scripts/ci/p06b_evidence.py --output build/p06b-b.json
+          cmp build/p06b-a.json build/p06b-b.json
+          sha256sum build/p06b-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
