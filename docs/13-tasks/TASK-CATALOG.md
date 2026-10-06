@@ -125,7 +125,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WG-001 | P05 | Latency / Throughput / Soak Validation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WG-001.json` | RELEASED |
 
-| FIN-P05-WH-001 | P05 | Real-Time Data Gate Closure / G4 | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P05-WH-001.json` | ACQUIRED |
+| FIN-P05-WH-001 | P05 | Real-Time Data Gate Closure / G4 | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WH-001.json` | RELEASED |
 
 ## Rules
 
