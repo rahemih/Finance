@@ -116,6 +116,9 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WA-001-R01 | P05 | Fresh P05-A Revalidation & Phase-Boundary Repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WA-001-R01.json` | RELEASED |
 
+
+| FIN-P05-WD-001 | P05 | Canonical Normalization / Symbol Master / Clock Model | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P05-WD-001.json` | ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

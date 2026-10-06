@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "state": "P05-D_IMPLEMENTATION",
+  "instruments": [
+    {
+      "canonical_id": "CRYPTO:BTC/USD:SPOT",
+      "asset_class": "CRYPTO",
+      "role": "TRADABLE_RESEARCH_CANDIDATE",
+      "aliases": [
+        {
+          "mode": "EXACT",
+          "provider": "kaiko",
+          "exchange": "cbse",
+          "instrument_class": "spot",
+          "code": "btc-usd"
+        }
+      ]
+    },
+    {
+      "canonical_id": "FX:EUR/USD:SPOT_OTC",
+      "asset_class": "FX",
+      "role": "TRADABLE_RESEARCH_CANDIDATE",
+      "aliases": [
+        {
+          "mode": "EXACT",
+          "provider": "dxfeed",
+          "exchange": "COMPOSITE_OTC",
+          "instrument_class": "forex_spot_otc",
+          "code": "EUR/USD"
+        }
+      ]
+    },
+    {
+      "canonical_id": "COMMODITY:GOLD:GC:FUTURES:COMEX",
+      "asset_class": "COMMODITY",
+      "role": "CONTEXT_ONLY",
+      "aliases": [
+        {
+          "mode": "DYNAMIC_MAPPED_CONTRACT",
+          "provider": "databento",
+          "exchange": "COMEX",
+          "instrument_class": "futures_context",
+          "subscription_symbol": "GC.v.0",
+          "mapped_code_source": "envelope.instrument.code",
+          "required_metadata": [
+            "canonical_id",
+            "subscription_symbol",
+            "mapped_symbol"
+          ]
+        }
+      ]
+    }
+  ]
+}

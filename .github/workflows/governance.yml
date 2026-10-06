@@ -152,6 +152,15 @@ jobs:
           cmp build/p05c-a.json build/p05c-b.json
           sha256sum build/p05c-a.json
 
+      - name: P05-D deterministic normalization evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p05d_evidence.py --output build/p05d-a.json
+          python scripts/ci/p05d_evidence.py --output build/p05d-b.json
+          cmp build/p05d-a.json build/p05d-b.json
+          sha256sum build/p05d-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
@@ -256,6 +265,7 @@ jobs:
             build/p05a-a.json
             build/p05b-a.json
             build/p05c-a.json
+            build/p05d-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

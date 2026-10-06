@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WD-001",
+  "state": "P05-D_IMPLEMENTATION",
+  "lead_agent": "A2",
+  "canonical_instruments": [
+    "CRYPTO:BTC/USD:SPOT",
+    "FX:EUR/USD:SPOT_OTC",
+    "COMMODITY:GOLD:GC:FUTURES:COMEX"
+  ],
+  "symbol_master": {
+    "kaiko": "EXACT_ALIAS",
+    "dxfeed": "EXACT_ALIAS_PLUS_CANONICAL_METADATA_VALIDATION",
+    "databento": "CANONICAL_METADATA_PLUS_DYNAMIC_MAPPED_CONTRACT",
+    "unknown": "REJECT"
+  },
+  "clock_model": {
+    "precision_policy": "SOURCE_PRESERVED_NO_SYNTHETIC_PRECISION",
+    "kaiko_event": "ts_event",
+    "kaiko_exchange": "ts_exchange",
+    "kaiko_collection": "ts_collection",
+    "dxfeed_event": "provider_event_time_OR_NONE_NO_FALLBACK",
+    "dxfeed_auxiliary": [
+      "bid_time",
+      "ask_time"
+    ],
+    "databento_event": "provider_event_time_OR_NONE_NO_FALLBACK",
+    "databento_receive": "provider_receive_time",
+    "local_receive": "received_at_ns",
+    "signed_deltas": true
+  },
+  "provider_imports_in_canonical_package": false,
+  "p05_e": "NOT_STARTED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

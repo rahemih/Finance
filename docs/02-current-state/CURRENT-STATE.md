@@ -1,12 +1,12 @@
 # Current State
 
-Last reconciled: 2026-10-05
+Last reconciled: 2026-10-06
 
 ## Repository
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-B implementation merge: `27f895fea7ffb5872c036995baf82325b86299b9`  
+Canonical HEAD before P05-D implementation PR: `517f1771182b3db7e3cb252716f477a952fd5fd2`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-D — Canonical Normalization / PAUSED TODO  
+Current Workstream: P05-D — Canonical Normalization / IN_PROGRESS  
 Previous Workstream: P05-C — Context Market Ingestion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WD-001`  
+Active lock: `LOCK-FIN-P05-WD-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +164,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A and P05-B CANONICAL_COMPLETE  
+Market/application runtime implementation (P05): ACTIVE / P05-A, P05-B, P05-C CANONICAL_COMPLETE / P05-D IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +174,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A, P05-B and P05-C remain CANONICAL_COMPLETE. Owner requested P05-A fresh revalidation before downstream continuation; P05-D is PAUSED/TODO until R01 closes.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A, P05-B and P05-C are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-D has resumed and is IN_PROGRESS.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2388,3 +2388,35 @@ P05-A R01 closure evidence:
 - original Kaiko adapter defect: NONE
 - `FIN-P05-WA-001-R01 = CANONICAL_COMPLETE / RELEASED`
 - P05-D remains Todo / paused
+
+
+## P05-D — Canonical Normalization / Symbol Master / Clock Model
+
+Task: `FIN-P05-WD-001`  
+Linear: `HOS-188`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P05-WD-001-01` / ACQUIRED  
+Branch: `feat/FIN-P05-WD-001-canonical-normalization`
+
+Resume condition:
+- `FIN-P05-WA-001-R01 = CANONICAL_COMPLETE`;
+- R01 lock = RELEASED;
+- downstream freeze = LIFTED.
+
+Implementation scope:
+- governed Symbol Master for Kaiko BTC/USD, dxFeed EUR/USD and Databento GC context;
+- provider-neutral `CanonicalMarketEvent`;
+- source-preserving clock model with no synthetic event-time fallback;
+- deterministic offline P05-D evidence;
+- P05-D governance/manifest wiring.
+
+Safety:
+- provider network connection = NONE
+- live credentials = NONE
+- trading authority = NONE
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED
+
+Next after canonical closure:
+- `P05-E — Streaming / Heartbeat / Backpressure`
