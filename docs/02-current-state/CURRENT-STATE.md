@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-F closure: `1e104f392c0eb2306cc9c83b9fc46adf9382c8c8`  
+Canonical HEAD after P05-G implementation merge: `d649a649a4c1a0a4af7828e138e1a3d3a47ab215`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-G — Latency / Throughput / Soak Validation / IN_PROGRESS  
-Previous Workstream: P05-F — Reconnect / Failover / Gap Recovery / CANONICAL_COMPLETE  
+Current Workstream: P05-H — Real-Time Data Gate Closure / READY_TO_START  
+Previous Workstream: P05-G — Latency / Throughput / Soak Validation / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -155,10 +155,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WG-001 — Latency / Throughput / Soak Validation`  
-Linear: `HOS-193 = In Progress`  
-Branch: `perf/FIN-P05-WG-001-latency-throughput-soak`  
-Active lock: `LOCK-FIN-P05-WG-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -166,7 +164,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-F CANONICAL_COMPLETE / P05-G IN_PROGRESS
+Market/application runtime implementation (P05): ACTIVE / P05-A through P05-G CANONICAL_COMPLETE / P05-H READY_TO_START
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -176,7 +174,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-F are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-G is ACTIVE under FIN-P05-WG-001 / HOS-193; P05-H remains blocked until P05-G canonical closure.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-G are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-H is the next ready workstream.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2571,9 +2569,9 @@ Next ready workstream:
 
 Task: `FIN-P05-WG-001`  
 Linear: `HOS-193`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P05-WG-001-01 / ACQUIRED`  
-Branch: `perf/FIN-P05-WG-001-latency-throughput-soak`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation branch: `perf/FIN-P05-WG-001-latency-throughput-soak` / MERGED
 
 Agents:
 - A2 Data — lead;
@@ -2603,3 +2601,31 @@ Safety:
 - CANARY: DISABLED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+Closure evidence:
+- implementation PR `#130` = MERGED;
+- implementation head: `01740217b4464f25f6143b97bff7d5eaaff093ab`;
+- implementation merge SHA: `d649a649a4c1a0a4af7828e138e1a3d3a47ab215`;
+- PR Governance run `37459307993` = SUCCESS;
+- PR artifact `11411103044`;
+- PR artifact digest: `sha256:a437a00347d49fef0c11ff64a123de8d3ee443c06401a51ecd6074e15b5fc5ff`;
+- post-merge Governance run `37459469108` = SUCCESS;
+- post-merge artifact `11411003641`;
+- post-merge artifact digest: `sha256:eeca4ac81f26ee3dfa408ba224ebab4f862b5fb06ba2ac758214026fcc69eff2`;
+- post-merge Branch Hygiene run `37459469136` = SUCCESS;
+- strict Pyright: `0 errors / 0 warnings`;
+- foundation tests: `22/22 PASS`;
+- P05 tests: `100/100 PASS`;
+- measured p95: `0.043505 ms`;
+- measured p99: `0.053039 ms`;
+- measured stream throughput: `403228.83 events/s`;
+- measured soak-equivalent throughput: `421840.98 events/s`;
+- deterministic contract evidence SHA-256: `678a290279ce9cb9af3f2c753a2bf3a3c3944fda5521fbf492bcc6b05e339167`;
+- measured evidence SHA-256: `74b3fab6693e551f5a60ee0811fd85e05c98f54eaa94de3978b677caa57b943d`;
+- reproducible artifact SHA-256: `30627334f87438e95dc4317548f7a18f979f489755833b4a209412d37baed1e5`;
+- rollback manifest SHA-256: `3433ced364ef0ed8b55fcb5ff1fce183c9436f62b22b76082c7c2207464deb2c`;
+- verdict: PASS.
+
+Next ready workstream:
+- `P05-H — Real-Time Data Gate Closure`.

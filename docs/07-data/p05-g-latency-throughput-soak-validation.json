@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WG-001",
-  "state": "P05-G_IN_PROGRESS",
+  "state": "P05-G_CANONICAL_COMPLETE",
   "linear_issue": "HOS-193",
   "lead_agent": "A2",
   "operating_average_events_per_sec": 2000,
@@ -23,8 +23,34 @@
   "network_required": false,
   "credentials_required": false,
   "automatic_data_failover": "DISABLED",
-  "p05_h": "BLOCKED_UNTIL_P05_G_CANONICAL_COMPLETE",
+  "p05_h": "READY_TO_START",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 130,
+    "implementation_head_sha": "01740217b4464f25f6143b97bff7d5eaaff093ab",
+    "implementation_merge_sha": "d649a649a4c1a0a4af7828e138e1a3d3a47ab215",
+    "pr_governance_run": 37459307993,
+    "pr_artifact_id": 11411103044,
+    "pr_artifact_digest": "sha256:a437a00347d49fef0c11ff64a123de8d3ee443c06401a51ecd6074e15b5fc5ff",
+    "postmerge_governance_run": 37459469108,
+    "postmerge_artifact_id": 11411003641,
+    "postmerge_artifact_digest": "sha256:eeca4ac81f26ee3dfa408ba224ebab4f862b5fb06ba2ac758214026fcc69eff2",
+    "postmerge_branch_hygiene_run": 37459469136,
+    "pyright": "0 errors / 0 warnings",
+    "foundation_tests": "22/22 PASS",
+    "p05_tests": "100/100 PASS",
+    "measured_postmerge": {
+      "p95_ms": 0.043505,
+      "p99_ms": 0.053039,
+      "stream_events_per_sec": 403228.83,
+      "soak_events_per_sec": 421840.98
+    },
+    "contract_evidence_sha256": "678a290279ce9cb9af3f2c753a2bf3a3c3944fda5521fbf492bcc6b05e339167",
+    "measured_evidence_sha256": "74b3fab6693e551f5a60ee0811fd85e05c98f54eaa94de3978b677caa57b943d",
+    "reproducible_artifact_sha256": "30627334f87438e95dc4317548f7a18f979f489755833b4a209412d37baed1e5",
+    "rollback_manifest_sha256": "3433ced364ef0ed8b55fcb5ff1fce183c9436f62b22b76082c7c2207464deb2c",
+    "verdict": "PASS"
+  }
 }
