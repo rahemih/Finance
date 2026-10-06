@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WC-001",
+  "state": "P05-C_IMPLEMENTATION",
+  "lead_agent": "A2",
+  "provider": {
+    "name": "Databento",
+    "role": "P01-G_CONTEXT_PRIMARY_REFERENCE",
+    "dataset": "GLBX.MDP3",
+    "schema": "mbp-1",
+    "transport_direction": "DATABENTO_LIVE_REFERENCE",
+    "production_endpoint": "NOT_SELECTED",
+    "entitlement": "NOT_PROVISIONED",
+    "credential": "NONE",
+    "canonical_ci_network_required": false
+  },
+  "first_context": {
+    "canonical_id": "COMMODITY:GOLD:GC:FUTURES:COMEX",
+    "subscription_symbol": "GC.v.0",
+    "stype_in": "continuous",
+    "role": "CONTEXT_ONLY",
+    "execution_authority": false
+  },
+  "semantics": {
+    "price_scale": "1e-9",
+    "undef_price": "INT64_MAX_TO_NONE",
+    "undef_timestamp": "UINT64_MAX_TO_NONE",
+    "quantity": "CENTRALIZED_FUTURES_VENUE_QUANTITY",
+    "continuous_mapping": "REQUESTED_SYMBOL_AND_MAPPED_CONTRACT_PRESERVED_SEPARATELY",
+    "auto_roll": "DEFERRED"
+  },
+  "p05_d": "NOT_STARTED",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
