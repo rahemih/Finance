@@ -37,10 +37,9 @@ Canonical completion:
 
 Active phase:
 - P06 — Historical Data & Feature Store: ACTIVE
-- active governed task: `FIN-P06-WE-001 — Macro Vintage Model`
-- Linear: `HOS-199`
-- lock: `LOCK-FIN-P06-WE-001-01 / ACQUIRED`
-- completed workstreams: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE; P06-B — Historical Backfill / CANONICAL_COMPLETE; P06-C — Time-Series Optimized Query Layer / CANONICAL_COMPLETE; P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE
+- active governed task: none
+- completed workstreams: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE; P06-B — Historical Backfill / CANONICAL_COMPLETE; P06-C — Time-Series Optimized Query Layer / CANONICAL_COMPLETE; P06-D — Dataset Manifests & Versioning / CANONICAL_COMPLETE; P06-E — Macro Vintage Model / CANONICAL_COMPLETE
+- next governed workstream: P06-F — Feature Definitions & Materialization / READY_NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -58,8 +57,8 @@ Active P06 boundary:
 - P06-B — Historical Backfill: CANONICAL_COMPLETE
 - P06-C — Time-Series Optimized Query Layer: CANONICAL_COMPLETE
 - P06-D — Dataset Manifests & Versioning: CANONICAL_COMPLETE
-- P06-E — Macro Vintage Model: IN_PROGRESS
-- P06-F — Feature Definitions & Materialization: BLOCKED_UNTIL_P06_E_CANONICAL_COMPLETE
+- P06-E — Macro Vintage Model: CANONICAL_COMPLETE
+- P06-F — Feature Definitions & Materialization: READY_NOT_STARTED
 
 ---
 
