@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WF-001",
+  "mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_FEATURES",
+  "quality_rule": "MATERIALIZE_ONLY_EXPLICIT_ELIGIBLE",
+  "point_in_time_rule": "EVENT_AND_SOURCE_CUTOFF_NOT_AFTER_AS_OF",
+  "lineage_rule": "EXACT_DATASET_VERSION_OPTIONAL_VINTAGE_IDS_CODE_CONFIG_QUALITY_EVIDENCE",
+  "max_materializations_per_batch": 100000,
+  "max_artifact_bytes": 1048576,
+  "production_feature_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
