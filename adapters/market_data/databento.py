@@ -212,7 +212,7 @@ class DatabentoGoldContextAdapter:
         if local_receive == UNDEF_TIMESTAMP:
             raise DatabentoAdapterError("received_at_ns must be defined")
 
-        rtype = _require_int(record.get("rtype"), field="rtype", minimum=0)
+        rtype = _uint8(record.get("rtype"), field="rtype")
         if rtype != 1:
             raise DatabentoAdapterError("rtype must be 1 for the MBP-1 baseline")
 
@@ -220,17 +220,17 @@ class DatabentoGoldContextAdapter:
         ts_recv = _timestamp(record.get("ts_recv"), field="ts_recv", allow_undefined=False)
         assert ts_recv is not None
 
-        sequence = _nonnegative_int(record.get("sequence"), field="sequence")
-        publisher_id = _nonnegative_int(record.get("publisher_id"), field="publisher_id")
-        instrument_id = _nonnegative_int(record.get("instrument_id"), field="instrument_id")
-        depth = _nonnegative_int(record.get("depth"), field="depth")
+        sequence = _uint32(record.get("sequence"), field="sequence")
+        publisher_id = _uint16(record.get("publisher_id"), field="publisher_id", allow_zero=False)
+        instrument_id = _uint32(record.get("instrument_id"), field="instrument_id", allow_zero=False)
+        depth = _uint8(record.get("depth"), field="depth")
         if depth != 0:
             raise DatabentoAdapterError("depth must be 0 for the MBP-1 top-of-book baseline")
-        flags = _nonnegative_int(record.get("flags"), field="flags")
-        ts_in_delta = _nonnegative_int(record.get("ts_in_delta"), field="ts_in_delta")
-        action = _require_text(record.get("action"), field="action")
-        side = _require_text(record.get("side"), field="side")
-        event_size = _nonnegative_int(record.get("size"), field="size")
+        flags = _uint8(record.get("flags"), field="flags")
+        ts_in_delta = _int32(record.get("ts_in_delta"), field="ts_in_delta")
+        action = _action(record.get("action"))
+        side = _side(record.get("side"))
+        event_size = _uint32(record.get("size"), field="size")
 
         levels_value = record.get("levels")
         if not isinstance(levels_value, list) or not levels_value:
