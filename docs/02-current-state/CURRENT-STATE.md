@@ -6,7 +6,7 @@ Last reconciled: 2026-10-06
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD after P05-F implementation merge: `e2283b344f21b533395df1c6194c5c8ca74b9e59`  
+Canonical HEAD after P05-F closure: `1e104f392c0eb2306cc9c83b9fc46adf9382c8c8`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-G — Latency / Throughput / Soak Validation / READY_TO_START  
+Current Workstream: P05-G — Latency / Throughput / Soak Validation / IN_PROGRESS  
 Previous Workstream: P05-F — Reconnect / Failover / Gap Recovery / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WG-001 — Latency / Throughput / Soak Validation`  
+Linear: `HOS-193 = In Progress`  
+Branch: `perf/FIN-P05-WG-001-latency-throughput-soak`  
+Active lock: `LOCK-FIN-P05-WG-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +166,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05): ACTIVE / P05-A through P05-F CANONICAL_COMPLETE / P05-G READY_TO_START
+Market/application runtime implementation (P05): ACTIVE / P05-A through P05-F CANONICAL_COMPLETE / P05-G IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +176,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-F are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-G is the next ready workstream.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A through P05-F are CANONICAL_COMPLETE. P05-A fresh revalidation R01 is CANONICAL_COMPLETE / RELEASED. P05-G is ACTIVE under FIN-P05-WG-001 / HOS-193; P05-H remains blocked until P05-G canonical closure.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2564,3 +2566,40 @@ Closure evidence:
 
 Next ready workstream:
 - `P05-G — Latency / Throughput / Soak Validation`.
+
+## P05-G — Latency / Throughput / Soak Validation
+
+Task: `FIN-P05-WG-001`  
+Linear: `HOS-193`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P05-WG-001-01 / ACQUIRED`  
+Branch: `perf/FIN-P05-WG-001-latency-throughput-soak`
+
+Agents:
+- A2 Data — lead;
+- A9 Operations — performance/soak review;
+- A10 Evidence/Audit — measurement integrity;
+- A1 Architecture — P02-H envelope consistency;
+- A8 Security — offline/no-secret boundary;
+- A0 Governance — task/lock/state coordination.
+
+Certification targets:
+- OPERATING average: 2,000 events/s;
+- OPERATING peak: 20,000 events/s;
+- L_FAST_DATA: p95 <= 250 ms / p99 <= 1,000 ms;
+- exact 20,000-event peak burst with zero rejection;
+- >=120,000-event workload-equivalent soak (60 seconds at OPERATING average);
+- STRESS 50,000 events/s remains report-only review boundary.
+
+Evidence integrity:
+- measured timing evidence is non-deterministic and is not byte-compared;
+- deterministic policy/contract/safety evidence is generated twice and byte-compared.
+
+Safety:
+- upstream provider/network latency certification: OUT_OF_SCOPE;
+- provider network connection: NONE;
+- live credentials: NONE;
+- automatic data failover: DISABLED;
+- CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
