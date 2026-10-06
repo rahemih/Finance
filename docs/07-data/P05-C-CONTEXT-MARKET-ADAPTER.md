@@ -57,7 +57,17 @@ GC is a centralized futures context feed. Sizes/counts are labeled:
 
 This does not imply Spot Gold OTC volume.
 
-## 5. Provenance
+## 5. MBP-1 record boundary
+
+The baseline parser requires:
+- `rtype = 1` for MBP-1;
+- `depth = 0` for the one-level top-of-book record.
+
+A lookalike payload from another Databento schema is rejected rather than silently coerced.
+
+The fixture mapped child symbol `GCZ6` is deterministic test data only. It is not asserted to be the current live child mapping of `GC.v.0`; production mapping must come from provider symbology evidence.
+
+## 6. Provenance
 
 The provider-neutral envelope preserves:
 - provider;
@@ -76,7 +86,7 @@ The provider-neutral envelope preserves:
 - `ts_in_delta`;
 - BBO price/size/order counts.
 
-## 6. Continuous mapping
+## 7. Continuous mapping
 
 `GC.v.0` means the volume-ranked continuous GC contract reference.
 
@@ -84,7 +94,7 @@ P05-C does not implement roll lifecycle. The concrete mapped contract must be su
 
 Automatic remap/resubscribe/roll behavior is deferred to P05-D/E/F.
 
-## 7. Credential / transport
+## 8. Credential / transport
 
 Canonical P05-C CI is offline.
 
@@ -99,7 +109,7 @@ Subscription descriptor records:
 
 The adapter never resolves the secret.
 
-## 8. Safety
+## 9. Safety
 
 Databento entitlement: NOT_PROVISIONED  
 Production endpoint: NOT_SELECTED  
@@ -109,7 +119,7 @@ CANARY: DISABLED
 LIVE_TRADING: DISABLED  
 AUTO_TRADING: DISABLED
 
-## 9. Next
+## 10. Next
 
 After canonical closure:
 
