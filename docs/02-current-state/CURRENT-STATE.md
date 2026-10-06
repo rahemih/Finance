@@ -180,6 +180,27 @@ Accounts/KYC/funding/orders: NONE
 
 P06-C — Time-Series Optimized Query Layer is CANONICAL_COMPLETE and LOCK-FIN-P06-WC-001-01 is RELEASED. P06 remains the active authorized phase. P06-D — Dataset Manifests & Versioning is READY_NOT_STARTED as the next governed workstream; this closure does not start P06-D. Production query/storage vendor remains NOT_SELECTED, credentials/network are not required, and Live/Auto Trading remain DISABLED.
 
+## P06-C — Time-Series Optimized Query Layer
+
+Task: `FIN-P06-WC-001`  
+Linear: `HOS-197`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#139` = MERGED  
+Final implementation head: `78c41e5849c11a9493b5c839ac4d5a4f0d6bedbd`  
+Implementation merge SHA: `b430a8a1cf2cae11c05c4796dff28b472fb196e3`  
+PR Governance: `37479773448` = SUCCESS  
+PR artifact: `sha256:479a70595cd1363118ed36374f88f6d0444a22dcb75f8512617c89304d5226eb`  
+Post-merge Governance: `37480045004` = SUCCESS  
+Post-merge artifact: `sha256:166b40d458d5fbfabd517b1798e6875df6e7bc16ce0a3eb7735a05da6d61755d`  
+Post-merge Branch Hygiene: `37480044940` = SUCCESS
+
+Safety:
+- production query/storage vendor: NOT_SELECTED;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
 ## P06-B — Historical Backfill
 
 Task: `FIN-P06-WB-001`  
