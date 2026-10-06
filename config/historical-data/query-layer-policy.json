@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WC-001",
+  "mode": "REFERENCE_IN_MEMORY_TIME_PARTITION_INDEX_ONLY",
+  "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
+  "query_order": "ASCENDING_EVENT_TIME_STABLE_TIEBREAK",
+  "partition_span_ns": 86400000000000,
+  "max_records_per_index": 100000,
+  "max_query_limit": 10000,
+  "max_partitions_per_query": 3660,
+  "minimum_synthetic_queries_per_second": 50,
+  "production_query_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
