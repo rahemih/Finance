@@ -6,7 +6,7 @@ Last reconciled: 2026-10-05
 
 Repository: `rahemih/Finance`  
 Canonical branch: `main`  
-Canonical HEAD before P05-A branch: `3ae30f2ed01a4442d078c8473bd132a09a77dc91`  
+Canonical HEAD after P05-B implementation merge: `27f895fea7ffb5872c036995baf82325b86299b9`  
 Ruleset: `Protect main` = ACTIVE  
 Initial Git hardening: COMPLETE  
 Secret Protection: ACTIVE  
@@ -40,7 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-A — Crypto Real-Time Adapters / ACTIVE  
+Current Workstream: P05-B — Forex Real-Time Adapters / CANONICAL_COMPLETE  
+Next Workstream: P05-C — Context Market Ingestion / READY  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -154,9 +155,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WB-001 — Forex Real-Time Adapter / dxFeed Quote Baseline`  
-Active branch: `feat/FIN-P05-WB-001-dxfeed-forex-quote`  
-Active lock: `LOCK-FIN-P05-WB-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -164,7 +164,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 ## Safety
 
 Engineering Foundation implementation: CANONICAL_COMPLETE  
-Market/application runtime implementation (P05+): NOT_STARTED  
+Market/application runtime implementation (P05): ACTIVE / P05-A and P05-B CANONICAL_COMPLETE  
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -174,7 +174,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A — Crypto Real-Time Adapters is ACTIVE under `FIN-P05-WA-001`; P05-B and later workstreams remain NOT_STARTED until their dependencies are satisfied.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A and P05-B are CANONICAL_COMPLETE; P05-C — Context Market Ingestion is the next workstream.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2218,9 +2218,8 @@ P05-A closure evidence:
 
 Task: `FIN-P05-WB-001`  
 Linear: `HOS-184`  
-State: ACTIVE  
-Branch: `feat/FIN-P05-WB-001-dxfeed-forex-quote`  
-Lock: `LOCK-FIN-P05-WB-001-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Agents:
 - A2 Data Agent = LEAD
@@ -2258,3 +2257,19 @@ Safety:
 
 Next after closure:
 - `P05-C — Context Market Ingestion`
+
+
+P05-B closure evidence:
+- implementation PR: `#117` = MERGED
+- implementation head: `e7c753669426bb586c468f6da53d9299503517dc`
+- implementation merge SHA: `27f895fea7ffb5872c036995baf82325b86299b9`
+- PR Governance: `37423688758` = SUCCESS
+- post-merge Governance: `37423795685` = SUCCESS
+- post-merge Branch Hygiene: `37423795667` = SUCCESS
+- strict Pyright = 0 errors / 0 warnings
+- P05 real-time data tests = 32/32 PASS
+- P05-B deterministic evidence twice = PASS
+- SBOM/license/Trivy = PASS
+- reproducible build = PASS
+- `FIN-P05-WB-001 = CANONICAL_COMPLETE / RELEASED`
+- P05-C = NOT_STARTED / READY
