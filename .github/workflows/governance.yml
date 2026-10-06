@@ -231,6 +231,15 @@ jobs:
       - name: P06-C measured synthetic query benchmark
         run: python scripts/ci/p06c_performance.py --output build/p06c-performance.json
 
+      - name: P06-D deterministic dataset manifest evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06d_evidence.py --output build/p06d-a.json
+          python scripts/ci/p06d_evidence.py --output build/p06d-b.json
+          cmp build/p06d-a.json build/p06d-b.json
+          sha256sum build/p06d-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
