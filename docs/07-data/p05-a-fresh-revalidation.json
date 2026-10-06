@@ -78,5 +78,5 @@
     "file_count": 330,
     "inventory_sha256": "84609958458f50178045df41f42d8c1498ea30b4e6e3d818ae56fa4d7245b3fb"
   },
-  "lock": "RELEASED_PENDING_CLOSURE_MERGE"
+  "lock": "RELEASED"
 }
