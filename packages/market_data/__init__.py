@@ -1,6 +1,21 @@
 """Provider-neutral canonical market-data normalization."""
 
 from .normalization import CanonicalClock, CanonicalMarketEvent, CanonicalNormalizer, NormalizationError
+from .recovery import (
+    FailoverDisposition,
+    ProviderRecoveryPolicy,
+    RecoveryCoordinator,
+    RecoveryError,
+    RecoveryKey,
+    RecoveryPending,
+    RecoveryPolicy,
+    RecoverySequenceDisposition,
+    RecoverySnapshot,
+    RecoveryState,
+    SequenceMode,
+    SequenceObservation,
+    SequenceTracker,
+)
 from .streaming import (
     BackpressureError,
     BufferPressure,
@@ -21,8 +36,21 @@ __all__ = [
     "CanonicalMarketEvent",
     "CanonicalNormalizer",
     "CanonicalStreamBus",
+    "FailoverDisposition",
     "InstrumentRole",
     "NormalizationError",
+    "ProviderRecoveryPolicy",
+    "RecoveryCoordinator",
+    "RecoveryError",
+    "RecoveryKey",
+    "RecoveryPending",
+    "RecoveryPolicy",
+    "RecoverySequenceDisposition",
+    "RecoverySnapshot",
+    "RecoveryState",
+    "SequenceMode",
+    "SequenceObservation",
+    "SequenceTracker",
     "StreamHealth",
     "StreamKey",
     "StreamSnapshot",
