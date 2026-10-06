@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-A — Fresh Revalidation / R01 ACTIVE  
+Current Workstream: P05-D — Canonical Normalization / PAUSED TODO  
 Previous Workstream: P05-C — Context Market Ingestion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,9 +155,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P05-WA-001-R01 — Fresh P05-A Revalidation & Phase-Boundary Repair`  
-Active branch: `test/FIN-P05-WA-001-R01-fresh-revalidation`  
-Active lock: `LOCK-FIN-P05-WA-001-R01-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -2342,8 +2341,8 @@ P05-C closure evidence:
 
 Task: `FIN-P05-WA-001-R01`  
 Linear: `HOS-190`  
-State: ACTIVE  
-Lock: `LOCK-FIN-P05-WA-001-R01-01`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 Reason:
 - Owner requested P05-A to be restarted/revalidated from scratch;
@@ -2372,3 +2371,20 @@ Safety:
 - CANARY = DISABLED
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
+
+
+P05-A R01 closure evidence:
+- PR `#122` = MERGED
+- implementation merge SHA: `a72391a0889150f69080e9eb7e31b5d1d050b422`
+- PR Governance: `37430457151` = SUCCESS
+- post-merge Governance: `37430728907` = SUCCESS
+- post-merge Branch Hygiene: `37430728968` = SUCCESS
+- P05 tests: `58/58 PASS`
+- foundation tests: `22/22 PASS`
+- strict Pyright: `0 errors / 0 warnings`
+- P05-A boundary revalidation: PASS
+- deterministic P05-A evidence SHA-256: `85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3`
+- phase-boundary drift: REPAIRED
+- original Kaiko adapter defect: NONE
+- `FIN-P05-WA-001-R01 = CANONICAL_COMPLETE / RELEASED`
+- P05-D remains Todo / paused
