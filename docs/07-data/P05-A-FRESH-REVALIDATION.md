@@ -1,6 +1,6 @@
 # NEXUS QUANT — P05-A Fresh Revalidation
 
-STATE = ACTIVE  
+STATE = CANONICAL_COMPLETE  
 TASK = `FIN-P05-WA-001-R01`  
 LINEAR = `HOS-190`  
 DATE = 2026-10-06  
@@ -112,3 +112,44 @@ Orders/funding = NONE
 CANARY = DISABLED  
 LIVE_TRADING = DISABLED  
 AUTO_TRADING = DISABLED
+
+
+## Closure evidence
+
+Fresh implementation/revalidation:
+- PR `#122` = MERGED;
+- final head `200901c3f32b65155f0536a5664b59bf11d41109`;
+- PR Governance `37430457151` = SUCCESS;
+- PR artifact `11396348740`;
+- PR artifact digest `sha256:b976f1f8dff026fbb177b151cc03f5bc01b953d44492a7cfb26d02eed7486192`;
+- merge SHA `a72391a0889150f69080e9eb7e31b5d1d050b422`;
+- post-merge Governance `37430728907` = SUCCESS;
+- post-merge Branch Hygiene `37430728968` = SUCCESS;
+- post-merge artifact `11396084336`;
+- post-merge artifact digest `sha256:67faadef077183adea27d5e5e5cda6a35b28d78e2117bec8933faea49588cc09`.
+
+Fresh certification:
+- P05 tests: `58/58 PASS`;
+- foundation tests: `22/22 PASS`;
+- strict Pyright: `0 errors / 0 warnings`;
+- `P05A_PROVIDER_BASELINE=PASS`;
+- `P05A_PROVIDER_NEUTRAL_BOUNDARY=PASS`;
+- `P05A_CONNECTIVITY_SAFETY=PASS`;
+- `P05A_REVALIDATION=PASS`;
+- deterministic P05-A evidence SHA-256 unchanged: `85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3`;
+- SBOM/license/Trivy = PASS;
+- reproducible build = PASS;
+- post-merge artifact SHA-256 `43be33e5b321dc8c3aba4e390c107dfbb70c7a2f43d3c791a3dd485b3e7f644d`;
+- rollback manifest SHA-256 `8fa4c32b6cf1b85a64fe61708e621ef130d901c8a40c82ed78c71bd1211581b2`.
+
+Finding repaired:
+- `PHASE-BOUNDARY-DRIFT-001` = REPAIRED;
+- P04 historical handoff remains immutable evidence;
+- CI now reports `CURRENT_PHASE=P05 — Real-Time Data / ACTIVE`.
+
+Verdict:
+- original Kaiko adapter defect found: NONE;
+- fresh edge tests added: 4;
+- original P05-A remains canonical;
+- `FIN-P05-WA-001-R01 = CANONICAL_COMPLETE` after closure merge;
+- P05-D remains Todo/paused.
