@@ -111,11 +111,10 @@ class SymbolMaster:
     @classmethod
     def from_path(cls, path: Path) -> "SymbolMaster":
         try:
-            raw = json.loads(Path(path).read_text(encoding="utf-8"))
+            raw_value: object = json.loads(Path(path).read_text(encoding="utf-8"))
         except Exception as exc:
             raise SymbolMasterError(f"invalid Symbol Master JSON: {exc}") from exc
-        if not isinstance(raw, dict):
-            raise SymbolMasterError("Symbol Master root must be an object")
+        raw = _mapping(raw_value, field="root")
         if raw.get("schema_version") != "1.0":
             raise SymbolMasterError("unsupported Symbol Master schema_version")
 
