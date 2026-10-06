@@ -2,7 +2,7 @@
 
 Task: `FIN-P06-WH-001`  
 Linear: `HOS-202`  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Lead: A2 Data  
 Supporting: A0 Governance, A1 Architecture, A4 Quant, A8 Security, A9 Operations, A10 Evidence/Audit
 
@@ -91,13 +91,23 @@ Provider/dataset rights always override provisional architecture retention assum
 
 P06-H is the final P06 workstream.
 
-After canonical closure:
+Canonical closure result:
 
-- P06 becomes CANONICAL_COMPLETE;
-- P07 remains NOT_STARTED;
-- P07 requires explicit Owner authorization as a new phase.
+- P06 = CANONICAL_COMPLETE;
+- P07 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- no named post-P06 gate is claimed because none is defined by the frozen canonical evidence reviewed for this closure.
 
-No named post-P06 gate is invented unless the frozen roadmap defines one.
+## Closure evidence
+
+- Implementation PR: `#149` = MERGED
+- Final implementation head: `26ae0426fa1b264e0ce8a097884a6c5fbb0a0877`
+- Implementation merge SHA: `8f375b7b617589ec3786f2a45208182e138c826b`
+- PR Governance: `37529299317` = SUCCESS
+- PR artifact digest: `sha256:ca0655e9fb0ff2857a1151ac68d3cf556524ccba64a7fa3deb9a530a2b6ff3e9`
+- Post-merge Governance: `37529493611` = SUCCESS
+- Post-merge artifact digest: `sha256:f3eac59a29f6f8cafe6f2b10a572982548a4dcba49fb433266b40899ac8e770e`
+- Post-merge Branch Hygiene: `37529493711` = SUCCESS
+- Lock: RELEASED
 
 ## Safety
 
