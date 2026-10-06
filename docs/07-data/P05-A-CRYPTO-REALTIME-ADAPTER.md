@@ -273,7 +273,7 @@ R01 also repairs a cross-phase CI drift where the persistent P04 exit guard was 
 
 Linear: `HOS-190`  
 Task: `FIN-P05-WA-001-R01`  
-State: CANONICAL_COMPLETE / PENDING CLOSURE MERGE
+State: CANONICAL_COMPLETE
 
 
 Fresh revalidation implementation evidence:
