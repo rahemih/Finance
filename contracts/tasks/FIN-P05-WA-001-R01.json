@@ -1,0 +1,157 @@
+{
+  "task_id": "FIN-P05-WA-001-R01",
+  "phase": "P05",
+  "workstream": "WA",
+  "objective": "Freshly revalidate the already-canonical P05-A Kaiko baseline from current main, repair P04→P05 phase-boundary CI drift, strengthen edge-case tests, and preserve P05-A as the governed crypto real-time adapter baseline without duplicating implementation.",
+  "scope": [
+    "Revalidate P01-G Kaiko primary / CoinAPI backup decision",
+    "Revalidate current official Kaiko Stream Market Update V1 and Orderbook L2 V1 references",
+    "Confirm current Kaiko examples expose exchange/class/code/sequenceId/tsExchange/tsCollection/tsEvent",
+    "Confirm project HTTP request specs remain explicitly testing-only while production transport stays unselected",
+    "Audit provider-neutral contracts for zero Kaiko/provider imports",
+    "Audit Kaiko provider implementation remains under adapters/market_data",
+    "Re-run and extend deterministic Kaiko adapter edge tests",
+    "Re-run strict Pyright and deterministic P05-A evidence",
+    "Add persistent repository-native P05-A boundary revalidation",
+    "Repair P04 exit guard so historical P05 handoff is not reported as current P05 state",
+    "Verify current phase progression is >= P04 while P04 stays canonical",
+    "Reconcile Current State / Task Catalog / Linear",
+    "Keep P05-D paused until this revalidation closes"
+  ],
+  "out_of_scope": [
+    "Re-implementing or replacing the already-canonical Kaiko adapter when no defect is proven",
+    "Provisioning Kaiko subscription/API key/entitlement",
+    "Opening a live Kaiko network stream",
+    "CoinAPI backup implementation",
+    "P05-D canonical normalization implementation",
+    "P05-E streaming/backpressure implementation",
+    "P05-F failover/gap recovery implementation",
+    "Trading/execution/broker functionality",
+    "Production credentials/accounts/funding/orders",
+    "CANARY/LIVE/AUTO_TRADING enablement"
+  ],
+  "dependencies": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "HOS-183 Done",
+    "P01-G G1_PROVIDER_BASELINE PASS",
+    "P04 CANONICAL_COMPLETE",
+    "Owner request to restart/revalidate P05-A from scratch",
+    "Canonical main 29264269488f414f9f333abe0eeaaa91f8516c21",
+    "P05-D paused / HOS-188 Todo"
+  ],
+  "read_paths": [
+    "docs/03-research/P01-G-PROVIDER-BASELINE-DECISION.md",
+    "docs/03-research/P01-F-PRIMARY-BACKUP-PROVIDER-STRATEGY.md",
+    "docs/07-data/P05-A-CRYPTO-REALTIME-ADAPTER.md",
+    "docs/07-data/p05-a-crypto-realtime-adapter.json",
+    "packages/contracts/market_data.py",
+    "adapters/market_data/kaiko.py",
+    "tests/p05/**",
+    "scripts/ci/p05a_evidence.py",
+    "scripts/ci/p04_exit.py",
+    ".github/workflows/governance.yml",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P05-WA-001-R01.json",
+    "docs/07-data/P05-A-FRESH-REVALIDATION.md",
+    "docs/07-data/p05-a-fresh-revalidation.json",
+    "docs/07-data/P05-A-CRYPTO-REALTIME-ADAPTER.md",
+    "docs/07-data/p05-a-crypto-realtime-adapter.json",
+    "scripts/ci/p05a_revalidation.py",
+    "scripts/ci/p04_exit.py",
+    "tests/foundation/test_p04_exit.py",
+    "tests/p05/test_kaiko_adapter.py",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**",
+    "packages/normalization/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "WEB_OFFICIAL_DOCS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "All existing P05-A adapter tests remain green",
+    "Timestamp with RFC3339 offset maps to the correct epoch nanoseconds",
+    "Timestamp precision beyond 9 fractional digits fails closed",
+    "Non-finite numeric trade values fail closed",
+    "HTTP result wrapper with non-object result fails closed",
+    "P05-A provider-neutral contract contains no Kaiko/provider implementation import",
+    "P01-G still names Kaiko primary and CoinAPI backup",
+    "P05-A manifest still marks production transport NOT_SELECTED and network not required",
+    "Strict Pyright returns 0 errors / 0 warnings",
+    "P05-A deterministic evidence remains byte-identical",
+    "P04 exit guard reports the actual current phase rather than historical P05 handoff state",
+    "Full Governance / SBOM / Trivy / reproducible build stays green"
+  ],
+  "security_tests": [
+    "No raw Kaiko credential is introduced",
+    "No provider network is required by canonical tests",
+    "Provider-specific implementation remains under adapters/",
+    "Provider-neutral packages do not import Kaiko",
+    "Production transport remains NOT_SELECTED",
+    "CANARY/LIVE/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Current official Kaiko Stream/OpenAPI references revalidated on 2026-10-06",
+    "Latest main Governance 37426742704 SUCCESS",
+    "Latest main P05 real-time data tests 54/54 PASS",
+    "Latest main strict Pyright 0 errors / 0 warnings",
+    "Latest main P05-A deterministic evidence SHA-256 85cc09c51db715c7f2c55e46d84d0f55486fa48822bee8db2f964afcb71fb5e3",
+    "Implementation PR and post-merge evidence for R01",
+    "Linear HOS-190 reconciliation"
+  ],
+  "rollback": "Revert only R01 audit guards/tests/docs and phase-boundary reporting repair. Original P05-A implementation remains canonical and unchanged unless a proven defect is explicitly repaired.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P05-A canonical implementation exists on main",
+    "P05-D paused to avoid concurrent mutation",
+    "No active P05-A repair branch/PR exists",
+    "Official Kaiko documentation freshly revalidated"
+  ],
+  "definition_of_done": [
+    "Fresh P05-A revalidation verdict PASS or all proven defects repaired",
+    "Expanded P05-A tests pass",
+    "Persistent P05-A boundary revalidation runs in required governance CI",
+    "P04→P05 current-phase reporting drift repaired",
+    "Strict Pyright and deterministic evidence pass",
+    "SBOM/license/Trivy/reproducible build pass",
+    "R01 PR merged and post-merge Governance/Branch Hygiene pass",
+    "FIN-P05-WA-001-R01 CANONICAL_COMPLETE",
+    "R01 lock RELEASED",
+    "Linear HOS-190 Done",
+    "P05-D remains Todo until owner-directed continuation after P05-A revalidation"
+  ]
+}

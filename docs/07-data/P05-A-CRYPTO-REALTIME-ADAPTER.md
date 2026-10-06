@@ -255,3 +255,22 @@ Closure:
 - `LOCK-FIN-P05-WA-001-01 = RELEASED`;
 - P05 remains ACTIVE;
 - next workstream: `P05-B — Forex Real-Time Adapters`.
+
+
+## 14. Fresh revalidation R01
+
+Owner requested P05-A to be revalidated from scratch on 2026-10-06.
+
+R01 does not duplicate the already-canonical adapter. It independently revalidates:
+- current official Kaiko Stream/OpenAPI references;
+- provider-neutral boundary;
+- credential/network safety;
+- strict Pyright;
+- deterministic evidence;
+- edge-case parser behavior.
+
+R01 also repairs a cross-phase CI drift where the persistent P04 exit guard was still printing the historical P05 handoff state as if it were the current P05 state.
+
+Linear: `HOS-190`  
+Task: `FIN-P05-WA-001-R01`  
+State: ACTIVE

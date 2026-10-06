@@ -122,6 +122,9 @@ jobs:
       - name: P05 real-time data tests
         run: python -m unittest discover -s tests/p05 -p 'test_*.py' -v
 
+      - name: P05-A boundary revalidation
+        run: python scripts/ci/p05a_revalidation.py
+
       - name: P05-A deterministic adapter evidence twice
         shell: bash
         run: |

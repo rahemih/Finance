@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P05 — Real-Time Data / ACTIVE  
-Current Workstream: P05-D — Canonical Normalization / Symbol Master / Clock Model / READY  
+Current Workstream: P05-A — Fresh Revalidation / R01 ACTIVE  
 Previous Workstream: P05-C — Context Market Ingestion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -155,8 +155,9 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P05-WA-001-R01 — Fresh P05-A Revalidation & Phase-Boundary Repair`  
+Active branch: `test/FIN-P05-WA-001-R01-fresh-revalidation`  
+Active lock: `LOCK-FIN-P05-WA-001-R01-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -174,7 +175,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A, P05-B and P05-C are CANONICAL_COMPLETE. P05-D — Canonical Normalization / Symbol Master / Clock Model is READY.
+P04 — Engineering Foundation is CANONICAL_COMPLETE. Owner authorized P05. P05-A, P05-B and P05-C remain CANONICAL_COMPLETE. Owner requested P05-A fresh revalidation before downstream continuation; P05-D is PAUSED/TODO until R01 closes.
 
 
 ## P01-E — Cost / Licensing / Data Rights
@@ -2335,3 +2336,39 @@ P05-C closure evidence:
 - reproducible build = PASS
 - `FIN-P05-WC-001 = CANONICAL_COMPLETE / RELEASED`
 - next = `P05-D — Canonical Normalization / Symbol Master / Clock Model`
+
+
+## P05-A fresh revalidation R01
+
+Task: `FIN-P05-WA-001-R01`  
+Linear: `HOS-190`  
+State: ACTIVE  
+Lock: `LOCK-FIN-P05-WA-001-R01-01`
+
+Reason:
+- Owner requested P05-A to be restarted/revalidated from scratch;
+- canonical P05-A implementation is not duplicated;
+- revalidation runs against current `main` and current official Kaiko references.
+
+Fresh findings:
+- P01-G still selects Kaiko primary / CoinAPI backup;
+- current Kaiko Market Update V1 and Orderbook L2 V1 remain available;
+- original adapter remains offline-certified and provider-neutral;
+- phase-boundary drift found in `scripts/ci/p04_exit.py`: historical P05 handoff was printed as current state after P05 activation.
+
+Repair scope:
+- current-phase reporting in P04 exit guard;
+- persistent P05-A boundary guard;
+- expanded Kaiko edge tests;
+- fresh deterministic/typing/security certification.
+
+P05-D:
+- Linear `HOS-188` = Todo / PAUSED;
+- existing branch retained but no downstream mutation authorized until R01 closes.
+
+Safety:
+- provider credential = NONE
+- live provider connection = DISABLED
+- CANARY = DISABLED
+- LIVE_TRADING = DISABLED
+- AUTO_TRADING = DISABLED

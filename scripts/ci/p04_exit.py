@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TASK_CATALOG = ROOT / "docs/13-tasks/TASK-CATALOG.md"
 ROADMAP = ROOT / "docs/01-roadmap/MASTER-ROADMAP-v2.0.md"
 WORKFLOW = ROOT / ".github/workflows/governance.yml"
+CURRENT_STATE = ROOT / "docs/02-current-state/CURRENT-STATE.md"
 
 WORKSTREAMS = {
     "FIN-P04-WA-001": "Repository / Workspace Structure",
@@ -108,8 +109,10 @@ def check_manifests() -> None:
     next_phase = closure.get("next_phase", {})
     if next_phase.get("phase") != "P05 — Real-Time Data":
         fail("P04_NEXT_PHASE_INVALID")
+    # Historical closure-time handoff state. This must remain immutable evidence
+    # and must not be confused with the project's current phase after P05 starts.
     if next_phase.get("state") != "NOT_STARTED_PENDING_OWNER_AUTHORIZATION":
-        fail("P05_BOUNDARY_NOT_PRESERVED")
+        fail("P04_HISTORICAL_HANDOFF_INVALID")
 
     print("P04_MANIFESTS=PASS")
 
@@ -143,19 +146,36 @@ def check_safety() -> None:
     print("P04_SAFETY=PASS")
 
 
+def check_phase_progression() -> str:
+    text = CURRENT_STATE.read_text(encoding="utf-8")
+    if "P04 state: CANONICAL_COMPLETE" not in text:
+        fail("P04_CURRENT_STATE_NOT_CANONICAL")
+
+    match = re.search(r"^Current Phase:\s*(P(?P<num>\d{2}).*)$", text, re.MULTILINE)
+    if match is None:
+        fail("CURRENT_PHASE_MISSING")
+    phase_num = int(match.group("num"))
+    if phase_num < 4:
+        fail(f"CURRENT_PHASE_REGRESSED value={match.group(1)}")
+
+    label = match.group(1).strip()
+    print(f"CURRENT_PHASE={label}")
+    return label
+
+
 def main() -> int:
     try:
         check_catalog()
         check_manifests()
         check_workflow()
         check_safety()
+        check_phase_progression()
     except ExitFailure as exc:
         print(f"P04_ENGINEERING_FOUNDATION_EXIT=FAIL error={exc}")
         return 1
 
     print("P04_ENGINEERING_FOUNDATION_EXIT=PASS")
     print("P04_STATE=CANONICAL_COMPLETE")
-    print("P05_STATE=NOT_STARTED_PENDING_OWNER_AUTHORIZATION")
     return 0
 
 
