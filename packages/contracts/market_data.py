@@ -9,6 +9,7 @@ from typing import TypeAlias
 class MarketEventKind(StrEnum):
     TRADE = "TRADE"
     ORDER_BOOK = "ORDER_BOOK"
+    QUOTE = "QUOTE"
 
 
 class TradeSide(StrEnum):
@@ -27,6 +28,12 @@ class SequenceDisposition(StrEnum):
     ADVANCING = "ADVANCING"
     DUPLICATE = "DUPLICATE"
     OUT_OF_ORDER = "OUT_OF_ORDER"
+
+
+class QuoteSizeSemantics(StrEnum):
+    PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME = (
+        "PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME"
+    )
 
 
 @dataclass(frozen=True, slots=True)
@@ -64,7 +71,21 @@ class OrderBookPayload:
     bids: tuple[OrderBookLevel, ...]
 
 
-MarketPayload: TypeAlias = TradePayload | OrderBookPayload
+@dataclass(frozen=True, slots=True)
+class QuotePayload:
+    bid_time: ProviderTimestamp
+    ask_time: ProviderTimestamp
+    bid_exchange_code: str | None
+    ask_exchange_code: str | None
+    bid_price: Decimal
+    ask_price: Decimal
+    bid_size: Decimal | None
+    ask_size: Decimal | None
+    time_nano_part: int
+    size_semantics: QuoteSizeSemantics
+
+
+MarketPayload: TypeAlias = TradePayload | OrderBookPayload | QuotePayload
 
 
 @dataclass(frozen=True, slots=True)
@@ -78,3 +99,17 @@ class ProviderEventEnvelope:
     received_at_ns: int
     payload: MarketPayload
     metadata: tuple[tuple[str, str], ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
+class ProviderQuoteEnvelope:
+    kind: MarketEventKind
+    instrument: ProviderInstrument
+    sequence_id: str
+    provider_event_time: ProviderTimestamp | None
+    received_at_ns: int
+    payload: QuotePayload
+    metadata: tuple[tuple[str, str], ...] = ()
+
+
+ProviderMarketEnvelope: TypeAlias = ProviderEventEnvelope | ProviderQuoteEnvelope
