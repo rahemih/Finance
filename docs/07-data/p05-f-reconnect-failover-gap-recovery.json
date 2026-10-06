@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P05-WF-001",
+  "state": "P05-F_IN_PROGRESS",
+  "linear_issue": "HOS-192",
+  "lead_agent": "A2",
+  "sequence_policy": {
+    "kaiko": "LEXICOGRAPHIC_NONCONTIGUOUS",
+    "dxfeed": "INTEGER_CONTIGUITY_UNPROVEN",
+    "databento": "INTEGER_CONTIGUITY_UNPROVEN",
+    "gap_rule": "ONLY_EXPLICIT_CONTIGUOUS_POLICY_MAY_EMIT_GAP"
+  },
+  "retry_policy": {
+    "max_attempts": 5,
+    "base_backoff_ns": 1000000000,
+    "max_backoff_ns": 30000000000,
+    "circuit_open_ns": 60000000000,
+    "jitter": false
+  },
+  "recovery_validation": {
+    "reconnect_success_is_healthy": false,
+    "kaiko_order_book_requires_fresh_snapshot": true
+  },
+  "automatic_data_failover": false,
+  "backup_activation": "VALIDATION_REQUIRED_FAIL_CLOSED",
+  "network_runtime": "NOT_IMPLEMENTED",
+  "credentials_required": false,
+  "p05_g": "BLOCKED_UNTIL_P05_F_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
