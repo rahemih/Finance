@@ -1,0 +1,145 @@
+{
+  "task_id": "FIN-P05-WG-001",
+  "phase": "P05",
+  "workstream": "WG",
+  "objective": "Replace provisional P02-H real-time-data performance assumptions with measured offline CI evidence for adapter-to-canonical latency, canonical stream throughput, OPERATING peak burst handling and soak-equivalent stability.",
+  "scope": [
+    "Create governed P05-G performance policy bound to the P02-H OPERATING envelope",
+    "Measure current offline adapter mapping plus canonical normalization latency",
+    "Validate L_FAST_DATA p95 <= 250 ms and p99 <= 1000 ms",
+    "Measure provider-neutral canonical stream ingress throughput",
+    "Require measured canonical stream throughput >= 20000 events/s",
+    "Validate an exact 20000-event OPERATING peak burst without rejection or silent loss",
+    "Validate a workload-equivalent soak of at least 120000 events representing 60 seconds of OPERATING average ingress",
+    "Require soak-equivalent processing >= 2000 events/s with zero rejection",
+    "Report the 50000 events/s STRESS boundary without silently promoting it to a certified requirement",
+    "Capture runner/runtime provenance in non-deterministic measurement evidence",
+    "Generate deterministic contract/safety evidence separately from timing measurements",
+    "Keep upstream provider/network latency explicitly excluded",
+    "Add offline unit tests and Governance CI performance validation",
+    "Keep SBOM, Trivy, reproducible-build and existing P05 evidence gates active",
+    "Reconcile Current State, Task Catalog, README and Execution Roadmap to active P05-G"
+  ],
+  "out_of_scope": [
+    "Upstream provider/source latency",
+    "Internet distance before receipt",
+    "Commercial provider SLA certification",
+    "Production host sizing or procurement",
+    "Production network endpoints or credentials",
+    "P05-H G4_REALTIME_DATA closure",
+    "Trading or order execution"
+  ],
+  "dependencies": [
+    "FIN-P05-WA-001 CANONICAL_COMPLETE",
+    "FIN-P05-WB-001 CANONICAL_COMPLETE",
+    "FIN-P05-WC-001 CANONICAL_COMPLETE",
+    "FIN-P05-WD-001 CANONICAL_COMPLETE",
+    "FIN-P05-WE-001 CANONICAL_COMPLETE",
+    "FIN-P05-WF-001 CANONICAL_COMPLETE",
+    "FIN-P02-WH-001 Capacity / Cost Envelope",
+    "Owner P05 phase authorization"
+  ],
+  "read_paths": [
+    "docs/04-architecture/CAPACITY-COST-ENVELOPE.md",
+    "docs/04-architecture/capacity-cost-envelope.json",
+    "packages/market_data/normalization.py",
+    "packages/market_data/streaming.py",
+    "adapters/market_data/kaiko.py",
+    "adapters/market_data/dxfeed.py",
+    "adapters/market_data/databento.py",
+    "tests/p05/fixtures/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P05-WG-001.json",
+    "config/market-data/performance-policy.json",
+    "tests/p05/test_performance_policy.py",
+    "scripts/ci/p05g_performance.py",
+    "scripts/ci/p05g_contract_evidence.py",
+    "docs/07-data/P05-G-LATENCY-THROUGHPUT-SOAK-VALIDATION.md",
+    "docs/07-data/p05-g-latency-throughput-soak-validation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for product source",
+    "Performance policy matches P02-H OPERATING 2000 average / 20000 peak envelope",
+    "L_FAST_DATA p95 <= 250 ms and p99 <= 1000 ms in current offline adapter-normalization benchmark",
+    "Canonical stream ingress throughput >= 20000 events/s",
+    "20000-event peak burst accepted with zero rejection and full FIFO drain",
+    "Soak-equivalent workload >= 120000 events with zero rejection and throughput >= 2000 events/s",
+    "STRESS 50000 events/s boundary is reported but not silently certified",
+    "Measured evidence records environment and is not byte-compared",
+    "Deterministic P05-G contract evidence is byte-identical across two runs",
+    "No network call or live credential is required"
+  ],
+  "performance_tests": [
+    "Adapter mapping + canonical normalization latency histogram",
+    "Canonical stream ingress throughput",
+    "OPERATING peak 20000-event burst",
+    "60-second OPERATING-average workload-equivalent soak"
+  ],
+  "security_tests": [
+    "No raw provider credential is introduced",
+    "No network call is required by P05-G benchmark",
+    "No automatic data failover is enabled",
+    "No live/canary/trading authority is enabled"
+  ],
+  "evidence": [
+    "P02-H Capacity / Cost Envelope",
+    "Measured P05-G CI performance artifact",
+    "Deterministic P05-G contract/safety evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-193 reconciliation"
+  ],
+  "rollback": "Revert P05-G performance policy, benchmark/evidence scripts, tests and P05-G CI/state wiring. P05-A through P05-F remain canonical; no provider entitlement, network connection, credential or trading state is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P05-A through P05-F CANONICAL_COMPLETE",
+    "P05 Owner authorization remains valid",
+    "P02-H capacity/latency envelope canonical",
+    "No conflicting P05-G task, branch or PR"
+  ],
+  "definition_of_done": [
+    "Measured offline P05-G performance certification passes OPERATING thresholds",
+    "L_FAST_DATA latency target passes",
+    "OPERATING peak throughput and burst validation pass",
+    "Soak-equivalent stability passes",
+    "Strict Pyright and all offline deterministic tests pass",
+    "SBOM, Trivy and reproducible CI remains green",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P05-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-193 Done",
+    "P05-H becomes next workstream"
+  ]
+}
