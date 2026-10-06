@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P06-WD-001",
+  "state": "P06-D_IN_PROGRESS",
+  "linear_issue": "HOS-198",
+  "owner_domain": "D04_RAW_HISTORICAL_DATA",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "depends_on": [
+    "P06-A_CANONICAL_COMPLETE",
+    "P06-B_CANONICAL_COMPLETE",
+    "P06-C_CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA_PASS"
+  ],
+  "execution_mode": "REFERENCE_FILESYSTEM_CONTENT_ADDRESSED_MANIFESTS",
+  "dataset_version": "SHA256_CANONICAL_MANIFEST_BODY",
+  "membership_root": "SHA256_SORTED_MEMBER_DIGESTS",
+  "window_semantics": "HALF_OPEN_START_INCLUSIVE_END_EXCLUSIVE",
+  "raw_lineage": "SOURCE_PAYLOAD_SHA256_PLUS_SAFE_OBJECT_REFERENCE",
+  "production_manifest_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "p06_e": "BLOCKED_UNTIL_P06_D_CANONICAL_COMPLETE",
+  "canary": "DISABLED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
