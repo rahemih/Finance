@@ -119,7 +119,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P05-WD-001 | P05 | Canonical Normalization / Symbol Master / Clock Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WD-001.json` | RELEASED |
 
-| FIN-P05-WE-001 | P05 | Streaming / Heartbeat / Backpressure | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P05-WE-001.json` | ACQUIRED |
+| FIN-P05-WE-001 | P05 | Streaming / Heartbeat / Backpressure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WE-001.json` | RELEASED |
 
 ## Rules
 

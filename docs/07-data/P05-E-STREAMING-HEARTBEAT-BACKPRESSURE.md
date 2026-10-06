@@ -2,7 +2,8 @@
 
 Task: `FIN-P05-WE-001`  
 Linear: `HOS-191`  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A2 Data Agent  
 Supporting: A1 Architecture, A8 Security, A9 Operations, A10 Evidence/Audit, A0 Governance
 
@@ -78,3 +79,27 @@ Canonical CI runs:
 - CANARY: DISABLED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR: `#126` = MERGED;
+- implementation head: `e61c1bb8d214c693b2a6542e20895e199761a237`;
+- implementation merge SHA: `097036db75b91f914d3793b659264cf1eb885242`;
+- PR Governance run: `37447574916` = SUCCESS;
+- PR artifact: `11403617848`;
+- PR artifact digest: `sha256:53c4ea6b86b881fbe6c5b45921855d27bb464a45371c418a949eefb0447edfa0`;
+- post-merge Governance run: `37447736945` = SUCCESS;
+- post-merge artifact: `11404316732`;
+- post-merge artifact digest: `sha256:2312d7ad47193eb24f60449e2f4ee9834be4cfb78de9cbc0b978d7aa0a385ec8`;
+- post-merge Branch Hygiene run: `37447736977` = SUCCESS;
+- strict Pyright: `0 errors / 0 warnings`;
+- foundation tests: `22/22 PASS`;
+- P05 tests: `84/84 PASS`;
+- deterministic P05-E evidence events: `3`;
+- deterministic P05-E evidence SHA-256: `edf1ae76ad8cbdb850a137b870b3de7510e868b672a2eb55a7c9ead5b9f0ac84`;
+- reproducible artifact SHA-256: `8d004d1f60ec6a9e074387840e771515c9ba6b4990a2f1360e26ded778694776`;
+- rollback manifest SHA-256: `7fbefff8af4538e0602539e468ffc06f2d31782a6e3e9224e601336b09f5de3a`;
+- verdict: PASS.
+
+Next ready workstream: `P05-F — Reconnect / Failover / Gap Recovery`.
