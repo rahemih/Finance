@@ -240,6 +240,15 @@ jobs:
           cmp build/p06d-a.json build/p06d-b.json
           sha256sum build/p06d-a.json
 
+      - name: P06-E deterministic macro vintage evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p06e_evidence.py --output build/p06e-a.json
+          python scripts/ci/p06e_evidence.py --output build/p06e-b.json
+          cmp build/p06e-a.json build/p06e-b.json
+          sha256sum build/p06e-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
