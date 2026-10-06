@@ -136,6 +136,10 @@ class DatabentoGoldContextAdapter:
         mapped = _require_text(mapped_symbol, field="mapped_symbol")
         local_receive = _nonnegative_int(received_at_ns, field="received_at_ns")
 
+        rtype = _require_int(record.get("rtype"), field="rtype", minimum=0)
+        if rtype != 1:
+            raise DatabentoAdapterError("rtype must be 1 for the MBP-1 baseline")
+
         ts_event = _timestamp(record.get("ts_event"), field="ts_event", allow_undefined=True)
         ts_recv = _timestamp(record.get("ts_recv"), field="ts_recv", allow_undefined=False)
         assert ts_recv is not None
@@ -144,6 +148,8 @@ class DatabentoGoldContextAdapter:
         publisher_id = _nonnegative_int(record.get("publisher_id"), field="publisher_id")
         instrument_id = _nonnegative_int(record.get("instrument_id"), field="instrument_id")
         depth = _nonnegative_int(record.get("depth"), field="depth")
+        if depth != 0:
+            raise DatabentoAdapterError("depth must be 0 for the MBP-1 top-of-book baseline")
         flags = _nonnegative_int(record.get("flags"), field="flags")
         ts_in_delta = _nonnegative_int(record.get("ts_in_delta"), field="ts_in_delta")
         action = _require_text(record.get("action"), field="action")
