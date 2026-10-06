@@ -2,7 +2,7 @@
 
 GATE = `G4_REALTIME_DATA`  
 TASK = `FIN-P05-WH-001`  
-STATE = `PASS_PENDING_CANONICAL_MERGE`  
+STATE = `PASS`  
 DATE = `2026-10-06`
 
 ## 1. Gate purpose
@@ -43,11 +43,20 @@ Provider endpoints: NOT_SELECTED_OR_ACTIVATED.
 Provider credentials: NONE.  
 Automatic data failover: DISABLED.
 
-## 5. Current verdict
+## 5. Final verdict
 
-`G4_REALTIME_DATA = PASS_PENDING_CANONICAL_MERGE`
+`G4_REALTIME_DATA = PASS`
 
-Final PASS requires implementation merge, post-merge Governance/Branch Hygiene and terminal reconciliation.
+Canonical evidence:
+- P05-H implementation PR `#132` = MERGED;
+- merge SHA `c1473f8d8599b3485416a50ca3d895a8b9ccee46`;
+- PR Governance `37460756520` = SUCCESS;
+- post-merge Governance `37460902616` = SUCCESS;
+- post-merge Branch Hygiene `37460902622` = SUCCESS;
+- G4 criteria = `16 PASS / 0 FAIL`;
+- P05 exit regression guard = PASS.
+
+P05 is CANONICAL_COMPLETE. P06 remains NOT_STARTED_PENDING_OWNER_AUTHORIZATION.
 
 ## 6. Safety
 
