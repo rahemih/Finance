@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P06-WA-001",
-  "state": "P06-A_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-195",
   "owner_domain": "D04_RAW_HISTORICAL_DATA",
   "lead_agent": "A2",
@@ -29,8 +29,19 @@
   "production_storage_vendor": "NOT_SELECTED",
   "network_required": false,
   "credentials_required": false,
-  "p06_b": "BLOCKED_UNTIL_P06_A_CANONICAL_COMPLETE",
+  "p06_b": "READY_NOT_STARTED",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 135,
+    "final_head_sha": "b79b44c0bf32b5077ce1bda0518a1555e82d10c3",
+    "merge_sha": "d9080cf3a9ec6a2456c7697cc0029feebb2976d0",
+    "pr_governance_run": 37467639427,
+    "pr_artifact_digest": "sha256:3bdbeb2bb6dff77eb9a7bca06ed0ce0b1ddaf04abede55e82c674646b57c0a0b",
+    "post_merge_governance_run": 37467800764,
+    "post_merge_artifact_digest": "sha256:72d1b4252fa9ac3d8bf2de43070bfd5edd8584ee5e7d3806f787ed3eedd430c7",
+    "post_merge_branch_hygiene_run": 37467800591,
+    "lock": "RELEASED"
+  }
 }
