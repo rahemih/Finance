@@ -21,6 +21,7 @@ This catalog is the canonical index of governed work.
 | FIN-P01-WG-001 | P01 | Agent framework, ready-agent & interoperability registry | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001.json` | RELEASED |
 | FIN-P01-WG-001-R01 | P01 | Agent registry Current State reconciliation repair | LOW | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-001-R01.json` | RELEASED |
 | FIN-P01-WG-002 | P01 | Agent Layer Build Readiness | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WG-002.json` | RELEASED |
+| FIN-P01-WS-001 | P01 | Security Tooling Registry & Defense-in-Depth Baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WS-001.json` | RELEASED |
 
 | FIN-P01-WD-001 | P01 | Jurisdiction & compliance matrix | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WD-001.json` | RELEASED |
 | FIN-P01-WE-001 | P01 | Cost / Licensing / Data Rights | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WE-001.json` | RELEASED |
@@ -72,7 +73,60 @@ This catalog is the canonical index of governed work.
 | FIN-P03-WG-001 | P03 | Incident Response / Emergency Access | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WG-001.json` | RELEASED |
 
 
-| FIN-P01-WS-001 | P01 | Security Tooling Registry & Defense-in-Depth Baseline | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P01-WS-001.json` | RELEASED |
+| FIN-P03-WH-001 | P03 | Security Validation + G3 Security Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P03-WH-001.json` | RELEASED |
+
+
+| FIN-P04-WA-001 | P04 | Repository / Workspace Structure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WA-001.json` | RELEASED |
+
+
+| FIN-P04-WB-001 | P04 | Language / Runtime / Dependency Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WB-001.json` | RELEASED |
+
+
+| FIN-P04-WC-001 | P04 | CI/CD Foundation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WC-001.json` | RELEASED |
+
+
+| FIN-P04-WD-001 | P04 | Config / Environment Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WD-001.json` | RELEASED |
+
+
+| FIN-P04-WE-001 | P04 | Test Harness | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WE-001.json` | RELEASED |
+
+
+| FIN-P04-WF-001 | P04 | Dependency / License / SBOM Governance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WF-001.json` | RELEASED |
+
+
+| FIN-P04-WG-001 | P04 | Developer Bootstrap & Tooling | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WG-001.json` | RELEASED |
+
+
+| FIN-P04-WH-001 | P04 | Reproducible Build / Artifact Verification | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001.json` | RELEASED |
+
+
+| FIN-P04-WH-001-R01 | P04 | Post-Closure Audit & State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001-R01.json` | RELEASED |
+
+
+| FIN-P04-WH-001-R02 | P04 | Safe absorbed-branch hygiene repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P04-WH-001-R02.json` | RELEASED |
+
+
+| FIN-P05-WA-001 | P05 | Crypto Real-Time Adapter / Kaiko Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WA-001.json` | RELEASED |
+
+
+| FIN-P05-WB-001 | P05 | Forex Real-Time Adapter / dxFeed Quote Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WB-001.json` | RELEASED |
+
+
+| FIN-P05-WC-001 | P05 | Context Market Adapter / Databento Gold MBP-1 Baseline | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WC-001.json` | RELEASED |
+
+
+| FIN-P05-WA-001-R01 | P05 | Fresh P05-A Revalidation & Phase-Boundary Repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WA-001-R01.json` | RELEASED |
+
+
+| FIN-P05-WD-001 | P05 | Canonical Normalization / Symbol Master / Clock Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WD-001.json` | RELEASED |
+
+| FIN-P05-WE-001 | P05 | Streaming / Heartbeat / Backpressure | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WE-001.json` | RELEASED |
+
+| FIN-P05-WF-001 | P05 | Reconnect / Failover / Gap Recovery | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WF-001.json` | RELEASED |
+
+| FIN-P05-WG-001 | P05 | Latency / Throughput / Soak Validation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WG-001.json` | RELEASED |
+
+| FIN-P05-WH-001 | P05 | Real-Time Data Gate Closure / G4 | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P05-WH-001.json` | RELEASED |
 
 ## Rules
 
