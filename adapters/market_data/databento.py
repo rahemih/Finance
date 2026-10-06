@@ -160,10 +160,6 @@ def _price(value: object, *, field: str) -> Decimal | None:
     return price
 
 
-def _nonnegative_int(value: object, *, field: str) -> int:
-    return _require_int(value, field=field, minimum=0)
-
-
 def _action(value: object) -> str:
     action = _require_text(value, field="action").upper()
     if action not in {"A", "C", "M", "R", "T"}:
