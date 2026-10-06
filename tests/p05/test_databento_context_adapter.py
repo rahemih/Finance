@@ -56,6 +56,18 @@ class DatabentoContextAdapterTests(unittest.TestCase):
         self.assertIn(("mapped_symbol", "GCZ6"), event.metadata)
         self.assertIn(("trading_authority", "NONE"), event.metadata)
 
+    def test_wrong_rtype_is_rejected(self) -> None:
+        data = fixture()
+        data["rtype"] = 10
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
+    def test_nonzero_depth_is_rejected_for_mbp1_baseline(self) -> None:
+        data = fixture()
+        data["depth"] = 1
+        with self.assertRaises(DatabentoAdapterError):
+            adapter().parse_mbp1(data, mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
+
     def test_nanosecond_timestamps_are_preserved_exactly(self) -> None:
         event = adapter().parse_mbp1(fixture(), mapped_symbol="GCZ6", received_at_ns=RECEIVED_AT_NS)
         assert event.provider_event_time is not None
