@@ -1,0 +1,143 @@
+{
+  "task_id": "FIN-P06-WD-001",
+  "phase": "P06",
+  "workstream": "WD",
+  "objective": "Implement immutable content-addressed dataset manifests and deterministic dataset version identities over canonical P06 historical records, with integrity-verifiable membership and reproducible references.",
+  "scope": [
+    "Define provider-neutral immutable dataset manifest and member contracts",
+    "Derive deterministic member digests from canonical historical record identity, content and raw lineage",
+    "Canonicalize manifest membership independent of input ordering",
+    "Compute deterministic membership root SHA-256",
+    "Compute content-addressed dataset version SHA-256 from canonical manifest body",
+    "Validate half-open dataset windows and member membership before persistence",
+    "Reject duplicate record identities and unsafe dataset names/references",
+    "Implement an offline filesystem reference manifest store with write-once/idempotent semantics",
+    "Verify stored manifest bytes and version identity on load",
+    "Bound member count and serialized manifest size through policy",
+    "Generate deterministic P06-D evidence proving order-independence, content-sensitivity and integrity",
+    "Reconcile P06-D active task/lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Macro vintage semantics (P06-E)",
+    "Feature definitions/materialization (P06-F)",
+    "Replay snapshot interfaces (P06-G)",
+    "Retention/compaction/storage-cost certification (P06-H)",
+    "Data-quality certification owned by P07",
+    "Selecting a production database, object store, feature store or cloud vendor",
+    "Provider acquisition, credentials, network connectivity, trading, KYC, funding or production activation"
+  ],
+  "dependencies": [
+    "P06-A Immutable Raw Archive CANONICAL_COMPLETE",
+    "P06-B Historical Backfill CANONICAL_COMPLETE",
+    "P06-C Time-Series Optimized Query Layer CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "P02-C replay contract requires versioned manifests and integrity hashes",
+    "Owner P06 phase authorization granted 2026-10-06",
+    "Fresh Live Guard: no active task, active lock or open PR at execution start"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/04-architecture/DATA-FLOW-STORAGE-ARCHITECTURE.md",
+    "docs/07-data/P06-C-TIME-SERIES-QUERY-LAYER.md",
+    "packages/historical_data/query_layer.py",
+    "tests/p06/test_time_series_query_layer.py",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P06-WD-001.json",
+    "config/historical-data/dataset-manifest-policy.json",
+    "packages/historical_data/__init__.py",
+    "packages/historical_data/dataset_manifest.py",
+    "tests/p06/test_dataset_manifest.py",
+    "scripts/ci/p06d_evidence.py",
+    "docs/07-data/P06-D-DATASET-MANIFESTS-VERSIONING.md",
+    "docs/07-data/p06-d-dataset-manifests-versioning.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P06 product source",
+    "Manifest version is independent of input member ordering",
+    "Manifest version changes when canonical member content changes",
+    "Membership root is deterministic and integrity-verifiable",
+    "Duplicate member record IDs fail closed",
+    "Members outside the half-open dataset window fail closed",
+    "Unsafe dataset names and archive references fail closed",
+    "Manifest serialization round-trips with exact dataset version verification",
+    "Filesystem manifest store is write-once and identical writes are idempotent",
+    "Tampered stored manifest fails integrity verification",
+    "Manifest member/byte policy bounds fail closed",
+    "No production database/cloud/provider client import exists in historical-data core",
+    "P06-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential or network access is required",
+    "Manifest paths cannot traverse outside the reference namespace",
+    "Content-addressed version mismatch fails closed",
+    "Production storage/query vendor remains NOT_SELECTED",
+    "CANARY/LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P02-C replay manifest architecture",
+    "P06-A raw lineage",
+    "P06-B backfill identity",
+    "P06-C canonical time-series records",
+    "Deterministic P06-D manifest evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-198 reconciliation"
+  ],
+  "rollback": "Revert the P06-D manifest module, policy, tests, deterministic evidence/CI wiring and P06-D active-state reconciliation. P06-A/B/C remain canonical; no production vendor, credential, network connection or trading state is changed.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P06-A CANONICAL_COMPLETE",
+    "P06-B CANONICAL_COMPLETE",
+    "P06-C CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P06 authorization recorded",
+    "No active governed task or lock at Fresh Live Guard",
+    "No open pull request conflicting with shared state"
+  ],
+  "definition_of_done": [
+    "Immutable deterministic dataset manifest/version baseline implemented",
+    "Order-independent content-addressed versioning verified",
+    "Membership and stored-byte integrity verified",
+    "Strict Pyright and governance CI pass",
+    "No network/credential/production-vendor dependency introduced",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P06-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-198 Done",
+    "P06-E becomes next workstream"
+  ]
+}
