@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P05-WB-001",
-  "state": "P05-B_IMPLEMENTATION",
+  "state": "P05-B_CANONICAL_COMPLETE",
   "lead_agent": "A2",
   "provider": {
     "name": "dxFeed",
@@ -36,8 +36,27 @@
     "credential_ref": null,
     "intended_use": "OFFLINE_CONTRACT_ONLY"
   },
-  "p05_c": "NOT_STARTED",
+  "p05_c": "NOT_STARTED_READY",
   "canary": "DISABLED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 117,
+    "implementation_head_sha": "e7c753669426bb586c468f6da53d9299503517dc",
+    "pr_governance_run": 37423688758,
+    "pr_artifact_id": 11393094970,
+    "pr_artifact_digest": "sha256:2d8d467e5c6c8f7838a53f368a9ea663a7a6c37088c2859536b2ba31d4bfe6b9",
+    "implementation_merge_sha": "27f895fea7ffb5872c036995baf82325b86299b9",
+    "postmerge_governance_run": 37423795685,
+    "postmerge_branch_hygiene_run": 37423795667,
+    "postmerge_artifact_id": 11393848905,
+    "postmerge_artifact_digest": "sha256:f5136687700fceb4bc6a19d85f53530d7ecf4575178809050d7f02a9d3533945",
+    "pyright": "0 errors / 0 warnings",
+    "p05_tests": "32/32 PASS",
+    "reproducible_artifact_sha256": "45281fa66821554f9cd251ae2becbb90f5fe707382887d0a7195f4fb1907ce33",
+    "postmerge_rollback_manifest_sha256": "289901235e42db3676ff396ceb88cb9882305af996c77117ac1b19e5d37f73c6",
+    "file_count": 318,
+    "inventory_sha256": "aaea90ebe15625199b4d42bfe0e8d53ccfe1b04656c1595a4b35d7e555b25034",
+    "lock": "RELEASED"
+  }
 }
