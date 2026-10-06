@@ -36,9 +36,7 @@ Canonical completion:
 
 Active phase:
 - P05 — Real-Time Data: ACTIVE
-- active governed task: `FIN-P05-WG-001 — Latency / Throughput / Soak Validation`
-- Linear: `HOS-193`
-- branch: `perf/FIN-P05-WG-001-latency-throughput-soak`
+- active governed task: none (between P05 workstreams)
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -47,11 +45,11 @@ Completed P05 baselines:
 - P05-D — Canonical Normalization / Symbol Master / Clock Model: CANONICAL_COMPLETE
 - P05-E — Streaming / Heartbeat / Backpressure: CANONICAL_COMPLETE
 - P05-F — Reconnect / Failover / Gap Recovery: CANONICAL_COMPLETE
+- P05-G — Latency / Throughput / Soak Validation: CANONICAL_COMPLETE
 - P05-A R01 fresh revalidation: CANONICAL_COMPLETE
 
-Active workstream boundary:
-- P05-G — Latency / Throughput / Soak Validation: IN_PROGRESS
-- P05-H — Real-Time Data Gate Closure: BLOCKED_UNTIL_P05_G_CANONICAL_COMPLETE
+Next workstream boundary:
+- P05-H — Real-Time Data Gate Closure: READY_TO_START
 
 ---
 
