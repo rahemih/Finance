@@ -1,6 +1,6 @@
 # NEXUS QUANT — P05-B Forex Real-Time Adapter / dxFeed Quote Baseline
 
-STATE = P05-B IMPLEMENTATION  
+STATE = P05-B CANONICAL_COMPLETE  
 TASK = `FIN-P05-WB-001`  
 LINEAR = `HOS-184`  
 DATE = 2026-10-05  
@@ -169,3 +169,34 @@ AUTO_TRADING: DISABLED
 After canonical P05-B closure:
 
 `P05-C — Context Market Ingestion`
+
+
+## 13. Canonical closure evidence
+
+Implementation:
+- PR `#117` = MERGED;
+- final head `e7c753669426bb586c468f6da53d9299503517dc`;
+- PR Governance `37423688758` = SUCCESS;
+- PR artifact `11393094970`;
+- PR artifact digest `sha256:2d8d467e5c6c8f7838a53f368a9ea663a7a6c37088c2859536b2ba31d4bfe6b9`;
+- implementation merge SHA `27f895fea7ffb5872c036995baf82325b86299b9`;
+- post-merge Governance `37423795685` = SUCCESS;
+- post-merge Branch Hygiene `37423795667` = SUCCESS;
+- post-merge artifact `11393848905`;
+- post-merge artifact digest `sha256:f5136687700fceb4bc6a19d85f53530d7ecf4575178809050d7f02a9d3533945`.
+
+Certification:
+- strict Pyright = `0 errors / 0 warnings`;
+- P05 real-time data tests = `32/32 PASS`;
+- P05-B deterministic evidence generated twice = PASS;
+- CycloneDX/license policy = PASS;
+- Trivy HIGH/CRITICAL gate = PASS;
+- reproducible build = PASS;
+- reproducible artifact SHA-256 = `45281fa66821554f9cd251ae2becbb90f5fe707382887d0a7195f4fb1907ce33`;
+- post-merge rollback manifest SHA-256 = `289901235e42db3676ff396ceb88cb9882305af996c77117ac1b19e5d37f73c6`.
+
+Closure:
+- `FIN-P05-WB-001 = CANONICAL_COMPLETE`;
+- `LOCK-FIN-P05-WB-001-01 = RELEASED`;
+- P05 remains ACTIVE;
+- next workstream = `P05-C — Context Market Ingestion`.
