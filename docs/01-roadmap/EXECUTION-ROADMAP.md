@@ -37,10 +37,9 @@ Canonical completion:
 
 Active phase:
 - P06 — Historical Data & Feature Store: ACTIVE
-- active governed task: `FIN-P06-WB-001 — Historical Backfill`
-- Linear: `HOS-196`
-- lock: `LOCK-FIN-P06-WB-001-01 / ACQUIRED`
-- completed workstream: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE
+- active governed task: none
+- completed workstreams: P06-A — Immutable Raw Archive / CANONICAL_COMPLETE; P06-B — Historical Backfill / CANONICAL_COMPLETE
+- next governed workstream: P06-C — Time-Series Optimized Query Layer / READY_NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -55,8 +54,8 @@ Completed P05 baselines:
 
 Active P06 boundary:
 - P06-A — Immutable Raw Archive: CANONICAL_COMPLETE
-- P06-B — Historical Backfill: IN_PROGRESS
-- P06-C — Time-Series Optimized Query Layer: BLOCKED_UNTIL_P06_B_CANONICAL_COMPLETE
+- P06-B — Historical Backfill: CANONICAL_COMPLETE
+- P06-C — Time-Series Optimized Query Layer: READY_NOT_STARTED
 
 ---
 
