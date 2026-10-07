@@ -195,7 +195,7 @@ PR Governance: `37669250431` = SUCCESS
 PR artifact: `sha256:2d447c5028e85320cbbf423cfcc38b797606f68a323a56af86947c3d06cb8464`  
 Post-merge Governance: `37669545839` = SUCCESS  
 Post-merge artifact: `sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2`  
-Post-merge Branch Hygiene: `37669545843` = PENDING_FINALIZATION
+Post-merge Branch Hygiene: `37669545843` = SUCCESS
 
 Scope:
 - deterministic schema validation across canonical market, historical, feature and replay contracts;
