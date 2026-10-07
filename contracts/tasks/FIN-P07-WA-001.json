@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P07-WA-001",
+  "phase": "P07",
+  "workstream": "WA",
+  "objective": "Implement deterministic fail-closed schema validation across canonical market, historical, feature and replay contracts as the first trusted-data control in P07.",
+  "scope": [
+    "Define governed schema-validation policy and supported canonical schema versions",
+    "Validate CanonicalMarketEvent structural/type invariants and kind/payload compatibility",
+    "Validate TimeSeriesRecord identifiers, schema version, source digest/path and canonical payload JSON shape",
+    "Validate FeatureMaterialization by exact canonical serialization/identity round-trip",
+    "Validate ReplaySnapshot by exact canonical serialization/identity round-trip",
+    "Return deterministic issue codes, severity, criticality and report fingerprints",
+    "Fail closed when critical schema violations exist",
+    "Generate deterministic offline P07-A evidence",
+    "Reconcile P07 activation, task and lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Completeness and duplicate detection (P07-B)",
+    "Staleness, outlier and sequence checks (P07-C)",
+    "Cross-provider comparison (P07-D)",
+    "Provenance confidence scoring (P07-E)",
+    "Quarantine routing (P07-F)",
+    "Quality dashboards/SLOs (P07-G)",
+    "G5 trusted-data gate closure (P07-H)",
+    "Selecting a production observability/data-quality vendor",
+    "Provider credentials, network connectivity, trading or production activation"
+  ],
+  "dependencies": [
+    "P06 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "P07 Owner phase authorization granted 2026-10-07",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none"
+  ],
+  "read_paths": [
+    "packages/contracts/market_data.py",
+    "packages/market_data/normalization.py",
+    "packages/historical_data/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P07-WA-001.json",
+    "config/data-quality/schema-validation-policy.json",
+    "packages/data_quality/__init__.py",
+    "packages/data_quality/schema_validation.py",
+    "tests/p07/__init__.py",
+    "tests/p07/test_schema_validation.py",
+    "scripts/ci/p07a_evidence.py",
+    "docs/07-data/P07-A-SCHEMA-VALIDATORS.md",
+    "docs/07-data/p07-a-schema-validators.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P07 source",
+    "Valid canonical market events pass deterministically",
+    "Market event kind/payload mismatch fails critical",
+    "Missing/blank canonical identifiers fail critical",
+    "Invalid historical canonical payload JSON fails critical",
+    "Unsupported canonical historical schema version fails critical",
+    "Unsafe source archive reference/digest fails critical",
+    "Feature materialization canonical round-trip passes",
+    "Tampered feature serialization fails critical",
+    "Replay snapshot canonical round-trip passes",
+    "Tampered replay serialization fails critical",
+    "Validation issue ordering and report fingerprint are deterministic",
+    "P07-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "Critical schema violations produce fail-closed INVALID_CRITICAL outcome",
+    "No credential or network access is required",
+    "No production data-quality/observability vendor is selected",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P05 canonical market contracts",
+    "P06 historical/feature/replay contracts",
+    "Deterministic P07-A schema-validation evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-203 reconciliation"
+  ],
+  "rollback": "Revert P07-A validator module, policy, tests, evidence/CI wiring and P07 active-state reconciliation. P06 remains canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P06 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P07 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Schema validator baseline implemented",
+    "Critical invalid schemas fail closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P07-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-203 Done",
+    "P07-B becomes READY_NOT_STARTED"
+  ]
+}

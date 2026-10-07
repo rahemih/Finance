@@ -38,9 +38,12 @@ Canonical completion:
 
 Phase transition:
 - P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
-- active governed task: none
-- active lock: none
-- P07 — Data Quality & Provenance: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P07 — Data Quality & Provenance: ACTIVE
+- active governed task: `FIN-P07-WA-001 — Schema Validators`
+- Linear: `HOS-203`
+- active lock: `LOCK-FIN-P07-WA-001-01 / ACQUIRED`
+- P07-A — Schema Validators: IN_PROGRESS
+- P07-B — Completeness / Duplicate Checks: BLOCKED_UNTIL_P07_A_CANONICAL_COMPLETE
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -62,7 +65,16 @@ P06 canonical boundary:
 - P06-F — Feature Definitions & Materialization: CANONICAL_COMPLETE
 - P06-G — Replay Snapshot Interfaces: CANONICAL_COMPLETE
 - P06-H — Retention / Compaction / Storage-Cost Tests: CANONICAL_COMPLETE
-- P07 — Data Quality & Provenance: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
+
+P07 active boundary:
+- P07-A — Schema Validators: IN_PROGRESS
+- P07-B — Completeness / Duplicate Checks: BLOCKED_UNTIL_P07_A_CANONICAL_COMPLETE
+- P07-C — Staleness / Outlier / Sequence Checks: BLOCKED
+- P07-D — Cross-Provider Comparison: BLOCKED
+- P07-E — Provenance & Confidence Contract: BLOCKED
+- P07-F — Quarantine / Fail-Closed Routing: BLOCKED
+- P07-G — Quality Dashboards / SLOs: BLOCKED
+- P07-H — Trusted-Data Gate / G5: BLOCKED
 
 ---
 
