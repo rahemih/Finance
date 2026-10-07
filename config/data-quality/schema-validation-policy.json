@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WA-001",
+  "mode": "DETERMINISTIC_FAIL_CLOSED_SCHEMA_VALIDATION",
+  "supported_historical_schema_versions": ["1.0"],
+  "allowed_historical_kinds": ["TRADE", "ORDER_BOOK", "QUOTE", "CONTEXT_TOP_OF_BOOK"],
+  "require_historical_payload_object": true,
+  "require_market_provenance_consistency": true,
+  "critical_schema_violation_outcome": "INVALID_CRITICAL",
+  "network_required": false,
+  "credentials_required": false,
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
