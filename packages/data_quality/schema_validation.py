@@ -178,24 +178,27 @@ class SchemaValidator:
             ("provider_symbol", event.provider_symbol),
             ("sequence_id", event.sequence_id),
         ):
-            if not isinstance(value, str) or not value.strip():
+            if not value.strip():
                 issues.append(_issue("REQUIRED_TEXT", field, f"{field} must be non-empty"))
 
         if isinstance(event.clock.local_receive_time_ns, bool) or event.clock.local_receive_time_ns < 0:
             issues.append(_issue("INVALID_TIME", "clock.local_receive_time_ns", "local receive time must be non-negative"))
 
-        expected_payload = {
-            MarketEventKind.TRADE: TradePayload,
-            MarketEventKind.ORDER_BOOK: OrderBookPayload,
-            MarketEventKind.QUOTE: QuotePayload,
-            MarketEventKind.CONTEXT_TOP_OF_BOOK: ContextTopOfBookPayload,
-        }[event.kind]
-        if not isinstance(event.payload, expected_payload):
+        payload_matches = (
+            (event.kind is MarketEventKind.TRADE and isinstance(event.payload, TradePayload))
+            or (event.kind is MarketEventKind.ORDER_BOOK and isinstance(event.payload, OrderBookPayload))
+            or (event.kind is MarketEventKind.QUOTE and isinstance(event.payload, QuotePayload))
+            or (
+                event.kind is MarketEventKind.CONTEXT_TOP_OF_BOOK
+                and isinstance(event.payload, ContextTopOfBookPayload)
+            )
+        )
+        if not payload_matches:
             issues.append(
                 _issue(
                     "KIND_PAYLOAD_MISMATCH",
                     "payload",
-                    f"{event.kind.value} requires {expected_payload.__name__}",
+                    f"{event.kind.value} payload type does not match event kind",
                 )
             )
 
