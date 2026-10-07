@@ -234,7 +234,7 @@ class SchemaValidator:
             ("provider", record.provider),
             ("sequence_id", record.sequence_id),
         ):
-            if not isinstance(value, str) or not value.strip():
+            if not value.strip():
                 issues.append(_issue("REQUIRED_TEXT", field, f"{field} must be non-empty"))
 
         if record.canonical_schema_version not in self._policy.supported_historical_schema_versions:
