@@ -279,6 +279,18 @@ jobs:
       - name: P06-H measured replay and feature rebuild benchmark
         run: python scripts/ci/p06h_performance.py --output build/p06h-performance.json
 
+      - name: P07 data quality tests
+        run: python -m unittest discover -s tests/p07 -p 'test_*.py' -v
+
+      - name: P07-A deterministic schema validation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p07a_evidence.py --output build/p07a-a.json
+          python scripts/ci/p07a_evidence.py --output build/p07a-b.json
+          cmp build/p07a-a.json build/p07a-b.json
+          sha256sum build/p07a-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
