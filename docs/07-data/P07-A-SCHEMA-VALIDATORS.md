@@ -2,7 +2,7 @@
 
 Task: `FIN-P07-WA-001`  
 Linear: `HOS-203`  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Lead: A2 Data  
 Supporting: A0 Governance, A1 Architecture, A4 Quant, A8 Security, A9 Operations, A10 Evidence/Audit
 
@@ -53,4 +53,16 @@ Country assumption: NONE.
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
 
-P07-B remains blocked until P07-A canonical closure.
+P07-A closure is staged pending final Branch Hygiene completion. P07-B becomes READY_NOT_STARTED only after canonical closure merges.
+
+## Implementation evidence
+
+- Implementation PR: `#151` = MERGED
+- Final implementation head: `6e44a5aa11465b6814e57a0dd539a931632bec1b`
+- Implementation merge SHA: `54f157ad002e85ea76c52a781ffa5697e4113883`
+- PR Governance: `37669250431` = SUCCESS
+- PR artifact: `sha256:2d447c5028e85320cbbf423cfcc38b797606f68a323a56af86947c3d06cb8464`
+- Post-merge Governance: `37669545839` = SUCCESS
+- Post-merge artifact: `sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2`
+- Post-merge Branch Hygiene: `37669545843` = PENDING_FINALIZATION
+- Lock: RELEASED
