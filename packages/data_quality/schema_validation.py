@@ -18,8 +18,11 @@ from packages.contracts.market_data import (
 from packages.historical_data import (
     FeatureArtifactIntegrityError,
     FeatureMaterialization,
+    FeatureMaterializationError,
     ReplaySnapshot,
+    ReplaySnapshotError,
     ReplaySnapshotIntegrityError,
+    ReplaySnapshotPolicy,
     TimeSeriesRecord,
 )
 from packages.market_data.normalization import CanonicalMarketEvent
@@ -264,21 +267,53 @@ class SchemaValidator:
         self,
         materialization: FeatureMaterialization,
     ) -> SchemaValidationReport:
-        issues: list[SchemaIssue] = []
-        try:
-            restored = FeatureMaterialization.from_bytes(materialization.to_bytes())
-            if restored != materialization:
-                issues.append(_issue("ROUND_TRIP_MISMATCH", "materialization", "canonical round-trip changed feature materialization"))
-        except FeatureArtifactIntegrityError as exc:
-            issues.append(_issue("INTEGRITY_FAILURE", "materialization", str(exc)))
-        return _report("FeatureMaterialization", materialization.materialization_id, issues)
+        return self.validate_feature_bytes(
+            materialization.to_bytes(),
+            expected_identity=materialization.materialization_id,
+        )
 
-    def validate_replay_snapshot(self, snapshot: ReplaySnapshot) -> SchemaValidationReport:
+    def validate_feature_bytes(
+        self,
+        data: bytes,
+        *,
+        expected_identity: str | None = None,
+    ) -> SchemaValidationReport:
         issues: list[SchemaIssue] = []
+        identity = expected_identity or hashlib.sha256(data).hexdigest()
         try:
-            restored = ReplaySnapshot.from_bytes(snapshot.to_bytes())
-            if restored != snapshot:
-                issues.append(_issue("ROUND_TRIP_MISMATCH", "snapshot", "canonical round-trip changed replay snapshot"))
-        except ReplaySnapshotIntegrityError as exc:
+            restored = FeatureMaterialization.from_bytes(data)
+            identity = restored.materialization_id
+            if expected_identity is not None and restored.materialization_id != expected_identity:
+                issues.append(_issue("IDENTITY_MISMATCH", "materialization_id", "feature materialization identity changed"))
+        except (FeatureArtifactIntegrityError, FeatureMaterializationError) as exc:
+            issues.append(_issue("INTEGRITY_FAILURE", "materialization", str(exc)))
+        return _report("FeatureMaterialization", identity, issues)
+
+    def validate_replay_snapshot(
+        self,
+        snapshot: ReplaySnapshot,
+        replay_policy: ReplaySnapshotPolicy,
+    ) -> SchemaValidationReport:
+        return self.validate_replay_bytes(
+            snapshot.to_bytes(),
+            replay_policy,
+            expected_identity=snapshot.snapshot_id,
+        )
+
+    def validate_replay_bytes(
+        self,
+        data: bytes,
+        replay_policy: ReplaySnapshotPolicy,
+        *,
+        expected_identity: str | None = None,
+    ) -> SchemaValidationReport:
+        issues: list[SchemaIssue] = []
+        identity = expected_identity or hashlib.sha256(data).hexdigest()
+        try:
+            restored = ReplaySnapshot.from_bytes(data, replay_policy)
+            identity = restored.snapshot_id
+            if expected_identity is not None and restored.snapshot_id != expected_identity:
+                issues.append(_issue("IDENTITY_MISMATCH", "snapshot_id", "replay snapshot identity changed"))
+        except (ReplaySnapshotIntegrityError, ReplaySnapshotError) as exc:
             issues.append(_issue("INTEGRITY_FAILURE", "snapshot", str(exc)))
-        return _report("ReplaySnapshot", snapshot.snapshot_id, issues)
+        return _report("ReplaySnapshot", identity, issues)
