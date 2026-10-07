@@ -38,6 +38,7 @@
     "post_merge_artifact_digest": "sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2",
     "post_merge_branch_hygiene_run": 37669545843,
     "post_merge_branch_hygiene_state": "SUCCESS",
-    "lock": "RELEASED"
+    "lock": "RELEASED",
+    "closure_pr": 152
   }
 }
