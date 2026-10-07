@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WA-001",
+  "state": "P07-A_IN_PROGRESS",
+  "linear_issue": "HOS-203",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "contracts": [
+    "CanonicalMarketEvent",
+    "TimeSeriesRecord",
+    "FeatureMaterialization",
+    "ReplaySnapshot"
+  ],
+  "critical_outcome": "INVALID_CRITICAL",
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07_b": "BLOCKED_UNTIL_P07_A_CANONICAL_COMPLETE",
+  "g5_trusted_data": "NOT_EVALUATED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
