@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P07-WA-001",
-  "state": "CANONICAL_COMPLETE_STAGED",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-203",
   "phase": "P07_DATA_QUALITY_PROVENANCE",
   "lead_agent": "A2",
@@ -24,7 +24,7 @@
   "network_required": false,
   "credentials_required": false,
   "country_assumption": "NONE",
-  "p07_b": "READY_NOT_STARTED_AFTER_CLOSURE",
+  "p07_b": "READY_NOT_STARTED",
   "g5_trusted_data": "NOT_EVALUATED",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
@@ -37,7 +37,7 @@
     "post_merge_governance_run": 37669545839,
     "post_merge_artifact_digest": "sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2",
     "post_merge_branch_hygiene_run": 37669545843,
-    "post_merge_branch_hygiene_state": "PENDING_FINALIZATION",
+    "post_merge_branch_hygiene_state": "SUCCESS",
     "lock": "RELEASED"
   }
 }
