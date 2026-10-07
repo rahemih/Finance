@@ -40,15 +40,15 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-A — Schema Validators / IN_PROGRESS  
-Previous Workstream: P06-H — Retention / Compaction / Storage-Cost Tests / CANONICAL_COMPLETE  
+Current Workstream: none — P07-A canonical closed; P07-B next  
+Previous Workstream: P07-A — Schema Validators / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A IN_PROGRESS / P07-B BLOCKED_UNTIL_P07_A_CANONICAL_COMPLETE
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WA-001 — Schema Validators`  
-Linear: `HOS-203 = In Progress`  
-Branch: `feat/FIN-P07-WA-001-schema-validators`  
-Active lock: `LOCK-FIN-P07-WA-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A IN_PROGRESS
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,15 +180,22 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P06 — Historical Data & Feature Store is CANONICAL_COMPLETE. Owner authorized P07 continuation on 2026-10-07. P07-A — Schema Validators is ACTIVE under FIN-P07-WA-001 / HOS-203 with LOCK-FIN-P07-WA-001-01 ACQUIRED. P07-B remains blocked until P07-A canonical closure. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-A — Schema Validators is CANONICAL_COMPLETE and LOCK-FIN-P07-WA-001-01 is RELEASED. P07 remains ACTIVE. P07-B — Completeness / Duplicate Checks is READY_NOT_STARTED as the next governed workstream. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
 
 ## P07-A — Schema Validators
 
 Task: `FIN-P07-WA-001`  
 Linear: `HOS-203`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P07-WA-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WA-001-schema-validators`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#151` = MERGED  
+Final implementation head: `6e44a5aa11465b6814e57a0dd539a931632bec1b`  
+Implementation merge SHA: `54f157ad002e85ea76c52a781ffa5697e4113883`  
+PR Governance: `37669250431` = SUCCESS  
+PR artifact: `sha256:2d447c5028e85320cbbf423cfcc38b797606f68a323a56af86947c3d06cb8464`  
+Post-merge Governance: `37669545839` = SUCCESS  
+Post-merge artifact: `sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2`  
+Post-merge Branch Hygiene: `37669545843` = PENDING_FINALIZATION
 
 Scope:
 - deterministic schema validation across canonical market, historical, feature and replay contracts;
