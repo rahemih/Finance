@@ -1,3 +1,17 @@
+from .integrity_checks import (
+    FreshnessRule,
+    IntegrityAnalyzer,
+    IntegrityBatch,
+    IntegrityCheckError,
+    IntegrityCheckPolicy,
+    IntegrityIssue,
+    IntegrityOutcome,
+    IntegrityReport,
+    NumericObservation,
+    OutlierRule,
+    SequenceRule,
+    SequenceSemantics,
+)
 from .completeness_duplicate import (
     CompletenessDuplicateAnalyzer,
     CompletenessDuplicateBatch,
@@ -21,6 +35,18 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "FreshnessRule",
+    "IntegrityAnalyzer",
+    "IntegrityBatch",
+    "IntegrityCheckError",
+    "IntegrityCheckPolicy",
+    "IntegrityIssue",
+    "IntegrityOutcome",
+    "IntegrityReport",
+    "NumericObservation",
+    "OutlierRule",
+    "SequenceRule",
+    "SequenceSemantics",
     "CompletenessDuplicateAnalyzer",
     "CompletenessDuplicateBatch",
     "CompletenessDuplicateError",
