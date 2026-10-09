@@ -135,12 +135,17 @@ class QuarantineRecord:
     quality_status: EligibilityStatus
     quality_policy_version: str
     quality_evidence_sha256: str
+    routing_policy_version: str
+    effective_quality_status: str
     reason_codes: tuple[str, ...]
 
     def __post_init__(self) -> None:
         _text(self.subject_id, field="subject_id")
         _text(self.quality_policy_version, field="quality_policy_version")
         _sha256(self.quality_evidence_sha256, field="quality_evidence_sha256")
+        _text(self.routing_policy_version, field="routing_policy_version")
+        if self.effective_quality_status not in {"ELIGIBLE", "INELIGIBLE", "QUARANTINED", "UNKNOWN"}:
+            raise QuarantineRoutingError("unsupported effective_quality_status")
         if self.disposition is RouteDisposition.ACCEPTED_DOWNSTREAM:
             raise QuarantineRoutingError("accepted dispositions cannot be quarantine records")
         if not self.reason_codes:
@@ -197,6 +202,8 @@ class QuarantineRecord:
             quality_status=quality_status,
             quality_policy_version=_text(raw.get("quality_policy_version"), field="quality_policy_version"),
             quality_evidence_sha256=_sha256(raw.get("quality_evidence_sha256"), field="quality_evidence_sha256"),
+            routing_policy_version=_text(raw.get("routing_policy_version"), field="routing_policy_version"),
+            effective_quality_status=_text(raw.get("effective_quality_status"), field="effective_quality_status"),
             reason_codes=tuple(_text(item, field="reason_code") for item in cast(list[object], reasons_raw)),
         )
         declared = _sha256(raw.get("record_id"), field="record_id")
@@ -228,6 +235,8 @@ class RoutingDecision:
             "quality_status": self.quality_status.value,
             "quality_policy_version": self.quality_policy_version,
             "quality_evidence_sha256": self.quality_evidence_sha256,
+            "routing_policy_version": self.routing_policy_version,
+            "effective_quality_status": self.effective_quality_status,
             "reason_codes": list(self.reason_codes),
             "quarantine_record_id": (
                 self.quarantine_record.record_id if self.quarantine_record is not None else None
@@ -301,6 +310,8 @@ class QuarantineRouter:
                 quality_status=quality.status,
                 quality_policy_version=quality.policy_version,
                 quality_evidence_sha256=evidence_id,
+                routing_policy_version=self._policy.policy_version,
+                effective_quality_status=effective_quality_status,
                 reason_codes=reasons,
             )
 
