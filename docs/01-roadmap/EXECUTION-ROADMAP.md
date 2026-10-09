@@ -35,15 +35,14 @@ Canonical completion:
 - P04 — Engineering Foundation: CANONICAL_COMPLETE / Engineering Foundation exit PASS
 - P05 — Real-Time Data: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 - P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
+- P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 
 Phase transition:
-- P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
-- P07 — Data Quality & Provenance: ACTIVE
-- active governed task: `FIN-P07-WH-001 — Trusted Data Gate / G5`
-- Linear: `HOS-210`
-- active lock: `LOCK-FIN-P07-WH-001-01 / ACQUIRED`
-- completed workstreams: P07-A — Schema Validators / CANONICAL_COMPLETE; P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE; P07-C — Staleness / Outlier / Sequence Checks / CANONICAL_COMPLETE; P07-D — Cross-Provider Comparison / CANONICAL_COMPLETE; P07-E — Provenance & Confidence Contract / CANONICAL_COMPLETE; P07-F — Quarantine / Fail-Closed Routing / CANONICAL_COMPLETE; P07-G — Quality Dashboards / SLOs / CANONICAL_COMPLETE
-- P07-H — Trusted-Data Gate / G5: IN_PROGRESS / G5 NOT_EVALUATED
+- P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
+- active governed task: none
+- active lock: none
+- completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H = CANONICAL_COMPLETE
+- P08 — Technical Intelligence: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -66,7 +65,7 @@ P06 canonical boundary:
 - P06-G — Replay Snapshot Interfaces: CANONICAL_COMPLETE
 - P06-H — Retention / Compaction / Storage-Cost Tests: CANONICAL_COMPLETE
 
-P07 active boundary:
+P07 canonical boundary:
 - P07-A — Schema Validators: CANONICAL_COMPLETE
 - P07-B — Completeness / Duplicate Checks: CANONICAL_COMPLETE
 - P07-C — Staleness / Outlier / Sequence Checks: CANONICAL_COMPLETE
@@ -74,7 +73,7 @@ P07 active boundary:
 - P07-E — Provenance & Confidence Contract: CANONICAL_COMPLETE
 - P07-F — Quarantine / Fail-Closed Routing: CANONICAL_COMPLETE
 - P07-G — Quality Dashboards / SLOs: CANONICAL_COMPLETE
-- P07-H — Trusted-Data Gate / G5: IN_PROGRESS / G5 NOT_EVALUATED
+- P07-H — Trusted-Data Gate / G5: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 
 ---
 
