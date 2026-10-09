@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WF-001",
+  "state": "P07-F_IN_PROGRESS",
+  "linear_issue": "HOS-208",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "routing": {
+    "ELIGIBLE": "ACCEPTED_DOWNSTREAM",
+    "INELIGIBLE": "QUARANTINED",
+    "UNKNOWN": "BLOCKED_UNKNOWN",
+    "critical_reason_override": "QUARANTINED"
+  },
+  "non_accepted_downstream_allowed": false,
+  "immutable_quarantine_record": true,
+  "destructive_delete_allowed": false,
+  "silent_bypass_allowed": false,
+  "production_quarantine_storage_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07_g": "BLOCKED_UNTIL_P07_F_CANONICAL_COMPLETE",
+  "g5_trusted_data": "NOT_EVALUATED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
