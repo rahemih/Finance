@@ -108,6 +108,33 @@ class RoutingDecisionTests(unittest.TestCase):
         self.assertEqual(decision.quality_status.value, "ELIGIBLE")
         self.assertEqual(decision.reason_codes, ("MANUAL_GOVERNANCE_BLOCK",))
 
+    def test_routed_quality_adapter_prevents_nontrusted_feature_eligibility(self):
+        eligible = quality_evaluator().evaluate(components())
+        low_confidence = quality_evaluator().evaluate(components(confidence=8000))
+        unknown = quality_evaluator().evaluate(components(omit_control="P07-D"))
+
+        accepted = router().route(subject_id="dataset:feature-ok", quality=eligible)
+        quarantined = router().route(subject_id="dataset:feature-quarantine", quality=low_confidence)
+        blocked = router().route(subject_id="dataset:feature-unknown", quality=unknown)
+        critical = router().route(
+            subject_id="dataset:feature-critical",
+            quality=eligible,
+            critical_reason_codes=("SECURITY_BLOCK",),
+        )
+
+        self.assertEqual(accepted.to_feature_quality_eligibility().status, "ELIGIBLE")
+        self.assertEqual(quarantined.to_feature_quality_eligibility().status, "QUARANTINED")
+        self.assertEqual(blocked.to_feature_quality_eligibility().status, "UNKNOWN")
+        self.assertEqual(critical.to_feature_quality_eligibility().status, "QUARANTINED")
+        self.assertNotEqual(critical.to_feature_quality_eligibility().status, "ELIGIBLE")
+
+    def test_routed_quality_adapter_binds_routing_evidence_identity(self):
+        quality = quality_evaluator().evaluate(components(confidence=8000))
+        decision = router().route(subject_id="dataset:routed-lineage", quality=quality)
+        routed = decision.to_feature_quality_eligibility()
+        self.assertEqual(routed.quality_policy_version, "p07f-v1")
+        self.assertEqual(routed.evidence_sha256, decision.decision_id)
+
     def test_nonaccepted_record_preserves_quality_lineage(self):
         quality = quality_evaluator().evaluate(components(confidence=8000))
         decision = router().route(subject_id="dataset:lineage", quality=quality)
@@ -156,6 +183,9 @@ class RoutingDecisionTests(unittest.TestCase):
             policy_version="test",
             max_reason_codes=1,
             reason_code_pattern=r"^[A-Z][A-Z0-9_]{0,63}$",
+            accepted_quality_status="ELIGIBLE",
+            quarantined_quality_status="QUARANTINED",
+            blocked_unknown_quality_status="UNKNOWN",
             production_quarantine_storage_vendor="NOT_SELECTED",
         )
         quality = quality_evaluator().evaluate(components())
