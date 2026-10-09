@@ -1,11 +1,18 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P07-WA-001",
-  "state": "P07-A_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-203",
   "phase": "P07_DATA_QUALITY_PROVENANCE",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "contracts": [
     "CanonicalMarketEvent",
     "TimeSeriesRecord",
@@ -17,8 +24,21 @@
   "network_required": false,
   "credentials_required": false,
   "country_assumption": "NONE",
-  "p07_b": "BLOCKED_UNTIL_P07_A_CANONICAL_COMPLETE",
+  "p07_b": "READY_NOT_STARTED",
   "g5_trusted_data": "NOT_EVALUATED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 151,
+    "final_head_sha": "6e44a5aa11465b6814e57a0dd539a931632bec1b",
+    "merge_sha": "54f157ad002e85ea76c52a781ffa5697e4113883",
+    "pr_governance_run": 37669250431,
+    "pr_artifact_digest": "sha256:2d447c5028e85320cbbf423cfcc38b797606f68a323a56af86947c3d06cb8464",
+    "post_merge_governance_run": 37669545839,
+    "post_merge_artifact_digest": "sha256:38c19a7e82cff3bcfc1762f57c4ae694f9135e3bb8076fb881a04fdc3ef1aca2",
+    "post_merge_branch_hygiene_run": 37669545843,
+    "post_merge_branch_hygiene_state": "SUCCESS",
+    "lock": "RELEASED",
+    "closure_pr": 152
+  }
 }
