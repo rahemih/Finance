@@ -1,3 +1,13 @@
+from .cross_provider import (
+    ComparisonRule,
+    CrossProviderAnalyzer,
+    CrossProviderError,
+    CrossProviderIssue,
+    CrossProviderOutcome,
+    CrossProviderPolicy,
+    CrossProviderReport,
+    ProviderObservation,
+)
 from .integrity_checks import (
     FreshnessRule,
     IntegrityAnalyzer,
@@ -35,6 +45,14 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "ComparisonRule",
+    "CrossProviderAnalyzer",
+    "CrossProviderError",
+    "CrossProviderIssue",
+    "CrossProviderOutcome",
+    "CrossProviderPolicy",
+    "CrossProviderReport",
+    "ProviderObservation",
     "FreshnessRule",
     "IntegrityAnalyzer",
     "IntegrityBatch",

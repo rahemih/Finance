@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WD-001",
+  "mode": "ALIGNED_SAMPLE_SEMANTIC_FAMILY_PAIRWISE",
+  "max_observations_per_batch": 100000,
+  "coverage_scale_bps": 10000,
+  "relative_denominator_epsilon": "0.000000000001",
+  "critical_outcome": "INVALID_CRITICAL",
+  "network_required": false,
+  "credentials_required": false,
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

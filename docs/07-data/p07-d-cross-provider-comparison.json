@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WD-001",
+  "state": "P07-D_IN_PROGRESS",
+  "linear_issue": "HOS-206",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A3", "A4", "A8", "A9", "A10"],
+  "group_key": ["sample_id", "canonical_id", "metric", "comparison_family"],
+  "coverage_mode": "EXPLICIT_BPS_THRESHOLD",
+  "divergence_mode": "PAIRWISE_ABSOLUTE_AND_RELATIVE",
+  "semantic_cross_family_comparison": false,
+  "critical_outcome": "INVALID_CRITICAL",
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07_e": "BLOCKED_UNTIL_P07_D_CANONICAL_COMPLETE",
+  "g5_trusted_data": "NOT_EVALUATED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
