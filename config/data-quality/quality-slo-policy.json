@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WG-001",
+  "policy_version": "p07g-v1",
+  "rate_scale_bps": 10000,
+  "no_data_severity": "CRITICAL",
+  "production_observability_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "slos": [
+    {
+      "slo_id": "TRUSTED_ROUTE_RATE",
+      "metric": "trusted_route_bps",
+      "comparator": "MIN_GTE",
+      "objective_bps": 9500,
+      "critical_boundary_bps": 9000
+    },
+    {
+      "slo_id": "QUARANTINE_RATE",
+      "metric": "quarantine_rate_bps",
+      "comparator": "MAX_LTE",
+      "objective_bps": 500,
+      "critical_boundary_bps": 1000
+    },
+    {
+      "slo_id": "UNKNOWN_BLOCK_RATE",
+      "metric": "unknown_block_rate_bps",
+      "comparator": "MAX_LTE",
+      "objective_bps": 100,
+      "critical_boundary_bps": 500
+    }
+  ]
+}
