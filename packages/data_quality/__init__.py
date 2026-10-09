@@ -1,3 +1,14 @@
+from .completeness_duplicate import (
+    CompletenessDuplicateAnalyzer,
+    CompletenessDuplicateBatch,
+    CompletenessDuplicateError,
+    CompletenessDuplicateOutcome,
+    CompletenessDuplicatePolicy,
+    CompletenessDuplicateReport,
+    CompletenessExpectation,
+    DuplicateClass,
+    DuplicateFinding,
+)
 """Governed data-quality and provenance controls."""
 
 from .schema_validation import (
@@ -10,6 +21,15 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "CompletenessDuplicateAnalyzer",
+    "CompletenessDuplicateBatch",
+    "CompletenessDuplicateError",
+    "CompletenessDuplicateOutcome",
+    "CompletenessDuplicatePolicy",
+    "CompletenessDuplicateReport",
+    "CompletenessExpectation",
+    "DuplicateClass",
+    "DuplicateFinding",
     "SchemaIssue",
     "SchemaValidationError",
     "SchemaValidationPolicy",
