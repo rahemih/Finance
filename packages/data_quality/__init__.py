@@ -1,3 +1,12 @@
+from .trusted_data_gate import (
+    GateIssue,
+    GateOutcome,
+    RequiredWorkstream,
+    TrustedDataGateError,
+    TrustedDataGateEvaluator,
+    TrustedDataGatePolicy,
+    TrustedDataGateReport,
+)
 from .quality_slo import (
     QualityDashboardSnapshot,
     QualityRouteObservation,
@@ -74,6 +83,13 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "GateIssue",
+    "GateOutcome",
+    "RequiredWorkstream",
+    "TrustedDataGateError",
+    "TrustedDataGateEvaluator",
+    "TrustedDataGatePolicy",
+    "TrustedDataGateReport",
     "QualityDashboardSnapshot",
     "QualityRouteObservation",
     "QualitySloError",
