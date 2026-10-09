@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WB-001",
+  "mode": "EXPLICIT_EXPECTATION_FAIL_CLOSED",
+  "max_records_per_batch": 100000,
+  "missing_expected_record_outcome": "INVALID_CRITICAL",
+  "exact_duplicate_outcome": "INVALID_CRITICAL",
+  "conflicting_duplicate_outcome": "INVALID_CRITICAL",
+  "unexpected_record_behavior": "REPORT_ONLY",
+  "infer_sequence_gaps": false,
+  "network_required": false,
+  "credentials_required": false,
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
