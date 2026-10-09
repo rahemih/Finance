@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WC-001",
+  "state": "P07-C_IN_PROGRESS",
+  "linear_issue": "HOS-205",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "staleness_mode": "EXPLICIT_REFERENCE_TIME_AND_PER_KIND_THRESHOLDS",
+  "outlier_mode": "EXPLICIT_ABSOLUTE_AND_CHANGE_BOUNDS",
+  "sequence_semantics": [
+    "NUMERIC_MONOTONIC_CONTIGUOUS",
+    "OPAQUE_NO_ORDER"
+  ],
+  "adaptive_thresholds": false,
+  "critical_outcome": "INVALID_CRITICAL",
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07_d": "BLOCKED_UNTIL_P07_C_CANONICAL_COMPLETE",
+  "g5_trusted_data": "NOT_EVALUATED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
