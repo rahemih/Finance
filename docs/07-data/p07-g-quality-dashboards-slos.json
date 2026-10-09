@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WG-001",
+  "state": "P07-G_IN_PROGRESS",
+  "linear_issue": "HOS-209",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "lead_agent": "A9",
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A8",
+    "A10"
+  ],
+  "metrics": [
+    "trusted_route_bps",
+    "quarantine_rate_bps",
+    "unknown_block_rate_bps"
+  ],
+  "slo_statuses": [
+    "HEALTHY",
+    "WARNING",
+    "CRITICAL",
+    "NO_DATA"
+  ],
+  "no_data_blocking": true,
+  "vendor_neutral": true,
+  "production_observability_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "p07_h": "BLOCKED_UNTIL_P07_G_CANONICAL_COMPLETE",
+  "g5_trusted_data": "NOT_EVALUATED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
