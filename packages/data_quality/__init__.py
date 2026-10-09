@@ -1,3 +1,12 @@
+from .provenance_confidence import (
+    ControlEvidence,
+    ControlOutcome,
+    EligibilityStatus,
+    ProvenanceConfidenceError,
+    ProvenanceConfidenceEvaluator,
+    ProvenanceConfidencePolicy,
+    ProvenanceConfidenceResult,
+)
 from .cross_provider import (
     ComparisonRule,
     CrossProviderAnalyzer,
@@ -45,6 +54,13 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "ControlEvidence",
+    "ControlOutcome",
+    "EligibilityStatus",
+    "ProvenanceConfidenceError",
+    "ProvenanceConfidenceEvaluator",
+    "ProvenanceConfidencePolicy",
+    "ProvenanceConfidenceResult",
     "ComparisonRule",
     "CrossProviderAnalyzer",
     "CrossProviderError",
