@@ -2,7 +2,7 @@
 
 Task: `FIN-P07-WF-001`  
 Linear: `HOS-208`  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Lead: A2 Data  
 Supporting: A0, A1, A4, A8, A9, A10
 
@@ -64,4 +64,17 @@ Country assumption: NONE.
 Live Trading: DISABLED.  
 Auto Trading: DISABLED.
 
-P07-G remains blocked until P07-F canonical closure.
+P07-F closure is canonical. P07-G is READY_NOT_STARTED under the existing P07 Owner authorization.
+
+## Closure evidence
+
+- Implementation PR: `#162` = MERGED
+- Final implementation head: `d8bec49acbe131d12ed44f288d9652ded947c183`
+- Implementation merge SHA: `18ff3146546d8e9b34199a274077f66476621ec9`
+- PR Governance: `37961584962` = SUCCESS
+- PR artifact digest: `sha256:173fed1e7d6dab662bc88f56de0798cdcd7316ca38007e7dbae08f7f09ddb238`
+- Post-merge Governance: `37961897639` = SUCCESS
+- Post-merge artifact digest: `sha256:fdb99b19e47ff180b2c958e12c545316fe7ae9ab23eb8f838bef674468ddc23f`
+- Post-merge Branch Hygiene: `37961897529` = SUCCESS
+- Lock: RELEASED
+- G5_TRUSTED_DATA: NOT_EVALUATED
