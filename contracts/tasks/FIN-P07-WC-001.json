@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P07-WC-001",
+  "phase": "P07",
+  "workstream": "WC",
+  "objective": "Implement deterministic fail-closed staleness, explicit-rule numeric outlier and declared-semantics sequence integrity checks over governed canonical records.",
+  "scope": [
+    "Require upstream P07-B quality evidence digest at the batch boundary",
+    "Evaluate event/receive staleness against an explicit governed reference time and per-kind freshness rules",
+    "Fail closed on future event/receive timestamps",
+    "Evaluate numeric observations only against explicit absolute and change bounds supplied by governed rules",
+    "Do not self-calibrate statistical thresholds or infer hidden distributional assumptions",
+    "Require explicit sequence semantics per canonical-id/provider stream",
+    "For numeric contiguous streams detect parse errors, duplicate sequence values, out-of-order values and gaps",
+    "For opaque streams skip ordering checks without coercion or guessing",
+    "Return deterministic issue ordering and report fingerprints",
+    "Generate deterministic offline P07-C evidence",
+    "Reconcile active task/lock state in GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Schema validation (P07-A)",
+    "Completeness and record/logical duplicate checks (P07-B)",
+    "Cross-provider comparison (P07-D)",
+    "Provenance confidence scoring (P07-E)",
+    "Quarantine routing (P07-F)",
+    "Quality dashboards/SLOs (P07-G)",
+    "G5 trusted-data gate closure (P07-H)",
+    "Adaptive/statistical anomaly models",
+    "Production provider/network/credential/vendor selection"
+  ],
+  "dependencies": [
+    "P07-A CANONICAL_COMPLETE",
+    "P07-B CANONICAL_COMPLETE",
+    "P06 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P07 phase authorization",
+    "Fresh start from canonical main 02208e3c7a760ea3e09f82dbb2d59ca23d8a4031"
+  ],
+  "read_paths": [
+    "packages/data_quality/**",
+    "packages/historical_data/query_layer.py",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P07-WC-001.json",
+    "config/data-quality/integrity-check-policy.json",
+    "packages/data_quality/__init__.py",
+    "packages/data_quality/integrity_checks.py",
+    "tests/p07/test_integrity_checks.py",
+    "scripts/ci/p07c_evidence.py",
+    "docs/07-data/P07-C-STALENESS-OUTLIER-SEQUENCE.md",
+    "docs/07-data/p07-c-staleness-outlier-sequence.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Fresh records within explicit thresholds pass",
+    "Stale event or receive timestamps fail closed",
+    "Future event or receive timestamps fail closed",
+    "Missing per-kind freshness rules fail closed",
+    "Absolute outlier bounds fail closed",
+    "Rate/change bounds fail closed",
+    "Missing outlier rule for supplied observation fails closed",
+    "Numeric sequence gaps fail closed",
+    "Numeric sequence duplicates fail closed",
+    "Numeric sequence out-of-order values fail closed",
+    "Numeric sequence parse errors fail closed",
+    "Opaque sequence semantics are not coerced and skip order checks",
+    "Missing sequence rule for a stream fails closed",
+    "Input ordering does not change deterministic report",
+    "Batch limit fails closed",
+    "P07-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credentials required",
+    "Critical integrity violations produce INVALID_CRITICAL",
+    "No production data-quality vendor selected",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P07-A/B canonical closure evidence",
+    "Deterministic P07-C integrity evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-205 reconciliation"
+  ],
+  "rollback": "Revert P07-C module, policy, tests, evidence/CI wiring and state reconciliation. P07-A/B remain canonical and no trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P07-B CANONICAL_COMPLETE",
+    "No active lock/open PR conflict",
+    "HOS-205 active"
+  ],
+  "definition_of_done": [
+    "Staleness/outlier/sequence baseline implemented",
+    "Critical integrity states fail closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P07-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "HOS-205 Done",
+    "P07-D READY_NOT_STARTED"
+  ]
+}
