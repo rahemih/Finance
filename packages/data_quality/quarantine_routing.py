@@ -26,6 +26,7 @@ class RouteDisposition(StrEnum):
 
 
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+_REASON_CODE = re.compile(r"^[A-Z][A-Z0-9_]{0,63}$")
 
 
 def _mapping(value: object, *, field: str) -> Mapping[str, object]:
@@ -132,6 +133,9 @@ class QuarantineRecord:
             raise QuarantineRoutingError("quarantine record must preserve at least one reason code")
         if tuple(sorted(set(self.reason_codes))) != self.reason_codes:
             raise QuarantineRoutingError("reason_codes must be sorted and unique")
+        for reason in self.reason_codes:
+            if _REASON_CODE.fullmatch(reason) is None:
+                raise QuarantineRoutingError(f"unsafe quarantine reason code: {reason}")
 
     def payload(self) -> dict[str, object]:
         return {
