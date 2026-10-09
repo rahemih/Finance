@@ -5,7 +5,14 @@
   "linear_issue": "HOS-208",
   "phase": "P07_DATA_QUALITY_PROVENANCE",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A4", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "routing": {
     "ELIGIBLE": "ACCEPTED_DOWNSTREAM",
     "INELIGIBLE": "QUARANTINED",
@@ -23,5 +30,12 @@
   "p07_g": "BLOCKED_UNTIL_P07_F_CANONICAL_COMPLETE",
   "g5_trusted_data": "NOT_EVALUATED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "routed_quality": {
+    "ACCEPTED_DOWNSTREAM": "ELIGIBLE",
+    "QUARANTINED": "QUARANTINED",
+    "BLOCKED_UNKNOWN": "UNKNOWN",
+    "critical_override": "QUARANTINED"
+  },
+  "p06_f_quality_eligibility_compatible": true
 }
