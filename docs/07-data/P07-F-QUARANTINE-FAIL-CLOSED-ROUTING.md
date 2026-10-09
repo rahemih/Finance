@@ -21,6 +21,16 @@ P07-F consumes the P07-E `ProvenanceConfidenceResult`.
 
 Only `ACCEPTED_DOWNSTREAM` has `downstream_allowed=true`.
 
+## Routed downstream quality
+
+P07-F exposes the established P06-F `QualityEligibility` interface using the P07-F decision as the evidence boundary:
+
+- `ACCEPTED_DOWNSTREAM` → `ELIGIBLE`;
+- `QUARANTINED` → `QUARANTINED`;
+- `BLOCKED_UNKNOWN` → `UNKNOWN`.
+
+A critical reason therefore converts even an upstream P07-E `ELIGIBLE` input into routed `QUARANTINED`. This prevents a consumer that relies on the quality contract from bypassing the routing decision.
+
 ## Immutable hold evidence
 
 Every non-accepted decision creates a content-addressed `QuarantineRecord` preserving:
