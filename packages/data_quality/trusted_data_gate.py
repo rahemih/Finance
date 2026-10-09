@@ -35,12 +35,6 @@ def _text(value: object, *, field: str) -> str:
     return value.strip()
 
 
-def _positive_int(value: object, *, field: str) -> int:
-    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
-        raise TrustedDataGateError(f"{field} must be a positive integer")
-    return value
-
-
 def _canonical_bytes(value: object) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
 
