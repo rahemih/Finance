@@ -40,15 +40,15 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-D — Cross-Provider Comparison / IN_PROGRESS  
-Previous Workstream: P07-C — Staleness / Outlier / Sequence Checks / CANONICAL_COMPLETE  
+Current Workstream: none — P07-D canonical closed; P07-E next  
+Previous Workstream: P07-D — Cross-Provider Comparison / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D IN_PROGRESS / P07-E BLOCKED_UNTIL_P07_D_CANONICAL_COMPLETE
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WD-001 — Cross-Provider Comparison`  
-Linear: `HOS-206 = In Progress`  
-Branch: `feat/FIN-P07-WD-001-cross-provider-comparison`  
-Active lock: `LOCK-FIN-P07-WD-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D IN_PROGRESS
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,15 +180,22 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-C — Staleness / Outlier / Sequence Checks is CANONICAL_COMPLETE and its lock is RELEASED. P07-D — Cross-Provider Comparison is ACTIVE under FIN-P07-WD-001 / HOS-206 with LOCK-FIN-P07-WD-001-01 ACQUIRED. Comparison is limited to explicitly aligned sample/canonical/metric/family groups with coverage-aware pairwise divergence; cross-family semantic equivalence is forbidden. P07-E remains blocked. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-D — Cross-Provider Comparison is CANONICAL_COMPLETE and LOCK-FIN-P07-WD-001-01 is RELEASED. P07 remains ACTIVE. P07-E — Provenance & Confidence Contract is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
 
 ## P07-D — Cross-Provider Comparison
 
 Task: `FIN-P07-WD-001`  
 Linear: `HOS-206`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P07-WD-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WD-001-cross-provider-comparison`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#158` = MERGED  
+Final implementation head: `192970ce73d5d9ae1f143ac8ddb6d7c21192217b`  
+Implementation merge SHA: `6a66f64a6040dbc6c4a064fd3cbcd885a90b7f63`  
+PR Governance: `37958221324` = SUCCESS  
+PR artifact: `sha256:57afd9c0a550837659440e6851a2521d1678b339ca95e1158ae0975e036dbf95`  
+Post-merge Governance: `37958383698` = SUCCESS  
+Post-merge artifact: `sha256:e0e09765a5d749dddf1cc35084bdcb2b27a3ddef8f5140e1bbcfe7f17db7aa76`  
+Post-merge Branch Hygiene: `37958383669` = SUCCESS
 
 Scope:
 - compare only explicitly aligned sample + canonical + metric + comparison-family groups;
