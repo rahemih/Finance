@@ -48,8 +48,11 @@ def decision_payload(decision) -> dict[str, object]:
         "quality_status": decision.quality_status.value,
         "quality_policy_version": decision.quality_policy_version,
         "quality_evidence_sha256": decision.quality_evidence_sha256,
+        "routing_policy_version": decision.routing_policy_version,
+        "effective_quality_status": decision.effective_quality_status,
         "reason_codes": list(decision.reason_codes),
         "decision_id": decision.decision_id,
+        "feature_quality": decision.to_feature_quality_eligibility().payload(),
         "quarantine_record_id": (
             decision.quarantine_record.record_id
             if decision.quarantine_record is not None
@@ -108,6 +111,12 @@ def build(output: Path) -> None:
             critical_override.disposition.value == "QUARANTINED"
             and not critical_override.downstream_allowed
             and critical_override.quality_status.value == "ELIGIBLE"
+            and critical_override.to_feature_quality_eligibility().status == "QUARANTINED"
+        ),
+        "nontrusted_feature_quality_fail_closed": (
+            quarantined.to_feature_quality_eligibility().status == "QUARANTINED"
+            and blocked.to_feature_quality_eligibility().status == "UNKNOWN"
+            and accepted.to_feature_quality_eligibility().status == "ELIGIBLE"
         ),
         "destructive_delete_allowed": False,
         "silent_bypass_allowed": False,
