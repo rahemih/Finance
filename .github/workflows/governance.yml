@@ -309,6 +309,15 @@ jobs:
           cmp build/p07c-a.json build/p07c-b.json
           sha256sum build/p07c-a.json
 
+      - name: P07-D deterministic cross-provider evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p07d_evidence.py --output build/p07d-a.json
+          python scripts/ci/p07d_evidence.py --output build/p07d-b.json
+          cmp build/p07d-a.json build/p07d-b.json
+          sha256sum build/p07d-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
