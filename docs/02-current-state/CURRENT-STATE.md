@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: none — P07-E canonical closed; P07-F next  
+Current Workstream: P07-F — Quarantine & Fail-Closed Routing / IN_PROGRESS  
 Previous Workstream: P07-E — Provenance & Confidence Contract / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -48,7 +48,7 @@ P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F READY_NOT_STARTED
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F IN_PROGRESS / P07-G BLOCKED_UNTIL_P07_F_CANONICAL_COMPLETE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,8 +159,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P07-WF-001 — Quarantine & Fail-Closed Routing`  
+Linear: `HOS-208 = In Progress`  
+Branch: `feat/FIN-P07-WF-001-quarantine-fail-closed-routing`  
+Active lock: `LOCK-FIN-P07-WF-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +172,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +182,32 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-E — Provenance & Confidence Contract is CANONICAL_COMPLETE and LOCK-FIN-P07-WE-001-01 is RELEASED. P07 remains ACTIVE. P07-F — Quarantine / Fail-Closed Routing is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-E — Provenance & Confidence Contract is CANONICAL_COMPLETE and its lock is RELEASED. P07-F — Quarantine & Fail-Closed Routing is ACTIVE under FIN-P07-WF-001 / HOS-208 with LOCK-FIN-P07-WF-001-01 ACQUIRED. Only ELIGIBLE without critical reasons may reach downstream; INELIGIBLE is quarantined, UNKNOWN is blocked, and explicit critical reasons force quarantine. P07-G remains blocked. G5_TRUSTED_DATA remains NOT_EVALUATED. Production quarantine storage vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+
+## P07-F — Quarantine & Fail-Closed Routing
+
+Task: `FIN-P07-WF-001`  
+Linear: `HOS-208`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P07-WF-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P07-WF-001-quarantine-fail-closed-routing`
+
+Scope:
+- consume P07-E eligibility as the canonical routing authority;
+- ELIGIBLE without critical reasons routes to ACCEPTED_DOWNSTREAM;
+- INELIGIBLE routes to QUARANTINED and downstream is denied;
+- UNKNOWN routes to BLOCKED_UNKNOWN and downstream is denied;
+- explicit critical reasons force quarantine even for ELIGIBLE;
+- every non-accepted decision has immutable content-addressed hold evidence;
+- destructive deletion and silent bypass are forbidden;
+- dashboards/SLOs remain P07-G.
+
+Safety:
+- production quarantine storage vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P07-E — Provenance & Confidence Contract
 

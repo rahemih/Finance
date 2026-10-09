@@ -1,0 +1,143 @@
+{
+  "task_id": "FIN-P07-WF-001",
+  "phase": "P07",
+  "workstream": "WF",
+  "objective": "Implement deterministic quarantine, critical-data blocking and fail-closed routing from canonical P07-E eligibility without destructive deletion or silent bypass.",
+  "scope": [
+    "Consume P07-E ProvenanceConfidenceResult as the canonical quality-routing authority",
+    "Route ELIGIBLE with no critical reasons to ACCEPTED_DOWNSTREAM",
+    "Route INELIGIBLE to QUARANTINED with downstream access denied",
+    "Route UNKNOWN to BLOCKED_UNKNOWN with downstream access denied",
+    "Allow explicit critical reason codes to force QUARANTINED even when quality status is ELIGIBLE",
+    "Produce deterministic decision identities",
+    "Produce immutable content-addressed quarantine records for every non-accepted disposition",
+    "Preserve quality policy version, quality evidence identity and reason lineage",
+    "Expose routed P06-F QualityEligibility so non-trusted dispositions cannot be interpreted as ELIGIBLE",
+    "Reject duplicate/unsafe/excessive reason codes",
+    "Prohibit destructive deletion and silent bypass",
+    "Generate deterministic offline P07-F evidence",
+    "Reconcile active task/lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Quality dashboards/SLOs (P07-G)",
+    "G5 trusted-data gate closure (P07-H)",
+    "Feature/signal strategy logic",
+    "Production quarantine storage vendor selection",
+    "Production network/provider credentials",
+    "Live or auto trading activation"
+  ],
+  "dependencies": [
+    "P07-A/B/C/D/E CANONICAL_COMPLETE",
+    "P06 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P07 phase authorization",
+    "Fresh start from canonical main 7bae182e4689156bad235d262c6659b2b803db56"
+  ],
+  "read_paths": [
+    "packages/data_quality/provenance_confidence.py",
+    "packages/historical_data/feature_materialization.py",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P07-WF-001.json",
+    "config/data-quality/quarantine-routing-policy.json",
+    "packages/data_quality/__init__.py",
+    "packages/data_quality/quarantine_routing.py",
+    "tests/p07/test_quarantine_routing.py",
+    "scripts/ci/p07f_evidence.py",
+    "docs/07-data/P07-F-QUARANTINE-FAIL-CLOSED-ROUTING.md",
+    "docs/07-data/p07-f-quarantine-fail-closed-routing.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "ELIGIBLE without critical reasons is accepted downstream",
+    "INELIGIBLE is quarantined and downstream denied",
+    "UNKNOWN is blocked and downstream denied",
+    "Critical reason forces quarantine even for ELIGIBLE",
+    "Every non-accepted route produces an immutable quarantine record",
+    "Accepted routes never produce a quarantine record",
+    "Quality policy version and evidence identity are preserved",
+    "Duplicate reason codes fail closed",
+    "Accepted route maps to ELIGIBLE routed quality",
+    "Quarantine route maps to QUARANTINED routed quality",
+    "Unknown block maps to UNKNOWN routed quality",
+    "Critical override maps to QUARANTINED routed quality even when upstream P07-E status was ELIGIBLE",
+    "Routed QualityEligibility binds the P07-F decision identity and policy version",
+    "Unsafe reason codes fail closed",
+    "Reason-count limit fails closed",
+    "Quarantine record round-trip preserves identity",
+    "Tampered quarantine bytes fail closed",
+    "Input critical-reason order does not change decision identity",
+    "P07-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No silent bypass exists for INELIGIBLE or UNKNOWN",
+    "Critical reasons override ELIGIBLE and force quarantine",
+    "No destructive deletion path exists",
+    "No network or credentials required",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P07-E canonical closure evidence",
+    "Deterministic P07-F quarantine-routing evidence",
+    "Implementation PR Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-208 reconciliation"
+  ],
+  "rollback": "Revert P07-F module/policy/tests/evidence/CI/state. P07-A-E remain canonical and trading state is unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P07-E CANONICAL_COMPLETE",
+    "No active lock/open PR conflict",
+    "HOS-208 active"
+  ],
+  "definition_of_done": [
+    "Fail-closed routing and immutable quarantine contract implemented",
+    "Deterministic evidence and strict CI pass",
+    "Implementation and closure PRs merged",
+    "Lock released",
+    "HOS-208 Done",
+    "P07-G READY_NOT_STARTED"
+  ]
+}

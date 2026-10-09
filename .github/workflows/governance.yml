@@ -327,6 +327,15 @@ jobs:
           cmp build/p07e-a.json build/p07e-b.json
           sha256sum build/p07e-a.json
 
+      - name: P07-F deterministic quarantine routing evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p07f_evidence.py --output build/p07f-a.json
+          python scripts/ci/p07f_evidence.py --output build/p07f-b.json
+          cmp build/p07f-a.json build/p07f-b.json
+          sha256sum build/p07f-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |

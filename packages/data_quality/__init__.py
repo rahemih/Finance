@@ -1,3 +1,12 @@
+from .quarantine_routing import (
+    QuarantineRecord,
+    QuarantineRecordIntegrityError,
+    QuarantineRouter,
+    QuarantineRoutingError,
+    QuarantineRoutingPolicy,
+    RouteDisposition,
+    RoutingDecision,
+)
 from .provenance_confidence import (
     ControlEvidence,
     ControlOutcome,
@@ -54,6 +63,13 @@ from .schema_validation import (
 )
 
 __all__ = [
+    "QuarantineRecord",
+    "QuarantineRecordIntegrityError",
+    "QuarantineRouter",
+    "QuarantineRoutingError",
+    "QuarantineRoutingPolicy",
+    "RouteDisposition",
+    "RoutingDecision",
     "ControlEvidence",
     "ControlOutcome",
     "EligibilityStatus",
