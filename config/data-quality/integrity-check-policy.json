@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WC-001",
+  "mode": "EXPLICIT_RULES_FAIL_CLOSED",
+  "max_records_per_batch": 100000,
+  "allowed_sequence_semantics": [
+    "NUMERIC_MONOTONIC_CONTIGUOUS",
+    "OPAQUE_NO_ORDER"
+  ],
+  "staleness_violation_outcome": "INVALID_CRITICAL",
+  "future_time_outcome": "INVALID_CRITICAL",
+  "outlier_violation_outcome": "INVALID_CRITICAL",
+  "sequence_violation_outcome": "INVALID_CRITICAL",
+  "adaptive_thresholds": false,
+  "network_required": false,
+  "credentials_required": false,
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

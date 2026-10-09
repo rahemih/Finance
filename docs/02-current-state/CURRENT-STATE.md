@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: none — P07-B canonical closed; P07-C next  
+Current Workstream: P07-C — Staleness / Outlier / Sequence Checks / IN_PROGRESS  
 Previous Workstream: P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -48,7 +48,7 @@ P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C READY_NOT_STARTED
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C IN_PROGRESS / P07-D BLOCKED_UNTIL_P07_C_CANONICAL_COMPLETE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,8 +159,10 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P07-WC-001 — Staleness / Outlier / Sequence Checks`  
+Linear: `HOS-205 = In Progress`  
+Branch: `feat/FIN-P07-WC-001-staleness-outlier-sequence`  
+Active lock: `LOCK-FIN-P07-WC-001-01 / ACQUIRED`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +172,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C IN_PROGRESS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +182,29 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-B — Completeness / Duplicate Checks is CANONICAL_COMPLETE and LOCK-FIN-P07-WB-001-01 is RELEASED. P07 remains ACTIVE. P07-C — Staleness / Outlier / Sequence Checks is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-B — Completeness / Duplicate Checks is CANONICAL_COMPLETE and its lock is RELEASED. P07-C — Staleness / Outlier / Sequence Checks is ACTIVE under FIN-P07-WC-001 / HOS-205 with LOCK-FIN-P07-WC-001-01 ACQUIRED. Freshness/outlier/sequence semantics are explicit and fail closed; cross-provider comparison remains P07-D. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+
+## P07-C — Staleness / Outlier / Sequence Checks
+
+Task: `FIN-P07-WC-001`  
+Linear: `HOS-205`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P07-WC-001-01 / ACQUIRED`  
+Branch: `feat/FIN-P07-WC-001-staleness-outlier-sequence`
+
+Scope:
+- explicit per-kind freshness thresholds against governed reference time;
+- explicit absolute/change outlier rules with adaptive thresholds forbidden;
+- per-stream declared sequence semantics;
+- opaque sequence identifiers are never coerced;
+- cross-provider logic remains P07-D.
+
+Safety:
+- production data-quality vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 ## P07-B — Completeness & Duplicate Checks
 
