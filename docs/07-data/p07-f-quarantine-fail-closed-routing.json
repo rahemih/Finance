@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P07-WF-001",
-  "state": "P07-F_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-208",
   "phase": "P07_DATA_QUALITY_PROVENANCE",
   "lead_agent": "A2",
@@ -27,7 +27,7 @@
   "network_required": false,
   "credentials_required": false,
   "country_assumption": "NONE",
-  "p07_g": "BLOCKED_UNTIL_P07_F_CANONICAL_COMPLETE",
+  "p07_g": "READY_NOT_STARTED",
   "g5_trusted_data": "NOT_EVALUATED",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
@@ -37,5 +37,17 @@
     "BLOCKED_UNKNOWN": "UNKNOWN",
     "critical_override": "QUARANTINED"
   },
-  "p06_f_quality_eligibility_compatible": true
+  "p06_f_quality_eligibility_compatible": true,
+  "closure": {
+    "implementation_pr": 162,
+    "final_head_sha": "d8bec49acbe131d12ed44f288d9652ded947c183",
+    "merge_sha": "18ff3146546d8e9b34199a274077f66476621ec9",
+    "pr_governance_run": 37961584962,
+    "pr_artifact_digest": "sha256:173fed1e7d6dab662bc88f56de0798cdcd7316ca38007e7dbae08f7f09ddb238",
+    "post_merge_governance_run": 37961897639,
+    "post_merge_artifact_digest": "sha256:fdb99b19e47ff180b2c958e12c545316fe7ae9ab23eb8f838bef674468ddc23f",
+    "post_merge_branch_hygiene_run": 37961897529,
+    "lock": "RELEASED",
+    "g5_trusted_data": "NOT_EVALUATED"
+  }
 }
