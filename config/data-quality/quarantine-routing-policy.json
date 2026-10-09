@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WF-001",
+  "policy_version": "p07f-v1",
+  "mode": "P07E_AUTHORITY_FAIL_CLOSED_ROUTING",
+  "eligible_without_critical_reason": "ACCEPTED_DOWNSTREAM",
+  "ineligible_disposition": "QUARANTINED",
+  "unknown_disposition": "BLOCKED_UNKNOWN",
+  "critical_reason_behavior": "FORCE_QUARANTINED",
+  "non_accepted_downstream_allowed": false,
+  "accepted_quarantine_record": false,
+  "non_accepted_quarantine_record": true,
+  "destructive_delete_allowed": false,
+  "silent_bypass_allowed": false,
+  "max_reason_codes": 32,
+  "reason_code_pattern": "^[A-Z][A-Z0-9_]{0,63}$",
+  "network_required": false,
+  "credentials_required": false,
+  "production_quarantine_storage_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
