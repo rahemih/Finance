@@ -345,6 +345,15 @@ jobs:
           cmp build/p07g-a.json build/p07g-b.json
           sha256sum build/p07g-a.json
 
+      - name: P07-H deterministic trusted data gate evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p07h_evidence.py --output build/p07h-a.json
+          python scripts/ci/p07h_evidence.py --output build/p07h-b.json
+          cmp build/p07h-a.json build/p07h-b.json
+          sha256sum build/p07h-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
