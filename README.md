@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P06 — Historical Data & Feature Store CANONICAL_COMPLETE / P07 — Data Quality & Provenance ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C IN_PROGRESS
+> Status: P06 — Historical Data & Feature Store CANONICAL_COMPLETE / P07 — Data Quality & Provenance ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D READY_NOT_STARTED
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
