@@ -28,7 +28,7 @@ def record(
     event_time_ns: int = 100,
     provider: str = "reference-provider",
 ) -> TimeSeriesRecord:
-    raw = f"{record_id}:{sequence_id}:{payload}".encode("utf-8")
+    raw = f"{sequence_id}:{payload}:{event_time_ns}:{provider}".encode("utf-8")
     digest = hashlib.sha256(raw).hexdigest()
     return TimeSeriesRecord(
         record_id=record_id,
