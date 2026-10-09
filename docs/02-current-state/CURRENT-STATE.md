@@ -40,15 +40,15 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-B — Completeness / Duplicate Checks / IN_PROGRESS  
-Previous Workstream: P07-A — Schema Validators / CANONICAL_COMPLETE  
+Current Workstream: none — P07-B canonical closed; P07-C next  
+Previous Workstream: P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B IN_PROGRESS / P07-C BLOCKED_UNTIL_P07_B_CANONICAL_COMPLETE
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WB-001 — Completeness & Duplicate Checks`  
-Linear: `HOS-204 = In Progress`  
-Branch: `feat/FIN-P07-WB-001-completeness-duplicates`  
-Active lock: `LOCK-FIN-P07-WB-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B IN_PROGRESS
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,15 +180,22 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-A — Schema Validators is CANONICAL_COMPLETE and its lock is RELEASED. P07-B — Completeness / Duplicate Checks is ACTIVE under FIN-P07-WB-001 / HOS-204 with LOCK-FIN-P07-WB-001-01 ACQUIRED. Completeness uses explicit expectations only; sequence-gap inference remains P07-C. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-B — Completeness / Duplicate Checks is CANONICAL_COMPLETE and LOCK-FIN-P07-WB-001-01 is RELEASED. P07 remains ACTIVE. P07-C — Staleness / Outlier / Sequence Checks is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
 
 ## P07-B — Completeness & Duplicate Checks
 
 Task: `FIN-P07-WB-001`  
 Linear: `HOS-204`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P07-WB-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WB-001-completeness-duplicates`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#154` = MERGED  
+Final implementation head: `311a5acb9228b0bb0aab62c4875dca6bcffe345f`  
+Implementation merge SHA: `38c61eab8f16df328ad29c4fc833ac69c8d31871`  
+PR Governance: `37954521683` = SUCCESS  
+PR artifact: `sha256:74fa23a4ff43c256abe139639b2d95685e902f124ab2900a16cbe4d848dfc690`  
+Post-merge Governance: `37954656163` = SUCCESS  
+Post-merge artifact: `sha256:068bc9992d3ac37e92dbc13ae16ca529b035bcffe418a232834748499c21b1c1`  
+Post-merge Branch Hygiene: `37954655959` = SUCCESS
 
 Scope:
 - explicit expected-record completeness only;
