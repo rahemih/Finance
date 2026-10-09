@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "task_id": "FIN-P07-WG-001",
-  "state": "P07-G_IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "linear_issue": "HOS-209",
   "phase": "P07_DATA_QUALITY_PROVENANCE",
   "lead_agent": "A9",
@@ -30,8 +30,20 @@
   "network_required": false,
   "credentials_required": false,
   "country_assumption": "NONE",
-  "p07_h": "BLOCKED_UNTIL_P07_G_CANONICAL_COMPLETE",
+  "p07_h": "READY_NOT_STARTED",
   "g5_trusted_data": "NOT_EVALUATED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 164,
+    "final_head_sha": "e43b30293e238f7d341c5ed37bbd07c45c5ae7e4",
+    "merge_sha": "7588dbd694c12f99b5e36e6fd2910dc5bf7c4b05",
+    "pr_governance_run": 37964366485,
+    "pr_artifact_digest": "sha256:8878fc1becc37bb0fc64d69c83cab433a17bc5aaf27bcd44fcff59c43e5e3926",
+    "post_merge_governance_run": 37964518957,
+    "post_merge_artifact_digest": "sha256:edba6b5fb4587549c406f4f8a03ec46d5b8b4478605dfeadabf736b16081a7e5",
+    "post_merge_branch_hygiene_run": 37964519057,
+    "lock": "RELEASED",
+    "g5_trusted_data": "NOT_EVALUATED"
+  }
 }
