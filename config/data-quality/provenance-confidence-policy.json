@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WE-001",
+  "policy_version": "p07e-v1",
+  "mode": "EXPLICIT_WEIGHTED_CONFIDENCE_FAIL_CLOSED",
+  "score_scale_bps": 10000,
+  "eligibility_min_score_bps": 9000,
+  "required_controls": ["P07-A", "P07-B", "P07-C", "P07-D"],
+  "control_weights_bps": {
+    "P07-A": 2500,
+    "P07-B": 2500,
+    "P07-C": 2500,
+    "P07-D": 2500
+  },
+  "missing_required_control_status": "UNKNOWN",
+  "explicit_fail_status": "INELIGIBLE",
+  "complete_below_threshold_status": "INELIGIBLE",
+  "complete_above_threshold_status": "ELIGIBLE",
+  "adaptive_weights": false,
+  "network_required": false,
+  "credentials_required": false,
+  "production_data_quality_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

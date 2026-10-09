@@ -140,6 +140,7 @@ This catalog is the canonical index of governed work.
 | FIN-P07-WB-001 | P07 | Completeness & Duplicate Checks | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P07-WB-001.json` | RELEASED |
 | FIN-P07-WC-001 | P07 | Staleness / Outlier / Sequence Checks | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P07-WC-001.json` | RELEASED |
 | FIN-P07-WD-001 | P07 | Cross-Provider Comparison | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P07-WD-001.json` | RELEASED |
+| FIN-P07-WE-001 | P07 | Provenance & Confidence Contract | HIGH | ACTIVE | `contracts/tasks/FIN-P07-WE-001.json` | LOCK-FIN-P07-WE-001-01 |
 
 ## Rules
 

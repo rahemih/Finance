@@ -39,10 +39,11 @@ Canonical completion:
 Phase transition:
 - P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
 - P07 — Data Quality & Provenance: ACTIVE
-- active governed task: none
-- active lock: none
+- active governed task: `FIN-P07-WE-001 — Provenance & Confidence Contract`
+- Linear: `HOS-207`
+- active lock: `LOCK-FIN-P07-WE-001-01 / ACQUIRED`
 - completed workstreams: P07-A — Schema Validators / CANONICAL_COMPLETE; P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE; P07-C — Staleness / Outlier / Sequence Checks / CANONICAL_COMPLETE; P07-D — Cross-Provider Comparison / CANONICAL_COMPLETE
-- next governed workstream: P07-E — Provenance & Confidence Contract / READY_NOT_STARTED
+- P07-E — Provenance & Confidence Contract: IN_PROGRESS
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -70,8 +71,8 @@ P07 active boundary:
 - P07-B — Completeness / Duplicate Checks: CANONICAL_COMPLETE
 - P07-C — Staleness / Outlier / Sequence Checks: CANONICAL_COMPLETE
 - P07-D — Cross-Provider Comparison: CANONICAL_COMPLETE
-- P07-E — Provenance & Confidence Contract: READY_NOT_STARTED
-- P07-F — Quarantine / Fail-Closed Routing: BLOCKED
+- P07-E — Provenance & Confidence Contract: IN_PROGRESS
+- P07-F — Quarantine / Fail-Closed Routing: BLOCKED_UNTIL_P07_E_CANONICAL_COMPLETE
 - P07-G — Quality Dashboards / SLOs: BLOCKED
 - P07-H — Trusted-Data Gate / G5: BLOCKED
 
