@@ -39,16 +39,16 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-H — Trusted Data Gate / G5 / IN_PROGRESS  
-Previous Workstream: P07-G — Quality Dashboards / SLOs / CANONICAL_COMPLETE  
+Current Phase: P07 — Data Quality & Provenance / CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
+Current Workstream: none — P07 closed; P08 requires Owner phase authorization  
+Previous Workstream: P07-H — Trusted Data Gate / G5 / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H IN_PROGRESS / G5_TRUSTED_DATA NOT_EVALUATED
+P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WH-001 — Trusted Data Gate / G5`  
-Linear: `HOS-210 = In Progress`  
-Branch: `feat/FIN-P07-WH-001-trusted-data-g5`  
-Active lock: `LOCK-FIN-P07-WH-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H IN_PROGRESS
+Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,29 +180,42 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-G — Quality Dashboards / SLOs is CANONICAL_COMPLETE and its lock is RELEASED. P07-H — Trusted Data Gate / G5 is ACTIVE under FIN-P07-WH-001 / HOS-210 with LOCK-FIN-P07-WH-001-01 ACQUIRED. Integrated certification is evaluating canonical P07-A..G evidence; canonical G5 remains NOT_EVALUATED until P07-H implementation and post-merge checks pass. P08 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. Live/Auto Trading remain DISABLED.
+P07-H — Trusted Data Gate / G5 is CANONICAL_COMPLETE and LOCK-FIN-P07-WH-001-01 is RELEASED. G5_TRUSTED_DATA = PASS. P07 — Data Quality & Provenance is CANONICAL_COMPLETE. P08 — Technical Intelligence remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
 Task: `FIN-P07-WH-001`  
 Linear: `HOS-210`  
-State: IN_PROGRESS  
-Gate: `G5_TRUSTED_DATA = NOT_EVALUATED`  
-Lock: `LOCK-FIN-P07-WH-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WH-001-trusted-data-g5`
+State: CANONICAL_COMPLETE  
+Gate: `G5_TRUSTED_DATA = PASS`  
+Lock: RELEASED  
+Implementation PR: `#166` = MERGED  
+Final implementation head: `4d3453778e07b84dfaca194b95a115189520d3c4`  
+Implementation merge SHA: `ecfecc909263153d719314979fd11b52dc4ce2e8`  
+PR Governance: `37965972296` = SUCCESS  
+PR artifact: `sha256:8ec2a2d58cbd246d04495ba62cd1f5856e47f34381bb708b284186359fdeea90`  
+Post-merge Governance: `37966153751` = SUCCESS  
+Post-merge artifact: `sha256:77f5804326333152a3faef4ef988146871790aad234183876dffc3f794212869`  
+Post-merge Branch Hygiene: `37966153603` = SUCCESS
 
-Scope:
-- certify canonical P07-A through P07-G closure documents;
-- fail closed on missing/malformed governance evidence or safety drift;
-- require P07-E feature-quality adapter, P07-F non-accepted downstream denial and P07-G NO_DATA blocking;
-- CI PASS is evidence only; canonical G5 PASS is deferred until implementation merge + post-merge verification + closure reconciliation;
-- P08 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
+Certification:
+- P07-A through P07-G canonical machine evidence: PASS;
+- all prerequisite locks RELEASED: PASS;
+- merge/post-merge Governance/artifact/Branch-Hygiene evidence: PASS;
+- P07-E feature quality adapter invariant: PASS;
+- P07-F non-accepted downstream denial: PASS;
+- P07-G NO_DATA blocking: PASS;
+- Live Trading DISABLED: PASS;
+- Auto Trading DISABLED: PASS;
+- country assumption NONE: PASS;
+- deterministic G5 evidence: PASS.
 
 Safety:
 - country assumption: NONE;
 - network/credentials: NONE REQUIRED by gate evaluator;
 - LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED.
+- AUTO_TRADING: DISABLED;
+- P08 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
 
 ## P07-G — Quality Dashboards & SLOs
 
