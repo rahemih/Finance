@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P07-WH-001",
+  "phase": "P07",
+  "workstream": "WH",
+  "objective": "Run deterministic integrated certification over P07-A through P07-G and close G5_TRUSTED_DATA only after implementation and post-merge governance evidence pass.",
+  "scope": [
+    "Require exactly the canonical P07-A through P07-G machine-readable closure documents",
+    "Verify every prerequisite workstream is CANONICAL_COMPLETE",
+    "Verify every prerequisite lock is RELEASED",
+    "Verify merge SHA, post-merge Governance run, artifact digest and Branch Hygiene evidence exist",
+    "Verify Live Trading and Auto Trading remain DISABLED and country assumption remains NONE",
+    "Verify P07-E exposes the canonical feature-quality adapter",
+    "Verify P07-F denies non-accepted downstream routing",
+    "Verify P07-G treats NO_DATA as blocking",
+    "Produce deterministic PASS/FAIL G5 certification evidence",
+    "Keep canonical G5 state NOT_EVALUATED until P07-H implementation is merged and post-merge checks pass",
+    "On successful closure reconcile P07 as CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS",
+    "Require explicit Owner phase authorization before P08"
+  ],
+  "out_of_scope": [
+    "P08 Technical Intelligence execution",
+    "Trading enablement",
+    "Production provider/observability/data-quality vendor selection",
+    "Jurisdiction selection",
+    "Changing prior P07-A through P07-G implementations"
+  ],
+  "dependencies": [
+    "P07-A/B/C/D/E/F/G CANONICAL_COMPLETE",
+    "P06 CANONICAL_COMPLETE",
+    "G4_REALTIME_DATA PASS",
+    "Owner P07 phase authorization",
+    "Fresh start from canonical main ebcf66c4b5993c7de5de77d0c9b22b98c53fc149"
+  ],
+  "read_paths": [
+    "docs/07-data/p07-*.json",
+    "packages/data_quality/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P07-WH-001.json",
+    "config/data-quality/trusted-data-gate-policy.json",
+    "packages/data_quality/__init__.py",
+    "packages/data_quality/trusted_data_gate.py",
+    "tests/p07/test_trusted_data_gate.py",
+    "scripts/ci/p07h_evidence.py",
+    "docs/07-data/P07-H-TRUSTED-DATA-GATE.md",
+    "docs/07-data/p07-h-trusted-data-gate.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/04-architecture/**",
+    "docs/05-security/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Complete valid P07-A..G evidence yields PASS",
+    "Missing required workstream yields FAIL",
+    "Non-canonical prerequisite state yields FAIL",
+    "Non-released prerequisite lock yields FAIL",
+    "Missing or malformed closure evidence yields FAIL",
+    "Trading enabled in any prerequisite yields FAIL",
+    "Country assumption other than NONE yields FAIL",
+    "P07-E missing feature-quality adapter yields FAIL",
+    "P07-F allowing non-accepted downstream yields FAIL",
+    "P07-G not blocking NO_DATA yields FAIL",
+    "Input ordering does not change gate fingerprint",
+    "P07-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "Gate PASS never enables Live/Auto Trading",
+    "No network or credentials required by gate evaluator",
+    "Gate is fail closed on missing/ambiguous evidence",
+    "P08 remains blocked on Owner phase authorization after P07 closure"
+  ],
+  "evidence": [
+    "Canonical P07-A through P07-G machine-readable closure documents",
+    "Deterministic P07-H gate evidence",
+    "Implementation PR Governance",
+    "Implementation post-merge Governance and Branch Hygiene",
+    "Closure PR/post-merge evidence",
+    "Linear HOS-210 reconciliation"
+  ],
+  "rollback": "Revert P07-H evaluator/policy/tests/evidence/CI/state. P07-A..G remain canonical; G5 remains NOT_EVALUATED or reverts to not-passed state; trading remains disabled.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P07-A through P07-G CANONICAL_COMPLETE",
+    "No active lock/open PR conflict",
+    "HOS-210 active"
+  ],
+  "definition_of_done": [
+    "Integrated trusted-data gate evaluator implemented",
+    "Deterministic gate evidence reports PASS",
+    "Implementation PR merged",
+    "Implementation post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation PR merged and post-merge verified",
+    "FIN-P07-WH-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P07-WH-001-01 RELEASED",
+    "G5_TRUSTED_DATA PASS",
+    "P07 CANONICAL_COMPLETE",
+    "HOS-210 Done",
+    "P08 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}

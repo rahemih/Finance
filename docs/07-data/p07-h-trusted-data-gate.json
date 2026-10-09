@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P07-WH-001",
+  "state": "P07-H_IN_PROGRESS",
+  "linear_issue": "HOS-210",
+  "phase": "P07_DATA_QUALITY_PROVENANCE",
+  "gate_id": "G5_TRUSTED_DATA",
+  "gate_state": "NOT_EVALUATED",
+  "lead_agent": "A10",
+  "supporting_agents": ["A0", "A1", "A2", "A4", "A8", "A9"],
+  "required_workstreams": [
+    "FIN-P07-WA-001",
+    "FIN-P07-WB-001",
+    "FIN-P07-WC-001",
+    "FIN-P07-WD-001",
+    "FIN-P07-WE-001",
+    "FIN-P07-WF-001",
+    "FIN-P07-WG-001"
+  ],
+  "fail_closed": true,
+  "canonical_pass_deferred_until_post_merge": true,
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "p08": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
