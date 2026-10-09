@@ -8,6 +8,8 @@ from pathlib import Path
 import re
 from typing import Mapping, cast
 
+from packages.historical_data.feature_materialization import QualityEligibility
+
 from .provenance_confidence import EligibilityStatus, ProvenanceConfidenceResult
 
 
@@ -63,6 +65,9 @@ class QuarantineRoutingPolicy:
     policy_version: str
     max_reason_codes: int
     reason_code_pattern: str
+    accepted_quality_status: str
+    quarantined_quality_status: str
+    blocked_unknown_quality_status: str
     production_quarantine_storage_vendor: str
 
     @classmethod
@@ -94,6 +99,12 @@ class QuarantineRoutingPolicy:
             raise QuarantineRoutingError("destructive deletion is forbidden")
         if raw.get("silent_bypass_allowed") is not False:
             raise QuarantineRoutingError("silent bypass is forbidden")
+        if raw.get("accepted_quality_status") != "ELIGIBLE":
+            raise QuarantineRoutingError("accepted quality status must be ELIGIBLE")
+        if raw.get("quarantined_quality_status") != "QUARANTINED":
+            raise QuarantineRoutingError("quarantined quality status must be QUARANTINED")
+        if raw.get("blocked_unknown_quality_status") != "UNKNOWN":
+            raise QuarantineRoutingError("blocked unknown quality status must be UNKNOWN")
         if raw.get("network_required") is not False or raw.get("credentials_required") is not False:
             raise QuarantineRoutingError("reference routing must be offline")
 
@@ -107,6 +118,9 @@ class QuarantineRoutingPolicy:
             policy_version=_text(raw.get("policy_version"), field="policy_version"),
             max_reason_codes=_positive_int(raw.get("max_reason_codes"), field="max_reason_codes"),
             reason_code_pattern=pattern,
+            accepted_quality_status="ELIGIBLE",
+            quarantined_quality_status="QUARANTINED",
+            blocked_unknown_quality_status="UNKNOWN",
             production_quarantine_storage_vendor=_text(
                 raw.get("production_quarantine_storage_vendor"),
                 field="production_quarantine_storage_vendor",
@@ -145,6 +159,8 @@ class QuarantineRecord:
             "quality_status": self.quality_status.value,
             "quality_policy_version": self.quality_policy_version,
             "quality_evidence_sha256": self.quality_evidence_sha256,
+            "routing_policy_version": self.routing_policy_version,
+            "effective_quality_status": self.effective_quality_status,
             "reason_codes": list(self.reason_codes),
         }
 
@@ -197,6 +213,8 @@ class RoutingDecision:
     quality_status: EligibilityStatus
     quality_policy_version: str
     quality_evidence_sha256: str
+    routing_policy_version: str
+    effective_quality_status: str
     reason_codes: tuple[str, ...]
     quarantine_record: QuarantineRecord | None
 
@@ -216,6 +234,13 @@ class RoutingDecision:
             ),
         }
         return hashlib.sha256(_canonical_bytes(payload)).hexdigest()
+
+    def to_feature_quality_eligibility(self) -> QualityEligibility:
+        return QualityEligibility(
+            status=self.effective_quality_status,
+            quality_policy_version=self.routing_policy_version,
+            evidence_sha256=self.decision_id,
+        )
 
 
 class QuarantineRouter:
@@ -261,6 +286,13 @@ class QuarantineRouter:
             reasons = ("QUALITY_UNKNOWN",)
 
         downstream_allowed = disposition is RouteDisposition.ACCEPTED_DOWNSTREAM
+        if disposition is RouteDisposition.ACCEPTED_DOWNSTREAM:
+            effective_quality_status = self._policy.accepted_quality_status
+        elif disposition is RouteDisposition.QUARANTINED:
+            effective_quality_status = self._policy.quarantined_quality_status
+        else:
+            effective_quality_status = self._policy.blocked_unknown_quality_status
+
         quarantine_record: QuarantineRecord | None = None
         if not downstream_allowed:
             quarantine_record = QuarantineRecord(
@@ -279,6 +311,8 @@ class QuarantineRouter:
             quality_status=quality.status,
             quality_policy_version=quality.policy_version,
             quality_evidence_sha256=evidence_id,
+            routing_policy_version=self._policy.policy_version,
+            effective_quality_status=effective_quality_status,
             reason_codes=reasons,
             quarantine_record=quarantine_record,
         )
