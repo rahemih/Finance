@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from typing import Mapping, Sequence, cast
+from typing import Mapping, cast
 
 from packages.historical_data import TimeSeriesRecord
 
