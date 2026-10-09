@@ -137,6 +137,7 @@ This catalog is the canonical index of governed work.
 | FIN-P06-WG-001 | P06 | Replay Snapshot Interfaces | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WG-001.json` | RELEASED |
 | FIN-P06-WH-001 | P06 | Retention / Compaction / Storage-Cost Tests | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P06-WH-001.json` | RELEASED |
 | FIN-P07-WA-001 | P07 | Schema Validators | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P07-WA-001.json` | RELEASED |
+| FIN-P07-WB-001 | P07 | Completeness & Duplicate Checks | HIGH | ACTIVE | `contracts/tasks/FIN-P07-WB-001.json` | LOCK-FIN-P07-WB-001-01 |
 
 ## Rules
 
