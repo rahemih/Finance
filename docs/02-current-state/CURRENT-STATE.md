@@ -40,15 +40,15 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-E — Provenance & Confidence Contract / IN_PROGRESS  
-Previous Workstream: P07-D — Cross-Provider Comparison / CANONICAL_COMPLETE  
+Current Workstream: none — P07-E canonical closed; P07-F next  
+Previous Workstream: P07-E — Provenance & Confidence Contract / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E IN_PROGRESS / P07-F BLOCKED_UNTIL_P07_E_CANONICAL_COMPLETE
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WE-001 — Provenance & Confidence Contract`  
-Linear: `HOS-207 = In Progress`  
-Branch: `feat/FIN-P07-WE-001-provenance-confidence`  
-Active lock: `LOCK-FIN-P07-WE-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E IN_PROGRESS
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,15 +180,22 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-D — Cross-Provider Comparison is CANONICAL_COMPLETE and its lock is RELEASED. P07-E — Provenance & Confidence Contract is ACTIVE under FIN-P07-WE-001 / HOS-207 with LOCK-FIN-P07-WE-001-01 ACQUIRED. Confidence weights and thresholds are explicit/versioned, required A/B/C/D evidence is fail-closed, and downstream status maps to the established P06-F QualityEligibility contract. P07-F remains blocked. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-E — Provenance & Confidence Contract is CANONICAL_COMPLETE and LOCK-FIN-P07-WE-001-01 is RELEASED. P07 remains ACTIVE. P07-F — Quarantine / Fail-Closed Routing is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
 
 ## P07-E — Provenance & Confidence Contract
 
 Task: `FIN-P07-WE-001`  
 Linear: `HOS-207`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P07-WE-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WE-001-provenance-confidence`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#160` = MERGED  
+Final implementation head: `6421b19e2a5b8e6d3edf4f8ddd0b83d6f75e996b`  
+Implementation merge SHA: `53de9831ee75a527033aafb890c7a528a5ffbbf7`  
+PR Governance: `37959787553` = SUCCESS  
+PR artifact: `sha256:cb8a8b1c832e68ffef8f42bd6b963a7517eaddf274d6926573a90c3d9cac7e06`  
+Post-merge Governance: `37959921604` = SUCCESS  
+Post-merge artifact: `sha256:8f26a04d9f0683cfa1099cb199669bcc9c77494b213711559b930562bd0d42cf`  
+Post-merge Branch Hygiene: `37959921534` = SUCCESS
 
 Scope:
 - canonical evidence lineage across P07-A/B/C/D;
