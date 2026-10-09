@@ -40,15 +40,15 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P07 — Data Quality & Provenance / ACTIVE  
-Current Workstream: P07-C — Staleness / Outlier / Sequence Checks / IN_PROGRESS  
-Previous Workstream: P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE  
+Current Workstream: none — P07-C canonical closed; P07-D next  
+Previous Workstream: P07-C — Staleness / Outlier / Sequence Checks / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C IN_PROGRESS / P07-D BLOCKED_UNTIL_P07_C_CANONICAL_COMPLETE
+P07 state: ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D READY_NOT_STARTED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,10 +159,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P07-WC-001 — Staleness / Outlier / Sequence Checks`  
-Linear: `HOS-205 = In Progress`  
-Branch: `feat/FIN-P07-WC-001-staleness-outlier-sequence`  
-Active lock: `LOCK-FIN-P07-WC-001-01 / ACQUIRED`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +170,7 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C IN_PROGRESS
+Data quality implementation (P07): ACTIVE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,15 +180,22 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-B — Completeness / Duplicate Checks is CANONICAL_COMPLETE and its lock is RELEASED. P07-C — Staleness / Outlier / Sequence Checks is ACTIVE under FIN-P07-WC-001 / HOS-205 with LOCK-FIN-P07-WC-001-01 ACQUIRED. Freshness/outlier/sequence semantics are explicit and fail closed; cross-provider comparison remains P07-D. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
+P07-C — Staleness / Outlier / Sequence Checks is CANONICAL_COMPLETE and LOCK-FIN-P07-WC-001-01 is RELEASED. P07 remains ACTIVE. P07-D — Cross-Provider Comparison is READY_NOT_STARTED as the next governed workstream. G5_TRUSTED_DATA remains NOT_EVALUATED. Production data-quality vendor remains NOT_SELECTED, country assumption remains NONE, and Live/Auto Trading remain DISABLED.
 
 ## P07-C — Staleness / Outlier / Sequence Checks
 
 Task: `FIN-P07-WC-001`  
 Linear: `HOS-205`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P07-WC-001-01 / ACQUIRED`  
-Branch: `feat/FIN-P07-WC-001-staleness-outlier-sequence`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#156` = MERGED  
+Final implementation head: `5ca662aae12316627aef8d938f64cd073c180641`  
+Implementation merge SHA: `2c35ef532eef3b66079c29294d5beac6d878b9d6`  
+PR Governance: `37956164904` = SUCCESS  
+PR artifact: `sha256:995b37368f580f03ec70174492ae47b3ff0729b0bc5df56b3f5c058de0b142ad`  
+Post-merge Governance: `37956310206` = SUCCESS  
+Post-merge artifact: `sha256:ecb877fa20355023fb02143452423a0892c1146ac023f06be7307a9f05311a2a`  
+Post-merge Branch Hygiene: `37956310266` = SUCCESS
 
 Scope:
 - explicit per-kind freshness thresholds against governed reference time;

@@ -39,11 +39,10 @@ Canonical completion:
 Phase transition:
 - P06 — Historical Data & Feature Store: CANONICAL_COMPLETE
 - P07 — Data Quality & Provenance: ACTIVE
-- active governed task: `FIN-P07-WC-001 — Staleness / Outlier / Sequence Checks`
-- Linear: `HOS-205`
-- active lock: `LOCK-FIN-P07-WC-001-01 / ACQUIRED`
-- completed workstreams: P07-A — Schema Validators / CANONICAL_COMPLETE; P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE
-- P07-C — Staleness / Outlier / Sequence Checks: IN_PROGRESS
+- active governed task: none
+- active lock: none
+- completed workstreams: P07-A — Schema Validators / CANONICAL_COMPLETE; P07-B — Completeness / Duplicate Checks / CANONICAL_COMPLETE; P07-C — Staleness / Outlier / Sequence Checks / CANONICAL_COMPLETE
+- next governed workstream: P07-D — Cross-Provider Comparison / READY_NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -69,8 +68,8 @@ P06 canonical boundary:
 P07 active boundary:
 - P07-A — Schema Validators: CANONICAL_COMPLETE
 - P07-B — Completeness / Duplicate Checks: CANONICAL_COMPLETE
-- P07-C — Staleness / Outlier / Sequence Checks: IN_PROGRESS
-- P07-D — Cross-Provider Comparison: BLOCKED_UNTIL_P07_C_CANONICAL_COMPLETE
+- P07-C — Staleness / Outlier / Sequence Checks: CANONICAL_COMPLETE
+- P07-D — Cross-Provider Comparison: READY_NOT_STARTED
 - P07-E — Provenance & Confidence Contract: BLOCKED
 - P07-F — Quarantine / Fail-Closed Routing: BLOCKED
 - P07-G — Quality Dashboards / SLOs: BLOCKED
