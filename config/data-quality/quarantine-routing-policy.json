@@ -19,5 +19,8 @@
   "production_quarantine_storage_vendor": "NOT_SELECTED",
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "accepted_quality_status": "ELIGIBLE",
+  "quarantined_quality_status": "QUARANTINED",
+  "blocked_unknown_quality_status": "UNKNOWN"
 }
