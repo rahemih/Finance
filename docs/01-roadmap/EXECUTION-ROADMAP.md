@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
-- active governed task: FIN-P08-WJ-003
-- active lock: LOCK-FIN-P08-WJ-003-01
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -54,8 +54,9 @@ Phase transition:
 - P08-I — Technical Validation Gate: NOT_STARTED
 - Alpha Research Fast Track addendum (cross-cutting / FIN-P08-WJ-001): CANONICAL_COMPLETE
 - Alpha Research Fast Track shared-state reconciliation (FIN-P08-WJ-002): CANONICAL_COMPLETE
-- AR-0 — Research Governance: IMPLEMENTATION_ACTIVE
-- AR-1..AR-5: BLOCKED_UNTIL_AR0_CANONICAL
+- AR-0 — Research Governance: CANONICAL_COMPLETE
+- AR-1 — Reproducible Research Harness: READY_NOT_STARTED
+- AR-2..AR-5: BLOCKED_BEHIND_AR1_SEQUENCE
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
