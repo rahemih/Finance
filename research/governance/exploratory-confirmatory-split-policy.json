@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_EXPLORATORY_CONFIRMATORY_SPLIT_POLICY",
+  "protocol_version": "arft-research-protocol-v1",
+  "exploratory_stage": "AR-2",
+  "confirmatory_stage": "AR-3",
+  "exploratory_allowed": [
+    "candidate_generation",
+    "governed_metric_analysis",
+    "empirical_null_and_negative_controls",
+    "baseline_comparison",
+    "stability_diagnostics",
+    "redundancy_and_incremental_information_analysis",
+    "parameter_sensitivity_with_declared_search_ledger"
+  ],
+  "exploratory_forbidden": [
+    "protected_confirmatory_outcome_access",
+    "final_retention_for_P17",
+    "profitability_claim",
+    "production_validation_claim",
+    "tuning_against_confirmatory_results"
+  ],
+  "confirmatory_requires_frozen_contract": true,
+  "confirmatory_candidate_mutation_after_outcome_access": "FORBIDDEN",
+  "contamination_policy": "RETIRE_PARTITION_AND_VERSION_AS_RESEARCH_VISIBLE",
+  "multiple_testing_search_ledger_required": true,
+  "multiple_testing_correction_method": "TO_BE_SELECTED_BY_PROTOCOL_OR_CANDIDATE_METRIC_CLASS",
+  "fixed_p_value_threshold": "TO_BE_CALIBRATED",
+  "fixed_sample_count_threshold": "TO_BE_CALIBRATED",
+  "fixed_fold_count": "TO_BE_CALIBRATED",
+  "fixed_monte_carlo_count": "TO_BE_CALIBRATED"
+}
