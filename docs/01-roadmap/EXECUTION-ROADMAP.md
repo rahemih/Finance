@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P10-WE-001
-- active lock: LOCK-FIN-P10-WE-001-01
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -71,8 +71,8 @@ Phase transition:
 - P10-B — Economic Calendar / Event Schema: CANONICAL_COMPLETE
 - P10-C — First Release / Previous-at-Time / Revision History: CANONICAL_COMPLETE
 - P10-D — Macro Surprise Engine: CANONICAL_COMPLETE
-- P10-E — Rates / Yields / Currency Macro: IMPLEMENTATION_ACTIVE
-- P10-F — Oil / Gold / Commodity Context: NOT_STARTED
+- P10-E — Rates / Yields / Currency Macro: CANONICAL_COMPLETE
+- P10-F — Oil / Gold / Commodity Context: READY_NOT_STARTED
 - P10-G — Crypto Fundamental / On-Chain Context: NOT_STARTED
 - P10-H — Reliability / Latency Validation: NOT_STARTED
 
