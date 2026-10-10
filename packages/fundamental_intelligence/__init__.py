@@ -1,3 +1,15 @@
+from .rates_currency_macro import (
+    CurrencyMacroDifferential,
+    RateYieldPoint,
+    RatesCurrencyMacroError,
+    RatesCurrencyMacroPolicy,
+    RatesMacroStore,
+    YieldCurveSpread,
+    assert_no_rates_currency_trade_authority_fields,
+    compute_currency_macro_differential,
+    compute_yield_curve_spread,
+    validate_rate_yield_point,
+)
 from .macro_surprise import (
     ConsensusSnapshot,
     MacroSurpriseError,
@@ -35,6 +47,16 @@ from .source_registry import (
 )
 
 __all__ = [
+    "CurrencyMacroDifferential",
+    "RateYieldPoint",
+    "RatesCurrencyMacroError",
+    "RatesCurrencyMacroPolicy",
+    "RatesMacroStore",
+    "YieldCurveSpread",
+    "assert_no_rates_currency_trade_authority_fields",
+    "compute_currency_macro_differential",
+    "compute_yield_curve_spread",
+    "validate_rate_yield_point",
     "ConsensusSnapshot",
     "MacroSurpriseError",
     "MacroSurprisePolicy",
