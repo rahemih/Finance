@@ -73,6 +73,8 @@ class MomentumFamilyPolicy:
             raise MomentumFamilyError("momentum scores must not claim empirical trade probability")
         short_window = _positive_int(raw.get("short_window"), field="short_window")
         long_window = _positive_int(raw.get("long_window"), field="long_window")
+        if short_window < 2:
+            raise MomentumFamilyError("short_window must be at least 2")
         if short_window >= long_window:
             raise MomentumFamilyError("short_window must be smaller than long_window")
         max_strength = _positive_int(raw.get("max_strength_bps"), field="max_strength_bps")
@@ -209,7 +211,8 @@ class MomentumFamilyModel:
                 self._foundation_policy.max_strength_bps,
                 raw_strength,
             )
-            acceleration_context = min(abs(acceleration), 1000) // 4
+            supporting_acceleration = max(0, acceleration * direction)
+            acceleration_context = min(supporting_acceleration, 1000) // 4
             confidence = min(
                 p.max_confidence_bps,
                 self._foundation_policy.max_confidence_bps,
