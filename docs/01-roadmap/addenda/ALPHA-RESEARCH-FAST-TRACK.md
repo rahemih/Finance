@@ -619,3 +619,30 @@ A retained candidate is not validated.
 A promising preview is not a profitable strategy.
 
 Only the canonical roadmap gates can authorize later claims and progression.
+
+
+## 19. Canonical adoption evidence
+
+Addendum governance package:
+
+- Task: `FIN-P08-WJ-001`
+- Linear: `HOS-219`
+- PR: `#179` = MERGED
+- Final PR head: `28167a9571940c0e13dcf9400d9ef303dcef70ed`
+- Merge SHA: `99e27c1f74b5274a5eae29224ef1cd3e36746125`
+- PR Governance: `38041755653` = SUCCESS
+- PR artifact: `sha256:46ef10cb5af2d96961a3db305f1178dc5e1bf3d7fbebbe53003b38d8c1756a92`
+- Post-merge Governance: `38041827701` = SUCCESS
+- Post-merge artifact: `sha256:f6a0380bb4cd020e21e1726125020caca187632f04ac6d9c59c41bb05508a905`
+- Post-merge Branch Hygiene: `38041827709` = SUCCESS
+
+Deferred shared-state reconciliation is completed by `FIN-P08-WJ-002` / `HOS-220` after the P08-F writer lock was released.
+
+Adoption state after reconciliation:
+
+- Alpha Research Fast Track addendum: CANONICAL_COMPLETE
+- AR-0 — Research Governance: READY_NOT_STARTED
+- AR-1..AR-5: BLOCKED_UNTIL_AR0_CANONICAL
+- P08-G remains READY_NOT_STARTED
+- Master Roadmap v2.0 remains FROZEN and unchanged
+- G6/G7/G8/G9 authority remains canonical and unchanged
