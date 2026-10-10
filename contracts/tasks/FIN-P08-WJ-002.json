@@ -1,0 +1,107 @@
+{
+  "task_id": "FIN-P08-WJ-002",
+  "phase": "P08",
+  "workstream": "WJ",
+  "objective": "Complete deferred shared-state reconciliation for the canonical Alpha Research Fast Track addendum after P08-F lock release, without changing the frozen Master Roadmap or any canonical gate authority.",
+  "scope": [
+    "Reconcile FIN-P08-WJ-001 into README, Execution Roadmap, Current State and Task Catalog",
+    "Record PR #179 Governance and post-merge evidence",
+    "Mark the Alpha Research Fast Track addendum CANONICAL_COMPLETE after reconciliation",
+    "Register this FIN-P08-WJ-002 closure task",
+    "Expose AR-0 Research Governance as READY_NOT_STARTED",
+    "Preserve P08-G Multi-Timeframe & Regime as READY_NOT_STARTED",
+    "Preserve all P08/P14/P17 gate ownership and the research-only Fast Track boundary",
+    "Reconcile Linear HOS-219/HOS-220 after protected-branch verification"
+  ],
+  "out_of_scope": [
+    "Modifying MASTER-ROADMAP-v2.0.md",
+    "Implementing AR-0 or any AR-1 through AR-5 research harness/experiment work",
+    "Implementing P08-G, P08-H or P08-I",
+    "Passing G6, G7, G8 or G9",
+    "Selecting research/backtest technology before a governed ADR",
+    "Signal BUY/SELL generation, profitability claims, risk approval or execution",
+    "Demo, Shadow, Live or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P08-WF-001 CANONICAL_COMPLETE and LOCK-FIN-P08-WF-001-01 RELEASED",
+    "FIN-P08-WJ-001 addendum PR #179 MERGED",
+    "PR #179 Governance and post-merge Governance/Branch Hygiene PASS",
+    "Alpha Research Fast Track adoption sequence requires shared-state reconciliation before AR-0 activation"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "contracts/tasks/FIN-P08-WJ-001.json",
+    "docs/09-agents/specialists/RESEARCH-VALIDATION-SPECIALIST.json",
+    "docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WJ-002.json",
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/technical_intelligence/**",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A4", "A10", "Research Validation Specialist"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Task Contract validates against contracts/schemas/task-contract.schema.json",
+    "MASTER-ROADMAP-v2.0.md remains unchanged",
+    "Shared-state files explicitly register the Fast Track as cross-cutting research-only governance",
+    "P08-G remains READY_NOT_STARTED",
+    "AR-0 becomes READY_NOT_STARTED and AR-1+ remain blocked behind AR-0 canonicalization",
+    "No G6/G7/G8/G9 bypass or substitution is introduced",
+    "No production validation, profitability, BUY/SELL, risk or execution authority is introduced"
+  ],
+  "security_tests": [
+    "LIVE_TRADING remains DISABLED",
+    "AUTO_TRADING remains DISABLED",
+    "No broker/exchange/order/credential authority is introduced"
+  ],
+  "evidence": [
+    "FIN-P08-WJ-001 PR #179 merged",
+    "PR #179 Governance run 38041755653 SUCCESS",
+    "PR #179 artifact sha256:46ef10cb5af2d96961a3db305f1178dc5e1bf3d7fbebbe53003b38d8c1756a92",
+    "PR #179 merge SHA 99e27c1f74b5274a5eae29224ef1cd3e36746125",
+    "PR #179 post-merge Governance 38041827701 SUCCESS",
+    "PR #179 post-merge artifact sha256:f6a0380bb4cd020e21e1726125020caca187632f04ac6d9c59c41bb05508a905",
+    "PR #179 post-merge Branch Hygiene 38041827709 SUCCESS",
+    "FIN-P08-WF-001 closure main SHA 6f23699a5c42f576dc218bc53a2b3f39ecc58882",
+    "Linear HOS-219 and HOS-220 reconciliation"
+  ],
+  "rollback": "Revert only FIN-P08-WJ-002 and shared-state reconciliation. The already-merged addendum and frozen Master Roadmap remain unchanged; AR-0 returns to RECONCILIATION_PENDING and P08-G remains READY_NOT_STARTED.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-F CANONICAL_COMPLETE",
+    "P08-F lock RELEASED",
+    "FIN-P08-WJ-001 merged with post-merge checks PASS",
+    "No conflicting open PR or shared-writer lock"
+  ],
+  "definition_of_done": [
+    "Shared canonical files recognize FIN-P08-WJ-001 as CANONICAL_COMPLETE",
+    "FIN-P08-WJ-002 reconciliation is merged and post-merge verified",
+    "AR-0 is READY_NOT_STARTED",
+    "P08-G remains READY_NOT_STARTED",
+    "No Master Roadmap or canonical gate authority changed",
+    "Lock released",
+    "HOS-219 Done",
+    "HOS-220 Done"
+  ]
+}
