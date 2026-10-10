@@ -1,6 +1,6 @@
 # Current State
 
-Last reconciled: 2026-10-06
+Last reconciled: 2026-10-10
 
 ## Repository
 
@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P07 — Data Quality & Provenance / CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-Current Workstream: none — P07 closed; P08 requires Owner phase authorization  
+Current Phase: P08 — Technical Intelligence / ACTIVE  
+Current Workstream: P08-A — Technical Feature / Indicator Foundation / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P07-H — Trusted Data Gate / G5 / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -48,7 +48,8 @@ P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS
 P04 state: CANONICAL_COMPLETE  
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
+P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
+P08 state: ACTIVE / P08-A IMPLEMENTATION_ACTIVE / P08-B..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -159,8 +160,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P08-WA-001`  
+Active lock: `LOCK-FIN-P08-WA-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -170,7 +171,8 @@ Superseded/unmerged research branches are non-canonical and must not override `m
 Engineering Foundation implementation: CANONICAL_COMPLETE  
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
-Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
+Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
+Technical intelligence implementation (P08): ACTIVE / P08-A IMPLEMENTATION_ACTIVE / G6 NOT_EVALUATED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -180,7 +182,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P07-H — Trusted Data Gate / G5 is CANONICAL_COMPLETE and LOCK-FIN-P07-WH-001-01 is RELEASED. G5_TRUSTED_DATA = PASS. P07 — Data Quality & Provenance is CANONICAL_COMPLETE. P08 — Technical Intelligence remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. Live/Auto Trading remain DISABLED.
+P07-H — Trusted Data Gate / G5 is CANONICAL_COMPLETE and LOCK-FIN-P07-WH-001-01 is RELEASED. G5_TRUSTED_DATA = PASS. P07 — Data Quality & Provenance is CANONICAL_COMPLETE. Owner authorized P08 on 2026-10-10. P08-A — Technical Feature / Indicator Foundation is IMPLEMENTATION_ACTIVE under LOCK-FIN-P08-WA-001-01. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3170,5 +3172,47 @@ Safety:
 - network: NONE;
 - credentials: NONE;
 - CANARY: DISABLED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+
+## P08-A — Technical Feature / Indicator Foundation
+
+Task: `FIN-P08-WA-001`  
+Linear: `HOS-211`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P08-WA-001-01` / ACQUIRED  
+Implementation branch: `feat/FIN-P08-WA-001-technical-foundation`
+
+Authorization:
+- Owner authorized P08 on 2026-10-10;
+- P07 = CANONICAL_COMPLETE;
+- G5_TRUSTED_DATA = PASS;
+- Fresh Live Guard at activation: open PRs = 0, active task = none, active lock = none.
+
+Agents:
+- A4 Quant — lead;
+- A3 Market Intelligence — technical family/evidence consumer contract;
+- A2 Data — trusted OHLCV lineage compatibility;
+- A1 Architecture — P08 boundary/contract review;
+- A8 Security — fail-closed/no-network review;
+- A9 Operations — determinism/operability review;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation boundary:
+- deterministic point-in-time OHLCV validation;
+- content-addressed indicator definitions;
+- common technical evidence contract;
+- explicit family and independence-group metadata;
+- reference SMA and rate-of-change primitives;
+- correlated transforms sharing one independence group count as one confirmation;
+- no direct signal fusion, trade, order, broker or exchange authority;
+- P08-B through P08-I remain separate workstreams.
+
+Safety:
+- production technical-intelligence vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
