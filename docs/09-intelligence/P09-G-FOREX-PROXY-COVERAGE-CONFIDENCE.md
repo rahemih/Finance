@@ -84,3 +84,19 @@ No `global_market_share_bps` field exists in the contract.
 - supply-chain and reproducibility controls: PASS
 
 P09-H — Validation / Performance becomes `READY_NOT_STARTED`.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#202` = MERGED
+- Final implementation head: `eb382f2c4a6aec30f0e7d71ed956720d43bcf05d`
+- Implementation merge SHA: `0d753b5363988e5fa9f562bcd80b880c9abe2a97`
+- PR Governance: `38051885528` = SUCCESS
+- PR artifact: `sha256:43ebd98a94936095778ac6184cb6b78c473070ddfcac043dede33dab46c4ef61`
+- Post-merge Governance: `38051957164` = SUCCESS
+- Post-merge artifact: `sha256:0b1a4be0837d17c557ee5a0c7dd9f1a2479fc4cac711120645bd0eacb637fcb8`
+- Post-merge Branch Hygiene: `38051957104` = SUCCESS
+- strict typecheck / P09 tests / deterministic P09-G evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-H — Validation / Performance becomes `READY_NOT_STARTED`.
