@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WD-001`  
 Linear: `HOS-228`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WD-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A3 Market Intelligence  
 Support: A0, A1, A2, A4, A6, A8, A9, A10
 
@@ -71,3 +71,21 @@ Spot-FX books are accepted only from governed broker/ECN book sources. They rema
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED;
 - direct trade/order/recommendation/probability authority: FORBIDDEN.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#196` = MERGED
+- Final implementation head: `6cf574c9ad7b68e1f08dfef84bbb87f9fddd1b5f`
+- Implementation merge SHA: `d2173286d0173e116f625f56cdc31aca64f09855`
+- Initial PR Governance: `38050009316` = FAILED at strict Pyright / unused `Sequence` import
+- Repair R01: `6cf574c9ad7b68e1f08dfef84bbb87f9fddd1b5f`
+- Final PR Governance: `38050053794` = SUCCESS
+- Final PR artifact: `sha256:a64e5b77ca2f98a5c37a6148d4de3164031f33e1340939d5660a7dc555a42829`
+- Post-merge Governance: `38050120484` = SUCCESS
+- Post-merge artifact: `sha256:0efa47ac20972e5af8bf6ee355f084c91f389f8c4ecad40bdc708f7fe457c6c7`
+- Post-merge Branch Hygiene: `38050120518` = SUCCESS
+- strict typecheck / P09 tests / deterministic P09-D evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-E — Liquidity Heatmap / Capacity becomes `READY_NOT_STARTED`.
