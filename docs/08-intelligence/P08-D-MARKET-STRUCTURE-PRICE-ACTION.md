@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WD-001`  
 Linear: `HOS-215`  
-Lock: `LOCK-FIN-P08-WD-001-01`  
-State: IMPLEMENTATION_ACTIVE
+Lock: RELEASED  
+State: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -49,3 +49,21 @@ Strength and confidence are deterministic technical-evidence scores, not empiric
 ## Boundary
 
 P08-E and later workstreams remain out of scope. G6 is not evaluated here.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#174` = MERGED
+- Final implementation head: `6f5245b1de88f54f8e61bce485732bfa03b3ad3f`
+- Implementation merge SHA: `02716ef27cc848613bac096ef7e7442d9bd4bab1`
+- PR Governance: `38039440572` = SUCCESS
+- PR artifact: `sha256:cdd554a837221dc581c5c3ba679610447f7e39a0c38417e8683cfc2db1521b88`
+- Post-merge Governance: `38039518925` = SUCCESS
+- Post-merge artifact: `sha256:f4b29a8b94da967d627149863b9a7a1f6e199bf629947a219aff90c57789fca8`
+- Post-merge Branch Hygiene: `38039518953` = SUCCESS
+- Strict Pyright: PASS
+- P08 technical-intelligence tests: PASS
+- Deterministic P08-D evidence: PASS
+- Cross-family independence status remains `PROVISIONAL_PENDING_P08_H`
+
+P08-E — Volatility & Mean Reversion is READY_NOT_STARTED. G6 remains NOT_EVALUATED.
