@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08G_MULTI_TIMEFRAME_REGIME_POLICY",
+  "input_family": "TREND",
+  "output_family": "REGIME",
+  "independence_group": "trend-multitimeframe-regime",
+  "cross_timeframe_independence_status": "RELATED_NOT_INDEPENDENT",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "min_timeframes": 2,
+  "max_timeframes": 6,
+  "same_evaluation_as_of_required": true,
+  "same_method_definition_required": true,
+  "same_lineage_required": true,
+  "aligned_strength_method": "AVERAGE",
+  "aligned_confidence_method": "MINIMUM",
+  "non_aligned_direction_semantics": "NEUTRAL_ZERO",
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}
