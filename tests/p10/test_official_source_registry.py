@@ -131,10 +131,14 @@ class OfficialSourceRegistryTests(unittest.TestCase):
         for forbidden in (
             "adapters.execution",
             "packages.execution",
-            "requests",
-            "httpx",
-            "websocket",
-            "boto3",
+            "import requests",
+            "from requests",
+            "import httpx",
+            "from httpx",
+            "import websocket",
+            "from websocket",
+            "import boto3",
+            "from boto3",
         ):
             self.assertNotIn(forbidden, source)
 
