@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08I_TECHNICAL_VALIDATION_GATE_POLICY",
+  "policy_version": "p08i-g6-v1",
+  "gate_id": "G6_TECHNICAL_VALIDATED",
+  "fail_closed": true,
+  "required_workstreams": [
+    {
+      "task_id": "FIN-P08-WA-001",
+      "document": "docs/08-intelligence/p08-a-technical-indicator-foundation.json"
+    },
+    {
+      "task_id": "FIN-P08-WB-001",
+      "document": "docs/08-intelligence/p08-b-trend-family.json"
+    },
+    {
+      "task_id": "FIN-P08-WC-001",
+      "document": "docs/08-intelligence/p08-c-momentum-family.json"
+    },
+    {
+      "task_id": "FIN-P08-WD-001",
+      "document": "docs/08-intelligence/p08-d-market-structure-price-action.json"
+    },
+    {
+      "task_id": "FIN-P08-WE-001",
+      "document": "docs/08-intelligence/p08-e-volatility-mean-reversion.json"
+    },
+    {
+      "task_id": "FIN-P08-WF-001",
+      "document": "docs/08-intelligence/p08-f-breakout-expansion.json"
+    },
+    {
+      "task_id": "FIN-P08-WG-001",
+      "document": "docs/08-intelligence/p08-g-multi-timeframe-regime.json"
+    },
+    {
+      "task_id": "FIN-P08-WH-001",
+      "document": "docs/08-intelligence/p08-h-independence-correlation-audit.json"
+    }
+  ],
+  "required_state": "CANONICAL_COMPLETE",
+  "required_lock": "RELEASED",
+  "required_country_assumption": "NONE",
+  "required_live_trading": "DISABLED",
+  "required_auto_trading": "DISABLED",
+  "direct_trade_output_allowed": false,
+  "required_g6_pre_gate_state": "NOT_EVALUATED",
+  "production_fusion_threshold_owner": "P14",
+  "p09_state_after_pass": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "network_required": false,
+  "credentials_required": false
+}

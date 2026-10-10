@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P08-WI-001",
+  "phase": "P08",
+  "workstream": "WI",
+  "objective": "Run deterministic integrated certification over P08-A through P08-H and close G6_TECHNICAL_VALIDATED only after the implementation and post-merge governance evidence pass.",
+  "scope": [
+    "Require exactly the canonical P08-A through P08-H machine-readable closure documents",
+    "Verify every prerequisite workstream is CANONICAL_COMPLETE",
+    "Verify every prerequisite lock is RELEASED",
+    "Verify canonical merge/post-merge Governance/artifact/Branch-Hygiene closure evidence exists",
+    "Verify Live Trading and Auto Trading remain DISABLED and country assumption remains NONE",
+    "Verify every technical family forbids direct trade/order output",
+    "Verify P08-A requires point-in-time and trusted-data inputs",
+    "Verify P08-F excludes the current bar from its breakout reference channel and treats expansion as correlated context",
+    "Verify P08-G treats repeated timeframes as RELATED_NOT_INDEPENDENT",
+    "Verify P08-H cluster-caps related families, fails closed on drift, and does not threshold-classify numeric dependence",
+    "Verify P14 retains production fusion-threshold ownership",
+    "Produce deterministic PASS/FAIL G6 certification evidence",
+    "Keep canonical G6 state NOT_EVALUATED until P08-I implementation is merged and post-merge checks pass",
+    "On successful closure reconcile P08 as CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS",
+    "Require explicit Owner phase authorization before P09"
+  ],
+  "out_of_scope": [
+    "P09 Volume / Order Flow / Liquidity execution",
+    "AR-1 Reproducible Research Harness implementation",
+    "Production signal fusion thresholds",
+    "Calibrated trade probability",
+    "Profitability certification",
+    "Risk approval",
+    "P17 strategy/backtest validation",
+    "Demo/Shadow/Live/Auto execution enablement"
+  ],
+  "dependencies": [
+    "P08-A/B/C/D/E/F/G/H CANONICAL_COMPLETE",
+    "AR-0 CANONICAL_COMPLETE",
+    "G5_TRUSTED_DATA PASS",
+    "Owner P08 phase authorization",
+    "Fresh start from canonical main 4b1ebade6df3b649bde2b39320ad37491226df93"
+  ],
+  "read_paths": [
+    "docs/08-intelligence/p08-*.json",
+    "config/technical-intelligence/**",
+    "packages/technical_intelligence/**",
+    "docs/04-architecture/INTELLIGENCE-SIGNAL-ARCHITECTURE.md",
+    "docs/04-architecture/ADR/ADR-0009-independent-evidence-fusion-calibrated-probability.md",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WI-001.json",
+    "config/technical-intelligence/technical-validation-gate-policy.json",
+    "packages/technical_intelligence/technical_validation_gate.py",
+    "tests/p08/test_technical_validation_gate.py",
+    "scripts/ci/p08i_evidence.py",
+    "docs/08-intelligence/P08-I-TECHNICAL-VALIDATION-GATE.md",
+    "docs/08-intelligence/p08-i-technical-validation-gate.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Complete valid P08-A..H evidence yields PASS",
+    "Missing required workstream yields FAIL",
+    "Unexpected task ID or non-canonical prerequisite state yields FAIL",
+    "Non-released prerequisite lock yields FAIL",
+    "Missing or malformed closure evidence yields FAIL",
+    "Trading enabled or country assumption changed in any prerequisite yields FAIL",
+    "Any prerequisite allowing direct trade output yields FAIL",
+    "P08-A point-in-time/trusted-data invariant failure yields FAIL",
+    "P08-F reference-channel or correlated-context invariant failure yields FAIL",
+    "P08-G cross-timeframe non-independence invariant failure yields FAIL",
+    "P08-H cluster-cap/numeric-threshold/P14-ownership invariant failure yields FAIL",
+    "Input ordering does not change gate fingerprint",
+    "P08-I evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "Gate PASS never enables Live/Auto Trading",
+    "No network or credentials required by gate evaluator",
+    "Gate is fail closed on missing/ambiguous evidence",
+    "P09 remains blocked on Owner phase authorization after P08 closure"
+  ],
+  "evidence": [
+    "Canonical P08-A through P08-H machine-readable closure documents",
+    "Deterministic P08-I gate evidence",
+    "Implementation PR Governance",
+    "Implementation post-merge Governance and Branch Hygiene",
+    "Closure PR/post-merge evidence",
+    "Linear HOS-224 reconciliation"
+  ],
+  "rollback": "Revert P08-I evaluator/policy/tests/evidence/CI/state. P08-A..H and AR-0 remain canonical; G6 remains NOT_EVALUATED or reverts to not-passed state; trading remains disabled.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-A through P08-H CANONICAL_COMPLETE",
+    "AR-0 CANONICAL_COMPLETE",
+    "No active lock/open PR conflict",
+    "HOS-224 active"
+  ],
+  "definition_of_done": [
+    "Integrated technical-validation gate evaluator implemented",
+    "Deterministic gate evidence reports PASS",
+    "Implementation PR merged",
+    "Implementation post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation PR merged and post-merge verified",
+    "FIN-P08-WI-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P08-WI-001-01 RELEASED",
+    "G6_TECHNICAL_VALIDATED PASS",
+    "P08 CANONICAL_COMPLETE",
+    "HOS-224 Done",
+    "P09 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}
