@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08C_MOMENTUM_FAMILY_POLICY",
+  "family": "MOMENTUM",
+  "independence_group": "return-momentum",
+  "short_window": 5,
+  "long_window": 20,
+  "min_short_roc_bps": 10,
+  "min_long_roc_bps": 20,
+  "base_directional_confidence_bps": 5000,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}
