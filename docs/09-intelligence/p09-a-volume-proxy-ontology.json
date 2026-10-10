@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09A_VOLUME_PROXY_ONTOLOGY_BASELINE",
+  "task_id": "FIN-P09-WA-001",
+  "linear": "HOS-225",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P09-WA-001-01",
+  "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
+  "workstream": "P09-A",
+  "lead_agent": "A2",
+  "supporting_agents": ["A0", "A1", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "canonical_base": "2f42118e4361cf8d62ca4dd6003687f908a28fbe",
+  "spot_fx_volume_semantics": {
+    "consolidated_market_volume_claim_allowed": false,
+    "allowed_kinds": [
+      "TICK_VOLUME_PROXY",
+      "BROKER_VOLUME_PROXY",
+      "ECN_VOLUME_PROXY",
+      "FUTURES_VOLUME_PROXY"
+    ],
+    "coverage_confidence_required": true,
+    "coverage_scope_required": true,
+    "provider_required": true,
+    "proxy_target_required": true
+  },
+  "native_volume_kinds": ["NATIVE_VENUE_VOLUME", "AGGREGATED_VENUE_VOLUME"],
+  "point_in_time_required": true,
+  "trusted_provenance_required": true,
+  "production_order_flow_vendor": "NOT_SELECTED",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

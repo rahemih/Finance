@@ -438,6 +438,18 @@ jobs:
           cmp build/p08i-a.json build/p08i-b.json
           sha256sum build/p08i-a.json
 
+      - name: P09 volume order-flow liquidity tests
+        run: python -m unittest discover -s tests/p09 -p 'test_*.py' -v
+
+      - name: P09-A deterministic volume proxy ontology evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09a_evidence.py --output build/p09a-a.json
+          PYTHONPATH=. python scripts/ci/p09a_evidence.py --output build/p09a-b.json
+          cmp build/p09a-a.json build/p09a-b.json
+          sha256sum build/p09a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
