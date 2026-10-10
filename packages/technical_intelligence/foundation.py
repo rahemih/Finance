@@ -58,6 +58,12 @@ def _bps(value: object, *, field: str, maximum: int = 10_000) -> int:
     return value
 
 
+def _boolean(value: object, *, field: str) -> bool:
+    if not isinstance(value, bool):
+        raise TechnicalFoundationError(f"{field} must be boolean")
+    return value
+
+
 def _decimal(value: object, *, field: str) -> Decimal:
     if isinstance(value, bool):
         raise TechnicalFoundationError(f"{field} must be decimal-compatible")
@@ -104,18 +110,16 @@ class TechnicalFoundationPolicy:
             raise TechnicalFoundationError("max_lookback_bars must be >= 2")
         max_strength = _bps(raw.get("max_strength_bps"), field="max_strength_bps")
         max_confidence = _bps(raw.get("max_confidence_bps"), field="max_confidence_bps")
-        unique_group = raw.get("independent_confirmation_requires_unique_group")
-        point_in_time = raw.get("point_in_time_required")
-        trusted_data = raw.get("trusted_data_required")
-        direct_trade = raw.get("direct_trade_output_allowed")
-        for name, value in (
-            ("independent_confirmation_requires_unique_group", unique_group),
-            ("point_in_time_required", point_in_time),
-            ("trusted_data_required", trusted_data),
-            ("direct_trade_output_allowed", direct_trade),
-        ):
-            if not isinstance(value, bool):
-                raise TechnicalFoundationError(f"{name} must be boolean")
+        unique_group = _boolean(
+            raw.get("independent_confirmation_requires_unique_group"),
+            field="independent_confirmation_requires_unique_group",
+        )
+        point_in_time = _boolean(raw.get("point_in_time_required"), field="point_in_time_required")
+        trusted_data = _boolean(raw.get("trusted_data_required"), field="trusted_data_required")
+        direct_trade = _boolean(
+            raw.get("direct_trade_output_allowed"),
+            field="direct_trade_output_allowed",
+        )
         vendor = _text(
             raw.get("production_technical_intelligence_vendor"),
             field="production_technical_intelligence_vendor",
