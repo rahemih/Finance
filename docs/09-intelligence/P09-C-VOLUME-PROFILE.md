@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WC-001`  
 Linear: `HOS-227`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WC-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A4 Quant  
 Support: A0, A1, A2, A3, A6, A8, A9, A10
 
@@ -74,3 +74,19 @@ This is a deterministic descriptive profile, not a trading signal.
 - LIVE_TRADING: DISABLED.
 - AUTO_TRADING: DISABLED.
 - Direct trade/order/recommendation/probability authority: FORBIDDEN.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#194` = MERGED
+- Final implementation head: `25c6e6f3d32dd6db23809ed6733721db8cea0282`
+- Implementation merge SHA: `3588ecd17de4d7ea72441b2d0ca43fe30d0d6cca`
+- PR Governance: `38049527288` = SUCCESS
+- PR artifact: `sha256:e0093f007708489985b69093f87957b9a255009b148825794afcfc0bcde7c89f`
+- Post-merge Governance: `38049598075` = SUCCESS
+- Post-merge artifact: `sha256:2958f034658d10f4dbf89b29339aaca16ca3a2578dae364c51578a7a0a618551`
+- Post-merge Branch Hygiene: `38049598047` = SUCCESS
+- Strict typecheck / P09 tests / deterministic P09-C evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-D — Order Book / Spread / Depth / Imbalance becomes `READY_NOT_STARTED`.
