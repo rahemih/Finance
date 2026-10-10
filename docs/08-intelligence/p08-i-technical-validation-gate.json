@@ -3,13 +3,19 @@
   "kind": "NEXUS_QUANT_P08I_TECHNICAL_VALIDATION_GATE_BASELINE",
   "task_id": "FIN-P08-WI-001",
   "linear": "HOS-224",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P08-WI-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P08_TECHNICAL_INTELLIGENCE",
   "gate_id": "G6_TECHNICAL_VALIDATED",
-  "gate_state": "NOT_EVALUATED",
+  "gate_state": "PASS",
   "lead_agent": "A10",
-  "supporting_agents": ["A0", "A3", "A4", "A8", "A9"],
+  "supporting_agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A8",
+    "A9"
+  ],
   "required_workstreams": [
     "FIN-P08-WA-001",
     "FIN-P08-WB-001",
@@ -21,7 +27,7 @@
     "FIN-P08-WH-001"
   ],
   "fail_closed": true,
-  "canonical_pass_deferred_until_post_merge": true,
+  "canonical_pass_deferred_until_post_merge": false,
   "production_fusion_threshold_owner": "P14",
   "calibrated_trade_probability_certified": false,
   "profitability_certified": false,
@@ -33,5 +39,19 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "p09": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
-  "phase_state": "ACTIVE"
+  "phase_state": "CANONICAL_COMPLETE",
+  "closure_evidence": {
+    "implementation_pr": 188,
+    "final_head": "c29de8d0d96b7108eb8ffc20770712fe7eb5369f",
+    "implementation_merge_sha": "ab1ec4dbb75e86bd40fc06669f40ed0ce8709db5",
+    "pr_governance_run": 38046615279,
+    "pr_artifact_sha256": "2c2ff2684ef37438f4a162462071b887d3dcd4d19a2af84fb1002c28f7a67c16",
+    "post_merge_governance_run": 38046682840,
+    "post_merge_artifact_sha256": "c6e8775ee525c9298ea521e324b8505585a1cfd021f28fa61f3e1936dbcdc21d",
+    "post_merge_branch_hygiene_run": 38046682826,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_gate_evidence": "PASS"
+  },
+  "ar1": "READY_NOT_STARTED"
 }
