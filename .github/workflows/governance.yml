@@ -504,6 +504,21 @@ jobs:
           cmp build/p09g-a.json build/p09g-b.json
           sha256sum build/p09g-a.json
 
+      - name: P09-H deterministic integrated validation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09h_evidence.py --output build/p09h-a.json
+          PYTHONPATH=. python scripts/ci/p09h_evidence.py --output build/p09h-b.json
+          cmp build/p09h-a.json build/p09h-b.json
+          sha256sum build/p09h-a.json
+
+      - name: P09-H measured CI regression performance
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09h_performance.py --output build/p09h-performance.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

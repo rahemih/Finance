@@ -1,0 +1,143 @@
+{
+  "task_id": "FIN-P09-WH-001",
+  "phase": "P09",
+  "workstream": "WH",
+  "objective": "Run deterministic integrated certification over P09-A through P09-G and validate an offline CI regression-performance budget, then close P09 only after implementation, post-merge and closure evidence pass.",
+  "scope": [
+    "Require exactly the canonical P09-A through P09-G machine-readable closure documents",
+    "Verify every prerequisite task ID, CANONICAL_COMPLETE state and RELEASED lock",
+    "Verify implementation/post-merge Governance, artifact and Branch Hygiene closure evidence exists",
+    "Verify common P09 safety invariants: country NONE, Live/Auto Trading DISABLED and no direct trade output",
+    "Verify P09-A spot-FX proxy labeling, point-in-time and provenance invariants",
+    "Verify P09-B trade-print, Delta/CVD and no-global-FX-flow invariants",
+    "Verify P09-C actual-trade-only Volume Profile and no-proxy-profile invariants",
+    "Verify P09-D valid-book and no-global-FX-book invariants",
+    "Verify P09-E displayed-capacity-only and no-fillability/impact/global-FX invariants",
+    "Verify P09-F complete evidence-vector/no-score/no-spot-FX-derivatives invariants",
+    "Verify P09-G conservative-minimum/no-global-market-share/no-weighted-score invariants",
+    "Produce deterministic integrated P09-H PASS/FAIL evidence",
+    "Run measured offline P09 unit-suite wall-clock validation against a CI regression budget",
+    "Keep CI regression performance explicitly distinct from production SLOs",
+    "Keep P09 phase closure deferred until P09-H implementation, post-merge and closure verification succeed",
+    "Keep P10 blocked on explicit Owner phase authorization after P09 closure"
+  ],
+  "out_of_scope": [
+    "Profitability certification",
+    "Trade-success probability certification",
+    "Signal fusion or trading recommendation validation",
+    "Production network/provider latency or throughput certification",
+    "Production slippage, market-impact or executable-capacity certification",
+    "P10 Fundamental / Macro / Event implementation",
+    "Risk approval or broker/exchange execution"
+  ],
+  "dependencies": [
+    "P09-A through P09-G CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WG-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 62482e254a22764473739be4da3f8a8da9cad705"
+  ],
+  "read_paths": [
+    "docs/09-intelligence/p09-*.json",
+    "packages/order_flow_liquidity/**",
+    "tests/p09/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WH-001.json",
+    "config/order-flow-liquidity/p09-validation-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/p09_validation.py",
+    "tests/p09/test_p09_validation.py",
+    "scripts/ci/p09h_evidence.py",
+    "scripts/ci/p09h_performance.py",
+    "docs/09-intelligence/P09-H-VALIDATION-PERFORMANCE.md",
+    "docs/09-intelligence/p09-h-validation-performance.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09-H source",
+    "Complete valid P09-A..G evidence yields PASS",
+    "Missing or unexpected prerequisite document yields FAIL",
+    "Unexpected task ID, non-canonical state or non-released lock yields FAIL",
+    "Missing/malformed canonical closure evidence yields FAIL",
+    "Any prerequisite enabling Live/Auto Trading, changing country assumption or allowing direct trade output yields FAIL",
+    "P09-A proxy/provenance invariant drift yields FAIL",
+    "P09-B trade-flow/CVD invariant drift yields FAIL",
+    "P09-C Volume Profile proxy boundary drift yields FAIL",
+    "P09-D book/global-FX invariant drift yields FAIL",
+    "P09-E displayed-capacity boundary drift yields FAIL",
+    "P09-F crowding-score/spot-FX derivatives drift yields FAIL",
+    "P09-G confidence/global-market-share invariant drift yields FAIL",
+    "Input ordering does not change validation fingerprint",
+    "P09-H deterministic evidence is byte-identical across two runs",
+    "Measured P09 unit suite exits zero within the CI regression budget",
+    "Measured performance evidence states CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO"
+  ],
+  "performance_tests": [
+    "Offline P09 unittest suite wall-clock <= 60 seconds on GitHub CI",
+    "Measured evidence records Python/platform provenance and is not byte-compared",
+    "No production latency, provider SLA, market-data throughput or trading throughput is certified"
+  ],
+  "security_tests": [
+    "Validation PASS never enables Live/Auto Trading",
+    "No network or credentials required by certifier or benchmark",
+    "Validation fails closed on missing/ambiguous prerequisite evidence",
+    "P10 remains OWNER_PHASE_AUTHORIZATION_REQUIRED after P09 closure"
+  ],
+  "evidence": [
+    "Canonical P09-A through P09-G machine-readable closure documents",
+    "Deterministic P09-H integrated validation evidence",
+    "Measured P09-H CI regression-performance evidence",
+    "Implementation PR Governance",
+    "Implementation post-merge Governance and Branch Hygiene",
+    "Closure PR/post-merge evidence",
+    "Linear HOS-232 reconciliation"
+  ],
+  "rollback": "Revert P09-H evaluator, policy, performance harness, tests, evidence/CI and state reconciliation. P09-A..P09-G remain canonical; P09 remains ACTIVE; trading stays disabled.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A through P09-G CANONICAL_COMPLETE",
+    "P09-G lock RELEASED",
+    "P09 Owner authorization remains valid",
+    "No active lock/open PR conflict",
+    "HOS-232 active"
+  ],
+  "definition_of_done": [
+    "Integrated P09-A..G validation evaluator implemented",
+    "Deterministic integrated evidence reports PASS",
+    "Measured offline CI regression-performance budget passes",
+    "Strict Pyright, P09 tests, SBOM, Trivy and reproducible build remain green",
+    "Implementation PR merged",
+    "Implementation post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation PR merged and post-merge verified",
+    "FIN-P09-WH-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WH-001-01 RELEASED",
+    "P09 CANONICAL_COMPLETE",
+    "HOS-232 Done",
+    "P10 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}
