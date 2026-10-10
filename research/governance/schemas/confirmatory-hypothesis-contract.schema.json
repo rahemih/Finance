@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexus-quant.local/schemas/confirmatory-hypothesis-contract.schema.json",
+  "title": "NEXUS QUANT AR-FT Confirmatory Hypothesis Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "contract_id",
+    "candidate_id",
+    "state",
+    "builder_identity",
+    "feature_definition_hash",
+    "parameters_hash",
+    "label_definition",
+    "candidate_hypothesis",
+    "metric_family",
+    "asset_selection_methodology_version",
+    "temporal_holdout_definition",
+    "regime_taxonomy_version",
+    "decision_rule_or_calibration_procedure",
+    "confirmatory_dataset_references",
+    "confirmatory_partition_ids",
+    "frozen_at_git_sha"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "NEXUS_QUANT_ARFT_CONFIRMATORY_HYPOTHESIS_CONTRACT"},
+    "contract_id": {"type": "string", "minLength": 1},
+    "candidate_id": {"type": "string", "minLength": 1},
+    "state": {"const": "FROZEN_BEFORE_CONFIRMATORY_ACCESS"},
+    "builder_identity": {"type": "string", "minLength": 1},
+    "feature_definition_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "parameters_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "label_definition": {"type": "string", "minLength": 1},
+    "candidate_hypothesis": {"type": "string", "minLength": 1},
+    "metric_family": {"type": "string", "minLength": 1},
+    "asset_selection_methodology_version": {"type": "string", "minLength": 1},
+    "temporal_holdout_definition": {"type": "string", "minLength": 1},
+    "regime_taxonomy_version": {"type": "string", "minLength": 1},
+    "decision_rule_or_calibration_procedure": {"type": "string", "minLength": 1},
+    "confirmatory_dataset_references": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "confirmatory_partition_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "frozen_at_git_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40,64}$"
+    }
+  }
+}

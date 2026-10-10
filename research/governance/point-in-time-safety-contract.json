@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_POINT_IN_TIME_SAFETY_CONTRACT",
+  "protocol_version": "arft-research-protocol-v1",
+  "fail_closed_on_uncertainty": true,
+  "required_time_semantics": {
+    "event_time": "REQUIRED_WHERE_APPLICABLE",
+    "source_information_availability_time": "REQUIRED",
+    "provider_receive_or_ingestion_time": "REQUIRED_WHERE_AVAILABLE",
+    "feature_availability_time": "REQUIRED",
+    "decision_evaluation_time": "REQUIRED",
+    "label_horizon": "REQUIRED",
+    "timezone_clock_semantics": "REQUIRED"
+  },
+  "required_version_semantics": {
+    "dataset_snapshot_version": "REQUIRED",
+    "revision_vintage_identity": "REQUIRED_FOR_REVISED_DATA",
+    "feature_definition_version": "REQUIRED",
+    "code_git_sha": "REQUIRED"
+  },
+  "label_overlap_controls": {
+    "overlapping_label_policy": "REQUIRED",
+    "purge_policy": "CANDIDATE_SPECIFIC_OR_NOT_APPLICABLE_WITH_JUSTIFICATION",
+    "embargo_policy": "CANDIDATE_SPECIFIC_OR_NOT_APPLICABLE_WITH_JUSTIFICATION"
+  },
+  "availability_rule": "EVERY_CONSUMED_VALUE_MUST_BE_PROVABLY_AVAILABLE_BEFORE_THE_DECLARED_DECISION_CLOCK_AND_OUTCOME_HORIZON",
+  "macro_revision_rule": "USE_ONLY_THE_VINTAGE_ACTUALLY_AVAILABLE_AT_THE_RELEVANT_HISTORICAL_TIME",
+  "generic_shift_rule_sufficient": false,
+  "uncertainty_result": "BLOCKED"
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexus-quant.local/schemas/arft-evidence-envelope.schema.json",
+  "title": "NEXUS QUANT Alpha Research Fast Track Evidence Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "protocol_version",
+    "task_id",
+    "run_id",
+    "stage",
+    "candidate_id",
+    "builder_identity",
+    "evaluator_identity",
+    "code_git_sha",
+    "dataset_references",
+    "protocol_artifact_hashes",
+    "point_in_time_status",
+    "decision",
+    "metric_results",
+    "limitations",
+    "uncertainty",
+    "artifact_hashes"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "kind": {"const": "NEXUS_QUANT_ARFT_RESEARCH_EVIDENCE_ENVELOPE"},
+    "protocol_version": {"const": "arft-research-protocol-v1"},
+    "task_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "stage": {
+      "type": "string",
+      "enum": ["AR-0", "AR-1", "AR-2", "AR-3", "AR-4", "AR-5"]
+    },
+    "candidate_id": {"type": "string", "minLength": 1},
+    "builder_identity": {"type": "string", "minLength": 1},
+    "evaluator_identity": {"type": "string", "minLength": 1},
+    "code_git_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40,64}$"
+    },
+    "dataset_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["dataset_id", "version_or_hash", "access_class"],
+        "properties": {
+          "dataset_id": {"type": "string", "minLength": 1},
+          "version_or_hash": {"type": "string", "minLength": 1},
+          "access_class": {
+            "type": "string",
+            "enum": ["EXPLORATORY", "CONFIRMATORY_PROTECTED", "RETIRED_CONTAMINATED", "NOT_APPLICABLE_GOVERNANCE"]
+          }
+        }
+      }
+    },
+    "protocol_artifact_hashes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "point_in_time_status": {
+      "type": "string",
+      "enum": ["PASS", "BLOCKED", "NOT_APPLICABLE_GOVERNANCE"]
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["REJECT", "RETAIN_FOR_CONFIRMATION", "RETAIN_FOR_P17", "INVESTIGATE", "NOT_APPLICABLE_GOVERNANCE"]
+    },
+    "metric_results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "limitations": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "artifact_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    }
+  }
+}

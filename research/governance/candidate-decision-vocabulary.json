@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_CANDIDATE_DECISION_VOCABULARY",
+  "protocol_version": "arft-research-protocol-v1",
+  "allowed_decisions": [
+    "REJECT",
+    "RETAIN_FOR_CONFIRMATION",
+    "RETAIN_FOR_P17",
+    "INVESTIGATE"
+  ],
+  "stage_rules": {
+    "AR-2": ["REJECT", "RETAIN_FOR_CONFIRMATION", "INVESTIGATE"],
+    "AR-3": ["REJECT", "RETAIN_FOR_P17", "INVESTIGATE"],
+    "AR-4": ["REJECT", "RETAIN_FOR_P17", "INVESTIGATE"],
+    "AR-5": ["REJECT", "RETAIN_FOR_P17", "INVESTIGATE"]
+  },
+  "positive_research_evidence_ceiling": "RETAIN_FOR_P17",
+  "production_validation_decision": "FORBIDDEN",
+  "profitability_certification": "FORBIDDEN",
+  "buy_sell_decision": "FORBIDDEN",
+  "risk_approval": "FORBIDDEN",
+  "execution_approval": "FORBIDDEN"
+}
