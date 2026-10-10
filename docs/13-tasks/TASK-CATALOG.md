@@ -150,6 +150,8 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WD-001 | P08 | Market Structure & Price Action | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WD-001.json` | RELEASED |
 | FIN-P08-WE-001 | P08 | Volatility & Mean Reversion | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WE-001.json` | RELEASED |
 | FIN-P08-WF-001 | P08 | Breakout / Expansion | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WF-001.json` | RELEASED |
+| FIN-P08-WJ-001 | P08 | Alpha Research Fast Track Addendum | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-001.json` | RELEASED |
+| FIN-P08-WJ-002 | P08 | Alpha Research Fast Track Shared-State Reconciliation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-002.json` | RELEASED |
 
 ## Rules
 
