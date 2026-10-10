@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10B_ECONOMIC_EVENT_POLICY",
+  "allowed_event_kinds": [
+    "CENTRAL_BANK_DECISION",
+    "INFLATION",
+    "LABOR",
+    "GROWTH",
+    "ACTIVITY",
+    "TRADE",
+    "HOUSING",
+    "FISCAL",
+    "POSITIONING",
+    "ENERGY",
+    "COMMODITY",
+    "OTHER_MACRO"
+  ],
+  "allowed_statuses": [
+    "SCHEDULED",
+    "RELEASED",
+    "RESCHEDULED",
+    "CANCELLED"
+  ],
+  "iana_timezone_required": true,
+  "numeric_release_values_allowed": false,
+  "forecast_values_allowed": false,
+  "previous_values_allowed": false,
+  "production_calendar_provider": "NOT_SELECTED",
+  "direct_trade_output_allowed": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
