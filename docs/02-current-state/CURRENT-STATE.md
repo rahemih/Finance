@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
-Current Workstream: P10-C — First Release / Previous-at-Time / Revision History / IMPLEMENTATION_ACTIVE  
+Current Workstream: none — P10-C closed; P10-D READY_NOT_STARTED  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,7 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
-P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C IMPLEMENTATION_ACTIVE / P10-D..P10-H NOT_STARTED  
+P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D READY_NOT_STARTED / P10-E..P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -163,8 +163,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P10-WC-001`  
-Active lock: `LOCK-FIN-P10-WC-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4035,18 +4035,32 @@ Next:
 
 Task: `FIN-P10-WC-001`  
 Linear: `HOS-235`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WC-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#210` = MERGED  
+Initial head: `2eb2973ee42ebc4f46f3a68d7dafc7f4a942a9cb`  
+R01 final head: `1b4549640f89203f873c7e6b6076b1b3cc9c3e81`  
+Implementation merge SHA: `c18ef25f803a3a7d212cffadceed993ef2fd48ab`  
+Final PR Governance: `38059666482` = SUCCESS  
+Final PR artifact: `sha256:4bd5bddfb37a4b2dc3cfe9d4643fd9948d26d5ab544740de1ad04864d427c9df`  
+Post-merge Governance: `38059756569` = SUCCESS  
+Post-merge artifact: `sha256:8eca2e33680995812769bdfcd471ecbb0a558afdfc7667b8f8199a50e3f724dd`  
+Post-merge Branch Hygiene: `38059756591` = SUCCESS
 
-Boundary:
-- composes P10-A source identity + P10-B RELEASED event + P06-E MacroVintageStore;
-- current revision zero is first release;
-- event actual release must match current revision-zero release time;
-- current revision resolution is as-of release AND observed-at <= decision time;
-- previous-at-first-release resolves the greatest prior observation as known at first-release observed-at;
-- later previous-period revisions cannot leak backward;
-- full revision history is audit-only; replay uses as-of history;
-- forecast and surprise remain outside P10-C.
+Validation:
+- strict product typecheck: PASS;
+- P10-C anti-lookahead/revision-history tests: PASS;
+- deterministic P10-C evidence twice: PASS;
+- first release = revision zero;
+- current as-of resolution requires both release and observed-at <= decision time;
+- previous-at-first-release uses prior observation as known at first-release observed-at;
+- later previous-period revisions do not leak backward;
+- full revision history is explicitly audit-only;
+- forecast/consensus and surprise remain outside P10-C;
+- SBOM/license, Trivy and reproducible clean-source build: PASS.
+
+Repair:
+- R01 added the required governed Task Contract access scope only; product semantics unchanged.
 
 Safety:
 - production revision provider: NOT_SELECTED;
@@ -4054,3 +4068,6 @@ Safety:
 - country assumption: NONE;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Next:
+- P10-D — Macro Surprise Engine: READY_NOT_STARTED.

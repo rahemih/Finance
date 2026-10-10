@@ -2,8 +2,8 @@
 
 Task: `FIN-P10-WC-001`  
 Linear: `HOS-235`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WC-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 ## Objective
 
@@ -65,3 +65,18 @@ Credentials required: false.
 Country assumption: NONE.  
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#210` = MERGED
+- Final implementation head: `1b4549640f89203f873c7e6b6076b1b3cc9c3e81`
+- Implementation merge SHA: `c18ef25f803a3a7d212cffadceed993ef2fd48ab`
+- Final PR Governance: `38059666482` = SUCCESS
+- PR artifact: `sha256:4bd5bddfb37a4b2dc3cfe9d4643fd9948d26d5ab544740de1ad04864d427c9df`
+- Post-merge Governance: `38059756569` = SUCCESS
+- Post-merge artifact: `sha256:8eca2e33680995812769bdfcd471ecbb0a558afdfc7667b8f8199a50e3f724dd`
+- Post-merge Branch Hygiene: `38059756591` = SUCCESS
+- R01 governance contract repair: PASS
+
+P10-D becomes `READY_NOT_STARTED`.
