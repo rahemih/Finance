@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: none — P08-H closed; P08-I READY_NOT_STARTED; AR-1 READY_NOT_STARTED  
+Current Workstream: P08-I — Technical Validation Gate / IMPLEMENTATION_ACTIVE / G6 NOT_EVALUATED; AR-1 READY_NOT_STARTED  
 Previous Workstream: P08-H — Independence / Correlation Audit / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I READY_NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I IMPLEMENTATION_ACTIVE / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -161,8 +161,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P08-WI-001`  
+Active lock: `LOCK-FIN-P08-WI-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3540,3 +3540,41 @@ Next:
 - P08-I — Technical Validation Gate: READY_NOT_STARTED;
 - AR-1 — Reproducible Research Harness: READY_NOT_STARTED;
 - G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
+
+
+## P08-I — Technical Validation Gate / G6
+
+Task: `FIN-P08-WI-001`  
+Linear: `HOS-224`  
+State: IMPLEMENTATION_ACTIVE  
+Gate: `G6_TECHNICAL_VALIDATED = NOT_EVALUATED`  
+Lock: `LOCK-FIN-P08-WI-001-01` / ACQUIRED  
+Branch: `feat/FIN-P08-WI-001-technical-validation-gate`
+
+Dependency:
+- P08-A..P08-H = CANONICAL_COMPLETE;
+- AR-0 = CANONICAL_COMPLETE;
+- G5_TRUSTED_DATA = PASS;
+- canonical base = `4b1ebade6df3b649bde2b39320ad37491226df93`.
+
+Gate boundary:
+- certifies deterministic technical-family engineering baseline and anti-double-counting controls;
+- requires point-in-time/trusted-data foundation and non-executable family evidence;
+- requires breakout reference-channel leakage protection;
+- requires repeated timeframes remain related, not independent;
+- requires P08-H correlation-cluster cap and fail-closed drift handling;
+- numeric dependence remains measurement evidence only;
+- P14 retains production fusion-threshold and probability-calibration authority;
+- profitability, Risk, backtest robustness and execution are not certified by G6;
+- canonical G6 PASS is deferred until implementation merge + post-merge checks + closure reconciliation.
+
+Safety:
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED;
+- direct trade/order output: FORBIDDEN;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED.
+
+Phase boundary:
+- P09 must remain NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED after a successful G6;
+- AR-1 remains READY_NOT_STARTED and cannot bypass the P09 Human Gate.
