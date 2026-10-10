@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10C_RELEASE_HISTORY_POLICY",
+  "previous_at_time_anchor": "FIRST_RELEASE_OBSERVED_AT",
+  "as_of_rule": "RELEASE_AND_OBSERVED_AT_NOT_AFTER_DECISION_TIME",
+  "revision_rule": "ZERO_BASED_CONTIGUOUS_PER_OBSERVATION",
+  "require_released_event": true,
+  "require_event_actual_release_matches_revision_zero": true,
+  "full_history_use": "AUDIT_ONLY_NOT_REPLAY",
+  "production_revision_provider": "NOT_SELECTED",
+  "forecast_values_in_scope": false,
+  "surprise_in_scope": false,
+  "network_required": false,
+  "credentials_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
