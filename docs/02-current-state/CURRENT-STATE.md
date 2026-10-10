@@ -185,7 +185,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P09-H — Validation / Performance is IMPLEMENTATION_ACTIVE under `LOCK-FIN-P09-WH-001-01`. P09-A..P09-G remain CANONICAL_COMPLETE. P10 remains OWNER_PHASE_AUTHORIZATION_REQUIRED after P09 closure. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P09-H — Validation / Performance is CANONICAL_COMPLETE and `LOCK-FIN-P09-WH-001-01` is RELEASED. P09-A..P09-G remain CANONICAL_COMPLETE. P09 is CANONICAL_COMPLETE. P10 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
