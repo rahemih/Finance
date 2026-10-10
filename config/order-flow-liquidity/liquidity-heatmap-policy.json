@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09E_LIQUIDITY_HEATMAP_POLICY",
+  "distance_bands_bps": [100, 250, 500, 1000],
+  "max_band_count": 32,
+  "require_in_scope_liquidity": true,
+  "displayed_capacity_only": true,
+  "hidden_liquidity_inference_allowed": false,
+  "fillability_claim_allowed": false,
+  "slippage_or_market_impact_claim_allowed": false,
+  "cross_provider_aggregation_allowed": false,
+  "forex_spot_global_liquidity_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_order_flow_vendor": "NOT_SELECTED"
+}
