@@ -151,7 +151,7 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WE-001 | P08 | Volatility & Mean Reversion | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WE-001.json` | RELEASED |
 | FIN-P08-WF-001 | P08 | Breakout / Expansion | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WF-001.json` | RELEASED |
 | FIN-P08-WG-001 | P08 | Multi-Timeframe & Regime | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WG-001.json` | RELEASED |
-| FIN-P08-WH-001 | P08 | Independence / Correlation Audit | HIGH | ACTIVE | `contracts/tasks/FIN-P08-WH-001.json` | LOCK-FIN-P08-WH-001-01 / ACQUIRED |
+| FIN-P08-WH-001 | P08 | Independence / Correlation Audit | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WH-001.json` | RELEASED |
 | FIN-P08-WJ-001 | P08 | Alpha Research Fast Track Addendum | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-001.json` | RELEASED |
 | FIN-P08-WJ-002 | P08 | Alpha Research Fast Track Shared-State Reconciliation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-002.json` | RELEASED |
 | FIN-P08-WJ-003 | P08 | AR-0 Research Governance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-003.json` | RELEASED |
