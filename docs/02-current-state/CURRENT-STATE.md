@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: none — P08-G closed; P08-H READY_NOT_STARTED; AR-0 READY_NOT_STARTED  
+Current Workstream: AR-0 — Research Governance / IMPLEMENTATION_ACTIVE; P08-H READY_NOT_STARTED  
 Previous Workstream: P08-G — Multi-Timeframe & Regime / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -50,7 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H READY_NOT_STARTED / P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
-Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 READY_NOT_STARTED / AR-1..AR-5 BLOCKED_UNTIL_AR0_CANONICAL
+Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 IMPLEMENTATION_ACTIVE / AR-1..AR-5 BLOCKED_UNTIL_AR0_CANONICAL
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -161,8 +161,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P08-WJ-003`  
+Active lock: `LOCK-FIN-P08-WJ-003-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3416,7 +3416,7 @@ Canonical evidence:
 - P08-F lock release prerequisite satisfied by closure PR `#180` and main `6f23699a5c42f576dc218bc53a2b3f39ecc58882`.
 
 Adoption boundary:
-- AR-0 — Research Governance: READY_NOT_STARTED;
+- AR-0 — Research Governance: IMPLEMENTATION_ACTIVE;
 - AR-1..AR-5: BLOCKED_UNTIL_AR0_CANONICAL;
 - P08-G — Multi-Timeframe & Regime: READY_NOT_STARTED;
 - Fast Track is research-only and does not pass or substitute G6/G7/G8/G9;
@@ -3461,3 +3461,44 @@ Next:
 - P08-H — Independence / Correlation Audit: READY_NOT_STARTED;
 - AR-0 — Research Governance: READY_NOT_STARTED;
 - G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
+
+
+## AR-0 — Research Governance
+
+Task: `FIN-P08-WJ-003`  
+Linear: `HOS-222`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P08-WJ-003-01` / ACQUIRED  
+Branch: `docs/FIN-P08-WJ-003-ar0-research-governance`
+
+Dependency:
+- Alpha Research Fast Track addendum = CANONICAL_COMPLETE;
+- shared-state reconciliation = CANONICAL_COMPLETE;
+- P08-G = CANONICAL_COMPLETE;
+- canonical base = `6fb3fcc39cb9a5e8e0b7e95550b58516bce99ff9`.
+
+Governance package:
+- generic research protocol;
+- point-in-time safety contract;
+- exploratory/protected-confirmatory dataset boundaries;
+- exploratory/confirmatory split and contamination policy;
+- governed metric-family registry with unresolved thresholds TO_BE_CALIBRATED;
+- candidate decision vocabulary;
+- AR-FT evidence-envelope JSON Schema;
+- Confirmatory Hypothesis Contract JSON Schema;
+- Build-vs-Buy ADR plan for AR-1;
+- Research Validation Specialist authority validation;
+- ex-ante regime/universe selection methodology;
+- deterministic CI validation/evidence.
+
+Safety:
+- Master Roadmap remains FROZEN and unchanged;
+- G6/G7/G8/G9 ownership unchanged;
+- production validation / profitability / BUY/SELL / Risk / execution authority: FORBIDDEN;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED;
+- country assumption: NONE.
+
+Parallel boundary:
+- P08-H remains READY_NOT_STARTED while AR-0 owns shared reconciliation paths;
+- AR-1..AR-5 remain BLOCKED_UNTIL_AR0_CANONICAL.
