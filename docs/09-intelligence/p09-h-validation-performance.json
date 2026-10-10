@@ -3,12 +3,21 @@
   "kind": "NEXUS_QUANT_P09H_VALIDATION_PERFORMANCE_BASELINE",
   "task_id": "FIN-P09-WH-001",
   "linear": "HOS-232",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WH-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-H",
   "lead_agent": "A9",
-  "supporting_agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A6",
+    "A8",
+    "A10"
+  ],
   "canonical_base": "62482e254a22764473739be4da3f8a8da9cad705",
   "required_prerequisites": [
     "FIN-P09-WA-001",
@@ -29,8 +38,25 @@
   "production_provider_performance_certified": false,
   "next_phase": "P10",
   "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED",
-  "p09_phase_closure_deferred_until_post_merge_and_closure": true,
+  "p09_phase_closure_deferred_until_post_merge_and_closure": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "integrated_validation_outcome": "PASS",
+  "ci_regression_performance_outcome": "PASS",
+  "canonical_closure": {
+    "implementation_pr": 204,
+    "initial_failed_governance_run": 38053001612,
+    "repair_commit": "df8d170517c7da61ec8a5d40fd1be1cfa01dbf91",
+    "final_implementation_head": "df8d170517c7da61ec8a5d40fd1be1cfa01dbf91",
+    "implementation_merge_sha": "146cb7442ce1d78d824f13220533c75c771d6821",
+    "pr_governance_run": 38053077862,
+    "pr_artifact_sha256": "8326773f5a6842bb85dbfa3e8dc484909c91c538682401bcb6eefe2223858806",
+    "post_merge_governance_run": 38053926128,
+    "post_merge_artifact_sha256": "4bf178523f667c9e46627c599442be16675d990fe62c65272bd684edbda46542",
+    "post_merge_branch_hygiene_run": 38053926101,
+    "phase_state": "P09_CANONICAL_COMPLETE",
+    "next_phase": "P10",
+    "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  }
 }
