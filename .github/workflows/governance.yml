@@ -354,6 +354,18 @@ jobs:
           cmp build/p07h-a.json build/p07h-b.json
           sha256sum build/p07h-a.json
 
+      - name: P08 technical intelligence tests
+        run: python -m unittest discover -s tests/p08 -p 'test_*.py' -v
+
+      - name: P08-A deterministic technical foundation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/p08a_evidence.py --output build/p08a-a.json
+          python scripts/ci/p08a_evidence.py --output build/p08a-b.json
+          cmp build/p08a-a.json build/p08a-b.json
+          sha256sum build/p08a-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
