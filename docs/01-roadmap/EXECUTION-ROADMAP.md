@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P10-WA-001
+- active lock: LOCK-FIN-P10-WA-001-01
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -57,7 +57,7 @@ Phase transition:
 - AR-0 — Research Governance: CANONICAL_COMPLETE
 - AR-1 — Reproducible Research Harness: READY_NOT_STARTED
 - AR-2..AR-5: BLOCKED_BEHIND_AR1_SEQUENCE
-- P09 — Volume / Order Flow / Liquidity: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
+- P09 — Volume / Order Flow / Liquidity: CANONICAL_COMPLETE
 - P09-A — Volume / Proxy Ontology: CANONICAL_COMPLETE
 - P09-B — Trades / Buy-Sell Flow / Delta / CVD: CANONICAL_COMPLETE
 - P09-C — Volume Profile: CANONICAL_COMPLETE
@@ -66,6 +66,15 @@ Phase transition:
 - P09-F — Funding / OI / Liquidation / Crowding: CANONICAL_COMPLETE
 - P09-G — Forex Proxy Coverage Confidence: CANONICAL_COMPLETE
 - P09-H — Validation / Performance: CANONICAL_COMPLETE
+- P10 — Fundamental / Macro / Event Intelligence: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
+- P10-A — Official Source Adapters: IMPLEMENTATION_ACTIVE
+- P10-B — Economic Calendar / Event Schema: NOT_STARTED
+- P10-C — First Release / Previous-at-Time / Revision History: NOT_STARTED
+- P10-D — Macro Surprise Engine: NOT_STARTED
+- P10-E — Rates / Yields / Currency Macro: NOT_STARTED
+- P10-F — Oil / Gold / Commodity Context: NOT_STARTED
+- P10-G — Crypto Fundamental / On-Chain Context: NOT_STARTED
+- P10-H — Reliability / Latency Validation: NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE

@@ -1,0 +1,153 @@
+{
+  "task_id": "FIN-P10-WA-001",
+  "phase": "P10",
+  "workstream": "WA",
+  "objective": "Establish the governed official-first source adapter contract and canonical registry for P10 Fundamental / Macro / Event Intelligence, with explicit access/auth/licensing/vintage metadata and deterministic offline validation.",
+  "scope": [
+    "Define official-source descriptor and registry contract",
+    "Define access kinds, authentication modes and revision/vintage capability modes",
+    "Register the roadmap official-first baseline across US, Europe, Japan, global institutions, energy and precious-metals sources",
+    "Record exact official documentation/data URLs and fresh verification date",
+    "Distinguish API-capable sources from public-download and licensed-portal sources",
+    "Require HTTPS official-host endpoints",
+    "Require secret:// handles for key-required request specs and reject raw credentials",
+    "Keep production transport selection separate from source metadata",
+    "Preserve P06-E release-time / observed-at / vintage lineage compatibility",
+    "Generate deterministic offline P10-A evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Economic calendar/event schema (P10-B)",
+    "First-release/previous-at-time/revision-history implementation (P10-C)",
+    "Macro surprise computation (P10-D)",
+    "Rates/yields/currency macro feature models (P10-E)",
+    "Commodity-context models (P10-F)",
+    "Crypto/on-chain feature models (P10-G)",
+    "Reliability/latency gate (P10-H)",
+    "Provisioning API keys, paid subscriptions or production credentials",
+    "Opening production network connections",
+    "Signal probability, Risk approval or execution"
+  ],
+  "dependencies": [
+    "P09 CANONICAL_COMPLETE",
+    "P06-E Macro Vintage Model CANONICAL_COMPLETE",
+    "P07 Trusted Data CANONICAL_COMPLETE / G5 PASS",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base ddc944ad8630679afd2decc00854a4314391442d"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/03-research/**",
+    "docs/07-data/P06-E-MACRO-VINTAGE-MODEL.md",
+    "packages/**",
+    "adapters/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WA-001.json",
+    "config/fundamental-intelligence/official-source-policy.json",
+    "config/fundamental-intelligence/official-source-registry.json",
+    "packages/fundamental_intelligence/__init__.py",
+    "packages/fundamental_intelligence/source_registry.py",
+    "tests/p10/__init__.py",
+    "tests/p10/test_official_source_registry.py",
+    "scripts/ci/p10a_evidence.py",
+    "docs/09-intelligence/P10-A-OFFICIAL-SOURCE-ADAPTERS.md",
+    "docs/09-intelligence/p10-a-official-source-adapters.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "WEB_OFFICIAL_DOCS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P10 source-registry product source/tests",
+    "Every required roadmap official source is present exactly once",
+    "Every descriptor uses HTTPS official hosts only",
+    "Official-first flag is true for every canonical source",
+    "API/public-download/licensed access kind is explicit",
+    "Authentication mode is explicit and raw credentials are never accepted",
+    "FRED/ALFRED declares native vintage capability",
+    "ECB declares historical revision retrieval capability",
+    "Eurostat explicitly declares latest-only statistical dataset semantics",
+    "World Bank V2 declares no-auth access",
+    "EIA declares required API-key secret handle",
+    "IEA and licensed LBMA historical-price access remain LICENSE_REVIEW_REQUIRED",
+    "Registry identity is deterministic and content-sensitive",
+    "P10-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No raw API key/token/password committed",
+    "No live network call required by canonical tests",
+    "No paid entitlement is claimed",
+    "No provider is selected as production source",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Fresh official-source documentation revalidation dated 2026-10-10",
+    "P06-E macro-vintage compatibility",
+    "Deterministic P10-A registry evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-233 reconciliation"
+  ],
+  "rollback": "Revert P10-A source-registry contract/config/tests/evidence/CI wiring and active-state reconciliation. P09/P06/P07 canonical state remains unchanged and no production credential/network/trading state exists.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09 CANONICAL_COMPLETE",
+    "P06-E CANONICAL_COMPLETE",
+    "P07/G5 trusted-data baseline available",
+    "P10 Owner authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Official-source contract and registry implemented",
+    "Fresh official-source evidence captured",
+    "Auth/licensing/vintage semantics fail closed",
+    "Deterministic offline evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P10-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-233 Done",
+    "P10-B becomes READY_NOT_STARTED"
+  ]
+}

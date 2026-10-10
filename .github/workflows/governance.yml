@@ -519,6 +519,18 @@ jobs:
           set -euo pipefail
           PYTHONPATH=. python scripts/ci/p09h_performance.py --output build/p09h-performance.json
 
+      - name: P10 official-source adapter tests
+        run: python -m unittest discover -s tests/p10 -p 'test_*.py' -v
+
+      - name: P10-A deterministic official-source evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p10a_evidence.py --output build/p10a-a.json
+          PYTHONPATH=. python scripts/ci/p10a_evidence.py --output build/p10a-b.json
+          cmp build/p10a-a.json build/p10a-b.json
+          sha256sum build/p10a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
