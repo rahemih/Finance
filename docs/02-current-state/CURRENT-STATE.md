@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-F — Breakout / Expansion / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P08-E — Volatility & Mean Reversion / CANONICAL_COMPLETE  
+Current Workstream: none — P08-F closed; P08-G READY_NOT_STARTED  
+Previous Workstream: P08-F — Breakout / Expansion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F IMPLEMENTATION_ACTIVE / P08-G..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G READY_NOT_STARTED / P08-H..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -160,8 +160,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WF-001`  
-Active lock: `LOCK-FIN-P08-WF-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +172,7 @@ Engineering Foundation implementation: CANONICAL_COMPLETE
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-Technical intelligence implementation (P08): ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E IMPLEMENTATION_ACTIVE / G6 NOT_EVALUATED
+Technical intelligence implementation (P08): ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G READY_NOT_STARTED / G6 NOT_EVALUATED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,7 +182,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P08-E — Volatility & Mean Reversion is CANONICAL_COMPLETE. P08-F — Breakout / Expansion is IMPLEMENTATION_ACTIVE under LOCK-FIN-P08-WF-001-01. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
+P08-F — Breakout / Expansion is CANONICAL_COMPLETE. P08-G — Multi-Timeframe & Regime is READY_NOT_STARTED. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3353,8 +3353,8 @@ Next:
 
 Task: `FIN-P08-WF-001`  
 Linear: `HOS-218`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P08-WF-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Implementation branch: `feat/FIN-P08-WF-001-breakout-expansion`
 
 Dependency:
@@ -3362,14 +3362,26 @@ Dependency:
 - P08-E closure main SHA = `4d561c258789bd3495423ad2da59ac24c75bb798`;
 - G5_TRUSTED_DATA = PASS.
 
-Implementation boundary:
-- reference channel is computed only from prior bars and excludes the current bar;
-- current close beyond channel + buffer determines breakout direction;
-- current-range expansion versus prior average range is correlated confirmation context;
-- expansion can increase strength/confidence but never creates a second vote;
-- exactly one BREAKOUT TechnicalEvidence object is emitted;
+Canonical implementation:
+- prior-only reference channel excludes the current bar;
+- upward/downward completed-close breakout beyond governed buffer is deterministic;
+- range expansion remains correlated context and never creates a second independent vote;
+- exactly one BREAKOUT TechnicalEvidence object is emitted per evaluation;
 - cross-family independence remains PROVISIONAL_PENDING_P08_H;
-- P08-G through P08-I remain out of scope.
+- P08-G through P08-I remain separate.
+
+Evidence:
+- implementation PR #178 = MERGED;
+- final implementation head = `3d97b9a1f734b0bff5aa8dc2d21e57e407b5f38d`;
+- implementation merge SHA = `8a7cf93fec9c33944356c759738f5b5223eb4e01`;
+- PR Governance `38040833918` = SUCCESS;
+- PR artifact = `sha256:d297a8f28e9f9ea9b75c79efd2c6375186db1c7553f5192a7412fe9ead532eae`;
+- post-merge Governance `38040905613` = SUCCESS;
+- post-merge artifact = `sha256:061d3f5604148adaf7048ad29b215cf2f25ae9b189208dcee0b5d3b9e7e927f2`;
+- post-merge Branch Hygiene `38040905645` = SUCCESS;
+- Strict Pyright = PASS;
+- P08 tests = PASS;
+- deterministic P08-F evidence = PASS.
 
 Safety:
 - LIVE_TRADING: DISABLED;
@@ -3377,3 +3389,7 @@ Safety:
 - direct trade/order output: FORBIDDEN;
 - country assumption: NONE;
 - network/credentials: NONE REQUIRED.
+
+Next:
+- P08-G — Multi-Timeframe & Regime: READY_NOT_STARTED;
+- G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
