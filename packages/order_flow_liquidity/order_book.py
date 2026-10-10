@@ -5,7 +5,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_EVEN
 import hashlib
 import json
 from pathlib import Path
-from typing import Mapping, Sequence, cast
+from typing import Mapping, cast
 
 
 class OrderBookError(ValueError):
