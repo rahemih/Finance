@@ -83,3 +83,8 @@ AUTO_TRADING: DISABLED.
 - Post-merge Branch Hygiene: `38060633378` = SUCCESS
 
 P10-E becomes `READY_NOT_STARTED`.
+
+
+### Closure verification refresh
+
+A queued GitHub-hosted Governance run was superseded by this no-semantic-change closure evidence refresh under the workflow's per-ref `cancel-in-progress: true` policy. Product contracts, safety boundaries and canonical evidence are unchanged.
