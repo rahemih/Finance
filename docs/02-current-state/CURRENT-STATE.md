@@ -39,7 +39,7 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: none — P09 CANONICAL_COMPLETE; P10 OWNER_PHASE_AUTHORIZATION_REQUIRED  
+Current Phase: P10 — Fundamental / Macro / Event Intelligence / OWNER_PHASE_AUTHORIZATION_REQUIRED  
 Current Workstream: none — P09 closed; P10 not authorized  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
