@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P08-WC-001",
+  "phase": "P08",
+  "workstream": "WC",
+  "objective": "Implement a deterministic point-in-time Momentum Family that emits one governed family-level TechnicalEvidence object from correlated return-momentum transforms without duplicate independent votes or trade authority.",
+  "scope": [
+    "Define a governed Momentum Family policy",
+    "Validate a single-symbol single-timeframe trusted OHLCV momentum window with consistent dataset and quality lineage",
+    "Compute deterministic short-horizon and long-horizon rate-of-change",
+    "Compute deterministic horizon-normalized momentum acceleration context",
+    "Classify bullish, bearish or neutral momentum state using explicit symmetric thresholds",
+    "Emit exactly one MOMENTUM family-level TechnicalEvidence object with a single independence group",
+    "Bound strength and confidence as deterministic evidence scores rather than empirical probabilities",
+    "Generate deterministic offline P08-C evidence",
+    "Reconcile P08-C task and lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Market Structure and Price Action (P08-D)",
+    "Volatility and Mean Reversion (P08-E)",
+    "Breakout and Expansion (P08-F)",
+    "Multi-Timeframe and Regime models (P08-G)",
+    "Formal independence/correlation audit (P08-H)",
+    "G6 technical validation gate closure (P08-I)",
+    "Signal fusion, probability calibration, risk approval or execution",
+    "Broker/exchange/order integration"
+  ],
+  "dependencies": [
+    "FIN-P08-WB-001 CANONICAL_COMPLETE",
+    "P08-B closure main SHA 0cacf0c9a52d573d384afcf0f05d175a51ba0d77",
+    "G5_TRUSTED_DATA PASS",
+    "P08 phase authorization already granted",
+    "Fresh Live Guard: active task none and active lock none before P08-C activation"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/foundation.py",
+    "packages/technical_intelligence/trend.py",
+    "config/technical-intelligence/indicator-foundation-policy.json",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WC-001.json",
+    "config/technical-intelligence/momentum-family-policy.json",
+    "packages/technical_intelligence/momentum.py",
+    "tests/p08/test_momentum_family.py",
+    "scripts/ci/p08c_evidence.py",
+    "docs/08-intelligence/P08-C-MOMENTUM-FAMILY.md",
+    "docs/08-intelligence/p08-c-momentum-family.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P08 source",
+    "Monotonic rising price path produces bullish momentum evidence",
+    "Monotonic falling price path produces bearish momentum evidence",
+    "Flat path produces neutral momentum evidence",
+    "Short and long momentum metrics and evidence identity are deterministic",
+    "Mixed symbol/timeframe/dataset/quality lineage fails closed",
+    "Non-monotonic event-time windows fail closed",
+    "Insufficient history fails closed",
+    "Correlated momentum transforms emit one shared independence group and count as one confirmation",
+    "Strength/confidence remain bounded and are not represented as trade probability",
+    "P08-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No execution adapter or broker/exchange/order authority is imported",
+    "No network or credential access is required",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P08-A canonical foundation",
+    "P08-B canonical Trend Family",
+    "Deterministic P08-C momentum-family evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-213 reconciliation"
+  ],
+  "rollback": "Revert P08-C momentum module, policy, tests, evidence/CI wiring and P08-C active-state reconciliation. P08-A/B remain canonical and no trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-B CANONICAL_COMPLETE",
+    "P08-C READY_NOT_STARTED",
+    "No conflicting active task/lock/open PR"
+  ],
+  "definition_of_done": [
+    "Momentum Family implemented with one family-level evidence output",
+    "Correlated return-momentum transforms do not create duplicate independent votes",
+    "Point-in-time and lineage invariants fail closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P08-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-213 Done",
+    "P08-D becomes READY_NOT_STARTED"
+  ]
+}
