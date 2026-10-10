@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
-Current Workstream: none — P10-F closed; P10-G READY_NOT_STARTED  
+Current Workstream: P10-G — Crypto Fundamental / On-Chain Context / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,7 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
-P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G READY_NOT_STARTED / P10-H NOT_STARTED  
+P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G IMPLEMENTATION_ACTIVE / P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -4210,3 +4210,32 @@ Implementation evidence:
 
 Next:
 - P10-G — Crypto Fundamental / On-Chain Context: READY_NOT_STARTED.
+
+
+## P10-G — Crypto Fundamental / On-Chain Context
+
+Task: `FIN-P10-WG-001`  
+Linear: `HOS-240`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P10-WG-001-01` / ACQUIRED  
+Canonical base: `d96d10324e69aabb07102a0c75c524b0523f1617`
+
+Source baseline:
+- Blockscout = supplemental on-chain reference from P01-G;
+- independent validation = DIRECT_NODE_OR_SECOND_INDEXER_TBD;
+- production source mapping = NOT_SELECTED;
+- live source-capability check confirmed Ethereum mainnet chain ID 1 is discoverable; canonical tests remain offline.
+
+Scope:
+- chain/block anchored token/network fundamentals;
+- exact point-in-time resolution by observed-at decision time;
+- explicit provisional/finalized chain-view state;
+- same-height reorg views preserved rather than rewritten;
+- token total supply, holder count, transfer count and network transaction count contracts;
+- unverified exchange-wallet labels/reserve estimates forbidden;
+- no bullish/bearish, causal impact, probability, Risk or execution authority.
+
+Safety:
+- country assumption: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.

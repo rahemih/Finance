@@ -1,3 +1,14 @@
+from .crypto_onchain_context import (
+    ChainBlockAnchor,
+    CryptoMetricRule,
+    CryptoOnchainContextError,
+    CryptoOnchainPoint,
+    CryptoOnchainPolicy,
+    CryptoOnchainStore,
+    assert_no_crypto_onchain_trade_authority_fields,
+    validate_anchor,
+    validate_point,
+)
 from .commodity_context import (
     CommodityContextError,
     CommodityContextPolicy,
@@ -58,6 +69,15 @@ from .source_registry import (
 )
 
 __all__ = [
+    "ChainBlockAnchor",
+    "CryptoMetricRule",
+    "CryptoOnchainContextError",
+    "CryptoOnchainPoint",
+    "CryptoOnchainPolicy",
+    "CryptoOnchainStore",
+    "assert_no_crypto_onchain_trade_authority_fields",
+    "validate_anchor",
+    "validate_point",
     "CommodityContextError",
     "CommodityContextPolicy",
     "CommodityContextStore",

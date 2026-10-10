@@ -1,0 +1,120 @@
+{
+  "task_id": "FIN-P10-WG-001",
+  "phase": "P10",
+  "workstream": "WG",
+  "objective": "Implement deterministic chain-anchored crypto fundamental and on-chain context using the canonical Blockscout supplemental-source baseline, explicit reorg/finality provenance and no trade authority.",
+  "scope": [
+    "Chain/block anchor with chain ID, block height/hash/timestamp and observed-at time",
+    "Token/network fundamental observation contract",
+    "Point-in-time latest-as-of resolution",
+    "Prior chain-view preservation across later reorg observations",
+    "Blockscout supplemental-source identity",
+    "Explicit independent-validation requirement",
+    "Deterministic offline evidence and GitHub/Linear reconciliation"
+  ],
+  "out_of_scope": [
+    "Exchange market price/order-book/funding/OI data",
+    "Unverified exchange-wallet labels or reserve estimates",
+    "Bullish/bearish interpretation",
+    "Causal price-impact claims",
+    "Signal probability/calibration",
+    "Production on-chain provider or credentials",
+    "Risk or execution"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001..FIN-P10-WF-001 CANONICAL_COMPLETE",
+    "P01-G on-chain baseline: BLOCKSCOUT supplemental reference",
+    "P01-G independent validation: DIRECT_NODE_OR_SECOND_INDEXER_TBD",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base d96d10324e69aabb07102a0c75c524b0523f1617"
+  ],
+  "read_paths": [
+    "docs/03-research/P01-B-MARKET-DATA-PROVIDERS.md",
+    "docs/03-research/p01-g-provider-baseline-decision.json",
+    "packages/fundamental_intelligence/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WG-001.json",
+    "config/fundamental-intelligence/crypto-onchain-context-policy.json",
+    "packages/fundamental_intelligence/crypto_onchain_context.py",
+    "packages/fundamental_intelligence/__init__.py",
+    "tests/p10/test_crypto_onchain_context.py",
+    "scripts/ci/p10g_evidence.py",
+    "docs/09-intelligence/P10-G-CRYPTO-FUNDAMENTAL-ONCHAIN-CONTEXT.md",
+    "docs/09-intelligence/p10-g-crypto-fundamental-onchain-context.json",
+    ".github/workflows/governance.yml",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear", "Blockscout Blockchain Data"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Chain ID/hash/timestamps/finality fail closed",
+    "Metric subject/unit mapping fails closed",
+    "Latest-as-of excludes observations not yet known",
+    "Same-height later chain view preserves prior observation for historical replay",
+    "Production provider remains NOT_SELECTED",
+    "Unverified exchange wallet labels remain forbidden",
+    "No trade direction/probability/causal/Risk/execution authority fields",
+    "Deterministic evidence byte-identical twice"
+  ],
+  "security_tests": [
+    "No network or credentials required by canonical tests",
+    "No production source selected",
+    "No execution adapter import",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P01-G on-chain source baseline",
+    "Blockscout live capability validation for Ethereum chain identity",
+    "Deterministic P10-G evidence",
+    "Implementation PR Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-240 reconciliation"
+  ],
+  "rollback": "Revert P10-G files and state; P10-A..F remain canonical and trading state is unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A..F CANONICAL_COMPLETE",
+    "P10-F lock RELEASED",
+    "P10 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Chain-anchored contracts implemented",
+    "Reorg/as-of/source invariants enforced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge checks pass",
+    "Closure merged",
+    "FIN-P10-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "HOS-240 Done",
+    "P10-H READY_NOT_STARTED"
+  ]
+}

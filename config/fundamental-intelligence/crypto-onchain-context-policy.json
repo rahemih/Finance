@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10G_CRYPTO_ONCHAIN_CONTEXT_POLICY",
+  "supplemental_source_id": "BLOCKSCOUT",
+  "source_class": "ONCHAIN_INDEXER",
+  "independent_validation": "DIRECT_NODE_OR_SECOND_INDEXER_TBD",
+  "production_source_mapping": "NOT_SELECTED",
+  "allowed_finality_states": ["PROVISIONAL", "FINALIZED"],
+  "metric_rules": [
+    {
+      "metric_kind": "TOKEN_TOTAL_SUPPLY",
+      "subject_kind": "TOKEN",
+      "allowed_units": ["RAW_BASE_UNITS"]
+    },
+    {
+      "metric_kind": "TOKEN_HOLDER_COUNT",
+      "subject_kind": "TOKEN",
+      "allowed_units": ["COUNT"]
+    },
+    {
+      "metric_kind": "TOKEN_TRANSFER_COUNT",
+      "subject_kind": "TOKEN",
+      "allowed_units": ["COUNT"]
+    },
+    {
+      "metric_kind": "NETWORK_TRANSACTION_COUNT",
+      "subject_kind": "NETWORK",
+      "allowed_units": ["COUNT"]
+    }
+  ],
+  "latest_as_of_rule": "LATEST_OBSERVED_CHAIN_VIEW_NOT_AFTER_DECISION_TIME",
+  "reorg_rule": "PRESERVE_PRIOR_CHAIN_VIEW_AND_RECORD_LATER_BLOCK_HASH_AS_NEW_OBSERVATION",
+  "unverified_exchange_wallet_labels_allowed": false,
+  "market_direction_interpretation_allowed": false,
+  "causal_market_impact_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "network_required": false,
+  "credentials_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
