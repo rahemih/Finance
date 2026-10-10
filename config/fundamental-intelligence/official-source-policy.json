@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10A_OFFICIAL_SOURCE_POLICY",
+  "required_source_ids": [
+    "FRED_ALFRED",
+    "BLS",
+    "BEA",
+    "CFTC",
+    "ECB",
+    "EUROSTAT",
+    "BOE",
+    "BOJ",
+    "BIS",
+    "IMF",
+    "WORLD_BANK",
+    "EIA",
+    "OPEC",
+    "IEA",
+    "WGC",
+    "LBMA"
+  ],
+  "allowed_access_kinds": [
+    "REST_API",
+    "SDMX_API",
+    "PUBLIC_DOWNLOAD",
+    "OFFICIAL_PORTAL",
+    "LICENSED_PORTAL"
+  ],
+  "allowed_auth_modes": [
+    "NONE",
+    "API_KEY_REQUIRED",
+    "REGISTRATION_OPTIONAL",
+    "PORTAL_ACCOUNT_OR_REVALIDATION",
+    "LICENSE_REVIEW_REQUIRED"
+  ],
+  "allowed_revision_modes": [
+    "NATIVE_VINTAGE",
+    "HISTORY_QUERY",
+    "LATEST_WITH_REVISIONS_NO_NATIVE_VINTAGE",
+    "LATEST_ONLY",
+    "PUBLICATION_SNAPSHOT",
+    "LICENSED_HISTORY"
+  ],
+  "official_first_required": true,
+  "https_required": true,
+  "secret_handle_prefix": "secret://",
+  "raw_secret_allowed": false,
+  "production_source_selection": "NOT_SELECTED",
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
