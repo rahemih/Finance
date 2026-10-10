@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-G — Multi-Timeframe & Regime / IMPLEMENTATION_ACTIVE; AR-0 READY_NOT_STARTED  
-Previous Workstream: P08-F — Breakout / Expansion / CANONICAL_COMPLETE  
+Current Workstream: none — P08-G closed; P08-H READY_NOT_STARTED; AR-0 READY_NOT_STARTED  
+Previous Workstream: P08-G — Multi-Timeframe & Regime / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G IMPLEMENTATION_ACTIVE / P08-H..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H READY_NOT_STARTED / P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 READY_NOT_STARTED / AR-1..AR-5 BLOCKED_UNTIL_AR0_CANONICAL
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -161,8 +161,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WG-001`  
-Active lock: `LOCK-FIN-P08-WG-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3392,7 +3392,7 @@ Safety:
 - network/credentials: NONE REQUIRED.
 
 Next:
-- P08-G — Multi-Timeframe & Regime: IMPLEMENTATION_ACTIVE;
+- P08-G — Multi-Timeframe & Regime: CANONICAL_COMPLETE;
 - G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
 
 
@@ -3429,34 +3429,35 @@ Adoption boundary:
 
 Task: `FIN-P08-WG-001`  
 Linear: `HOS-221`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P08-WG-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P08-WG-001-multi-timeframe-regime`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#182` = MERGED  
+Final implementation head: `c74fdfec54e151a5cb118d0ef9364a526884be25`  
+Implementation merge SHA: `860c4b4ed05938b05a7eb6e67edf52c1b4c60e6a`  
+PR Governance: `38043070756` = SUCCESS  
+PR artifact: `sha256:5998e726a5f7f9a3c1adf22bd20758ad91c9e88aba8e66972b28b590993dc16a`  
+Post-merge Governance: `38043140519` = SUCCESS  
+Post-merge artifact: `sha256:806691516a802e7a0e81654b7c0ac43f3d095690c37435953fc4af230aa19d9a`  
+Post-merge Branch Hygiene: `38043140522` = SUCCESS
 
-Dependency:
-- FIN-P08-WF-001 = CANONICAL_COMPLETE;
-- Alpha Research Fast Track shared-state reconciliation = CANONICAL_COMPLETE;
-- canonical base = `bd6b2611d899c853a09de280307d97eb5aaf97fe`;
-- G5_TRUSTED_DATA = PASS.
-
-Implementation boundary:
-- consumes TREND TechnicalEvidence only;
-- unique timeframes share one evaluation as-of clock, method definition and trusted lineage;
-- emits exactly one REGIME TechnicalEvidence object;
-- multiple timeframes of the same method are RELATED_NOT_INDEPENDENT;
-- aligned bullish/bearish states may carry direction;
-- TRANSITION / CONFLICT / NEUTRAL remain direction zero;
-- aligned confidence is limited by the weakest constituent timeframe;
+Validation:
+- Strict Pyright: PASS;
+- P08 technical-intelligence tests: PASS;
+- deterministic P08-G evidence twice: PASS;
+- multiple timeframes of the same Trend method remain RELATED_NOT_INDEPENDENT;
+- one REGIME evidence object represents multi-timeframe compatibility;
+- aligned confidence is capped by the weakest constituent timeframe;
+- TRANSITION / CONFLICT / NEUTRAL remain non-directional;
 - cross-family independence remains PROVISIONAL_PENDING_P08_H;
-- P08-H/P08-I remain out of scope.
+- no direct trade/order or probability authority introduced.
 
 Safety:
-- LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED;
-- direct trade/order output: FORBIDDEN;
-- trade probability / risk approval: FORBIDDEN;
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED.
+- network/credentials: NONE REQUIRED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
-Parallel boundary:
-- AR-0 remains READY_NOT_STARTED while P08-G owns shared reconciliation paths.
+Next:
+- P08-H — Independence / Correlation Audit: READY_NOT_STARTED;
+- AR-0 — Research Governance: READY_NOT_STARTED;
+- G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
