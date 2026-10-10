@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08F_BREAKOUT_EXPANSION_BASELINE",
   "task_id": "FIN-P08-WF-001",
   "linear": "HOS-218",
-  "lock": "LOCK-FIN-P08-WF-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "family": "BREAKOUT",
   "independence_group": "range-breakout-expansion",
   "expansion_vote_semantics": "CORRELATED_CONTEXT_NOT_SECOND_VOTE",
@@ -15,5 +15,20 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 178,
+    "final_head": "3d97b9a1f734b0bff5aa8dc2d21e57e407b5f38d",
+    "implementation_merge_sha": "8a7cf93fec9c33944356c759738f5b5223eb4e01",
+    "pr_governance_run": 38040833918,
+    "pr_artifact_sha256": "d297a8f28e9f9ea9b75c79efd2c6375186db1c7553f5192a7412fe9ead532eae",
+    "post_merge_governance_run": 38040905613,
+    "post_merge_artifact_sha256": "061d3f5604148adaf7048ad29b215cf2f25ae9b189208dcee0b5d3b9e7e927f2",
+    "post_merge_branch_hygiene_run": 38040905645,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-G READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }
