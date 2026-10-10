@@ -170,7 +170,7 @@ This catalog is the canonical index of governed work.
 | FIN-P10-WC-001 | P10 | First Release / Previous-at-Time / Revision History | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WC-001.json` | RELEASED |
 | FIN-P10-WD-001 | P10 | Macro Surprise Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WD-001.json` | RELEASED |
 | FIN-P10-WE-001 | P10 | Rates / Yields / Currency Macro | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WE-001.json` | RELEASED |
-| FIN-P10-WF-001 | P10 | Oil / Gold / Commodity Context | HIGH | ACTIVE | `contracts/tasks/FIN-P10-WF-001.json` | LOCK-FIN-P10-WF-001-01 / ACQUIRED |
+| FIN-P10-WF-001 | P10 | Oil / Gold / Commodity Context | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WF-001.json` | RELEASED |
 
 ## Rules
 
