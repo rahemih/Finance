@@ -375,6 +375,15 @@ jobs:
           cmp build/p08b-a.json build/p08b-b.json
           sha256sum build/p08b-a.json
 
+      - name: P08-C deterministic momentum family evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p08c_evidence.py --output build/p08c-a.json
+          PYTHONPATH=. python scripts/ci/p08c_evidence.py --output build/p08c-b.json
+          cmp build/p08c-a.json build/p08c-b.json
+          sha256sum build/p08c-a.json
+
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
