@@ -39,10 +39,12 @@ Canonical completion:
 
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
-- active governed task: none
-- active lock: none
+- P08 — Technical Intelligence: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
+- active governed task: FIN-P08-WA-001
+- active lock: LOCK-FIN-P08-WA-001-01
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H = CANONICAL_COMPLETE
-- P08 — Technical Intelligence: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P08-A — Technical Feature / Indicator Foundation: IMPLEMENTATION_ACTIVE
+- P08-B..P08-I: NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -74,6 +76,17 @@ P07 canonical boundary:
 - P07-F — Quarantine / Fail-Closed Routing: CANONICAL_COMPLETE
 - P07-G — Quality Dashboards / SLOs: CANONICAL_COMPLETE
 - P07-H — Trusted-Data Gate / G5: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
+
+P08 active boundary:
+- P08-A — Technical Feature / Indicator Foundation: IMPLEMENTATION_ACTIVE
+- P08-B — Trend Family: NOT_STARTED
+- P08-C — Momentum Family: NOT_STARTED
+- P08-D — Market Structure & Price Action: NOT_STARTED
+- P08-E — Volatility & Mean Reversion: NOT_STARTED
+- P08-F — Breakout / Expansion: NOT_STARTED
+- P08-G — Multi-Timeframe & Regime: NOT_STARTED
+- P08-H — Independence / Correlation Audit: NOT_STARTED
+- P08-I — Technical Validation Gate / G6: NOT_STARTED
 
 ---
 

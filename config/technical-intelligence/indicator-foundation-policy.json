@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08A_INDICATOR_FOUNDATION_POLICY",
+  "allowed_families": [
+    "TREND",
+    "MOMENTUM",
+    "MARKET_STRUCTURE",
+    "PRICE_ACTION",
+    "VOLATILITY",
+    "MEAN_REVERSION",
+    "BREAKOUT",
+    "REGIME"
+  ],
+  "allowed_directions": [-1, 0, 1],
+  "max_lookback_bars": 4096,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "independent_confirmation_requires_unique_group": true,
+  "point_in_time_required": true,
+  "trusted_data_required": true,
+  "direct_trade_output_allowed": false,
+  "production_technical_intelligence_vendor": "NOT_SELECTED"
+}
