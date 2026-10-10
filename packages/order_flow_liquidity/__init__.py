@@ -9,6 +9,14 @@ from .derivatives_crowding import (
     build_crowding_evidence,
     validate_derivatives_observation,
 )
+from .forex_proxy_coverage import (
+    ForexProxyCoverageAssessment,
+    ForexProxyCoverageError,
+    ForexProxyCoverageInputs,
+    ForexProxyCoveragePolicy,
+    assert_no_global_share_or_trade_authority_fields,
+    assess_forex_proxy_coverage,
+)
 from .liquidity_heatmap import (
     LiquidityHeatmapBand,
     LiquidityHeatmapError,
@@ -64,6 +72,10 @@ __all__ = [
     "DerivativesCrowdingPolicy",
     "DerivativesObservation",
     "FlowSnapshot",
+    "ForexProxyCoverageAssessment",
+    "ForexProxyCoverageError",
+    "ForexProxyCoverageInputs",
+    "ForexProxyCoveragePolicy",
     "LiquidityHeatmapBand",
     "LiquidityHeatmapError",
     "LiquidityHeatmapPolicy",
@@ -85,10 +97,12 @@ __all__ = [
     "VolumeOntologyError",
     "VolumeProxyPolicy",
     "assert_no_crowding_trade_authority_fields",
+    "assert_no_global_share_or_trade_authority_fields",
     "assert_no_heatmap_execution_authority_fields",
     "assert_no_order_book_trade_authority_fields",
     "assert_no_profile_trade_authority_fields",
     "assert_no_trade_authority_fields",
+    "assess_forex_proxy_coverage",
     "build_crowding_evidence",
     "build_flow_snapshot",
     "build_liquidity_heatmap",
