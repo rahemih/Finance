@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WJ-003`  
 Linear: `HOS-222`  
-Lock: `LOCK-FIN-P08-WJ-003-01`  
-State: IMPLEMENTATION_ACTIVE  
+Lock: RELEASED  
+State: CANONICAL_COMPLETE  
 Protocol: `arft-research-protocol-v1`
 
 ## Objective
@@ -180,3 +180,21 @@ AR-0 may close only when:
 - A10 review is represented by the deterministic evidence package and canonical governance checks.
 
 After canonical closure, AR-1 becomes READY_NOT_STARTED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#184` = MERGED
+- Final implementation head: `40a5db1350cf8163f9194165235f2361b48becfb`
+- Implementation merge SHA: `604699377faad33599359fa97d2895808ab56a82`
+- PR Governance: `38043790412` = SUCCESS
+- PR artifact: `sha256:ea88537f24e76ac10cc8da37e9812c7460ff7d35ce31b9b10215e74dd32974f9`
+- Post-merge Governance: `38044124825` = SUCCESS
+- Post-merge artifact: `sha256:5d991dec926d57eabfe4a6fff46dc06f6127c475b74e1786c18288c785336a26`
+- Post-merge Branch Hygiene: `38044124795` = SUCCESS
+- AR-0 deterministic research-governance evidence twice: PASS
+- Research Validation Specialist authority validation: PASS
+- unsupported numeric thresholds remain `TO_BE_CALIBRATED`
+- Master Roadmap v2.0 remains FROZEN and unchanged
+
+AR-1 — Reproducible Research Harness is READY_NOT_STARTED. P08-H — Independence / Correlation Audit remains READY_NOT_STARTED under the canonical P08 path.
