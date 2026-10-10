@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
-Current Workstream: P10-B — Economic Calendar / Event Schema / IMPLEMENTATION_ACTIVE  
+Current Workstream: none — P10-B closed; P10-C READY_NOT_STARTED  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,7 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
-P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B IMPLEMENTATION_ACTIVE / P10-C..P10-H NOT_STARTED  
+P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C READY_NOT_STARTED / P10-D..P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -163,8 +163,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P10-WB-001`  
-Active lock: `LOCK-FIN-P10-WB-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3994,22 +3994,38 @@ Next:
 
 Task: `FIN-P10-WB-001`  
 Linear: `HOS-234`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WB-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#208` = MERGED  
+Initial head: `06bb055971866ae6be50db246e267586640ac370`  
+R01 final head: `1d06a79d82b53defe7a1ba29def6973c6200d158`  
+Implementation merge SHA: `e4a68752501e5394c4bc33f9747dcc7b40fef419`  
+Final PR Governance: `38058992238` = SUCCESS  
+Final PR artifact: `sha256:f30b9ef5b55c02a24e3621ced981223f29d6d8935189f2d78fe30d0def37f7be`  
+Post-merge Governance: `38059073925` = SUCCESS  
+Post-merge artifact: `sha256:0761d1b589406182394b87bef8d5b1f33b241c8c410ae1f6a2536d0486c968c7`  
+Post-merge Branch Hygiene: `38059073919` = SUCCESS
 
-Boundary:
-- canonical P10-A source IDs only;
-- explicit scheduled vs actual release time;
-- IANA timezone + epoch-nanosecond machine time;
-- SCHEDULED / RELEASED / RESCHEDULED / CANCELLED lifecycle is fail-closed;
-- actual release time may never be after calendar observed-at;
-- actual/forecast/previous numeric values are forbidden in P10-B;
-- revision history belongs to P10-C; surprise belongs to P10-D;
-- deterministic dataset and quality provenance required;
-- no network, credentials, trade probability, Risk or execution authority.
+Validation:
+- strict product typecheck: PASS;
+- P10-B event-schema tests: PASS;
+- deterministic P10-B evidence twice: PASS after R01;
+- lifecycle/time/source/provenance guards: PASS;
+- SCHEDULED/RELEASED/RESCHEDULED/CANCELLED semantics are fail-closed;
+- IANA timezone validation uses canonical zone identifiers;
+- actual/forecast/previous values remain outside P10-B;
+- release revision history remains P10-C scope; surprise remains P10-D scope;
+- SBOM/license, Trivy and reproducible clean-source build: PASS.
+
+Repair:
+- R01 replaced invalid `Europe/Frankfurt` fixture with canonical IANA `Europe/Berlin`; schema validation was not weakened.
 
 Safety:
 - production calendar provider: NOT_SELECTED;
+- canonical tests require no network or credentials;
 - country assumption: NONE;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Next:
+- P10-C — First Release / Previous-at-Time / Revision History: READY_NOT_STARTED.
