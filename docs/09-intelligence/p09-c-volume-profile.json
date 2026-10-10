@@ -3,12 +3,21 @@
   "kind": "NEXUS_QUANT_P09C_VOLUME_PROFILE_BASELINE",
   "task_id": "FIN-P09-WC-001",
   "linear": "HOS-227",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WC-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-C",
   "lead_agent": "A4",
-  "supporting_agents": ["A0", "A1", "A2", "A3", "A6", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "canonical_base": "afd05df60ca8302c4994e50ad4ab43da40210c93",
   "input_contract": "P09-B TradePrint only",
   "bucket_convention": "floor((price-origin)/bucket_size), lower-inclusive upper-exclusive",
@@ -22,5 +31,16 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "canonical_closure": {
+    "implementation_pr": 194,
+    "final_implementation_head": "25c6e6f3d32dd6db23809ed6733721db8cea0282",
+    "implementation_merge_sha": "3588ecd17de4d7ea72441b2d0ca43fe30d0d6cca",
+    "pr_governance_run": 38049527288,
+    "pr_artifact_sha256": "e0093f007708489985b69093f87957b9a255009b148825794afcfc0bcde7c89f",
+    "post_merge_governance_run": 38049598075,
+    "post_merge_artifact_sha256": "2958f034658d10f4dbf89b29339aaca16ca3a2578dae364c51578a7a0a618551",
+    "post_merge_branch_hygiene_run": 38049598047,
+    "next_workstream": "P09-D_READY_NOT_STARTED"
+  }
 }
