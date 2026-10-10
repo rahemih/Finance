@@ -402,15 +402,6 @@ jobs:
           cmp build/p08e-a.json build/p08e-b.json
           sha256sum build/p08e-a.json
 
-      - name: P08-E deterministic volatility mean reversion evidence twice
-        shell: bash
-        run: |
-          set -euo pipefail
-          PYTHONPATH=. python scripts/ci/p08e_evidence.py --output build/p08e-a.json
-          PYTHONPATH=. python scripts/ci/p08e_evidence.py --output build/p08e-b.json
-          cmp build/p08e-a.json build/p08e-b.json
-          sha256sum build/p08e-a.json
-
       - name: Deterministic test-harness evidence twice
         shell: bash
         run: |
