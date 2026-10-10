@@ -4,7 +4,7 @@ from dataclasses import dataclass, fields, replace
 import hashlib
 import json
 from pathlib import Path
-from typing import Mapping, Sequence, cast
+from typing import Mapping, cast
 from urllib.parse import urlparse
 
 
