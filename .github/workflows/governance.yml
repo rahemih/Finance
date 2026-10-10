@@ -429,6 +429,15 @@ jobs:
           cmp build/p08h-a.json build/p08h-b.json
           sha256sum build/p08h-a.json
 
+      - name: P08-I deterministic technical validation gate evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p08i_evidence.py --output build/p08i-a.json
+          PYTHONPATH=. python scripts/ci/p08i_evidence.py --output build/p08i-b.json
+          cmp build/p08i-a.json build/p08i-b.json
+          sha256sum build/p08i-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
