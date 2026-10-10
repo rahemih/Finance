@@ -124,5 +124,12 @@
     "Lock released",
     "HOS-235 Done",
     "P10-D READY_NOT_STARTED"
+  ],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
   ]
 }
