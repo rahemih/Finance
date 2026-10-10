@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08H_INDEPENDENCE_CORRELATION_AUDIT_POLICY",
+  "cluster_vote_cap": 1,
+  "unknown_family_behavior": "FAIL_CLOSED",
+  "unexpected_independence_group_behavior": "FAIL_CLOSED",
+  "numeric_dependence_decision_semantics": "MEASURED_NOT_THRESHOLD_CLASSIFIED",
+  "numeric_dependence_threshold": "TO_BE_CALIBRATED_BY_GOVERNED_EMPIRICAL_EVIDENCE",
+  "production_fusion_threshold_owner": "P14",
+  "families": [
+    {
+      "family": "TREND",
+      "expected_independence_group": "price-path-trend",
+      "correlation_cluster": "directional-trend-regime",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    },
+    {
+      "family": "REGIME",
+      "expected_independence_group": "trend-multitimeframe-regime",
+      "correlation_cluster": "directional-trend-regime",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DERIVED_DIRECTIONAL"
+    },
+    {
+      "family": "MOMENTUM",
+      "expected_independence_group": "return-momentum",
+      "correlation_cluster": "return-momentum",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    },
+    {
+      "family": "MARKET_STRUCTURE",
+      "expected_independence_group": "swing-structure",
+      "correlation_cluster": "price-structure-breakout",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    },
+    {
+      "family": "PRICE_ACTION",
+      "expected_independence_group": "candle-price-action",
+      "correlation_cluster": "price-structure-breakout",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    },
+    {
+      "family": "BREAKOUT",
+      "expected_independence_group": "range-breakout-expansion",
+      "correlation_cluster": "price-structure-breakout",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    },
+    {
+      "family": "VOLATILITY",
+      "expected_independence_group": "range-volatility",
+      "correlation_cluster": "range-volatility-context",
+      "directional_vote_eligible": false,
+      "relationship_semantics": "CONTEXT_ONLY"
+    },
+    {
+      "family": "MEAN_REVERSION",
+      "expected_independence_group": "price-deviation-mean-reversion",
+      "correlation_cluster": "mean-reversion",
+      "directional_vote_eligible": true,
+      "relationship_semantics": "DIRECTIONAL"
+    }
+  ],
+  "explicit_pairwise_relationships": [
+    {
+      "family_a": "TREND",
+      "family_b": "REGIME",
+      "relationship": "CLUSTERED_RELATED",
+      "basis": "REGIME_IS_DERIVED_FROM_MULTI_TIMEFRAME_TREND"
+    },
+    {
+      "family_a": "MARKET_STRUCTURE",
+      "family_b": "PRICE_ACTION",
+      "relationship": "CLUSTERED_RELATED",
+      "basis": "SHARED_LOCAL_PRICE_PATH_AND_CANDLE_GEOMETRY"
+    },
+    {
+      "family_a": "MARKET_STRUCTURE",
+      "family_b": "BREAKOUT",
+      "relationship": "CLUSTERED_RELATED",
+      "basis": "SHARED_PRIOR_EXTREMA_AND_BREAK_CONTEXT"
+    },
+    {
+      "family_a": "PRICE_ACTION",
+      "family_b": "BREAKOUT",
+      "relationship": "CLUSTERED_RELATED",
+      "basis": "SHARED_CURRENT_CANDLE_RANGE_CLOSE_AND_BREAK_CONTEXT"
+    },
+    {
+      "family_a": "VOLATILITY",
+      "family_b": "BREAKOUT",
+      "relationship": "CONTEXT_RELATED",
+      "basis": "SHARED_RANGE_EXPANSION_CONTEXT_BUT_VOLATILITY_IS_NON_DIRECTIONAL"
+    }
+  ],
+  "score_semantics": "INDEPENDENCE_AUDIT_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}

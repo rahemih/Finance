@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P08-WH-001",
+  "phase": "P08",
+  "workstream": "WH",
+  "objective": "Implement the canonical technical-family independence/correlation audit so known related transforms are cluster-capped, numeric dependence is measured without arbitrary universal thresholds, and unknown or drifting family contracts fail closed.",
+  "scope": [
+    "Define governed family-to-correlation-cluster registry for all P08 technical families",
+    "Validate expected family and independence_group mappings",
+    "Define explicit structural/direct dependency relationships",
+    "Count directional confirmations by unique correlation cluster rather than raw family/timeframe count",
+    "Keep REGIME related to TREND so it cannot add a second independent vote",
+    "Conservatively cluster MARKET_STRUCTURE, PRICE_ACTION and BREAKOUT",
+    "Keep VOLATILITY context-neutral and ineligible for directional confirmation counting",
+    "Measure deterministic pairwise Pearson and Spearman dependence without threshold-classifying the numeric result",
+    "Fail closed on unknown families, unexpected independence groups and invalid context-family direction",
+    "Generate deterministic P08-H audit evidence",
+    "Reconcile P08-H task and lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Choosing production fusion weights or minimum confirmation thresholds",
+    "Hard-coding universal Pearson/Spearman cutoffs",
+    "P08-I technical validation gate decision",
+    "P14 signal fusion and probability calibration",
+    "P17 strategy/backtest validation",
+    "Trade probability, BUY/SELL output, risk approval or execution",
+    "AR-1 reproducible research harness implementation"
+  ],
+  "dependencies": [
+    "P08-A through P08-G CANONICAL_COMPLETE",
+    "AR-0 CANONICAL_COMPLETE",
+    "G5_TRUSTED_DATA PASS",
+    "Canonical intelligence/signal architecture and ADR-0009"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/foundation.py",
+    "config/technical-intelligence/*-policy.json",
+    "docs/04-architecture/INTELLIGENCE-SIGNAL-ARCHITECTURE.md",
+    "docs/04-architecture/ADR/ADR-0009-independent-evidence-fusion-calibrated-probability.md",
+    "research/governance/AR-0-RESEARCH-GOVERNANCE.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WH-001.json",
+    "config/technical-intelligence/independence-correlation-audit-policy.json",
+    "packages/technical_intelligence/independence_correlation.py",
+    "tests/p08/test_independence_correlation.py",
+    "scripts/ci/p08h_evidence.py",
+    "docs/08-intelligence/P08-H-INDEPENDENCE-CORRELATION-AUDIT.md",
+    "docs/08-intelligence/p08-h-independence-correlation-audit.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P08 tests pass",
+    "TREND plus REGIME count as one independent directional cluster",
+    "MARKET_STRUCTURE plus PRICE_ACTION plus BREAKOUT count as one structural cluster",
+    "VOLATILITY never contributes a directional confirmation",
+    "Unknown family or unexpected independence_group fails closed",
+    "Context-only family with directional output fails closed",
+    "Pairwise relationship audit is symmetric and deterministic",
+    "Pearson/Spearman measurements are deterministic and are not threshold-classified",
+    "Zero-variance dependence is reported undefined rather than fabricated",
+    "Canonical family-policy independence groups match the P08-H registry",
+    "P08-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange/order or execution imports",
+    "No network or credential access",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Canonical P08-B through P08-G family policies",
+    "P02-D intelligence/signal anti-double-counting architecture",
+    "ADR-0009 independence-group and cluster-cap requirements",
+    "Deterministic P08-H audit evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-223 reconciliation"
+  ],
+  "rollback": "Revert P08-H policy, audit engine, tests, CI/evidence and shared-state reconciliation. P08-A through P08-G and AR-0 remain canonical; P08-H returns to READY_NOT_STARTED.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-G CANONICAL_COMPLETE",
+    "AR-0 CANONICAL_COMPLETE",
+    "No conflicting open PR or shared-writer lock"
+  ],
+  "definition_of_done": [
+    "All technical families are registered with expected independence groups and conservative correlation clusters",
+    "Known direct/structural dependencies are cluster-capped",
+    "Numeric correlation remains measurement evidence rather than arbitrary classification",
+    "Unknown/drifting contracts fail closed",
+    "Deterministic audit evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P08-WH-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-223 Done",
+    "P08-I becomes READY_NOT_STARTED"
+  ]
+}

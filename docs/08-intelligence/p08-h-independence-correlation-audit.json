@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08H_INDEPENDENCE_CORRELATION_AUDIT_BASELINE",
+  "task_id": "FIN-P08-WH-001",
+  "linear": "HOS-223",
+  "lock": "LOCK-FIN-P08-WH-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "cluster_vote_cap": 1,
+  "registered_directional_clusters": [
+    "directional-trend-regime",
+    "return-momentum",
+    "price-structure-breakout",
+    "mean-reversion"
+  ],
+  "context_only_clusters": [
+    "range-volatility-context"
+  ],
+  "known_clustered_relationships": [
+    "TREND<->REGIME",
+    "MARKET_STRUCTURE<->PRICE_ACTION",
+    "MARKET_STRUCTURE<->BREAKOUT",
+    "PRICE_ACTION<->BREAKOUT"
+  ],
+  "context_relationships": [
+    "VOLATILITY<->BREAKOUT"
+  ],
+  "unregistered_direct_dependency_semantics": "SEPARATE_CLUSTER_EMPIRICAL_MONITORING_REQUIRED",
+  "numeric_dependence_decision_semantics": "MEASURED_NOT_THRESHOLD_CLASSIFIED",
+  "numeric_dependence_threshold": "TO_BE_CALIBRATED_BY_GOVERNED_EMPIRICAL_EVIDENCE",
+  "production_fusion_threshold_owner": "P14",
+  "score_semantics": "INDEPENDENCE_AUDIT_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

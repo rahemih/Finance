@@ -420,6 +420,15 @@ jobs:
           cmp build/p08g-a.json build/p08g-b.json
           sha256sum build/p08g-a.json
 
+      - name: P08-H deterministic independence correlation audit evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p08h_evidence.py --output build/p08h-a.json
+          PYTHONPATH=. python scripts/ci/p08h_evidence.py --output build/p08h-b.json
+          cmp build/p08h-a.json build/p08h-b.json
+          sha256sum build/p08h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
