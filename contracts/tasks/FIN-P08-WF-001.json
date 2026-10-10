@@ -1,0 +1,123 @@
+{
+  "task_id": "FIN-P08-WF-001",
+  "phase": "P08",
+  "workstream": "WF",
+  "objective": "Implement deterministic point-in-time Breakout / Expansion evidence using a prior-only price channel, with expansion retained as correlated confirmation context rather than a second vote.",
+  "scope": [
+    "Define governed P08-F Breakout / Expansion policy",
+    "Validate a trusted single-symbol single-timeframe OHLCV window with consistent dataset and quality lineage",
+    "Build the breakout reference channel strictly from bars before the current bar",
+    "Detect upward/downward close breakouts beyond a governed channel buffer",
+    "Compute current-range expansion versus prior average candle range",
+    "Emit exactly one BREAKOUT TechnicalEvidence object per evaluation",
+    "Use expansion only as correlated strength/confidence context inside the breakout family",
+    "Keep cross-family independence PROVISIONAL_PENDING_P08_H",
+    "Bound strength and confidence as deterministic evidence scores rather than empirical probabilities",
+    "Generate deterministic offline P08-F evidence",
+    "Reconcile P08-F task and lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Multi-Timeframe and Regime models (P08-G)",
+    "Formal independence/correlation audit (P08-H)",
+    "G6 technical validation gate closure (P08-I)",
+    "Signal fusion, probability calibration, risk approval or execution",
+    "Broker/exchange/order integration"
+  ],
+  "dependencies": [
+    "FIN-P08-WE-001 CANONICAL_COMPLETE",
+    "P08-E closure main SHA 4d561c258789bd3495423ad2da59ac24c75bb798",
+    "G5_TRUSTED_DATA PASS",
+    "P08 phase authorization already granted",
+    "Fresh Live Guard: active task none and active lock none before P08-F activation"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/foundation.py",
+    "packages/technical_intelligence/volatility_mean_reversion.py",
+    "config/technical-intelligence/indicator-foundation-policy.json",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WF-001.json",
+    "config/technical-intelligence/breakout-expansion-policy.json",
+    "packages/technical_intelligence/breakout_expansion.py",
+    "tests/p08/test_breakout_expansion.py",
+    "scripts/ci/p08f_evidence.py",
+    "docs/08-intelligence/P08-F-BREAKOUT-EXPANSION.md",
+    "docs/08-intelligence/p08-f-breakout-expansion.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P08 source",
+    "Upward close beyond prior channel and buffer produces bullish BREAKOUT evidence",
+    "Downward close beyond prior channel and buffer produces bearish BREAKOUT evidence",
+    "Close inside prior channel produces neutral BREAKOUT evidence",
+    "Current bar is excluded from reference-channel construction",
+    "Expansion confirmation increases strength/confidence context but never creates a second independent vote",
+    "Breakout without expansion remains one valid breakout family event",
+    "Mixed symbol/timeframe/dataset/quality lineage fails closed",
+    "Non-monotonic event-time windows fail closed",
+    "Insufficient history fails closed",
+    "Cross-family independence remains explicitly provisional pending P08-H",
+    "P08-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No execution adapter or broker/exchange/order authority is imported",
+    "No network or credential access is required",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P08-A canonical foundation",
+    "P08-B canonical Trend Family",
+    "P08-C canonical Momentum Family",
+    "P08-D canonical Market Structure and Price Action",
+    "P08-E canonical Volatility and Mean Reversion",
+    "Deterministic P08-F breakout/expansion evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-218 reconciliation"
+  ],
+  "rollback": "Revert P08-F policy, module, tests, evidence/CI wiring and P08-F active-state reconciliation. P08-A/B/C/D/E remain canonical and no trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-E CANONICAL_COMPLETE",
+    "P08-F READY_NOT_STARTED",
+    "No conflicting active task/lock/open PR"
+  ],
+  "definition_of_done": [
+    "Breakout / Expansion family implemented with one governed evidence output",
+    "Current bar is excluded from reference-channel construction",
+    "Expansion does not create a duplicate independent vote",
+    "Point-in-time and lineage invariants fail closed",
+    "Cross-family independence is not promoted beyond PROVISIONAL_PENDING_P08_H",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P08-WF-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-218 Done",
+    "P08-G becomes READY_NOT_STARTED"
+  ]
+}

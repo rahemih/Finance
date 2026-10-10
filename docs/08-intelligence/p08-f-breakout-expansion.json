@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08F_BREAKOUT_EXPANSION_BASELINE",
+  "task_id": "FIN-P08-WF-001",
+  "linear": "HOS-218",
+  "lock": "LOCK-FIN-P08-WF-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "family": "BREAKOUT",
+  "independence_group": "range-breakout-expansion",
+  "expansion_vote_semantics": "CORRELATED_CONTEXT_NOT_SECOND_VOTE",
+  "current_bar_in_reference_channel": false,
+  "family_outputs_per_evaluation": 1,
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
