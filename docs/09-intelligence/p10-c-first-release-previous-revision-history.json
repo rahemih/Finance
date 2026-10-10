@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P10C_RELEASE_HISTORY_BASELINE",
   "task_id": "FIN-P10-WC-001",
   "linear": "HOS-235",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P10-WC-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "workstream": "P10-C",
   "canonical_base": "020a3628d722314fb109ed2658cc750bddff520f",
   "depends_on": [
@@ -20,5 +20,19 @@
   "production_revision_provider": "NOT_SELECTED",
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "next_workstream": "P10-D_READY_NOT_STARTED",
+  "canonical_closure": {
+    "implementation_pr": 210,
+    "final_implementation_head": "1b4549640f89203f873c7e6b6076b1b3cc9c3e81",
+    "implementation_merge_sha": "c18ef25f803a3a7d212cffadceed993ef2fd48ab",
+    "pr_governance_run": 38059666482,
+    "pr_artifact_sha256": "4bd5bddfb37a4b2dc3cfe9d4643fd9948d26d5ab544740de1ad04864d427c9df",
+    "post_merge_governance_run": 38059756569,
+    "post_merge_artifact_sha256": "8eca2e33680995812769bdfcd471ecbb0a558afdfc7667b8f8199a50e3f724dd",
+    "post_merge_branch_hygiene_run": 38059756591,
+    "repairs": [
+      "R01_TASK_CONTRACT_ACCESS"
+    ]
+  }
 }
