@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08H_INDEPENDENCE_CORRELATION_AUDIT_BASELINE",
   "task_id": "FIN-P08-WH-001",
   "linear": "HOS-223",
-  "lock": "LOCK-FIN-P08-WH-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "cluster_vote_cap": 1,
   "registered_directional_clusters": [
     "directional-trend-regime",
@@ -32,5 +32,20 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 186,
+    "final_head": "a2d23b354b17a48a26f6abe448a28da8f846cc51",
+    "implementation_merge_sha": "62651b2fb351d67545e5d7037d3fb97c9f72aea7",
+    "pr_governance_run": 38044760144,
+    "pr_artifact_sha256": "6f994629520a41e435a2fd4865616185497e43ea25454993c94ec39c712512a5",
+    "post_merge_governance_run": 38044866029,
+    "post_merge_artifact_sha256": "4de59f90922b3c000af83f046a7c11540eebdacd0eb6446aa6eef4be879a7c23",
+    "post_merge_branch_hygiene_run": 38044866002,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-I READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }

@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-H — Independence / Correlation Audit / IMPLEMENTATION_ACTIVE; AR-1 READY_NOT_STARTED  
-Previous Workstream: AR-0 — Research Governance / CANONICAL_COMPLETE  
+Current Workstream: none — P08-H closed; P08-I READY_NOT_STARTED; AR-1 READY_NOT_STARTED  
+Previous Workstream: P08-H — Independence / Correlation Audit / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H IMPLEMENTATION_ACTIVE / P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I READY_NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -161,8 +161,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WH-001`  
-Active lock: `LOCK-FIN-P08-WH-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3508,32 +3508,35 @@ Next:
 
 Task: `FIN-P08-WH-001`  
 Linear: `HOS-223`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P08-WH-001-01` / ACQUIRED  
-Branch: `feat/FIN-P08-WH-001-independence-correlation-audit`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#186` = MERGED  
+Final implementation head: `a2d23b354b17a48a26f6abe448a28da8f846cc51`  
+Implementation merge SHA: `62651b2fb351d67545e5d7037d3fb97c9f72aea7`  
+PR Governance: `38044760144` = SUCCESS  
+PR artifact: `sha256:6f994629520a41e435a2fd4865616185497e43ea25454993c94ec39c712512a5`  
+Post-merge Governance: `38044866029` = SUCCESS  
+Post-merge artifact: `sha256:4de59f90922b3c000af83f046a7c11540eebdacd0eb6446aa6eef4be879a7c23`  
+Post-merge Branch Hygiene: `38044866002` = SUCCESS
 
-Dependency:
-- P08-A..P08-G = CANONICAL_COMPLETE;
-- AR-0 = CANONICAL_COMPLETE;
-- G5_TRUSTED_DATA = PASS;
-- canonical base = `80b649dc7b8c4114fd3d61128d686fdc792b82e1`.
-
-Audit boundary:
-- expected canonical independence_group for every P08 family is registered;
-- TREND + REGIME share one correlation cluster;
-- MARKET_STRUCTURE + PRICE_ACTION + BREAKOUT share one conservative structural cluster;
-- VOLATILITY is context-only and cannot add a directional vote;
-- numeric Pearson/Spearman measurements are evidence only and do not create a threshold verdict;
-- unknown family/group drift fails closed;
-- P14 retains production fusion-threshold ownership;
-- P08-I/G6 remains separate.
+Validation:
+- Strict Pyright: PASS after R01 fixed tuple typing;
+- P08 tests: PASS;
+- deterministic P08-H evidence twice: PASS;
+- TREND + REGIME cluster-capped to one independent confirmation;
+- MARKET_STRUCTURE + PRICE_ACTION + BREAKOUT cluster-capped to one independent confirmation;
+- VOLATILITY remains context-only;
+- unknown family or independence-group drift fails closed;
+- numeric Pearson/Spearman measurements remain evidence, not an uncalibrated verdict;
+- production fusion threshold ownership remains P14.
 
 Safety:
 - trade probability / BUY/SELL / Risk / execution authority: FORBIDDEN;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED;
-- country assumption: NONE;
-- network/credentials: NONE REQUIRED.
+- country assumption: NONE.
 
-Parallel boundary:
-- AR-1 remains READY_NOT_STARTED while P08-H owns shared reconciliation paths.
+Next:
+- P08-I — Technical Validation Gate: READY_NOT_STARTED;
+- AR-1 — Reproducible Research Harness: READY_NOT_STARTED;
+- G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
