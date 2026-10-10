@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08C_MOMENTUM_FAMILY_BASELINE",
   "task_id": "FIN-P08-WC-001",
   "linear": "HOS-213",
-  "lock": "LOCK-FIN-P08-WC-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "family": "MOMENTUM",
   "independence_group": "return-momentum",
   "family_outputs_per_evaluation": 1,
@@ -12,5 +12,20 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 172,
+    "final_head": "e4fbaf93eefb9c184194ab34ea15b2dca8068c6a",
+    "implementation_merge_sha": "ab9918f10d77bbc58884990afb4c57002b036938",
+    "pr_governance_run": 38036207633,
+    "pr_artifact_sha256": "61e95e548bb03e5c8297d0abad0e7b8095ea1660faf58ddbfb1acc06e4b4c0f3",
+    "post_merge_governance_run": 38036267374,
+    "post_merge_artifact_sha256": "bcd35d740b9e33571acc8df2f474431a3129695f17bfdadad87d882511301518",
+    "post_merge_branch_hygiene_run": 38036267380,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-D READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }
