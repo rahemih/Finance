@@ -477,6 +477,15 @@ jobs:
           cmp build/p09d-a.json build/p09d-b.json
           sha256sum build/p09d-a.json
 
+      - name: P09-E deterministic Liquidity Heatmap evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09e_evidence.py --output build/p09e-a.json
+          PYTHONPATH=. python scripts/ci/p09e_evidence.py --output build/p09e-b.json
+          cmp build/p09e-a.json build/p09e-b.json
+          sha256sum build/p09e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
