@@ -1,3 +1,10 @@
+from .release_history import (
+    EconomicReleaseHistory,
+    ReleaseHistoryError,
+    ReleaseHistoryPolicy,
+    ReleaseHistorySnapshot,
+    assert_no_release_history_forecast_surprise_trade_fields,
+)
 from .economic_events import (
     EconomicCalendarEvent,
     EconomicEventError,
@@ -19,6 +26,11 @@ from .source_registry import (
 )
 
 __all__ = [
+    "EconomicReleaseHistory",
+    "ReleaseHistoryError",
+    "ReleaseHistoryPolicy",
+    "ReleaseHistorySnapshot",
+    "assert_no_release_history_forecast_surprise_trade_fields",
     "EconomicCalendarEvent",
     "EconomicEventError",
     "EconomicEventPolicy",
