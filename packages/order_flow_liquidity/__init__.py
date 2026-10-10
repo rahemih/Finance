@@ -1,5 +1,13 @@
 """Volume, order-flow and liquidity intelligence foundations."""
 
+from .liquidity_heatmap import (
+    LiquidityHeatmapBand,
+    LiquidityHeatmapError,
+    LiquidityHeatmapPolicy,
+    LiquidityHeatmapSnapshot,
+    assert_no_heatmap_execution_authority_fields,
+    build_liquidity_heatmap,
+)
 from .order_book import (
     OrderBookError,
     OrderBookLevel,
@@ -43,6 +51,10 @@ from .volume_ontology import (
 __all__ = [
     "ClassifiedTrade",
     "FlowSnapshot",
+    "LiquidityHeatmapBand",
+    "LiquidityHeatmapError",
+    "LiquidityHeatmapPolicy",
+    "LiquidityHeatmapSnapshot",
     "OrderBookError",
     "OrderBookLevel",
     "OrderBookMetrics",
@@ -59,10 +71,12 @@ __all__ = [
     "VolumeProfileSnapshot",
     "VolumeOntologyError",
     "VolumeProxyPolicy",
+    "assert_no_heatmap_execution_authority_fields",
     "assert_no_order_book_trade_authority_fields",
     "assert_no_profile_trade_authority_fields",
     "assert_no_trade_authority_fields",
     "build_flow_snapshot",
+    "build_liquidity_heatmap",
     "build_volume_profile",
     "compute_order_book_metrics",
     "classify_native_aggressor",
