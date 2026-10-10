@@ -2,8 +2,8 @@
 
 Task: `FIN-P10-WD-001`  
 Linear: `HOS-236`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WD-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
 
 ## Objective
 
@@ -69,3 +69,22 @@ Network/credentials required: false.
 Country assumption: NONE.  
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#212` = MERGED
+- Final implementation head: `fcc06ab9cf8845b95d5e2cfb5af5c8770372e913`
+- Implementation merge SHA: `3a0a218bfb8d88a6e4d61e013243622cf526d50c`
+- PR Governance: `38060474867` = SUCCESS
+- PR artifact: `sha256:a78bc34d88eca8bc06ed15690d8d773eec58983822e9ae2689466ea9a2bf4087`
+- Post-merge Governance: `38060633331` = SUCCESS
+- Post-merge artifact: `sha256:0473bfa2d8e0a05f4412e450caeaaca0a2815ca5535e139436d550fac5d5fef2`
+- Post-merge Branch Hygiene: `38060633378` = SUCCESS
+
+P10-E becomes `READY_NOT_STARTED`.
+
+
+### Closure verification refresh
+
+A queued GitHub-hosted Governance run was superseded by this no-semantic-change closure evidence refresh under the workflow's per-ref `cancel-in-progress: true` policy. Product contracts, safety boundaries and canonical evidence are unchanged.

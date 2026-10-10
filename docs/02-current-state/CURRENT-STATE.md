@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
-Current Workstream: P10-D — Macro Surprise Engine / IMPLEMENTATION_ACTIVE  
+Current Workstream: none — P10-D closed; P10-E READY_NOT_STARTED  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,7 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
-P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D IMPLEMENTATION_ACTIVE / P10-E..P10-H NOT_STARTED  
+P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E READY_NOT_STARTED / P10-F..P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -163,8 +163,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P10-WD-001`  
-Active lock: `LOCK-FIN-P10-WD-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4077,18 +4077,34 @@ Next:
 
 Task: `FIN-P10-WD-001`  
 Linear: `HOS-236`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WD-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#212` = MERGED  
+Final implementation head: `fcc06ab9cf8845b95d5e2cfb5af5c8770372e913`  
+Implementation merge SHA: `3a0a218bfb8d88a6e4d61e013243622cf526d50c`  
+PR Governance: `38060474867` = SUCCESS  
+PR artifact: `sha256:a78bc34d88eca8bc06ed15690d8d773eec58983822e9ae2689466ea9a2bf4087`  
+Post-merge Governance: `38060633331` = SUCCESS  
+Post-merge artifact: `sha256:0473bfa2d8e0a05f4412e450caeaaca0a2815ca5535e139436d550fac5d5fef2`  
+Post-merge Branch Hygiene: `38060633378` = SUCCESS
 
-Boundary:
-- actual = P10-C revision-zero first release only;
-- consensus must be separately evidenced and observed strictly before release;
-- series/unit must match;
-- consensus requires method + sample size >= 2;
-- surprise = actual - consensus with Decimal arithmetic;
-- direction labels are numerical only: ABOVE_CONSENSUS / BELOW_CONSENSUS / AT_CONSENSUS;
-- later revisions cannot rewrite historical surprise;
-- no bullish/bearish interpretation, probability, Risk or execution authority.
+Validation:
+- strict product typecheck: PASS;
+- complete P10 suite through P10-D: PASS;
+- deterministic P10-D evidence twice: PASS;
+- actual value is P10-C revision-zero first release only;
+- consensus must be independently evidenced and strictly pre-release;
+- same-series / same-unit / sample-size guards: PASS;
+- raw surprise uses Decimal actual-minus-consensus;
+- later revisions cannot rewrite historical first-release surprise;
+- descriptive labels only: ABOVE_CONSENSUS / BELOW_CONSENSUS / AT_CONSENSUS;
+- no bullish/bearish, probability, Risk or execution authority;
+- SBOM/license, Trivy and reproducible clean-source build: PASS.
+
+Operational repair:
+- an initial empty closure branch was safely deleted by Branch Hygiene because it had no unique commit;
+- after Hygiene completed, the closure branch was recreated and closure evidence committed immediately;
+- no product or governance semantics were weakened.
 
 Safety:
 - production consensus provider: NOT_SELECTED;
@@ -4096,3 +4112,6 @@ Safety:
 - country assumption: NONE;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Next:
+- P10-E — Rates / Yields / Currency Macro: READY_NOT_STARTED.
