@@ -1,0 +1,123 @@
+{
+  "task_id": "FIN-P09-WG-001",
+  "phase": "P09",
+  "workstream": "WG",
+  "objective": "Implement auditable spot-FX proxy coverage-confidence assessment that preserves provider/proxy scope and never misrepresents confidence as global FX market share.",
+  "scope": [
+    "Accept governed P09-A FOREX_SPOT proxy VolumeObservation only",
+    "Preserve provider, venue, proxy kind, proxy target and coverage scope",
+    "Carry source-declared coverage confidence",
+    "Require evidence-backed provider-scope, internal-completeness and freshness confidence components",
+    "Optionally accept independent benchmark-agreement confidence with evidence digest",
+    "Compute validated proxy coverage confidence as conservative minimum of declared and evidence-backed confidence components",
+    "Keep confidence-in-proxy-coverage semantically distinct from global-market-share",
+    "Generate deterministic offline P09-G evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Global FX market-share estimation without verified denominator evidence",
+    "Native/consolidated spot-FX market-volume claims",
+    "Arbitrary weighted confidence scoring",
+    "Cross-provider proxy aggregation",
+    "Trade-success probability",
+    "Broker/exchange order placement",
+    "P09 validation/performance closure (P09-H)",
+    "Signal fusion, Risk approval or execution"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "FIN-P09-WC-001 CANONICAL_COMPLETE",
+    "FIN-P09-WD-001 CANONICAL_COMPLETE",
+    "FIN-P09-WE-001 CANONICAL_COMPLETE",
+    "FIN-P09-WF-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WF-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 127b3a452cc2c21ace3765b7dc50bdac542a5bbd"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WG-001.json",
+    "config/order-flow-liquidity/forex-proxy-coverage-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/forex_proxy_coverage.py",
+    "tests/p09/test_forex_proxy_coverage_confidence.py",
+    "scripts/ci/p09g_evidence.py",
+    "docs/09-intelligence/P09-G-FOREX-PROXY-COVERAGE-CONFIDENCE.md",
+    "docs/09-intelligence/p09-g-forex-proxy-coverage-confidence.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 Forex proxy coverage source",
+    "Assessment accepts FOREX_SPOT proxy VolumeObservation only",
+    "P09-A global/consolidated spot-FX claims remain fail-closed",
+    "Confidence component basis points are bounded to [0,10000]",
+    "Required component evidence SHA-256 digests are validated",
+    "Validated coverage confidence equals conservative minimum of declared and required components",
+    "Provided benchmark-agreement confidence participates in conservative minimum",
+    "Benchmark-required policy fails closed when benchmark evidence is absent",
+    "Assessment identity is deterministic and content-sensitive",
+    "Assessment exposes no global-market-share field or trade authority",
+    "P09-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No global FX denominator or market-share percentage is synthesized",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A/B/C/D/E/F canonical closure",
+    "Deterministic P09-G Forex proxy coverage evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-231 reconciliation"
+  ],
+  "rollback": "Revert P09-G coverage-confidence module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A..P09-F remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A..P09-F CANONICAL_COMPLETE",
+    "P09-F lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Forex proxy coverage-confidence contract implemented",
+    "Provider/proxy scope and evidence-backed confidence invariants enforced",
+    "No global-market-share fabrication or trade authority introduced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-231 Done",
+    "P09-H becomes READY_NOT_STARTED"
+  ]
+}
