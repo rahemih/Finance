@@ -406,12 +406,14 @@ class P09ValidationEvaluator:
                     "proxy_target_required",
                 )
             )
-            kinds = semantics.get("allowed_kinds")
-            kinds_valid = (
-                isinstance(kinds, list)
-                and bool(kinds)
-                and all(isinstance(kind, str) and kind.endswith("_PROXY") for kind in kinds)
-            )
+            kinds_value = semantics.get("allowed_kinds")
+            kinds_valid = False
+            if isinstance(kinds_value, list):
+                kinds = cast(list[object], kinds_value)
+                kinds_valid = bool(kinds) and all(
+                    isinstance(kind, str) and kind.endswith("_PROXY")
+                    for kind in kinds
+                )
             if not (required_false and required_true and kinds_valid):
                 self._issue(issues, "P09A_PROXY_BOUNDARY_DRIFT", document, "spot-FX proxy semantics changed")
             if raw.get("point_in_time_required") is not True or raw.get("trusted_provenance_required") is not True:
