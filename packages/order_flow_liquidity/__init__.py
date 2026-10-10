@@ -15,6 +15,14 @@ from .trade_flow import (
     classify_unknown,
     validate_trade_print,
 )
+from .volume_profile import (
+    VolumeProfileBucket,
+    VolumeProfileError,
+    VolumeProfilePolicy,
+    VolumeProfileSnapshot,
+    assert_no_profile_trade_authority_fields,
+    build_volume_profile,
+)
 from .volume_ontology import (
     VolumeObservation,
     VolumeOntologyError,
@@ -30,10 +38,16 @@ __all__ = [
     "TradeFlowPolicy",
     "TradePrint",
     "VolumeObservation",
+    "VolumeProfileBucket",
+    "VolumeProfileError",
+    "VolumeProfilePolicy",
+    "VolumeProfileSnapshot",
     "VolumeOntologyError",
     "VolumeProxyPolicy",
+    "assert_no_profile_trade_authority_fields",
     "assert_no_trade_authority_fields",
     "build_flow_snapshot",
+    "build_volume_profile",
     "classify_native_aggressor",
     "classify_quote_test",
     "classify_tick_rule",

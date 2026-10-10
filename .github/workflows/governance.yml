@@ -459,6 +459,15 @@ jobs:
           cmp build/p09b-a.json build/p09b-b.json
           sha256sum build/p09b-a.json
 
+      - name: P09-C deterministic Volume Profile evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09c_evidence.py --output build/p09c-a.json
+          PYTHONPATH=. python scripts/ci/p09c_evidence.py --output build/p09c-b.json
+          cmp build/p09c-a.json build/p09c-b.json
+          sha256sum build/p09c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

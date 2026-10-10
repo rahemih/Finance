@@ -1,0 +1,120 @@
+{
+  "task_id": "FIN-P09-WC-001",
+  "phase": "P09",
+  "workstream": "WC",
+  "objective": "Implement deterministic point-in-time Volume Profile analytics on governed actual trade prints, including price buckets, POC and deterministic value-area bounds, without converting quote/tick proxies into trade volume or introducing trading authority.",
+  "scope": [
+    "Define governed Volume Profile policy and deterministic bucket convention",
+    "Build price-bucket volume distribution from actual TradePrint inputs only",
+    "Carry provider, venue, source-kind and coverage scope from P09-B",
+    "Enforce ordered and contiguous source sequence for the reference profile",
+    "Compute deterministic Point of Control with explicit tie-break",
+    "Compute deterministic Value Area High/Low for an explicit target coverage",
+    "Fail closed on excessive sparse ranges, mixed streams, invalid bin geometry or misleading Forex coverage",
+    "Generate deterministic offline P09-C evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Quote/tick-volume proxy profiles",
+    "Order Book, spread, depth or imbalance implementation (P09-D)",
+    "Liquidity heatmap or execution-capacity models (P09-E)",
+    "Funding, Open Interest, liquidation or crowding models (P09-F)",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance closure (P09-H)",
+    "Signal fusion, calibrated trade probability, Risk approval or broker/exchange execution"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WB-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base afd05df60ca8302c4994e50ad4ab43da40210c93"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WC-001.json",
+    "config/order-flow-liquidity/volume-profile-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/volume_profile.py",
+    "tests/p09/test_volume_profile.py",
+    "scripts/ci/p09c_evidence.py",
+    "docs/09-intelligence/P09-C-VOLUME-PROFILE.md",
+    "docs/09-intelligence/p09-c-volume-profile.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 Volume Profile source",
+    "Profile input accepts governed TradePrint only",
+    "Mixed source streams fail closed",
+    "Sequence gaps and reversed event time fail closed",
+    "Bucket assignment is deterministic for decimal prices",
+    "POC is maximum-volume bucket with lowest-price tie-break",
+    "Value area expands from POC by adjacent bucket volume with deterministic lower-price tie-break",
+    "Value-area target is satisfied or fails closed",
+    "Excessive sparse bucket ranges fail closed",
+    "Spot-FX global/consolidated trade-profile claims remain forbidden through P09-B validation",
+    "Profile contracts expose no order/recommendation authority",
+    "P09-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No quote/tick proxy is transformed into a synthetic volume profile",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A and P09-B canonical closure",
+    "Deterministic P09-C Volume Profile evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-227 reconciliation"
+  ],
+  "rollback": "Revert P09-C profile module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A/B remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A CANONICAL_COMPLETE",
+    "P09-B CANONICAL_COMPLETE",
+    "P09-B lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Volume Profile implemented",
+    "POC and Value Area invariants enforced",
+    "Actual-trade-only and provider-scope boundaries enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-227 Done",
+    "P09-D becomes READY_NOT_STARTED"
+  ]
+}
