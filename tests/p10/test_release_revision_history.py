@@ -44,17 +44,20 @@ def policies()->tuple[ReleaseHistoryPolicy,EconomicEventPolicy,OfficialSourceReg
     sp=OfficialSourcePolicy.from_path(SP); sr=OfficialSourceRegistry.from_path(SR,policy=sp)
     mp=MacroVintagePolicy.from_path(MP); return rp,ep,sr,mp
 
-def history(*,event_value:EconomicCalendarEvent|None=None,vintages:tuple[MacroVintage,...]|None=None,current_observation:int=20)->EconomicReleaseHistory:
-    rp,ep,sr,mp=policies()
-    default=(
+def default_vintages()->tuple[MacroVintage,...]:
+    return (
         macro(observation=10,release=10,observed=15,revision=0,value="98.0"),
         macro(observation=10,release=90,observed=95,revision=1,value="99.0"),
         macro(observation=10,release=120,observed=125,revision=2,value="99.5"),
         macro(observation=20,release=100,observed=110,revision=0,value="100.0"),
         macro(observation=20,release=200,observed=205,revision=1,value="100.4"),
     )
+
+def history(*,event_value:EconomicCalendarEvent|None=None,vintages:tuple[MacroVintage,...]|None=None,current_observation:int=20)->EconomicReleaseHistory:
+    rp,ep,sr,mp=policies()
+    selected=default_vintages() if vintages is None else vintages
     return EconomicReleaseHistory(
-        event=event_value or event(),vintages=vintages or default,current_observation_time_ns=current_observation,
+        event=event_value or event(),vintages=selected,current_observation_time_ns=current_observation,
         policy=rp,event_policy=ep,source_registry=sr,macro_policy=mp,
     )
 
@@ -64,16 +67,25 @@ class ReleaseHistoryTests(unittest.TestCase):
         self.assertEqual(h.first_release.value_text,"100.0")
         self.assertIsNone(h.resolve_current_as_of(decision_time_ns=99))
         self.assertEqual(h.resolve_current_as_of(decision_time_ns=150),h.first_release)
-        self.assertEqual(h.resolve_current_as_of(decision_time_ns=205).value_text,"100.4")  # type: ignore[union-attr]
+        revised=h.resolve_current_as_of(decision_time_ns=205)
+        self.assertIsNotNone(revised)
+        if revised is None:
+            self.fail("revision must be visible at 205")
+        self.assertEqual(revised.value_text,"100.4")
 
     def test_previous_at_first_release_does_not_leak_later_revision(self)->None:
         h=history()
         previous=h.previous_at_first_release
         self.assertIsNotNone(previous)
-        self.assertEqual(previous.value_text,"99.0")  # type: ignore[union-attr]
-        self.assertEqual(previous.revision_number,1)  # type: ignore[union-attr]
+        if previous is None:
+            self.fail("previous-at-first-release must exist")
+        self.assertEqual(previous.value_text,"99.0")
+        self.assertEqual(previous.revision_number,1)
         later=h.previous_at(decision_time_ns=130)
-        self.assertEqual(later.value_text,"99.5")  # type: ignore[union-attr]
+        self.assertIsNotNone(later)
+        if later is None:
+            self.fail("later previous observation must exist")
+        self.assertEqual(later.value_text,"99.5")
 
     def test_revision_history_as_of_filters_future_revisions(self)->None:
         h=history()
@@ -83,7 +95,7 @@ class ReleaseHistoryTests(unittest.TestCase):
 
     def test_snapshot_is_deterministic_and_history_order_independent(self)->None:
         h=history()
-        reversed_h=history(vintages=tuple(reversed(h._vintages)))  # type: ignore[attr-defined]
+        reversed_h=history(vintages=tuple(reversed(default_vintages())))
         self.assertEqual(h.history_id,reversed_h.history_id)
         self.assertEqual(h.snapshot_as_of(decision_time_ns=150).payload(),reversed_h.snapshot_as_of(decision_time_ns=150).payload())
 
