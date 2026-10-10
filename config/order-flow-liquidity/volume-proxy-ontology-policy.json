@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09A_VOLUME_PROXY_ONTOLOGY_POLICY",
+  "allowed_market_classes": ["CRYPTO_SPOT", "CRYPTO_DERIVATIVE", "FOREX_SPOT", "FUTURES"],
+  "allowed_volume_kinds": [
+    "NATIVE_VENUE_VOLUME",
+    "AGGREGATED_VENUE_VOLUME",
+    "TICK_VOLUME_PROXY",
+    "BROKER_VOLUME_PROXY",
+    "ECN_VOLUME_PROXY",
+    "FUTURES_VOLUME_PROXY"
+  ],
+  "forex_spot_allowed_volume_kinds": [
+    "TICK_VOLUME_PROXY",
+    "BROKER_VOLUME_PROXY",
+    "ECN_VOLUME_PROXY",
+    "FUTURES_VOLUME_PROXY"
+  ],
+  "max_coverage_confidence_bps": 10000,
+  "point_in_time_required": true,
+  "trusted_provenance_required": true,
+  "forex_spot_consolidated_volume_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_order_flow_vendor": "NOT_SELECTED"
+}
