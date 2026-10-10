@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08A_TECHNICAL_FOUNDATION_BASELINE",
   "task_id": "FIN-P08-WA-001",
   "linear": "HOS-211",
-  "lock": "LOCK-FIN-P08-WA-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "common_evidence_fields": [
     "definition_id",
     "family",
@@ -29,5 +29,20 @@
   "production_technical_intelligence_vendor": "NOT_SELECTED",
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 168,
+    "final_head": "ec72a1d036c73ff76b19599e6edbc75ef801d639",
+    "implementation_merge_sha": "4c5376b0c689d1ab2ac4424693bb8ca207a0e46b",
+    "pr_governance_run": 38034664318,
+    "pr_artifact_sha256": "ca84b61cf63602141dec2b896b66e03da8846e2573ce3b7419d29e26cd29e452",
+    "post_merge_governance_run": 38034980053,
+    "post_merge_artifact_sha256": "96fc0508547e88c06de2db2b21ba0692ca0197d7b0186205d4b9245ac5bc4f5d",
+    "post_merge_branch_hygiene_run": 38034980040,
+    "strict_pyright": "PASS",
+    "p08a_tests": "14/14 PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-B READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }
