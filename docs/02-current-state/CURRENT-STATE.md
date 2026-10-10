@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P09 — Volume / Order Flow / Liquidity / ACTIVE  
-Current Workstream: P09-E — Liquidity Heatmap / Capacity / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P09-D — Order Book / Spread / Depth / Imbalance / CANONICAL_COMPLETE  
+Current Workstream: none — P09-E closed; P09-F READY_NOT_STARTED  
+Previous Workstream: P09-E — Liquidity Heatmap / Capacity / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -50,7 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E IMPLEMENTATION_ACTIVE / P09-F..P09-H NOT_STARTED  
+P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F READY_NOT_STARTED / P09-G..P09-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -162,8 +162,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P09-WE-001`  
-Active lock: `LOCK-FIN-P09-WE-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -175,7 +175,7 @@ Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIM
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 Technical intelligence implementation (P08): CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E IMPLEMENTATION_ACTIVE / P09-F..P09-H NOT_STARTED
+Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F READY_NOT_STARTED / P09-G..P09-H NOT_STARTED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -185,7 +185,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P09-E — Liquidity Heatmap / Capacity is IMPLEMENTATION_ACTIVE under `LOCK-FIN-P09-WE-001-01`. P09-A/B/C/D remain CANONICAL_COMPLETE. P09-F..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P09-E — Liquidity Heatmap / Capacity is CANONICAL_COMPLETE and `LOCK-FIN-P09-WE-001-01` is RELEASED. P09-F — Funding / OI / Liquidation / Crowding is READY_NOT_STARTED. P09-G..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3766,43 +3766,40 @@ Next:
 
 Task: `FIN-P09-WE-001`  
 Linear: `HOS-229`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WE-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P09-WE-001-liquidity-heatmap-capacity`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#198` = MERGED  
+Final implementation head: `fec27e89e65267697d19655f75e1baa5810d9933`  
+Implementation merge SHA: `6cb8549cbfae68877d7e28ada824a8df93a2c351`  
+PR Governance: `38050757349` = SUCCESS  
+PR artifact: `sha256:dfdc23d78ee0cfb3400a70057fadbbf1797f2b6df9dc444ba16b2a2ac0a93931`  
+Post-merge Governance: `38050829203` = SUCCESS  
+Post-merge artifact: `sha256:a58a01576d7f7407a46a8500bdd5ad611fcf8bf80b1a7cfa6d06cb7b3a292ce2`  
+Post-merge Branch Hygiene: `38050829122` = SUCCESS
 
-Fresh Live Guard:
-- P09-A/B/C/D = CANONICAL_COMPLETE;
-- HOS-225/HOS-226/HOS-227/HOS-228 = Done;
-- open PRs = 0;
-- active task/lock before acquisition = none;
-- canonical base = `3bf49aab2b18c586232a28e49385d342b1d1ef8c`.
-
-Agents:
-- A4 Quant — lead / band and capacity mathematics;
-- A3 Market Intelligence — liquidity semantics;
-- A2 Data — source provenance and point-in-time integrity;
-- A6 Execution — displayed-capacity-vs-executable boundary review only;
-- A1 Architecture — domain/contract review;
-- A8 Security — no hidden-liquidity/execution-authority review;
-- A9 Operations — deterministic/fail-closed review;
-- A10 Evidence/Audit — deterministic evidence;
-- A0 Governance — task/lock/state coordination.
-
-Implementation boundary:
-- input is governed P09-D provider-scoped order-book snapshot;
-- symmetric distance bands around validated midpoint;
-- each displayed level belongs to at most one non-cumulative band;
-- displayed size and price-times-size notional are aggregated per side;
-- cumulative displayed capacity is derived only from visible provider-book levels;
-- outside-band levels remain explicitly accounted for;
-- capacity-share basis points are descriptive distribution measures;
-- no hidden-liquidity inference, fillability claim, slippage or market-impact estimate;
-- no cross-provider/global spot-FX liquidity synthesis;
-- no recommendation, probability, Risk or execution authority.
+Validation:
+- strict product typecheck: PASS;
+- P09 regression tests: PASS;
+- deterministic P09-E Liquidity Heatmap evidence twice: PASS;
+- SBOM/license policy: PASS;
+- Trivy supply-chain scan: PASS;
+- reproducible clean-source build twice: PASS;
+- strictly increasing positive midpoint-distance bands verified;
+- each displayed level is assigned to at most one non-cumulative band;
+- cumulative displayed size/notional and bid/ask capacity shares are deterministic;
+- outside-band displayed liquidity remains explicitly accounted for;
+- invalid P09-D books and spot-FX global/consolidated scope claims fail closed;
+- displayed capacity is not promoted to fillability, executable size, hidden liquidity, slippage or market impact;
+- no recommendation, probability, Risk or execution authority introduced.
 
 Safety:
 - production order-flow vendor: NOT_SELECTED;
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED by reference implementation;
+- network/credentials: NONE REQUIRED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Next:
+- P09-F — Funding / OI / Liquidation / Crowding: READY_NOT_STARTED;
+- P09-G..P09-H: NOT_STARTED;
+- AR-1: READY_NOT_STARTED.
