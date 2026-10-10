@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P10G_CRYPTO_ONCHAIN_CONTEXT_BASELINE",
   "task_id": "FIN-P10-WG-001",
   "linear": "HOS-240",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P10-WG-001-01_ACQUIRED",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
   "workstream": "P10-G",
   "canonical_base": "d96d10324e69aabb07102a0c75c524b0523f1617",
@@ -28,5 +28,15 @@
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
-  "next_workstream": "P10-H_NOT_STARTED"
+  "next_workstream": "P10-H_READY_NOT_STARTED",
+  "canonical_closure": {
+    "implementation_pr": 218,
+    "final_implementation_head": "006df3e20ddde59b13c61355fa3aa0dcaa053812",
+    "implementation_merge_sha": "f3228ed5ba7bf7a3e675b4e9f7616b979ad7e635",
+    "pr_governance_run": 38082210100,
+    "pr_artifact_sha256": "110e883f61f882c8c5d9efac463abfa93454ae3d67aebb584f42b38e6ca39ae2",
+    "post_merge_governance_run": 38082293194,
+    "post_merge_artifact_sha256": "3ae12d1e44b6a71c9eeb431202d667e37a0275bcdb02ee9bb9dd673a0b3cb9cb",
+    "post_merge_branch_hygiene_run": 38082293124
+  }
 }
