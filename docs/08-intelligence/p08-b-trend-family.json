@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08B_TREND_FAMILY_BASELINE",
   "task_id": "FIN-P08-WB-001",
   "linear": "HOS-212",
-  "lock": "LOCK-FIN-P08-WB-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "family": "TREND",
   "independence_group": "price-path-trend",
   "correlated_inputs": [
@@ -17,5 +17,20 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 170,
+    "final_head": "6f772b2d65ca573955ddae17213f3d1d06273404",
+    "implementation_merge_sha": "146179db5b3d613fac97c890f0c6983a1f575629",
+    "pr_governance_run": 38035626597,
+    "pr_artifact_sha256": "f7c9bc8a2db7307152768f2e030c76250d606f1fd5f51a8ced658eeecddcfc19",
+    "post_merge_governance_run": 38035702876,
+    "post_merge_artifact_sha256": "dc629cfc4034b5dd0566b822cc610508b0510ce17d3cd673b912ab1f3bd5929d",
+    "post_merge_branch_hygiene_run": 38035702947,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-C READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }

@@ -40,12 +40,13 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
-- active governed task: FIN-P08-WB-001
-- active lock: LOCK-FIN-P08-WB-001-01
-- completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A = CANONICAL_COMPLETE
+- active governed task: none
+- active lock: none
+- completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
-- P08-B — Trend Family: IMPLEMENTATION_ACTIVE
-- P08-C..P08-I: NOT_STARTED
+- P08-B — Trend Family: CANONICAL_COMPLETE
+- P08-C — Momentum Family: READY_NOT_STARTED
+- P08-D..P08-I: NOT_STARTED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -80,8 +81,8 @@ P07 canonical boundary:
 
 P08 active boundary:
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
-- P08-B — Trend Family: IMPLEMENTATION_ACTIVE
-- P08-C — Momentum Family: NOT_STARTED
+- P08-B — Trend Family: CANONICAL_COMPLETE
+- P08-C — Momentum Family: READY_NOT_STARTED
 - P08-D — Market Structure & Price Action: NOT_STARTED
 - P08-E — Volatility & Mean Reversion: NOT_STARTED
 - P08-F — Breakout / Expansion: NOT_STARTED
