@@ -158,7 +158,7 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WJ-003 | P08 | AR-0 Research Governance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-003.json` | RELEASED |
 
 | FIN-P09-WA-001 | P09 | Volume Taxonomy / Proxy Labels | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WA-001.json` | RELEASED |
-| FIN-P09-WB-001 | P09 | Trades / Buy-Sell Flow / Delta / CVD | HIGH | ACTIVE | `contracts/tasks/FIN-P09-WB-001.json` | LOCK-FIN-P09-WB-001-01 / ACQUIRED |
+| FIN-P09-WB-001 | P09 | Trades / Buy-Sell Flow / Delta / CVD | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WB-001.json` | RELEASED |
 
 ## Rules
 
