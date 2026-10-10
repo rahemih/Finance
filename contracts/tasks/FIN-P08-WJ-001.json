@@ -1,0 +1,139 @@
+{
+  "task_id": "FIN-P08-WJ-001",
+  "phase": "P08",
+  "workstream": "WJ",
+  "objective": "Create and govern a cross-cutting Alpha Research Fast Track roadmap addendum anchored at P08 so low-value intelligence candidates can be empirically rejected early without changing the frozen Master Roadmap, bypassing canonical gates, or creating production authority.",
+  "scope": [
+    "Create the Alpha Research Fast Track ROADMAP ADDENDUM with AR-0 through AR-5 governance and research boundaries",
+    "Define explicit exploratory versus confirmatory research separation",
+    "Define reproducible research-harness requirements with notebooks limited to exploration/visualization",
+    "Define point-in-time safety, leakage, data-snooping, multiple-testing and empirical-null controls",
+    "Define BTC-first but not BTC-only cross-asset/regime sanity methodology without arbitrary fixed thresholds",
+    "Define REJECT, RETAIN_FOR_CONFIRMATION, RETAIN_FOR_P17 and INVESTIGATE research outcomes",
+    "Define the Research Validation Specialist as an on-demand A4 specialist with independent screening authority",
+    "Register the Research Validation Specialist in the specialist catalog",
+    "Define evidence, kill criteria, failure modes and boundaries with P08/G6, P14/G7 and P17/G9",
+    "Require a governed Build-vs-Buy ADR/technology spike before selection of research/backtest tooling",
+    "Keep shared-state reconciliation deferred while FIN-P08-WF-001 owns overlapping shared writer paths"
+  ],
+  "out_of_scope": [
+    "Implementing the research harness or running empirical experiments",
+    "Changing MASTER-ROADMAP-v2.0.md",
+    "Changing P08-F implementation, evidence or lock state",
+    "Passing G6, G7, G8 or G9",
+    "Demo, Shadow, Live or Auto Trading",
+    "Signal BUY/SELL generation, strategy promotion, risk approval or execution",
+    "Selecting Qlib, NautilusTrader, LEAN or any other technology without a separate governed ADR",
+    "Creating permanent core agent A11",
+    "Mutating CURRENT-STATE.md, TASK-CATALOG.md, README.md or EXECUTION-ROADMAP.md while FIN-P08-WF-001 retains overlapping write ownership"
+  ],
+  "dependencies": [
+    "G5_TRUSTED_DATA PASS",
+    "P08 ACTIVE",
+    "Owner authorization in project conversation to implement the Alpha Research Fast Track addendum",
+    "Execution Roadmap parallelization rule: parallel work is allowed only with non-conflicting write scopes and technical dependencies",
+    "FIN-P08-WF-001 remains active; this task must not mutate its shared writer paths until its lock is released"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/00-governance/GOVERNANCE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/09-agents/AGENT-REGISTRY.md",
+    "docs/09-agents/contracts/A4-QUANT.json",
+    "docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md",
+    "contracts/schemas/task-contract.schema.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WJ-001.json",
+    "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
+    "docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md",
+    "docs/09-agents/specialists/RESEARCH-VALIDATION-SPECIALIST.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "packages/technical_intelligence/breakout_expansion.py",
+    "config/technical-intelligence/breakout-expansion-policy.json",
+    "tests/p08/test_breakout_expansion.py",
+    "scripts/ci/p08f_evidence.py",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A4",
+    "A10",
+    "Research Validation Specialist"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Task Contract validates against contracts/schemas/task-contract.schema.json",
+    "Addendum does not mutate or contradict the frozen Master Roadmap",
+    "Addendum explicitly preserves Research → Backtest → Demo → Shadow → Manual/Semi-Auto → Micro-Capital/Canary → Controlled Auto",
+    "AR-2 exploratory and AR-3 confirmatory data/parameter boundaries are explicit",
+    "No hard statistical threshold is introduced without governed empirical calibration or an explicit TO_BE_CALIBRATED marker",
+    "Point-in-time safety contract covers event time, information availability time, ingestion time, feature time, label horizon, revisions, purge and embargo",
+    "Positive Fast Track evidence cannot produce a VALIDATED/PROFITABLE/TRADE claim",
+    "Negative Fast Track evidence may reject or investigate a candidate but cannot bypass canonical gates",
+    "Research Validation Specialist cannot modify candidate features, production code, risk policy, roadmap baseline or execution",
+    "Build-vs-Buy decision remains TO_BE_DECIDED_BY_ADR",
+    "Research Validation Specialist contract defines role, authority, inputs, outputs, read/write scope, forbidden scope/actions, tools/plugins/skills, trigger, escalation, failure behavior and audit requirements"
+  ],
+  "security_tests": [
+    "No broker/exchange/order/credential authority is introduced",
+    "LIVE_TRADING remains DISABLED",
+    "AUTO_TRADING remains DISABLED",
+    "No new core agent authority bypasses A5 Risk or A8 Security"
+  ],
+  "evidence": [
+    "Approved Alpha Research Fast Track addendum",
+    "Research Validation Specialist catalog registration",
+    "Git SHA for addendum and Task Contract",
+    "PR Governance result",
+    "Post-merge verification",
+    "Linear HOS-219 reconciliation",
+    "Deferred shared-state reconciliation after FIN-P08-WF-001 lock release",
+    "Research Validation Specialist machine-readable contract"
+  ],
+  "rollback": "Revert FIN-P08-WJ-001 task contract, Alpha Research Fast Track addendum and Research Validation Specialist catalog entry. The frozen Master Roadmap, P08-F implementation, all canonical gates and trading states remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "G5_TRUSTED_DATA PASS",
+    "P08 ACTIVE",
+    "Owner has authorized the Fast Track addendum",
+    "Branch is based on canonical main",
+    "No open PR conflicts with the addendum-specific write paths",
+    "P08-F shared writer paths are excluded from this task"
+  ],
+  "definition_of_done": [
+    "Alpha Research Fast Track addendum merged",
+    "Research Validation Specialist registered as an on-demand A4 specialist, not A11",
+    "No arbitrary statistical thresholds are hard-coded",
+    "Roadmap/gate boundary matrix is explicit",
+    "Evidence contract and failure/kill criteria are explicit",
+    "Build-vs-Buy remains governed by future ADR/technology spike",
+    "PR Governance passes",
+    "Shared-state reconciliation is either completed after P08-F lock release or explicitly handed to a non-conflicting closure task",
+    "Linear HOS-219 reconciled to the actual canonical state"
+  ]
+}

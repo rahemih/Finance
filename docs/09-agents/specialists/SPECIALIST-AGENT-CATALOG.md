@@ -19,6 +19,7 @@ Specialists are temporary bounded workers. They never replace A0–A10.
 | historical_analog | A3 | Historical analog evidence |
 | quant_research | A4 | Quantitative research |
 | backtest_validation | A4 | Backtest integrity and leakage review |
+| research_validation | A4 | Independent Alpha Research Fast Track screening, confirmatory evaluation and retention/rejection evidence |
 | model_validation | A4 | Model validation |
 | calibration | A4 | Probability/calibration review |
 | risk_red_team | A5 | Independent risk challenge |
