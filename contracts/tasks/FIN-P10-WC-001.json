@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P10-WC-001",
+  "phase": "P10",
+  "workstream": "WC",
+  "objective": "Compose P10-B RELEASED events with the canonical P06-E macro-vintage model to preserve first release, previous-at-time and revision history without lookahead.",
+  "scope": [
+    "Bind a validated P10-B RELEASED event to one macro series",
+    "Require canonical P10-A source identity and source match across vintages",
+    "Reuse P06-E zero-based contiguous revision and anti-lookahead rules",
+    "Expose first release and revision history explicitly",
+    "Resolve current revision strictly as-of decision time",
+    "Resolve previous-at-first-release using the previous observation's latest eligible vintage at first-release observed-at",
+    "Prevent later previous-period revisions from leaking backward",
+    "Provide audit-only full revision history separate from replay-safe as-of history",
+    "Generate deterministic P10-C evidence",
+    "Reconcile task/lock/current state"
+  ],
+  "out_of_scope": [
+    "Forecast or consensus values",
+    "Macro surprise computation (P10-D)",
+    "Rates/yields/currency macro features (P10-E)",
+    "Causal market impact",
+    "Signal probability, Risk approval or execution"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001 CANONICAL_COMPLETE",
+    "FIN-P10-WB-001 CANONICAL_COMPLETE",
+    "FIN-P06-WE-001 CANONICAL_COMPLETE",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 020a3628d722314fb109ed2658cc750bddff520f"
+  ],
+  "read_paths": [
+    "packages/historical_data/macro_vintage.py",
+    "config/historical-data/macro-vintage-policy.json",
+    "packages/fundamental_intelligence/**",
+    "config/fundamental-intelligence/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WC-001.json",
+    "config/fundamental-intelligence/release-history-policy.json",
+    "packages/fundamental_intelligence/release_history.py",
+    "packages/fundamental_intelligence/__init__.py",
+    "tests/p10/test_release_revision_history.py",
+    "scripts/ci/p10c_evidence.py",
+    "docs/09-intelligence/P10-C-FIRST-RELEASE-PREVIOUS-REVISION-HISTORY.md",
+    "docs/09-intelligence/p10-c-first-release-previous-revision-history.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Event must be RELEASED and canonical-source validated",
+    "Event actual release time must equal current observation revision-0 release time",
+    "All vintages must share one series and event source",
+    "P06-E revision contiguity/time invariants remain enforced",
+    "Current resolve_as_of never exposes revision before both release and observed-at",
+    "Previous-at-first-release selects previous observation latest eligible vintage at first-release observed-at",
+    "Later revision of previous observation does not leak backward",
+    "Replay-safe revision history filters future revisions",
+    "Audit-only history is explicitly named",
+    "History identity is deterministic and order independent",
+    "No forecast/surprise/trading fields",
+    "P10-C evidence byte-identical twice"
+  ],
+  "security_tests": [
+    "No network or credentials",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P06-E canonical macro-vintage model",
+    "P10-A/B canonical closure",
+    "Deterministic P10-C evidence",
+    "PR/post-merge Governance and Branch Hygiene",
+    "Linear HOS-235 reconciliation"
+  ],
+  "rollback": "Revert P10-C wrapper/policy/tests/evidence/CI/state. P06-E and P10-A/B remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A/B canonical",
+    "P06-E canonical",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "First-release/previous-at-time/revision history canonical",
+    "Anti-lookahead tests pass",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge verification pass",
+    "Closure merged",
+    "FIN-P10-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "HOS-235 Done",
+    "P10-D READY_NOT_STARTED"
+  ]
+}
