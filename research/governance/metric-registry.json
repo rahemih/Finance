@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_METRIC_REGISTRY",
+  "protocol_version": "arft-research-protocol-v1",
+  "threshold_policy": "TO_BE_CALIBRATED",
+  "metric_families": [
+    {
+      "id": "PREDICTIVE_ASSOCIATION",
+      "purpose": "Measure candidate association with the declared target using a target-appropriate governed metric.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "UNCERTAINTY_INTERVAL",
+      "purpose": "Represent estimation uncertainty with a governed interval or uncertainty procedure.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "EMPIRICAL_NULL",
+      "purpose": "Compare candidate behavior with an appropriate permutation, negative-control or empirical-null distribution.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "TEMPORAL_STABILITY",
+      "purpose": "Measure stability across governed time partitions without peeking at protected confirmatory outcomes.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "CONFIRMATORY_REPLICATION",
+      "purpose": "Measure replication of a frozen candidate hypothesis on protected confirmatory evidence.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "MULTIPLE_TESTING_CONTEXT",
+      "purpose": "Record search-space/hypothesis multiplicity and the selected correction procedure.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "INFORMATION_SUFFICIENCY",
+      "purpose": "Record sample/information sufficiency under candidate-appropriate dependence assumptions.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "REGIME_SENSITIVITY",
+      "purpose": "Describe candidate behavior across the governed regime taxonomy.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "TIMEFRAME_SENSITIVITY",
+      "purpose": "Describe candidate behavior across governed observation/decision horizons.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "TURNOVER_COST_CONTEXT",
+      "purpose": "Estimate research-level turnover/cost implications without execution-grade validation.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "LIQUIDITY_DEPENDENCE",
+      "purpose": "Record sensitivity to liquidity/market-capacity context without risk approval.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "INCREMENTAL_INFORMATION",
+      "purpose": "Measure incremental information relative to governed baselines using dependence, ablation or nested comparison as appropriate.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "PARAMETER_FRAGILITY",
+      "purpose": "Assess sensitivity to nearby parameter/assumption changes.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    },
+    {
+      "id": "CROSS_ASSET_TRANSFER",
+      "purpose": "Assess research-level cross-asset sanity without claiming production generalization.",
+      "decision_threshold": "TO_BE_CALIBRATED"
+    }
+  ]
+}
