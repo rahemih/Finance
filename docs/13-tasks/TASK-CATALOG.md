@@ -147,6 +147,7 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WA-001 | P08 | Technical Feature / Indicator Foundation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WA-001.json` | RELEASED |
 | FIN-P08-WB-001 | P08 | Trend Family | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WB-001.json` | RELEASED |
 | FIN-P08-WC-001 | P08 | Momentum Family | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WC-001.json` | RELEASED |
+| FIN-P08-WD-001 | P08 | Market Structure & Price Action | HIGH | ACTIVE | `contracts/tasks/FIN-P08-WD-001.json` | LOCK-FIN-P08-WD-001-01 / ACQUIRED |
 
 ## Rules
 
