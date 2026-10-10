@@ -39,9 +39,9 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P09 — Volume / Order Flow / Liquidity / ACTIVE  
-Current Workstream: P09-H — Validation / Performance / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P09-G — Forex Proxy Coverage Confidence / CANONICAL_COMPLETE  
+Current Phase: none — P09 CANONICAL_COMPLETE; P10 OWNER_PHASE_AUTHORIZATION_REQUIRED  
+Current Workstream: none — P09 closed; P10 not authorized  
+Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -50,7 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H IMPLEMENTATION_ACTIVE  
+P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -162,8 +162,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P09-WH-001`  
-Active lock: `LOCK-FIN-P09-WH-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -175,7 +175,7 @@ Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIM
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 Technical intelligence implementation (P08): CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H IMPLEMENTATION_ACTIVE
+Volume/order-flow/liquidity implementation (P09): CANONICAL_COMPLETE / P09-A..P09-H CANONICAL_COMPLETE
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -3896,53 +3896,49 @@ Next:
 
 Task: `FIN-P09-WH-001`  
 Linear: `HOS-232`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WH-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P09-WH-001-validation-performance`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#204` = MERGED  
+Initial implementation head: `51d2b5d4e5821846a6a1ae4de1d2cbe41d8ae156`  
+Initial PR Governance: `38053001612` = FAILED / strict Pyright type narrowing  
+Repair R01: `df8d170517c7da61ec8a5d40fd1be1cfa01dbf91`  
+Final implementation head: `df8d170517c7da61ec8a5d40fd1be1cfa01dbf91`  
+Implementation merge SHA: `146cb7442ce1d78d824f13220533c75c771d6821`  
+Final PR Governance: `38053077862` = SUCCESS  
+Final PR artifact: `sha256:8326773f5a6842bb85dbfa3e8dc484909c91c538682401bcb6eefe2223858806`  
+Post-merge Governance: `38053926128` = SUCCESS  
+Post-merge artifact: `sha256:4bf178523f667c9e46627c599442be16675d990fe62c65272bd684edbda46542`  
+Post-merge Branch Hygiene: `38053926101` = SUCCESS
 
-Fresh Live Guard:
-- P09-A..P09-G = CANONICAL_COMPLETE;
-- HOS-225..HOS-231 = Done;
-- open PRs = 0;
-- active task/lock before acquisition = none;
-- canonical base = `62482e254a22764473739be4da3f8a8da9cad705`;
-- P09 Owner phase authorization remains valid.
+Validation:
+- strict product typecheck: PASS after R01;
+- complete P09 regression suite: PASS;
+- deterministic P09-H integrated validation evidence twice: PASS;
+- measured offline P09 CI regression-performance budget: PASS;
+- SBOM/license policy: PASS;
+- Trivy supply-chain scan: PASS;
+- reproducible clean-source build twice: PASS;
+- exactly canonical P09-A..P09-G closure documents are certified;
+- prerequisite state/lock/evidence and shared safety invariants are fail-closed;
+- P09-A..P09-G anti-overstatement invariants are revalidated;
+- CI performance semantics remain `CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO`;
+- profitability, signal quality, trade-success probability, production provider performance, slippage/market impact and execution are NOT certified;
+- P10 remains `OWNER_PHASE_AUTHORIZATION_REQUIRED`.
 
-Agents:
-- A9 Operations / Validation — lead;
-- A4 Quant — validation/performance review;
-- A2 Data — provenance/coverage review;
-- A3 Market Intelligence — semantic integrity review;
-- A6 Execution — no-execution-authority boundary review;
-- A1 Architecture — integrated contract review;
-- A8 Security — fail-closed/safety review;
-- A10 Evidence/Audit — deterministic certification evidence;
-- A0 Governance — task/lock/state coordination.
-
-Integrated validation boundary:
-- exactly seven canonical P09-A..P09-G machine-readable baselines are required;
-- prerequisite state must be CANONICAL_COMPLETE and lock RELEASED;
-- implementation/post-merge Governance, artifact and Branch Hygiene evidence must exist;
-- country assumption must remain NONE;
-- LIVE_TRADING and AUTO_TRADING remain DISABLED;
-- direct trade output remains forbidden;
-- workstream-specific anti-overstatement invariants are revalidated;
-- deterministic validation evidence must report PASS.
-
-Performance boundary:
-- complete offline P09 unittest suite is measured on GitHub CI;
-- budget = 60 seconds;
-- semantics = CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO;
-- measured evidence is not byte-compared;
-- production provider/network latency, production throughput, profitability, slippage, market impact, signal quality and execution are NOT certified.
-
-Phase boundary:
-- P09 is NOT yet CANONICAL_COMPLETE;
-- P09 closure is deferred until implementation merge, post-merge verification, closure reconciliation and closure post-merge verification;
-- P10 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
+P09 phase closure:
+- P09-A..P09-H = CANONICAL_COMPLETE;
+- FIN-P09-WH-001 lock = RELEASED;
+- P09 = CANONICAL_COMPLETE;
+- no active P09 task or lock remains;
+- P10 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
 
 Safety:
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED;
 - LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED.
+- AUTO_TRADING: DISABLED;
+- no network/credentials required by P09-H certifier/benchmark;
+- no BUY/SELL, Risk approval or execution authority introduced.
+
+Next:
+- P10 — Fundamental / Macro / Event Intelligence: OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- AR-1: READY_NOT_STARTED.
