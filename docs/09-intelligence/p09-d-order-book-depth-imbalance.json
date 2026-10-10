@@ -3,22 +3,51 @@
   "kind": "NEXUS_QUANT_P09D_ORDER_BOOK_BASELINE",
   "task_id": "FIN-P09-WD-001",
   "linear": "HOS-228",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WD-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-D",
   "lead_agent": "A3",
-  "supporting_agents": ["A0", "A1", "A2", "A4", "A6", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "canonical_base": "2c4eaf6380f6e7820e5d86a6983e1c1ab6220d9a",
-  "source_kinds": ["VENUE_ORDER_BOOK", "BROKER_ORDER_BOOK", "ECN_ORDER_BOOK"],
+  "source_kinds": [
+    "VENUE_ORDER_BOOK",
+    "BROKER_ORDER_BOOK",
+    "ECN_ORDER_BOOK"
+  ],
   "locked_or_crossed_book_allowed": false,
   "spread_semantics": "absolute and midpoint basis points",
   "depth_semantics": "comparable top-N displayed size",
-  "imbalance_range_bps": [-10000, 10000],
+  "imbalance_range_bps": [
+    -10000,
+    10000
+  ],
   "forex_spot_global_book_claim_allowed": false,
   "production_order_flow_vendor": "NOT_SELECTED",
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "canonical_closure": {
+    "implementation_pr": 196,
+    "final_implementation_head": "6cf574c9ad7b68e1f08dfef84bbb87f9fddd1b5f",
+    "implementation_merge_sha": "d2173286d0173e116f625f56cdc31aca64f09855",
+    "initial_failed_governance_run": 38050009316,
+    "repair_commit": "6cf574c9ad7b68e1f08dfef84bbb87f9fddd1b5f",
+    "pr_governance_run": 38050053794,
+    "pr_artifact_sha256": "a64e5b77ca2f98a5c37a6148d4de3164031f33e1340939d5660a7dc555a42829",
+    "post_merge_governance_run": 38050120484,
+    "post_merge_artifact_sha256": "0efa47ac20972e5af8bf6ee355f084c91f389f8c4ecad40bdc708f7fe457c6c7",
+    "post_merge_branch_hygiene_run": 38050120518,
+    "next_workstream": "P09-E_READY_NOT_STARTED"
+  }
 }
