@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WG-001`  
 Linear: `HOS-221`  
-Lock: `LOCK-FIN-P08-WG-001-01`  
-State: IMPLEMENTATION_ACTIVE
+Lock: RELEASED  
+State: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -71,3 +71,22 @@ Strength/confidence are deterministic evidence scores. They are not trade-succes
 ## Boundary
 
 P08-H and P08-I remain separate. AR-0 remains READY_NOT_STARTED while P08-G owns shared reconciliation paths.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#182` = MERGED
+- Final implementation head: `c74fdfec54e151a5cb118d0ef9364a526884be25`
+- Implementation merge SHA: `860c4b4ed05938b05a7eb6e67edf52c1b4c60e6a`
+- PR Governance: `38043070756` = SUCCESS
+- PR artifact: `sha256:5998e726a5f7f9a3c1adf22bd20758ad91c9e88aba8e66972b28b590993dc16a`
+- Post-merge Governance: `38043140519` = SUCCESS
+- Post-merge artifact: `sha256:806691516a802e7a0e81654b7c0ac43f3d095690c37435953fc4af230aa19d9a`
+- Post-merge Branch Hygiene: `38043140522` = SUCCESS
+- Strict Pyright: PASS
+- P08 technical-intelligence tests: PASS
+- Deterministic P08-G evidence: PASS
+- Multi-timeframe copies remain RELATED_NOT_INDEPENDENT
+- Cross-family independence remains PROVISIONAL_PENDING_P08_H
+
+P08-H — Independence / Correlation Audit is READY_NOT_STARTED. AR-0 — Research Governance is READY_NOT_STARTED under separate cross-cutting ownership.

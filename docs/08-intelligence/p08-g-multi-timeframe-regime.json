@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08G_MULTI_TIMEFRAME_REGIME_BASELINE",
   "task_id": "FIN-P08-WG-001",
   "linear": "HOS-221",
-  "lock": "LOCK-FIN-P08-WG-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "input_family": "TREND",
   "output_family": "REGIME",
   "independence_group": "trend-multitimeframe-regime",
@@ -22,5 +22,21 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 182,
+    "final_head": "c74fdfec54e151a5cb118d0ef9364a526884be25",
+    "implementation_merge_sha": "860c4b4ed05938b05a7eb6e67edf52c1b4c60e6a",
+    "pr_governance_run": 38043070756,
+    "pr_artifact_sha256": "5998e726a5f7f9a3c1adf22bd20758ad91c9e88aba8e66972b28b590993dc16a",
+    "post_merge_governance_run": 38043140519,
+    "post_merge_artifact_sha256": "806691516a802e7a0e81654b7c0ac43f3d095690c37435953fc4af230aa19d9a",
+    "post_merge_branch_hygiene_run": 38043140522,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-H READY_NOT_STARTED",
+  "alpha_research_ar0": "READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }
