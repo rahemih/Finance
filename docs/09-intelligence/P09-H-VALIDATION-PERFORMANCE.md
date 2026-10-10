@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WH-001`  
 Linear: `HOS-232`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WH-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A9 Operations / Validation  
 Support: A0, A1, A2, A3, A4, A6, A8, A10
 
@@ -76,3 +76,27 @@ P09-H does not authorize P10 execution.
 - country assumption: NONE;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+## Canonical implementation evidence
+
+- Implementation PR: `#204` = MERGED
+- Initial PR Governance: `38053001612` = FAILED at strict Pyright type narrowing
+- Repair R01: `df8d170517c7da61ec8a5d40fd1be1cfa01dbf91`
+- Final PR Governance: `38053077862` = SUCCESS
+- Final PR artifact: `sha256:8326773f5a6842bb85dbfa3e8dc484909c91c538682401bcb6eefe2223858806`
+- Implementation merge SHA: `146cb7442ce1d78d824f13220533c75c771d6821`
+- Post-merge Governance: `38053926128` = SUCCESS
+- Post-merge artifact: `sha256:4bf178523f667c9e46627c599442be16675d990fe62c65272bd684edbda46542`
+- Post-merge Branch Hygiene: `38053926101` = SUCCESS
+- deterministic integrated P09-H validation: PASS
+- measured offline CI regression-performance budget: PASS
+- supply-chain and reproducibility controls: PASS
+
+## Phase closure
+
+P09-A through P09-H are `CANONICAL_COMPLETE`.
+
+P09 is `CANONICAL_COMPLETE`.
+
+P10 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`; this closure does not authorize P10.
