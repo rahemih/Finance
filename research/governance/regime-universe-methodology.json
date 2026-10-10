@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_REGIME_UNIVERSE_METHODOLOGY",
+  "protocol_version": "arft-research-protocol-v1",
+  "reference_development_asset_policy": "BTC_FIRST_NOT_BTC_ONLY",
+  "universe_selection_timing": "EX_ANTE_BEFORE_CANDIDATE_OUTCOME_REVIEW",
+  "universe_selection_dimensions": [
+    "data_availability_and_lineage_quality",
+    "liquidity",
+    "history_length",
+    "venue_and_instrument_comparability",
+    "market_structure_diversity",
+    "dependency_and_correlation_clusters",
+    "survivorship_and_delisting_coverage"
+  ],
+  "post_outcome_asset_switching_to_improve_results": "FORBIDDEN",
+  "fixed_market_cap_rank_cutoff": "TO_BE_CALIBRATED",
+  "fixed_history_length_cutoff": "TO_BE_CALIBRATED",
+  "fixed_correlation_band_cutoff": "TO_BE_CALIBRATED",
+  "regime_taxonomy_requirement": "VERSIONED_AND_FROZEN_BEFORE_CONFIRMATORY_ACCESS",
+  "regime_dimensions_may_include": [
+    "trend_state",
+    "volatility_state",
+    "liquidity_state",
+    "macro_or_event_context"
+  ],
+  "regime_numeric_boundaries": "TO_BE_CALIBRATED",
+  "cross_asset_sanity_equals_production_generalization": false,
+  "temporal_holdout_is_separate_dimension": true
+}
