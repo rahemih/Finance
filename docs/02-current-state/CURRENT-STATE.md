@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-B — Trend Family / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P08-A — Technical Feature / Indicator Foundation / CANONICAL_COMPLETE  
+Current Workstream: none — P08-B closed; P08-C READY_NOT_STARTED  
+Previous Workstream: P08-B — Trend Family / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B IMPLEMENTATION_ACTIVE / P08-C..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C READY_NOT_STARTED / P08-D..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -160,8 +160,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WB-001`  
-Active lock: `LOCK-FIN-P08-WB-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -172,7 +172,7 @@ Engineering Foundation implementation: CANONICAL_COMPLETE
 Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-Technical intelligence implementation (P08): ACTIVE / P08-A CANONICAL_COMPLETE / P08-B IMPLEMENTATION_ACTIVE / G6 NOT_EVALUATED
+Technical intelligence implementation (P08): ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C READY_NOT_STARTED / G6 NOT_EVALUATED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -182,7 +182,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P08-A — Technical Feature / Indicator Foundation is CANONICAL_COMPLETE. P08-B — Trend Family is IMPLEMENTATION_ACTIVE under LOCK-FIN-P08-WB-001-01. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
+P08-B — Trend Family is CANONICAL_COMPLETE and LOCK-FIN-P08-WB-001-01 is RELEASED. P08-C — Momentum Family is READY_NOT_STARTED. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3215,36 +3215,31 @@ Next:
 
 Task: `FIN-P08-WB-001`  
 Linear: `HOS-212`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P08-WB-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P08-WB-001-trend-family`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#170` = MERGED  
+Final implementation head: `6f772b2d65ca573955ddae17213f3d1d06273404`  
+Implementation merge SHA: `146179db5b3d613fac97c890f0c6983a1f575629`  
+PR Governance: `38035626597` = SUCCESS  
+PR artifact: `sha256:f7c9bc8a2db7307152768f2e030c76250d606f1fd5f51a8ced658eeecddcfc19`  
+Post-merge Governance: `38035702876` = SUCCESS  
+Post-merge artifact: `sha256:dc629cfc4034b5dd0566b822cc610508b0510ce17d3cd673b912ab1f3bd5929d`  
+Post-merge Branch Hygiene: `38035702947` = SUCCESS
 
-Dependency:
-- FIN-P08-WA-001 = CANONICAL_COMPLETE;
-- P08-A closure main SHA = `a7366479de9491aa0f8fcd5a8644377310087016`;
-- G5_TRUSTED_DATA = PASS.
-
-Agents:
-- A4 Quant — lead;
-- A3 Market Intelligence — family semantics;
-- A2 Data — point-in-time/lineage compatibility;
-- A1 Architecture — evidence-contract boundary;
-- A8 Security — no-execution/no-network review;
-- A9 Operations — deterministic operability;
-- A10 Evidence/Audit — evidence;
-- A0 Governance — task/lock coordination.
-
-Implementation boundary:
-- dual moving-average trend alignment;
-- slow-baseline slope;
-- current price distance from slow baseline;
-- one TREND evidence object under one independence group;
-- strength/confidence are deterministic evidence scores, not trade probabilities;
-- P08-C through P08-I remain out of scope.
+Validation:
+- Strict Pyright: PASS;
+- P08 technical-intelligence tests: PASS;
+- deterministic P08-B trend evidence twice: PASS;
+- supply-chain and reproducible-build checks: PASS;
+- correlated trend transforms produce one family-level independent confirmation;
+- no direct trade/order authority introduced.
 
 Safety:
-- LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED;
-- direct trade/order output: FORBIDDEN;
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED.
+- network/credentials: NONE REQUIRED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+Next:
+- P08-C — Momentum Family: READY_NOT_STARTED;
+- G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
