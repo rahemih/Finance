@@ -361,8 +361,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/ci/p08a_evidence.py --output build/p08a-a.json
-          python scripts/ci/p08a_evidence.py --output build/p08a-b.json
+          PYTHONPATH=. python scripts/ci/p08a_evidence.py --output build/p08a-a.json
+          PYTHONPATH=. python scripts/ci/p08a_evidence.py --output build/p08a-b.json
           cmp build/p08a-a.json build/p08a-b.json
           sha256sum build/p08a-a.json
 
