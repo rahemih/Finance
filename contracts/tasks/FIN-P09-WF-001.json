@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P09-WF-001",
+  "phase": "P09",
+  "workstream": "WF",
+  "objective": "Implement deterministic provider-scoped funding, open-interest and liquidation observations plus a non-prescriptive crowding evidence vector without inventing an unvalidated trading score.",
+  "scope": [
+    "Define governed derivatives observation policy and metric taxonomy",
+    "Implement funding-rate observations with explicit funding interval semantics",
+    "Implement open-interest observations with explicit provider-defined unit",
+    "Implement long/short liquidation observations with explicit matching liquidation unit",
+    "Require provider, venue, instrument, coverage scope, point-in-time fields and trusted provenance",
+    "Build same-stream crowding evidence vector requiring one observation of each governed metric kind",
+    "Compute deterministic liquidation total and long-vs-short liquidation imbalance basis points",
+    "Represent zero-liquidation imbalance as unavailable rather than directional zero evidence",
+    "Generate deterministic offline P09-F evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Arbitrary crowding score or crowded/uncrowded classification before P09-H validation",
+    "Funding/OI/liquidation forecasting",
+    "Cross-provider derivatives aggregation",
+    "Synthetic spot-FX funding, OI or liquidation metrics",
+    "Broker/exchange order placement",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance closure (P09-H)",
+    "Signal fusion, calibrated trade probability, Risk approval or broker/exchange execution"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "FIN-P09-WC-001 CANONICAL_COMPLETE",
+    "FIN-P09-WD-001 CANONICAL_COMPLETE",
+    "FIN-P09-WE-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WE-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 74c8ef540d44a957e5e59eb2cd8a1f9a8a8a4536"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WF-001.json",
+    "config/order-flow-liquidity/derivatives-crowding-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/derivatives_crowding.py",
+    "tests/p09/test_derivatives_crowding.py",
+    "scripts/ci/p09f_evidence.py",
+    "docs/09-intelligence/P09-F-DERIVATIVES-CROWDING.md",
+    "docs/09-intelligence/p09-f-derivatives-crowding.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 derivatives/crowding source",
+    "Funding observation requires positive interval and DECIMAL_RATE unit",
+    "OI and liquidation observations reject negative values and funding interval metadata",
+    "Spot FX derivatives metrics fail closed",
+    "Crowding evidence requires exactly one Funding/OI/Long Liquidation/Short Liquidation observation",
+    "Crowding observations must share symbol, market class, provider, venue, coverage scope and as-of time",
+    "Long/short liquidation units must match",
+    "Liquidation imbalance is deterministic and bounded to [-10000,10000] bps",
+    "Zero liquidation activity produces unavailable imbalance rather than directional evidence",
+    "Crowding identity is deterministic and content-sensitive",
+    "Contracts expose no score/recommendation/probability/order authority",
+    "P09-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No cross-provider/global derivatives aggregation is synthesized",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A/B/C/D/E canonical closure",
+    "Deterministic P09-F derivatives/crowding evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-230 reconciliation"
+  ],
+  "rollback": "Revert P09-F derivatives/crowding module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A/B/C/D/E remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A/B/C/D/E CANONICAL_COMPLETE",
+    "P09-E lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Funding/OI/liquidation and crowding evidence contracts implemented",
+    "Point-in-time, same-stream, unit and provenance invariants enforced",
+    "No unvalidated crowding score or trading authority introduced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WF-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-230 Done",
+    "P09-G becomes READY_NOT_STARTED"
+  ]
+}
