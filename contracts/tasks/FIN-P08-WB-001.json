@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P08-WB-001",
+  "phase": "P08",
+  "workstream": "WB",
+  "objective": "Implement a deterministic point-in-time Trend Family that emits one governed family-level TechnicalEvidence object from correlated price-path trend transforms without creating independent duplicate votes or trade authority.",
+  "scope": [
+    "Define a governed Trend Family policy",
+    "Validate a single-symbol single-timeframe trusted OHLCV trend window with consistent dataset and quality lineage",
+    "Compute deterministic fast/slow moving-average alignment",
+    "Compute deterministic slow-baseline slope and current price distance",
+    "Classify bullish, bearish or neutral trend state using explicit symmetric thresholds",
+    "Emit exactly one TREND family-level TechnicalEvidence object with a single independence group",
+    "Bound strength and confidence as deterministic evidence scores rather than empirical probabilities",
+    "Generate deterministic offline P08-B evidence",
+    "Reconcile P08-B task and lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Momentum models (P08-C)",
+    "Market Structure and Price Action (P08-D)",
+    "Volatility and Mean Reversion (P08-E)",
+    "Breakout and Expansion (P08-F)",
+    "Multi-Timeframe and Regime models (P08-G)",
+    "Formal independence/correlation audit (P08-H)",
+    "G6 technical validation gate closure (P08-I)",
+    "Signal fusion, probability calibration, risk approval or execution",
+    "Broker/exchange/order integration"
+  ],
+  "dependencies": [
+    "FIN-P08-WA-001 CANONICAL_COMPLETE",
+    "P08-A closure main SHA a7366479de9491aa0f8fcd5a8644377310087016",
+    "G5_TRUSTED_DATA PASS",
+    "P08 phase authorization already granted",
+    "Fresh Live Guard: active task none and active lock none before P08-B activation"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/foundation.py",
+    "config/technical-intelligence/indicator-foundation-policy.json",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WB-001.json",
+    "config/technical-intelligence/trend-family-policy.json",
+    "packages/technical_intelligence/__init__.py",
+    "packages/technical_intelligence/trend.py",
+    "tests/p08/test_trend_family.py",
+    "scripts/ci/p08b_evidence.py",
+    "docs/08-intelligence/P08-B-TREND-FAMILY.md",
+    "docs/08-intelligence/p08-b-trend-family.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P08 source",
+    "Monotonic rising price path produces bullish family evidence",
+    "Monotonic falling price path produces bearish family evidence",
+    "Flat or threshold-ambiguous path produces neutral family evidence",
+    "Trend metrics and evidence identity are deterministic",
+    "Mixed symbol/timeframe/dataset/quality lineage fails closed",
+    "Non-monotonic event-time windows fail closed",
+    "Insufficient history fails closed",
+    "Correlated trend transforms emit one shared independence group and count as one confirmation",
+    "Strength/confidence remain bounded and are not represented as trade probability",
+    "P08-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No execution adapter or broker/exchange/order authority is imported",
+    "No network or credential access is required",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P08-A canonical foundation",
+    "Deterministic P08-B trend-family evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-212 reconciliation"
+  ],
+  "rollback": "Revert P08-B trend module, policy, tests, evidence/CI wiring and P08-B active-state reconciliation. P08-A remains canonical and no trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08-A CANONICAL_COMPLETE",
+    "P08-B READY_NOT_STARTED",
+    "No conflicting active task/lock/open PR"
+  ],
+  "definition_of_done": [
+    "Trend Family implemented with one family-level evidence output",
+    "Correlated price-path transforms do not create duplicate independent votes",
+    "Point-in-time and lineage invariants fail closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P08-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-212 Done",
+    "P08-C becomes READY_NOT_STARTED"
+  ]
+}
