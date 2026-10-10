@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09B_TRADE_FLOW_POLICY",
+  "allowed_market_classes": ["CRYPTO_SPOT", "CRYPTO_DERIVATIVE", "FOREX_SPOT", "FUTURES"],
+  "allowed_trade_source_kinds": ["VENUE_TRADE_PRINTS", "BROKER_TRADE_PRINTS", "ECN_TRADE_PRINTS"],
+  "forex_spot_allowed_trade_source_kinds": ["BROKER_TRADE_PRINTS", "ECN_TRADE_PRINTS"],
+  "allowed_classification_methods": ["NATIVE_AGGRESSOR_FLAG", "QUOTE_TEST", "TICK_RULE", "UNCLASSIFIED"],
+  "max_classification_confidence_bps": 10000,
+  "require_contiguous_sequence_for_cvd": true,
+  "quote_updates_as_trade_prints_allowed": false,
+  "tick_volume_as_trade_prints_allowed": false,
+  "forex_spot_global_flow_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_order_flow_vendor": "NOT_SELECTED"
+}

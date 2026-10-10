@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09B_TRADE_FLOW_BASELINE",
+  "task_id": "FIN-P09-WB-001",
+  "linear": "HOS-226",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P09-WB-001-01",
+  "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
+  "workstream": "P09-B",
+  "lead_agent": "A3",
+  "supporting_agents": ["A0", "A1", "A2", "A4", "A6", "A8", "A9", "A10"],
+  "canonical_base": "bd488563db15c793591a59bedd0d49570eb61b43",
+  "trade_source_kinds": ["VENUE_TRADE_PRINTS", "BROKER_TRADE_PRINTS", "ECN_TRADE_PRINTS"],
+  "aggressor_classification_methods": [
+    "NATIVE_AGGRESSOR_FLAG",
+    "QUOTE_TEST",
+    "TICK_RULE",
+    "UNCLASSIFIED"
+  ],
+  "quote_updates_as_trade_prints_allowed": false,
+  "tick_volume_as_trade_prints_allowed": false,
+  "forex_spot_global_flow_claim_allowed": false,
+  "unknown_volume_enters_delta": false,
+  "cvd_requires_explicit_start": true,
+  "cvd_requires_contiguous_sequence": true,
+  "point_in_time_quote_context_required": true,
+  "production_order_flow_vendor": "NOT_SELECTED",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

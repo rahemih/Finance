@@ -450,6 +450,15 @@ jobs:
           cmp build/p09a-a.json build/p09a-b.json
           sha256sum build/p09a-a.json
 
+      - name: P09-B deterministic trade flow Delta CVD evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09b_evidence.py --output build/p09b-a.json
+          PYTHONPATH=. python scripts/ci/p09b_evidence.py --output build/p09b-b.json
+          cmp build/p09b-a.json build/p09b-b.json
+          sha256sum build/p09b-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
