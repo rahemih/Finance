@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P09-WD-001",
+  "phase": "P09",
+  "workstream": "WD",
+  "objective": "Implement deterministic provider-scoped Order Book analytics for spread, top-N depth and normalized depth imbalance with strict book-integrity, point-in-time and Forex coverage boundaries.",
+  "scope": [
+    "Define governed Order Book source taxonomy for venue, broker and ECN books",
+    "Define deterministic bid/ask level and snapshot contracts",
+    "Require positive price/size, unique prices and strict bid-descending/ask-ascending ordering",
+    "Fail closed on locked or crossed books",
+    "Compute best bid/ask, mid, absolute spread and spread basis points",
+    "Compute deterministic comparable top-N bid and ask depth",
+    "Compute signed normalized depth imbalance in integer basis points",
+    "Require point-in-time event/as-of semantics and trusted provenance",
+    "Require spot-FX books to remain broker/ECN/provider scoped",
+    "Generate deterministic offline P09-D evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Liquidity heatmap or execution-capacity models (P09-E)",
+    "Slippage or market-impact estimation",
+    "Order placement or execution simulation",
+    "Funding, Open Interest, liquidation or crowding models (P09-F)",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance closure (P09-H)",
+    "Signal fusion, calibrated trade probability, Risk approval or broker/exchange execution"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "FIN-P09-WC-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WC-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 2c4eaf6380f6e7820e5d86a6983e1c1ab6220d9a"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WD-001.json",
+    "config/order-flow-liquidity/order-book-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/order_book.py",
+    "tests/p09/test_order_book_depth_imbalance.py",
+    "scripts/ci/p09d_evidence.py",
+    "docs/09-intelligence/P09-D-ORDER-BOOK-DEPTH-IMBALANCE.md",
+    "docs/09-intelligence/p09-d-order-book-depth-imbalance.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 Order Book source",
+    "Positive bid/ask levels with strict canonical sorting validate",
+    "Duplicate or out-of-order levels fail closed",
+    "Locked/crossed books fail closed",
+    "Future event time relative to as-of fails closed",
+    "Spot-FX venue/global/consolidated book claims fail closed",
+    "Best bid/ask, mid and spread are deterministic",
+    "Comparable top-N depth requires enough levels on both sides",
+    "Depth imbalance is deterministic and bounded to [-10000,10000] bps",
+    "Snapshot identity is deterministic and content-sensitive",
+    "Book/metrics contracts expose no order/recommendation authority",
+    "P09-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No global/consolidated spot-FX book is synthesized",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A/B/C canonical closure",
+    "Deterministic P09-D Order Book evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-228 reconciliation"
+  ],
+  "rollback": "Revert P09-D order-book module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A/B/C remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A/B/C CANONICAL_COMPLETE",
+    "P09-C lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Order Book snapshot and metrics contracts implemented",
+    "Spread/depth/imbalance and book-integrity invariants enforced",
+    "Forex/provider-scope boundaries enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-228 Done",
+    "P09-E becomes READY_NOT_STARTED"
+  ]
+}
