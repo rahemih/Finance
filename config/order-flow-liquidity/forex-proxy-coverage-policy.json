@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09G_FOREX_PROXY_COVERAGE_POLICY",
+  "required_market_class": "FOREX_SPOT",
+  "required_components": ["PROVIDER_SCOPE", "INTERNAL_COMPLETENESS", "FRESHNESS"],
+  "benchmark_agreement_required": false,
+  "confidence_aggregation": "CONSERVATIVE_MINIMUM",
+  "global_market_share_claim_allowed": false,
+  "cross_provider_aggregation_allowed": false,
+  "weighted_confidence_score_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_fx_order_flow_vendor": "NOT_SELECTED"
+}
