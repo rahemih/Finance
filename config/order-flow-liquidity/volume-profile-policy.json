@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09C_VOLUME_PROFILE_POLICY",
+  "value_area_target_bps": 7000,
+  "max_profile_bucket_count": 10000,
+  "require_contiguous_sequence": true,
+  "require_actual_trade_prints": true,
+  "poc_tie_break": "LOWEST_PRICE",
+  "value_area_tie_break": "LOWER_PRICE",
+  "quote_activity_profile_allowed": false,
+  "tick_volume_profile_allowed": false,
+  "forex_spot_global_profile_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_order_flow_vendor": "NOT_SELECTED"
+}
