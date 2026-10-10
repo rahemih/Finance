@@ -10,12 +10,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from packages.technical_intelligence import (
-    TechnicalFoundationPolicy,
-    TrendFamilyModel,
-    TrendFamilyPolicy,
-    TrustedOHLCVBar,
-)
+from packages.technical_intelligence.foundation import TechnicalFoundationPolicy, TrustedOHLCVBar
+from packages.technical_intelligence.trend import TrendFamilyModel, TrendFamilyPolicy
 
 FOUNDATION_POLICY = ROOT / "config/technical-intelligence/indicator-foundation-policy.json"
 TREND_POLICY = ROOT / "config/technical-intelligence/trend-family-policy.json"
