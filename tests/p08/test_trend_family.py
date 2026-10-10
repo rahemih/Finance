@@ -4,13 +4,15 @@ from dataclasses import replace
 from pathlib import Path
 import unittest
 
-from packages.technical_intelligence import (
+from packages.technical_intelligence.foundation import (
     TechnicalFoundationPolicy,
+    TrustedOHLCVBar,
+    count_independent_confirmations,
+)
+from packages.technical_intelligence.trend import (
     TrendFamilyError,
     TrendFamilyModel,
     TrendFamilyPolicy,
-    TrustedOHLCVBar,
-    count_independent_confirmations,
 )
 
 ROOT = Path(__file__).resolve().parents[2]
