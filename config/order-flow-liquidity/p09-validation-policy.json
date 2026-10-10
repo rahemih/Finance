@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09H_VALIDATION_POLICY",
+  "required_phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
+  "required_workstreams": [
+    {"workstream": "P09-A", "task_id": "FIN-P09-WA-001", "document": "docs/09-intelligence/p09-a-volume-proxy-ontology.json"},
+    {"workstream": "P09-B", "task_id": "FIN-P09-WB-001", "document": "docs/09-intelligence/p09-b-trade-flow-delta-cvd.json"},
+    {"workstream": "P09-C", "task_id": "FIN-P09-WC-001", "document": "docs/09-intelligence/p09-c-volume-profile.json"},
+    {"workstream": "P09-D", "task_id": "FIN-P09-WD-001", "document": "docs/09-intelligence/p09-d-order-book-depth-imbalance.json"},
+    {"workstream": "P09-E", "task_id": "FIN-P09-WE-001", "document": "docs/09-intelligence/p09-e-liquidity-heatmap-capacity.json"},
+    {"workstream": "P09-F", "task_id": "FIN-P09-WF-001", "document": "docs/09-intelligence/p09-f-derivatives-crowding.json"},
+    {"workstream": "P09-G", "task_id": "FIN-P09-WG-001", "document": "docs/09-intelligence/p09-g-forex-proxy-coverage-confidence.json"}
+  ],
+  "required_state": "CANONICAL_COMPLETE",
+  "required_lock": "RELEASED",
+  "required_country_assumption": "NONE",
+  "required_live_trading": "DISABLED",
+  "required_auto_trading": "DISABLED",
+  "performance": {
+    "semantics": "CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO",
+    "p09_unit_suite_max_seconds": 60,
+    "network_required": false,
+    "production_slo_certified": false
+  },
+  "validation_semantics": {
+    "profitability_certified": false,
+    "trade_success_probability_certified": false,
+    "production_execution_certified": false,
+    "production_provider_performance_certified": false
+  },
+  "next_phase": "P10",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
