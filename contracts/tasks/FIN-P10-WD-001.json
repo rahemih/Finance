@@ -1,0 +1,144 @@
+{
+  "task_id": "FIN-P10-WD-001",
+  "phase": "P10",
+  "workstream": "WD",
+  "objective": "Implement a deterministic point-in-time macro surprise engine using P10-C revision-zero first release actuals and separately evidenced pre-release consensus snapshots without interpreting raw surprise as market direction or trade probability.",
+  "scope": [
+    "Define canonical consensus snapshot contract",
+    "Require explicit consensus provider identity, method, sample size, observed-at timestamp and evidence hashes",
+    "Require consensus observation strictly before revision-zero release time",
+    "Require consensus series and unit to match P10-C first-release actual",
+    "Use P10-C revision-zero value as actual",
+    "Compute exact Decimal raw surprise actual minus consensus",
+    "Classify only ABOVE_CONSENSUS, BELOW_CONSENSUS or AT_CONSENSUS",
+    "Preserve P10-C history ID, actual vintage ID, previous-at-first-release vintage ID and consensus fingerprint",
+    "Generate deterministic offline evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Bullish/bearish interpretation",
+    "Signal probability/calibration",
+    "Historical standardized-surprise scaling",
+    "Causal market impact",
+    "Rates/yields/currency model P10-E",
+    "Commodity context P10-F",
+    "Crypto/on-chain context P10-G",
+    "Production consensus provider selection or credentials",
+    "Risk approval or execution"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001 CANONICAL_COMPLETE",
+    "FIN-P10-WB-001 CANONICAL_COMPLETE",
+    "FIN-P10-WC-001 CANONICAL_COMPLETE",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 1688e20588246febea2e510d16382e7d82268179"
+  ],
+  "read_paths": [
+    "packages/fundamental_intelligence/**",
+    "packages/historical_data/macro_vintage.py",
+    "config/fundamental-intelligence/**",
+    "config/historical-data/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WD-001.json",
+    "config/fundamental-intelligence/macro-surprise-policy.json",
+    "packages/fundamental_intelligence/macro_surprise.py",
+    "packages/fundamental_intelligence/__init__.py",
+    "tests/p10/test_macro_surprise.py",
+    "scripts/ci/p10d_evidence.py",
+    "docs/09-intelligence/P10-D-MACRO-SURPRISE-ENGINE.md",
+    "docs/09-intelligence/p10-d-macro-surprise-engine.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P10-D source/tests",
+    "Consensus snapshot Decimal values are finite",
+    "Consensus method is explicitly MEDIAN or MEAN",
+    "Consensus sample size is at least two",
+    "Consensus observed-at is strictly before first-release release time",
+    "Consensus series and unit match P10-C first release",
+    "Actual is exactly P10-C revision-zero value",
+    "Raw surprise equals actual minus consensus with Decimal arithmetic",
+    "Direction is descriptive only: ABOVE_CONSENSUS / BELOW_CONSENSUS / AT_CONSENSUS",
+    "Later revisions cannot change first-release surprise",
+    "Consensus identity and surprise identity are deterministic/content-sensitive",
+    "No trade/probability/market-direction fields exist",
+    "P10-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access required",
+    "No production consensus provider selected",
+    "No execution adapter import",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P10-A/B/C canonical closure",
+    "Deterministic P10-D surprise evidence",
+    "Implementation PR Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-236 reconciliation"
+  ],
+  "rollback": "Revert P10-D macro-surprise contract/policy/tests/evidence/CI/state. P10-A/B/C remain canonical and no trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A/B/C CANONICAL_COMPLETE",
+    "P10-C lock RELEASED",
+    "P10 Owner authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Consensus and raw surprise contracts implemented",
+    "Point-in-time and anti-lookahead invariants enforced",
+    "Descriptive-only direction semantics enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P10-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-236 Done",
+    "P10-E becomes READY_NOT_STARTED"
+  ]
+}

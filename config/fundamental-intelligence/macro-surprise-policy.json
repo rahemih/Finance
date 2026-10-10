@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10D_MACRO_SURPRISE_POLICY",
+  "allowed_consensus_methods": [
+    "CONSENSUS_MEDIAN",
+    "CONSENSUS_MEAN"
+  ],
+  "minimum_consensus_sample_size": 2,
+  "consensus_time_rule": "OBSERVED_AT_STRICTLY_BEFORE_FIRST_RELEASE_TIME",
+  "actual_rule": "P10C_REVISION_ZERO_FIRST_RELEASE_ONLY",
+  "surprise_rule": "ACTUAL_MINUS_CONSENSUS",
+  "direction_labels": [
+    "ABOVE_CONSENSUS",
+    "BELOW_CONSENSUS",
+    "AT_CONSENSUS"
+  ],
+  "market_direction_interpretation_allowed": false,
+  "standardized_surprise_in_scope": false,
+  "production_consensus_provider": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "direct_trade_output_allowed": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

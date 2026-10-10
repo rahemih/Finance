@@ -549,6 +549,15 @@ jobs:
           cmp build/p10c-a.json build/p10c-b.json
           sha256sum build/p10c-a.json
 
+      - name: P10-D deterministic macro-surprise evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p10d_evidence.py --output build/p10d-a.json
+          PYTHONPATH=. python scripts/ci/p10d_evidence.py --output build/p10d-b.json
+          cmp build/p10d-a.json build/p10d-b.json
+          sha256sum build/p10d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

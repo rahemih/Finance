@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10D_MACRO_SURPRISE_BASELINE",
+  "task_id": "FIN-P10-WD-001",
+  "linear": "HOS-236",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P10-WD-001-01",
+  "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
+  "workstream": "P10-D",
+  "canonical_base": "1688e20588246febea2e510d16382e7d82268179",
+  "depends_on": [
+    "FIN-P10-WA-001_CANONICAL_COMPLETE",
+    "FIN-P10-WB-001_CANONICAL_COMPLETE",
+    "FIN-P10-WC-001_CANONICAL_COMPLETE"
+  ],
+  "actual_rule": "P10C_REVISION_ZERO_FIRST_RELEASE_ONLY",
+  "consensus_time_rule": "OBSERVED_AT_STRICTLY_BEFORE_FIRST_RELEASE_TIME",
+  "surprise_rule": "ACTUAL_MINUS_CONSENSUS",
+  "direction_labels": [
+    "ABOVE_CONSENSUS",
+    "BELOW_CONSENSUS",
+    "AT_CONSENSUS"
+  ],
+  "market_direction_interpretation_allowed": false,
+  "production_consensus_provider": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
