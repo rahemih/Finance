@@ -16,7 +16,7 @@ def main()->int:
     registry=OfficialSourceRegistry.from_path(SR,policy=source_policy)
     samples=[
         EconomicCalendarEvent("BLS","CPI-US-2026-09","Consumer Price Index","INFLATION","US","2026-09",2_000,"America/New_York","SCHEDULED",1_000,"7"*64,"8"*64),
-        EconomicCalendarEvent("ECB","ECB-2026-10","ECB monetary policy decision","CENTRAL_BANK_DECISION","EURO_AREA","2026-10",3_000,"Europe/Frankfurt","RELEASED",3_100,"9"*64,"a"*64,3_050),
+        EconomicCalendarEvent("ECB","ECB-2026-10","ECB monetary policy decision","CENTRAL_BANK_DECISION","EURO_AREA","2026-10",3_000,"Europe/Berlin","RELEASED",3_100,"9"*64,"a"*64,3_050),
         EconomicCalendarEvent("BEA","GDP-US-Q3-2026","Gross Domestic Product","GROWTH","US","2026-Q3",5_000,"America/New_York","RESCHEDULED",4_000,"b"*64,"c"*64,None,4_500),
     ]
     validated=[validate_economic_event(e,policy=event_policy,source_registry=registry) for e in samples]
