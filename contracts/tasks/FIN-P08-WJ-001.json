@@ -49,7 +49,8 @@
   "write_paths": [
     "contracts/tasks/FIN-P08-WJ-001.json",
     "docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md",
-    "docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md"
+    "docs/09-agents/specialists/SPECIALIST-AGENT-CATALOG.md",
+    "docs/09-agents/specialists/RESEARCH-VALIDATION-SPECIALIST.json"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
@@ -95,7 +96,8 @@
     "Positive Fast Track evidence cannot produce a VALIDATED/PROFITABLE/TRADE claim",
     "Negative Fast Track evidence may reject or investigate a candidate but cannot bypass canonical gates",
     "Research Validation Specialist cannot modify candidate features, production code, risk policy, roadmap baseline or execution",
-    "Build-vs-Buy decision remains TO_BE_DECIDED_BY_ADR"
+    "Build-vs-Buy decision remains TO_BE_DECIDED_BY_ADR",
+    "Research Validation Specialist contract defines role, authority, inputs, outputs, read/write scope, forbidden scope/actions, tools/plugins/skills, trigger, escalation, failure behavior and audit requirements"
   ],
   "security_tests": [
     "No broker/exchange/order/credential authority is introduced",
@@ -110,7 +112,8 @@
     "PR Governance result",
     "Post-merge verification",
     "Linear HOS-219 reconciliation",
-    "Deferred shared-state reconciliation after FIN-P08-WF-001 lock release"
+    "Deferred shared-state reconciliation after FIN-P08-WF-001 lock release",
+    "Research Validation Specialist machine-readable contract"
   ],
   "rollback": "Revert FIN-P08-WJ-001 task contract, Alpha Research Fast Track addendum and Research Validation Specialist catalog entry. The frozen Master Roadmap, P08-F implementation, all canonical gates and trading states remain unchanged.",
   "human_gate": false,
