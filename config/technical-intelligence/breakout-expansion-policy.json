@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08F_BREAKOUT_EXPANSION_POLICY",
+  "family": "BREAKOUT",
+  "independence_group": "range-breakout-expansion",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "channel_lookback_bars": 20,
+  "breakout_buffer_bps": 5,
+  "min_expansion_ratio_bps": 12000,
+  "expansion_confirmation_bonus_bps": 1000,
+  "base_directional_confidence_bps": 4500,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}
