@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08C_MOMENTUM_FAMILY_BASELINE",
+  "task_id": "FIN-P08-WC-001",
+  "linear": "HOS-213",
+  "lock": "LOCK-FIN-P08-WC-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "family": "MOMENTUM",
+  "independence_group": "return-momentum",
+  "family_outputs_per_evaluation": 1,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
