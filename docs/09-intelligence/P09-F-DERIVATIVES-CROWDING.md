@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WF-001`  
 Linear: `HOS-230`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WF-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A3 Market Intelligence  
 Support: A0, A1, A2, A4, A6, A8, A9, A10
 
@@ -84,3 +84,19 @@ Cross-provider aggregation is forbidden in P09-F.
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED;
 - recommendation/probability/Risk/execution authority: FORBIDDEN.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#200` = MERGED
+- Final implementation head: `b8727d3515ea4d876beb78ab765487ec3c2fedfb`
+- Implementation merge SHA: `a3d1d1e64061503bd5b9db2ba0eb30159547459d`
+- PR Governance: `38051316245` = SUCCESS
+- PR artifact: `sha256:5d7813bb88ca03687a56461dcea2f352d4d73c737693c0cb2c9d6bebb388bd43`
+- Post-merge Governance: `38051391835` = SUCCESS
+- Post-merge artifact: `sha256:4bcca8f987bd9f1f57f09055623edbfefbeafeee849c3fa9ebfaa0a249a792b9`
+- Post-merge Branch Hygiene: `38051391827` = SUCCESS
+- strict typecheck / P09 tests / deterministic P09-F evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-G — Forex Proxy Coverage Confidence becomes `READY_NOT_STARTED`.
