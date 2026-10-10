@@ -1,0 +1,138 @@
+{
+  "task_id": "FIN-P10-WB-001",
+  "phase": "P10",
+  "workstream": "WB",
+  "objective": "Implement a deterministic economic-calendar/event schema with explicit scheduled versus actual release timing, IANA timezone semantics, lifecycle invariants and P10-A source provenance without introducing release values, revisions or surprise calculations.",
+  "scope": [
+    "Define canonical economic-event categories and lifecycle statuses",
+    "Bind each event to a canonical P10-A official source",
+    "Preserve source-scoped event identity, jurisdiction and reference period",
+    "Preserve scheduled release time and declared IANA timezone",
+    "Preserve actual release time only for RELEASED state",
+    "Preserve rescheduled-from time only for RESCHEDULED state",
+    "Preserve cancellation reason only for CANCELLED state",
+    "Preserve calendar observed-at time and trusted dataset/quality provenance",
+    "Enforce point-in-time lifecycle invariants fail closed",
+    "Generate deterministic offline P10-B evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Actual, forecast or previous numeric values",
+    "First-release/previous-at-time/revision history resolution (P10-C)",
+    "Macro surprise calculations (P10-D)",
+    "Rates/yields/currency macro models (P10-E)",
+    "Commodity/on-chain models (P10-F/G)",
+    "Event importance or trade ranking",
+    "Signal probability, Risk approval or execution"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P10-WA-001-01 RELEASED",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base dbaf56c0056f25f15b776706b6b4a5cd2d9bd68a"
+  ],
+  "read_paths": [
+    "config/fundamental-intelligence/official-source-*.json",
+    "packages/fundamental_intelligence/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WB-001.json",
+    "config/fundamental-intelligence/economic-event-policy.json",
+    "packages/fundamental_intelligence/economic_events.py",
+    "packages/fundamental_intelligence/__init__.py",
+    "tests/p10/test_economic_event_schema.py",
+    "scripts/ci/p10b_evidence.py",
+    "docs/09-intelligence/P10-B-ECONOMIC-CALENDAR-EVENT-SCHEMA.md",
+    "docs/09-intelligence/p10-b-economic-calendar-event-schema.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P10 economic-event source/tests",
+    "Event source must exist in P10-A official-source registry",
+    "IANA timezone must resolve",
+    "SCHEDULED events cannot carry release/reschedule/cancellation fields",
+    "RELEASED events require actual_release_time_ns not after observed_at_ns",
+    "RESCHEDULED events require distinct rescheduled_from_ns",
+    "CANCELLED events require cancellation_reason",
+    "Lifecycle-incompatible fields fail closed",
+    "Dataset version and quality evidence require SHA-256",
+    "Event identity is deterministic and content-sensitive",
+    "Event schema contains no actual/forecast/previous values or trading authority",
+    "P10-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network access required",
+    "No credential handling introduced",
+    "No trade/execution adapter imported",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P10-A canonical closure",
+    "Deterministic P10-B event evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-234 reconciliation"
+  ],
+  "rollback": "Revert P10-B event schema/policy/tests/evidence/CI wiring and state reconciliation. P10-A remains canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A CANONICAL_COMPLETE",
+    "P10-A lock RELEASED",
+    "P10 Owner authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Economic-event contract canonical",
+    "Lifecycle/time/source/provenance invariants enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P10-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-234 Done",
+    "P10-C becomes READY_NOT_STARTED"
+  ]
+}
