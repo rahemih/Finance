@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WB-001`  
 Linear: `HOS-212`  
-Lock: `LOCK-FIN-P08-WB-001-01`  
-State: IMPLEMENTATION_ACTIVE
+Lock: RELEASED  
+State: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -53,3 +53,20 @@ Any violation fails closed.
 ## Boundary
 
 P08-C Momentum and all later P08 workstreams remain out of scope. G6 is not evaluated here.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#170` = MERGED
+- Final implementation head: `6f772b2d65ca573955ddae17213f3d1d06273404`
+- Implementation merge SHA: `146179db5b3d613fac97c890f0c6983a1f575629`
+- PR Governance: `38035626597` = SUCCESS
+- PR artifact: `sha256:f7c9bc8a2db7307152768f2e030c76250d606f1fd5f51a8ced658eeecddcfc19`
+- Post-merge Governance: `38035702876` = SUCCESS
+- Post-merge artifact: `sha256:dc629cfc4034b5dd0566b822cc610508b0510ce17d3cd673b912ab1f3bd5929d`
+- Post-merge Branch Hygiene: `38035702947` = SUCCESS
+- Strict Pyright: PASS
+- P08 technical-intelligence tests: PASS
+- Deterministic P08-B trend evidence: PASS
+
+P08-C — Momentum Family is READY_NOT_STARTED. G6 remains NOT_EVALUATED.
