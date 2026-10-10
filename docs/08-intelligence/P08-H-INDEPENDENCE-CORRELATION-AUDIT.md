@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WH-001`  
 Linear: `HOS-223`  
-Lock: `LOCK-FIN-P08-WH-001-01`  
-State: IMPLEMENTATION_ACTIVE
+Lock: RELEASED  
+State: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -97,3 +97,24 @@ P08-I owns the technical validation gate. P14 owns fusion thresholds and calibra
 - Direct trade/order output: FORBIDDEN
 - Country assumption: NONE
 - Network/credentials: NONE REQUIRED
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#186` = MERGED
+- Final implementation head: `a2d23b354b17a48a26f6abe448a28da8f846cc51`
+- Implementation merge SHA: `62651b2fb351d67545e5d7037d3fb97c9f72aea7`
+- PR Governance: `38044760144` = SUCCESS
+- PR artifact: `sha256:6f994629520a41e435a2fd4865616185497e43ea25454993c94ec39c712512a5`
+- Post-merge Governance: `38044866029` = SUCCESS
+- Post-merge artifact: `sha256:4de59f90922b3c000af83f046a7c11540eebdacd0eb6446aa6eef4be879a7c23`
+- Post-merge Branch Hygiene: `38044866002` = SUCCESS
+- Strict Pyright: PASS after bounded R01 typing repair
+- P08 technical-intelligence tests: PASS
+- deterministic P08-H audit evidence twice: PASS
+- canonical family-policy independence groups match registry: PASS
+- cluster cap = one independent vote per known correlation cluster
+- numeric Pearson/Spearman remains MEASURED_NOT_THRESHOLD_CLASSIFIED
+- production fusion threshold owner remains P14
+
+P08-I — Technical Validation Gate is READY_NOT_STARTED. AR-1 remains READY_NOT_STARTED under separate cross-cutting ownership.
