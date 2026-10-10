@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: none — P08-D closed; P08-E READY_NOT_STARTED  
+Current Workstream: P08-E — Volatility & Mean Reversion / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P08-D — Market Structure & Price Action / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E READY_NOT_STARTED / P08-F..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E IMPLEMENTATION_ACTIVE / P08-F..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -160,8 +160,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P08-WE-001`  
+Active lock: `LOCK-FIN-P08-WE-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -182,7 +182,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P08-D — Market Structure & Price Action is CANONICAL_COMPLETE. P08-E — Volatility & Mean Reversion is READY_NOT_STARTED. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
+P08-D — Market Structure & Price Action is CANONICAL_COMPLETE. P08-E — Volatility & Mean Reversion is IMPLEMENTATION_ACTIVE under LOCK-FIN-P08-WE-001-01. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3312,3 +3312,33 @@ Safety:
 Next:
 - P08-E — Volatility & Mean Reversion: READY_NOT_STARTED;
 - G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
+
+
+## P08-E — Volatility & Mean Reversion
+
+Task: `FIN-P08-WE-001`  
+Linear: `HOS-216`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P08-WE-001-01` / ACQUIRED  
+Implementation branch: `feat/FIN-P08-WE-001-volatility-mean-reversion`
+
+Dependency:
+- FIN-P08-WD-001 = CANONICAL_COMPLETE;
+- P08-D closure main SHA = `6020c1eef3688f1fced37508dd1040ed4601c0f7`;
+- G5_TRUSTED_DATA = PASS.
+
+Implementation boundary:
+- short-vs-baseline normalized range volatility;
+- VOLATILITY direction remains context-neutral zero only;
+- rolling mean + mean absolute deviation reversion context;
+- above-mean extremes map to bearish reversion and below-mean extremes to bullish reversion;
+- one independence group per family;
+- cross-family independence remains PROVISIONAL_PENDING_P08_H;
+- P08-F through P08-I remain out of scope.
+
+Safety:
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED;
+- direct trade/order output: FORBIDDEN;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED.
