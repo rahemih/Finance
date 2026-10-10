@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10E_RATES_CURRENCY_MACRO_POLICY",
+  "allowed_metric_kinds": [
+    "POLICY_RATE",
+    "GOVERNMENT_YIELD"
+  ],
+  "allowed_units": [
+    "PERCENT"
+  ],
+  "allowed_source_ids": [
+    "FRED_ALFRED",
+    "ECB",
+    "BOE",
+    "BOJ",
+    "BIS"
+  ],
+  "curve_spread_rule": "LONGER_TENOR_MINUS_SHORTER_TENOR",
+  "currency_differential_rule": "BASE_MINUS_QUOTE",
+  "latest_as_of_rule": "LATEST_OBSERVATION_WITH_RELEASE_AND_OBSERVED_AT_NOT_AFTER_DECISION_TIME",
+  "production_source_mapping": "NOT_SELECTED",
+  "market_direction_interpretation_allowed": false,
+  "direct_trade_output_allowed": false,
+  "network_required": false,
+  "credentials_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

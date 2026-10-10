@@ -1,0 +1,140 @@
+{
+  "task_id": "FIN-P10-WE-001",
+  "phase": "P10",
+  "workstream": "WE",
+  "objective": "Implement deterministic point-in-time rates, yields and currency-macro context from official-source macro vintages without converting descriptive differentials into market direction, probability or execution authority.",
+  "scope": [
+    "Policy-rate and government-yield metadata around P06-E MacroVintage",
+    "P10-A official-source enforcement",
+    "Latest eligible vintage strictly as-of decision time",
+    "Yield-curve spread as longer tenor minus shorter tenor",
+    "Cross-currency macro differential as base minus quote",
+    "Exact Decimal arithmetic and deterministic provenance",
+    "Offline evidence and GitHub/Linear reconciliation"
+  ],
+  "out_of_scope": [
+    "Bullish/bearish FX interpretation",
+    "Carry-trade recommendation",
+    "Price prediction",
+    "Signal probability/calibration",
+    "P10-F commodity context",
+    "P10-G crypto/on-chain context",
+    "Production provider selection",
+    "Risk or execution"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001 CANONICAL_COMPLETE",
+    "FIN-P10-WB-001 CANONICAL_COMPLETE",
+    "FIN-P10-WC-001 CANONICAL_COMPLETE",
+    "FIN-P10-WD-001 CANONICAL_COMPLETE",
+    "P06-E Macro Vintage Model CANONICAL_COMPLETE",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base c690b5a78862d067bae045b9e844c6001106ec88"
+  ],
+  "read_paths": [
+    "packages/fundamental_intelligence/**",
+    "packages/historical_data/macro_vintage.py",
+    "config/fundamental-intelligence/**",
+    "config/historical-data/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WE-001.json",
+    "config/fundamental-intelligence/rates-currency-macro-policy.json",
+    "packages/fundamental_intelligence/rates_currency_macro.py",
+    "packages/fundamental_intelligence/__init__.py",
+    "tests/p10/test_rates_currency_macro.py",
+    "scripts/ci/p10e_evidence.py",
+    "docs/09-intelligence/P10-E-RATES-YIELDS-CURRENCY-MACRO.md",
+    "docs/09-intelligence/p10-e-rates-yields-currency-macro.json",
+    ".github/workflows/governance.yml",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Only POLICY_RATE and GOVERNMENT_YIELD accepted",
+    "Only PERCENT accepted",
+    "Source must be official and allowlisted",
+    "Policy rate forbids tenor; yield requires positive tenor",
+    "Latest-as-of excludes later observations/revisions",
+    "Curve spread requires same currency/jurisdiction/unit and ordered tenor",
+    "Currency differential requires distinct currencies, matched metric/unit and matched yield tenor",
+    "Decimal arithmetic only",
+    "Deterministic IDs/evidence",
+    "No trade/probability/recommendation/execution authority fields",
+    "Evidence byte-identical twice"
+  ],
+  "security_tests": [
+    "No network or credentials required",
+    "No production source mapping selected",
+    "No execution adapter import",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P10-A/B/C/D canonical closure",
+    "Deterministic P10-E evidence",
+    "Implementation PR Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-238 reconciliation"
+  ],
+  "rollback": "Revert P10-E files and state; P10-A/B/C/D remain canonical and trading state is unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A/B/C/D CANONICAL_COMPLETE",
+    "P10-D lock RELEASED",
+    "P10 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Contracts implemented",
+    "Anti-lookahead and official-source invariants enforced",
+    "Descriptive-only semantics enforced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge checks pass",
+    "Closure merged",
+    "FIN-P10-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "HOS-238 Done",
+    "P10-F READY_NOT_STARTED"
+  ]
+}

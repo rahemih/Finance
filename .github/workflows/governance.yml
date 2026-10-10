@@ -558,6 +558,15 @@ jobs:
           cmp build/p10d-a.json build/p10d-b.json
           sha256sum build/p10d-a.json
 
+      - name: P10-E deterministic rates/currency evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p10e_evidence.py --output build/p10e-a.json
+          PYTHONPATH=. python scripts/ci/p10e_evidence.py --output build/p10e-b.json
+          cmp build/p10e-a.json build/p10e-b.json
+          sha256sum build/p10e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
