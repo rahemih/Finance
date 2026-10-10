@@ -1,3 +1,12 @@
+from .macro_surprise import (
+    ConsensusSnapshot,
+    MacroSurpriseError,
+    MacroSurprisePolicy,
+    MacroSurpriseResult,
+    assert_no_surprise_trade_probability_fields,
+    compute_macro_surprise,
+    validate_consensus_snapshot,
+)
 from .release_history import (
     EconomicReleaseHistory,
     ReleaseHistoryError,
@@ -26,6 +35,13 @@ from .source_registry import (
 )
 
 __all__ = [
+    "ConsensusSnapshot",
+    "MacroSurpriseError",
+    "MacroSurprisePolicy",
+    "MacroSurpriseResult",
+    "assert_no_surprise_trade_probability_fields",
+    "compute_macro_surprise",
+    "validate_consensus_snapshot",
     "EconomicReleaseHistory",
     "ReleaseHistoryError",
     "ReleaseHistoryPolicy",
