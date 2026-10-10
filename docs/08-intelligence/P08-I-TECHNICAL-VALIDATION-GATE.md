@@ -2,9 +2,9 @@
 
 Task: `FIN-P08-WI-001`  
 Linear: `HOS-224`  
-State: IMPLEMENTATION_ACTIVE  
-Gate: `G6_TECHNICAL_VALIDATED = NOT_EVALUATED`  
-Lock: `LOCK-FIN-P08-WI-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Gate: `G6_TECHNICAL_VALIDATED = PASS`  
+Lock: RELEASED  
 Lead: A10 Evidence/Audit  
 Support: A0, A3, A4, A8, A9
 
@@ -99,3 +99,25 @@ Credentials: not required.
 Country assumption: NONE.  
 Live Trading: DISABLED.  
 Auto Trading: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#188` = MERGED
+- Final implementation head: `c29de8d0d96b7108eb8ffc20770712fe7eb5369f`
+- Implementation merge SHA: `ab1ec4dbb75e86bd40fc06669f40ed0ce8709db5`
+- PR Governance: `38046615279` = SUCCESS
+- PR artifact: `sha256:2c2ff2684ef37438f4a162462071b887d3dcd4d19a2af84fb1002c28f7a67c16`
+- Post-merge Governance: `38046682840` = SUCCESS
+- Post-merge artifact: `sha256:c6e8775ee525c9298ea521e324b8505585a1cfd021f28fa61f3e1936dbcdc21d`
+- Post-merge Branch Hygiene: `38046682826` = SUCCESS
+- Strict Pyright: PASS
+- P08 technical intelligence tests: PASS
+- P08-I deterministic technical validation gate evidence twice: PASS
+- G6_TECHNICAL_VALIDATED: PASS
+
+## Gate interpretation
+
+G6 PASS certifies the governed P08 Technical Intelligence engineering baseline, point-in-time/trusted-data controls and anti-double-counting protections. It does **not** certify profitability, production fusion thresholds, calibrated trade probability, Risk approval, backtest robustness, or execution.
+
+P09 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`. AR-1 remains `READY_NOT_STARTED` and cannot bypass the P09 phase gate.

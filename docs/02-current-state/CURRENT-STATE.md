@@ -39,9 +39,9 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-I — Technical Validation Gate / IMPLEMENTATION_ACTIVE / G6 NOT_EVALUATED; AR-1 READY_NOT_STARTED  
-Previous Workstream: P08-H — Independence / Correlation Audit / CANONICAL_COMPLETE  
+Current Phase: P08 — Technical Intelligence / CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
+Current Workstream: none — P08 closed / G6 PASS; P09 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED; AR-1 READY_NOT_STARTED  
+Previous Workstream: P08-I — Technical Validation Gate / CANONICAL_COMPLETE / G6 PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I IMPLEMENTATION_ACTIVE / G6_TECHNICAL_VALIDATED NOT_EVALUATED  
+P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -161,8 +161,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WI-001`  
-Active lock: `LOCK-FIN-P08-WI-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3546,35 +3546,42 @@ Next:
 
 Task: `FIN-P08-WI-001`  
 Linear: `HOS-224`  
-State: IMPLEMENTATION_ACTIVE  
-Gate: `G6_TECHNICAL_VALIDATED = NOT_EVALUATED`  
-Lock: `LOCK-FIN-P08-WI-001-01` / ACQUIRED  
-Branch: `feat/FIN-P08-WI-001-technical-validation-gate`
+State: CANONICAL_COMPLETE  
+Gate: `G6_TECHNICAL_VALIDATED = PASS`  
+Lock: RELEASED  
+Implementation PR: `#188` = MERGED  
+Final implementation head: `c29de8d0d96b7108eb8ffc20770712fe7eb5369f`  
+Implementation merge SHA: `ab1ec4dbb75e86bd40fc06669f40ed0ce8709db5`  
+PR Governance: `38046615279` = SUCCESS  
+PR artifact: `sha256:2c2ff2684ef37438f4a162462071b887d3dcd4d19a2af84fb1002c28f7a67c16`  
+Post-merge Governance: `38046682840` = SUCCESS  
+Post-merge artifact: `sha256:c6e8775ee525c9298ea521e324b8505585a1cfd021f28fa61f3e1936dbcdc21d`  
+Post-merge Branch Hygiene: `38046682826` = SUCCESS
 
-Dependency:
-- P08-A..P08-H = CANONICAL_COMPLETE;
-- AR-0 = CANONICAL_COMPLETE;
-- G5_TRUSTED_DATA = PASS;
-- canonical base = `4b1ebade6df3b649bde2b39320ad37491226df93`.
-
-Gate boundary:
-- certifies deterministic technical-family engineering baseline and anti-double-counting controls;
-- requires point-in-time/trusted-data foundation and non-executable family evidence;
-- requires breakout reference-channel leakage protection;
-- requires repeated timeframes remain related, not independent;
-- requires P08-H correlation-cluster cap and fail-closed drift handling;
+Gate result:
+- P08-A..P08-H prerequisite closures verified;
+- point-in-time/trusted-data technical foundation verified;
+- direct trade/order output remains forbidden;
+- breakout reference-channel leakage protection verified;
+- repeated Trend timeframes remain related, not independent;
+- P08-H cluster caps known related transforms and fails closed on registry drift;
 - numeric dependence remains measurement evidence only;
 - P14 retains production fusion-threshold and probability-calibration authority;
-- profitability, Risk, backtest robustness and execution are not certified by G6;
-- canonical G6 PASS is deferred until implementation merge + post-merge checks + closure reconciliation.
+- deterministic G6 gate evidence twice: PASS;
+- G6_TECHNICAL_VALIDATED = PASS.
 
-Safety:
+Safety / non-claims:
+- profitability: NOT_CERTIFIED;
+- calibrated trade probability: NOT_CERTIFIED;
+- Risk approval: NOT_GRANTED;
+- backtest robustness: NOT_CERTIFIED;
+- execution authority: NOT_GRANTED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED;
-- direct trade/order output: FORBIDDEN;
-- country assumption: NONE;
-- network/credentials: NONE REQUIRED.
+- country assumption: NONE.
 
-Phase boundary:
-- P09 must remain NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED after a successful G6;
-- AR-1 remains READY_NOT_STARTED and cannot bypass the P09 Human Gate.
+Phase transition:
+- P08 — Technical Intelligence: CANONICAL_COMPLETE;
+- P09 — Volume / Order Flow / Liquidity: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- AR-1 — Reproducible Research Harness: READY_NOT_STARTED;
+- no later phase is started by this closure.
