@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P09 — Volume / Order Flow / Liquidity / ACTIVE  
-Current Workstream: none — P09-E closed; P09-F READY_NOT_STARTED  
+Current Workstream: P09-F — Funding / OI / Liquidation / Crowding / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P09-E — Liquidity Heatmap / Capacity / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -50,7 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F READY_NOT_STARTED / P09-G..P09-H NOT_STARTED  
+P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F IMPLEMENTATION_ACTIVE / P09-G..P09-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -162,8 +162,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P09-WF-001`  
+Active lock: `LOCK-FIN-P09-WF-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -175,7 +175,7 @@ Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIM
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 Technical intelligence implementation (P08): CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F READY_NOT_STARTED / P09-G..P09-H NOT_STARTED
+Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F IMPLEMENTATION_ACTIVE / P09-G..P09-H NOT_STARTED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -185,7 +185,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P09-E — Liquidity Heatmap / Capacity is CANONICAL_COMPLETE and `LOCK-FIN-P09-WE-001-01` is RELEASED. P09-F — Funding / OI / Liquidation / Crowding is READY_NOT_STARTED. P09-G..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P09-F — Funding / OI / Liquidation / Crowding is IMPLEMENTATION_ACTIVE under `LOCK-FIN-P09-WF-001-01`. P09-A/B/C/D/E remain CANONICAL_COMPLETE. P09-G..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3803,3 +3803,50 @@ Next:
 - P09-F — Funding / OI / Liquidation / Crowding: READY_NOT_STARTED;
 - P09-G..P09-H: NOT_STARTED;
 - AR-1: READY_NOT_STARTED.
+
+
+## P09-F — Funding / OI / Liquidation / Crowding
+
+Task: `FIN-P09-WF-001`  
+Linear: `HOS-230`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P09-WF-001-01` / ACQUIRED  
+Implementation branch: `feat/FIN-P09-WF-001-derivatives-crowding`
+
+Fresh Live Guard:
+- P09-A/B/C/D/E = CANONICAL_COMPLETE;
+- HOS-225..HOS-229 = Done;
+- open PRs = 0;
+- active task/lock before acquisition = none;
+- canonical base = `74c8ef540d44a957e5e59eb2cd8a1f9a8a8a4536`.
+
+Agents:
+- A3 Market Intelligence — lead / derivatives semantics;
+- A2 Data — provenance, units and point-in-time integrity;
+- A4 Quant — liquidation imbalance mathematics;
+- A6 Execution — descriptive-vs-trading boundary review only;
+- A1 Architecture — domain/contract review;
+- A8 Security — no synthetic FX/cross-provider authority review;
+- A9 Operations — deterministic/fail-closed review;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation boundary:
+- governed metric kinds: Funding Rate, Open Interest, Long Liquidation, Short Liquidation;
+- funding requires DECIMAL_RATE plus explicit funding interval;
+- OI/liquidations are non-negative and explicitly unit-labeled;
+- complete crowding evidence requires exactly one of each metric kind;
+- all components must share provider, venue, instrument, coverage scope and as-of time;
+- long/short liquidation units must match;
+- positive liquidation total yields deterministic imbalance bps;
+- zero liquidation activity yields unavailable/null imbalance, not false neutral evidence;
+- no crowding score/label or liquidation forecast before P09-H validation;
+- spot FX receives no synthetic Funding/OI/liquidation metrics;
+- no recommendation, probability, Risk or execution authority.
+
+Safety:
+- production derivatives/order-flow vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.

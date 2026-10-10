@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09F_DERIVATIVES_CROWDING_POLICY",
+  "allowed_market_classes": ["CRYPTO_DERIVATIVE", "FUTURES"],
+  "allowed_metric_kinds": ["FUNDING_RATE", "OPEN_INTEREST", "LONG_LIQUIDATION", "SHORT_LIQUIDATION"],
+  "funding_allowed_market_classes": ["CRYPTO_DERIVATIVE"],
+  "funding_unit": "DECIMAL_RATE",
+  "require_same_provider_venue_instrument": true,
+  "require_same_as_of_time": true,
+  "cross_provider_aggregation_allowed": false,
+  "spot_fx_derivatives_metric_allowed": false,
+  "crowding_score_allowed": false,
+  "liquidation_forecast_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_derivatives_vendor": "NOT_SELECTED"
+}
