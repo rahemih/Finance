@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08G_MULTI_TIMEFRAME_REGIME_BASELINE",
+  "task_id": "FIN-P08-WG-001",
+  "linear": "HOS-221",
+  "lock": "LOCK-FIN-P08-WG-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "input_family": "TREND",
+  "output_family": "REGIME",
+  "independence_group": "trend-multitimeframe-regime",
+  "classifications": [
+    "ALIGNED_BULLISH",
+    "ALIGNED_BEARISH",
+    "TRANSITION",
+    "CONFLICT",
+    "NEUTRAL"
+  ],
+  "family_outputs_per_evaluation": 1,
+  "cross_timeframe_independence_status": "RELATED_NOT_INDEPENDENT",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
