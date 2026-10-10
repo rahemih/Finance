@@ -1,5 +1,15 @@
 """Volume, order-flow and liquidity intelligence foundations."""
 
+from .order_book import (
+    OrderBookError,
+    OrderBookLevel,
+    OrderBookMetrics,
+    OrderBookPolicy,
+    OrderBookSnapshot,
+    assert_no_order_book_trade_authority_fields,
+    compute_order_book_metrics,
+    validate_order_book,
+)
 from .trade_flow import (
     ClassifiedTrade,
     FlowSnapshot,
@@ -33,6 +43,11 @@ from .volume_ontology import (
 __all__ = [
     "ClassifiedTrade",
     "FlowSnapshot",
+    "OrderBookError",
+    "OrderBookLevel",
+    "OrderBookMetrics",
+    "OrderBookPolicy",
+    "OrderBookSnapshot",
     "QuoteContext",
     "TradeFlowError",
     "TradeFlowPolicy",
@@ -44,14 +59,17 @@ __all__ = [
     "VolumeProfileSnapshot",
     "VolumeOntologyError",
     "VolumeProxyPolicy",
+    "assert_no_order_book_trade_authority_fields",
     "assert_no_profile_trade_authority_fields",
     "assert_no_trade_authority_fields",
     "build_flow_snapshot",
     "build_volume_profile",
+    "compute_order_book_metrics",
     "classify_native_aggressor",
     "classify_quote_test",
     "classify_tick_rule",
     "classify_unknown",
+    "validate_order_book",
     "validate_trade_print",
     "validate_volume_observation",
 ]
