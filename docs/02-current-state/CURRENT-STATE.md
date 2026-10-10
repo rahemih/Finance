@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P09 — Volume / Order Flow / Liquidity / ACTIVE  
-Current Workstream: P09-B — Trades / Buy-Sell Flow / Delta / CVD / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P09-A — Volume Taxonomy / Proxy Labels / CANONICAL_COMPLETE  
+Current Workstream: none — P09-B closed; P09-C READY_NOT_STARTED  
+Previous Workstream: P09-B — Trades / Buy-Sell Flow / Delta / CVD / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -50,7 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B IMPLEMENTATION_ACTIVE / P09-C..P09-H NOT_STARTED  
+P09 state: ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C READY_NOT_STARTED / P09-D..P09-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -162,8 +162,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P09-WB-001`  
-Active lock: `LOCK-FIN-P09-WB-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -175,7 +175,7 @@ Market/application runtime implementation (P05): CANONICAL_COMPLETE / G4_REALTIM
 Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 Technical intelligence implementation (P08): CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B IMPLEMENTATION_ACTIVE / P09-C..P09-H NOT_STARTED
+Volume/order-flow/liquidity implementation (P09): ACTIVE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C READY_NOT_STARTED / P09-D..P09-H NOT_STARTED
 Demo Trading: NOT_STARTED  
 Shadow Trading: NOT_STARTED  
 Live Trading: DISABLED  
@@ -185,7 +185,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P09-B — Trades / Buy-Sell Flow / Delta / CVD is IMPLEMENTATION_ACTIVE under `LOCK-FIN-P09-WB-001-01`. P09-A remains CANONICAL_COMPLETE. P09-C..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P09-B — Trades / Buy-Sell Flow / Delta / CVD is CANONICAL_COMPLETE and `LOCK-FIN-P09-WB-001-01` is RELEASED. P09-C — Volume Profile is READY_NOT_STARTED. P09-D..P09-H remain NOT_STARTED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3634,45 +3634,41 @@ Next:
 
 Task: `FIN-P09-WB-001`  
 Linear: `HOS-226`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WB-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P09-WB-001-trade-flow-delta-cvd`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#192` = MERGED  
+Final implementation head: `c1f9c1408857a0df427518545837ac58dda84b52`  
+Implementation merge SHA: `629b39cb5cfc0718045536b06f8ee3e92d1e5a4c`  
+PR Governance: `38048202174` = SUCCESS  
+PR artifact: `sha256:5e0c059983d122e7d55776af8a550fd90e4ba998cf35c61eb98eb6d080b05b9a`  
+Post-merge Governance: `38048256001` = SUCCESS  
+Post-merge artifact: `sha256:8b5416254fff09f90a7d02311d99ce288f85de6392b0efd7deaffc29582bd6fe`  
+Post-merge Branch Hygiene: `38048256050` = SUCCESS
 
-Fresh Live Guard:
-- P09-A = CANONICAL_COMPLETE / lock RELEASED;
-- HOS-225 = Done;
-- open PRs = 0;
-- active task/lock before acquisition = none;
-- canonical base = `bd488563db15c793591a59bedd0d49570eb61b43`.
-
-Agents:
-- A3 Market Intelligence — lead / aggressor-flow semantics;
-- A2 Data — trade-print provenance and sequencing;
-- A4 Quant — Delta/CVD downstream contract compatibility;
-- A6 Execution — execution-capacity boundary review only;
-- A1 Architecture — domain/contract review;
-- A8 Security — no synthetic trades/no execution authority review;
-- A9 Operations — determinism/sequence/fail-closed review;
-- A10 Evidence/Audit — deterministic evidence;
-- A0 Governance — task/lock/state coordination.
-
-Implementation boundary:
-- actual trade-print source contract only;
-- source kinds: venue, broker and ECN trade prints;
-- native aggressor flag, point-in-time quote test, tick rule or UNCLASSIFIED;
-- quote context from the future fails closed;
-- quote updates and tick-volume proxies cannot become trade prints;
-- spot-FX trade flow remains broker/ECN/provider scoped;
-- global/consolidated/total-market spot-FX flow claims fail closed;
-- deterministic buy volume, sell volume, unclassified volume, Delta and CVD;
-- unknown volume does not enter Delta;
-- reference CVD requires explicit starting state and contiguous sequence;
-- classification coverage and size-weighted classification confidence remain descriptive evidence only;
-- no recommendation, probability, Risk or execution authority.
+Validation:
+- Strict product typecheck: PASS;
+- P09 regression tests: PASS;
+- deterministic P09-B trade-flow / Delta / CVD evidence twice: PASS;
+- SBOM/license policy: PASS;
+- Trivy supply-chain scan: PASS;
+- reproducible clean-source build twice: PASS;
+- quote updates and tick-volume proxies cannot become synthetic trade prints;
+- native, quote-test, tick-rule and UNCLASSIFIED provenance remain explicit;
+- future quote context fails closed;
+- spot-FX trade flow remains broker/ECN/provider scoped and cannot claim global/consolidated coverage;
+- unclassified volume is retained separately and excluded from Delta;
+- CVD requires explicit start and contiguous, ordered source sequence;
+- classification coverage/confidence are descriptive evidence only;
+- no recommendation, probability, Risk or execution authority introduced.
 
 Safety:
 - production order-flow vendor: NOT_SELECTED;
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED by reference implementation;
+- network/credentials: NONE REQUIRED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Next:
+- P09-C — Volume Profile: READY_NOT_STARTED;
+- P09-D..P09-H: NOT_STARTED;
+- AR-1: READY_NOT_STARTED.
