@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08A_TECHNICAL_FOUNDATION_BASELINE",
+  "task_id": "FIN-P08-WA-001",
+  "linear": "HOS-211",
+  "lock": "LOCK-FIN-P08-WA-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "common_evidence_fields": [
+    "definition_id",
+    "family",
+    "independence_group",
+    "symbol",
+    "timeframe",
+    "direction",
+    "strength_bps",
+    "confidence_bps",
+    "event_time_ns",
+    "as_of_time_ns",
+    "freshness_ns",
+    "value_text",
+    "invalidation",
+    "source_dataset_version",
+    "quality_evidence_sha256"
+  ],
+  "independence_rule": "correlated transforms sharing an independence group count as one confirmation",
+  "point_in_time_required": true,
+  "trusted_data_required": true,
+  "direct_trade_output_allowed": false,
+  "production_technical_intelligence_vendor": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
