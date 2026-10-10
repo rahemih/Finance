@@ -296,7 +296,7 @@ class MarketStructurePriceActionModel:
             version="1.0.0",
             family="PRICE_ACTION",
             independence_group=p.price_action_independence_group,
-            lookback_bars=1,
+            lookback_bars=2,
             output_unit="BPS",
             parameters=(
                 ("min_body_to_range_bps", str(p.min_body_to_range_bps)),
