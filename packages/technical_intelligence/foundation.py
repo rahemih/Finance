@@ -5,7 +5,7 @@ from decimal import Decimal, InvalidOperation, ROUND_HALF_EVEN
 import hashlib
 import json
 from pathlib import Path
-from typing import Mapping, Sequence
+from typing import Mapping, Sequence, cast
 
 
 class TechnicalFoundationError(ValueError):
@@ -19,6 +19,18 @@ def _canonical_bytes(value: object) -> bytes:
         separators=(",", ":"),
         ensure_ascii=False,
     ).encode("utf-8")
+
+
+def _mapping(value: object, *, field: str) -> Mapping[str, object]:
+    if not isinstance(value, Mapping):
+        raise TechnicalFoundationError(f"{field} must be an object")
+    return cast(Mapping[str, object], value)
+
+
+def _object_list(value: object, *, field: str) -> list[object]:
+    if not isinstance(value, list):
+        raise TechnicalFoundationError(f"{field} must be a list")
+    return cast(list[object], value)
 
 
 def _text(value: object, *, field: str) -> str:
@@ -80,13 +92,11 @@ class TechnicalFoundationPolicy:
     @classmethod
     def from_path(cls, path: Path) -> "TechnicalFoundationPolicy":
         raw_value: object = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(raw_value, dict):
-            raise TechnicalFoundationError("policy root must be an object")
-        raw: Mapping[str, object] = raw_value
+        raw = _mapping(raw_value, field="policy root")
         if raw.get("schema_version") != "1.0":
             raise TechnicalFoundationError("unsupported policy schema_version")
-        families_value = raw.get("allowed_families")
-        if not isinstance(families_value, list) or not families_value:
+        families_value = _object_list(raw.get("allowed_families"), field="allowed_families")
+        if not families_value:
             raise TechnicalFoundationError("allowed_families must be a non-empty array")
         families = tuple(_text(item, field="allowed_family") for item in families_value)
         max_lookback = _non_negative_int(raw.get("max_lookback_bars"), field="max_lookback_bars")
