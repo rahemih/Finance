@@ -167,6 +167,7 @@ This catalog is the canonical index of governed work.
 | FIN-P09-WH-001 | P09 | Validation / Performance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WH-001.json` | RELEASED |
 | FIN-P10-WA-001 | P10 | Official Source Adapters | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WA-001.json` | RELEASED |
 | FIN-P10-WB-001 | P10 | Economic Calendar / Event Schema | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WB-001.json` | RELEASED |
+| FIN-P10-WC-001 | P10 | First Release / Previous-at-Time / Revision History | HIGH | ACTIVE | `contracts/tasks/FIN-P10-WC-001.json` | LOCK-FIN-P10-WC-001-01 / ACQUIRED |
 
 ## Rules
 
