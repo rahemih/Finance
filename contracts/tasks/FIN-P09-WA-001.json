@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P09-WA-001",
+  "phase": "P09",
+  "workstream": "WA",
+  "objective": "Establish the deterministic provider-neutral volume taxonomy and proxy-label ontology for P09, including explicit spot-FX proxy semantics, coverage confidence, point-in-time provenance and content-addressed observation identity without creating trade authority.",
+  "scope": [
+    "Define governed market-class and volume-kind taxonomy for Crypto, Futures and Forex",
+    "Require explicit provider, venue, coverage scope and coverage-confidence metadata",
+    "Require spot-FX volume to be labeled only as tick/broker/ECN/futures proxy",
+    "Forbid global, consolidated or total-market spot-FX volume claims",
+    "Require point-in-time event/as-of semantics and trusted dataset/quality provenance",
+    "Define deterministic content-addressed VolumeObservation identity",
+    "Fail closed on invalid market classes, volume kinds, provenance, timestamps or misleading proxy claims",
+    "Generate deterministic offline P09-A evidence",
+    "Activate P09 and reconcile task/lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Trade flow, aggressor classification, Delta or CVD implementation (P09-B)",
+    "Volume Profile implementation (P09-C)",
+    "Order Book, spread, depth or imbalance implementation (P09-D)",
+    "Liquidity heatmap or execution-capacity models (P09-E)",
+    "Funding, Open Interest, liquidation or crowding models (P09-F)",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance/validation closure (P09-H)",
+    "Signal fusion, calibrated probability, risk approval, broker/exchange execution or order placement",
+    "Selecting a production order-flow vendor"
+  ],
+  "dependencies": [
+    "P08 CANONICAL_COMPLETE",
+    "G6_TECHNICAL_VALIDATED PASS",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 2f42118e4361cf8d62ca4dd6003687f908a28fbe"
+  ],
+  "read_paths": [
+    "packages/realtime/**",
+    "packages/historical_data/**",
+    "packages/data_quality/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WA-001.json",
+    "config/order-flow-liquidity/volume-proxy-ontology-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/volume_ontology.py",
+    "tests/p09/__init__.py",
+    "tests/p09/test_volume_proxy_ontology.py",
+    "scripts/ci/p09a_evidence.py",
+    "docs/09-intelligence/P09-A-VOLUME-PROXY-ONTOLOGY.md",
+    "docs/09-intelligence/p09-a-volume-proxy-ontology.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 source",
+    "Policy forbids consolidated spot-FX volume claims and direct trade output",
+    "Spot-FX tick/broker/ECN/futures volume must be explicit proxy kinds",
+    "Global/consolidated/total-market spot-FX coverage claims fail closed",
+    "Spot-FX proxy target must be explicit",
+    "Native Crypto venue volume remains non-proxy",
+    "Native/aggregated venue volume cannot declare a proxy target",
+    "Future event time, negative volume and invalid provenance hashes fail closed",
+    "Unknown market class or volume kind fails closed",
+    "Observation identity is deterministic and content-sensitive",
+    "No trade/order authority fields exist",
+    "P09-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange/order adapter is imported",
+    "No credential or network access is required",
+    "No production order-flow vendor is selected",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P08 G6_TECHNICAL_VALIDATED PASS",
+    "P07 trusted-data provenance baseline",
+    "Deterministic P09-A volume/proxy ontology evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-225 reconciliation"
+  ],
+  "rollback": "Revert P09-A ontology module, policy, tests, evidence/CI wiring and P09 active-state reconciliation. P08/G6 remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P08 CANONICAL_COMPLETE",
+    "G6_TECHNICAL_VALIDATED PASS",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Volume/proxy ontology implemented",
+    "Spot-FX proxy semantics fail closed",
+    "Point-in-time and trusted-provenance invariants enforced",
+    "Deterministic observation identity established",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-225 Done",
+    "P09-B becomes READY_NOT_STARTED"
+  ]
+}
