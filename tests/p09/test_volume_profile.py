@@ -221,6 +221,29 @@ class VolumeProfileTests(unittest.TestCase):
                 trade_policy=trade_policy(),
             )
 
+    def test_snapshot_identity_changes_with_bucket_geometry(self) -> None:
+        items = [
+            trade(sequence=1, price="100.2", size="2", event_time_ns=1_000),
+            trade(sequence=2, price="101.2", size="1", event_time_ns=1_001),
+        ]
+        one = build_volume_profile(
+            items,
+            profile_id="identity",
+            bucket_size_text="1",
+            bucket_origin_text="100",
+            profile_policy=profile_policy(),
+            trade_policy=trade_policy(),
+        )
+        two = build_volume_profile(
+            items,
+            profile_id="identity",
+            bucket_size_text="0.5",
+            bucket_origin_text="100",
+            profile_policy=profile_policy(),
+            trade_policy=trade_policy(),
+        )
+        self.assertNotEqual(one.snapshot_id, two.snapshot_id)
+
     def test_invalid_bucket_size_fails_closed(self) -> None:
         with self.assertRaises(VolumeProfileError):
             build_volume_profile(
