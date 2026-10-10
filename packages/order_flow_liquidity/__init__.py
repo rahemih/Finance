@@ -1,5 +1,14 @@
 """Volume, order-flow and liquidity intelligence foundations."""
 
+from .derivatives_crowding import (
+    CrowdingEvidenceSnapshot,
+    DerivativesCrowdingError,
+    DerivativesCrowdingPolicy,
+    DerivativesObservation,
+    assert_no_crowding_trade_authority_fields,
+    build_crowding_evidence,
+    validate_derivatives_observation,
+)
 from .liquidity_heatmap import (
     LiquidityHeatmapBand,
     LiquidityHeatmapError,
@@ -50,6 +59,10 @@ from .volume_ontology import (
 
 __all__ = [
     "ClassifiedTrade",
+    "CrowdingEvidenceSnapshot",
+    "DerivativesCrowdingError",
+    "DerivativesCrowdingPolicy",
+    "DerivativesObservation",
     "FlowSnapshot",
     "LiquidityHeatmapBand",
     "LiquidityHeatmapError",
@@ -71,10 +84,12 @@ __all__ = [
     "VolumeProfileSnapshot",
     "VolumeOntologyError",
     "VolumeProxyPolicy",
+    "assert_no_crowding_trade_authority_fields",
     "assert_no_heatmap_execution_authority_fields",
     "assert_no_order_book_trade_authority_fields",
     "assert_no_profile_trade_authority_fields",
     "assert_no_trade_authority_fields",
+    "build_crowding_evidence",
     "build_flow_snapshot",
     "build_liquidity_heatmap",
     "build_volume_profile",
@@ -83,6 +98,7 @@ __all__ = [
     "classify_quote_test",
     "classify_tick_rule",
     "classify_unknown",
+    "validate_derivatives_observation",
     "validate_order_book",
     "validate_trade_print",
     "validate_volume_observation",
