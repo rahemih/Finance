@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08E_VOLATILITY_MEAN_REVERSION_BASELINE",
+  "task_id": "FIN-P08-WE-001",
+  "linear": "HOS-216",
+  "lock": "LOCK-FIN-P08-WE-001-01",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "families": [
+    "VOLATILITY",
+    "MEAN_REVERSION"
+  ],
+  "independence_groups": {
+    "VOLATILITY": "range-volatility",
+    "MEAN_REVERSION": "price-deviation-mean-reversion"
+  },
+  "volatility_direction_semantics": "CONTEXT_NEUTRAL_ZERO_ONLY",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "family_outputs_per_evaluation": 2,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
