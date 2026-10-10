@@ -177,7 +177,8 @@
       "official_hosts": [
         "stat-search.boj.or.jp",
         "boj.or.jp",
-        "www.boj.or.jp"
+        "www.boj.or.jp",
+        "www.stat-search.boj.or.jp"
       ],
       "capabilities": [
         "TIME_SERIES",
