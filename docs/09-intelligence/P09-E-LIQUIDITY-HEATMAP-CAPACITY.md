@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WE-001`  
 Linear: `HOS-229`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WE-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A4 Quant  
 Support: A0, A1, A2, A3, A6, A8, A9, A10
 
@@ -76,3 +76,19 @@ Spot-FX liquidity inherits the P09-D source restriction: only broker/ECN/provide
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED;
 - recommendation/probability/Risk/execution authority: FORBIDDEN.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#198` = MERGED
+- Final implementation head: `fec27e89e65267697d19655f75e1baa5810d9933`
+- Implementation merge SHA: `6cb8549cbfae68877d7e28ada824a8df93a2c351`
+- PR Governance: `38050757349` = SUCCESS
+- PR artifact: `sha256:dfdc23d78ee0cfb3400a70057fadbbf1797f2b6df9dc444ba16b2a2ac0a93931`
+- Post-merge Governance: `38050829203` = SUCCESS
+- Post-merge artifact: `sha256:a58a01576d7f7407a46a8500bdd5ad611fcf8bf80b1a7cfa6d06cb7b3a292ce2`
+- Post-merge Branch Hygiene: `38050829122` = SUCCESS
+- strict typecheck / P09 tests / deterministic P09-E evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-F — Funding / OI / Liquidation / Crowding becomes `READY_NOT_STARTED`.
