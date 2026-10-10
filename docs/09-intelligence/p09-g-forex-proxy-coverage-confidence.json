@@ -3,14 +3,27 @@
   "kind": "NEXUS_QUANT_P09G_FOREX_PROXY_COVERAGE_BASELINE",
   "task_id": "FIN-P09-WG-001",
   "linear": "HOS-231",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WG-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-G",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A3",
+    "A4",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "canonical_base": "127b3a452cc2c21ace3765b7dc50bdac542a5bbd",
-  "required_components": ["PROVIDER_SCOPE", "INTERNAL_COMPLETENESS", "FRESHNESS"],
+  "required_components": [
+    "PROVIDER_SCOPE",
+    "INTERNAL_COMPLETENESS",
+    "FRESHNESS"
+  ],
   "benchmark_agreement_required": false,
   "confidence_aggregation": "CONSERVATIVE_MINIMUM",
   "confidence_semantics": "PROXY_SCOPE_CONFIDENCE_NOT_GLOBAL_MARKET_SHARE",
@@ -21,5 +34,16 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "canonical_closure": {
+    "implementation_pr": 202,
+    "final_implementation_head": "eb382f2c4a6aec30f0e7d71ed956720d43bcf05d",
+    "implementation_merge_sha": "0d753b5363988e5fa9f562bcd80b880c9abe2a97",
+    "pr_governance_run": 38051885528,
+    "pr_artifact_sha256": "43ebd98a94936095778ac6184cb6b78c473070ddfcac043dede33dab46c4ef61",
+    "post_merge_governance_run": 38051957164,
+    "post_merge_artifact_sha256": "0b1a4be0837d17c557ee5a0c7dd9f1a2479fc4cac711120645bd0eacb637fcb8",
+    "post_merge_branch_hygiene_run": 38051957104,
+    "next_workstream": "P09-H_READY_NOT_STARTED"
+  }
 }
