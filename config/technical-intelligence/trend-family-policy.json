@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08B_TREND_FAMILY_POLICY",
+  "family": "TREND",
+  "independence_group": "price-path-trend",
+  "fast_window": 20,
+  "slow_window": 50,
+  "slope_offset_bars": 5,
+  "min_alignment_bps": 10,
+  "min_slope_bps": 5,
+  "min_price_distance_bps": 5,
+  "base_directional_confidence_bps": 5000,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}
