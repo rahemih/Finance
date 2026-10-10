@@ -354,12 +354,12 @@ class MarketStructurePriceActionModel:
                 structure_break = -1
 
             aligned_break = structure_break == structure_direction and structure_direction != 0
-            structure_strength = min(
-                p.max_strength_bps,
-                self._foundation_policy.max_strength_bps,
-                base_strength + (p.break_confirmation_bonus_bps if aligned_break else 0),
-            )
             if structure_direction != 0:
+                structure_strength = min(
+                    p.max_strength_bps,
+                    self._foundation_policy.max_strength_bps,
+                    base_strength + (p.break_confirmation_bonus_bps if aligned_break else 0),
+                )
                 structure_confidence = min(
                     p.max_confidence_bps,
                     self._foundation_policy.max_confidence_bps,
