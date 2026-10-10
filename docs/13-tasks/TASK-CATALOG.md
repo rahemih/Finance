@@ -157,7 +157,7 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WJ-002 | P08 | Alpha Research Fast Track Shared-State Reconciliation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-002.json` | RELEASED |
 | FIN-P08-WJ-003 | P08 | AR-0 Research Governance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WJ-003.json` | RELEASED |
 
-| FIN-P09-WA-001 | P09 | Volume Taxonomy / Proxy Labels | HIGH | ACTIVE | `contracts/tasks/FIN-P09-WA-001.json` | LOCK-FIN-P09-WA-001-01 / ACQUIRED |
+| FIN-P09-WA-001 | P09 | Volume Taxonomy / Proxy Labels | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WA-001.json` | RELEASED |
 
 ## Rules
 

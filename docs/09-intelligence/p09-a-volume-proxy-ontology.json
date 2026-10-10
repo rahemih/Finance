@@ -3,12 +3,21 @@
   "kind": "NEXUS_QUANT_P09A_VOLUME_PROXY_ONTOLOGY_BASELINE",
   "task_id": "FIN-P09-WA-001",
   "linear": "HOS-225",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WA-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-A",
   "lead_agent": "A2",
-  "supporting_agents": ["A0", "A1", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A3",
+    "A4",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "canonical_base": "2f42118e4361cf8d62ca4dd6003687f908a28fbe",
   "spot_fx_volume_semantics": {
     "consolidated_market_volume_claim_allowed": false,
@@ -23,12 +32,26 @@
     "provider_required": true,
     "proxy_target_required": true
   },
-  "native_volume_kinds": ["NATIVE_VENUE_VOLUME", "AGGREGATED_VENUE_VOLUME"],
+  "native_volume_kinds": [
+    "NATIVE_VENUE_VOLUME",
+    "AGGREGATED_VENUE_VOLUME"
+  ],
   "point_in_time_required": true,
   "trusted_provenance_required": true,
   "production_order_flow_vendor": "NOT_SELECTED",
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "canonical_closure": {
+    "implementation_pr": 190,
+    "final_implementation_head": "250d52ef56a54fe16ed9c72b4f79b72af3f84ea0",
+    "implementation_merge_sha": "e1ef041ce84607cf6ef5c44d4a3588153efd8a5f",
+    "pr_governance_run": 38047638390,
+    "pr_artifact_sha256": "52fc0ae669baf05585abf890a5db7adc9ac2c1c8df5cf419a289a9a38321c8d6",
+    "post_merge_governance_run": 38047708557,
+    "post_merge_artifact_sha256": "d075fc65cc5afaf7a1d78ccb068e4a28e41f7f08ca103541fa1cc9341299cb76",
+    "post_merge_branch_hygiene_run": 38047708566,
+    "next_workstream": "P09-B_READY_NOT_STARTED"
+  }
 }

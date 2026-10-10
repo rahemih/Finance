@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WA-001`  
 Linear: `HOS-225`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A2 Data  
 Support: A0, A1, A3, A4, A6, A8, A9, A10
 
@@ -61,7 +61,7 @@ Local deterministic preflight before repository mutation:
 - deterministic P09-A evidence twice: byte-identical PASS;
 - no network or credentials required.
 
-Canonical completion still requires GitHub PR CI, merge, post-merge checks, closure reconciliation and Linear completion.
+Canonical implementation and post-merge verification are complete. Closure reconciliation records the evidence below.
 
 ## Safety
 
@@ -70,3 +70,20 @@ Canonical completion still requires GitHub PR CI, merge, post-merge checks, clos
 - LIVE_TRADING: DISABLED
 - AUTO_TRADING: DISABLED
 - Direct trade/order authority: FORBIDDEN
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#190` = MERGED
+- Final implementation head: `250d52ef56a54fe16ed9c72b4f79b72af3f84ea0`
+- Implementation merge SHA: `e1ef041ce84607cf6ef5c44d4a3588153efd8a5f`
+- PR Governance: `38047638390` = SUCCESS
+- PR artifact: `sha256:52fc0ae669baf05585abf890a5db7adc9ac2c1c8df5cf419a289a9a38321c8d6`
+- Post-merge Governance: `38047708557` = SUCCESS
+- Post-merge artifact: `sha256:d075fc65cc5afaf7a1d78ccb068e4a28e41f7f08ca103541fa1cc9341299cb76`
+- Post-merge Branch Hygiene: `38047708566` = SUCCESS
+- P09 tests: PASS
+- deterministic P09-A evidence twice: PASS
+- supply-chain / reproducibility controls: PASS
+
+P09-B — Trades / Buy-Sell Flow / Delta / CVD becomes `READY_NOT_STARTED`.
