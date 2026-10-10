@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10F_COMMODITY_CONTEXT_POLICY",
+  "metric_rules": [
+    {
+      "metric_kind": "OIL_INVENTORY_LEVEL",
+      "commodity_id": "CRUDE_OIL",
+      "allowed_units": ["MILLION_BARRELS"],
+      "allowed_source_ids": ["EIA", "OPEC", "IEA"]
+    },
+    {
+      "metric_kind": "OIL_SUPPLY_LEVEL",
+      "commodity_id": "CRUDE_OIL",
+      "allowed_units": ["MILLION_BARRELS_PER_DAY"],
+      "allowed_source_ids": ["EIA", "OPEC", "IEA"]
+    },
+    {
+      "metric_kind": "OIL_DEMAND_LEVEL",
+      "commodity_id": "CRUDE_OIL",
+      "allowed_units": ["MILLION_BARRELS_PER_DAY"],
+      "allowed_source_ids": ["EIA", "OPEC", "IEA"]
+    },
+    {
+      "metric_kind": "GOLD_SUPPLY_LEVEL",
+      "commodity_id": "GOLD",
+      "allowed_units": ["TONNES"],
+      "allowed_source_ids": ["WGC"]
+    },
+    {
+      "metric_kind": "GOLD_DEMAND_LEVEL",
+      "commodity_id": "GOLD",
+      "allowed_units": ["TONNES"],
+      "allowed_source_ids": ["WGC"]
+    },
+    {
+      "metric_kind": "GOLD_ETF_HOLDINGS",
+      "commodity_id": "GOLD",
+      "allowed_units": ["TONNES"],
+      "allowed_source_ids": ["WGC"]
+    },
+    {
+      "metric_kind": "GOLD_RESERVES",
+      "commodity_id": "GOLD",
+      "allowed_units": ["TONNES"],
+      "allowed_source_ids": ["WGC"]
+    },
+    {
+      "metric_kind": "GOLD_CLEARING_VOLUME",
+      "commodity_id": "GOLD",
+      "allowed_units": ["TROY_OUNCES"],
+      "allowed_source_ids": ["LBMA"]
+    }
+  ],
+  "latest_as_of_rule": "LATEST_OBSERVATION_WITH_RELEASE_AND_OBSERVED_AT_NOT_AFTER_DECISION_TIME",
+  "oil_balance_rule": "SUPPLY_MINUS_DEMAND",
+  "production_source_mapping": "NOT_SELECTED",
+  "market_direction_interpretation_allowed": false,
+  "causal_market_impact_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "network_required": false,
+  "credentials_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
