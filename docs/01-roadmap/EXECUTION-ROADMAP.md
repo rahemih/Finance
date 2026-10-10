@@ -40,9 +40,9 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P09-WH-001
-- active lock: LOCK-FIN-P09-WH-001-01
-- completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G = CANONICAL_COMPLETE
+- active governed task: none
+- active lock: none
+- completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
 - P08-C — Momentum Family: CANONICAL_COMPLETE
@@ -65,7 +65,7 @@ Phase transition:
 - P09-E — Liquidity Heatmap / Capacity: CANONICAL_COMPLETE
 - P09-F — Funding / OI / Liquidation / Crowding: CANONICAL_COMPLETE
 - P09-G — Forex Proxy Coverage Confidence: CANONICAL_COMPLETE
-- P09-H — Validation / Performance: IMPLEMENTATION_ACTIVE
+- P09-H — Validation / Performance: CANONICAL_COMPLETE
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -117,7 +117,7 @@ P09 active boundary:
 - P09-E — Liquidity Heatmap / Capacity: CANONICAL_COMPLETE
 - P09-F — Funding / OI / Liquidation / Crowding: CANONICAL_COMPLETE
 - P09-G — Forex Proxy Coverage Confidence: CANONICAL_COMPLETE
-- P09-H — Validation / Performance: IMPLEMENTATION_ACTIVE
+- P09-H — Validation / Performance: CANONICAL_COMPLETE
 
 ---
 

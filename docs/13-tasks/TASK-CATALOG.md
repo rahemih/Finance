@@ -164,7 +164,7 @@ This catalog is the canonical index of governed work.
 | FIN-P09-WE-001 | P09 | Liquidity Heatmap / Capacity | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WE-001.json` | RELEASED |
 | FIN-P09-WF-001 | P09 | Funding / OI / Liquidation / Crowding | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WF-001.json` | RELEASED |
 | FIN-P09-WG-001 | P09 | Forex Proxy Coverage Confidence | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WG-001.json` | RELEASED |
-| FIN-P09-WH-001 | P09 | Validation / Performance | HIGH | ACTIVE | `contracts/tasks/FIN-P09-WH-001.json` | LOCK-FIN-P09-WH-001-01 / ACQUIRED |
+| FIN-P09-WH-001 | P09 | Validation / Performance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P09-WH-001.json` | RELEASED |
 
 ## Rules
 
