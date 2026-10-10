@@ -25,6 +25,14 @@ from .liquidity_heatmap import (
     assert_no_heatmap_execution_authority_fields,
     build_liquidity_heatmap,
 )
+from .p09_validation import (
+    P09ValidationError,
+    P09ValidationEvaluator,
+    P09ValidationIssue,
+    P09ValidationPolicy,
+    P09ValidationReport,
+    RequiredP09Workstream,
+)
 from .order_book import (
     OrderBookError,
     OrderBookLevel,
@@ -80,6 +88,12 @@ __all__ = [
     "LiquidityHeatmapError",
     "LiquidityHeatmapPolicy",
     "LiquidityHeatmapSnapshot",
+    "P09ValidationError",
+    "P09ValidationEvaluator",
+    "P09ValidationIssue",
+    "P09ValidationPolicy",
+    "P09ValidationReport",
+    "RequiredP09Workstream",
     "OrderBookError",
     "OrderBookLevel",
     "OrderBookMetrics",
