@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P10F_COMMODITY_CONTEXT_BASELINE",
+  "task_id": "FIN-P10-WF-001",
+  "linear": "HOS-239",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P10-WF-001-01_ACQUIRED",
+  "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
+  "workstream": "P10-F",
+  "canonical_base": "5b4262e35cbfb0efce5d3d0e1b38dca96bd81d45",
+  "depends_on": [
+    "FIN-P10-WA-001_CANONICAL_COMPLETE",
+    "FIN-P10-WB-001_CANONICAL_COMPLETE",
+    "FIN-P10-WC-001_CANONICAL_COMPLETE",
+    "FIN-P10-WD-001_CANONICAL_COMPLETE",
+    "FIN-P10-WE-001_CANONICAL_COMPLETE"
+  ],
+  "oil_balance_rule": "SUPPLY_MINUS_DEMAND",
+  "latest_as_of_rule": "LATEST_OBSERVATION_WITH_RELEASE_AND_OBSERVED_AT_NOT_AFTER_DECISION_TIME",
+  "market_direction_interpretation_allowed": false,
+  "causal_market_impact_claim_allowed": false,
+  "production_source_mapping": "NOT_SELECTED",
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P10-G_NOT_STARTED"
+}
