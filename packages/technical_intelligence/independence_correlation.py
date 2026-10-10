@@ -64,6 +64,14 @@ def _decimal_text(value: Decimal) -> str:
     return format(quantized.normalize(), "f")
 
 
+def _pair_key(family_a: str, family_b: str) -> tuple[str, str]:
+    return (
+        (family_a, family_b)
+        if family_a <= family_b
+        else (family_b, family_a)
+    )
+
+
 @dataclass(frozen=True, slots=True)
 class FamilyAuditRule:
     family: str
@@ -179,7 +187,7 @@ class IndependenceCorrelationPolicy:
                 raise IndependenceCorrelationError(
                     "explicit pairwise relationship requires two different families"
                 )
-            pair = tuple(sorted((family_a, family_b)))
+            pair = _pair_key(family_a, family_b)
             if pair in seen_pairs:
                 raise IndependenceCorrelationError(
                     f"duplicate pairwise relationship: {pair}"
@@ -252,9 +260,9 @@ class IndependenceCorrelationPolicy:
                 relationship="CLUSTERED_RELATED",
                 basis="SAME_FAMILY",
             )
-        wanted = tuple(sorted((family_a, family_b)))
+        wanted = _pair_key(family_a, family_b)
         for relation in self.explicit_pairwise_relationships:
-            current = tuple(sorted((relation.family_a, relation.family_b)))
+            current = _pair_key(relation.family_a, relation.family_b)
             if current == wanted:
                 return relation
         if rule_a.correlation_cluster == rule_b.correlation_cluster:
