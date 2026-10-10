@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P08-WA-001",
+  "phase": "P08",
+  "workstream": "WA",
+  "objective": "Establish the deterministic provider-neutral technical feature and indicator foundation for P08, including point-in-time OHLCV validation, indicator identity, common evidence contracts and explicit independence-group metadata without creating trade authority.",
+  "scope": [
+    "Define governed technical-intelligence foundation policy and supported technical evidence families",
+    "Validate deterministic point-in-time OHLCV bar inputs with trusted-data lineage",
+    "Define content-addressed versioned indicator definitions",
+    "Define a common family-level technical evidence object with direction, strength, freshness, timeframe, confidence and invalidation metadata",
+    "Require explicit independence-group metadata so correlated transforms cannot masquerade as independent confirmations",
+    "Provide deterministic reference SMA and rate-of-change primitives for foundation certification",
+    "Provide independent-confirmation counting by unique independence group without producing trade decisions",
+    "Generate deterministic offline P08-A evidence",
+    "Activate P08 and reconcile task/lock state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Trend model implementation (P08-B)",
+    "Momentum model implementation (P08-C)",
+    "Market Structure and Price Action models (P08-D)",
+    "Volatility and Mean Reversion models (P08-E)",
+    "Breakout and Expansion models (P08-F)",
+    "Multi-Timeframe and Regime models (P08-G)",
+    "Independence/correlation audit (P08-H)",
+    "G6 technical validation gate closure (P08-I)",
+    "Signal fusion, probability calibration, risk approval, broker/exchange execution or order placement",
+    "Selecting a production technical-intelligence vendor"
+  ],
+  "dependencies": [
+    "P07 CANONICAL_COMPLETE",
+    "G5_TRUSTED_DATA PASS",
+    "P08 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none"
+  ],
+  "read_paths": [
+    "packages/historical_data/**",
+    "packages/data_quality/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P08-WA-001.json",
+    "config/technical-intelligence/indicator-foundation-policy.json",
+    "packages/technical_intelligence/__init__.py",
+    "packages/technical_intelligence/foundation.py",
+    "tests/p08/__init__.py",
+    "tests/p08/test_indicator_foundation.py",
+    "scripts/ci/p08a_evidence.py",
+    "docs/08-intelligence/P08-A-TECHNICAL-INDICATOR-FOUNDATION.md",
+    "docs/08-intelligence/p08-a-technical-indicator-foundation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P08 source",
+    "Valid point-in-time OHLCV bars pass deterministically",
+    "Invalid OHLC relationships and negative volume fail closed",
+    "Future-looking event time relative to as-of time fails closed",
+    "Indicator definition identity is deterministic and content-sensitive",
+    "Evidence strength and confidence are bounded in integer basis points",
+    "Technical evidence carries source dataset and quality lineage",
+    "Evidence identity is deterministic and content-sensitive",
+    "Multiple evidence objects in the same independence group count as one confirmation",
+    "Reference SMA and rate-of-change primitives are deterministic",
+    "No technical evidence object contains trade/order authority",
+    "P08-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange/order adapter is imported",
+    "No credential or network access is required",
+    "No production technical-intelligence vendor is selected",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P06 feature/materialization contracts",
+    "P07 trusted-data gate PASS",
+    "Deterministic P08-A technical foundation evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-211 reconciliation"
+  ],
+  "rollback": "Revert P08-A foundation module, policy, tests, evidence/CI wiring and P08 active-state reconciliation. P07/G5 remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P07 CANONICAL_COMPLETE",
+    "G5_TRUSTED_DATA PASS",
+    "Owner P08 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Technical feature/indicator foundation implemented",
+    "Point-in-time and trusted-lineage invariants fail closed",
+    "Common technical evidence contract established without trade authority",
+    "Independence-group metadata enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P08-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-211 Done",
+    "P08-B becomes READY_NOT_STARTED"
+  ]
+}
