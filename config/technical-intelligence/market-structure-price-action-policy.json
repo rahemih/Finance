@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08D_MARKET_STRUCTURE_PRICE_ACTION_POLICY",
+  "structure_family": "MARKET_STRUCTURE",
+  "price_action_family": "PRICE_ACTION",
+  "structure_independence_group": "swing-structure",
+  "price_action_independence_group": "candle-price-action",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "structure_lookback_bars": 32,
+  "swing_left_bars": 2,
+  "swing_right_bars": 2,
+  "min_confirmed_swings_per_side": 2,
+  "break_buffer_bps": 5,
+  "break_confirmation_bonus_bps": 1000,
+  "min_body_to_range_bps": 6000,
+  "min_close_location_bps": 7000,
+  "base_structure_confidence_bps": 4500,
+  "base_price_action_confidence_bps": 3500,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "direct_trade_output_allowed": false
+}
