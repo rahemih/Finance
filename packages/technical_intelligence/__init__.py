@@ -20,8 +20,4 @@ __all__ = [
     "count_independent_confirmations",
     "rate_of_change_bps",
     "simple_moving_average",
-    "TrendEvaluation",
-    "TrendFamilyError",
-    "TrendFamilyModel",
-    "TrendFamilyPolicy",
 ]
