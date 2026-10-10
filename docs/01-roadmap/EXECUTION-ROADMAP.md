@@ -51,6 +51,10 @@ Phase transition:
 - P08-F — Breakout / Expansion: CANONICAL_COMPLETE
 - P08-G — Multi-Timeframe & Regime: READY_NOT_STARTED
 - P08-H..P08-I: NOT_STARTED
+- Alpha Research Fast Track addendum (cross-cutting / FIN-P08-WJ-001): CANONICAL_COMPLETE
+- Alpha Research Fast Track shared-state reconciliation (FIN-P08-WJ-002): CANONICAL_COMPLETE
+- AR-0 — Research Governance: READY_NOT_STARTED
+- AR-1..AR-5: BLOCKED_UNTIL_AR0_CANONICAL
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -441,3 +445,18 @@ Owner interaction should be minimized to actual Human Gates. Expected high-impac
 - G13 production approval.
 
 Routine engineering, documentation, testing, repair and evidence reconciliation should continue without unnecessary Owner interruption.
+
+
+## Alpha Research Fast Track — cross-cutting adoption
+
+Authority source: `docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md`.
+
+- This is a ROADMAP ADDENDUM anchored at P08, not a replacement phase.
+- `FIN-P08-WJ-001` = CANONICAL_COMPLETE.
+- `FIN-P08-WJ-002` = CANONICAL_COMPLETE.
+- AR-0 — Research Governance = READY_NOT_STARTED.
+- AR-1..AR-5 cannot start before AR-0 canonicalization.
+- P08-G remains READY_NOT_STARTED and may proceed under non-conflicting write ownership.
+- Fast Track outputs are research-only: REJECT / RETAIN_FOR_CONFIRMATION / RETAIN_FOR_P17 / INVESTIGATE.
+- Fast Track cannot pass or substitute G6/G7/G8/G9 and cannot authorize Demo, Shadow, Live, Auto, BUY/SELL, profitability, risk or execution.
+- Research Validation Specialist remains an on-demand A4 specialist, not a new core agent.
