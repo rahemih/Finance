@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P07 — Data Quality & Provenance CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS / P08 — Technical Intelligence ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G READY_NOT_STARTED
+> Status: P07 — Data Quality & Provenance CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS / P08 — Technical Intelligence ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G READY_NOT_STARTED / AR-FT ADDENDUM CANONICAL / AR-0 READY_NOT_STARTED
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
@@ -17,6 +17,7 @@ The project is built around trusted market data, explainable analysis, independe
 
 - Technical truth: GitHub `main` + CI + merged PR evidence
 - Roadmap: `docs/01-roadmap/MASTER-ROADMAP-v2.0.md`
+- Cross-cutting research addendum: `docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md`
 - Current state: `docs/02-current-state/CURRENT-STATE.md`
 - Task catalog: `docs/13-tasks/TASK-CATALOG.md`
 - Agent registry: `docs/09-agents/AGENT-REGISTRY.md`
