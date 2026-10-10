@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P09-WE-001",
+  "phase": "P09",
+  "workstream": "WE",
+  "objective": "Implement deterministic point-in-time liquidity heatmap and displayed-capacity analytics from governed P09-D order-book snapshots without converting displayed depth into execution guarantees.",
+  "scope": [
+    "Define governed liquidity heatmap policy with explicit strictly increasing distance bands",
+    "Aggregate displayed bid/ask size and price-times-size notional into symmetric midpoint distance bands",
+    "Compute deterministic cumulative displayed capacity within each configured distance threshold",
+    "Compute deterministic bid/ask displayed-capacity shares in basis points",
+    "Retain provider, venue, source-kind, coverage scope and source snapshot identity",
+    "Fail closed on invalid band geometry, empty in-scope heatmap or invalid P09-D order book",
+    "Preserve spot-FX broker/ECN/provider scope inherited from P09-D",
+    "Generate deterministic offline P09-E evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Fillability or executable-quantity guarantees",
+    "Slippage or market-impact estimation",
+    "Hidden-liquidity inference",
+    "Cross-provider or global spot-FX liquidity synthesis",
+    "Order placement or execution simulation",
+    "Funding, Open Interest, liquidation or crowding models (P09-F)",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance closure (P09-H)",
+    "Signal fusion, calibrated trade probability, Risk approval or broker/exchange execution"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "FIN-P09-WC-001 CANONICAL_COMPLETE",
+    "FIN-P09-WD-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WD-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 3bf49aab2b18c586232a28e49385d342b1d1ef8c"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WE-001.json",
+    "config/order-flow-liquidity/liquidity-heatmap-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/liquidity_heatmap.py",
+    "tests/p09/test_liquidity_heatmap_capacity.py",
+    "scripts/ci/p09e_evidence.py",
+    "docs/09-intelligence/P09-E-LIQUIDITY-HEATMAP-CAPACITY.md",
+    "docs/09-intelligence/p09-e-liquidity-heatmap-capacity.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 liquidity heatmap source",
+    "Heatmap policy requires strictly increasing positive band thresholds",
+    "P09-D order-book integrity and point-in-time validation is inherited",
+    "Each displayed book level is assigned to at most one non-cumulative distance band",
+    "Cumulative displayed size and notional are deterministic",
+    "Capacity-share basis points are deterministic, bounded and sum to 10000",
+    "No in-scope displayed liquidity within the maximum band fails closed",
+    "Spot-FX provider scope remains enforced through P09-D validation",
+    "Heatmap identity is deterministic and content/policy-sensitive",
+    "Heatmap contracts expose no fillability/slippage/order/recommendation authority",
+    "P09-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No hidden liquidity or cross-provider global liquidity is synthesized",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A/B/C/D canonical closure",
+    "Deterministic P09-E Liquidity Heatmap evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-229 reconciliation"
+  ],
+  "rollback": "Revert P09-E heatmap module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A/B/C/D remain canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A/B/C/D CANONICAL_COMPLETE",
+    "P09-D lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Liquidity heatmap and displayed-capacity contracts implemented",
+    "Distance-band, cumulative-capacity and provenance invariants enforced",
+    "Execution-guarantee and Forex/provider-scope boundaries enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-229 Done",
+    "P09-F becomes READY_NOT_STARTED"
+  ]
+}
