@@ -486,6 +486,15 @@ jobs:
           cmp build/p09e-a.json build/p09e-b.json
           sha256sum build/p09e-a.json
 
+      - name: P09-F deterministic Derivatives Crowding evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09f_evidence.py --output build/p09f-a.json
+          PYTHONPATH=. python scripts/ci/p09f_evidence.py --output build/p09f-b.json
+          cmp build/p09f-a.json build/p09f-b.json
+          sha256sum build/p09f-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
