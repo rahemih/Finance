@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P10 — Fundamental / Macro / Event Intelligence / OWNER_PHASE_AUTHORIZATION_REQUIRED  
-Current Workstream: none — P09 closed; P10 not authorized  
+Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
+Current Workstream: P10-A — Official Source Adapters / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,6 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
+P10 state: ACTIVE / P10-A IMPLEMENTATION_ACTIVE / P10-B..P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -162,8 +163,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P10-WA-001`  
+Active lock: `LOCK-FIN-P10-WA-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3942,3 +3943,87 @@ Safety:
 Next:
 - P10 — Fundamental / Macro / Event Intelligence: OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - AR-1: READY_NOT_STARTED.
+
+
+## P10-A — Official Source Adapters
+
+Task: `FIN-P10-WA-001`  
+Linear: `HOS-233`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P10-WA-001-01` / ACQUIRED  
+Implementation branch: `feat/FIN-P10-WA-001-official-source-adapters`
+
+Owner authorization:
+- P10 phase authorization granted 2026-10-10.
+
+Fresh Live Guard:
+- P09 = CANONICAL_COMPLETE;
+- P09-A..P09-H = CANONICAL_COMPLETE;
+- HOS-225..HOS-232 = Done;
+- open PRs before acquisition = 0;
+- active task/lock before acquisition = none;
+- canonical base = `ddc944ad8630679afd2decc00854a4314391442d`.
+
+Agents:
+- A3 Market Intelligence — lead / macro-fundamental source semantics;
+- A2 Data — ingestion, timestamps, provenance and P06-E vintage compatibility;
+- A4 Quant — validation semantics;
+- A1 Architecture — adapter/contract boundary review;
+- A8 Security — secret/licensing/network boundary review;
+- A9 Operations — deterministic/fail-closed review;
+- A10 Evidence/Audit — official-source evidence;
+- A0 Governance — task/lock/state coordination.
+
+Official-first source baseline:
+- FRED/ALFRED;
+- BLS;
+- BEA;
+- CFTC;
+- ECB;
+- Eurostat;
+- Bank of England;
+- Bank of Japan;
+- BIS;
+- IMF;
+- World Bank;
+- EIA;
+- OPEC;
+- IEA;
+- World Gold Council;
+- LBMA.
+
+Implementation boundary:
+- every source has explicit access/auth/revision/licensing metadata;
+- only HTTPS official hosts are accepted;
+- API-key sources use `secret://` references only;
+- canonical tests perform no network calls;
+- FRED/ALFRED native vintage and ECB history-query capability are explicit;
+- Eurostat statistical datasets are marked latest-only rather than falsely versioned;
+- licensed/revalidation-required sources cannot emit request specs;
+- no production source, subscription or credential is selected;
+- P06-E release-time/observed-at/vintage lineage remains the downstream compatibility target.
+
+Fresh external evidence reviewed 2026-10-10:
+- FRED/ALFRED API and vintage-date documentation;
+- BLS Public Data API;
+- BEA API;
+- CFTC COT public reporting;
+- ECB SDMX API with `updatedAfter` / `includeHistory`;
+- Eurostat Statistics/SDMX API and latest-only dataset-version semantics;
+- Bank of England database downloads;
+- BOJ Time-Series Data Search API launched 2026-02-18;
+- BIS SDMX API;
+- IMF SDMX 2.1/3.0 API;
+- World Bank Indicators API v2 / no key;
+- EIA APIv2 / API key required;
+- IEA licensed OMR/MODS;
+- WGC Goldhub mixed data-rights boundary;
+- LBMA historical benchmark licensing boundary.
+
+Safety:
+- production fundamental source: NOT_SELECTED;
+- production network connection: DISABLED;
+- repository credentials: NONE;
+- country assumption: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
