@@ -468,6 +468,15 @@ jobs:
           cmp build/p09c-a.json build/p09c-b.json
           sha256sum build/p09c-a.json
 
+      - name: P09-D deterministic Order Book evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09d_evidence.py --output build/p09d-a.json
+          PYTHONPATH=. python scripts/ci/p09d_evidence.py --output build/p09d-b.json
+          cmp build/p09d-a.json build/p09d-b.json
+          sha256sum build/p09d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
