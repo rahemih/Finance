@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P09-WB-001",
+  "phase": "P09",
+  "workstream": "WB",
+  "objective": "Implement deterministic trade-print flow intelligence with explicit aggressor-classification provenance, classified buy/sell flow, Delta and CVD while preventing quote/tick proxies or provider-scoped Forex flow from being overstated as true consolidated market flow.",
+  "scope": [
+    "Define governed trade-print source kinds for venue, broker and ECN trade prints",
+    "Define aggressor-classification methods for native flag, quote test, tick rule and unclassified flow",
+    "Enforce point-in-time quote-test context with no future quote leakage",
+    "Compute deterministic classified buy/sell volume, unclassified volume, Delta and CVD",
+    "Require explicit CVD starting state and contiguous sequence in the reference implementation",
+    "Calculate classified coverage and size-weighted classification confidence",
+    "Require spot-FX trade flow to remain provider/broker/ECN scoped",
+    "Reject quote updates and tick-volume proxies as trade prints",
+    "Generate deterministic offline P09-B evidence",
+    "Reconcile GitHub and Linear task/lock/current-state"
+  ],
+  "out_of_scope": [
+    "Volume Profile implementation (P09-C)",
+    "Order Book, spread, depth or imbalance implementation (P09-D)",
+    "Liquidity heatmap or execution-capacity models (P09-E)",
+    "Funding, Open Interest, liquidation or crowding models (P09-F)",
+    "Forex proxy coverage calibration/validation (P09-G)",
+    "P09 performance closure (P09-H)",
+    "Signal fusion, calibrated trade probability, Risk approval or broker/exchange execution",
+    "Fabricating trade flow from quote updates or tick volume"
+  ],
+  "dependencies": [
+    "FIN-P09-WA-001 CANONICAL_COMPLETE",
+    "LOCK-FIN-P09-WA-001-01 RELEASED",
+    "P09 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base bd488563db15c793591a59bedd0d49570eb61b43"
+  ],
+  "read_paths": [
+    "packages/order_flow_liquidity/**",
+    "packages/realtime/**",
+    "packages/historical_data/**",
+    "packages/data_quality/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P09-WB-001.json",
+    "config/order-flow-liquidity/trade-flow-policy.json",
+    "packages/order_flow_liquidity/__init__.py",
+    "packages/order_flow_liquidity/trade_flow.py",
+    "tests/p09/test_trade_flow_delta_cvd.py",
+    "scripts/ci/p09b_evidence.py",
+    "docs/09-intelligence/P09-B-TRADE-FLOW-DELTA-CVD.md",
+    "docs/09-intelligence/p09-b-trade-flow-delta-cvd.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "README.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes for P09 trade-flow source",
+    "Policy rejects quote updates/tick-volume proxies as trade prints",
+    "Spot-FX trade prints are provider/broker/ECN scoped and global/consolidated claims fail closed",
+    "Native aggressor flags retain explicit provenance",
+    "Quote-test classification cannot consume future quote context",
+    "Tick-rule classification is deterministic and point-in-time",
+    "Unknown classification remains UNKNOWN and does not enter Delta",
+    "Delta equals classified buy volume minus classified sell volume",
+    "CVD equals explicit starting state plus deterministic Delta",
+    "CVD reference stream fails closed on sequence gaps or mixed streams",
+    "Classification coverage and weighted confidence are deterministic",
+    "Trade/classification/snapshot contracts expose no order or recommendation authority",
+    "P09-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange execution adapter is imported",
+    "No credential or network access is required",
+    "No quote/tick proxy is transformed into a synthetic trade print",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P09-A canonical closure",
+    "Deterministic P09-B trade-flow evidence",
+    "Implementation PR Governance result",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-226 reconciliation"
+  ],
+  "rollback": "Revert P09-B trade-flow module, policy, tests, evidence/CI wiring and active-state reconciliation. P09-A remains canonical and no production/trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P09-A CANONICAL_COMPLETE",
+    "P09-A lock RELEASED",
+    "Owner P09 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Trade-print and aggressor-classification contracts implemented",
+    "Delta/CVD point-in-time and sequence invariants enforced",
+    "Forex/provider-scope and quote/tick non-trade boundaries enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P09-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-226 Done",
+    "P09-C becomes READY_NOT_STARTED"
+  ]
+}
