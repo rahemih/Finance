@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P08 — Technical Intelligence / ACTIVE  
-Current Workstream: P08-E — Volatility & Mean Reversion / IMPLEMENTATION_ACTIVE  
-Previous Workstream: P08-D — Market Structure & Price Action / CANONICAL_COMPLETE  
+Current Workstream: none — P08-E closed; P08-F READY_NOT_STARTED  
+Previous Workstream: P08-E — Volatility & Mean Reversion / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -49,7 +49,7 @@ P04 state: CANONICAL_COMPLETE
 P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS  
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
-P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E IMPLEMENTATION_ACTIVE / P08-F..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
+P08 state: ACTIVE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F READY_NOT_STARTED / P08-G..P08-I NOT_STARTED / G6_TECHNICAL_VALIDATED NOT_EVALUATED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -160,8 +160,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P08-WE-001`  
-Active lock: `LOCK-FIN-P08-WE-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -182,7 +182,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P08-D — Market Structure & Price Action is CANONICAL_COMPLETE. P08-E — Volatility & Mean Reversion is IMPLEMENTATION_ACTIVE under LOCK-FIN-P08-WE-001-01. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
+P08-E — Volatility & Mean Reversion is CANONICAL_COMPLETE. P08-F — Breakout / Expansion is READY_NOT_STARTED. G6_TECHNICAL_VALIDATED remains NOT_EVALUATED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -3318,27 +3318,32 @@ Next:
 
 Task: `FIN-P08-WE-001`  
 Linear: `HOS-216`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P08-WE-001-01` / ACQUIRED  
-Implementation branch: `feat/FIN-P08-WE-001-volatility-mean-reversion`
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#176` = MERGED  
+Final implementation head: `a3d64bce941fd56b54e97c1897920085e0a8b42d`  
+Implementation merge SHA: `e772201368555bb87bf08966e0fa637ba363c371`  
+PR Governance: `38040208295` = SUCCESS  
+PR artifact: `sha256:85ec6501fedd2361b9ca277182cd0733c5a5fc239695102f2a4a941fb3a49d07`  
+Post-merge Governance: `38040279995` = SUCCESS  
+Post-merge artifact: `sha256:49726f19401d060694b2fff6a187075577d50546a14d650ec45253a8138192c2`  
+Post-merge Branch Hygiene: `38040279969` = SUCCESS
 
-Dependency:
-- FIN-P08-WD-001 = CANONICAL_COMPLETE;
-- P08-D closure main SHA = `6020c1eef3688f1fced37508dd1040ed4601c0f7`;
-- G5_TRUSTED_DATA = PASS.
-
-Implementation boundary:
-- short-vs-baseline normalized range volatility;
-- VOLATILITY direction remains context-neutral zero only;
-- rolling mean + mean absolute deviation reversion context;
-- above-mean extremes map to bearish reversion and below-mean extremes to bullish reversion;
-- one independence group per family;
+Validation:
+- Strict Pyright: PASS;
+- P08 technical-intelligence tests: PASS;
+- deterministic P08-E evidence twice: PASS;
+- VOLATILITY remains context-neutral with direction zero and cannot inflate directional confirmation counts;
+- MEAN_REVERSION directional semantics are deterministic;
 - cross-family independence remains PROVISIONAL_PENDING_P08_H;
-- P08-F through P08-I remain out of scope.
+- no direct trade/order authority introduced.
 
 Safety:
-- LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED;
-- direct trade/order output: FORBIDDEN;
 - country assumption: NONE;
-- network/credentials: NONE REQUIRED.
+- network/credentials: NONE REQUIRED;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+Next:
+- P08-F — Breakout / Expansion: READY_NOT_STARTED;
+- G6_TECHNICAL_VALIDATED: NOT_EVALUATED.
