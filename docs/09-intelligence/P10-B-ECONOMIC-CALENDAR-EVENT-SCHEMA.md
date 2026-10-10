@@ -20,7 +20,7 @@ Lifecycle-incompatible fields fail closed.
 
 ## Time semantics
 
-The event records an epoch-nanosecond scheduled timestamp plus a declared IANA timezone such as `America/New_York` or `Europe/Frankfurt`.
+The event records an epoch-nanosecond scheduled timestamp plus a declared IANA timezone such as `America/New_York` or `Europe/Berlin`.
 
 The epoch timestamp is the machine comparison key. The timezone preserves publication-calendar interpretation, daylight-saving context and user-facing reconstruction.
 
