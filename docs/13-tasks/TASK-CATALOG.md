@@ -148,6 +148,7 @@ This catalog is the canonical index of governed work.
 | FIN-P08-WB-001 | P08 | Trend Family | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WB-001.json` | RELEASED |
 | FIN-P08-WC-001 | P08 | Momentum Family | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WC-001.json` | RELEASED |
 | FIN-P08-WD-001 | P08 | Market Structure & Price Action | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P08-WD-001.json` | RELEASED |
+| FIN-P08-WE-001 | P08 | Volatility & Mean Reversion | HIGH | ACTIVE | `contracts/tasks/FIN-P08-WE-001.json` | LOCK-FIN-P08-WE-001-01 / ACQUIRED |
 
 ## Rules
 
