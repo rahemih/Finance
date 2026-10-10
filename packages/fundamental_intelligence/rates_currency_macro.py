@@ -232,7 +232,25 @@ class YieldCurveSpread:
     store_fingerprint: str
 
     def payload(self) -> dict[str, object]:
-        return {field.name: getattr(self, field.name) for field in fields(self)} | {"schema_version": "1.0"}
+        return {
+            "schema_version": "1.0",
+            "decision_time_ns": self.decision_time_ns,
+            "currency": self.currency,
+            "jurisdiction": self.jurisdiction,
+            "short_series_id": self.short_series_id,
+            "short_tenor_months": self.short_tenor_months,
+            "short_observation_time_ns": self.short_observation_time_ns,
+            "short_vintage_id": self.short_vintage_id,
+            "short_value_text": self.short_value_text,
+            "long_series_id": self.long_series_id,
+            "long_tenor_months": self.long_tenor_months,
+            "long_observation_time_ns": self.long_observation_time_ns,
+            "long_vintage_id": self.long_vintage_id,
+            "long_value_text": self.long_value_text,
+            "spread_value_text": self.spread_value_text,
+            "unit": self.unit,
+            "store_fingerprint": self.store_fingerprint,
+        }
 
     @property
     def spread_id(self) -> str:
@@ -261,7 +279,27 @@ class CurrencyMacroDifferential:
     store_fingerprint: str
 
     def payload(self) -> dict[str, object]:
-        return {field.name: getattr(self, field.name) for field in fields(self)} | {"schema_version": "1.0"}
+        return {
+            "schema_version": "1.0",
+            "decision_time_ns": self.decision_time_ns,
+            "metric_kind": self.metric_kind,
+            "tenor_months": self.tenor_months,
+            "base_currency": self.base_currency,
+            "base_jurisdiction": self.base_jurisdiction,
+            "base_series_id": self.base_series_id,
+            "base_observation_time_ns": self.base_observation_time_ns,
+            "base_vintage_id": self.base_vintage_id,
+            "base_value_text": self.base_value_text,
+            "quote_currency": self.quote_currency,
+            "quote_jurisdiction": self.quote_jurisdiction,
+            "quote_series_id": self.quote_series_id,
+            "quote_observation_time_ns": self.quote_observation_time_ns,
+            "quote_vintage_id": self.quote_vintage_id,
+            "quote_value_text": self.quote_value_text,
+            "differential_value_text": self.differential_value_text,
+            "unit": self.unit,
+            "store_fingerprint": self.store_fingerprint,
+        }
 
     @property
     def differential_id(self) -> str:
