@@ -3,14 +3,28 @@
   "kind": "NEXUS_QUANT_P09F_DERIVATIVES_CROWDING_BASELINE",
   "task_id": "FIN-P09-WF-001",
   "linear": "HOS-230",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P09-WF-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P09_VOLUME_ORDER_FLOW_LIQUIDITY",
   "workstream": "P09-F",
   "lead_agent": "A3",
-  "supporting_agents": ["A0", "A1", "A2", "A4", "A6", "A8", "A9", "A10"],
+  "supporting_agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A4",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
   "canonical_base": "74c8ef540d44a957e5e59eb2cd8a1f9a8a8a4536",
-  "metric_kinds": ["FUNDING_RATE", "OPEN_INTEREST", "LONG_LIQUIDATION", "SHORT_LIQUIDATION"],
+  "metric_kinds": [
+    "FUNDING_RATE",
+    "OPEN_INTEREST",
+    "LONG_LIQUIDATION",
+    "SHORT_LIQUIDATION"
+  ],
   "crowding_semantics": "COMPLETE_EVIDENCE_VECTOR_NO_SCORE",
   "cross_provider_aggregation_allowed": false,
   "spot_fx_derivatives_metric_allowed": false,
@@ -20,5 +34,16 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "canonical_closure": {
+    "implementation_pr": 200,
+    "final_implementation_head": "b8727d3515ea4d876beb78ab765487ec3c2fedfb",
+    "implementation_merge_sha": "a3d1d1e64061503bd5b9db2ba0eb30159547459d",
+    "pr_governance_run": 38051316245,
+    "pr_artifact_sha256": "5d7813bb88ca03687a56461dcea2f352d4d73c737693c0cb2c9d6bebb388bd43",
+    "post_merge_governance_run": 38051391835,
+    "post_merge_artifact_sha256": "4bcca8f987bd9f1f57f09055623edbfefbeafeee849c3fa9ebfaa0a249a792b9",
+    "post_merge_branch_hygiene_run": 38051391827,
+    "next_workstream": "P09-G_READY_NOT_STARTED"
+  }
 }
