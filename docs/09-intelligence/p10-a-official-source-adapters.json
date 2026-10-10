@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P10A_OFFICIAL_SOURCE_BASELINE",
   "task_id": "FIN-P10-WA-001",
   "linear": "HOS-233",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P10-WA-001-01",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
   "workstream": "P10-A",
   "lead_agent": "A3",
@@ -45,5 +45,19 @@
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
-  "next_workstream": "P10-B_NOT_STARTED"
+  "next_workstream": "P10-B_READY_NOT_STARTED",
+  "canonical_closure": {
+    "implementation_pr": 206,
+    "final_implementation_head": "2b301cc2085577fa6c5177d10d344670733b20af",
+    "implementation_merge_sha": "285972754bbf9ff372a6a3b6299c5385177c68d5",
+    "pr_governance_run": 38055213769,
+    "pr_artifact_sha256": "2a07afaa9fb790b43371fbb19d7c23d70431acc33850fbf17624222591336304",
+    "post_merge_governance_run": 38055286720,
+    "post_merge_artifact_sha256": "28d513a31eed80e951e525df0d8661cec567661d7f62e390052b8ebec91d285b",
+    "post_merge_branch_hygiene_run": 38055286741,
+    "repairs": [
+      "R01_UNUSED_SEQUENCE_IMPORT",
+      "R02_BOJ_HOST_AND_NETWORK_IMPORT_ASSERTION"
+    ]
+  }
 }
