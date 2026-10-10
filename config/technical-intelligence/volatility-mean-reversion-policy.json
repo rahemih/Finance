@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P08E_VOLATILITY_MEAN_REVERSION_POLICY",
+  "volatility_family": "VOLATILITY",
+  "mean_reversion_family": "MEAN_REVERSION",
+  "volatility_independence_group": "range-volatility",
+  "mean_reversion_independence_group": "price-deviation-mean-reversion",
+  "cross_family_independence_status": "PROVISIONAL_PENDING_P08_H",
+  "short_volatility_window": 5,
+  "baseline_volatility_window": 20,
+  "mean_window": 20,
+  "mean_reversion_threshold_mad_bps": 15000,
+  "base_volatility_confidence_bps": 3000,
+  "base_mean_reversion_confidence_bps": 4500,
+  "max_strength_bps": 10000,
+  "max_confidence_bps": 10000,
+  "score_semantics": "DETERMINISTIC_EVIDENCE_NOT_TRADE_PROBABILITY",
+  "volatility_direction_semantics": "CONTEXT_NEUTRAL_ZERO_ONLY",
+  "direct_trade_output_allowed": false
+}
