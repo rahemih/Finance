@@ -2,8 +2,8 @@
 
 Task: `FIN-P09-WB-001`  
 Linear: `HOS-226`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P09-WB-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A3 Market Intelligence  
 Support: A0, A1, A2, A4, A6, A8, A9, A10
 
@@ -74,3 +74,19 @@ Neither is a probability of trade success.
 - LIVE_TRADING: DISABLED
 - AUTO_TRADING: DISABLED
 - Direct trade/order authority: FORBIDDEN
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#192` = MERGED
+- Final implementation head: `c1f9c1408857a0df427518545837ac58dda84b52`
+- Implementation merge SHA: `629b39cb5cfc0718045536b06f8ee3e92d1e5a4c`
+- PR Governance: `38048202174` = SUCCESS
+- PR artifact: `sha256:5e0c059983d122e7d55776af8a550fd90e4ba998cf35c61eb98eb6d080b05b9a`
+- Post-merge Governance: `38048256001` = SUCCESS
+- Post-merge artifact: `sha256:8b5416254fff09f90a7d02311d99ce288f85de6392b0efd7deaffc29582bd6fe`
+- Post-merge Branch Hygiene: `38048256050` = SUCCESS
+- Strict typecheck / P09 tests / deterministic P09-B evidence: PASS
+- supply-chain and reproducibility controls: PASS
+
+P09-C — Volume Profile becomes `READY_NOT_STARTED`.
