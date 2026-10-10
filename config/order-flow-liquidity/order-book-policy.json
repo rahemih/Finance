@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P09D_ORDER_BOOK_POLICY",
+  "allowed_market_classes": ["CRYPTO_SPOT", "CRYPTO_DERIVATIVE", "FOREX_SPOT", "FUTURES"],
+  "allowed_source_kinds": ["VENUE_ORDER_BOOK", "BROKER_ORDER_BOOK", "ECN_ORDER_BOOK"],
+  "forex_spot_allowed_source_kinds": ["BROKER_ORDER_BOOK", "ECN_ORDER_BOOK"],
+  "max_levels_per_side": 1000,
+  "locked_or_crossed_book_allowed": false,
+  "forex_spot_global_book_claim_allowed": false,
+  "direct_trade_output_allowed": false,
+  "production_order_flow_vendor": "NOT_SELECTED"
+}
