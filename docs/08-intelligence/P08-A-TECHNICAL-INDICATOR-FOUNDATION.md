@@ -2,8 +2,8 @@
 
 Task: `FIN-P08-WA-001`  
 Linear: `HOS-211`  
-Lock: `LOCK-FIN-P08-WA-001-01`  
-State: IMPLEMENTATION_ACTIVE
+Lock: RELEASED  
+State: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -41,3 +41,20 @@ Technical evidence is not a trade instruction. The P08-A contract contains no or
 ## Workstream boundary
 
 P08-A does not implement trend, momentum, structure/price-action, volatility/mean-reversion, breakout, multi-timeframe/regime models, the independence audit or G6. Those remain P08-B through P08-I.
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#168` = MERGED
+- Final implementation head: `ec72a1d036c73ff76b19599e6edbc75ef801d639`
+- Implementation merge SHA: `4c5376b0c689d1ab2ac4424693bb8ca207a0e46b`
+- PR Governance: `38034664318` = SUCCESS
+- PR artifact: `sha256:ca84b61cf63602141dec2b896b66e03da8846e2573ce3b7419d29e26cd29e452`
+- Post-merge Governance: `38034980053` = SUCCESS
+- Post-merge artifact: `sha256:96fc0508547e88c06de2db2b21ba0692ca0197d7b0186205d4b9245ac5bc4f5d`
+- Post-merge Branch Hygiene: `38034980040` = SUCCESS
+- Strict Pyright: PASS
+- P08-A tests: 14/14 PASS
+- Deterministic P08-A evidence: PASS
+
+P08-B — Trend Family is READY_NOT_STARTED. G6 remains NOT_EVALUATED.
