@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_ARFT_DATASET_ACCESS_BOUNDARY",
+  "protocol_version": "arft-research-protocol-v1",
+  "partitions": {
+    "EXPLORATORY": {
+      "allowed_stages": ["AR-1", "AR-2"],
+      "candidate_selection_or_tuning": "ALLOWED_WITH_SEARCH_LEDGER",
+      "outcome_visibility": "RESEARCH_VISIBLE"
+    },
+    "CONFIRMATORY_PROTECTED": {
+      "allowed_stages": ["AR-3", "AR-4"],
+      "access_preconditions": [
+        "CANDIDATE_DEFINITION_FROZEN",
+        "PARAMETERS_FROZEN",
+        "LABEL_DEFINITION_FROZEN",
+        "CONFIRMATORY_HYPOTHESIS_CONTRACT_FROZEN",
+        "METRIC_FAMILY_FROZEN",
+        "ASSET_SELECTION_METHODOLOGY_FROZEN",
+        "TEMPORAL_HOLDOUT_DEFINITION_FROZEN",
+        "REGIME_TAXONOMY_VERSION_FROZEN",
+        "DECISION_RULE_OR_CALIBRATION_PROCEDURE_FROZEN",
+        "CONFIRMATORY_DATASET_REFERENCES_FROZEN"
+      ],
+      "candidate_selection_or_tuning": "FORBIDDEN_AFTER_ACCESS",
+      "outcome_visibility": "ACCESS_CONTROLLED"
+    },
+    "RETIRED_CONTAMINATED": {
+      "allowed_stages": ["AR-2"],
+      "candidate_selection_or_tuning": "RESEARCH_VISIBLE_ONLY",
+      "outcome_visibility": "RETIRED_FROM_CONFIRMATION"
+    }
+  },
+  "premature_confirmatory_access_result": "CONTAMINATED_AND_RETIRED",
+  "repeated_peeking_result": "CONTAMINATED_AND_RETIRED",
+  "access_is_task_authorized": true,
+  "production_credentials_allowed": false
+}
