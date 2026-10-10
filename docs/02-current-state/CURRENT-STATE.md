@@ -254,31 +254,6 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-Validation:
-- strict product typecheck: PASS;
-- complete P10 suite through P10-F: PASS;
-- deterministic P10-F evidence twice: PASS;
-- P06-E anti-lookahead semantics reused;
-- EIA/OPEC/IEA/WGC/LBMA source guards: PASS;
-- oil supply-minus-demand matched geography/unit invariants: PASS;
-- gold point-in-time holdings revision guard: PASS;
-- exact Decimal arithmetic only;
-- no bullish/bearish, causal market-impact, signal probability, Risk or execution authority;
-- SBOM/license, Trivy and reproducible clean-source build: PASS.
-
-Implementation evidence:
-- PR #216 = MERGED;
-- final head `e538e18db563033fc8aa891ba1c2e52a6e9eea9f`;
-- merge SHA `6a8590c2c5f4d354c7c08009bf7da81b0926fd28`;
-- PR Governance `38081533834` = SUCCESS;
-- PR artifact `sha256:d09bd63005ac86d72ccf3e19f07013f40a2b039d2bdd6cc93b5965100e9e3d7b`;
-- post-merge Governance `38081618578` = SUCCESS;
-- post-merge artifact `sha256:8939f8c3b5f7af7d86842111e25b2fb0497933e120cb6cb80e404d34ac24ab13`;
-- post-merge Branch Hygiene `38081618539` = SUCCESS.
-
-Next:
-- P10-G — Crypto Fundamental / On-Chain Context: READY_NOT_STARTED.
-
 ## P07-F — Quarantine & Fail-Closed Routing
 
 Task: `FIN-P07-WF-001`  
@@ -4210,3 +4185,28 @@ Safety:
 - country assumption: NONE;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+Validation:
+- strict product typecheck: PASS;
+- complete P10 suite through P10-F: PASS;
+- deterministic P10-F evidence twice: PASS;
+- P06-E anti-lookahead semantics reused;
+- EIA/OPEC/IEA/WGC/LBMA source guards: PASS;
+- oil supply-minus-demand matched geography/unit invariants: PASS;
+- gold point-in-time holdings revision guard: PASS;
+- exact Decimal arithmetic only;
+- no bullish/bearish, causal market-impact, signal probability, Risk or execution authority;
+- SBOM/license, Trivy and reproducible clean-source build: PASS.
+
+Implementation evidence:
+- PR #216 = MERGED;
+- final head `e538e18db563033fc8aa891ba1c2e52a6e9eea9f`;
+- merge SHA `6a8590c2c5f4d354c7c08009bf7da81b0926fd28`;
+- PR Governance `38081533834` = SUCCESS;
+- PR artifact `sha256:d09bd63005ac86d72ccf3e19f07013f40a2b039d2bdd6cc93b5965100e9e3d7b`;
+- post-merge Governance `38081618578` = SUCCESS;
+- post-merge artifact `sha256:8939f8c3b5f7af7d86842111e25b2fb0497933e120cb6cb80e404d34ac24ab13`;
+- post-merge Branch Hygiene `38081618539` = SUCCESS.
+
+Next:
+- P10-G — Crypto Fundamental / On-Chain Context: READY_NOT_STARTED.
