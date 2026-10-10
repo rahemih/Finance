@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P08E_VOLATILITY_MEAN_REVERSION_BASELINE",
   "task_id": "FIN-P08-WE-001",
   "linear": "HOS-216",
-  "lock": "LOCK-FIN-P08-WE-001-01",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "RELEASED",
+  "state": "CANONICAL_COMPLETE",
   "families": [
     "VOLATILITY",
     "MEAN_REVERSION"
@@ -20,5 +20,20 @@
   "direct_trade_output_allowed": false,
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure_evidence": {
+    "implementation_pr": 176,
+    "final_head": "a3d64bce941fd56b54e97c1897920085e0a8b42d",
+    "implementation_merge_sha": "e772201368555bb87bf08966e0fa637ba363c371",
+    "pr_governance_run": 38040208295,
+    "pr_artifact_sha256": "85ec6501fedd2361b9ca277182cd0733c5a5fc239695102f2a4a941fb3a49d07",
+    "post_merge_governance_run": 38040279995,
+    "post_merge_artifact_sha256": "49726f19401d060694b2fff6a187075577d50546a14d650ec45253a8138192c2",
+    "post_merge_branch_hygiene_run": 38040279969,
+    "strict_pyright": "PASS",
+    "p08_tests": "PASS",
+    "deterministic_evidence": "PASS"
+  },
+  "next_workstream": "P08-F READY_NOT_STARTED",
+  "g6_technical_validated": "NOT_EVALUATED"
 }
