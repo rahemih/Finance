@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P08 — Technical Intelligence / CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
-Current Workstream: none — P08 closed / G6 PASS; P09 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED; AR-1 READY_NOT_STARTED  
+Current Phase: P09 — Volume / Order Flow / Liquidity / ACTIVE  
+Current Workstream: P09-A — Volume Taxonomy / Proxy Labels / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P08-I — Technical Validation Gate / CANONICAL_COMPLETE / G6 PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -50,6 +50,7 @@ P05 state: CANONICAL_COMPLETE / G4_REALTIME_DATA PASS
 P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPLETE / P06-C CANONICAL_COMPLETE / P06-D CANONICAL_COMPLETE / P06-E CANONICAL_COMPLETE / P06-F CANONICAL_COMPLETE / P06-G CANONICAL_COMPLETE / P06-H CANONICAL_COMPLETE  
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
+P09 state: ACTIVE / P09-A IMPLEMENTATION_ACTIVE / P09-B..P09-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -161,8 +162,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P09-WA-001`  
+Active lock: `LOCK-FIN-P09-WA-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -3585,3 +3586,52 @@ Phase transition:
 - P09 — Volume / Order Flow / Liquidity: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - AR-1 — Reproducible Research Harness: READY_NOT_STARTED;
 - no later phase is started by this closure.
+
+
+## P09-A — Volume Taxonomy / Proxy Labels
+
+Task: `FIN-P09-WA-001`  
+Linear: `HOS-225`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P09-WA-001-01` / ACQUIRED  
+Implementation branch: `feat/FIN-P09-WA-001-volume-proxy-ontology`
+
+Authorization:
+- Owner authorized P09 on 2026-10-10;
+- P08 = CANONICAL_COMPLETE;
+- G6_TECHNICAL_VALIDATED = PASS;
+- Fresh Live Guard at activation: open PRs = 0, active task = none, active lock = none;
+- canonical base = `2f42118e4361cf8d62ca4dd6003687f908a28fbe`.
+
+Agents:
+- A2 Data — lead;
+- A3 Market Intelligence — consumer semantics and market interpretation;
+- A4 Quant — downstream feature compatibility;
+- A6 Execution — liquidity/execution-capacity boundary review only;
+- A1 Architecture — contract/domain review;
+- A8 Security — fail-closed/no-network review;
+- A9 Operations — determinism/operability review;
+- A10 Evidence/Audit — deterministic evidence;
+- A0 Governance — task/lock/state coordination.
+
+Implementation boundary:
+- canonical market-class and volume-kind taxonomy;
+- explicit provider/venue/coverage metadata;
+- spot-FX volume restricted to TICK/BROKER/ECN/FUTURES proxy kinds;
+- spot-FX global/consolidated/total-market volume claims fail closed;
+- point-in-time event/as-of semantics;
+- trusted dataset and quality-evidence lineage;
+- deterministic content-addressed VolumeObservation identity;
+- no Delta/CVD, Volume Profile, book imbalance, heatmap, funding/OI/liquidation logic yet;
+- no direct signal, trade, order, Risk or execution authority.
+
+Preflight:
+- local P09-A unit tests: 11/11 PASS;
+- deterministic P09-A evidence twice: byte-identical PASS.
+
+Safety:
+- production order-flow vendor: NOT_SELECTED;
+- country assumption: NONE;
+- network/credentials: NONE REQUIRED by reference implementation;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
