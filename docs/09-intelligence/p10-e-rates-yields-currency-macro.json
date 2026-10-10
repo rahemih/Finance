@@ -3,8 +3,8 @@
   "kind": "NEXUS_QUANT_P10E_RATES_CURRENCY_MACRO_BASELINE",
   "task_id": "FIN-P10-WE-001",
   "linear": "HOS-238",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "LOCK-FIN-P10-WE-001-01_ACQUIRED",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
   "workstream": "P10-E",
   "canonical_base": "c690b5a78862d067bae045b9e844c6001106ec88",
@@ -26,5 +26,16 @@
   "country_assumption": "NONE",
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
-  "next_workstream": "P10-F_BLOCKED_UNTIL_P10-E_CANONICAL_COMPLETE"
+  "next_workstream": "P10-F_READY_NOT_STARTED",
+  "canonical_closure": {
+    "implementation_pr": 214,
+    "final_implementation_head": "d1147464fa147dbaabef33e9cafbcd4a4eedd80b",
+    "implementation_merge_sha": "7f11dc864459a67d01970286cb2724f3fd12bb51",
+    "pr_governance_run": 38080122549,
+    "pr_artifact_sha256": "44c9b1ed3018ec2400ca4ab45b225fb00069ddbcb331b2a67ac836a823587b6f",
+    "post_merge_governance_run": 38080508977,
+    "post_merge_artifact_sha256": "a832045023a10eb650b1adeb104dcd814a373e6bf21a9a3dd8dd5b1078bfd684",
+    "post_merge_branch_hygiene_run": 38080508982,
+    "operational_repair": "STALE_QUEUED_PR_RUN_SUPERSEDED_AFTER_EXPLICIT_PAYLOAD_HARDENING"
+  }
 }

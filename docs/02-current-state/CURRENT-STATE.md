@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P10 — Fundamental / Macro / Event Intelligence / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10  
-Current Workstream: P10-E — Rates / Yields / Currency Macro / IMPLEMENTATION_ACTIVE  
+Current Workstream: none — P10-E closed; P10-F READY_NOT_STARTED  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -51,7 +51,7 @@ P06 state: CANONICAL_COMPLETE / P06-A CANONICAL_COMPLETE / P06-B CANONICAL_COMPL
 P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
-P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E IMPLEMENTATION_ACTIVE / P10-F..P10-H NOT_STARTED  
+P10 state: ACTIVE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F READY_NOT_STARTED / P10-G..P10-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -163,8 +163,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: FIN-P10-WE-001  
-Active lock: LOCK-FIN-P10-WE-001-01 / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4120,21 +4120,44 @@ Next:
 ## P10-E — Rates / Yields / Currency Macro
 
 Task: `FIN-P10-WE-001`  
-Linear: `HOS-238 = In Progress`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WE-001-01` / ACQUIRED
+Linear: `HOS-238`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
+Implementation PR: `#214` = MERGED  
+Final implementation head: `d1147464fa147dbaabef33e9cafbcd4a4eedd80b`  
+Implementation merge SHA: `7f11dc864459a67d01970286cb2724f3fd12bb51`  
+PR Governance: `38080122549` = SUCCESS  
+PR artifact: `sha256:44c9b1ed3018ec2400ca4ab45b225fb00069ddbcb331b2a67ac836a823587b6f`  
+Post-merge Governance: `38080508977` = SUCCESS  
+Post-merge artifact: `sha256:a832045023a10eb650b1adeb104dcd814a373e6bf21a9a3dd8dd5b1078bfd684`  
+Post-merge Branch Hygiene: `38080508982` = SUCCESS
 
-Fresh Live Guard at activation:
-- P10-A/B/C/D = CANONICAL_COMPLETE;
-- HOS-236 = Done;
-- open PRs = 0;
-- previous active task/lock = none;
-- canonical base = `c690b5a78862d067bae045b9e844c6001106ec88`;
-- Owner authorization for phase P10 remains valid.
+Validation:
+- strict product typecheck: PASS;
+- complete P10 suite through P10-E: PASS;
+- deterministic P10-E evidence twice: PASS;
+- P06-E macro-vintage anti-lookahead semantics reused;
+- official-source registry and P10-E source allowlist guards: PASS;
+- policy-rate / government-yield tenor rules: PASS;
+- latest-as-of excludes later revisions and observations: PASS;
+- yield-curve spread uses longer tenor minus shorter tenor with matched currency/jurisdiction/unit;
+- currency macro differential uses base minus quote with matched metric/unit and matched yield tenor;
+- exact Decimal arithmetic only;
+- no bullish/bearish interpretation, signal probability, recommendation, Risk or execution authority;
+- SBOM/license, Trivy and reproducible clean-source build: PASS.
 
-Safety boundary:
-- production source mapping = NOT_SELECTED;
-- country assumption = NONE;
-- LIVE_TRADING = DISABLED;
-- AUTO_TRADING = DISABLED;
-- no signal probability, recommendation, Risk approval or execution authority.
+Operational repair:
+- initial PR Governance run `38079423916` remained queued without executing a step for more than ten minutes;
+- explicit deterministic payload serialization hardening produced final head `d1147464fa147dbaabef33e9cafbcd4a4eedd80b`;
+- the old queued run was cancelled by per-ref concurrency and replacement run `38080122549` passed fully;
+- no safety or product semantics were weakened.
+
+Safety:
+- production source mapping: NOT_SELECTED;
+- network/credentials: not required by canonical reference model;
+- country assumption: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+Next:
+- P10-F — Oil / Gold / Commodity Context: READY_NOT_STARTED.
