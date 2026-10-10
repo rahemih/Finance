@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_AR0_RESEARCH_GOVERNANCE",
   "task_id": "FIN-P08-WJ-003",
   "stage": "AR-0",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "protocol_version": "arft-research-protocol-v1",
   "generic_protocol_frozen": true,
   "candidate_specific_hypotheses_pre_registered": false,
@@ -40,5 +40,19 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "country_assumption": "NONE",
-  "next_stage": "AR-1_REPRODUCIBLE_RESEARCH_HARNESS_BLOCKED_UNTIL_AR0_CANONICAL"
+  "next_stage": "AR-1_REPRODUCIBLE_RESEARCH_HARNESS_READY_NOT_STARTED",
+  "lock": "RELEASED",
+  "closure_evidence": {
+    "implementation_pr": 184,
+    "final_head": "40a5db1350cf8163f9194165235f2361b48becfb",
+    "implementation_merge_sha": "604699377faad33599359fa97d2895808ab56a82",
+    "pr_governance_run": 38043790412,
+    "pr_artifact_sha256": "ea88537f24e76ac10cc8da37e9812c7460ff7d35ce31b9b10215e74dd32974f9",
+    "post_merge_governance_run": 38044124825,
+    "post_merge_artifact_sha256": "5d991dec926d57eabfe4a6fff46dc06f6127c475b74e1786c18288c785336a26",
+    "post_merge_branch_hygiene_run": 38044124795,
+    "deterministic_governance_evidence": "PASS",
+    "research_validation_specialist_authority_validation": "PASS"
+  },
+  "p08_h_independence_correlation_audit": "READY_NOT_STARTED"
 }
