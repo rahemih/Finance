@@ -567,6 +567,15 @@ jobs:
           cmp build/p10e-a.json build/p10e-b.json
           sha256sum build/p10e-a.json
 
+      - name: P10-F deterministic commodity-context evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p10f_evidence.py --output build/p10f-a.json
+          PYTHONPATH=. python scripts/ci/p10f_evidence.py --output build/p10f-b.json
+          cmp build/p10f-a.json build/p10f-b.json
+          sha256sum build/p10f-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

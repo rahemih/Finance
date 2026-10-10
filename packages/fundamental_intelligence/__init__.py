@@ -1,3 +1,14 @@
+from .commodity_context import (
+    CommodityContextError,
+    CommodityContextPolicy,
+    CommodityContextStore,
+    CommodityFundamentalPoint,
+    CommodityMetricRule,
+    OilBalanceContext,
+    assert_no_commodity_trade_authority_fields,
+    compute_oil_balance,
+    validate_commodity_point,
+)
 from .rates_currency_macro import (
     CurrencyMacroDifferential,
     RateYieldPoint,
@@ -47,6 +58,15 @@ from .source_registry import (
 )
 
 __all__ = [
+    "CommodityContextError",
+    "CommodityContextPolicy",
+    "CommodityContextStore",
+    "CommodityFundamentalPoint",
+    "CommodityMetricRule",
+    "OilBalanceContext",
+    "assert_no_commodity_trade_authority_fields",
+    "compute_oil_balance",
+    "validate_commodity_point",
     "CurrencyMacroDifferential",
     "RateYieldPoint",
     "RatesCurrencyMacroError",
