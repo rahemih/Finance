@@ -495,6 +495,15 @@ jobs:
           cmp build/p09f-a.json build/p09f-b.json
           sha256sum build/p09f-a.json
 
+      - name: P09-G deterministic Forex Proxy Coverage evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p09g_evidence.py --output build/p09g-a.json
+          PYTHONPATH=. python scripts/ci/p09g_evidence.py --output build/p09g-b.json
+          cmp build/p09g-a.json build/p09g-b.json
+          sha256sum build/p09g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
