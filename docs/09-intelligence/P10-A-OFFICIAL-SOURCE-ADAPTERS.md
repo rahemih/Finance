@@ -2,8 +2,8 @@
 
 Task: `FIN-P10-WA-001`  
 Linear: `HOS-233`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P10-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Lead: A3 Market Intelligence  
 Support: A0, A1, A2, A4, A8, A9, A10  
 Fresh official-source verification: 2026-10-10
@@ -200,3 +200,19 @@ Credentials in repository: NONE
 Country assumption: NONE  
 LIVE_TRADING: DISABLED  
 AUTO_TRADING: DISABLED
+
+
+## Canonical closure evidence
+
+- Implementation PR: `#206` = MERGED
+- Final implementation head: `2b301cc2085577fa6c5177d10d344670733b20af`
+- Implementation merge SHA: `285972754bbf9ff372a6a3b6299c5385177c68d5`
+- Final PR Governance: `38055213769` = SUCCESS
+- PR artifact: `sha256:2a07afaa9fb790b43371fbb19d7c23d70431acc33850fbf17624222591336304`
+- Post-merge Governance: `38055286720` = SUCCESS
+- Post-merge artifact: `sha256:28d513a31eed80e951e525df0d8661cec567661d7f62e390052b8ebec91d285b`
+- Post-merge Branch Hygiene: `38055286741` = SUCCESS
+- Strict typecheck / P10-A tests / deterministic evidence: PASS
+- Supply-chain and reproducibility controls: PASS
+
+P10-B — Economic Calendar / Event Schema becomes `READY_NOT_STARTED`.
