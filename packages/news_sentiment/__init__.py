@@ -91,3 +91,25 @@ __all__ += [
     "AlertNarrativePolicy",
     "build_alert_narrative_input",
 ]
+
+from .evaluation import (
+    AdversarialCase,
+    AdversarialCaseResult,
+    AdversarialEvaluationError,
+    AdversarialEvaluationPolicy,
+    AdversarialEvaluationReport,
+    P11EvaluationDependencies,
+    evaluate_case,
+    run_adversarial_evaluation,
+)
+
+__all__ += [
+    "AdversarialCase",
+    "AdversarialCaseResult",
+    "AdversarialEvaluationError",
+    "AdversarialEvaluationPolicy",
+    "AdversarialEvaluationReport",
+    "P11EvaluationDependencies",
+    "evaluate_case",
+    "run_adversarial_evaluation",
+]
