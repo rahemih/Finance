@@ -773,6 +773,31 @@ P11-H is READY_NOT_STARTED.
 - lock: `LOCK-FIN-P11-WG-001-01 = RELEASED`
 - next workstream: `P11-H = READY_NOT_STARTED`
 
+### P11-H — Evaluation / Adversarial Tests
+Task: `FIN-P11-WH-001`  
+Linear: `HOS-249`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WH-001-01` / ACQUIRED  
+Canonical base: `4710b21b3bed56a78d419470c03f6a91664190f4`
+
+Scope:
+- mandatory deterministic adversarial scenario registry;
+- end-to-end P11-A..G offline evaluation;
+- unconfirmed/expired/content-tamper/time-travel fail-closed tests;
+- entity-boundary/community/mixed-sentiment adversarial cases;
+- required pass rate: 10000 bps / 100%;
+- deterministic report/evidence.
+
+Safety:
+- no LLM required;
+- production news vendor: NOT_SELECTED;
+- no signal probability/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P12 remains blocked behind P11-H canonical closure and phase-boundary Owner authorization.
+
 Operational governance directive — 2026-10-11:
 - Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
 - Continue automatically through implementation, repair, validation, merge and closure when canonical CI/evidence is green.
