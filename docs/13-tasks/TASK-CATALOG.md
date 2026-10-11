@@ -186,6 +186,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WF-001 | P11 | Event Horizon / Decay | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WF-001.json` | RELEASED |
 
+| FIN-P11-WG-001 | P11 | Alerting & Narrative Inputs | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WG-001.json` | LOCK-FIN-P11-WG-001-01 / ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
