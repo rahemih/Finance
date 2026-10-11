@@ -462,8 +462,26 @@ Canonical decision:
 
 Task: `FIN-P00-WY-001`  
 Linear: `HOS-252`  
-State: CANONICAL_IMPLEMENTATION_PENDING_MERGE
+State: CANONICAL_COMPLETE
 
 This extension was authorized by the Owner after CIRA-001 canonicalization. P12 is now active under a separate authorization and task; this extension neither grants nor changes P12 authority.
 
-Shared-state reconciliation is intentionally deferred while `LOCK-FIN-P12-WA-001-01` owns CURRENT-STATE, TASK-CATALOG and EXECUTION-ROADMAP.
+Shared-state reconciliation completed after `LOCK-FIN-P12-WA-001-01` was released.
+
+
+### Staged-scaling canonical evidence
+
+- Task: `FIN-P00-WY-001 = CANONICAL_COMPLETE`
+- Reconciliation: `FIN-P00-WY-001-R01 = CANONICAL_COMPLETE`
+- Linear: `HOS-252`
+- Superseded PR: `#243 = CLOSED / NOT_MERGED / passed CI but conflicted with concurrent P12-A shared writers`
+- Canonical implementation PR: `#245 = MERGED`
+- Implementation head: `b03ae51d79b7cc01ed8225d57d55abc9d5599eab`
+- Merge SHA: `8309ad93cd72a0116334e52d520f2c8cd3e52840`
+- PR Governance: `38134989827 = SUCCESS`
+- PR artifact: `sha256:c61d57a86192101f2bd16a1ccfd2b576286ab1ba7dc757b0c45ec4f1eceb8f8c`
+- Post-merge Governance: `38135079867 = SUCCESS`
+- Post-merge artifact: `sha256:17e84423f60cc3b793310a3fcc50e9fd8ce7d1007c2f324680218c4e29e47edd`
+- Post-merge Branch Hygiene: `38135079864 = SUCCESS`
+- Live Trading: `DISABLED`
+- Auto Trading: `DISABLED`
