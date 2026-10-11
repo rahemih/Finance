@@ -675,6 +675,15 @@ jobs:
           cmp build/p11h-a.json build/p11h-b.json
           sha256sum build/p11h-a.json
 
+      - name: P12-A deterministic knowledge graph schema evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12a_evidence.py --output build/p12a-a.json
+          PYTHONPATH=. python scripts/ci/p12a_evidence.py --output build/p12a-b.json
+          cmp build/p12a-a.json build/p12a-b.json
+          sha256sum build/p12a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
