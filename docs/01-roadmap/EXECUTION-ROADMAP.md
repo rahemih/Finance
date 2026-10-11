@@ -585,3 +585,28 @@ P11-C is READY_NOT_STARTED.
 - task: `FIN-P11-WB-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P11-WB-001-01 = RELEASED`
 - next workstream: `P11-C = READY_NOT_STARTED`
+
+
+### P11-C — Entity / Asset Mapping
+Task: `FIN-P11-WC-001`  
+Linear: `HOS-244`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WC-001-01` / ACQUIRED  
+Canonical base: `aff6dc19b5bce63e46cba4e1f93ad4362e4045d8`
+
+Scope:
+- canonical entity/asset registry;
+- explicit aliases and canonical symbols;
+- deterministic boundary-aware mention matching;
+- ambiguity fail-closed behavior;
+- deterministic mapping state and output ordering;
+- preserve P11-B news content identity;
+- offline deterministic validation.
+
+Safety:
+- no sentiment/signal/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-D remains blocked until P11-C is CANONICAL_COMPLETE.
