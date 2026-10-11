@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "required_phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
+  "required_state": "CANONICAL_COMPLETE",
+  "required_lock": "RELEASED",
+  "required_country_assumption": "NONE",
+  "required_live_trading": "DISABLED",
+  "required_auto_trading": "DISABLED",
+  "required_workstreams": [
+    {"workstream":"P10-A","task_id":"FIN-P10-WA-001","document":"docs/09-intelligence/p10-a-official-source-adapters.json"},
+    {"workstream":"P10-B","task_id":"FIN-P10-WB-001","document":"docs/09-intelligence/p10-b-economic-calendar-event-schema.json"},
+    {"workstream":"P10-C","task_id":"FIN-P10-WC-001","document":"docs/09-intelligence/p10-c-first-release-previous-revision-history.json"},
+    {"workstream":"P10-D","task_id":"FIN-P10-WD-001","document":"docs/09-intelligence/p10-d-macro-surprise-engine.json"},
+    {"workstream":"P10-E","task_id":"FIN-P10-WE-001","document":"docs/09-intelligence/p10-e-rates-yields-currency-macro.json"},
+    {"workstream":"P10-F","task_id":"FIN-P10-WF-001","document":"docs/09-intelligence/p10-f-oil-gold-commodity-context.json"},
+    {"workstream":"P10-G","task_id":"FIN-P10-WG-001","document":"docs/09-intelligence/p10-g-crypto-fundamental-onchain-context.json"}
+  ],
+  "performance": {
+    "semantics": "CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO",
+    "p10_unit_suite_max_seconds": 60,
+    "network_required": false,
+    "production_slo_certified": false,
+    "production_provider_performance_certified": false
+  },
+  "validation_semantics": {
+    "profitability_certified": false,
+    "trade_success_probability_certified": false,
+    "production_execution_certified": false,
+    "production_provider_performance_certified": false
+  },
+  "next_phase": "P11",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
