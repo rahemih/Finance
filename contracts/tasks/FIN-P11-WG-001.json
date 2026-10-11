@@ -1,0 +1,113 @@
+{
+  "task_id": "FIN-P11-WG-001",
+  "phase": "P11",
+  "workstream": "WG",
+  "objective": "Implement deterministic alert eligibility/severity and narrative-input contracts after canonical P11-F freshness, without channel delivery, LLM narrative generation, signal, risk or execution authority.",
+  "scope": [
+    "Derive deterministic alert eligibility from P11-D importance, P11-E reliability and P11-F freshness",
+    "Emit INFORMATIONAL, IMPORTANT, CRITICAL or SUPPRESSED severity",
+    "Suppress EXPIRED, BLOCKED and QUARANTINED content",
+    "Build deterministic narrative-input envelope preserving source/content/entity/topic/sentiment/reliability/freshness evidence",
+    "Build stable downstream grouping/dedup key",
+    "Preserve P11 content identity",
+    "Generate deterministic offline P11-G evidence"
+  ],
+  "out_of_scope": [
+    "Adversarial evaluation (P11-H)",
+    "Notification channel delivery, quiet hours and escalation UX (P23-F)",
+    "LLM-generated narrative in canonical CI",
+    "Signal probability, risk approval and execution"
+  ],
+  "dependencies": [
+    "P11-F CANONICAL_COMPLETE",
+    "P11-F closure merge 85299333743d4e670df8aad1874976a1642023e0",
+    "P11-F closure post-merge Governance 38127367861 SUCCESS",
+    "P11-F closure Branch Hygiene 38127367881 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "config/news-sentiment/**",
+    "packages/news_sentiment/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P11-WG-001.json",
+    "config/news-sentiment/alerting-narrative-policy.json",
+    "packages/news_sentiment/alerting.py",
+    "packages/news_sentiment/__init__.py",
+    "tests/p11/test_alerting_narrative_inputs.py",
+    "scripts/ci/p11g_evidence.py",
+    "docs/09-intelligence/P11-G-ALERTING-NARRATIVE-INPUTS.md",
+    "docs/09-intelligence/p11-g-alerting-narrative-inputs.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0","A1","A3","A4","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "HIGH importance + HIGH reliability + FRESH maps to CRITICAL",
+    "Eligible medium context maps deterministically to IMPORTANT",
+    "Low-context eligible content maps to INFORMATIONAL",
+    "EXPIRED, BLOCKED or QUARANTINED content is SUPPRESSED",
+    "Narrative input preserves canonical content and source identity",
+    "Grouping key is deterministic and order-stable",
+    "Content identity mismatch fails closed",
+    "No LLM, network, signal, risk or execution authority is introduced",
+    "P11-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "Production news vendor remains NOT_SELECTED",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P11-F canonical closure",
+    "Deterministic P11-G evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-248 reconciliation"
+  ],
+  "rollback": "Revert P11-G policy/module/tests/evidence/CI/state changes; P11-F remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P11-F CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Alerting and narrative-input contracts implemented",
+    "Suppression rules fail closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P11-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-248 Done",
+    "P11-H READY_NOT_STARTED"
+  ]
+}
