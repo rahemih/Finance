@@ -78,6 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: OWNER_PHASE_AUTHORIZATION_REQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
+- CIRA-001 staged-scaling extension / FIN-P00-WY-001: IMPLEMENTATION_ACTIVE / P12 authorization unchanged
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
