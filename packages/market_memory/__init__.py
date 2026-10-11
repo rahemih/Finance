@@ -13,3 +13,19 @@ __all__ = [
     "KnowledgeGraphPolicy",
     "KnowledgeGraphSnapshot",
 ]
+
+from .conditional_correlation import (
+    ConditionalCorrelationError,
+    ConditionalCorrelationPolicy,
+    ConditionalCorrelationResult,
+    CorrelationObservation,
+    compute_conditional_correlation,
+)
+
+__all__ += [
+    "ConditionalCorrelationError",
+    "ConditionalCorrelationPolicy",
+    "ConditionalCorrelationResult",
+    "CorrelationObservation",
+    "compute_conditional_correlation",
+]
