@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P10 — Fundamental / Macro / Event Intelligence / CANONICAL_COMPLETE; P11 OWNER_PHASE_AUTHORIZATION_REQUIRED  
-Current Workstream: none — P10 closed; P11 OWNER_PHASE_AUTHORIZATION_REQUIRED  
+Current Phase: P11 — News & Sentiment / ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-11  
+Current Workstream: P11-A — Source / License Policy / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P09-H — Validation / Performance / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -52,6 +52,7 @@ P07 state: CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPL
 P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
+P11 state: ACTIVE / P11-A IMPLEMENTATION_ACTIVE / P11-B..P11-H BLOCKED_BEHIND_P11A_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 
 Frozen Master Roadmap: v2.0 / FROZEN  
@@ -163,8 +164,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P11-WA-001`  
+Active lock: `LOCK-FIN-P11-WA-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4304,3 +4305,31 @@ Safety:
 - LOCK-FIN-P10-WH-001-01 = RELEASED.
 - P10 = CANONICAL_COMPLETE.
 - P11 = OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+
+## P11-A — Source / License Policy
+
+Task: `FIN-P11-WA-001`  
+Linear: `HOS-242`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WA-001-01` / ACQUIRED  
+Canonical base: `c72d34bff0099eaa429fc105b447f4e60c2a2588`
+
+Owner authorization: GRANTED_2026-10-11.
+
+Scope:
+- source class / access / license taxonomy;
+- attribution and source identity;
+- point-in-time published-at / observed-at semantics;
+- corroboration requirements;
+- unconfirmed-news fail-closed boundary;
+- deterministic offline evidence.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- canonical test network access: false;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-B is blocked until P11-A reaches CANONICAL_COMPLETE.

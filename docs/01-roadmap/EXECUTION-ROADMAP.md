@@ -491,3 +491,33 @@ Authority source: `docs/01-roadmap/addenda/ALPHA-RESEARCH-FAST-TRACK.md`.
 - Fast Track outputs are research-only: REJECT / RETAIN_FOR_CONFIRMATION / RETAIN_FOR_P17 / INVESTIGATE.
 - Fast Track cannot pass or substitute G6/G7/G8/G9 and cannot authorize Demo, Shadow, Live, Auto, BUY/SELL, profitability, risk or execution.
 - Research Validation Specialist remains an on-demand A4 specialist, not a new core agent.
+
+
+## P11 execution activation — 2026-10-11
+
+Owner phase authorization: GRANTED.
+
+### P11-A — Source / License Policy
+Task: `FIN-P11-WA-001`  
+Linear: `HOS-242`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WA-001-01` / ACQUIRED  
+Canonical base: `c72d34bff0099eaa429fc105b447f4e60c2a2588`
+
+Scope:
+- explicit source classes, access and license states;
+- attribution and point-in-time publication/observation semantics;
+- corroboration boundary for community/social content;
+- fail-closed admissibility;
+- unconfirmed-news zero trade authority;
+- deterministic offline validation.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- credentials: NONE;
+- country assumption: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+Next:
+P11-B remains blocked until P11-A is CANONICAL_COMPLETE.

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11A_SOURCE_LICENSE_POLICY_BASELINE",
+  "task_id": "FIN-P11-WA-001",
+  "linear": "HOS-242",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WA-001-01",
+  "phase": "P11_NEWS_SENTIMENT",
+  "workstream": "P11-A",
+  "canonical_base": "c72d34bff0099eaa429fc105b447f4e60c2a2588",
+  "rules": [
+    "ATTRIBUTION_REQUIRED",
+    "HTTPS_ONLY",
+    "POINT_IN_TIME_TIMESTAMPS",
+    "COMMUNITY_SOCIAL_CONFIRMATION_REQUIRES_CORROBORATION",
+    "UNCONFIRMED_NEWS_ZERO_TRADE_AUTHORITY"
+  ],
+  "production_news_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "credentials_required": false,
+  "country_assumption": "NONE",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-B",
+  "next_workstream_state": "BLOCKED_UNTIL_P11A_CANONICAL_COMPLETE"
+}

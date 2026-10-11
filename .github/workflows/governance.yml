@@ -600,6 +600,18 @@ jobs:
           set -euo pipefail
           PYTHONPATH=. python scripts/ci/p10h_performance.py --output build/p10h-performance.json
 
+      - name: P11 source/license policy tests
+        run: python -m unittest discover -s tests/p11 -p 'test_*.py' -v
+
+      - name: P11-A deterministic source/license evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p11a_evidence.py --output build/p11a-a.json
+          PYTHONPATH=. python scripts/ci/p11a_evidence.py --output build/p11a-b.json
+          cmp build/p11a-a.json build/p11a-b.json
+          sha256sum build/p11a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
