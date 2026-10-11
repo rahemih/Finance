@@ -47,3 +47,19 @@ __all__ += [
     "LeadLagResult",
     "compute_lead_lag",
 ]
+
+from .event_study import (
+    EventStudyError,
+    EventStudyObservation,
+    EventStudyPolicy,
+    EventStudyResult,
+    compute_event_study,
+)
+
+__all__ += [
+    "EventStudyError",
+    "EventStudyObservation",
+    "EventStudyPolicy",
+    "EventStudyResult",
+    "compute_event_study",
+]
