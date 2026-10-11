@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "mode": "REGIME_CONDITIONAL_EVENT_STUDY",
+  "minimum_event_count": 3,
+  "allowed_pre_window_ns": [100, 300, 500],
+  "allowed_post_window_ns": [100, 300, 500],
+  "response_min_bps": -10000,
+  "response_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "event_node_kinds": ["MACRO_EVENT", "NEWS_EVENT", "CAPITAL_FLOW", "ROTATION_EPISODE"],
+  "target_node_kinds": ["ASSET", "MARKET"],
+  "event_evidence_family": {
+    "MACRO_EVENT": "FUNDAMENTAL",
+    "NEWS_EVENT": "NEWS",
+    "CAPITAL_FLOW": "ORDER_FLOW",
+    "ROTATION_EPISODE": "COMPOSITE"
+  },
+  "edge_kind": "EVENT_CONTEXT",
+  "attribution_label": "UNATTRIBUTED",
+  "event_response_is_causation": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
