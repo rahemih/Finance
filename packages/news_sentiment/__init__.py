@@ -35,3 +35,17 @@ __all__ += [
     "near_duplicate_ratio",
     "validate_raw_news_item",
 ]
+
+from .classification import (
+    ClassificationPolicy,
+    ClassificationResult,
+    NewsClassificationError,
+    classify_news_item,
+)
+
+__all__ += [
+    "ClassificationPolicy",
+    "ClassificationResult",
+    "NewsClassificationError",
+    "classify_news_item",
+]
