@@ -28,7 +28,8 @@ def _boolean(value: object, *, field: str) -> bool:
 def _string_tuple(value: object, *, field: str) -> tuple[str, ...]:
     if not isinstance(value, list) or not value:
         raise NewsSourcePolicyError(f"{field} must be a non-empty list")
-    items = tuple(_text(item, field=field) for item in value)
+    values = cast(list[object], value)
+    items = tuple(_text(item, field=field) for item in values)
     if len(set(items)) != len(items):
         raise NewsSourcePolicyError(f"{field} values must be unique")
     return items
