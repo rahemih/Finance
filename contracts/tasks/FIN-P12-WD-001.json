@@ -1,0 +1,119 @@
+{
+  "task_id": "FIN-P12-WD-001",
+  "phase": "P12",
+  "workstream": "WD",
+  "objective": "Implement deterministic regime-aware event studies with exact pre/post windows, descriptive response and uncertainty, and P12-A EVENT_CONTEXT evidence without causal or trade authority.",
+  "scope": [
+    "Aggregate repeated historical event instances with exact pre/post windows",
+    "Compute deterministic signed basis-point response per event instance",
+    "Compute deterministic mean response and dispersion/sampling uncertainty",
+    "Support canonical P08-G regime conditioning",
+    "Require unique event-instance identities and event timestamps",
+    "Require strict pre-event < event < post-event ordering and governed window sizes",
+    "Emit P12-A EVENT_CONTEXT / UNATTRIBUTED graph evidence",
+    "Preserve provenance SHA-256 and source dataset versions",
+    "Support MACRO_EVENT, NEWS_EVENT, CAPITAL_FLOW and ROTATION_EPISODE contexts",
+    "Generate deterministic offline P12-D evidence"
+  ],
+  "out_of_scope": [
+    "Historical analog search (P12-E)",
+    "Seasonality (P12-F)",
+    "Causal attribution labels (P12-G)",
+    "Replay/version validation (P12-H)",
+    "Signal probability, risk approval and execution"
+  ],
+  "dependencies": [
+    "P12-C CANONICAL_COMPLETE",
+    "P12-C closure merge 787c8264b3537199a5d66e8ec15741d00b78b584",
+    "P12-C closure post-merge Governance 38137484233 SUCCESS",
+    "P12-C closure Branch Hygiene 38137484099 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "config/market-memory/**",
+    "packages/market_memory/**",
+    "packages/fundamental_intelligence/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P12-WD-001.json",
+    "config/market-memory/event-study-policy.json",
+    "packages/market_memory/event_study.py",
+    "packages/market_memory/__init__.py",
+    "tests/p12/test_event_study.py",
+    "scripts/ci/p12d_evidence.py",
+    "docs/09-intelligence/P12-D-EVENT-STUDIES.md",
+    "docs/09-intelligence/p12-d-event-studies.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0","A3","A4","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Known positive event fixture produces deterministic positive mean response",
+    "Known negative event fixture produces deterministic negative mean response",
+    "Exact pre/post event windows are enforced",
+    "Duplicate event identity and duplicate event timestamp fail closed",
+    "Minimum qualifying event count fails closed",
+    "Zero pre-value and out-of-bound response fail closed",
+    "Regime conditioning is deterministic and order-independent",
+    "Event node kind and target node kind are governed",
+    "Graph edge remains EVENT_CONTEXT and UNATTRIBUTED",
+    "Event proximity/historical response is never labelled causal authority",
+    "P12-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P12-C canonical closure",
+    "Deterministic P12-D event-study evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-255 reconciliation"
+  ],
+  "rollback": "Revert P12-D policy/module/tests/evidence/CI/state changes; P12-C remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P12-C CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Event study engine implemented",
+    "Historical event evidence remains unattributed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P12-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-255 Done",
+    "P12-E READY_NOT_STARTED"
+  ]
+}
