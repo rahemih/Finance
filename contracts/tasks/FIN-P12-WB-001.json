@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P12-WB-001",
+  "phase": "P12",
+  "workstream": "WB",
+  "objective": "Implement deterministic rolling and regime-conditional correlation evidence and emit P12-A OBSERVED_ASSOCIATION edges without causality, signal, risk or execution authority.",
+  "scope": [
+    "Integer Pearson correlation in basis points",
+    "Explicit rolling window semantics over canonical timestamps",
+    "Optional regime conditioning using canonical P08-G labels",
+    "Minimum sample and zero-variance fail-closed controls",
+    "Deterministic sampling uncertainty metadata",
+    "Immutable provenance and source dataset versions",
+    "Emit P12-A OBSERVED_ASSOCIATION edges with UNATTRIBUTED attribution",
+    "Support cross-asset and capital-flow correlation evidence",
+    "Offline byte-identical P12-B evidence"
+  ],
+  "out_of_scope": [
+    "Lead/lag analysis (P12-C)",
+    "Event studies (P12-D)",
+    "Historical analogs (P12-E)",
+    "Seasonality (P12-F)",
+    "Attribution/causality labels (P12-G)",
+    "Replay/version validation (P12-H)",
+    "Signal probability, risk approval or execution"
+  ],
+  "dependencies": [
+    "P12-A CANONICAL_COMPLETE",
+    "P12-A closure PR #244 MERGED",
+    "P12-A successor Governance 38135079867 SUCCESS",
+    "P12-A successor Branch Hygiene 38135079864 SUCCESS",
+    "CIRA staged-scaling shared-state reconciliation complete",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/market_memory/**",
+    "config/market-memory/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P12-WB-001.json",
+    "config/market-memory/conditional-correlation-policy.json",
+    "packages/market_memory/conditional_correlation.py",
+    "packages/market_memory/__init__.py",
+    "tests/p12/test_conditional_correlation.py",
+    "scripts/ci/p12b_evidence.py",
+    "docs/09-intelligence/P12-B-ROLLING-CONDITIONAL-CORRELATIONS.md",
+    "docs/09-intelligence/p12-b-rolling-conditional-correlations.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A3","A4","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Perfect positive correlation = 10000 bps",
+    "Perfect negative correlation = -10000 bps",
+    "Regime-conditioned slice is deterministic",
+    "Rolling window uses latest qualifying observations",
+    "Insufficient sample count fails closed",
+    "Zero variance fails closed",
+    "Duplicate timestamps fail closed",
+    "Input order does not change result",
+    "Sampling uncertainty is deterministic and bounded",
+    "Output edge is OBSERVED_ASSOCIATION and UNATTRIBUTED",
+    "No causality/probability/risk/execution authority fields",
+    "P12-B evidence byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "Correlation is never causality",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P12-A canonical closure",
+    "Deterministic P12-B evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-253 reconciliation"
+  ],
+  "rollback": "Revert P12-B correlation policy/module/tests/evidence/CI/state changes; P12-A remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": ["P12-A CANONICAL_COMPLETE","No active task/lock/open PR conflict"],
+  "definition_of_done": [
+    "Rolling/conditional correlation implemented",
+    "Correlation graph edges preserve P12-A contract",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P12-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-253 Done",
+    "P12-C READY_NOT_STARTED"
+  ]
+}

@@ -684,6 +684,15 @@ jobs:
           cmp build/p12a-a.json build/p12a-b.json
           sha256sum build/p12a-a.json
 
+      - name: P12-B deterministic rolling conditional correlation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12b_evidence.py --output build/p12b-a.json
+          PYTHONPATH=. python scripts/ci/p12b_evidence.py --output build/p12b-b.json
+          cmp build/p12b-a.json build/p12b-b.json
+          sha256sum build/p12b-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
