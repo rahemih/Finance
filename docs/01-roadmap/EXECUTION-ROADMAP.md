@@ -890,3 +890,20 @@ Safety:
 - no probability/signal/risk/execution authority;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+### CIRA-001 staged scaling extension canonical closure — 2026-10-11
+- task: `FIN-P00-WY-001 = CANONICAL_COMPLETE`
+- Linear: `HOS-252`
+- implementation PR: #245 / MERGED
+- implementation head: `b03ae51d79b7cc01ed8225d57d55abc9d5599eab`
+- implementation artifact: `sha256:c61d57a86192101f2bd16a1ccfd2b576286ab1ba7dc757b0c45ec4f1eceb8f8c`
+- PR Governance: `38134989827` = SUCCESS
+- merge SHA: `8309ad93cd72a0116334e52d520f2c8cd3e52840`
+- post-merge Governance: `38135079867` = SUCCESS
+- post-merge Branch Hygiene: `38135079864` = SUCCESS
+- shared-state reconciliation after P12-A lock release: COMPLETE
+- lock: `LOCK-FIN-P00-WY-001-01 = RELEASED`
+- P12-A remains CANONICAL_COMPLETE
+- P12-B remains READY_NOT_STARTED
+- Live Trading / Auto Trading remain DISABLED
