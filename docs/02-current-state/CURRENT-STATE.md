@@ -56,6 +56,7 @@ P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPL
 P12 state: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B READY_NOT_STARTED / P12-C..P12-H BLOCKED_BEHIND_P12B_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
+CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -4709,3 +4710,40 @@ P12-A canonical closure evidence:
 - FIN-P12-WA-001 = CANONICAL_COMPLETE
 - LOCK-FIN-P12-WA-001-01 = RELEASED
 - P12-B = READY_NOT_STARTED
+
+
+## CIRA staged entry / exit / adaptive scaling closure — 2026-10-11
+
+State: CANONICAL_COMPLETE  
+Task: `FIN-P00-WY-001`  
+Reconciliation: `FIN-P00-WY-001-R01`  
+Linear: `HOS-252`  
+Lock: RELEASED
+
+Canonical requirements:
+- staged entry / scale-in;
+- staged exit / scale-out;
+- adaptive tranche sizing/spacing;
+- staged CARE rotation/rebalance;
+- P15 owns maximum position, total risk and candidate tranche plan;
+- P16 independently revalidates every risk-increasing tranche;
+- P20 owns idempotent staged execution and partial-fill/cancellation recovery;
+- P21 owns partial closes, reductions, protected remainder and staged exits;
+- invalidation cancels remaining entry tranches;
+- price moving against a position alone cannot authorize adding size;
+- Martingale, loss-chasing size escalation and uncapped averaging down are forbidden;
+- tranche count/spacing/size require P17 empirical calibration and P18/P19 Demo-Shadow validation.
+
+Evidence:
+- superseded PR #243: closed unmerged after concurrent P12-A shared-writer conflict;
+- canonical implementation PR #245: MERGED;
+- merge SHA: `8309ad93cd72a0116334e52d520f2c8cd3e52840`;
+- PR Governance: `38134989827 / SUCCESS`;
+- post-merge Governance: `38135079867 / SUCCESS`;
+- post-merge Branch Hygiene: `38135079864 / SUCCESS`.
+
+Safety:
+- P12-A canonical state preserved;
+- frozen Master Roadmap unchanged;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

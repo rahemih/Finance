@@ -78,6 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
+- CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -890,3 +891,17 @@ Safety:
 - no probability/signal/risk/execution authority;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+### CIRA-001 staged scaling closure — 2026-10-11
+- FIN-P00-WY-001: CANONICAL_COMPLETE
+- FIN-P00-WY-001-R01: CANONICAL_COMPLETE
+- Linear: HOS-252
+- implementation PR: #245 / MERGED
+- merge SHA: `8309ad93cd72a0116334e52d520f2c8cd3e52840`
+- Governance: `38134989827 = SUCCESS`
+- post-merge Governance: `38135079867 = SUCCESS`
+- post-merge Branch Hygiene: `38135079864 = SUCCESS`
+- staged entry, staged exit, adaptive scaling and staged CARE rebalance are mandatory future requirements
+- each risk-increasing tranche requires fresh P15/P16 validation
+- Martingale, loss-chasing escalation and price-only averaging down are forbidden

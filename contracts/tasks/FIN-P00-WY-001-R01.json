@@ -1,0 +1,94 @@
+{
+  "task_id": "FIN-P00-WY-001-R01",
+  "phase": "P00",
+  "workstream": "WY",
+  "objective": "Reconcile the already-merged FIN-P00-WY-001 staged-scaling CIRA extension into shared canonical state after P12-A released its writer lock.",
+  "scope": [
+    "Register FIN-P00-WY-001 and this reconciliation task in Task Catalog as canonical complete",
+    "Record staged-scaling capability and evidence in Current State",
+    "Record staged-scaling extension as canonical in Execution Roadmap",
+    "Finalize CIRA staged-scaling section with merge/CI evidence",
+    "Release reconciliation lock and synchronize Linear HOS-252"
+  ],
+  "out_of_scope": [
+    "Changing P12-A implementation or evidence",
+    "Changing the frozen Master Roadmap",
+    "Changing staged-scaling semantics already merged in PR #245",
+    "Runtime trading implementation",
+    "Live Trading or Auto Trading"
+  ],
+  "dependencies": [
+    "FIN-P00-WY-001 implementation PR #245 MERGED",
+    "FIN-P00-WY-001 PR Governance 38134989827 SUCCESS",
+    "FIN-P00-WY-001 post-merge Governance 38135079867 SUCCESS",
+    "FIN-P00-WY-001 post-merge Branch Hygiene 38135079864 SUCCESS",
+    "P12-A CANONICAL_COMPLETE",
+    "LOCK-FIN-P12-WA-001-01 RELEASED",
+    "Active task none and active lock none"
+  ],
+  "read_paths": [
+    "contracts/tasks/FIN-P00-WY-001.json",
+    "docs/01-roadmap/addenda/CAPITAL-INTELLIGENCE-ROTATION-ARCHITECTURE.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P00-WY-001-R01.json",
+    "docs/01-roadmap/addenda/CAPITAL-INTELLIGENCE-ROTATION-ARCHITECTURE.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "contracts/tasks/FIN-P12-WA-001.json",
+    "docs/09-intelligence/P12-A-KNOWLEDGE-GRAPH-SCHEMA.md",
+    "packages/**",
+    "adapters/**",
+    "tests/**",
+    "config/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "FIN-P00-WY-001 remains unchanged",
+    "P12-A canonical state remains unchanged",
+    "Master Roadmap remains unchanged",
+    "Shared state consistently records staged scaling as canonical",
+    "Active task/lock returns to none after closure",
+    "Live Trading and Auto Trading remain disabled"
+  ],
+  "security_tests": [
+    "No credentials or order authority introduced",
+    "No Risk/Firewall bypass introduced"
+  ],
+  "evidence": [
+    "PR #245 merge SHA 8309ad93cd72a0116334e52d520f2c8cd3e52840",
+    "PR Governance 38134989827 SUCCESS",
+    "PR artifact sha256:c61d57a86192101f2bd16a1ccfd2b576286ab1ba7dc757b0c45ec4f1eceb8f8c",
+    "Post-merge Governance 38135079867 SUCCESS",
+    "Post-merge artifact sha256:17e84423f60cc3b793310a3fcc50e9fd8ce7d1007c2f324680218c4e29e47edd",
+    "Branch Hygiene 38135079864 SUCCESS",
+    "Linear HOS-252 reconciliation"
+  ],
+  "rollback": "Revert only shared-state reconciliation entries and this repair contract; FIN-P00-WY-001 staged-scaling semantics remain as merged in CIRA unless separately reverted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P12-A lock released",
+    "No active task/lock/open PR",
+    "FIN-P00-WY-001 implementation and post-merge checks passed"
+  ],
+  "definition_of_done": [
+    "Task Catalog, Current State, Execution Roadmap and CIRA agree",
+    "FIN-P00-WY-001 and FIN-P00-WY-001-R01 canonical complete",
+    "Lock released",
+    "Linear HOS-252 Done"
+  ]
+}
