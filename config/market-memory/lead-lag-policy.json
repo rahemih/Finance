@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "mode": "SYMMETRIC_REGIME_CONDITIONAL_LEAD_LAG",
+  "minimum_sample_count": 5,
+  "allowed_lag_steps": [-5, -3, -2, -1, 0, 1, 2, 3, 5],
+  "correlation_min_bps": -10000,
+  "correlation_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "lead_states": [
+    "LEFT_LEADS_RIGHT",
+    "RIGHT_LEADS_LEFT",
+    "CONTEMPORANEOUS",
+    "AMBIGUOUS"
+  ],
+  "tie_handling": "AMBIGUOUS_NO_DIRECTIONAL_EDGE",
+  "pairing_semantics": "EXACT_TIMESTAMP_OFFSET",
+  "edge_kind": "OBSERVED_ASSOCIATION",
+  "attribution_label": "UNATTRIBUTED",
+  "evidence_family": "HISTORICAL",
+  "temporal_precedence_is_causation": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
