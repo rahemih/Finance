@@ -826,8 +826,8 @@ P11 = CANONICAL_COMPLETE. P12 = OWNER_PHASE_AUTHORIZATION_REQUIRED.
 - P11-F Event Horizon / Decay = CANONICAL_COMPLETE
 - P11-G Alerting & Narrative Inputs = CANONICAL_COMPLETE
 - P11-H Evaluation / Adversarial Tests = CANONICAL_COMPLETE
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WD-001
+- active lock: LOCK-FIN-P12-WD-001-01 / ACQUIRED
 - LIVE_TRADING: DISABLED
 - AUTO_TRADING: DISABLED
 - P12 may not start without explicit Owner phase authorization.
@@ -969,6 +969,30 @@ P12-D is READY_NOT_STARTED.
 - task: `FIN-P12-WC-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P12-WC-001-01 = RELEASED`
 - next workstream: `P12-D = READY_NOT_STARTED`
+
+### P12-D — Event Studies
+Task: `FIN-P12-WD-001`  
+Linear: `HOS-255`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WD-001-01` / ACQUIRED  
+Canonical base: `787c8264b3537199a5d66e8ec15741d00b78b584`
+
+Scope:
+- repeated historical event-instance studies;
+- exact pre/post windows;
+- deterministic signed-bps response;
+- mean/dispersion/sampling uncertainty metadata;
+- regime-conditioned slices;
+- EVENT_CONTEXT / UNATTRIBUTED graph evidence;
+- MACRO_EVENT / NEWS_EVENT / CAPITAL_FLOW / ROTATION_EPISODE support.
+
+P12-E remains BLOCKED until P12-D is CANONICAL_COMPLETE.
+
+Safety:
+- historical event response is not causation;
+- no signal probability/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 Safety:
 - no signal probability/risk/execution authority;
