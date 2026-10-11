@@ -48,18 +48,19 @@ class ReliabilityPolicy:
         if not isinstance(admissibility_value, Mapping) or not admissibility_value:
             raise ReliabilityControlError("admissibility_adjustments must be non-empty object")
 
-        source_scores = tuple(
-            sorted(
-                (str(key).strip().upper(), int(value))
-                for key, value in cast(Mapping[object, object], source_value).items()
-            )
-        )
-        admissibility = tuple(
-            sorted(
-                (str(key).strip().upper(), int(value))
-                for key, value in cast(Mapping[object, object], admissibility_value).items()
-            )
-        )
+        source_score_items: list[tuple[str, int]] = []
+        for key, value in cast(Mapping[object, object], source_value).items():
+            if not isinstance(value, int) or isinstance(value, bool):
+                raise ReliabilityControlError("source_class_scores values must be integers")
+            source_score_items.append((str(key).strip().upper(), value))
+        source_scores = tuple(sorted(source_score_items))
+
+        admissibility_items: list[tuple[str, int]] = []
+        for key, value in cast(Mapping[object, object], admissibility_value).items():
+            if not isinstance(value, int) or isinstance(value, bool):
+                raise ReliabilityControlError("admissibility_adjustments values must be integers")
+            admissibility_items.append((str(key).strip().upper(), value))
+        admissibility = tuple(sorted(admissibility_items))
 
         bonus = raw.get("corroboration_bonus_per_source")
         cap = raw.get("corroboration_bonus_cap")
