@@ -738,8 +738,8 @@ P11-G is READY_NOT_STARTED.
 ### P11-G — Alerting & Narrative Inputs
 Task: `FIN-P11-WG-001`  
 Linear: `HOS-248`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WG-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WG-001-01` / RELEASED  
 Canonical base: `85299333743d4e670df8aad1874976a1642023e0`
 
 Scope:
@@ -759,7 +759,18 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P11-H remains blocked until P11-G is CANONICAL_COMPLETE.
+P11-H is READY_NOT_STARTED.
+
+### P11-G canonical closure — 2026-10-11
+- implementation PR: #235 / MERGED
+- implementation merge SHA: `6fc59f84c7e23df500f265e015de1fe327a3371b`
+- implementation Governance run: `38127631339` = SUCCESS
+- implementation artifact: `sha256:81cd915792b98baea6be146574d9b8a507767eacd9cae96d0d9fe0ed5ff2917b`
+- post-merge Governance run: `38127724208` = SUCCESS
+- post-merge Branch Hygiene run: `38127724191` = SUCCESS
+- task: `FIN-P11-WG-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WG-001-01 = RELEASED`
+- next workstream: `P11-H = READY_NOT_STARTED`
 
 Operational governance directive — 2026-10-11:
 - Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
