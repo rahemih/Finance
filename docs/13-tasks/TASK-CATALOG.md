@@ -178,7 +178,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WB-001 | P11 | Ingestion / Deduplication | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WB-001.json` | RELEASED |
 
-| FIN-P11-WC-001 | P11 | Entity / Asset Mapping | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WC-001.json` | LOCK-FIN-P11-WC-001-01 / ACQUIRED |
+| FIN-P11-WC-001 | P11 | Entity / Asset Mapping | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WC-001.json` | RELEASED |
 
 ## Rules
 

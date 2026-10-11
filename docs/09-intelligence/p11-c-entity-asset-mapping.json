@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P11C_ENTITY_ASSET_MAPPING_BASELINE",
   "task_id": "FIN-P11-WC-001",
   "linear": "HOS-244",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P11-WC-001-01",
   "canonical_base": "aff6dc19b5bce63e46cba4e1f93ad4362e4045d8",
   "rules": [
@@ -17,5 +17,13 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P11-D",
-  "next_workstream_state": "BLOCKED_UNTIL_P11C_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 226,
+  "implementation_merge_sha": "61e0c9932ea95401b50fd42623d30019d58fd811",
+  "human_gate_head": "de2046208362ce2999efe943efbc3328aa44b9b0",
+  "human_gate_artifact_sha256": "8a7d8382dc0a1d44928692d9eb4483cbb7037f48d97f6f43709668ccd66cc2da",
+  "implementation_governance_run": 38121521870,
+  "post_merge_governance_run": 38124210685,
+  "post_merge_branch_hygiene_run": 38124210733
 }

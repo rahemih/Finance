@@ -590,8 +590,8 @@ P11-C is READY_NOT_STARTED.
 ### P11-C — Entity / Asset Mapping
 Task: `FIN-P11-WC-001`  
 Linear: `HOS-244`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WC-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WC-001-01` / RELEASED  
 Canonical base: `aff6dc19b5bce63e46cba4e1f93ad4362e4045d8`
 
 Scope:
@@ -609,4 +609,16 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P11-D remains blocked until P11-C is CANONICAL_COMPLETE.
+P11-D is READY_NOT_STARTED.
+
+### P11-C canonical closure — 2026-10-11
+- implementation PR: #226 / MERGED
+- implementation merge SHA: `61e0c9932ea95401b50fd42623d30019d58fd811`
+- Human Gate: APPROVED for head `de2046208362ce2999efe943efbc3328aa44b9b0`
+- Human-Gate artifact: `sha256:8a7d8382dc0a1d44928692d9eb4483cbb7037f48d97f6f43709668ccd66cc2da`
+- implementation Governance run: `38121521870` = SUCCESS
+- post-merge Governance run: `38124210685` = SUCCESS
+- post-merge Branch Hygiene run: `38124210733` = SUCCESS
+- task: `FIN-P11-WC-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WC-001-01 = RELEASED`
+- next workstream: `P11-D = READY_NOT_STARTED`
