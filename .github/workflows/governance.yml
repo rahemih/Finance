@@ -600,21 +600,6 @@ jobs:
           set -euo pipefail
           PYTHONPATH=. python scripts/ci/p10h_performance.py --output build/p10h-performance.json
 
-      - name: P10-H deterministic integrated validation evidence twice
-        shell: bash
-        run: |
-          set -euo pipefail
-          PYTHONPATH=. python scripts/ci/p10h_evidence.py --output build/p10h-a.json
-          PYTHONPATH=. python scripts/ci/p10h_evidence.py --output build/p10h-b.json
-          cmp build/p10h-a.json build/p10h-b.json
-          sha256sum build/p10h-a.json
-
-      - name: P10-H measured CI regression performance
-        shell: bash
-        run: |
-          set -euo pipefail
-          PYTHONPATH=. python scripts/ci/p10h_performance.py --output build/p10h-performance.json
-
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
