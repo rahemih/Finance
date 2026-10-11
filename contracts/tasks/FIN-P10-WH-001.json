@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P10-WH-001",
+  "phase": "P10",
+  "workstream": "WH",
+  "objective": "Close P10 with deterministic integrated reliability validation and an offline CI regression latency budget without certifying production provider or trading performance.",
+  "scope": [
+    "Validate canonical P10-A through P10-G machine-readable baselines as one closed set",
+    "Require canonical completion, released locks, safety state and closure evidence",
+    "Preserve point-in-time/no-lookahead and provenance boundaries by fail-closed drift checks",
+    "Generate deterministic integrated evidence twice",
+    "Measure tests/p10 runtime against an offline CI regression budget",
+    "Reconcile P10 phase closure only after implementation and closure evidence"
+  ],
+  "out_of_scope": [
+    "Production provider latency/SLO certification",
+    "Production network reliability certification",
+    "Trading/execution latency certification",
+    "Profitability or trade-success certification",
+    "Signal probability/calibration",
+    "Live or automatic trading authorization"
+  ],
+  "dependencies": [
+    "FIN-P10-WA-001..FIN-P10-WG-001 CANONICAL_COMPLETE",
+    "P10 Owner phase authorization granted 2026-10-10",
+    "Fresh Live Guard: open PRs 0, active task none, active lock none",
+    "Canonical base 739162c2e08d8f61178832bca04a769bacdc7f62"
+  ],
+  "read_paths": [
+    "docs/09-intelligence/p10-*.json",
+    "packages/fundamental_intelligence/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P10-WH-001.json",
+    "config/fundamental-intelligence/p10-validation-policy.json",
+    "packages/fundamental_intelligence/p10_validation.py",
+    "tests/p10/test_p10_validation.py",
+    "scripts/ci/p10h_evidence.py",
+    "scripts/ci/p10h_performance.py",
+    "docs/09-intelligence/P10-H-RELIABILITY-LATENCY-VALIDATION.md",
+    "docs/09-intelligence/p10-h-reliability-latency-validation.json",
+    ".github/workflows/governance.yml",
+    "README.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0", "A1", "A2", "A3", "A4", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Exactly P10-A..P10-G canonical documents are required",
+    "State/lock/safety/closure drift fails closed",
+    "Dangerous trade/causal/production-certification flags fail closed when present",
+    "Integrated evidence is byte-identical twice",
+    "tests/p10 completes inside the offline CI regression budget"
+  ],
+  "security_tests": [
+    "No network or credentials required",
+    "No production source/provider performance certification",
+    "No execution adapter import",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Deterministic P10-H integrated evidence",
+    "Measured offline CI regression performance",
+    "Implementation PR Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-241 reconciliation"
+  ],
+  "rollback": "Revert P10-H validation files/state; P10-A..G remain canonical and trading state remains disabled.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P10-A..G CANONICAL_COMPLETE",
+    "P10-G lock RELEASED",
+    "P10 authorization recorded",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Integrated reliability validation implemented",
+    "Offline CI latency budget measured and passing",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge checks pass",
+    "Closure merged",
+    "FIN-P10-WH-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "HOS-241 Done",
+    "P10 CANONICAL_COMPLETE",
+    "P11 remains OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}
