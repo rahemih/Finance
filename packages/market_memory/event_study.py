@@ -26,12 +26,6 @@ def _positive_integer(value: object, *, field: str) -> int:
     return number
 
 
-def _text(value: object, *, field: str) -> str:
-    if not isinstance(value, str) or not value.strip():
-        raise EventStudyError(f"{field} must be non-empty text")
-    return value.strip()
-
-
 def _trunc_div(numerator: int, denominator: int) -> int:
     if denominator <= 0:
         raise EventStudyError("division denominator must be positive")
