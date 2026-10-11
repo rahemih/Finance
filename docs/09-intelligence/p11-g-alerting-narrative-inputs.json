@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P11G_ALERTING_NARRATIVE_INPUT_BASELINE",
   "task_id": "FIN-P11-WG-001",
   "linear": "HOS-248",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P11-WG-001-01",
   "canonical_base": "85299333743d4e670df8aad1874976a1642023e0",
   "rules": [
@@ -22,5 +22,13 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P11-H",
-  "next_workstream_state": "BLOCKED_UNTIL_P11G_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 235,
+  "implementation_merge_sha": "6fc59f84c7e23df500f265e015de1fe327a3371b",
+  "implementation_head": "b56dea3d1596999e39955d19c4ec4abd1301b50e",
+  "implementation_artifact_sha256": "81cd915792b98baea6be146574d9b8a507767eacd9cae96d0d9fe0ed5ff2917b",
+  "implementation_governance_run": 38127631339,
+  "post_merge_governance_run": 38127724208,
+  "post_merge_branch_hygiene_run": 38127724191
 }
