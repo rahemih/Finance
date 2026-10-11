@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WA-001
+- active lock: LOCK-FIN-P12-WA-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -76,7 +76,7 @@ Phase transition:
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
-- P12 — Market Memory & Knowledge Graph: OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P12 — Market Memory & Knowledge Graph: ACTIVE / Owner authorization GRANTED / P12-A IMPLEMENTATION_ACTIVE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 
 Completed P05 baselines:
@@ -849,3 +849,32 @@ Operational governance directive — 2026-10-11:
 - P05-P11 completed baselines remain canonical and are not reopened
 - P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED
 - Live Trading / Auto Trading remain DISABLED
+
+
+## P12 execution activation — 2026-10-11
+
+Owner phase authorization: GRANTED.
+
+### P12-A — Knowledge Graph Schema
+Task: `FIN-P12-WA-001`  
+Linear: `HOS-251`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WA-001-01` / ACQUIRED  
+Canonical base: `f2af4cccdb9c6671cd7255bf02b4791e7b86784b`
+
+Scope:
+- versioned regime-aware graph ontology;
+- nodes for ASSET / MARKET / MACRO_EVENT / NEWS_EVENT / REGIME / CAPITAL_FLOW / ROTATION_EPISODE;
+- edge validity period, regime, sample count, signed strength, uncertainty and immutable provenance;
+- CIRA-001 capital-flow and rotation memory extension;
+- deterministic node/edge/snapshot identities;
+- association is not causation; P12-A permits UNATTRIBUTED only;
+- offline deterministic validation.
+
+P12-B remains BLOCKED until P12-A is CANONICAL_COMPLETE.
+
+Safety:
+- production graph vendor: NOT_SELECTED;
+- no probability/signal/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "mode": "REGIME_AWARE_MARKET_MEMORY_ONTOLOGY",
+  "node_kinds": [
+    "ASSET",
+    "MARKET",
+    "MACRO_EVENT",
+    "NEWS_EVENT",
+    "REGIME",
+    "CAPITAL_FLOW",
+    "ROTATION_EPISODE"
+  ],
+  "edge_kinds": [
+    "OBSERVED_ASSOCIATION",
+    "CONTEXT_LINK",
+    "EVENT_CONTEXT",
+    "REGIME_CONTEXT",
+    "CAPITAL_FLOW_LINK",
+    "ROTATION_EPISODE_LINK"
+  ],
+  "regime_labels": [
+    "ALIGNED_BULLISH",
+    "ALIGNED_BEARISH",
+    "NEUTRAL",
+    "CONFLICT",
+    "TRANSITION",
+    "UNSPECIFIED"
+  ],
+  "evidence_families": [
+    "TECHNICAL",
+    "ORDER_FLOW",
+    "FUNDAMENTAL",
+    "NEWS",
+    "HISTORICAL",
+    "COMPOSITE"
+  ],
+  "strength_min_bps": -10000,
+  "strength_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "minimum_sample_count": 1,
+  "attribution_labels_allowed": ["UNATTRIBUTED"],
+  "causality_claims_allowed": false,
+  "require_provenance": true,
+  "require_source_dataset_versions": true,
+  "self_edges_allowed": false,
+  "canonical_tests_network_required": false,
+  "production_graph_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

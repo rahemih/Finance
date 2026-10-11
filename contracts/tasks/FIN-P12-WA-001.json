@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P12-WA-001",
+  "phase": "P12",
+  "workstream": "WA",
+  "objective": "Activate P12 and implement a deterministic, regime-aware Knowledge Graph schema for market memory with explicit uncertainty, provenance and correlation-not-causation boundaries.",
+  "scope": [
+    "Define governed node ontology for assets, markets, macro/news events, regimes, capital-flow states and rotation episodes",
+    "Define governed relationship ontology for observed associations and contextual links",
+    "Require validity period, regime context, sample count, signed strength, uncertainty and provenance on every edge",
+    "Generate deterministic node, edge and snapshot identities",
+    "Preserve source dataset versions and provenance SHA-256 lineage",
+    "Accommodate CIRA-001 capital-flow and rotation memory requirements",
+    "Forbid causality claims and direct trade authority in P12-A",
+    "Generate deterministic offline P12-A evidence"
+  ],
+  "out_of_scope": [
+    "Rolling or conditional correlation computation (P12-B)",
+    "Lead/lag analysis (P12-C)",
+    "Event studies (P12-D)",
+    "Historical analog search (P12-E)",
+    "Seasonality (P12-F)",
+    "Attribution/causality labels beyond UNATTRIBUTED (P12-G)",
+    "Replay/version validation (P12-H)",
+    "Production graph database selection",
+    "Signal probability, risk approval or execution"
+  ],
+  "dependencies": [
+    "P11 CANONICAL_COMPLETE",
+    "P11 phase closure merge 42818fbe3c9020eddf858f2de38144639c179f25",
+    "P11 closure post-merge Governance 38128690293 SUCCESS",
+    "P11 closure Branch Hygiene 38128690347 SUCCESS",
+    "CIRA-001 CANONICAL_COMPLETE",
+    "Owner P12 phase authorization granted 2026-10-11",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/**",
+    "packages/data_quality/**",
+    "packages/historical_data/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P12-WA-001.json",
+    "config/market-memory/knowledge-graph-policy.json",
+    "packages/market_memory/__init__.py",
+    "packages/market_memory/knowledge_graph.py",
+    "tests/p12/__init__.py",
+    "tests/p12/test_knowledge_graph_schema.py",
+    "scripts/ci/p12a_evidence.py",
+    "docs/09-intelligence/P12-A-KNOWLEDGE-GRAPH-SCHEMA.md",
+    "docs/09-intelligence/p12-a-knowledge-graph-schema.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0","A3","A4","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "CIRA node kinds CAPITAL_FLOW and ROTATION_EPISODE are present",
+    "Every edge requires validity period, regime, positive sample count, strength, uncertainty, provenance and dataset version lineage",
+    "Strength is bounded to signed basis points and uncertainty to unsigned basis points",
+    "Unknown node or relation kinds fail closed",
+    "Unknown edge endpoints fail closed",
+    "Duplicate canonical nodes and duplicate edges fail closed",
+    "Causality labels are forbidden in P12-A",
+    "Node, edge and graph snapshot identities are deterministic and order-independent",
+    "No trade, probability, risk or execution authority fields are introduced",
+    "P12-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No graph database required",
+    "No execution imports",
+    "Production graph vendor remains NOT_SELECTED",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P11 canonical phase closure",
+    "CIRA-001 canonical addendum",
+    "Deterministic P12-A graph-schema evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-251 reconciliation"
+  ],
+  "rollback": "Revert P12-A ontology/policy/tests/evidence/CI/state changes; P11 and CIRA-001 remain canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P11 CANONICAL_COMPLETE",
+    "Owner P12 phase authorization granted",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Knowledge Graph schema implemented",
+    "CIRA-001 market-memory extensions represented",
+    "Correlation-not-causation boundary enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P12-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-251 Done",
+    "P12-B READY_NOT_STARTED"
+  ]
+}
