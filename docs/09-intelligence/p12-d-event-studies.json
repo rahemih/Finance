@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12D_EVENT_STUDY_BASELINE",
+  "task_id": "FIN-P12-WD-001",
+  "linear": "HOS-255",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WD-001-01",
+  "canonical_base": "787c8264b3537199a5d66e8ec15741d00b78b584",
+  "event_response_is_causation": false,
+  "edge_kind": "EVENT_CONTEXT",
+  "attribution_label": "UNATTRIBUTED",
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-E",
+  "next_workstream_state": "BLOCKED_UNTIL_P12D_CANONICAL_COMPLETE"
+}
