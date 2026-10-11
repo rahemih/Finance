@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Mapping, cast
 
 from .alerting import AlertNarrativePolicy, build_alert_narrative_input
-from .classification import ClassificationPolicy, ClassificationResult, classify_news_item
+from .classification import ClassificationPolicy, classify_news_item
 from .entity_mapping import EntityRegistry, map_news_item
 from .event_decay import EventDecayPolicy, assess_event_decay
 from .ingestion import RawNewsItem
