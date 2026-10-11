@@ -622,3 +622,27 @@ P11-D is READY_NOT_STARTED.
 - task: `FIN-P11-WC-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P11-WC-001-01 = RELEASED`
 - next workstream: `P11-D = READY_NOT_STARTED`
+
+### P11-D — Sentiment / Topic / Importance
+Task: `FIN-P11-WD-001`  
+Linear: `HOS-245`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WD-001-01` / ACQUIRED  
+Canonical base: `f97d92f1c255d828546a79f52033915ab1c61eb1`
+
+Scope:
+- deterministic topic taxonomy and keyword rules;
+- descriptive POSITIVE / NEGATIVE / MIXED / NEUTRAL sentiment;
+- deterministic HIGH / MEDIUM / LOW importance bands;
+- explicit evidence terms and reason codes;
+- preserve P11-C content identity;
+- offline deterministic validation.
+
+Safety:
+- P11-E retains reliability/rumor authority;
+- no probability/signal/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-E remains blocked until P11-D is CANONICAL_COMPLETE.
