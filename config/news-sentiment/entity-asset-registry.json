@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "entities": [
+    {
+      "entity_id": "asset:BTC",
+      "canonical_name": "Bitcoin",
+      "symbol": "BTC",
+      "asset_class": "CRYPTO",
+      "venue_scope": "GLOBAL",
+      "aliases": [
+        "bitcoin",
+        "btc",
+        "xbt"
+      ]
+    },
+    {
+      "entity_id": "asset:ETH",
+      "canonical_name": "Ethereum",
+      "symbol": "ETH",
+      "asset_class": "CRYPTO",
+      "venue_scope": "GLOBAL",
+      "aliases": [
+        "ethereum",
+        "ether",
+        "eth"
+      ]
+    },
+    {
+      "entity_id": "asset:EURUSD",
+      "canonical_name": "EUR/USD",
+      "symbol": "EURUSD",
+      "asset_class": "FOREX",
+      "venue_scope": "OTC",
+      "aliases": [
+        "eur/usd",
+        "eurusd",
+        "euro dollar"
+      ]
+    },
+    {
+      "entity_id": "context:DXY",
+      "canonical_name": "US Dollar Index",
+      "symbol": "DXY",
+      "asset_class": "INDEX",
+      "venue_scope": "CONTEXT",
+      "aliases": [
+        "dxy",
+        "us dollar index",
+        "dollar index"
+      ]
+    },
+    {
+      "entity_id": "context:XAUUSD",
+      "canonical_name": "Gold",
+      "symbol": "XAUUSD",
+      "asset_class": "COMMODITY",
+      "venue_scope": "CONTEXT",
+      "aliases": [
+        "gold",
+        "xau",
+        "xauusd"
+      ]
+    }
+  ],
+  "confidence_states": [
+    "EXACT",
+    "ALIAS",
+    "NONE",
+    "AMBIGUOUS"
+  ],
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

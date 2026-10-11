@@ -621,6 +621,15 @@ jobs:
           cmp build/p11b-a.json build/p11b-b.json
           sha256sum build/p11b-a.json
 
+      - name: P11-C deterministic entity/asset mapping evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p11c_evidence.py --output build/p11c-a.json
+          PYTHONPATH=. python scripts/ci/p11c_evidence.py --output build/p11c-b.json
+          cmp build/p11c-a.json build/p11c-b.json
+          sha256sum build/p11c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
