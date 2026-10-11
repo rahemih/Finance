@@ -2,8 +2,8 @@
 
 Task: `FIN-P12-WA-001`  
 Linear: `HOS-251`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WA-001-01` / RELEASED  
 Canonical base: `f2af4cccdb9c6671cd7255bf02b4791e7b86784b`
 
 ## Objective
@@ -44,3 +44,14 @@ P12-A only permits `UNATTRIBUTED`. Driver/causality labels remain owned by P12-G
 - production graph vendor is NOT_SELECTED;
 - canonical tests are offline;
 - LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## Canonical closure evidence
+- PR #242 = MERGED
+- implementation head `69c752bd33ec3200820ef5b7bf4db660ed22d656`
+- artifact `sha256:2629be2de2dc7730c364676698fd4726b40cb24ed15cfe5fe8c581b730c8ce10`
+- implementation Governance `38134709036` = SUCCESS
+- implementation merge SHA `f14db76a44735be39953f5a38e51ded121f548d7`
+- post-merge Governance `38134795165` = SUCCESS
+- post-merge Branch Hygiene `38134795178` = SUCCESS
+- P12-B = READY_NOT_STARTED
