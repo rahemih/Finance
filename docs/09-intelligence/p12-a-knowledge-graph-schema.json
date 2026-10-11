@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12A_KNOWLEDGE_GRAPH_SCHEMA_BASELINE",
+  "task_id": "FIN-P12-WA-001",
+  "linear": "HOS-251",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WA-001-01",
+  "canonical_base": "f2af4cccdb9c6671cd7255bf02b4791e7b86784b",
+  "owner_phase_authorization": "GRANTED_2026-10-11",
+  "cira_001": "CANONICAL_COMPLETE_CONSUMED",
+  "correlation_is_causation": false,
+  "production_graph_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-B",
+  "next_workstream_state": "BLOCKED_UNTIL_P12A_CANONICAL_COMPLETE"
+}
