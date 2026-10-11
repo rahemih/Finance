@@ -630,6 +630,15 @@ jobs:
           cmp build/p11c-a.json build/p11c-b.json
           sha256sum build/p11c-a.json
 
+      - name: P11-D deterministic sentiment/topic/importance evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p11d_evidence.py --output build/p11d-a.json
+          PYTHONPATH=. python scripts/ci/p11d_evidence.py --output build/p11d-b.json
+          cmp build/p11d-a.json build/p11d-b.json
+          sha256sum build/p11d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
