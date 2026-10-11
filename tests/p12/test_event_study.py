@@ -168,6 +168,47 @@ class EventStudyTests(unittest.TestCase):
         self.assertIn("CAPITAL_FLOW", self.policy.event_node_kinds)
         self.assertIn("ROTATION_EPISODE", self.policy.event_node_kinds)
 
+    def test_event_and_target_node_kinds_are_governed(self) -> None:
+        invalid_event = GraphNode.build(
+            node_kind="ASSET",
+            canonical_key="NOT_AN_EVENT",
+            display_label="Not an event",
+            policy=self.graph_policy,
+        )
+        with self.assertRaises(EventStudyError):
+            compute_event_study(
+                self.observations((102, 103, 101)),
+                pre_window_ns=100,
+                post_window_ns=100,
+                regime_label="ALIGNED_BULLISH",
+                event_node=invalid_event,
+                target_node=self.target_node,
+                provenance_sha256=(HASH_A,),
+                source_dataset_versions=("events-v1",),
+                graph_policy=self.graph_policy,
+                policy=self.policy,
+            )
+
+        invalid_target = GraphNode.build(
+            node_kind="MACRO_EVENT",
+            canonical_key="NOT_A_TARGET",
+            display_label="Not a target",
+            policy=self.graph_policy,
+        )
+        with self.assertRaises(EventStudyError):
+            compute_event_study(
+                self.observations((102, 103, 101)),
+                pre_window_ns=100,
+                post_window_ns=100,
+                regime_label="ALIGNED_BULLISH",
+                event_node=self.event_node,
+                target_node=invalid_target,
+                provenance_sha256=(HASH_A,),
+                source_dataset_versions=("events-v1",),
+                graph_policy=self.graph_policy,
+                policy=self.policy,
+            )
+
     def test_event_response_is_not_causal_or_trade_authority(self) -> None:
         self.assertFalse(self.policy.event_response_is_causation)
         source = (ROOT / "packages/market_memory/event_study.py").read_text(encoding="utf-8").lower()
