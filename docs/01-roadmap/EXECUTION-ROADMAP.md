@@ -700,8 +700,8 @@ P11-F is READY_NOT_STARTED.
 ### P11-F — Event Horizon / Decay
 Task: `FIN-P11-WF-001`  
 Linear: `HOS-247`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WF-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WF-001-01` / RELEASED  
 Canonical base: `23d211a5f8e0b6e77e76d2fdafb994c98d98cefd`
 
 Scope:
@@ -721,4 +721,21 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P11-G remains blocked until P11-F is CANONICAL_COMPLETE.
+P11-G is READY_NOT_STARTED.
+
+### P11-F canonical closure — 2026-10-11
+- implementation PR: #232 / MERGED
+- implementation merge SHA: `b2521cffea9fc758275f4d7590e2b997ef05422a`
+- Owner approval: recorded for head `7a6e538186649cb28f4d6627cd48c27032f58278`
+- approved artifact: `sha256:f82698de0fa992b5a2520e30689e2cbbc41828e7c554e3bffb7bd5c36f95c133`
+- implementation Governance run: `38126526154` = SUCCESS
+- post-merge Governance run: `38127123794` = SUCCESS
+- post-merge Branch Hygiene run: `38127123793` = SUCCESS
+- task: `FIN-P11-WF-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WF-001-01 = RELEASED`
+- next workstream: `P11-G = READY_NOT_STARTED`
+
+Operational governance directive — 2026-10-11:
+- Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
+- Continue automatically through implementation, repair, validation, merge and closure when canonical CI/evidence is green.
+- Stop only for a true blocker or the authorization boundary of a new phase.
