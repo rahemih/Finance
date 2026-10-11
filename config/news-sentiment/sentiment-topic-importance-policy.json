@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "topic_rules": {
+    "CRYPTO_NETWORK": ["etf", "fork", "network upgrade", "protocol", "staking", "validator"],
+    "MACRO_DATA": ["cpi", "gdp", "inflation", "jobs", "nonfarm payroll", "pmi", "retail sales"],
+    "MARKET_STRESS": ["bankruptcy", "default", "exploit", "hack", "liquidation", "outage"],
+    "MONETARY_POLICY": ["central bank", "ecb", "fed", "interest rate", "rate cut", "rate hike"],
+    "REGULATION": ["approval", "ban", "cftc", "license", "regulation", "regulator", "sec"]
+  },
+  "positive_terms": [
+    "approval",
+    "beat expectations",
+    "growth",
+    "record high",
+    "surge",
+    "upgrade",
+    "rally"
+  ],
+  "negative_terms": [
+    "ban",
+    "bankruptcy",
+    "default",
+    "downgrade",
+    "exploit",
+    "hack",
+    "miss expectations",
+    "plunge",
+    "selloff"
+  ],
+  "high_importance_terms": [
+    "bankruptcy",
+    "cpi",
+    "default",
+    "exploit",
+    "gdp",
+    "hack",
+    "interest rate",
+    "nonfarm payroll",
+    "rate cut",
+    "rate hike",
+    "sec approval"
+  ],
+  "medium_importance_terms": [
+    "etf",
+    "inflation",
+    "liquidation",
+    "pmi",
+    "regulation",
+    "retail sales",
+    "upgrade"
+  ],
+  "sentiment_labels": ["POSITIVE", "NEGATIVE", "MIXED", "NEUTRAL"],
+  "importance_bands": ["HIGH", "MEDIUM", "LOW"],
+  "fallback_topic": "GENERAL",
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
