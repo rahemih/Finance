@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "mode": "ROLLING_REGIME_CONDITIONAL_CORRELATION",
+  "minimum_sample_count": 3,
+  "allowed_window_sizes": [3, 4, 5, 8, 13, 21, 34, 55],
+  "correlation_min_bps": -10000,
+  "correlation_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "edge_kind": "OBSERVED_ASSOCIATION",
+  "attribution_label": "UNATTRIBUTED",
+  "evidence_family": "HISTORICAL",
+  "correlation_is_causation": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
