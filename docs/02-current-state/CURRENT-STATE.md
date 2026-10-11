@@ -55,6 +55,7 @@ P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPL
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
+CIRA staged scaling: FIN-P00-WY-001 IMPLEMENTATION_ACTIVE / HOS-252 / P12 AUTHORIZATION UNCHANGED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -165,8 +166,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P00-WY-001` / Staged Entry / Exit & Adaptive Scaling Extension  
+Active lock: `LOCK-FIN-P00-WY-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
