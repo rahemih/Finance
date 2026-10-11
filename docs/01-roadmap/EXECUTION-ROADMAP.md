@@ -658,3 +658,29 @@ P11-E is READY_NOT_STARTED.
 - task: `FIN-P11-WD-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P11-WD-001-01 = RELEASED`
 - next workstream: `P11-E = READY_NOT_STARTED`
+
+### P11-E — Reliability / Rumor Controls
+Task: `FIN-P11-WE-001`  
+Linear: `HOS-246`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WE-001-01` / ACQUIRED  
+Canonical base: `43e0cbe1c46e2ef34e32cbe92d2f70f683737fb0`
+
+Scope:
+- deterministic reliability bands from source class and admissibility;
+- explicit rumor/review states;
+- UNCONFIRMED fail-closed quarantine;
+- COMMUNITY/SOCIAL corroboration review controls;
+- high-importance single-source review control;
+- capped deterministic corroboration bonus;
+- preserve P11-D content identity;
+- offline deterministic validation.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- no probability/signal/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-F remains blocked until P11-E is CANONICAL_COMPLETE.

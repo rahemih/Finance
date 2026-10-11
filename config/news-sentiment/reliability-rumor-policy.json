@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "source_class_scores": {
+    "OFFICIAL": 4,
+    "WIRE": 4,
+    "NEWSROOM": 3,
+    "AGGREGATOR": 2,
+    "COMMUNITY": 1,
+    "SOCIAL": 1
+  },
+  "admissibility_adjustments": {
+    "CONFIRMED": 2,
+    "CORROBORATED": 1,
+    "SINGLE_SOURCE": 0,
+    "UNCONFIRMED": -100
+  },
+  "corroboration_bonus_per_source": 1,
+  "corroboration_bonus_cap": 2,
+  "high_threshold": 5,
+  "medium_threshold": 3,
+  "community_social_review_required_without_corroboration": true,
+  "high_importance_single_source_review_required": true,
+  "reliability_bands": ["HIGH", "MEDIUM", "LOW", "BLOCKED"],
+  "rumor_states": ["CONFIRMED", "CORROBORATED", "SINGLE_SOURCE", "UNCONFIRMED"],
+  "review_states": ["ACCEPT_DESCRIPTIVE", "REVIEW_REQUIRED", "QUARANTINED"],
+  "canonical_tests_network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

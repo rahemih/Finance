@@ -1,0 +1,126 @@
+{
+  "task_id": "FIN-P11-WE-001",
+  "phase": "P11",
+  "workstream": "WE",
+  "objective": "Implement deterministic reliability and rumor controls for P11 news using canonical source metadata, corroboration and P11-D classification without signal, risk or execution authority.",
+  "scope": [
+    "Define deterministic source-class reliability weights",
+    "Use P11-A admissibility and corroboration states",
+    "Fail closed on UNCONFIRMED content",
+    "Apply stricter review rules to COMMUNITY and SOCIAL sources",
+    "Apply high-importance single-source review control",
+    "Preserve P11 content identity",
+    "Emit deterministic reliability, rumor and review states with reason codes",
+    "Generate deterministic offline P11-E evidence"
+  ],
+  "out_of_scope": [
+    "Event horizon and decay (P11-F)",
+    "Notifications and narrative feed (P11-G)",
+    "Adversarial accuracy evaluation (P11-H)",
+    "Empirical signal probability, risk approval and execution"
+  ],
+  "dependencies": [
+    "P11-D CANONICAL_COMPLETE",
+    "P11-D closure merge 43e0cbe1c46e2ef34e32cbe92d2f70f683737fb0",
+    "P11-D closure post-merge Governance 38124989372 SUCCESS",
+    "P11-D closure Branch Hygiene 38124989451 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "config/news-sentiment/**",
+    "packages/news_sentiment/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P11-WE-001.json",
+    "config/news-sentiment/reliability-rumor-policy.json",
+    "packages/news_sentiment/reliability.py",
+    "packages/news_sentiment/__init__.py",
+    "tests/p11/test_reliability_rumor_controls.py",
+    "scripts/ci/p11e_evidence.py",
+    "docs/09-intelligence/P11-E-RELIABILITY-RUMOR-CONTROLS.md",
+    "docs/09-intelligence/p11-e-reliability-rumor-controls.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "OFFICIAL CONFIRMED source can reach HIGH reliability",
+    "COMMUNITY or SOCIAL single-source content is REVIEW_REQUIRED",
+    "UNCONFIRMED content is QUARANTINED and BLOCKED",
+    "Corroboration bonus is deterministic and capped",
+    "HIGH-importance SINGLE_SOURCE content is REVIEW_REQUIRED",
+    "P11-D content identity mismatch fails closed",
+    "Reason codes are deterministic and sorted",
+    "No signal, probability, risk or execution authority fields are introduced",
+    "P11-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "Production news vendor remains NOT_SELECTED",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P11-D canonical closure",
+    "Deterministic P11-E evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-246 reconciliation"
+  ],
+  "rollback": "Revert P11-E policy/module/tests/evidence/CI/state changes; P11-D remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P11-D CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Reliability and rumor controls implemented",
+    "UNCONFIRMED content fails closed",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P11-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-246 Done",
+    "P11-F READY_NOT_STARTED"
+  ]
+}
