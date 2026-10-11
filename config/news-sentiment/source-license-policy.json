@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "allowed_source_classes": [
+    "OFFICIAL",
+    "WIRE",
+    "NEWSROOM",
+    "AGGREGATOR",
+    "COMMUNITY",
+    "SOCIAL"
+  ],
+  "allowed_access_kinds": [
+    "PUBLIC",
+    "LICENSED",
+    "SUBSCRIPTION_REQUIRED",
+    "LICENSE_REVIEW_REQUIRED"
+  ],
+  "allowed_license_states": [
+    "PUBLIC_REUSE",
+    "ATTRIBUTION_REQUIRED",
+    "INTERNAL_ANALYSIS_ONLY",
+    "REDISTRIBUTION_RESTRICTED",
+    "LICENSE_REVIEW_REQUIRED"
+  ],
+  "allowed_admissibility_states": [
+    "CONFIRMED",
+    "CORROBORATED",
+    "SINGLE_SOURCE",
+    "UNCONFIRMED"
+  ],
+  "https_required": true,
+  "attribution_required": true,
+  "canonical_tests_network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "unconfirmed_news_trade_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
