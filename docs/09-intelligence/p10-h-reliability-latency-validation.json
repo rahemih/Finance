@@ -3,12 +3,20 @@
   "kind": "NEXUS_QUANT_P10H_RELIABILITY_LATENCY_VALIDATION_BASELINE",
   "task_id": "FIN-P10-WH-001",
   "linear": "HOS-241",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "lock": "ACQUIRED",
+  "state": "CANONICAL_COMPLETE",
+  "lock": "RELEASED",
   "phase": "P10_FUNDAMENTAL_MACRO_EVENT_INTELLIGENCE",
   "workstream": "P10-H",
   "canonical_base": "739162c2e08d8f61178832bca04a769bacdc7f62",
-  "required_workstreams": ["P10-A","P10-B","P10-C","P10-D","P10-E","P10-F","P10-G"],
+  "required_workstreams": [
+    "P10-A",
+    "P10-B",
+    "P10-C",
+    "P10-D",
+    "P10-E",
+    "P10-F",
+    "P10-G"
+  ],
   "performance_semantics": "CI_REGRESSION_BUDGET_NOT_PRODUCTION_SLO",
   "p10_unit_suite_max_seconds": 60,
   "production_slo_certified": false,
@@ -22,5 +30,15 @@
   "network_required": false,
   "credentials_required": false,
   "next_phase": "P11",
-  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "canonical_closure": {
+    "implementation_pr": 220,
+    "final_implementation_head": "aff8fa33d540c5860433e4b764274fc2a6fd6912",
+    "implementation_merge_sha": "5c84daeb65a1bdf07f833ae05de11e4c1883faa5",
+    "pr_governance_run": 38116831010,
+    "pr_artifact_sha256": "bc7fb48437b2f3f1a14ab77783bc1ef416fdc36cdad074ce371985ee871e5837",
+    "post_merge_governance_run": 38116894415,
+    "post_merge_artifact_sha256": "3cf48fd336a9ba8bd564fd54290b981aef552006fad09059edf9791f84833b96",
+    "post_merge_branch_hygiene_run": 38116894376
+  }
 }
