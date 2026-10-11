@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P11E_RELIABILITY_RUMOR_BASELINE",
   "task_id": "FIN-P11-WE-001",
   "linear": "HOS-246",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P11-WE-001-01",
   "canonical_base": "43e0cbe1c46e2ef34e32cbe92d2f70f683737fb0",
   "rules": [
@@ -20,5 +20,13 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P11-F",
-  "next_workstream_state": "BLOCKED_UNTIL_P11E_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 230,
+  "implementation_merge_sha": "3b5e3f676cdf803ef81a429990e421637da12c2f",
+  "human_gate_head": "e1dbf6adb7cf69f0f2c6de06a3ea448f6216cc8a",
+  "human_gate_artifact_sha256": "076b604998fac0249eb8059d26b703118642a5f69b2632742a92c0bd6f9f2236",
+  "implementation_governance_run": 38125305214,
+  "post_merge_governance_run": 38126049867,
+  "post_merge_branch_hygiene_run": 38126049912
 }
