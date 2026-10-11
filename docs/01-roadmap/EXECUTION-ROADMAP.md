@@ -626,8 +626,8 @@ P11-D is READY_NOT_STARTED.
 ### P11-D — Sentiment / Topic / Importance
 Task: `FIN-P11-WD-001`  
 Linear: `HOS-245`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WD-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WD-001-01` / RELEASED  
 Canonical base: `f97d92f1c255d828546a79f52033915ab1c61eb1`
 
 Scope:
@@ -645,4 +645,16 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P11-E remains blocked until P11-D is CANONICAL_COMPLETE.
+P11-E is READY_NOT_STARTED.
+
+### P11-D canonical closure — 2026-10-11
+- implementation PR: #228 / MERGED
+- implementation merge SHA: `102cfff3bbfe6db1ce85d0777ddfae8c8098d124`
+- Human Gate: APPROVED for head `d1652598b507c73b9d26089c67da4a4a111f1c8d`
+- Human-Gate artifact: `sha256:4f22fe5ee992e65f2da68eede857c4188462bd007c56bf98269186a0c0a7ba9e`
+- implementation Governance run: `38124661826` = SUCCESS
+- post-merge Governance run: `38124784280` = SUCCESS
+- post-merge Branch Hygiene run: `38124784268` = SUCCESS
+- task: `FIN-P11-WD-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WD-001-01 = RELEASED`
+- next workstream: `P11-E = READY_NOT_STARTED`
