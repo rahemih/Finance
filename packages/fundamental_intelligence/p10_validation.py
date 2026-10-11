@@ -191,7 +191,6 @@ class P10ValidationEvaluator:
                 "schema_version": "1.0",
                 "task_id": item.task_id,
                 "workstream": item.workstream,
-                "phase": self.policy.required_phase,
                 "state": self.policy.required_state,
                 "lock": self.policy.required_lock,
                 "country_assumption": self.policy.required_country_assumption,
@@ -201,6 +200,9 @@ class P10ValidationEvaluator:
             for field, value in expected.items():
                 if raw.get(field) != value:
                     issues.append(P10ValidationIssue("INVARIANT_DRIFT", item.document, f"{field} must equal {value!r}"))
+            phase_value = raw.get("phase")
+            if phase_value is not None and phase_value != self.policy.required_phase:
+                issues.append(P10ValidationIssue("INVARIANT_DRIFT", item.document, f"phase must equal {self.policy.required_phase!r} when present"))
             closure = raw.get("canonical_closure")
             if not isinstance(closure, Mapping):
                 issues.append(P10ValidationIssue("MISSING_CLOSURE_EVIDENCE", item.document, "canonical_closure is required"))
