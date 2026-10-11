@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P10-WH-001
-- active lock: LOCK-FIN-P10-WH-001-01
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -66,7 +66,7 @@ Phase transition:
 - P09-F — Funding / OI / Liquidation / Crowding: CANONICAL_COMPLETE
 - P09-G — Forex Proxy Coverage Confidence: CANONICAL_COMPLETE
 - P09-H — Validation / Performance: CANONICAL_COMPLETE
-- P10 — Fundamental / Macro / Event Intelligence: ACTIVE / OWNER_PHASE_AUTHORIZATION_GRANTED_2026-10-10
+- P10 — Fundamental / Macro / Event Intelligence: CANONICAL_COMPLETE
 - P10-A — Official Source Adapters: CANONICAL_COMPLETE
 - P10-B — Economic Calendar / Event Schema: CANONICAL_COMPLETE
 - P10-C — First Release / Previous-at-Time / Revision History: CANONICAL_COMPLETE
@@ -74,7 +74,8 @@ Phase transition:
 - P10-E — Rates / Yields / Currency Macro: CANONICAL_COMPLETE
 - P10-F — Oil / Gold / Commodity Context: CANONICAL_COMPLETE
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
-- P10-H — Reliability / Latency Validation: IMPLEMENTATION_ACTIVE
+- P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
+- P11 — News & Sentiment: OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
