@@ -462,8 +462,20 @@ Canonical decision:
 
 Task: `FIN-P00-WY-001`  
 Linear: `HOS-252`  
-State: CANONICAL_IMPLEMENTATION_PENDING_MERGE
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P00-WY-001-01` / RELEASED
 
-This extension was authorized by the Owner after CIRA-001 canonicalization. P12 is now active under a separate authorization and task; this extension neither grants nor changes P12 authority.
+This extension was authorized by the Owner after CIRA-001 canonicalization. P12 remains independently governed by its own phase authorization and task sequence.
 
-Shared-state reconciliation is intentionally deferred while `LOCK-FIN-P12-WA-001-01` owns CURRENT-STATE, TASK-CATALOG and EXECUTION-ROADMAP.
+Canonical evidence:
+- implementation PR: #245 / MERGED
+- implementation head: `b03ae51d79b7cc01ed8225d57d55abc9d5599eab`
+- implementation artifact: `sha256:c61d57a86192101f2bd16a1ccfd2b576286ab1ba7dc757b0c45ec4f1eceb8f8c`
+- PR Governance: `38134989827` = SUCCESS
+- implementation merge SHA: `8309ad93cd72a0116334e52d520f2c8cd3e52840`
+- post-merge Governance: `38135079867` = SUCCESS
+- post-merge Branch Hygiene: `38135079864` = SUCCESS
+- P12-A shared-writer lock is RELEASED
+- deferred CURRENT-STATE / TASK-CATALOG / EXECUTION-ROADMAP reconciliation is complete
+- LIVE_TRADING: DISABLED
+- AUTO_TRADING: DISABLED
