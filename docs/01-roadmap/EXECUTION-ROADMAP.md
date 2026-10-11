@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WB-001
+- active lock: LOCK-FIN-P12-WB-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -76,7 +76,7 @@ Phase transition:
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
-- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B READY_NOT_STARTED
+- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B IMPLEMENTATION_ACTIVE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -905,3 +905,27 @@ Safety:
 - staged entry, staged exit, adaptive scaling and staged CARE rebalance are mandatory future requirements
 - each risk-increasing tranche requires fresh P15/P16 validation
 - Martingale, loss-chasing escalation and price-only averaging down are forbidden
+
+
+### P12-B — Rolling / Conditional Correlations
+Task: `FIN-P12-WB-001`  
+Linear: `HOS-253`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WB-001-01` / ACQUIRED  
+Canonical base: `40c8ac401896cff97a3d2db59cf82a3b2641dfd4`
+
+Scope:
+- deterministic rolling correlation;
+- canonical regime-conditioned correlation slices;
+- minimum sample and zero-variance fail-closed behavior;
+- integer sampling uncertainty metadata;
+- P12-A observed-association edge output;
+- cross-asset and CIRA capital-flow evidence support.
+
+P12-C remains BLOCKED until P12-B is CANONICAL_COMPLETE.
+
+Safety:
+- correlation is not causation;
+- no signal probability/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
