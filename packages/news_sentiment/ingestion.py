@@ -27,7 +27,7 @@ def _instant(value: str, *, field: str) -> datetime:
 
 
 def _normalize_text(value: str) -> str:
-    if not isinstance(value, str) or not value.strip():
+    if not value.strip():
         raise NewsIngestionError("news text must be non-empty")
     normalized = unicodedata.normalize("NFKC", value)
     return " ".join(normalized.split())
