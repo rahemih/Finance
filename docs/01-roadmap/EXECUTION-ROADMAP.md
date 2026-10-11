@@ -77,6 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: OWNER_PHASE_AUTHORIZATION_REQUIRED
+- Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: IMPLEMENTATION_ACTIVE / does not authorize P12
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
