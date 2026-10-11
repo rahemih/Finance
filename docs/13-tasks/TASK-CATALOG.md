@@ -190,7 +190,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WH-001 | P11 | Evaluation / Adversarial Tests | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WH-001.json` | RELEASED |
 
-| FIN-P00-WZ-001 | P00 | Capital Intelligence & Rotation Architecture Addendum | HIGH | ACTIVE | `contracts/tasks/FIN-P00-WZ-001.json` | LOCK-FIN-P00-WZ-001-01 / ACQUIRED |
+| FIN-P00-WZ-001 | P00 | Capital Intelligence & Rotation Architecture Addendum | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WZ-001.json` | RELEASED |
 
 ## Rules
 
