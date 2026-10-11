@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12C_LEAD_LAG_BASELINE",
+  "task_id": "FIN-P12-WC-001",
+  "linear": "HOS-254",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WC-001-01",
+  "canonical_base": "364ee61b4ad0069eaec2ec113e880f0cca707579",
+  "temporal_precedence_is_causation": false,
+  "pairing_semantics": "EXACT_TIMESTAMP_OFFSET",
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-D",
+  "next_workstream_state": "BLOCKED_UNTIL_P12C_CANONICAL_COMPLETE"
+}
