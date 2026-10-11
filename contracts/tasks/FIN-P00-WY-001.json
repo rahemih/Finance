@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P00-WY-001",
+  "phase": "P00",
+  "workstream": "WY",
+  "objective": "Extend canonical CIRA-001 with governed staged entry, staged exit, adaptive position scaling and staged rotation/rebalance semantics before P15/P16/P20/P21 implementation, without interfering with active P12-A shared-writer ownership.",
+  "scope": [
+    "Define staged entry / scale-in with a pre-declared maximum position and risk ceiling",
+    "Define staged exit / scale-out including partial profit-taking, de-risking, emergency reduction and protected remainder",
+    "Define adaptive tranche sizing/spacing based on validated signal, volatility, liquidity, regime, portfolio risk and execution cost",
+    "Require fresh thesis/signal/regime/data/liquidity/risk validation before every tranche that adds exposure",
+    "Cancel remaining entry tranches on invalidation, WAIT/NO_TRADE transition, stale data, liquidity failure, risk-budget exhaustion or firewall failure",
+    "Forbid adding size merely because price moved against the position",
+    "Forbid Martingale, loss-chasing size escalation and uncapped averaging down",
+    "Allow pyramiding only inside a governed total risk ceiling when the thesis remains valid or strengthens",
+    "Define staged CARE rotation/rebalance semantics",
+    "Map ownership: P14 entry-zone/invalidation context, P15 max size/risk/tranche plan, P16 per-tranche veto, P20 idempotent execution, P21 partial-close lifecycle",
+    "Require P17 empirical validation and P18/P19 Demo-Shadow validation"
+  ],
+  "out_of_scope": [
+    "Modifying active P12-A shared writer paths",
+    "Changing the frozen Master Roadmap",
+    "Reopening P08-P11 canonical work",
+    "Implementing P15/P16/P20/P21 runtime code",
+    "Hard-coding universal tranche count, spacing or percentages",
+    "Martingale or unlimited averaging down",
+    "Live Trading, Auto Trading, credentials, funding or orders"
+  ],
+  "dependencies": [
+    "CIRA-001 ADDENDUM_CANONICAL",
+    "FIN-P00-WZ-001 CANONICAL_COMPLETE",
+    "P08-P11 CANONICAL_COMPLETE",
+    "P12-A ACTIVE under separate Owner authorization",
+    "Owner authorization for staged scaling in project conversation on 2026-10-11",
+    "Parallel execution allowed only with non-conflicting write scopes",
+    "LOCK-FIN-P12-WA-001-01 currently owns shared Current State / Task Catalog / Execution Roadmap writers"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/addenda/CAPITAL-INTELLIGENCE-ROTATION-ARCHITECTURE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P12-WA-001.json",
+    "contracts/schemas/task-contract.schema.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P00-WY-001.json",
+    "docs/01-roadmap/addenda/CAPITAL-INTELLIGENCE-ROTATION-ARCHITECTURE.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P12-WA-001.json",
+    "packages/**",
+    "adapters/**",
+    "tests/**",
+    "config/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A1","A4","A5","A6","A7","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Task Contract validates against contracts/schemas/task-contract.schema.json",
+    "Frozen Master Roadmap remains unchanged",
+    "P12-A shared writer paths remain untouched",
+    "Every tranche that adds risk requires fresh P15/P16 eligibility",
+    "Price moving against the position alone cannot authorize added size",
+    "Martingale and uncapped averaging-down behavior are explicitly forbidden",
+    "Invalidation breach cancels remaining entry tranches",
+    "Total planned plus filled exposure cannot exceed P15 ceilings",
+    "P20 staged execution is idempotent and recoverable by future implementation requirement",
+    "P21 supports partial reduction/close by future implementation requirement",
+    "Tranche count/spacing/size remain TO_BE_CALIBRATED",
+    "Live Trading and Auto Trading remain DISABLED"
+  ],
+  "security_tests": [
+    "No broker/exchange credentials or order authority introduced",
+    "A5 Risk and P16 Pre-Trade Firewall retain independent veto",
+    "No tranche can bypass system-health or data-quality fail-closed states",
+    "No LLM/agent judgment can directly increase exposure"
+  ],
+  "evidence": [
+    "Updated CIRA-001 addendum",
+    "Git SHA and PR Governance result",
+    "Post-merge verification",
+    "Linear HOS-252 record",
+    "Deferred shared-state reconciliation after LOCK-FIN-P12-WA-001-01 release"
+  ],
+  "rollback": "Revert FIN-P00-WY-001 contract and staged-scaling additions to CIRA-001. P12-A and all prior canonical work remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Owner authorized staged scaling",
+    "CIRA-001 is canonical",
+    "P12-A write scope confirmed non-overlapping with this task's two write paths"
+  ],
+  "definition_of_done": [
+    "Staged Entry / Exit & Adaptive Scaling policy is merged into CIRA-001",
+    "Martingale and price-only averaging down are explicitly prohibited",
+    "Per-tranche revalidation and cancellation behavior are explicit",
+    "Governance and post-merge verification pass",
+    "Shared-state reconciliation is explicitly deferred until P12-A lock release",
+    "Linear HOS-252 reflects canonical implementation state"
+  ]
+}
