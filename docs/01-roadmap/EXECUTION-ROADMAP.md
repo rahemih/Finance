@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WA-001
-- active lock: LOCK-FIN-P12-WA-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -76,7 +76,7 @@ Phase transition:
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
-- P12 — Market Memory & Knowledge Graph: ACTIVE / Owner authorization GRANTED / P12-A IMPLEMENTATION_ACTIVE
+- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 
 Completed P05 baselines:
@@ -858,8 +858,8 @@ Owner phase authorization: GRANTED.
 ### P12-A — Knowledge Graph Schema
 Task: `FIN-P12-WA-001`  
 Linear: `HOS-251`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WA-001-01` / RELEASED  
 Canonical base: `f2af4cccdb9c6671cd7255bf02b4791e7b86784b`
 
 Scope:
@@ -871,7 +871,19 @@ Scope:
 - association is not causation; P12-A permits UNATTRIBUTED only;
 - offline deterministic validation.
 
-P12-B remains BLOCKED until P12-A is CANONICAL_COMPLETE.
+P12-B is READY_NOT_STARTED.
+
+### P12-A canonical closure — 2026-10-11
+- implementation PR: #242 / MERGED
+- implementation head: `69c752bd33ec3200820ef5b7bf4db660ed22d656`
+- implementation artifact: `sha256:2629be2de2dc7730c364676698fd4726b40cb24ed15cfe5fe8c581b730c8ce10`
+- implementation Governance run: `38134709036` = SUCCESS
+- implementation merge SHA: `f14db76a44735be39953f5a38e51ded121f548d7`
+- post-merge Governance run: `38134795165` = SUCCESS
+- post-merge Branch Hygiene run: `38134795178` = SUCCESS
+- task: `FIN-P12-WA-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WA-001-01 = RELEASED`
+- next workstream: `P12-B = READY_NOT_STARTED`
 
 Safety:
 - production graph vendor: NOT_SELECTED;
