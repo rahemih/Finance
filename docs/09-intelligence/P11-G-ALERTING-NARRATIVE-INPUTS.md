@@ -2,8 +2,8 @@
 
 Task: `FIN-P11-WG-001`  
 Linear: `HOS-248`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WG-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WG-001-01` / RELEASED  
 Canonical base: `85299333743d4e670df8aad1874976a1642023e0`
 
 ## Objective
@@ -23,3 +23,13 @@ Turn canonical P11 context into deterministic alert eligibility/severity and a s
 - production news vendor remains NOT_SELECTED;
 - no signal probability, risk or execution authority is introduced;
 - LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## Canonical closure evidence
+- PR #235 merged as `6fc59f84c7e23df500f265e015de1fe327a3371b`
+- implementation head `b56dea3d1596999e39955d19c4ec4abd1301b50e`
+- implementation artifact `sha256:81cd915792b98baea6be146574d9b8a507767eacd9cae96d0d9fe0ed5ff2917b`
+- implementation Governance `38127631339` = SUCCESS
+- post-merge Governance `38127724208` = SUCCESS
+- post-merge Branch Hygiene `38127724191` = SUCCESS
+- P11-H = READY_NOT_STARTED
