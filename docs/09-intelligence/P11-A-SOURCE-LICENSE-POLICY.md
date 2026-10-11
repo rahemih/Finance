@@ -2,8 +2,8 @@
 
 Task: `FIN-P11-WA-001`  
 Linear: `HOS-242`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WA-001-01` / RELEASED  
 Canonical base: `c72d34bff0099eaa429fc105b447f4e60c2a2588`
 
 ## Objective
@@ -37,3 +37,13 @@ The canonical license states distinguish public reuse, attribution-required usag
 - country assumption: NONE
 - credentials: NONE
 - production news vendor: NOT_SELECTED
+
+
+## Canonical closure evidence
+- PR #222 merged as `8a6cbb0c3c84d3f8387572f49d49d2944d0a4f4c`
+- Human Gate approved exact head `ca9ad7731dd044f9821af5602f9169eb363ddf53`
+- Human Gate artifact `sha256:af63e955563eb993165f1812860d7082e64de61e3896e0cde4fb330b430a4aeb`
+- implementation Governance `38118962592` = SUCCESS
+- post-merge Governance `38120310436` = SUCCESS
+- post-merge Branch Hygiene `38120310427` = SUCCESS
+- P11-B = READY_NOT_STARTED
