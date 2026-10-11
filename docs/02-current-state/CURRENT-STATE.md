@@ -54,7 +54,7 @@ P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPL
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
-Capital Intelligence & Rotation Architecture: CIRA-001 / FIN-P00-WZ-001 IMPLEMENTATION_ACTIVE / P12 AUTHORIZATION UNCHANGED
+Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 
 Frozen Master Roadmap: v2.0 / FROZEN  
 Detailed roadmap: CANONICAL  
@@ -165,8 +165,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P00-WZ-001` / Capital Intelligence & Rotation Architecture Addendum  
-Active lock: `LOCK-FIN-P00-WZ-001-01` / ACQUIRED  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4606,3 +4606,58 @@ Governance:
 - LIVE_TRADING = DISABLED
 - AUTO_TRADING = DISABLED
 - P12 — Market Memory & Knowledge Graph = OWNER_PHASE_AUTHORIZATION_REQUIRED
+
+
+## CIRA-001 — Capital Intelligence & Rotation Architecture closure — 2026-10-11
+
+Task: `FIN-P00-WZ-001`  
+Linear: `HOS-250`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+Canonical capabilities adopted:
+- SCFI — Smart Capital Flow Intelligence;
+- CARE — Cross-Asset Capital Rotation & Reallocation Engine;
+- No-Trade Guardian;
+- Market Regime consumption/gating;
+- Relative Strength / Opportunity League;
+- Market Memory integration;
+- Decision Autopsy;
+- Probability Calibration feedback;
+- Capital Preservation Mode;
+- strengthened P14 Red-Team / Devil's Advocate;
+- cost-aware rotation and hysteresis;
+- portfolio Risk Budget;
+- approximately 20-account parallel Demo/Shadow laboratory with a minimum two-month continuous evaluation window plus sample/regime sufficiency.
+
+Impact decision:
+- P05: NO_CHANGE unless future new source adapters are governed;
+- P06: future backward-compatible feature extensions only;
+- P07: reuse canonical quality/provenance/quarantine;
+- P08: NO_CHANGE;
+- P09: NO_CHANGE + downstream SCFI composition;
+- P10: NO_CHANGE + future source/label validation extensions only;
+- P11: NO_CHANGE;
+- P12-P23: planned-scope extensions captured in CIRA-001;
+- P24: no gate bypass.
+
+No canonical completed component is deleted.
+
+Evidence:
+- implementation PR #239 = MERGED;
+- implementation head = `3d5b1ce16bd878f6cdf84026f48f59ffcd7d143a`;
+- implementation merge SHA = `3e52542b4c27465019af34c444d21d754b010297`;
+- PR Governance = `38129992612 / SUCCESS`;
+- PR artifact = `sha256:4f980bc300db85f45dbb214a1151a629ec3031eb067f7b80871e16e05a4a13e9`;
+- post-merge Governance = `38130068247 / SUCCESS`;
+- post-merge artifact = `sha256:0de2ad3dae04f3e53c6c7139073a7e97323c0f51c3cbabd8b0c92be28c37f042`;
+- post-merge Branch Hygiene = `38130068333 / SUCCESS`;
+- full Governance regression = `111 steps / no failures`.
+
+Safety:
+- frozen Master Roadmap v2.0 unchanged;
+- P08-P11 remain CANONICAL_COMPLETE;
+- P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- whale/large-wallet activity is supporting evidence only;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
