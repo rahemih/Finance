@@ -1,0 +1,126 @@
+{
+  "task_id": "FIN-P11-WD-001",
+  "phase": "P11",
+  "workstream": "WD",
+  "objective": "Implement deterministic, explainable sentiment, topic and importance classification for P11 news after canonical entity/asset mapping, without signal, probability, risk or execution authority.",
+  "scope": [
+    "Define deterministic topic taxonomy and keyword rules",
+    "Emit descriptive sentiment labels from explicit lexical evidence",
+    "Emit deterministic importance bands from explicit event/content evidence",
+    "Preserve P11-C news content identity and mapped entity references",
+    "Emit sorted reason/evidence codes for explainability",
+    "Fail closed on mapping/content identity mismatch",
+    "Keep canonical CI offline and provider-neutral",
+    "Generate deterministic P11-D evidence"
+  ],
+  "out_of_scope": [
+    "Source reliability and rumor controls (P11-E)",
+    "Event horizon and decay (P11-F)",
+    "Notifications and narrative feed (P11-G)",
+    "Adversarial accuracy evaluation (P11-H)",
+    "Signal probability, risk approval and execution"
+  ],
+  "dependencies": [
+    "P11-C CANONICAL_COMPLETE",
+    "P11-C closure merge f97d92f1c255d828546a79f52033915ab1c61eb1",
+    "P11-C closure post-merge Governance 38124444432 SUCCESS",
+    "P11-C closure Branch Hygiene 38124444409 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none"
+  ],
+  "read_paths": [
+    "config/news-sentiment/**",
+    "packages/news_sentiment/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P11-WD-001.json",
+    "config/news-sentiment/sentiment-topic-importance-policy.json",
+    "packages/news_sentiment/classification.py",
+    "packages/news_sentiment/__init__.py",
+    "tests/p11/test_sentiment_topic_importance.py",
+    "scripts/ci/p11d_evidence.py",
+    "docs/09-intelligence/P11-D-SENTIMENT-TOPIC-IMPORTANCE.md",
+    "docs/09-intelligence/p11-d-sentiment-topic-importance.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Topic rules are deterministic and sorted",
+    "Positive and negative lexical evidence map to descriptive labels",
+    "Mixed and neutral sentiment states are explicit",
+    "Importance bands are deterministic and evidence-backed",
+    "Boundary matching avoids substring false positives",
+    "P11-C news content identity is preserved",
+    "Mapping/content mismatch fails closed",
+    "No probability, signal, risk or execution authority fields are introduced",
+    "P11-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P11-C canonical closure",
+    "Deterministic P11-D evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-245 reconciliation"
+  ],
+  "rollback": "Revert P11-D policy/module/tests/evidence/CI/state changes; P11-C remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P11-C CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Sentiment/topic/importance classification implemented",
+    "Explainable deterministic reason codes emitted",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P11-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-245 Done",
+    "P11-E READY_NOT_STARTED"
+  ]
+}
