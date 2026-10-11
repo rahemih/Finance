@@ -67,9 +67,10 @@ class P10ValidationPolicy:
         root = _mapping(json.loads(path.read_text(encoding="utf-8")), field="policy root")
         if root.get("schema_version") != "1.0":
             raise P10ValidationError("unsupported policy schema_version")
-        raw_items = root.get("required_workstreams")
-        if not isinstance(raw_items, list):
+        raw_items_value = root.get("required_workstreams")
+        if not isinstance(raw_items_value, list):
             raise P10ValidationError("required_workstreams must be a list")
+        raw_items = cast(list[object], raw_items_value)
         items: list[RequiredP10Workstream] = []
         for raw_item in raw_items:
             item = _mapping(raw_item, field="required_workstream")
