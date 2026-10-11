@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P11 — News & Sentiment / CANONICAL_COMPLETE  
-Current Workstream: none — P11 CANONICAL_COMPLETE; P12 OWNER_PHASE_AUTHORIZATION_REQUIRED  
+Current Phase: P12 — Market Memory & Knowledge Graph / ACTIVE  
+Current Workstream: P12-A — Knowledge Graph Schema / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P11-H — Evaluation / Adversarial Tests / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -53,6 +53,7 @@ P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPL
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
+P12 state: ACTIVE / P12-A IMPLEMENTATION_ACTIVE / P12-B..P12-H BLOCKED_BEHIND_P12A_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 
@@ -165,8 +166,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P12-WA-001`  
+Active lock: `LOCK-FIN-P12-WA-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4661,3 +4662,37 @@ Safety:
 - whale/large-wallet activity is supporting evidence only;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P12 execution activation — 2026-10-11
+
+Owner phase authorization: GRANTED.
+
+### P12-A — Knowledge Graph Schema
+
+Task: `FIN-P12-WA-001`  
+Linear: `HOS-251`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WA-001-01` / ACQUIRED  
+Canonical base: `f2af4cccdb9c6671cd7255bf02b4791e7b86784b`
+
+Scope:
+- deterministic regime-aware node/edge ontology;
+- period/regime/sample/strength/uncertainty/provenance on every edge;
+- CIRA-001 CAPITAL_FLOW and ROTATION_EPISODE memory support;
+- explicit correlation-not-causation boundary;
+- no production graph vendor selection;
+- P12-B remains blocked until P12-A is CANONICAL_COMPLETE.
+
+Agents:
+- A3 Market Intelligence;
+- A4 Quantitative Research/Validation;
+- A7 Learning/Memory;
+- A10 Audit/Evidence;
+- A0 Governance/Orchestrator.
+
+Safety:
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED;
+- credentials = NONE;
+- direct trade authority = NONE.
