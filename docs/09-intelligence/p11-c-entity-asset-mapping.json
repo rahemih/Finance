@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11C_ENTITY_ASSET_MAPPING_BASELINE",
+  "task_id": "FIN-P11-WC-001",
+  "linear": "HOS-244",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WC-001-01",
+  "canonical_base": "aff6dc19b5bce63e46cba4e1f93ad4362e4045d8",
+  "rules": [
+    "EXPLICIT_REGISTRY",
+    "BOUNDARY_MATCHING",
+    "AMBIGUITY_FAIL_CLOSED",
+    "DETERMINISTIC_SORT",
+    "PRESERVE_CONTENT_ID"
+  ],
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-D",
+  "next_workstream_state": "BLOCKED_UNTIL_P11C_CANONICAL_COMPLETE"
+}
