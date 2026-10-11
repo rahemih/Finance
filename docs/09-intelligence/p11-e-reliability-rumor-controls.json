@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11E_RELIABILITY_RUMOR_BASELINE",
+  "task_id": "FIN-P11-WE-001",
+  "linear": "HOS-246",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WE-001-01",
+  "canonical_base": "43e0cbe1c46e2ef34e32cbe92d2f70f683737fb0",
+  "rules": [
+    "SOURCE_CLASS_RELIABILITY_WEIGHTS",
+    "ADMISSIBILITY_AS_RUMOR_STATE",
+    "UNCONFIRMED_FAIL_CLOSED",
+    "COMMUNITY_SOCIAL_REVIEW_CONTROL",
+    "HIGH_IMPORTANCE_SINGLE_SOURCE_REVIEW",
+    "CAPPED_CORROBORATION_BONUS",
+    "PRESERVE_P11D_CONTENT_IDENTITY"
+  ],
+  "network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-F",
+  "next_workstream_state": "BLOCKED_UNTIL_P11E_CANONICAL_COMPLETE"
+}
