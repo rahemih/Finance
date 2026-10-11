@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11D_SENTIMENT_TOPIC_IMPORTANCE_BASELINE",
+  "task_id": "FIN-P11-WD-001",
+  "linear": "HOS-245",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WD-001-01",
+  "canonical_base": "f97d92f1c255d828546a79f52033915ab1c61eb1",
+  "rules": [
+    "DETERMINISTIC_TOPIC_RULES",
+    "DESCRIPTIVE_SENTIMENT_ONLY",
+    "EXPLICIT_IMPORTANCE_BANDS",
+    "EVIDENCE_REASON_CODES",
+    "PRESERVE_P11C_CONTENT_IDENTITY",
+    "FAIL_CLOSED_ON_IDENTITY_MISMATCH"
+  ],
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-E",
+  "next_workstream_state": "BLOCKED_UNTIL_P11D_CANONICAL_COMPLETE"
+}
