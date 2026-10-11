@@ -500,8 +500,8 @@ Owner phase authorization: GRANTED.
 ### P11-A — Source / License Policy
 Task: `FIN-P11-WA-001`  
 Linear: `HOS-242`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WA-001-01` / RELEASED  
 Canonical base: `c72d34bff0099eaa429fc105b447f4e60c2a2588`
 
 Scope:
@@ -520,4 +520,17 @@ Safety:
 - AUTO_TRADING: DISABLED.
 
 Next:
-P11-B remains blocked until P11-A is CANONICAL_COMPLETE.
+P11-B is READY_NOT_STARTED.
+
+
+### P11-A canonical closure — 2026-10-11
+- implementation PR: #222 / MERGED
+- implementation merge SHA: `8a6cbb0c3c84d3f8387572f49d49d2944d0a4f4c`
+- Human Gate: APPROVED for head `ca9ad7731dd044f9821af5602f9169eb363ddf53`
+- implementation Governance run: `38118962592` = SUCCESS
+- Human-Gate artifact: `sha256:af63e955563eb993165f1812860d7082e64de61e3896e0cde4fb330b430a4aeb`
+- post-merge Governance run: `38120310436` = SUCCESS
+- post-merge Branch Hygiene run: `38120310427` = SUCCESS
+- task: `FIN-P11-WA-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WA-001-01 = RELEASED`
+- next workstream: `P11-B = READY_NOT_STARTED`
