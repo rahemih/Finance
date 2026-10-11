@@ -19,7 +19,7 @@ It introduces two primary capabilities:
 1. **SCFI — Smart Capital Flow Intelligence**
 2. **CARE — Cross-Asset Capital Rotation & Reallocation Engine**
 
-It also formalizes twelve supporting capabilities:
+It also formalizes thirteen supporting capabilities:
 
 - No-Trade Guardian;
 - Market Regime Brain/gating;
@@ -32,7 +32,8 @@ It also formalizes twelve supporting capabilities:
 - Cost-aware rotation;
 - Opportunity League;
 - Portfolio Risk Budget;
-- permanent 20-account / two-month Demo-Shadow laboratory.
+- permanent 20-account / two-month Demo-Shadow laboratory;
+- Staged Entry / Staged Exit / Adaptive Position Scaling.
 
 ## 2. Non-negotiable boundaries
 
@@ -274,6 +275,38 @@ The first major evaluation window is **at least two continuous months**, but tim
 
 Twenty accounts are not twenty independent samples when they share the same signal/data. Statistical analysis must account for shared dependence.
 
+### 5.13 Staged Entry / Staged Exit / Adaptive Position Scaling
+
+The system may split a governed position or portfolio reallocation into multiple tranches instead of entering or exiting all at once.
+
+**Ownership and sequence**
+- P14 may describe an entry zone / invalidation and signal state, but does not decide risk size.
+- P15 defines the maximum approved position, portfolio risk budget and candidate tranche plan.
+- P16 independently revalidates every tranche that adds exposure immediately before execution.
+- P20 executes accepted tranches idempotently and handles cancellation, partial fill, retry and reconciliation.
+- P21 manages partial closes, reductions, trailing remainder and staged exit lifecycle.
+
+**Mandatory rules**
+- total maximum position and maximum loss/risk are bounded before the first entry tranche;
+- filled plus pending approved exposure cannot exceed P15 ceilings;
+- each additional risk-increasing tranche requires fresh signal/thesis, regime, data quality, liquidity, event-risk and portfolio-risk validation;
+- an invalidation breach cancels all remaining entry tranches;
+- deterioration to WAIT / NO_TRADE, insufficient liquidity, stale data, risk-budget exhaustion or firewall failure cancels or blocks the next tranche;
+- price moving against the position is **not** by itself a reason to add size;
+- Martingale, loss-chasing size escalation and uncapped averaging down are forbidden;
+- pyramiding into a winning/strengthening thesis may be considered only inside the original or newly re-approved total risk ceiling;
+- tranche count, spacing and size are not universal constants and remain empirically calibrated per strategy/market/regime;
+- staged exits may include partial profit-taking, de-risking, hedge reduction, break-even/trailing protection and emergency risk reduction;
+- CARE rotation/reallocation may be staged to reduce timing, liquidity and execution risk.
+
+**Example semantics — illustrative only**
+
+A future P15 policy might approve a BTC position with a maximum exposure of 10,000 units and a maximum governed risk budget. A candidate plan may use three tranches such as 30% / 30% / 40%, but those percentages are not canonical defaults.
+
+After tranche 1, tranche 2 is executed only if the thesis remains valid and P16 still passes. If price falls solely because the trade is wrong and invalidation is breached, the remaining tranches are cancelled rather than used to average down.
+
+For exits, a governed policy may reduce exposure progressively, for example at multiple validated targets or risk-state changes, while a remainder is protected by a trailing or dynamic rule. Exact percentages require P17/P18/P19 evidence.
+
 ## 6. Impact and remediation matrix
 
 | Phase | Existing work | Decision | Required action |
@@ -287,16 +320,16 @@ Twenty accounts are not twenty independent samples when they share the same sign
 | P11 News / Sentiment | CANONICAL_COMPLETE | NO_CHANGE | Reuse reliability/freshness/topic/sentiment context. |
 | P12 Market Memory | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add capital-flow edges, rotation episodes, cross-asset lead/lag and analog provenance when Owner authorizes P12. |
 | P13 Timing / Opportunity | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add Relative Strength, Opportunity League, No-Trade Guardian and rotation opportunity ranking. |
-| P14 Signal / Probability | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add calibration evaluation and Red-Team challenge inputs; keep asset signal separate from portfolio-action candidate. |
-| P15 Risk / Portfolio | NOT_STARTED | MAJOR_EXTENSION | Add CARE allocation optimizer, risk budget, concentration/correlation-aware sizing and Capital Preservation Mode. |
-| P16 Pre-Trade Firewall | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add rotation cost, liquidity, stale-price, two-leg/orphan-risk and portfolio-budget checks. |
-| P17 Backtest / Strategy Factory | NOT_STARTED | MAJOR_EXTENSION | Backtest SCFI features and CARE policies with costs, OOS/walk-forward, Monte Carlo, sensitivity and capacity. |
-| P18 Demo Learning | NOT_STARTED | MAJOR_EXTENSION | Add 20-account parallel laboratory, Decision Autopsy, Champion/Challenger and calibration tracking. |
-| P19 Shadow / Digital Twin | NOT_STARTED | MAJOR_EXTENSION | Run two-month real-data/no-capital program and execution-drift simulation. |
-| P20 Execution / OMS | NOT_STARTED | EXTEND_PLANNED_SCOPE | Support staged rebalance/rotation, idempotent multi-leg execution, orphan-leg recovery and reconciliation. |
-| P21 Position Management | NOT_STARTED | EXTEND_PLANNED_SCOPE | Support partial reductions, hedges and staged portfolio rebalance lifecycle. |
+| P14 Signal / Probability | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add calibration/Red-Team inputs and entry-zone/invalidation semantics that can support staged plans; signal remains separate from risk sizing. |
+| P15 Risk / Portfolio | NOT_STARTED | MAJOR_EXTENSION | Add CARE optimizer, risk budget, concentration/correlation-aware sizing, Capital Preservation Mode, maximum position sizing and adaptive tranche-plan ownership. |
+| P16 Pre-Trade Firewall | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add rotation cost/liquidity/stale-price/two-leg checks plus mandatory fresh approval for every risk-increasing tranche. |
+| P17 Backtest / Strategy Factory | NOT_STARTED | MAJOR_EXTENSION | Backtest SCFI/CARE and staged entry/exit/scaling policies with realistic costs, OOS/walk-forward, Monte Carlo, sensitivity, capacity and anti-Martingale controls. |
+| P18 Demo Learning | NOT_STARTED | MAJOR_EXTENSION | Add 20-account laboratory, Decision Autopsy, Champion/Challenger, calibration and staged-plan outcome tracking. |
+| P19 Shadow / Digital Twin | NOT_STARTED | MAJOR_EXTENSION | Run two-month real-data/no-capital program including tranche timing, partial-fill, cancellation and staged execution drift. |
+| P20 Execution / OMS | NOT_STARTED | EXTEND_PLANNED_SCOPE | Support staged entry/exit/rebalance/rotation, tranche state machine, idempotent execution, partial-fill handling, cancellation, orphan-leg recovery and reconciliation. |
+| P21 Position Management | NOT_STARTED | EXTEND_PLANNED_SCOPE | Support partial closes/reductions, staged exits, trailing remainder, hedges and staged portfolio rebalance lifecycle. |
 | P22 Operations | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add Decision Autopsy telemetry, capital-preservation state, diagnostics and safe self-healing. |
-| P23 UX | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add Capital Flow Map, Opportunity League, portfolio-rotation proposal and Persian reasons/risks. |
+| P23 UX | NOT_STARTED | EXTEND_PLANNED_SCOPE | Add Capital Flow Map, Opportunity League, portfolio-rotation proposal plus staged-plan view showing total target, filled/pending tranches, risk and cancellation reasons. |
 | P24 Controlled Production | NOT_STARTED | NO_GATE_BYPASS | CARE/SCFI remain subject to Manual → Semi-Auto → Micro-Capital → Canary → Controlled Auto and explicit Owner approval. |
 
 ## 7. Delete / modify / add decision
@@ -323,7 +356,8 @@ New logical components:
 - No-Trade Guardian integration;
 - Capital Preservation / portfolio risk-budget logic;
 - Decision Autopsy;
-- Demo-Shadow laboratory orchestration.
+- Demo-Shadow laboratory orchestration;
+- Staged Entry / Staged Exit / Adaptive Position Scaling policy.
 
 ## 8. Evaluation model
 
@@ -424,3 +458,20 @@ Canonical decision:
 - future extensions are governed and backward-compatible/versioned;
 - SCFI/CARE and the supporting capability set are adopted as cross-cutting future requirements;
 - P12 implementation does not start as part of this closure.
+
+
+## 13. CIRA-001 staged-scaling extension — 2026-10-11
+
+Task: `FIN-P00-WY-001`  
+Linear: `HOS-252`  
+State: IMPLEMENTATION_ACTIVE
+
+Owner-authorized extension:
+- staged entry / scale-in;
+- staged exit / scale-out;
+- adaptive tranche sizing;
+- staged CARE rotation / rebalance;
+- per-tranche P15/P16 revalidation;
+- explicit anti-Martingale / anti-loss-chasing boundary.
+
+This extension does not authorize P12 and does not enable Live or Auto Trading.
