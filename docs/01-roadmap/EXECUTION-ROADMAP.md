@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WC-001
+- active lock: LOCK-FIN-P12-WC-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -936,6 +936,30 @@ P12-C is READY_NOT_STARTED.
 - task: `FIN-P12-WB-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P12-WB-001-01 = RELEASED`
 - next workstream: `P12-C = READY_NOT_STARTED`
+
+### P12-C — Lead / Lag Analysis
+Task: `FIN-P12-WC-001`  
+Linear: `HOS-254`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WC-001-01` / ACQUIRED  
+Canonical base: `364ee61b4ad0069eaec2ec113e880f0cca707579`
+
+Scope:
+- exact timestamp-offset lead/lag pairing;
+- symmetric governed lag grid;
+- deterministic integer correlation by lag;
+- regime-conditioned slices;
+- ambiguity becomes AMBIGUOUS with no directional edge;
+- lag duration/sample/uncertainty metadata;
+- P12-A OBSERVED_ASSOCIATION / UNATTRIBUTED graph evidence;
+- temporal precedence is not causation.
+
+P12-D remains BLOCKED until P12-C is CANONICAL_COMPLETE.
+
+Safety:
+- no signal probability/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 Safety:
 - correlation is not causation;

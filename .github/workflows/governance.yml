@@ -693,6 +693,15 @@ jobs:
           cmp build/p12b-a.json build/p12b-b.json
           sha256sum build/p12b-a.json
 
+      - name: P12-C deterministic lead lag evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12c_evidence.py --output build/p12c-a.json
+          PYTHONPATH=. python scripts/ci/p12c_evidence.py --output build/p12c-b.json
+          cmp build/p12c-a.json build/p12c-b.json
+          sha256sum build/p12c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
