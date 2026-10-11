@@ -735,6 +735,32 @@ P11-G is READY_NOT_STARTED.
 - lock: `LOCK-FIN-P11-WF-001-01 = RELEASED`
 - next workstream: `P11-G = READY_NOT_STARTED`
 
+### P11-G — Alerting & Narrative Inputs
+Task: `FIN-P11-WG-001`  
+Linear: `HOS-248`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WG-001-01` / ACQUIRED  
+Canonical base: `85299333743d4e670df8aad1874976a1642023e0`
+
+Scope:
+- deterministic alert eligibility and severity;
+- INFORMATIONAL / IMPORTANT / CRITICAL / SUPPRESSED states;
+- EXPIRED/BLOCKED/QUARANTINED suppression;
+- structured narrative-input envelope;
+- stable downstream grouping/dedup key;
+- no notification channel delivery in P11-G;
+- no LLM narrative required in canonical CI;
+- offline deterministic validation.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- no signal probability/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-H remains blocked until P11-G is CANONICAL_COMPLETE.
+
 Operational governance directive — 2026-10-11:
 - Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
 - Continue automatically through implementation, repair, validation, merge and closure when canonical CI/evidence is green.
