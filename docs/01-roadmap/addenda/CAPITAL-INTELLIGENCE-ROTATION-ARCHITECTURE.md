@@ -1,6 +1,6 @@
 # NEXUS QUANT — Capital Intelligence & Rotation Architecture Addendum
 
-STATE = PROPOSED_CANONICALIZATION  
+STATE = ADDENDUM_CANONICAL  
 ID = `CIRA-001`  
 TASK = `FIN-P00-WZ-001`  
 LINEAR = `HOS-250`  
@@ -396,3 +396,31 @@ It should ask:
 > "Given all available opportunities, uncertainty, costs and portfolio risk, where should capital be allocated now — and is doing nothing better?"
 
 The default when evidence is insufficient is **WAIT / NO_ACTION**, not forced activity.
+
+
+## 12. Canonical closure evidence — 2026-10-11
+
+- Task: `FIN-P00-WZ-001 = CANONICAL_COMPLETE`
+- Linear: `HOS-250`
+- Implementation PR: `#239 = MERGED`
+- Final implementation head: `3d5b1ce16bd878f6cdf84026f48f59ffcd7d143a`
+- Implementation merge SHA: `3e52542b4c27465019af34c444d21d754b010297`
+- PR Governance: `38129992612 = SUCCESS`
+- PR artifact: `sha256:4f980bc300db85f45dbb214a1151a629ec3031eb067f7b80871e16e05a4a13e9`
+- Post-merge Governance: `38130068247 = SUCCESS`
+- Post-merge artifact: `sha256:0de2ad3dae04f3e53c6c7139073a7e97323c0f51c3cbabd8b0c92be28c37f042`
+- Post-merge Branch Hygiene: `38130068333 = SUCCESS`
+- Governance regression steps: `111/111 completed with no failures`
+- Master Roadmap v2.0: `UNCHANGED / FROZEN`
+- P08-P11 canonical closures: `UNCHANGED / VALID`
+- P12: `OWNER_PHASE_AUTHORIZATION_REQUIRED`
+- LIVE_TRADING: `DISABLED`
+- AUTO_TRADING: `DISABLED`
+- Lock: `LOCK-FIN-P00-WZ-001-01 = RELEASED`
+
+Canonical decision:
+- no deletion of completed P05-P11 functionality;
+- no destructive modification to completed contracts;
+- future extensions are governed and backward-compatible/versioned;
+- SCFI/CARE and the supporting capability set are adopted as cross-cutting future requirements;
+- P12 implementation does not start as part of this closure.

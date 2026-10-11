@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: OWNER_PHASE_AUTHORIZATION_REQUIRED
-- Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: IMPLEMENTATION_ACTIVE / does not authorize P12
+- Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -835,3 +835,17 @@ Operational governance directive — 2026-10-11:
 - Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
 - Continue automatically through implementation, repair, validation, merge and closure when canonical CI/evidence is green.
 - Stop only for a true blocker or the authorization boundary of a new phase.
+
+
+### CIRA-001 — Capital Intelligence & Rotation Architecture canonical closure — 2026-10-11
+- task: FIN-P00-WZ-001 / CANONICAL_COMPLETE
+- Linear: HOS-250
+- implementation PR: #239 / MERGED
+- implementation merge SHA: `3e52542b4c27465019af34c444d21d754b010297`
+- PR Governance: `38129992612 = SUCCESS`
+- post-merge Governance: `38130068247 = SUCCESS`
+- post-merge Branch Hygiene: `38130068333 = SUCCESS`
+- adds cross-cutting SCFI + CARE + No-Trade/Regime/Relative-Strength/Market-Memory/Decision-Autopsy/Calibration/Capital-Preservation/Red-Team/Cost-Aware-Rotation/Opportunity-League/Risk-Budget/Demo-Shadow-Lab requirements
+- P05-P11 completed baselines remain canonical and are not reopened
+- P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED
+- Live Trading / Auto Trading remain DISABLED
