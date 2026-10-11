@@ -552,8 +552,8 @@ P11-B is READY_NOT_STARTED.
 ### P11-B — Ingestion / Deduplication
 Task: `FIN-P11-WB-001`  
 Linear: `HOS-243`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WB-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WB-001-01` / RELEASED  
 Canonical base: `be2ff32cdbe5cc7cc3e9e014caee06833482c4fe`
 
 Scope:
@@ -571,4 +571,17 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P11-C remains blocked until P11-B is CANONICAL_COMPLETE.
+P11-C is READY_NOT_STARTED.
+
+
+### P11-B canonical closure — 2026-10-11
+- implementation PR: #224 / MERGED
+- implementation merge SHA: `bb332e04639ad62bf5e5beabef420e26087e94af`
+- Human Gate: APPROVED for head `9c9fc990db9ea095f09623cc04c728a7a086b34a`
+- Human-Gate artifact: `sha256:111545f2b04f32a10a4fb926a5ceb4b321624e0f61c338071d8179847391dd9e`
+- implementation Governance run: `38120779553` = SUCCESS
+- post-merge Governance run: `38121023703` = SUCCESS
+- post-merge Branch Hygiene run: `38121023870` = SUCCESS
+- task: `FIN-P11-WB-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WB-001-01 = RELEASED`
+- next workstream: `P11-C = READY_NOT_STARTED`
