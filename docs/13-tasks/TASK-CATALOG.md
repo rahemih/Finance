@@ -174,7 +174,7 @@ This catalog is the canonical index of governed work.
 | FIN-P10-WG-001 | P10 | Crypto Fundamental / On-Chain Context | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WG-001.json` | RELEASED |
 | FIN-P10-WH-001 | P10 | Reliability / Latency Validation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WH-001.json` | RELEASED |
 
-| FIN-P11-WA-001 | P11 | Source / License Policy | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WA-001.json` | LOCK-FIN-P11-WA-001-01 / ACQUIRED |
+| FIN-P11-WA-001 | P11 | Source / License Policy | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WA-001.json` | RELEASED |
 
 ## Rules
 
