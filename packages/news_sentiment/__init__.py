@@ -77,3 +77,17 @@ __all__ += [
     "EventDecayPolicy",
     "assess_event_decay",
 ]
+
+from .alerting import (
+    AlertNarrativeError,
+    AlertNarrativeInput,
+    AlertNarrativePolicy,
+    build_alert_narrative_input,
+)
+
+__all__ += [
+    "AlertNarrativeError",
+    "AlertNarrativeInput",
+    "AlertNarrativePolicy",
+    "build_alert_narrative_input",
+]
