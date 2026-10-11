@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "required_case_names": [
+    "confirmed_critical_fresh",
+    "unconfirmed_suppressed",
+    "expired_suppressed",
+    "ethics_entity_boundary",
+    "community_single_source_review",
+    "mixed_sentiment",
+    "as_of_before_observed",
+    "tampered_content_identity"
+  ],
+  "cases": [
+    {
+      "name": "confirmed_critical_fresh",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin rallied after CPI beat expectations.",
+      "body": "Gold also moved after the release.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "mapping_state": "MAPPED",
+        "sentiment": "POSITIVE",
+        "importance": "HIGH",
+        "reliability_band": "HIGH",
+        "review_state": "ACCEPT_DESCRIPTIVE",
+        "freshness_state": "FRESH",
+        "eligible": true,
+        "severity": "CRITICAL"
+      }
+    },
+    {
+      "name": "unconfirmed_suppressed",
+      "source_class": "NEWSROOM",
+      "admissibility_state": "UNCONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin rallied after CPI beat expectations.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "reliability_band": "BLOCKED",
+        "review_state": "QUARANTINED",
+        "freshness_state": "BLOCKED",
+        "eligible": false,
+        "severity": "SUPPRESSED"
+      }
+    },
+    {
+      "name": "expired_suppressed",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin rallied after CPI beat expectations.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-13T08:00:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "importance": "HIGH",
+        "freshness_state": "EXPIRED",
+        "eligible": false,
+        "severity": "SUPPRESSED"
+      }
+    },
+    {
+      "name": "ethics_entity_boundary",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "The ethics committee published a general update.",
+      "body": "General market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "mapping_state": "NONE",
+        "entity_ids": [],
+        "sentiment": "NEUTRAL",
+        "importance": "LOW",
+        "severity": "INFORMATIONAL"
+      }
+    },
+    {
+      "name": "community_single_source_review",
+      "source_class": "COMMUNITY",
+      "admissibility_state": "SINGLE_SOURCE",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin market update remains unchanged.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "reliability_band": "LOW",
+        "review_state": "REVIEW_REQUIRED",
+        "freshness_state": "FRESH",
+        "eligible": true,
+        "severity": "INFORMATIONAL"
+      }
+    },
+    {
+      "name": "mixed_sentiment",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin rallied after an upgrade but later faced a ban.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "NONE",
+      "expected": {
+        "sentiment": "MIXED",
+        "importance": "MEDIUM",
+        "reliability_band": "HIGH",
+        "eligible": true,
+        "severity": "IMPORTANT"
+      }
+    },
+    {
+      "name": "as_of_before_observed",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin market update.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:00:04+00:00",
+      "attack": "NONE",
+      "expected": {
+        "error": "EventDecayError"
+      }
+    },
+    {
+      "name": "tampered_content_identity",
+      "source_class": "OFFICIAL",
+      "admissibility_state": "CONFIRMED",
+      "corroborating_source_ids": [],
+      "title": "Bitcoin market update.",
+      "body": "Market update.",
+      "published_at": "2026-10-11T08:00:00+00:00",
+      "observed_at": "2026-10-11T08:00:05+00:00",
+      "as_of": "2026-10-11T08:05:05+00:00",
+      "attack": "TAMPER_CLASSIFICATION_ID",
+      "expected": {
+        "error": "ReliabilityControlError"
+      }
+    }
+  ],
+  "required_pass_rate_bps": 10000,
+  "canonical_tests_network_required": false,
+  "llm_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
