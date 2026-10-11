@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "normalization": {
+    "unicode": "NFKC",
+    "collapse_whitespace": true,
+    "lowercase_fingerprint": true,
+    "strip_punctuation_for_fingerprint": true
+  },
+  "exact_identity_fields": [
+    "normalized_title",
+    "normalized_body",
+    "source_id",
+    "published_at"
+  ],
+  "near_duplicate": {
+    "token_ngram_size": 3,
+    "min_shared_ratio": 0.72
+  },
+  "canonical_tests_network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
