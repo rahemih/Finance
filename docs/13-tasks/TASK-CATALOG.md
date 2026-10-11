@@ -192,6 +192,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P00-WZ-001 | P00 | Capital Intelligence & Rotation Architecture Addendum | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WZ-001.json` | RELEASED |
 
+| FIN-P12-WA-001 | P12 | Knowledge Graph Schema | HIGH | ACTIVE | `contracts/tasks/FIN-P12-WA-001.json` | LOCK-FIN-P12-WA-001-01 / ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
