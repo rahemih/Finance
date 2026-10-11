@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P11F_EVENT_HORIZON_DECAY_BASELINE",
   "task_id": "FIN-P11-WF-001",
   "linear": "HOS-247",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P11-WF-001-01",
   "canonical_base": "23d211a5f8e0b6e77e76d2fdafb994c98d98cefd",
   "rules": [
@@ -20,5 +20,13 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P11-G",
-  "next_workstream_state": "BLOCKED_UNTIL_P11F_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 232,
+  "implementation_merge_sha": "b2521cffea9fc758275f4d7590e2b997ef05422a",
+  "owner_approval_head": "7a6e538186649cb28f4d6627cd48c27032f58278",
+  "approved_artifact_sha256": "f82698de0fa992b5a2520e30689e2cbbc41828e7c554e3bffb7bd5c36f95c133",
+  "implementation_governance_run": 38126526154,
+  "post_merge_governance_run": 38127123794,
+  "post_merge_branch_hygiene_run": 38127123793
 }
