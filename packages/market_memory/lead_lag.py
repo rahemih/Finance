@@ -204,7 +204,7 @@ def compute_lead_lag(
     graph_policy: KnowledgeGraphPolicy,
     policy: LeadLagPolicy,
 ) -> LeadLagResult:
-    if isinstance(sampling_interval_ns, bool) or not isinstance(sampling_interval_ns, int) or sampling_interval_ns <= 0:
+    if isinstance(sampling_interval_ns, bool) or sampling_interval_ns <= 0:
         raise LeadLagError("sampling_interval_ns must be positive integer")
     normalized_regime = regime_label.upper() if regime_label is not None else "UNSPECIFIED"
     if normalized_regime not in graph_policy.regime_labels:
