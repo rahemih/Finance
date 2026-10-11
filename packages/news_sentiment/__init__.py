@@ -11,3 +11,27 @@ __all__ = [
     "NewsSourceRecord",
     "validate_source_record",
 ]
+
+from .ingestion import (
+    DedupGroup,
+    IngestionPolicy,
+    NewsIngestionError,
+    RawNewsItem,
+    build_dedup_group,
+    exact_duplicate,
+    near_duplicate,
+    near_duplicate_ratio,
+    validate_raw_news_item,
+)
+
+__all__ += [
+    "DedupGroup",
+    "IngestionPolicy",
+    "NewsIngestionError",
+    "RawNewsItem",
+    "build_dedup_group",
+    "exact_duplicate",
+    "near_duplicate",
+    "near_duplicate_ratio",
+    "validate_raw_news_item",
+]
