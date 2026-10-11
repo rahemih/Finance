@@ -1,0 +1,137 @@
+{
+  "task_id": "FIN-P00-WZ-001",
+  "phase": "P00",
+  "workstream": "WZ",
+  "objective": "Create and govern a cross-cutting Capital Intelligence and Rotation Architecture addendum that integrates smart-capital-flow evidence, cross-asset rotation, opportunity/risk controls, continuous evaluation and portfolio-allocation intelligence without mutating the frozen Master Roadmap, reopening completed P08-P11 work, or authorizing P12/Live/Auto execution.",
+  "scope": [
+    "Define Smart Capital Flow Intelligence (SCFI) as a multi-source evidence layer over canonical P09 order-flow/liquidity, P10 macro/on-chain/commodity and P11 news/sentiment outputs",
+    "Define Cross-Asset Capital Rotation & Reallocation Engine (CARE) for KEEP, REDUCE, ROTATE, HEDGE and EXIT portfolio-action candidates",
+    "Define Opportunity Value and Relative Strength ranking across eligible Crypto, Forex, Gold and cash-like exposures",
+    "Define No-Trade Guardian, Market Regime gating, Capital Preservation Mode and portfolio Risk Budget requirements",
+    "Define Decision Autopsy and probability-calibration feedback loops without automatic Live promotion",
+    "Strengthen the existing P14 Red-Team/Devil's-Advocate challenge boundary",
+    "Define cost-aware rotation with fees, spread, slippage, funding/carry, liquidity, latency, uncertainty and hysteresis",
+    "Define Opportunity League ranking and Persian explainability requirements for P23",
+    "Define the permanent parallel Demo/Shadow laboratory with approximately 20 governed accounts/portfolios and a minimum two-month continuous evaluation window, with sample-size/regime sufficiency also required",
+    "Define the impact/remediation matrix for P05-P24, including explicit NO_CHANGE, EXTEND_LATER, NEW_COMPONENT and NO_DELETE decisions",
+    "Preserve whale/on-chain large-flow activity as supporting evidence only, never a standalone trading signal",
+    "Preserve Research → Backtest → Demo → Shadow → Manual/Semi-Auto → Micro-Capital/Canary → Controlled Auto"
+  ],
+  "out_of_scope": [
+    "Starting P12 implementation or granting P12 phase authorization",
+    "Mutating docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "Reopening or invalidating canonical P08, P09, P10 or P11 closures",
+    "Breaking existing completed contracts; any future extension must be backward-compatible or separately versioned",
+    "Selecting production brokers, exchanges, wallet-label vendors, news vendors or on-chain providers",
+    "Using whale activity, one large transfer, one news item or one indicator as a standalone trade trigger",
+    "Live Trading, Auto Trading, funding accounts, placing orders or provisioning trading credentials",
+    "Hard-coding profitability, win-rate or rotation thresholds before governed empirical calibration"
+  ],
+  "dependencies": [
+    "Owner authorization in project conversation on 2026-10-11",
+    "P08 CANONICAL_COMPLETE / G6 PASS",
+    "P09 CANONICAL_COMPLETE",
+    "P10 CANONICAL_COMPLETE",
+    "P11 CANONICAL_COMPLETE",
+    "No active governed task or lock at task start",
+    "P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/08-intelligence/**",
+    "docs/09-intelligence/**",
+    "contracts/schemas/task-contract.schema.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P00-WZ-001.json",
+    "docs/01-roadmap/addenda/CAPITAL-INTELLIGENCE-ROTATION-ARCHITECTURE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/**",
+    "adapters/**",
+    "tests/**",
+    "config/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Task Contract validates against contracts/schemas/task-contract.schema.json",
+    "Frozen Master Roadmap is unchanged",
+    "P08-P11 canonical completion and gate evidence remain valid",
+    "P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "SCFI explicitly forbids whale activity as a standalone trade signal",
+    "CARE output is a portfolio-action candidate and cannot bypass P15 Risk or P16 Pre-Trade Firewall",
+    "No completed API/contract is declared for destructive replacement; completed work is NO_CHANGE or future backward-compatible extension",
+    "Two-month / 20-account evaluation is not treated as sufficient by time/count alone; sample size, regime diversity, calibration and execution realism are also required",
+    "No arbitrary profitability, correlation or rotation threshold is introduced",
+    "Live Trading and Auto Trading remain DISABLED"
+  ],
+  "security_tests": [
+    "No broker/exchange credentials are introduced",
+    "No withdrawal authority is introduced",
+    "A5 Risk and P16 Pre-Trade Firewall retain veto",
+    "LLM/agent output cannot directly place or authorize a live order",
+    "Unverified wallet labels and transfer attribution fail closed or remain low-confidence context"
+  ],
+  "evidence": [
+    "Roadmap Addendum",
+    "Impact/remediation matrix P05-P24",
+    "Git SHA and PR Governance result",
+    "Post-merge verification",
+    "Linear HOS-250 reconciliation"
+  ],
+  "rollback": "Revert FIN-P00-WZ-001 task contract, the Capital Intelligence and Rotation Architecture addendum, and its shared-state registration. The frozen Master Roadmap, completed P08-P11 phases, P12 authorization boundary and all trading states remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Owner authorized the change",
+    "Canonical main is reconciled through P11 closure",
+    "No open PR conflicts with write paths",
+    "No active task/lock conflicts",
+    "P12 implementation remains gated"
+  ],
+  "definition_of_done": [
+    "Addendum merged with Governance PASS",
+    "Impact/remediation decisions are explicit for P05-P24",
+    "SCFI and CARE boundaries are explicit",
+    "All twelve additional intelligence/risk/evaluation proposals are mapped into future phases",
+    "No destructive change to completed phases is required",
+    "P12 remains OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "Post-merge verification passes",
+    "Task Catalog, Current State, Execution Roadmap and Linear are reconciled",
+    "Lock is released"
+  ]
+}
