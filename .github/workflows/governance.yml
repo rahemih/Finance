@@ -657,6 +657,15 @@ jobs:
           cmp build/p11f-a.json build/p11f-b.json
           sha256sum build/p11f-a.json
 
+      - name: P11-G deterministic alerting/narrative evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p11g_evidence.py --output build/p11g-a.json
+          PYTHONPATH=. python scripts/ci/p11g_evidence.py --output build/p11g-b.json
+          cmp build/p11g-a.json build/p11g-b.json
+          sha256sum build/p11g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

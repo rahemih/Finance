@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "severities": ["INFORMATIONAL", "IMPORTANT", "CRITICAL", "SUPPRESSED"],
+  "suppress_freshness_states": ["EXPIRED", "BLOCKED"],
+  "suppress_review_states": ["QUARANTINED"],
+  "suppress_reliability_bands": ["BLOCKED"],
+  "critical_importance": ["HIGH"],
+  "critical_reliability": ["HIGH"],
+  "critical_freshness": ["FRESH"],
+  "important_importance": ["HIGH", "MEDIUM"],
+  "important_reliability": ["HIGH", "MEDIUM"],
+  "important_freshness": ["FRESH", "DECAYING"],
+  "grouping_schema": "P11G_V1",
+  "canonical_tests_network_required": false,
+  "llm_narrative_required": false,
+  "channel_delivery_enabled": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11G_ALERTING_NARRATIVE_INPUT_BASELINE",
+  "task_id": "FIN-P11-WG-001",
+  "linear": "HOS-248",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WG-001-01",
+  "canonical_base": "85299333743d4e670df8aad1874976a1642023e0",
+  "rules": [
+    "DETERMINISTIC_ALERT_ELIGIBILITY",
+    "INFORMATIONAL_IMPORTANT_CRITICAL_SUPPRESSED",
+    "EXPIRED_BLOCKED_QUARANTINED_SUPPRESSION",
+    "STRUCTURED_NARRATIVE_INPUT",
+    "STABLE_GROUPING_KEY",
+    "NO_CHANNEL_DELIVERY",
+    "NO_LLM_REQUIRED"
+  ],
+  "network_required": false,
+  "llm_narrative_required": false,
+  "channel_delivery_enabled": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-H",
+  "next_workstream_state": "BLOCKED_UNTIL_P11G_CANONICAL_COMPLETE"
+}
