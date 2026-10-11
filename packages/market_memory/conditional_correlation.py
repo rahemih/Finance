@@ -19,15 +19,6 @@ def _integer(value: object, *, field: str) -> int:
     return value
 
 
-def _string_tuple(value: object, *, field: str) -> tuple[str, ...]:
-    if not isinstance(value, list) or not value:
-        raise ConditionalCorrelationError(f"{field} must be a non-empty list")
-    items = tuple(str(item).strip().upper() for item in cast(list[object], value))
-    if any(not item for item in items) or len(set(items)) != len(items):
-        raise ConditionalCorrelationError(f"{field} values must be unique non-empty strings")
-    return items
-
-
 @dataclass(frozen=True, slots=True)
 class ConditionalCorrelationPolicy:
     minimum_sample_count: int
