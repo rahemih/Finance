@@ -172,7 +172,7 @@ This catalog is the canonical index of governed work.
 | FIN-P10-WE-001 | P10 | Rates / Yields / Currency Macro | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WE-001.json` | RELEASED |
 | FIN-P10-WF-001 | P10 | Oil / Gold / Commodity Context | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WF-001.json` | RELEASED |
 | FIN-P10-WG-001 | P10 | Crypto Fundamental / On-Chain Context | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WG-001.json` | RELEASED |
-| FIN-P10-WH-001 | P10 | Reliability / Latency Validation | HIGH | ACTIVE | `contracts/tasks/FIN-P10-WH-001.json` | LOCK-FIN-P10-WH-001-01 / ACQUIRED |
+| FIN-P10-WH-001 | P10 | Reliability / Latency Validation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P10-WH-001.json` | RELEASED |
 
 ## Rules
 
