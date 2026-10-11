@@ -192,6 +192,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P00-WZ-001 | P00 | Capital Intelligence & Rotation Architecture Addendum | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WZ-001.json` | RELEASED |
 
+| FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
+
 | FIN-P12-WA-001 | P12 | Knowledge Graph Schema | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P12-WA-001.json` | RELEASED |
 
 ## Rules
