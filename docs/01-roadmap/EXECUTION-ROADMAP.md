@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WB-001
-- active lock: LOCK-FIN-P12-WB-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -76,7 +76,7 @@ Phase transition:
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
-- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B IMPLEMENTATION_ACTIVE
+- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -910,8 +910,8 @@ Safety:
 ### P12-B — Rolling / Conditional Correlations
 Task: `FIN-P12-WB-001`  
 Linear: `HOS-253`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WB-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WB-001-01` / RELEASED  
 Canonical base: `40c8ac401896cff97a3d2db59cf82a3b2641dfd4`
 
 Scope:
@@ -922,7 +922,20 @@ Scope:
 - P12-A observed-association edge output;
 - cross-asset and CIRA capital-flow evidence support.
 
-P12-C remains BLOCKED until P12-B is CANONICAL_COMPLETE.
+P12-C is READY_NOT_STARTED.
+
+### P12-B canonical closure — 2026-10-11
+- implementation PR: #248 / MERGED
+- superseded Governance: `38135715196` = FAILURE / Strict Pyright unused helper / AUTO_REPAIRED
+- final repaired head: `fd11845b0a36bb535908c012eef5253cbdf3e7f3`
+- implementation Governance: `38135798150` = SUCCESS
+- implementation artifact: `sha256:bdb74931d91add0deb967ad613e8ca225ed39b68fd2957825f8454b8b9b9f40b`
+- implementation merge SHA: `ec7e703098fa51af0116bd7576dc328b325693d6`
+- post-merge Governance: `38135889461` = SUCCESS
+- post-merge Branch Hygiene: `38135889536` = SUCCESS
+- task: `FIN-P12-WB-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WB-001-01 = RELEASED`
+- next workstream: `P12-C = READY_NOT_STARTED`
 
 Safety:
 - correlation is not causation;

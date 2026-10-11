@@ -2,8 +2,8 @@
 
 Task: `FIN-P12-WB-001`  
 Linear: `HOS-253`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WB-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WB-001-01` / RELEASED  
 Canonical base: `40c8ac401896cff97a3d2db59cf82a3b2641dfd4`
 
 ## Objective
@@ -25,3 +25,14 @@ Compute reproducible rolling and regime-conditional correlation evidence and enc
 ## Safety
 
 LIVE_TRADING and AUTO_TRADING remain DISABLED. No signal, risk approval or execution authority is introduced.
+
+
+## Canonical closure evidence
+- PR #248 merged as `ec7e703098fa51af0116bd7576dc328b325693d6`
+- superseded Governance `38135715196` = FAILURE / strict Pyright unused helper / AUTO_REPAIRED
+- final repaired head `fd11845b0a36bb535908c012eef5253cbdf3e7f3`
+- implementation Governance `38135798150` = SUCCESS
+- implementation artifact `sha256:bdb74931d91add0deb967ad613e8ca225ed39b68fd2957825f8454b8b9b9f40b`
+- post-merge Governance `38135889461` = SUCCESS
+- post-merge Branch Hygiene `38135889536` = SUCCESS
+- P12-C = READY_NOT_STARTED
