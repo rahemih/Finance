@@ -188,6 +188,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WG-001 | P11 | Alerting & Narrative Inputs | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WG-001.json` | RELEASED |
 
+| FIN-P11-WH-001 | P11 | Evaluation / Adversarial Tests | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WH-001.json` | LOCK-FIN-P11-WH-001-01 / ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
