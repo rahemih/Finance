@@ -547,3 +547,28 @@ P11-B is READY_NOT_STARTED.
 - task: `FIN-P11-WA-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P11-WA-001-01 = RELEASED`
 - next workstream: `P11-B = READY_NOT_STARTED`
+
+
+### P11-B — Ingestion / Deduplication
+Task: `FIN-P11-WB-001`  
+Linear: `HOS-243`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WB-001-01` / ACQUIRED  
+Canonical base: `be2ff32cdbe5cc7cc3e9e014caee06833482c4fe`
+
+Scope:
+- canonical raw news envelope;
+- deterministic normalization;
+- exact duplicate identity;
+- near-duplicate fingerprinting;
+- order-independent dedup groups;
+- P11-A source/license/admissibility preservation;
+- offline deterministic validation.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-C remains blocked until P11-B is CANONICAL_COMPLETE.

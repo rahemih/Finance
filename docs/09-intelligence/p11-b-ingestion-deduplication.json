@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11B_INGESTION_DEDUP_BASELINE",
+  "task_id": "FIN-P11-WB-001",
+  "linear": "HOS-243",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WB-001-01",
+  "canonical_base": "be2ff32cdbe5cc7cc3e9e014caee06833482c4fe",
+  "rules": [
+    "SOURCE_POLICY_REQUIRED",
+    "DETERMINISTIC_NORMALIZATION",
+    "EXACT_DUP_ID",
+    "NEAR_DUP_FINGERPRINT",
+    "ORDER_INDEPENDENT_GROUP_ID",
+    "NO_TRADE_AUTHORITY"
+  ],
+  "production_news_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-C",
+  "next_workstream_state": "BLOCKED_UNTIL_P11B_CANONICAL_COMPLETE"
+}

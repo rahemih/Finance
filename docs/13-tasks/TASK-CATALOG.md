@@ -176,6 +176,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WA-001 | P11 | Source / License Policy | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WA-001.json` | RELEASED |
 
+| FIN-P11-WB-001 | P11 | Ingestion / Deduplication | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WB-001.json` | LOCK-FIN-P11-WB-001-01 / ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.
