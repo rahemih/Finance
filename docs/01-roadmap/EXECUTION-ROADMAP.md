@@ -75,7 +75,8 @@ Phase transition:
 - P10-F — Oil / Gold / Commodity Context: CANONICAL_COMPLETE
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
-- P11 — News & Sentiment: OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P11 — News & Sentiment: CANONICAL_COMPLETE
+- P12 — Market Memory & Knowledge Graph: OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Completed P05 baselines:
 - P05-A — Kaiko crypto adapter: CANONICAL_COMPLETE
@@ -776,8 +777,8 @@ P11-H is READY_NOT_STARTED.
 ### P11-H — Evaluation / Adversarial Tests
 Task: `FIN-P11-WH-001`  
 Linear: `HOS-249`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P11-WH-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P11-WH-001-01` / RELEASED  
 Canonical base: `4710b21b3bed56a78d419470c03f6a91664190f4`
 
 Scope:
@@ -796,7 +797,38 @@ Safety:
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
 
-P12 remains blocked behind P11-H canonical closure and phase-boundary Owner authorization.
+P11 = CANONICAL_COMPLETE. P12 = OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+### P11-H canonical closure — 2026-10-11
+- implementation PR: #237 / MERGED
+- implementation merge SHA: `b5773f83aa94b4b083f57315bda9a35d26820094`
+- final repaired head: `c6a9abfd4b9ed8b40565a7fb2cae257839e207fa`
+- implementation artifact: `sha256:127350c8c9fd62414245f0fdef43c95dff6dda8ce762689bc1000a7be9c23ab1`
+- superseded Governance run: `38128239548` = FAILURE / strict Pyright unused import; AUTO_REPAIRED
+- implementation Governance run: `38128288674` = SUCCESS
+- post-merge Governance run: `38128385783` = SUCCESS
+- post-merge Branch Hygiene run: `38128385809` = SUCCESS
+- mandatory adversarial scenarios: `8/8 PASS`
+- mandatory pass rate: `10000 bps / 100%`
+- task: `FIN-P11-WH-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P11-WH-001-01 = RELEASED`
+- phase: `P11 = CANONICAL_COMPLETE`
+- next phase: `P12 = OWNER_PHASE_AUTHORIZATION_REQUIRED`
+
+### P11 canonical phase closure — 2026-10-11
+- P11-A Source / License Policy = CANONICAL_COMPLETE
+- P11-B Ingestion / Deduplication = CANONICAL_COMPLETE
+- P11-C Entity / Asset Mapping = CANONICAL_COMPLETE
+- P11-D Sentiment / Topic / Importance = CANONICAL_COMPLETE
+- P11-E Source Reliability / Rumor Control = CANONICAL_COMPLETE
+- P11-F Event Horizon / Decay = CANONICAL_COMPLETE
+- P11-G Alerting & Narrative Inputs = CANONICAL_COMPLETE
+- P11-H Evaluation / Adversarial Tests = CANONICAL_COMPLETE
+- active governed task: none
+- active lock: none
+- LIVE_TRADING: DISABLED
+- AUTO_TRADING: DISABLED
+- P12 may not start without explicit Owner phase authorization.
 
 Operational governance directive — 2026-10-11:
 - Within an already-authorized phase, governed substeps/PRs do not require separate Owner Human Gates.
