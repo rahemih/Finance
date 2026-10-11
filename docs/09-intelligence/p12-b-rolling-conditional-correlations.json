@@ -1,0 +1,15 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P12B_ROLLING_CONDITIONAL_CORRELATION_BASELINE",
+  "task_id":"FIN-P12-WB-001",
+  "linear":"HOS-253",
+  "state":"IMPLEMENTATION_ACTIVE",
+  "lock":"LOCK-FIN-P12-WB-001-01",
+  "canonical_base":"40c8ac401896cff97a3d2db59cf82a3b2641dfd4",
+  "correlation_is_causation":false,
+  "network_required":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED",
+  "next_workstream":"P12-C",
+  "next_workstream_state":"BLOCKED_UNTIL_P12B_CANONICAL_COMPLETE"
+}
