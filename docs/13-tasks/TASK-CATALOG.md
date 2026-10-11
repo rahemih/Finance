@@ -184,6 +184,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P11-WE-001 | P11 | Reliability / Rumor Controls | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P11-WE-001.json` | RELEASED |
 
+| FIN-P11-WF-001 | P11 | Event Horizon / Decay | HIGH | ACTIVE | `contracts/tasks/FIN-P11-WF-001.json` | LOCK-FIN-P11-WF-001-01 / ACQUIRED |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

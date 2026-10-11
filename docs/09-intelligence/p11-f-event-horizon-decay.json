@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P11F_EVENT_HORIZON_DECAY_BASELINE",
+  "task_id": "FIN-P11-WF-001",
+  "linear": "HOS-247",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P11-WF-001-01",
+  "canonical_base": "23d211a5f8e0b6e77e76d2fdafb994c98d98cefd",
+  "rules": [
+    "OBSERVED_AT_POINT_IN_TIME_CLOCK",
+    "IMPORTANCE_BASE_HORIZON",
+    "TOPIC_MINIMUM_HORIZON",
+    "RELIABILITY_HORIZON_MULTIPLIER",
+    "INTEGER_BASIS_POINT_DECAY",
+    "BLOCKED_QUARANTINED_ZERO_AUTHORITY",
+    "CONTENT_IDENTITY_FAIL_CLOSED"
+  ],
+  "network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P11-G",
+  "next_workstream_state": "BLOCKED_UNTIL_P11F_CANONICAL_COMPLETE"
+}

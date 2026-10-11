@@ -63,3 +63,17 @@ __all__ += [
     "ReliabilityPolicy",
     "assess_reliability",
 ]
+
+from .event_decay import (
+    EventDecayAssessment,
+    EventDecayError,
+    EventDecayPolicy,
+    assess_event_decay,
+)
+
+__all__ += [
+    "EventDecayAssessment",
+    "EventDecayError",
+    "EventDecayPolicy",
+    "assess_event_decay",
+]

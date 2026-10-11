@@ -696,3 +696,29 @@ P11-F is READY_NOT_STARTED.
 - task: `FIN-P11-WE-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P11-WE-001-01 = RELEASED`
 - next workstream: `P11-F = READY_NOT_STARTED`
+
+### P11-F — Event Horizon / Decay
+Task: `FIN-P11-WF-001`  
+Linear: `HOS-247`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P11-WF-001-01` / ACQUIRED  
+Canonical base: `23d211a5f8e0b6e77e76d2fdafb994c98d98cefd`
+
+Scope:
+- observed_at point-in-time freshness clock;
+- deterministic importance base horizons;
+- deterministic topic minimum horizons;
+- reliability horizon multipliers;
+- integer basis-point decay;
+- FRESH / DECAYING / EXPIRED / BLOCKED states;
+- BLOCKED/QUARANTINED zero freshness authority;
+- offline deterministic validation.
+
+Safety:
+- production news vendor: NOT_SELECTED;
+- no signal probability/trade timing/risk/execution authority;
+- credentials: NONE;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
+
+P11-G remains blocked until P11-F is CANONICAL_COMPLETE.

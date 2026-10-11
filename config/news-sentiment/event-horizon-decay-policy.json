@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "importance_horizon_minutes": {
+    "HIGH": 1440,
+    "MEDIUM": 360,
+    "LOW": 120
+  },
+  "topic_minimum_horizon_minutes": {
+    "GENERAL": 120,
+    "CRYPTO_NETWORK": 360,
+    "MACRO_DATA": 720,
+    "MARKET_STRESS": 720,
+    "MONETARY_POLICY": 1440,
+    "REGULATION": 720
+  },
+  "reliability_multiplier_bps": {
+    "HIGH": 10000,
+    "MEDIUM": 7500,
+    "LOW": 5000,
+    "BLOCKED": 0
+  },
+  "fresh_threshold_bps": 7500,
+  "freshness_states": ["FRESH", "DECAYING", "EXPIRED", "BLOCKED"],
+  "canonical_tests_network_required": false,
+  "production_news_vendor": "NOT_SELECTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
