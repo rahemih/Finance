@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12F_SEASONALITY_BASELINE",
+  "task_id": "FIN-P12-WF-001",
+  "linear": "HOS-257",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WF-001-01",
+  "canonical_base": "eb054db8022ad75133b6337286c1d8815a4308f0",
+  "calendar_timezone": "UTC",
+  "session_calendar_in_scope": false,
+  "seasonality_is_causation": false,
+  "seasonality_is_probability": false,
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-G",
+  "next_workstream_state": "BLOCKED_UNTIL_P12F_CANONICAL_COMPLETE"
+}
