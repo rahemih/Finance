@@ -63,3 +63,21 @@ __all__ += [
     "EventStudyResult",
     "compute_event_study",
 ]
+
+from .historical_analog import (
+    HistoricalAnalogError,
+    HistoricalAnalogMatch,
+    HistoricalAnalogPolicy,
+    HistoricalAnalogResult,
+    HistoricalFeatureState,
+    find_historical_analogs,
+)
+
+__all__ += [
+    "HistoricalAnalogError",
+    "HistoricalAnalogMatch",
+    "HistoricalAnalogPolicy",
+    "HistoricalAnalogResult",
+    "HistoricalFeatureState",
+    "find_historical_analogs",
+]
