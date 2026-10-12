@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P12-WG-001",
+  "phase": "P12",
+  "workstream": "WG",
+  "objective": "Implement deterministic evidence-backed narrative attribution guardrails as a separate assessment layer over immutable UNATTRIBUTED graph edges, without causal-proof or trade-authority claims.",
+  "scope": [
+    "Define governed narrative labels LIKELY_DRIVER, SUPPORTING_FACTOR, CONTEXT_ONLY and INSUFFICIENT_EVIDENCE",
+    "Keep canonical P12-A GraphEdge attribution labels UNATTRIBUTED",
+    "Require exact source/target/regime coherence across evidence edges",
+    "Count only governed primary evidence families as independent attribution support",
+    "Require sample, uncertainty, strength and directional-consistency thresholds for stronger narrative labels",
+    "Require an event/context source kind and driver-context edge for LIKELY_DRIVER",
+    "Degrade conflicting or weak evidence deterministically",
+    "Emit sorted reason codes and stable evidence-edge ordering",
+    "Generate deterministic offline P12-G evidence"
+  ],
+  "out_of_scope": [
+    "Mutating canonical P12-A graph edges",
+    "Causal proof or causal discovery",
+    "Probability or forecast calibration",
+    "Risk approval or execution authority",
+    "Versioning/replay validation (P12-H)"
+  ],
+  "dependencies": [
+    "P12-F CANONICAL_COMPLETE",
+    "P12-F closure merge 7c0dc7b48d98965352ecfc5b2bd1427af3f8396a",
+    "P12-F closure post-merge Governance 38222767857 SUCCESS",
+    "P12-F closure Branch Hygiene 38222767839 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "config/market-memory/**",
+    "packages/market_memory/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P12-WG-001.json",
+    "config/market-memory/attribution-guardrail-policy.json",
+    "packages/market_memory/attribution.py",
+    "packages/market_memory/__init__.py",
+    "tests/p12/test_attribution_guardrails.py",
+    "scripts/ci/p12g_evidence.py",
+    "docs/09-intelligence/P12-G-ATTRIBUTION-GUARDRAILS.md",
+    "docs/09-intelligence/p12-g-attribution-guardrails.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0","A3","A4","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Three coherent independent primary families plus event context can yield LIKELY_DRIVER",
+    "Two coherent primary families can yield SUPPORTING_FACTOR",
+    "Correlation/lead-lag evidence alone cannot yield LIKELY_DRIVER",
+    "Conflicting direction degrades stronger labels",
+    "Weak/high-uncertainty evidence degrades deterministically",
+    "Duplicate edge, endpoint mismatch and regime mismatch fail closed",
+    "GraphEdge attribution_label remains UNATTRIBUTED",
+    "Assessment is order-independent and reason codes are sorted",
+    "LIKELY_DRIVER remains narrative evidence and causal_proof is false",
+    "No probability, signal, risk or execution authority fields are introduced",
+    "P12-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P12-F canonical closure",
+    "Deterministic P12-G attribution-guardrail evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-258 reconciliation"
+  ],
+  "rollback": "Revert P12-G policy/module/tests/evidence/CI/state changes; P12-F remains canonical and P12-A edges remain unchanged.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P12-F CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Attribution guardrail layer implemented",
+    "Canonical graph edges remain UNATTRIBUTED",
+    "Narrative labels remain non-causal and non-probabilistic",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P12-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-258 Done",
+    "P12-H READY_NOT_STARTED"
+  ]
+}
