@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WF-001
+- active lock: LOCK-FIN-P12-WF-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1030,6 +1030,31 @@ P12-F is READY_NOT_STARTED.
 - task: `FIN-P12-WE-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P12-WE-001-01 = RELEASED`
 - next workstream: `P12-F = READY_NOT_STARTED`
+
+### P12-F — Seasonality
+Task: `FIN-P12-WF-001`  
+Linear: `HOS-257`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WF-001-01` / ACQUIRED  
+Canonical base: `eb054db8022ad75133b6337286c1d8815a4308f0`
+
+Scope:
+- UTC hour/day/month recurring historical buckets;
+- deterministic timestamp-to-bucket mapping;
+- optional canonical regime conditioning;
+- signed-bps return summaries;
+- mean/dispersion/sampling uncertainty;
+- provenance and source dataset versions;
+- no exchange/session/holiday calendar semantics.
+
+P12-G remains BLOCKED until P12-F is CANONICAL_COMPLETE.
+
+Safety:
+- seasonality is not causation or probability;
+- session/calendar semantics remain P13-A;
+- no signal/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 Safety:
 - historical similarity is not probability;

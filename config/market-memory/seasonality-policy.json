@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "mode": "UTC_REGIME_CONDITIONAL_SEASONALITY",
+  "bucket_kinds": [
+    "HOUR_OF_DAY_UTC",
+    "DAY_OF_WEEK_UTC",
+    "MONTH_OF_YEAR_UTC"
+  ],
+  "minimum_sample_count": 3,
+  "return_min_bps": -10000,
+  "return_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "calendar_timezone": "UTC",
+  "session_calendar_in_scope": false,
+  "seasonality_is_causation": false,
+  "seasonality_is_probability": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -81,3 +81,19 @@ __all__ += [
     "HistoricalFeatureState",
     "find_historical_analogs",
 ]
+
+from .seasonality import (
+    SeasonalityError,
+    SeasonalityObservation,
+    SeasonalityPolicy,
+    SeasonalityResult,
+    compute_seasonality,
+)
+
+__all__ += [
+    "SeasonalityError",
+    "SeasonalityObservation",
+    "SeasonalityPolicy",
+    "SeasonalityResult",
+    "compute_seasonality",
+]
