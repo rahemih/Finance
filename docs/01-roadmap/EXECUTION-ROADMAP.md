@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WH-001
+- active lock: LOCK-FIN-P12-WH-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1089,6 +1089,31 @@ P12-H is READY_NOT_STARTED.
 - task: `FIN-P12-WG-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P12-WG-001-01 = RELEASED`
 - next workstream: `P12-H = READY_NOT_STARTED`
+
+### P12-H — Versioning / Replay
+Task: `FIN-P12-WH-001`  
+Linear: `HOS-259`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WH-001-01` / ACQUIRED  
+Canonical base: `1eace688861d6010ec3be3d3415087edb04e9a03`
+
+Scope:
+- deterministic Market Memory Version Bundle;
+- P06-G ReplaySnapshot + P12-A graph snapshot binding;
+- exact P12-A..P12-G policy hashes;
+- graph provenance and dataset lineage;
+- anti-lookahead replay as-of enforcement;
+- deterministic P12-B..P12-G output digests;
+- replay equivalence / mismatch fail-closed verification.
+
+P12 phase closure follows P12-H CANONICAL_COMPLETE. P13 remains OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+Safety:
+- end-to-end decision replay remains P19;
+- production memory-version store vendor: NOT_SELECTED;
+- no signal/probability/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 Safety:
 - LIKELY_DRIVER is narrative evidence, not causal proof;
