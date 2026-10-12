@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12E_HISTORICAL_ANALOG_BASELINE",
+  "task_id": "FIN-P12-WE-001",
+  "linear": "HOS-256",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WE-001-01",
+  "canonical_base": "1614a47ce81f92cf5cb09e9af46a4ee4a815937a",
+  "historical_only": true,
+  "future_outcome_consumed": false,
+  "similarity_is_probability": false,
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-F",
+  "next_workstream_state": "BLOCKED_UNTIL_P12E_CANONICAL_COMPLETE"
+}
