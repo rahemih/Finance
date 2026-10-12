@@ -111,3 +111,7 @@ __all__ += [
     "AttributionGuardrailPolicy",
     "assess_attribution",
 ]
+
+from .versioning_replay import MarketMemoryReplayError, MarketMemoryReplayMismatch, MarketMemoryReplayPolicy, MarketMemoryReplayRecord, MarketMemoryVersionBundle, assert_market_memory_replay_equivalent, build_market_memory_replay_record, build_market_memory_version_bundle
+
+__all__ += ["MarketMemoryReplayError", "MarketMemoryReplayMismatch", "MarketMemoryReplayPolicy", "MarketMemoryReplayRecord", "MarketMemoryVersionBundle", "assert_market_memory_replay_equivalent", "build_market_memory_replay_record", "build_market_memory_version_bundle"]
