@@ -2,8 +2,8 @@
 
 Task: `FIN-P12-WF-001`  
 Linear: `HOS-257`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WF-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WF-001-01` / RELEASED  
 Canonical base: `eb054db8022ad75133b6337286c1d8815a4308f0`
 
 ## Objective
@@ -23,3 +23,14 @@ Measure deterministic UTC calendar seasonality in historical market memory witho
 ## Safety
 
 Seasonality is descriptive historical evidence. It is not causation, probability, a signal, risk approval or execution authority. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## Canonical closure evidence
+- implementation PR #256 = MERGED
+- final implementation head `570eecfb4ec4197998a01fdb1469b6789758b54e`
+- implementation Governance `38222075697` = SUCCESS
+- implementation artifact `sha256:a8a50677ab155097e92b963f81dde275540aa7f6921ec7454c1eee06a8f48198`
+- implementation merge SHA `56d15e598a9aeb8b1c519bf7f9fc2fabeb3909a6`
+- post-merge Governance `38222323292` = SUCCESS
+- post-merge Branch Hygiene `38222323322` = SUCCESS
+- P12-G = READY_NOT_STARTED
