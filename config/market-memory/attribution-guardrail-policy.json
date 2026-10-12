@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "mode": "EVIDENCE_BACKED_NARRATIVE_ATTRIBUTION",
+  "labels": [
+    "LIKELY_DRIVER",
+    "SUPPORTING_FACTOR",
+    "CONTEXT_ONLY",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "primary_independent_evidence_families": [
+    "TECHNICAL",
+    "ORDER_FLOW",
+    "FUNDAMENTAL",
+    "NEWS"
+  ],
+  "non_independent_evidence_families": [
+    "HISTORICAL",
+    "COMPOSITE"
+  ],
+  "driver_source_node_kinds": [
+    "MACRO_EVENT",
+    "NEWS_EVENT",
+    "CAPITAL_FLOW",
+    "ROTATION_EPISODE"
+  ],
+  "target_node_kinds": [
+    "ASSET",
+    "MARKET"
+  ],
+  "driver_context_edge_kinds": [
+    "EVENT_CONTEXT",
+    "CAPITAL_FLOW_LINK",
+    "ROTATION_EPISODE_LINK"
+  ],
+  "minimum_context_sample_count": 2,
+  "maximum_context_uncertainty_bps": 8000,
+  "minimum_supporting_sample_count": 4,
+  "minimum_supporting_independent_families": 2,
+  "minimum_supporting_mean_abs_strength_bps": 750,
+  "maximum_supporting_uncertainty_bps": 5000,
+  "minimum_driver_sample_count": 6,
+  "minimum_driver_independent_families": 3,
+  "minimum_driver_mean_abs_strength_bps": 1500,
+  "maximum_driver_uncertainty_bps": 3500,
+  "canonical_edge_attribution_label": "UNATTRIBUTED",
+  "temporal_precedence_alone_is_driver": false,
+  "correlation_alone_is_driver": false,
+  "likely_driver_is_causal_proof": false,
+  "narrative_labels_are_probability": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
