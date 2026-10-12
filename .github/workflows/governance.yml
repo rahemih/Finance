@@ -738,6 +738,15 @@ jobs:
           cmp build/p12g-a.json build/p12g-b.json
           sha256sum build/p12g-a.json
 
+      - name: P12-H deterministic versioning replay evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12h_evidence.py --output build/p12h-a.json
+          PYTHONPATH=. python scripts/ci/p12h_evidence.py --output build/p12h-b.json
+          cmp build/p12h-a.json build/p12h-b.json
+          sha256sum build/p12h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
