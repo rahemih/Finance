@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WC-001
-- active lock: LOCK-FIN-P12-WC-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -973,8 +973,8 @@ P12-D is READY_NOT_STARTED.
 ### P12-D — Event Studies
 Task: `FIN-P12-WD-001`  
 Linear: `HOS-255`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WD-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WD-001-01` / RELEASED  
 Canonical base: `787c8264b3537199a5d66e8ec15741d00b78b584`
 
 Scope:
@@ -986,7 +986,20 @@ Scope:
 - EVENT_CONTEXT / UNATTRIBUTED graph evidence;
 - MACRO_EVENT / NEWS_EVENT / CAPITAL_FLOW / ROTATION_EPISODE support.
 
-P12-E remains BLOCKED until P12-D is CANONICAL_COMPLETE.
+P12-E is READY_NOT_STARTED.
+
+### P12-D canonical closure — 2026-10-11
+- implementation PR: #252 / MERGED
+- superseded queued Governance: `38137932893` = CANCELLED / superseded by final test-coverage head
+- final implementation head: `2acb69040910b32e2e7a6952d1195dcd06804ada`
+- implementation Governance: `38138140980` = SUCCESS
+- implementation artifact: `sha256:b581ccd9e78d2dce2a25c77c3d01e5ea8f220f31727134a742b396dc89f0362c`
+- implementation merge SHA: `5d76fb76da1148758b86300a5d51c969d161754f`
+- post-merge Governance: `38138267986` = SUCCESS
+- post-merge Branch Hygiene: `38138267963` = SUCCESS
+- task: `FIN-P12-WD-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WD-001-01 = RELEASED`
+- next workstream: `P12-E = READY_NOT_STARTED`
 
 Safety:
 - historical event response is not causation;
