@@ -59,16 +59,17 @@ class SeasonalityTests(unittest.TestCase):
         self.assertEqual(result.dispersion_bps, 66)
 
     def test_hour_day_and_month_mapping_are_utc(self) -> None:
-        hourly = tuple(
-            SeasonalityObservation(ns(f"202{year}-01-06T14:00:00"), 100 + year, "ALIGNED_BULLISH")
-            for year in range(3)
+        mondays = (
+            SeasonalityObservation(ns("2020-01-06T14:00:00"), 100, "ALIGNED_BULLISH"),
+            SeasonalityObservation(ns("2021-01-04T14:00:00"), 101, "ALIGNED_BULLISH"),
+            SeasonalityObservation(ns("2022-01-03T14:00:00"), 102, "ALIGNED_BULLISH"),
         )
         self.assertEqual(
-            self.compute(hourly, bucket_kind="HOUR_OF_DAY_UTC", bucket_value=14).sample_count,
+            self.compute(mondays, bucket_kind="HOUR_OF_DAY_UTC", bucket_value=14).sample_count,
             3,
         )
         self.assertEqual(
-            self.compute(hourly, bucket_kind="DAY_OF_WEEK_UTC", bucket_value=0, regime=None).sample_count,
+            self.compute(mondays, bucket_kind="DAY_OF_WEEK_UTC", bucket_value=0, regime=None).sample_count,
             3,
         )
 
