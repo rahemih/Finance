@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "mode": "P12_MARKET_MEMORY_VERSIONED_REPLAY",
+  "required_policy_components": [
+    "P12_A_KNOWLEDGE_GRAPH",
+    "P12_B_CONDITIONAL_CORRELATION",
+    "P12_C_LEAD_LAG",
+    "P12_D_EVENT_STUDY",
+    "P12_E_HISTORICAL_ANALOG",
+    "P12_F_SEASONALITY",
+    "P12_G_ATTRIBUTION_GUARDRAIL"
+  ],
+  "required_replay_output_components": [
+    "P12_B_CONDITIONAL_CORRELATION",
+    "P12_C_LEAD_LAG",
+    "P12_D_EVENT_STUDY",
+    "P12_E_HISTORICAL_ANALOG",
+    "P12_F_SEASONALITY",
+    "P12_G_ATTRIBUTION_GUARDRAIL"
+  ],
+  "hash_algorithm": "SHA256",
+  "require_p06_replay_snapshot": true,
+  "anti_lookahead_owner": "P06_G_REPLAY_SNAPSHOT",
+  "end_to_end_decision_replay_owner": "P19",
+  "production_memory_version_store_vendor": "NOT_SELECTED",
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
