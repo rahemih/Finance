@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12G_ATTRIBUTION_GUARDRAIL_BASELINE",
+  "task_id": "FIN-P12-WG-001",
+  "linear": "HOS-258",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WG-001-01",
+  "canonical_base": "7c0dc7b48d98965352ecfc5b2bd1427af3f8396a",
+  "canonical_edges_remain_unattributed": true,
+  "likely_driver_is_causal_proof": false,
+  "narrative_labels_are_probability": false,
+  "correlation_alone_is_driver": false,
+  "temporal_precedence_alone_is_driver": false,
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_workstream": "P12-H",
+  "next_workstream_state": "BLOCKED_UNTIL_P12G_CANONICAL_COMPLETE"
+}
