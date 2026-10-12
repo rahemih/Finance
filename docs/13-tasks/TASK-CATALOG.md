@@ -202,6 +202,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P12-WE-001 | P12 | Historical Analogs | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P12-WE-001.json` | RELEASED |
 
+| FIN-P12-WF-001 | P12 | Seasonality | HIGH | ACTIVE | `contracts/tasks/FIN-P12-WF-001.json` | LOCK-FIN-P12-WF-001-01 / ACQUIRED |
+
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
 
