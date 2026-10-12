@@ -198,7 +198,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P12-WC-001 | P12 | Lead / Lag Analysis | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P12-WC-001.json` | RELEASED |
 
-| FIN-P12-WD-001 | P12 | Event Studies | HIGH | ACTIVE | `contracts/tasks/FIN-P12-WD-001.json` | LOCK-FIN-P12-WD-001-01 / ACQUIRED |
+| FIN-P12-WD-001 | P12 | Event Studies | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P12-WD-001.json` | RELEASED |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
