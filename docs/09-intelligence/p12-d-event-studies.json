@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P12D_EVENT_STUDY_BASELINE",
   "task_id": "FIN-P12-WD-001",
   "linear": "HOS-255",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P12-WD-001-01",
   "canonical_base": "787c8264b3537199a5d66e8ec15741d00b78b584",
   "event_response_is_causation": false,
@@ -13,5 +13,14 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P12-E",
-  "next_workstream_state": "BLOCKED_UNTIL_P12D_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 252,
+  "superseded_governance_run": 38137932893,
+  "final_implementation_head": "2acb69040910b32e2e7a6952d1195dcd06804ada",
+  "implementation_governance_run": 38138140980,
+  "implementation_artifact_sha256": "b581ccd9e78d2dce2a25c77c3d01e5ea8f220f31727134a742b396dc89f0362c",
+  "implementation_merge_sha": "5d76fb76da1148758b86300a5d51c969d161754f",
+  "post_merge_governance_run": 38138267986,
+  "post_merge_branch_hygiene_run": 38138267963
 }
