@@ -278,6 +278,10 @@ def assess_attribution(
     source_is_driver_kind = source_node.node_kind in policy.driver_source_node_kinds
 
     reasons: set[str] = set()
+    if not source_is_driver_kind:
+        reasons.add("SOURCE_KIND_NOT_DRIVER_ELIGIBLE")
+    if not driver_context_present:
+        reasons.add("NO_DRIVER_CONTEXT_EDGE")
     if not ordered:
         reasons.add("NO_EVIDENCE_EDGES")
     if total_samples < policy.minimum_context_sample_count:
