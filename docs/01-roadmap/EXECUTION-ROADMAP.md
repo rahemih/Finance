@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WG-001
-- active lock: LOCK-FIN-P12-WG-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1064,8 +1064,8 @@ P12-G is READY_NOT_STARTED.
 ### P12-G — Attribution Guardrails
 Task: `FIN-P12-WG-001`  
 Linear: `HOS-258`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WG-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WG-001-01` / RELEASED  
 Canonical base: `7c0dc7b48d98965352ecfc5b2bd1427af3f8396a`
 
 Scope:
@@ -1076,7 +1076,19 @@ Scope:
 - event/context requirement for LIKELY_DRIVER;
 - deterministic reason codes and evidence ordering.
 
-P12-H remains BLOCKED until P12-G is CANONICAL_COMPLETE.
+P12-H is READY_NOT_STARTED.
+
+### P12-G canonical closure — 2026-10-12
+- implementation PR: #258 / MERGED
+- final implementation head: `378f1d712b4de48cc64e587a84507823d1d2aef1`
+- implementation Governance: `38223562855` = SUCCESS
+- implementation artifact: `sha256:26fccbf31c653ecf87161a33f6283f1bbdc2efc8cd7aea6e593e4b366e070885`
+- implementation merge SHA: `07d082f397e58b944722d38910fa3ca84dece3cf`
+- post-merge Governance: `38223827419` = SUCCESS
+- post-merge Branch Hygiene: `38223827467` = SUCCESS
+- task: `FIN-P12-WG-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WG-001-01 = RELEASED`
+- next workstream: `P12-H = READY_NOT_STARTED`
 
 Safety:
 - LIKELY_DRIVER is narrative evidence, not causal proof;
