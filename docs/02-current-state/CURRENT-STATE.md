@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P12 — Market Memory & Knowledge Graph / ACTIVE  
-Current Workstream: none — P12-F CANONICAL_COMPLETE; P12-G READY_NOT_STARTED  
+Current Workstream: P12-G — Attribution Guardrails / IMPLEMENTATION_ACTIVE  
 Previous Workstream: P11-H — Evaluation / Adversarial Tests / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -53,7 +53,7 @@ P08 state: CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPL
 P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPLETE / P09-C CANONICAL_COMPLETE / P09-D CANONICAL_COMPLETE / P09-E CANONICAL_COMPLETE / P09-F CANONICAL_COMPLETE / P09-G CANONICAL_COMPLETE / P09-H CANONICAL_COMPLETE  
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
-P12 state: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G READY_NOT_STARTED / P12-H BLOCKED_BEHIND_P12G_SEQUENCE  
+P12 state: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G IMPLEMENTATION_ACTIVE / P12-H BLOCKED_BEHIND_P12G_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -167,8 +167,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P12-WG-001`  
+Active lock: `LOCK-FIN-P12-WG-001-01` / ACQUIRED  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -4944,3 +4944,30 @@ P12-F canonical closure evidence:
 - FIN-P12-WF-001 = CANONICAL_COMPLETE
 - LOCK-FIN-P12-WF-001-01 = RELEASED
 - P12-G = READY_NOT_STARTED
+
+
+## P12-G — Attribution Guardrails
+
+Task: `FIN-P12-WG-001`  
+Linear: `HOS-258`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WG-001-01` / ACQUIRED  
+Canonical base: `7c0dc7b48d98965352ecfc5b2bd1427af3f8396a`
+
+P12-F is CANONICAL_COMPLETE. P12-G owns the active governed task/lock. P12-H remains blocked until P12-G reaches CANONICAL_COMPLETE.
+
+Scope:
+- separate narrative-attribution assessment layer over immutable graph evidence;
+- LIKELY_DRIVER / SUPPORTING_FACTOR / CONTEXT_ONLY / INSUFFICIENT_EVIDENCE;
+- independent evidence-family, sample, uncertainty and strength guardrails;
+- stronger labels require directional coherence;
+- LIKELY_DRIVER requires event/context source plus driver-context evidence;
+- canonical GraphEdge attribution remains UNATTRIBUTED.
+
+Safety:
+- LIKELY_DRIVER is not causal proof;
+- correlation/temporal precedence alone cannot produce LIKELY_DRIVER;
+- narrative labels are not probability;
+- no signal/risk/execution authority;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

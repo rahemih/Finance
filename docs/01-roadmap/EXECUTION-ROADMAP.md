@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P12-WG-001
+- active lock: LOCK-FIN-P12-WG-001-01 / ACQUIRED
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1060,6 +1060,31 @@ P12-G is READY_NOT_STARTED.
 - task: `FIN-P12-WF-001 = CANONICAL_COMPLETE`
 - lock: `LOCK-FIN-P12-WF-001-01 = RELEASED`
 - next workstream: `P12-G = READY_NOT_STARTED`
+
+### P12-G — Attribution Guardrails
+Task: `FIN-P12-WG-001`  
+Linear: `HOS-258`  
+State: IMPLEMENTATION_ACTIVE  
+Lock: `LOCK-FIN-P12-WG-001-01` / ACQUIRED  
+Canonical base: `7c0dc7b48d98965352ecfc5b2bd1427af3f8396a`
+
+Scope:
+- immutable P12-A graph edges remain UNATTRIBUTED;
+- separate narrative attribution assessment;
+- LIKELY_DRIVER / SUPPORTING_FACTOR / CONTEXT_ONLY / INSUFFICIENT_EVIDENCE;
+- independent-family, sample, uncertainty, strength and direction guardrails;
+- event/context requirement for LIKELY_DRIVER;
+- deterministic reason codes and evidence ordering.
+
+P12-H remains BLOCKED until P12-G is CANONICAL_COMPLETE.
+
+Safety:
+- LIKELY_DRIVER is narrative evidence, not causal proof;
+- correlation/temporal precedence alone cannot qualify a driver;
+- narrative labels are not probability;
+- no signal/risk/execution authority;
+- LIVE_TRADING: DISABLED;
+- AUTO_TRADING: DISABLED.
 
 Safety:
 - seasonality is not causation or probability;
