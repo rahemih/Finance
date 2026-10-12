@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WF-001
-- active lock: LOCK-FIN-P12-WF-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1034,8 +1034,8 @@ P12-F is READY_NOT_STARTED.
 ### P12-F — Seasonality
 Task: `FIN-P12-WF-001`  
 Linear: `HOS-257`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WF-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WF-001-01` / RELEASED  
 Canonical base: `eb054db8022ad75133b6337286c1d8815a4308f0`
 
 Scope:
@@ -1047,7 +1047,19 @@ Scope:
 - provenance and source dataset versions;
 - no exchange/session/holiday calendar semantics.
 
-P12-G remains BLOCKED until P12-F is CANONICAL_COMPLETE.
+P12-G is READY_NOT_STARTED.
+
+### P12-F canonical closure — 2026-10-12
+- implementation PR: #256 / MERGED
+- final implementation head: `570eecfb4ec4197998a01fdb1469b6789758b54e`
+- implementation Governance: `38222075697` = SUCCESS
+- implementation artifact: `sha256:a8a50677ab155097e92b963f81dde275540aa7f6921ec7454c1eee06a8f48198`
+- implementation merge SHA: `56d15e598a9aeb8b1c519bf7f9fc2fabeb3909a6`
+- post-merge Governance: `38222323292` = SUCCESS
+- post-merge Branch Hygiene: `38222323322` = SUCCESS
+- task: `FIN-P12-WF-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WF-001-01 = RELEASED`
+- next workstream: `P12-G = READY_NOT_STARTED`
 
 Safety:
 - seasonality is not causation or probability;
