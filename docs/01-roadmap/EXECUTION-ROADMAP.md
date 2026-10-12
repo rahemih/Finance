@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WE-001
-- active lock: LOCK-FIN-P12-WE-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1004,8 +1004,8 @@ P12-E is READY_NOT_STARTED.
 ### P12-E — Historical Analogs
 Task: `FIN-P12-WE-001`  
 Linear: `HOS-256`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WE-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WE-001-01` / RELEASED  
 Canonical base: `1614a47ce81f92cf5cb09e9af46a4ee4a815937a`
 
 Scope:
@@ -1017,7 +1017,19 @@ Scope:
 - coverage and uncertainty metadata;
 - CAPITAL_FLOW feature support.
 
-P12-F remains BLOCKED until P12-E is CANONICAL_COMPLETE.
+P12-F is READY_NOT_STARTED.
+
+### P12-E canonical closure — 2026-10-12
+- implementation PR: #254 / MERGED
+- final implementation head: `bf2ad0f03283206c4a25151c7fe88de9f940a882`
+- implementation Governance: `38220874496` = SUCCESS
+- implementation artifact: `sha256:2b7b6d7a74f2af503c39a770e0f84a4c0db3d0dd4eb779b7759afac8a58cf39e`
+- implementation merge SHA: `e6a3550ca05363dd15ccba79a4ceffa7ca2d535b`
+- post-merge Governance: `38221033638` = SUCCESS
+- post-merge Branch Hygiene: `38221033679` = SUCCESS
+- task: `FIN-P12-WE-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WE-001-01 = RELEASED`
+- next workstream: `P12-F = READY_NOT_STARTED`
 
 Safety:
 - historical similarity is not probability;

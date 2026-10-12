@@ -3,7 +3,7 @@
   "kind": "NEXUS_QUANT_P12E_HISTORICAL_ANALOG_BASELINE",
   "task_id": "FIN-P12-WE-001",
   "linear": "HOS-256",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P12-WE-001-01",
   "canonical_base": "1614a47ce81f92cf5cb09e9af46a4ee4a815937a",
   "historical_only": true,
@@ -13,5 +13,13 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_workstream": "P12-F",
-  "next_workstream_state": "BLOCKED_UNTIL_P12E_CANONICAL_COMPLETE"
+  "next_workstream_state": "READY_NOT_STARTED",
+  "lock_state": "RELEASED",
+  "implementation_pr": 254,
+  "final_implementation_head": "bf2ad0f03283206c4a25151c7fe88de9f940a882",
+  "implementation_governance_run": 38220874496,
+  "implementation_artifact_sha256": "2b7b6d7a74f2af503c39a770e0f84a4c0db3d0dd4eb779b7759afac8a58cf39e",
+  "implementation_merge_sha": "e6a3550ca05363dd15ccba79a4ceffa7ca2d535b",
+  "post_merge_governance_run": 38221033638,
+  "post_merge_branch_hygiene_run": 38221033679
 }
