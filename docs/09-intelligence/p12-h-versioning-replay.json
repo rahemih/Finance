@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P12H_VERSIONING_REPLAY_BASELINE",
+  "task_id": "FIN-P12-WH-001",
+  "linear": "HOS-259",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "lock": "LOCK-FIN-P12-WH-001-01",
+  "canonical_base": "1eace688861d6010ec3be3d3415087edb04e9a03",
+  "p06_replay_snapshot_required": true,
+  "anti_lookahead_owner": "P06_G_REPLAY_SNAPSHOT",
+  "end_to_end_decision_replay_owner": "P19",
+  "production_memory_version_store_vendor": "NOT_SELECTED",
+  "network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_phase": "P13",
+  "next_phase_state": "BLOCKED_UNTIL_P12_CANONICAL_COMPLETE_AND_OWNER_AUTHORIZATION"
+}
