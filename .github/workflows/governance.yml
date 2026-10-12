@@ -711,6 +711,15 @@ jobs:
           cmp build/p12d-a.json build/p12d-b.json
           sha256sum build/p12d-a.json
 
+      - name: P12-E deterministic historical analog evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12e_evidence.py --output build/p12e-a.json
+          PYTHONPATH=. python scripts/ci/p12e_evidence.py --output build/p12e-b.json
+          cmp build/p12e-a.json build/p12e-b.json
+          sha256sum build/p12e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

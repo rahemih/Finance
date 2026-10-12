@@ -1,0 +1,120 @@
+{
+  "task_id": "FIN-P12-WE-001",
+  "phase": "P12",
+  "workstream": "WE",
+  "objective": "Implement deterministic regime-aware historical analog retrieval over versioned market-memory feature states without future-outcome leakage, probability claims or trade authority.",
+  "scope": [
+    "Define canonical versioned feature-state contract",
+    "Require timestamp, regime, signed basis-point features, provenance and source dataset versions",
+    "Compute deterministic normalized feature distance and similarity basis points",
+    "Require exact regime matching by default",
+    "Require governed minimum shared feature count",
+    "Emit deterministic coverage and uncertainty metadata",
+    "Rank governed top-K historical candidates with stable tie-breaks",
+    "Reject candidates not strictly earlier than query as-of",
+    "Reject duplicate candidate identity and timestamp",
+    "Support CIRA capital-flow feature context",
+    "Generate deterministic offline P12-E evidence"
+  ],
+  "out_of_scope": [
+    "Future outcome aggregation",
+    "Seasonality (P12-F)",
+    "Causal attribution (P12-G)",
+    "Replay/version validation (P12-H)",
+    "Empirical probability, forecast certainty, risk approval or execution"
+  ],
+  "dependencies": [
+    "P12-D CANONICAL_COMPLETE",
+    "P12-D closure merge 1614a47ce81f92cf5cb09e9af46a4ee4a815937a",
+    "P12-D closure post-merge Governance 38220322480 SUCCESS",
+    "P12-D closure Branch Hygiene 38220322465 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "config/market-memory/**",
+    "packages/market_memory/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P12-WE-001.json",
+    "config/market-memory/historical-analog-policy.json",
+    "packages/market_memory/historical_analog.py",
+    "packages/market_memory/__init__.py",
+    "tests/p12/test_historical_analog.py",
+    "scripts/ci/p12e_evidence.py",
+    "docs/09-intelligence/P12-E-HISTORICAL-ANALOGS.md",
+    "docs/09-intelligence/p12-e-historical-analogs.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": ["A0","A3","A4","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Identical feature state yields 10000 similarity basis points",
+    "Known feature distance yields deterministic similarity basis points",
+    "Exact regime mismatch is excluded",
+    "Candidate as-of not strictly earlier than query fails closed",
+    "Duplicate candidate identity or timestamp fails closed",
+    "Insufficient shared features are excluded and all-insufficient input fails closed",
+    "Top-K ranking is deterministic and input-order independent",
+    "Coverage and uncertainty are deterministic",
+    "CAPITAL_FLOW feature is governed",
+    "Future outcome/probability/trade authority fields are absent",
+    "P12-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P12-D canonical closure",
+    "Deterministic P12-E historical-analog evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-256 reconciliation"
+  ],
+  "rollback": "Revert P12-E policy/module/tests/evidence/CI/state changes; P12-D remains canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P12-D CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Historical analog engine implemented",
+    "Future-outcome leakage guard enforced",
+    "Similarity remains descriptive, not probability",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P12-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-256 Done",
+    "P12-F READY_NOT_STARTED"
+  ]
+}
