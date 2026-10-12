@@ -729,6 +729,15 @@ jobs:
           cmp build/p12f-a.json build/p12f-b.json
           sha256sum build/p12f-a.json
 
+      - name: P12-G deterministic attribution guardrail evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p12g_evidence.py --output build/p12g-a.json
+          PYTHONPATH=. python scripts/ci/p12g_evidence.py --output build/p12g-b.json
+          cmp build/p12g-a.json build/p12g-b.json
+          sha256sum build/p12g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
