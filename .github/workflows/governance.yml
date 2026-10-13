@@ -837,6 +837,15 @@ jobs:
           cmp build/p14a-a.json build/p14a-b.json
           sha256sum build/p14a-a.json
 
+      - name: P14-B deterministic weighted evidence fusion twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p14b_evidence.py --output build/p14b-a.json
+          PYTHONPATH=. python scripts/ci/p14b_evidence.py --output build/p14b-b.json
+          cmp build/p14b-a.json build/p14b-b.json
+          sha256sum build/p14b-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14B_WEIGHTED_EVIDENCE_FUSION",
+  "task_id": "FIN-P14-WB-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "minimum_directional_independent_groups": 3,
+  "minimum_source_families": 2,
+  "group_vote_cap": 1,
+  "representative_selection": "MAX_ABS_QUALITY_ADJUSTED_THEN_EVIDENCE_ID",
+  "family_prior_weights_enabled": false,
+  "llm_weighting_authority": false,
+  "fusion_score_semantics": "SIGNED_EVIDENCE_SCORE_NOT_PROBABILITY",
+  "empirical_probability_in_scope": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

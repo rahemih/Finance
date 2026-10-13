@@ -1,0 +1,129 @@
+{
+  "task_id": "FIN-P14-WB-001",
+  "phase": "P14",
+  "workstream": "WB",
+  "objective": "Implement deterministic quality-weighted, independence-capped evidence fusion over the canonical P14-A EvidenceBundle without treating the fusion score as calibrated probability or trade authority.",
+  "scope": [
+    "Consume canonical P14-A EvidenceBundle",
+    "Preserve hard-veto as a non-bypassable BLOCKED state",
+    "Exclude expired evidence from fusion while preserving excluded evidence identities",
+    "Collapse evidence by independence_group so each group contributes at most one representative",
+    "Select representative deterministically by maximum absolute quality-adjusted strength then evidence_id",
+    "Compute deterministic integer signed fusion score across independent representatives",
+    "Expose supporting/opposing/neutral groups and source-family coverage",
+    "Require at least three directional independent groups and at least two source families for FUSED state",
+    "Generate deterministic offline P14-B evidence"
+  ],
+  "out_of_scope": [
+    "Empirical probability/calibration (P14-C)",
+    "Sample-size/confidence-interval/regime-similarity uncertainty (P14-D)",
+    "TP/Stop outcome probabilities (P14-E)",
+    "Persian explainability (P14-F)",
+    "Independent Red-Team challenge (P14-G)",
+    "Signal output contract (P14-H)",
+    "G7 signal validation gate (P14-I)",
+    "Portfolio risk, position sizing, risk approval or execution"
+  ],
+  "dependencies": [
+    "P14-A CANONICAL_COMPLETE",
+    "P14-A closure merge f537339328244bcf5c0f75a1694fc92fcc8e8fbd",
+    "P14-A closure post-merge Governance 38396122713 SUCCESS",
+    "P14-A closure Branch Hygiene 38396122632 SUCCESS",
+    "Fresh Live Guard: open PR none, active task none, active lock none"
+  ],
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P14-WB-001.json",
+    "config/signal-intelligence/weighted-evidence-fusion-policy.json",
+    "packages/signal_intelligence/__init__.py",
+    "packages/signal_intelligence/weighted_fusion.py",
+    "tests/p14/test_weighted_fusion.py",
+    "scripts/ci/p14b_evidence.py",
+    "docs/09-intelligence/P14-B-WEIGHTED-EVIDENCE-FUSION.md",
+    "docs/09-intelligence/p14-b-weighted-evidence-fusion.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "packages/risk/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Three independent directional groups across at least two source families produce FUSED",
+    "Evidence sharing one independence_group contributes at most one representative",
+    "Representative selection is deterministic and content-based",
+    "Expired evidence is excluded and its identity preserved",
+    "Hard veto returns BLOCKED without fusion score",
+    "Insufficient directional groups or source-family diversity returns INSUFFICIENT_EVIDENCE",
+    "Input order does not change result identity",
+    "No family-prior or LLM weighting is allowed",
+    "Fusion score is explicitly non-probabilistic",
+    "P14-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network/credentials required",
+    "No execution imports",
+    "No empirical probability authority",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P14-A canonical closure",
+    "Deterministic P14-B fusion evidence",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-270 reconciliation"
+  ],
+  "rollback": "Revert P14-B module/policy/tests/evidence/CI/state changes; P14-A remains canonical and P14-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P14-A CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Weighted evidence fusion implemented",
+    "Independence cap and expiry/veto behavior enforced",
+    "Fusion remains non-probabilistic",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P14-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-270 Done",
+    "P14-C READY_NOT_STARTED"
+  ]
+}
