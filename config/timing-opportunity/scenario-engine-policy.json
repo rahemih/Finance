@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_CONDITIONAL_SCENARIO_FRAMING",
+  "scenario_kinds": ["CONTINUATION", "DETERIORATION", "INVALIDATION"],
+  "actionable_expiry_state": "ACTIVE",
+  "required_upstream_decision": "TIMING_ELIGIBLE",
+  "blocked_expiry_states": ["EXPIRED", "NO_CHASE", "BLOCKED_BY_NO_TRADE"],
+  "scenario_probability_in_scope": false,
+  "confidence_score_in_scope": false,
+  "price_target_in_scope": false,
+  "position_sizing_in_scope": false,
+  "risk_approval_in_scope": false,
+  "execution_authority": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
