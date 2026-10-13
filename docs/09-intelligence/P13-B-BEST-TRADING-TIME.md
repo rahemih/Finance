@@ -1,8 +1,9 @@
 # P13-B — Best Trading Time Engine
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WB-001`  
-Linear: `HOS-262`
+Linear: `HOS-262`  
+Lock: `LOCK-FIN-P13-WB-001-01` / RELEASED
 
 ## Objective
 
@@ -40,3 +41,16 @@ Best-window selection is allowed only inside one homogeneous asset/strategy/time
 - no risk approval or execution authority;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #267 = MERGED
+- implementation head `0172ba32317ef0ffbadd955d0fafe63937a1cfd0`
+- implementation Governance `38371472503` = SUCCESS
+- implementation artifact `sha256:8e5634f1c7bf934baea678c4bfbd495e8454dec792d98ccf7295bcbbbf32b36b`
+- implementation merge SHA `daafaa603b91028b8e1dbd755a9d8774b623eb96`
+- post-merge Governance `38371665584` = SUCCESS
+- Branch Hygiene `38371666341` = SUCCESS
+- implementation branch = DELETED
+- P13-C = READY_NOT_STARTED
