@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P13 — Timing & Opportunity / ACTIVE  
-Current Workstream: none — P13-G CANONICAL_COMPLETE; P13-H READY_NOT_STARTED  
+Current Workstream: P13-H — Timing / Ranking Validation / IN_PROGRESS  
 Previous Workstream: P13-G — Scenario Engine / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -54,7 +54,7 @@ P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPL
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
-P13 state: ACTIVE / P13-A..P13-G CANONICAL_COMPLETE / P13-H READY_NOT_STARTED  
+P13 state: ACTIVE / P13-A..P13-G CANONICAL_COMPLETE / P13-H IN_PROGRESS  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -168,8 +168,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P13-WH-001`  
+Active lock: `LOCK-FIN-P13-WH-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5328,3 +5328,24 @@ P13-G canonical closure evidence:
 - FIN-P13-WG-001 = CANONICAL_COMPLETE
 - LOCK-FIN-P13-WG-001-01 = RELEASED
 - P13-H = READY_NOT_STARTED
+
+
+## P13-H — Timing / Ranking Validation
+
+Task: `FIN-P13-WH-001`  
+Linear: `HOS-268`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P13-WH-001-01` / ACTIVE  
+Canonical base: `ee2a293477eab17ae0997f1f177fcc207bbea4fd`
+
+Scope:
+- integrated validation across P13-A..P13-G;
+- session/timing/candidate/ranking/no-trade/expiry/scenario coherence;
+- deterministic PASS evidence for canonical fixture;
+- mismatches fail closed;
+- no new probability/risk/execution authority.
+
+Safety:
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED;
+- probability/sizing/risk approval/execution authority = NONE.
