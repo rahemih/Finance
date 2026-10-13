@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14E_TP_STOP_OUTCOME_PROBABILITIES",
+  "task_id": "FIN-P14-WE-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "outcomes": [
+    "TP_FIRST",
+    "STOP_FIRST",
+    "NEITHER"
+  ],
+  "probability_estimator": "RAW_EMPIRICAL_FREQUENCY",
+  "distribution_scale_bps": 10000,
+  "ambiguous_path_behavior": "REJECT",
+  "general_probability_relationship": "SEPARATE_CONTEXT_NOT_EQUALITY_CONSTRAINT",
+  "synthetic_prior_enabled": false,
+  "smoothing_enabled": false,
+  "llm_probability_authority": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "position_management_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

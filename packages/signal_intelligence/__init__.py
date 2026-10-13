@@ -31,6 +31,17 @@ from .probability_uncertainty import (
     qualify_probability_uncertainty,
 )
 
+from .tp_stop_probability import (
+    BarrierPlanContext,
+    TPStopObservation,
+    TPStopOutcomeProbability,
+    TPStopProbabilityError,
+    TPStopProbabilityModel,
+    TPStopProbabilityPolicy,
+    build_tp_stop_model,
+    estimate_tp_stop_probabilities,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -55,4 +66,12 @@ __all__ = [
     "ProbabilityUncertaintyQualification",
     "RegimeSimilarityEvidence",
     "qualify_probability_uncertainty",
+    "BarrierPlanContext",
+    "TPStopObservation",
+    "TPStopOutcomeProbability",
+    "TPStopProbabilityError",
+    "TPStopProbabilityModel",
+    "TPStopProbabilityPolicy",
+    "build_tp_stop_model",
+    "estimate_tp_stop_probabilities",
 ]

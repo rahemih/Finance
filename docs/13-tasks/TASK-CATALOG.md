@@ -223,6 +223,7 @@ This catalog is the canonical index of governed work.
 | FIN-P14-WB-001 | P14 | Weighted Evidence Fusion | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WB-001.json` | RELEASED |
 | FIN-P14-WC-001 | P14 | Probability / Calibration Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WC-001.json` | RELEASED |
 | FIN-P14-WD-001 | P14 | Sample Size / Confidence Interval / Regime Similarity / Uncertainty | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WD-001.json` | RELEASED |
+| FIN-P14-WE-001 | P14 | TP / Stop Outcome Probabilities | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P14-WE-001.json` | `LOCK-FIN-P14-WE-001-01` ACTIVE |
 | FIN-P14-WA-001 | P14 | Evidence Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WA-001.json` | RELEASED |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |

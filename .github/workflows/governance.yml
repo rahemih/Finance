@@ -864,6 +864,15 @@ jobs:
           cmp build/p14d-a.json build/p14d-b.json
           sha256sum build/p14d-a.json
 
+      - name: P14-E deterministic TP stop outcome probabilities twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p14e_evidence.py --output build/p14e-a.json
+          PYTHONPATH=. python scripts/ci/p14e_evidence.py --output build/p14e-b.json
+          cmp build/p14e-a.json build/p14e-b.json
+          sha256sum build/p14e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

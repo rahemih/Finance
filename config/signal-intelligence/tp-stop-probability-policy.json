@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "mode": "EMPIRICAL_TP_STOP_OUTCOME_PROBABILITIES",
+  "allowed_outcomes": ["TP_FIRST", "STOP_FIRST", "NEITHER"],
+  "minimum_outcome_samples": 5,
+  "probability_scale_bps": 10000,
+  "probability_estimator": "RAW_EMPIRICAL_FREQUENCY",
+  "ambiguous_path_behavior": "REJECT",
+  "training_outcome_cutoff_behavior": "FAIL_CLOSED",
+  "prediction_cutoff_behavior": "STRICTLY_AFTER_TRAINING_CUTOFF",
+  "context_mixing_behavior": "FAIL_CLOSED",
+  "general_probability_relationship": "SEPARATE_CONTEXT_NOT_EQUALITY_CONSTRAINT",
+  "synthetic_prior_enabled": false,
+  "smoothing_enabled": false,
+  "llm_probability_authority": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "position_management_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

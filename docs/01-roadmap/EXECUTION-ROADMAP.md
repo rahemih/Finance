@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-D CANONICAL_COMPLETE / P14-E READY_NOT_STARTED / P14-F..P14-I BLOCKED_BEHIND_P14E_SEQUENCE
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-D CANONICAL_COMPLETE / P14-E IN_PROGRESS / P14-F..P14-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1630,3 +1630,14 @@ Next:
 - P14-E — TP / Stop Outcome Probabilities = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P14-E activation — 2026-10-13
+
+Task: `FIN-P14-WE-001`  
+Linear: `HOS-273`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P14-WE-001-01` / ACTIVE  
+Base: `4650d500174a28976952230825507da8e0e51c05`
+
+P14-E computes resolved TP_FIRST / STOP_FIRST / NEITHER empirical frequencies for an exact barrier-plan definition. Ambiguous price paths are rejected; general P14-C/P14-D probability remains separate context. P14-F..P14-I remain NOT_STARTED.
