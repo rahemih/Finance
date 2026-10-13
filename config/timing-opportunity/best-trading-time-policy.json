@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "mode": "CONSERVATIVE_HISTORICAL_TIMING_QUALITY",
+  "minimum_sample_count": 20,
+  "edge_min_bps": -10000,
+  "edge_max_bps": 10000,
+  "uncertainty_min_bps": 0,
+  "uncertainty_max_bps": 10000,
+  "maximum_usable_uncertainty_bps": 5000,
+  "preferred_min_adjusted_edge_bps": 100,
+  "weak_max_adjusted_edge_bps": 0,
+  "timing_classes": ["PREFERRED", "STANDARD", "WEAK", "INSUFFICIENT_EVIDENCE", "CLOSED_CONTEXT"],
+  "require_open_market_for_usable_window": true,
+  "best_window_selection_in_scope": true,
+  "opportunity_ranking_in_scope": false,
+  "no_trade_authority": false,
+  "signal_probability_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
