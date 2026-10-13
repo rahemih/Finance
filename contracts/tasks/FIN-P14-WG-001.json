@@ -3,8 +3,6 @@
   "phase": "P14",
   "workstream": "WG",
   "objective": "Implement an independent deterministic Red-Team challenge over canonical P14 analytical outputs before the final signal contract.",
-  "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
-  "linear_error": "Workspace free issue limit exceeded; GitHub execution continues and Linear must be reconciled when capacity is available.",
   "scope": [
     "Consume canonical P14-B WeightedFusionResult, P14-D ProbabilityUncertaintyQualification, P14-E TPStopOutcomeProbability and P14-F PersianSignalExplanation",
     "Fail closed on upstream blocked/insufficient states and lineage mismatches",
@@ -51,11 +49,6 @@
     "Findings and challenge identity are deterministic",
     "No probability/uncertainty mutation or final signal action exists",
     "P14-G evidence is byte-identical across two runs"
-  ],
-  "safety": [
-    "LLM empirical probability authority forbidden",
-    "LIVE_TRADING DISABLED",
-    "AUTO_TRADING DISABLED"
   ],
   "rollback": "Revert P14-G files/CI/state; P14-F remains canonical and P14-H remains unstarted.",
   "human_gate": false,
