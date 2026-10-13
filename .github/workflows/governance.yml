@@ -846,6 +846,15 @@ jobs:
           cmp build/p14b-a.json build/p14b-b.json
           sha256sum build/p14b-a.json
 
+      - name: P14-C deterministic probability calibration twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p14c_evidence.py --output build/p14c-a.json
+          PYTHONPATH=. python scripts/ci/p14c_evidence.py --output build/p14c-b.json
+          cmp build/p14c-a.json build/p14c-b.json
+          sha256sum build/p14c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

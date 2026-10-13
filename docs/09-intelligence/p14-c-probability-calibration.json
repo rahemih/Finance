@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14C_PROBABILITY_CALIBRATION",
+  "task_id": "FIN-P14-WC-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "probability_estimator": "RAW_EMPIRICAL_FREQUENCY",
+  "synthetic_prior_enabled": false,
+  "smoothing_enabled": false,
+  "anti_lookahead": true,
+  "exact_context_required": true,
+  "confidence_interval_in_scope": false,
+  "regime_similarity_uncertainty_in_scope": false,
+  "tp_stop_probability_in_scope": false,
+  "llm_probability_authority": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

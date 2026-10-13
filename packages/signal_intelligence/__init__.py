@@ -11,6 +11,17 @@ from .weighted_fusion import (
     WeightedFusionResult,
     fuse_evidence,
 )
+from .probability_calibration import (
+    CalibratedProbability,
+    CalibrationCell,
+    CalibrationContext,
+    CalibrationModel,
+    CalibrationObservation,
+    ProbabilityCalibrationError,
+    ProbabilityCalibrationPolicy,
+    build_calibration_model,
+    calibrate_probability,
+)
 
 __all__ = [
     "EvidenceBundle",
@@ -22,4 +33,13 @@ __all__ = [
     "WeightedFusionPolicy",
     "WeightedFusionResult",
     "fuse_evidence",
+    "CalibratedProbability",
+    "CalibrationCell",
+    "CalibrationContext",
+    "CalibrationModel",
+    "CalibrationObservation",
+    "ProbabilityCalibrationError",
+    "ProbabilityCalibrationPolicy",
+    "build_calibration_model",
+    "calibrate_probability",
 ]
