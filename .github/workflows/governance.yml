@@ -825,6 +825,18 @@ jobs:
           cmp build/p13h-a.json build/p13h-b.json
           sha256sum build/p13h-a.json
 
+      - name: P14 signal intelligence unit tests
+        run: python -m unittest discover -s tests/p14 -p 'test_*.py' -v
+
+      - name: P14-A deterministic evidence contract evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p14a_evidence.py --output build/p14a-a.json
+          PYTHONPATH=. python scripts/ci/p14a_evidence.py --output build/p14a-b.json
+          cmp build/p14a-a.json build/p14a-b.json
+          sha256sum build/p14a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
