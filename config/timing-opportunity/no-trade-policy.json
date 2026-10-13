@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_TIMING_NO_TRADE_GUARDIAN",
+  "decisions": ["TIMING_ELIGIBLE", "NO_TRADE"],
+  "rankable_scanner_state": "ELIGIBLE_TIMING_CONTEXT",
+  "hard_veto_reason_codes": [
+    "CANDIDATE_NOT_ELIGIBLE",
+    "CONTRADICTORY_EVIDENCE",
+    "DEGRADED_DATA",
+    "HIGH_EVENT_RISK",
+    "POOR_LIQUIDITY",
+    "EXCESSIVE_SPREAD",
+    "STALE_EVIDENCE",
+    "EXTREME_UNCERTAINTY"
+  ],
+  "signal_expiry_computation_in_scope": false,
+  "signal_probability_in_scope": false,
+  "portfolio_risk_budget_computation_in_scope": false,
+  "position_sizing_in_scope": false,
+  "risk_approval_in_scope": false,
+  "execution_authority": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
