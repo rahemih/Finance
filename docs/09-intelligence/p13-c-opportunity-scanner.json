@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13C_OPPORTUNITY_SCANNER",
+  "task_id": "FIN-P13-WC-001",
+  "scanner_states": [
+    "ELIGIBLE_TIMING_CONTEXT",
+    "OBSERVE_ONLY",
+    "INELIGIBLE_CONTEXT"
+  ],
+  "eligible_timing_classes": [
+    "PREFERRED",
+    "STANDARD"
+  ],
+  "observe_only_timing_classes": [
+    "WEAK"
+  ],
+  "ineligible_timing_classes": [
+    "INSUFFICIENT_EVIDENCE",
+    "CLOSED_CONTEXT"
+  ],
+  "deterministic_candidate_identity": true,
+  "source_lineage_required": true,
+  "canonical_stable_ordering": true,
+  "opportunity_ranking_in_scope": false,
+  "hard_no_trade_authority": false,
+  "signal_expiry_in_scope": false,
+  "signal_probability_in_scope": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
