@@ -675,6 +675,9 @@ jobs:
           cmp build/p11h-a.json build/p11h-b.json
           sha256sum build/p11h-a.json
 
+      - name: P12 market-memory unit tests
+        run: python -m unittest discover -s tests/p12 -p 'test_*.py' -v
+
       - name: P12-A deterministic knowledge graph schema evidence twice
         shell: bash
         run: |
