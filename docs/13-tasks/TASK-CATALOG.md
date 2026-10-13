@@ -220,6 +220,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P13-WB-001 | P13 | Best Trading Time Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P13-WB-001.json` | RELEASED |
 
+| FIN-P14-WA-001 | P14 | Evidence Contract | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P14-WA-001.json` | `LOCK-FIN-P14-WA-001-01` ACTIVE |
+
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
 
