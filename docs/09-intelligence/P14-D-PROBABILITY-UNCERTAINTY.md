@@ -1,8 +1,9 @@
 # P14-D — Sample Size / Confidence Interval / Regime Similarity / Uncertainty
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WD-001`  
-Linear: `HOS-272`
+Linear: `HOS-272`  
+Lock: `LOCK-FIN-P14-WD-001-01` / RELEASED
 
 ## Objective
 
@@ -51,3 +52,16 @@ If P14-C has insufficient calibration data, P14-D does not invent a probability 
 - LLM probability/uncertainty authority = FORBIDDEN;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #289 = MERGED
+- implementation head `4da9199f63474384a9ce8a4cc645ec41cb1c037d`
+- implementation Governance `38402854339` = SUCCESS
+- implementation artifact `sha256:118e0fb5fb52879befc5c3604546b97d4fb74e527f44491009799a9658f1dc5c`
+- implementation merge SHA `da080df9d91c9a0e88fa3124f0f4a1919925a2ab`
+- post-merge Governance `38403079903` = SUCCESS
+- Branch Hygiene `38403079751` = SUCCESS
+- implementation branch = DELETED
+- P14-E = READY_NOT_STARTED
