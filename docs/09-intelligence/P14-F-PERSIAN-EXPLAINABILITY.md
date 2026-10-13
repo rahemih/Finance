@@ -1,6 +1,6 @@
 # P14-F — Persian Explainability
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WF-001`  
 Linear: `HOS-274`
 
