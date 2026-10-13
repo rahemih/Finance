@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_ORDINAL_OPPORTUNITY_RANKING",
+  "rankable_scanner_state": "ELIGIBLE_TIMING_CONTEXT",
+  "timing_class_priority": ["PREFERRED", "STANDARD"],
+  "ranking_key": ["TIMING_CLASS_PRIORITY", "ADJUSTED_EDGE_DESC", "SAMPLE_COUNT_DESC", "CANDIDATE_ID_ASC"],
+  "exclude_non_eligible": true,
+  "ranking_is_probability": false,
+  "hard_no_trade_authority": false,
+  "signal_expiry_in_scope": false,
+  "signal_probability_in_scope": false,
+  "risk_approval_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
