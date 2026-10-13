@@ -23,6 +23,14 @@ from .probability_calibration import (
     calibrate_probability,
 )
 
+from .probability_uncertainty import (
+    ProbabilityUncertaintyError,
+    ProbabilityUncertaintyPolicy,
+    ProbabilityUncertaintyQualification,
+    RegimeSimilarityEvidence,
+    qualify_probability_uncertainty,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -42,4 +50,9 @@ __all__ = [
     "ProbabilityCalibrationPolicy",
     "build_calibration_model",
     "calibrate_probability",
+    "ProbabilityUncertaintyError",
+    "ProbabilityUncertaintyPolicy",
+    "ProbabilityUncertaintyQualification",
+    "RegimeSimilarityEvidence",
+    "qualify_probability_uncertainty",
 ]
