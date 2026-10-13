@@ -76,7 +76,8 @@ Phase transition:
 - P10-G — Crypto Fundamental / On-Chain Context: CANONICAL_COMPLETE
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
-- P12 — Market Memory & Knowledge Graph: ACTIVE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C READY_NOT_STARTED
+- P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
+- P13 — Timing & Opportunity: OWNER_PHASE_AUTHORIZATION_REQUIRED / NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1166,3 +1167,44 @@ Safety:
 - no signal probability/risk/execution authority;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+## P12 — Canonical Phase Closure — 2026-10-13
+
+State: CANONICAL_COMPLETE  
+Closure base: `9ffabd45f2b2ce78877a5169ecec884188f5923b`  
+P12-A..P12-H: CANONICAL_COMPLETE  
+Active governed task: none  
+Active lock: none  
+Linear milestone: 100%
+
+Canonical closure dossier:
+- `docs/09-intelligence/P12-PHASE-CLOSURE.md`
+- `docs/09-intelligence/p12-phase-closure.json`
+
+Final workstream evidence:
+- P12-H implementation PR #260 / MERGED
+- P12-H implementation Governance `38225349567` / SUCCESS
+- P12-H implementation artifact `sha256:8fab30e6b1172055feb12af2413f8ed58d473d6b168f1ab62eac7b222673187a`
+- P12-H implementation merge `bae4cdfa94081a39977317074cdf8c2783e8fcb6`
+- P12-H post-merge Governance `38225564213` / SUCCESS
+- P12-H post-merge Branch Hygiene `38225564289` / SUCCESS
+- P12-H closure PR #261 / MERGED
+- P12-H closure Governance `38360190095` / SUCCESS
+- P12-H closure merge `9ffabd45f2b2ce78877a5169ecec884188f5923b`
+- P12-H closure post-merge Governance `38360358502` / SUCCESS
+- P12-H closure post-merge Branch Hygiene `38360358389` / SUCCESS
+
+Phase safety:
+- no P12 direct trade authority;
+- correlation and temporal precedence remain non-causal evidence;
+- LIKELY_DRIVER remains narrative evidence, not causal proof/probability;
+- P06-G anti-lookahead replay ownership preserved;
+- P19 end-to-end decision replay ownership preserved;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
+
+Phase transition:
+- P12 = CANONICAL_COMPLETE;
+- P13 = OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- P13 execution is forbidden until explicit Owner authorization.
