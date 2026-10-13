@@ -1,6 +1,6 @@
 # P13-D — Opportunity Ranking
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P13-WD-001`  
 Linear: `HOS-264`
 
