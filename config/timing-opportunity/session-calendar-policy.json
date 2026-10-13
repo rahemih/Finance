@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "mode": "UTC_VENDOR_NEUTRAL_SESSION_CALENDAR",
+  "calendar_timezone": "UTC",
+  "calendar_version": "P13-A-UTC-BASELINE-V1",
+  "market_kinds": ["CRYPTO_SPOT", "CRYPTO_FUTURES", "FOREX_SPOT"],
+  "regional_sessions": [
+    {"name": "ASIA", "start_minute_utc": 0, "end_minute_utc": 480},
+    {"name": "EUROPE", "start_minute_utc": 420, "end_minute_utc": 960},
+    {"name": "US", "start_minute_utc": 780, "end_minute_utc": 1260}
+  ],
+  "forex_sunday_open_minute_utc": 1320,
+  "forex_friday_close_minute_utc": 1320,
+  "crypto_24_7": true,
+  "holiday_calendar_in_scope": false,
+  "dynamic_dst_adjustment_in_scope": false,
+  "production_calendar_vendor": "NOT_SELECTED",
+  "best_trading_time_in_scope": false,
+  "opportunity_ranking_in_scope": false,
+  "signal_probability_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
