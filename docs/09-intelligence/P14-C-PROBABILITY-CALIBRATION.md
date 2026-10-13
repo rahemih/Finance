@@ -1,6 +1,6 @@
 # P14-C — Probability / Calibration Engine
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WC-001`  
 Linear: `HOS-271`
 
