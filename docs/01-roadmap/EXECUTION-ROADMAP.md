@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-E CANONICAL_COMPLETE / P13-F IN_PROGRESS / P13-G..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-F CANONICAL_COMPLETE / P13-G READY_NOT_STARTED / P13-H BLOCKED_BEHIND_P13G_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1382,3 +1382,26 @@ Lock: `LOCK-FIN-P13-WF-001-01` / ACTIVE
 Base: `ff49e83a886d5ea9202bfbc6dd58daf842b15d52`
 
 P13-F enforces explicit opportunity expiry and candidate-specific no-chase distance. It does not define a universal TTL/chase threshold and cannot bypass P13-E NO_TRADE. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## P13-F canonical closure — 2026-10-13
+
+Task: `FIN-P13-WF-001`  
+Linear: `HOS-266`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WF-001-01` / RELEASED
+
+Evidence:
+- implementation PR #276 = MERGED;
+- implementation head `fe010b36ef9769a9d6f21e8dd8ee6a0aa69b270e`;
+- Governance `38376810071` = SUCCESS;
+- artifact `sha256:e468e6f79e64854cc189f135a7551e2528d4ceb2640c84b544d9413d48a6bec6`;
+- merge SHA `3031ff9082efaad75005fd3a5aa1717bd8180abd`;
+- post-merge Governance `38377012542` = SUCCESS;
+- Branch Hygiene `38377012711` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P13-G — Scenario Engine = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
