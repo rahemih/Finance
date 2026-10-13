@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "mode": "QUALITY_WEIGHTED_INDEPENDENCE_CAPPED_FUSION",
+  "minimum_directional_independent_groups": 3,
+  "minimum_source_families": 2,
+  "representative_selection": "MAX_ABS_QUALITY_ADJUSTED_THEN_EVIDENCE_ID",
+  "group_vote_cap": 1,
+  "expired_evidence_behavior": "EXCLUDE_PRESERVE_ID",
+  "hard_veto_behavior": "BLOCK_NON_BYPASSABLE",
+  "family_prior_weights_enabled": false,
+  "llm_weighting_authority": false,
+  "fusion_score_semantics": "SIGNED_EVIDENCE_SCORE_NOT_PROBABILITY",
+  "empirical_probability_in_scope": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
