@@ -1,6 +1,6 @@
 # P13-H — Timing / Ranking Validation
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P13-WH-001`  
 Linear: `HOS-268`
 
