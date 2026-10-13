@@ -828,6 +828,8 @@ BUILD_INPUTS = [
     "scripts/ci/p12h_evidence.py",
     "docs/09-intelligence/P12-H-VERSIONING-REPLAY.md",
     "docs/09-intelligence/p12-h-versioning-replay.json",
+    "docs/09-intelligence/P12-PHASE-CLOSURE.md",
+    "docs/09-intelligence/p12-phase-closure.json",
     "contracts/tasks/FIN-P08-WJ-003.json",
     "research/README.md",
     "research/governance/AR-0-RESEARCH-GOVERNANCE.md",
