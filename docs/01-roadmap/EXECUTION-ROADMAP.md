@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B IN_PROGRESS / P13-C..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-B CANONICAL_COMPLETE / P13-C READY_NOT_STARTED / P13-D..P13-H BLOCKED_BEHIND_P13C_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1250,3 +1250,26 @@ Lock: `LOCK-FIN-P13-WB-001-01` / ACTIVE
 Base: `1b9276b7d542de6eb7f7f85ebcfbd6de22c62703`
 
 P13-B evaluates deterministic historical timing quality and best-window selection within a homogeneous comparison set. Opportunity ranking remains P13-D; hard no-trade remains P13-E; signal probability remains P14.
+
+
+## P13-B canonical closure — 2026-10-13
+
+Task: `FIN-P13-WB-001`  
+Linear: `HOS-262`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WB-001-01` / RELEASED
+
+Evidence:
+- implementation PR #267 = MERGED;
+- implementation head `0172ba32317ef0ffbadd955d0fafe63937a1cfd0`;
+- Governance `38371472503` = SUCCESS;
+- artifact `sha256:8e5634f1c7bf934baea678c4bfbd495e8454dec792d98ccf7295bcbbbf32b36b`;
+- merge SHA `daafaa603b91028b8e1dbd755a9d8774b623eb96`;
+- post-merge Governance `38371665584` = SUCCESS;
+- Branch Hygiene `38371666341` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P13-C — Opportunity Scanner = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
