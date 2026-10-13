@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14C_PROBABILITY_CALIBRATION",
   "task_id": "FIN-P14-WC-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "probability_estimator": "RAW_EMPIRICAL_FREQUENCY",
   "synthetic_prior_enabled": false,
   "smoothing_enabled": false,
@@ -16,5 +16,17 @@
   "position_sizing_in_scope": false,
   "execution_authority_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-271",
+  "lock": "LOCK-FIN-P14-WC-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-D",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 287,
+  "implementation_head": "23487ad14e9b543588f12f0df92e7b1b86fdc982",
+  "implementation_artifact_sha256": "8d2200c73b700091608d938b569cd188756b2faf2f41cbd7fc75a1c7fc151710",
+  "implementation_governance_run": 38400858778,
+  "implementation_merge_sha": "7074172aa98ef300ed71cc901b0f0d00f30026af",
+  "post_merge_governance_run": 38401049568,
+  "branch_hygiene_run": 38401049434
 }
