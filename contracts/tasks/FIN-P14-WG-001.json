@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P14-WG-001",
+  "phase": "P14",
+  "workstream": "WG",
+  "objective": "Implement an independent deterministic Red-Team challenge over canonical P14 analytical outputs before the final signal contract.",
+  "scope": [
+    "Consume canonical P14-B WeightedFusionResult, P14-D ProbabilityUncertaintyQualification, P14-E TPStopOutcomeProbability and P14-F PersianSignalExplanation",
+    "Fail closed on upstream blocked/insufficient states and lineage mismatches",
+    "Challenge sample support, opposing evidence, expired evidence exclusions and TP-vs-stop outcome asymmetry",
+    "Produce deterministic Red-Team findings and disposition CLEAR / CAUTION / REJECT",
+    "Preserve exact upstream probability, uncertainty, veto and explanation values",
+    "Never emit final LONG/SHORT/WAIT/NO_TRADE action",
+    "Generate deterministic offline P14-G evidence"
+  ],
+  "out_of_scope": [
+    "Final signal output contract (P14-H)",
+    "G7 signal validation (P14-I)",
+    "Probability/uncertainty mutation",
+    "Portfolio risk, position sizing, approval or downstream execution"
+  ],
+  "dependencies": [
+    "P14-F CANONICAL_COMPLETE",
+    "P14-F closure merge 247b311a2aaad524340785c7cec2f50bf3b2b969",
+    "P14-F closure post-merge Governance 38413546632 SUCCESS",
+    "P14-F closure Branch Hygiene 38413548315 SUCCESS",
+    "Fresh Live Guard: open PR none, active task none, active lock none"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "RED_TEAM_SPECIALIST",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear (sync blocked by free issue limit)"
+  ],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Blocked fusion returns REJECT",
+    "Insufficient evidence/calibration returns REJECT",
+    "Lineage mismatch fails closed",
+    "Strong qualified evidence with no challenge returns CLEAR",
+    "Opposing groups or expired evidence return CAUTION",
+    "TP probability not exceeding Stop probability returns CAUTION",
+    "Findings and challenge identity are deterministic",
+    "No probability/uncertainty mutation or final signal action exists",
+    "P14-G evidence is byte-identical across two runs"
+  ],
+  "rollback": "Revert P14-G files/CI/state; P14-F remains canonical and P14-H remains unstarted.",
+  "human_gate": false,
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P14-WG-001.json",
+    "config/signal-intelligence/red-team-challenge-policy.json",
+    "packages/signal_intelligence/__init__.py",
+    "packages/signal_intelligence/red_team_challenge.py",
+    "tests/p14/test_red_team_challenge.py",
+    "scripts/ci/p14g_evidence.py",
+    "docs/09-intelligence/P14-G-INDEPENDENT-RED-TEAM.md",
+    "docs/09-intelligence/p14-g-independent-red-team.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/risk/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ"
+  ],
+  "evidence": [
+    "P14-F canonical closure",
+    "Deterministic P14-G Red-Team evidence",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear synchronization blocker documented as BLOCKED_FREE_ISSUE_LIMIT"
+  ],
+  "definition_of_ready": [
+    "P14-F CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict",
+    "Linear sync blocker is documented and does not replace GitHub canonical truth"
+  ],
+  "definition_of_done": [
+    "Independent Red-Team challenge implemented",
+    "CLEAR / CAUTION / REJECT semantics deterministic",
+    "Upstream numeric values and lineage preserved",
+    "No final signal action or probability mutation introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P14-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear sync state remains explicitly documented until workspace capacity is restored",
+    "P14-H READY_NOT_STARTED"
+  ],
+  "security_tests": [
+    "No network/credentials required",
+    "No upstream hard-veto bypass",
+    "No probability/uncertainty mutation",
+    "No final signal action authority"
+  ],
+  "secrets": []
+}

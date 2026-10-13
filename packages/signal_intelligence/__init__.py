@@ -49,6 +49,14 @@ from .persian_explainability import (
     explain_signal_fa,
 )
 
+from .red_team_challenge import (
+    RedTeamChallenge,
+    RedTeamChallengeError,
+    RedTeamFinding,
+    RedTeamPolicy,
+    challenge_signal,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -85,4 +93,9 @@ __all__ = [
     "PersianExplainabilityPolicy",
     "PersianSignalExplanation",
     "explain_signal_fa",
+    "RedTeamChallenge",
+    "RedTeamChallengeError",
+    "RedTeamFinding",
+    "RedTeamPolicy",
+    "challenge_signal",
 ]

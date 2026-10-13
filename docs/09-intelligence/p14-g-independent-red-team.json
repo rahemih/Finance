@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14G_RED_TEAM_CHALLENGE",
+  "task_id": "FIN-P14-WG-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
+  "dispositions": [
+    "CLEAR",
+    "CAUTION",
+    "REJECT"
+  ],
+  "probability_mutation_allowed": false,
+  "uncertainty_mutation_allowed": false,
+  "final_signal_action_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
