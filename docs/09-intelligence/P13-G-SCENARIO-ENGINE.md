@@ -1,8 +1,9 @@
 # P13-G — Scenario Engine
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WG-001`  
-Linear: `HOS-267`
+Linear: `HOS-267`  
+Lock: `LOCK-FIN-P13-WG-001-01` / RELEASED
 
 ## Objective
 
@@ -37,3 +38,16 @@ Scenario IDs are deterministic SHA-256 identities over candidate, scenario kind 
 - canonical tests are offline;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #278 = MERGED
+- implementation head `2b03ff6f5ccd6161d8e9734b86a6c26f29802fab`
+- implementation Governance `38383925579` = SUCCESS
+- implementation artifact `sha256:8c74576a41d0ee1c2e73b1f51ea185527e4c03cc0d1356fe43d65a2db08024be`
+- implementation merge SHA `429857262ae47b7295b678d4dad915b080543546`
+- post-merge Governance `38384084395` = SUCCESS
+- Branch Hygiene `38384084095` = SUCCESS
+- implementation branch = DELETED
+- P13-H = READY_NOT_STARTED
