@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-B CANONICAL_COMPLETE / P14-C READY_NOT_STARTED / P14-D..P14-I BLOCKED_BEHIND_P14C_SEQUENCE
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-B CANONICAL_COMPLETE / P14-C IN_PROGRESS / P14-D..P14-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1562,3 +1562,14 @@ Next:
 - fusion score remains non-probabilistic;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P14-C activation — 2026-10-13
+
+Task: `FIN-P14-WC-001`  
+Linear: `HOS-271`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P14-WC-001-01` / ACTIVE  
+Base: `660fe4f56d1e3e2698a4f93270a606a1ff38f674`
+
+P14-C calibrates canonical P14-B FUSED scores from governed historical labeled outcomes with strict anti-lookahead and raw empirical frequency only. Confidence intervals/uncertainty remain P14-D; TP/Stop probabilities remain P14-E.
