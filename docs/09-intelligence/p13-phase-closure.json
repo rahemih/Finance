@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13_PHASE_CLOSURE",
+  "phase": "P13",
+  "title": "Timing & Opportunity",
+  "state": "CANONICAL_COMPLETE",
+  "canonical_closure_base": "b48b51843c6efc324119d59a514ed9fa177ab5a7",
+  "workstreams": {
+    "P13-A": {
+      "task_id": "FIN-P13-WA-001",
+      "linear": "HOS-261",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 265
+    },
+    "P13-B": {
+      "task_id": "FIN-P13-WB-001",
+      "linear": "HOS-262",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 267
+    },
+    "P13-C": {
+      "task_id": "FIN-P13-WC-001",
+      "linear": "HOS-263",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 270
+    },
+    "P13-D": {
+      "task_id": "FIN-P13-WD-001",
+      "linear": "HOS-264",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 272
+    },
+    "P13-E": {
+      "task_id": "FIN-P13-WE-001",
+      "linear": "HOS-265",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 274
+    },
+    "P13-F": {
+      "task_id": "FIN-P13-WF-001",
+      "linear": "HOS-266",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 276
+    },
+    "P13-G": {
+      "task_id": "FIN-P13-WG-001",
+      "linear": "HOS-267",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 278
+    },
+    "P13-H": {
+      "task_id": "FIN-P13-WH-001",
+      "linear": "HOS-268",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 280
+    }
+  },
+  "p13_h_closure": {
+    "implementation_head": "b10970eee4bc7dbda5aeccce434c89bf1638c4b9",
+    "implementation_governance_run": 38385409673,
+    "implementation_artifact_sha256": "f578447c1363d6870a237fcf529f1037166c102e2aa684e1ebc1ef7cbb833814",
+    "implementation_merge_sha": "8a4d837f77354b65259b81a4e24b41cb7e1b52d3",
+    "post_merge_governance_run": 38385580257,
+    "post_merge_branch_hygiene_run": 38385580155,
+    "closure_pr": 281,
+    "closure_merge_sha": "b48b51843c6efc324119d59a514ed9fa177ab5a7",
+    "closure_post_merge_governance_run": 38386272310,
+    "closure_post_merge_branch_hygiene_run": 38386272335
+  },
+  "all_locks_released": true,
+  "active_task": null,
+  "active_lock": null,
+  "ranking_is_probability": false,
+  "scenarios_are_probability": false,
+  "p14_probability_owner_preserved": true,
+  "p15_p16_risk_ownership_preserved": true,
+  "p20_execution_owner_preserved": true,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_phase": "P14",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
