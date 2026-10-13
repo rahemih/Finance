@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-D CANONICAL_COMPLETE / P13-E READY_NOT_STARTED / P13-F..P13-H BLOCKED_BEHIND_P13E_SEQUENCE
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-D CANONICAL_COMPLETE / P13-E IN_PROGRESS / P13-F..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1339,3 +1339,13 @@ Next:
 - P13-E — No-Trade Engine = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13-E activation — 2026-10-13
+
+Task: `FIN-P13-WE-001`  
+Linear: `HOS-265`  
+Lock: `LOCK-FIN-P13-WE-001-01` / ACTIVE  
+Base: `9f2680d2c6d539d30a7b7803473f86978a178304`
+
+P13-E implements the deterministic No-Trade Guardian for timing/intelligence context. Portfolio risk budget and capital-preservation computation remain P15/P22; independent risk approval remains P16. LIVE_TRADING and AUTO_TRADING remain DISABLED.
