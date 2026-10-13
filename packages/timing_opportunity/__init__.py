@@ -33,3 +33,21 @@ __all__ += [
     "assess_timing_window",
     "select_best_timing_window",
 ]
+
+from .opportunity_scanner import (
+    OpportunityCandidate,
+    OpportunityScanInput,
+    OpportunityScanResult,
+    OpportunityScannerError,
+    OpportunityScannerPolicy,
+    scan_opportunities,
+)
+
+__all__ += [
+    "OpportunityCandidate",
+    "OpportunityScanInput",
+    "OpportunityScanResult",
+    "OpportunityScannerError",
+    "OpportunityScannerPolicy",
+    "scan_opportunities",
+]
