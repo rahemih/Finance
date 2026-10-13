@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-B CANONICAL_COMPLETE / P14-C IN_PROGRESS / P14-D..P14-I NOT_STARTED
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-C CANONICAL_COMPLETE / P14-D READY_NOT_STARTED / P14-E..P14-I BLOCKED_BEHIND_P14D_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1573,3 +1573,26 @@ Lock: `LOCK-FIN-P14-WC-001-01` / ACTIVE
 Base: `660fe4f56d1e3e2698a4f93270a606a1ff38f674`
 
 P14-C calibrates canonical P14-B FUSED scores from governed historical labeled outcomes with strict anti-lookahead and raw empirical frequency only. Confidence intervals/uncertainty remain P14-D; TP/Stop probabilities remain P14-E.
+
+
+## P14-C canonical closure — 2026-10-13
+
+Task: `FIN-P14-WC-001`  
+Linear: `HOS-271`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P14-WC-001-01` / RELEASED
+
+Evidence:
+- implementation PR #287 = MERGED;
+- implementation head `23487ad14e9b543588f12f0df92e7b1b86fdc982`;
+- Governance `38400858778` = SUCCESS;
+- artifact `sha256:8d2200c73b700091608d938b569cd188756b2faf2f41cbd7fc75a1c7fc151710`;
+- merge SHA `7074172aa98ef300ed71cc901b0f0d00f30026af`;
+- post-merge Governance `38401049568` = SUCCESS;
+- Branch Hygiene `38401049434` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P14-D — Sample Size / Confidence Interval / Regime Similarity / Uncertainty = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
