@@ -1,0 +1,62 @@
+{
+  "task_id": "FIN-P14-WG-001",
+  "phase": "P14",
+  "workstream": "WG",
+  "objective": "Implement an independent deterministic Red-Team challenge over canonical P14 analytical outputs before the final signal contract.",
+  "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
+  "linear_error": "Workspace free issue limit exceeded; GitHub execution continues and Linear must be reconciled when capacity is available.",
+  "scope": [
+    "Consume canonical P14-B WeightedFusionResult, P14-D ProbabilityUncertaintyQualification, P14-E TPStopOutcomeProbability and P14-F PersianSignalExplanation",
+    "Fail closed on upstream blocked/insufficient states and lineage mismatches",
+    "Challenge sample support, opposing evidence, expired evidence exclusions and TP-vs-stop outcome asymmetry",
+    "Produce deterministic Red-Team findings and disposition CLEAR / CAUTION / REJECT",
+    "Preserve exact upstream probability, uncertainty, veto and explanation values",
+    "Never emit final LONG/SHORT/WAIT/NO_TRADE action",
+    "Generate deterministic offline P14-G evidence"
+  ],
+  "out_of_scope": [
+    "Final signal output contract (P14-H)",
+    "G7 signal validation (P14-I)",
+    "Probability/uncertainty mutation",
+    "Portfolio risk, position sizing, approval or downstream execution"
+  ],
+  "dependencies": [
+    "P14-F CANONICAL_COMPLETE",
+    "P14-F closure merge 247b311a2aaad524340785c7cec2f50bf3b2b969",
+    "P14-F closure post-merge Governance 38413546632 SUCCESS",
+    "P14-F closure Branch Hygiene 38413548315 SUCCESS",
+    "Fresh Live Guard: open PR none, active task none, active lock none"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "RED_TEAM_SPECIALIST",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear (sync blocked by free issue limit)"
+  ],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Blocked fusion returns REJECT",
+    "Insufficient evidence/calibration returns REJECT",
+    "Lineage mismatch fails closed",
+    "Strong qualified evidence with no challenge returns CLEAR",
+    "Opposing groups or expired evidence return CAUTION",
+    "TP probability not exceeding Stop probability returns CAUTION",
+    "Findings and challenge identity are deterministic",
+    "No probability/uncertainty mutation or final signal action exists",
+    "P14-G evidence is byte-identical across two runs"
+  ],
+  "safety": [
+    "LLM empirical probability authority forbidden",
+    "LIVE_TRADING DISABLED",
+    "AUTO_TRADING DISABLED"
+  ],
+  "rollback": "Revert P14-G files/CI/state; P14-F remains canonical and P14-H remains unstarted.",
+  "human_gate": false
+}
