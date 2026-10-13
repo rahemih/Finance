@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14B_WEIGHTED_EVIDENCE_FUSION",
   "task_id": "FIN-P14-WB-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "minimum_directional_independent_groups": 3,
   "minimum_source_families": 2,
   "group_vote_cap": 1,
@@ -15,5 +15,17 @@
   "position_sizing_in_scope": false,
   "execution_authority_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-270",
+  "lock": "LOCK-FIN-P14-WB-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-C",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 285,
+  "implementation_head": "29087b7398482044c55850e81991de7fe120e6e4",
+  "implementation_artifact_sha256": "3dec72d337c733d2a67974d50f605cc393bbf98910f6c909d50a321ac2bbdde5",
+  "implementation_governance_run": 38396954193,
+  "implementation_merge_sha": "b168d7ae5b4d70fa8806e4e25a14672776537bfb",
+  "post_merge_governance_run": 38397128341,
+  "branch_hygiene_run": 38397128088
 }
