@@ -1,0 +1,127 @@
+{
+  "task_id": "FIN-P13-WA-001",
+  "phase": "P13",
+  "workstream": "WA",
+  "objective": "Activate P13 and implement a deterministic UTC-first Session / Market Calendar service for timing context without introducing probability, ranking, risk approval or execution authority.",
+  "scope": [
+    "Define governed Crypto 24/7 and Forex 24/5 market-open semantics in UTC",
+    "Define deterministic ASIA, EUROPE and US regional session windows and overlap context",
+    "Return canonical open/closed/session-overlap context for a market timestamp",
+    "Preserve the P12-F seasonality boundary while making session/calendar semantics owned by P13-A",
+    "Keep production holiday/DST calendar vendor selection out of the canonical baseline",
+    "Generate deterministic offline P13-A evidence"
+  ],
+  "out_of_scope": [
+    "Best trading time scoring (P13-B)",
+    "Opportunity scanning (P13-C)",
+    "Opportunity ranking (P13-D)",
+    "No-trade decision engine (P13-E)",
+    "Signal expiry/no-chase (P13-F)",
+    "Scenario generation (P13-G)",
+    "Timing/ranking validation (P13-H)",
+    "Production exchange holiday calendar vendor selection",
+    "Signal probability, risk approval or execution"
+  ],
+  "dependencies": [
+    "P12 CANONICAL_COMPLETE",
+    "P12 final audit remediation HOS-260 Done",
+    "Owner P13 phase authorization granted 2026-10-13",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/market_memory/**",
+    "packages/market_data/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P13-WA-001.json",
+    "config/timing-opportunity/session-calendar-policy.json",
+    "packages/timing_opportunity/__init__.py",
+    "packages/timing_opportunity/session_calendar.py",
+    "tests/p13/__init__.py",
+    "tests/p13/test_session_calendar.py",
+    "scripts/ci/p13a_evidence.py",
+    "docs/09-intelligence/P13-A-SESSION-MARKET-CALENDAR.md",
+    "docs/09-intelligence/p13-a-session-market-calendar.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Crypto markets remain open 24/7",
+    "Forex closes Saturday and outside governed Sunday/Friday weekly boundaries",
+    "Session labels are UTC and deterministic",
+    "EUROPE/US overlap is identified deterministically",
+    "Unknown markets and invalid timestamps fail closed",
+    "Input policy rejects trade/probability/ranking authority",
+    "P13-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No production calendar vendor required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P12 canonical phase closure and final audit pass",
+    "Owner P13 phase authorization",
+    "Deterministic P13-A session/calendar evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-261 reconciliation"
+  ],
+  "rollback": "Revert P13-A policy/module/tests/evidence/CI/state changes; P12 remains canonical and P13-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P12 CANONICAL_COMPLETE",
+    "Owner P13 phase authorization granted",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Session / Market Calendar service implemented",
+    "UTC market-open and regional-session semantics enforced",
+    "P12-F boundary preserved",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P13-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-261 Done",
+    "P13-B READY_NOT_STARTED"
+  ]
+}
