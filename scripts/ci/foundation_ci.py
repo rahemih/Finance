@@ -830,6 +830,8 @@ BUILD_INPUTS = [
     "docs/09-intelligence/p12-h-versioning-replay.json",
     "docs/09-intelligence/P12-PHASE-CLOSURE.md",
     "docs/09-intelligence/p12-phase-closure.json",
+    "docs/09-intelligence/P13-PHASE-CLOSURE.md",
+    "docs/09-intelligence/p13-phase-closure.json",
     "contracts/tasks/FIN-P13-WA-001.json",
     "config/timing-opportunity/session-calendar-policy.json",
     "packages/timing_opportunity/__init__.py",
