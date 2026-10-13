@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-C CANONICAL_COMPLETE / P13-D READY_NOT_STARTED / P13-E..P13-H BLOCKED_BEHIND_P13D_SEQUENCE
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-C CANONICAL_COMPLETE / P13-D IN_PROGRESS / P13-E..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1306,3 +1306,13 @@ Next:
 - P13-D — Opportunity Ranking = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13-D activation — 2026-10-13
+
+Task: `FIN-P13-WD-001`  
+Linear: `HOS-264`  
+Lock: `LOCK-FIN-P13-WD-001-01` / ACTIVE  
+Base: `5d54ea7d8f9198ea7a922b325416d6a37367cc3a`
+
+P13-D ranks eligible P13-C candidates using deterministic ordinal evidence priority. Probability, hard no-trade, risk approval and execution remain out of scope. LIVE_TRADING and AUTO_TRADING remain DISABLED.
