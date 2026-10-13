@@ -771,6 +771,15 @@ jobs:
           cmp build/p13b-a.json build/p13b-b.json
           sha256sum build/p13b-a.json
 
+      - name: P13-C deterministic opportunity scanner evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p13c_evidence.py --output build/p13c-a.json
+          PYTHONPATH=. python scripts/ci/p13c_evidence.py --output build/p13c-b.json
+          cmp build/p13c-a.json build/p13c-b.json
+          sha256sum build/p13c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

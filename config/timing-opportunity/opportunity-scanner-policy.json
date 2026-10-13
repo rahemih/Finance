@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_TIMING_OPPORTUNITY_SCAN",
+  "eligible_timing_classes": ["PREFERRED", "STANDARD"],
+  "observe_only_timing_classes": ["WEAK"],
+  "ineligible_timing_classes": ["INSUFFICIENT_EVIDENCE", "CLOSED_CONTEXT"],
+  "candidate_states": ["ELIGIBLE_TIMING_CONTEXT", "OBSERVE_ONLY", "INELIGIBLE_CONTEXT"],
+  "require_source_lineage": true,
+  "canonical_stable_ordering": true,
+  "opportunity_ranking_in_scope": false,
+  "hard_no_trade_authority": false,
+  "signal_expiry_in_scope": false,
+  "signal_probability_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
