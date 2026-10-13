@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-F CANONICAL_COMPLETE / P13-G READY_NOT_STARTED / P13-H BLOCKED_BEHIND_P13G_SEQUENCE
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-F CANONICAL_COMPLETE / P13-G IN_PROGRESS / P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1405,3 +1405,13 @@ Next:
 - P13-G — Scenario Engine = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13-G activation — 2026-10-13
+
+Task: `FIN-P13-WG-001`  
+Linear: `HOS-267`  
+Lock: `LOCK-FIN-P13-WG-001-01` / ACTIVE  
+Base: `792d535ee095a1480f827a6ae60404641e7f42eb`
+
+P13-G frames deterministic conditional scenarios only. It emits no probability, confidence, price target, sizing, risk approval or execution authority. P13-H validation remains NOT_STARTED. LIVE_TRADING and AUTO_TRADING remain DISABLED.
