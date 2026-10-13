@@ -1,8 +1,9 @@
 # P13-E — No-Trade Engine
 
-State: CLOSURE_RECONCILIATION  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WE-001`  
-Linear: `HOS-265`
+Linear: `HOS-265`  
+Lock: `LOCK-FIN-P13-WE-001-01` / RELEASED
 
 ## Objective
 
@@ -41,3 +42,16 @@ P13-F owns signal expiry/no-chase timestamp semantics. P14 owns signal probabili
 - canonical tests are offline;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #274 = MERGED
+- implementation head `059e918d6cdad110cea45d114c91ad8e4044988e`
+- implementation Governance `38375382619` = SUCCESS
+- implementation artifact `sha256:5cc3c8958b02d408fbc954d2315cc8600fff75d0da2b41d986a76b84cda78487`
+- implementation merge SHA `7b480d847b2303869220d2ef18acee93c5c66cb5`
+- post-merge Governance `38375554474` = SUCCESS
+- Branch Hygiene `38375554374` = SUCCESS
+- implementation branch = DELETED
+- P13-F = READY_NOT_STARTED
