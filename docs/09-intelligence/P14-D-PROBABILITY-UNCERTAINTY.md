@@ -1,6 +1,6 @@
 # P14-D — Sample Size / Confidence Interval / Regime Similarity / Uncertainty
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WD-001`  
 Linear: `HOS-272`
 
