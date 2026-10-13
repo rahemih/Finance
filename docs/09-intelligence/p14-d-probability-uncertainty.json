@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14D_PROBABILITY_UNCERTAINTY",
   "task_id": "FIN-P14-WD-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "confidence_interval_method": "WILSON_SCORE_95_PERCENT",
   "probability_mutation_allowed": false,
   "sample_support_thresholds": {
@@ -23,5 +23,17 @@
   "position_sizing_in_scope": false,
   "execution_authority_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-272",
+  "lock": "LOCK-FIN-P14-WD-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-E",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 289,
+  "implementation_head": "4da9199f63474384a9ce8a4cc645ec41cb1c037d",
+  "implementation_artifact_sha256": "118e0fb5fb52879befc5c3604546b97d4fb74e527f44491009799a9658f1dc5c",
+  "implementation_governance_run": 38402854339,
+  "implementation_merge_sha": "da080df9d91c9a0e88fa3124f0f4a1919925a2ab",
+  "post_merge_governance_run": 38403079903,
+  "branch_hygiene_run": 38403079751
 }
