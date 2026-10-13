@@ -1,6 +1,6 @@
 # P13-E — No-Trade Engine
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P13-WE-001`  
 Linear: `HOS-265`
 
