@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "mode": "CROSS_DOMAIN_SIGNAL_EVIDENCE_CONTRACT",
+  "allowed_source_phases": ["P08", "P09", "P10", "P11", "P12", "P13"],
+  "allowed_source_families": [
+    "TECHNICAL",
+    "ORDER_FLOW_LIQUIDITY",
+    "FUNDAMENTAL_MACRO",
+    "NEWS_SENTIMENT",
+    "MARKET_MEMORY",
+    "TIMING_OPPORTUNITY"
+  ],
+  "allowed_directions": [-1, 0, 1],
+  "max_strength_bps": 10000,
+  "max_quality_bps": 10000,
+  "minimum_sample_count": 1,
+  "require_independence_group": true,
+  "require_valid_until_ns": true,
+  "unknown_source_behavior": "FAIL_CLOSED",
+  "expired_evidence_behavior": "PRESERVE_EXPLICIT_NOT_FRESH",
+  "hard_veto_behavior": "PRESERVE_NON_BYPASSABLE",
+  "weighted_fusion_in_scope": false,
+  "empirical_probability_in_scope": false,
+  "tp_stop_probability_in_scope": false,
+  "llm_probability_authority": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
