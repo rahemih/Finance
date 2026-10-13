@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-C CANONICAL_COMPLETE / P13-D IN_PROGRESS / P13-E..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-D CANONICAL_COMPLETE / P13-E READY_NOT_STARTED / P13-F..P13-H BLOCKED_BEHIND_P13E_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1316,3 +1316,26 @@ Lock: `LOCK-FIN-P13-WD-001-01` / ACTIVE
 Base: `5d54ea7d8f9198ea7a922b325416d6a37367cc3a`
 
 P13-D ranks eligible P13-C candidates using deterministic ordinal evidence priority. Probability, hard no-trade, risk approval and execution remain out of scope. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## P13-D canonical closure — 2026-10-13
+
+Task: `FIN-P13-WD-001`  
+Linear: `HOS-264`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WD-001-01` / RELEASED
+
+Evidence:
+- implementation PR #272 = MERGED;
+- implementation head `ce8b796d4285c1c9cd9f84e45af0b74c7e39b663`;
+- Governance `38374103096` = SUCCESS;
+- artifact `sha256:1138c9f5dedfed00d7cb3f9b3971e848e7a4a9f69909f7f503fba397184baa43`;
+- merge SHA `06483a5b36274c21284c47b601ab0055ebf7690c`;
+- post-merge Governance `38374276479` = SUCCESS;
+- Branch Hygiene `38374276764` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P13-E — No-Trade Engine = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
