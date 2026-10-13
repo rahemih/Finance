@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14F_PERSIAN_EXPLAINABILITY",
   "task_id": "FIN-P14-WF-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "language": "fa-IR",
   "rendering": "GOVERNED_TEMPLATE_ONLY",
   "probability_mutation_allowed": false,
@@ -14,5 +14,17 @@
   "position_sizing_in_scope": false,
   "execution_authority_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-274",
+  "lock": "LOCK-FIN-P14-WF-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-G",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 293,
+  "implementation_head": "20f8854a2ea142e92426d47956776ef1406961ca",
+  "implementation_artifact_sha256": "5b18bed7ae5a27ec4bb232e8b2794437226bf5f281e1e3bb09af2cd3f7064070",
+  "implementation_governance_run": 38411846344,
+  "implementation_merge_sha": "a2d34e58e16185f9882c8e9b15063542f7b515c7",
+  "post_merge_governance_run": 38412158040,
+  "branch_hygiene_run": 38412157804
 }
