@@ -1,8 +1,9 @@
 # P14-C — Probability / Calibration Engine
 
-State: CLOSURE_RECONCILIATION  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WC-001`  
-Linear: `HOS-271`
+Linear: `HOS-271`  
+Lock: `LOCK-FIN-P14-WC-001-01` / RELEASED
 
 ## Objective
 
@@ -40,3 +41,16 @@ No synthetic prior or smoothing is applied. If the selected calibration cell has
 - LLM probability authority = FORBIDDEN;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #287 = MERGED
+- implementation head `23487ad14e9b543588f12f0df92e7b1b86fdc982`
+- implementation Governance `38400858778` = SUCCESS
+- implementation artifact `sha256:8d2200c73b700091608d938b569cd188756b2faf2f41cbd7fc75a1c7fc151710`
+- implementation merge SHA `7074172aa98ef300ed71cc901b0f0d00f30026af`
+- post-merge Governance `38401049568` = SUCCESS
+- Branch Hygiene `38401049434` = SUCCESS
+- implementation branch = DELETED
+- P14-D = READY_NOT_STARTED
