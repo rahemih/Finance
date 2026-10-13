@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_P13_INTEGRATED_VALIDATION",
+  "required_check_codes": [
+    "SESSION_TIMING_COHERENCE",
+    "TIMING_CANDIDATE_COHERENCE",
+    "RANKING_COHERENCE",
+    "NO_TRADE_COHERENCE",
+    "EXPIRY_COHERENCE",
+    "SCENARIO_COHERENCE"
+  ],
+  "validation_is_probability": false,
+  "position_sizing_in_scope": false,
+  "risk_approval_in_scope": false,
+  "execution_authority": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
