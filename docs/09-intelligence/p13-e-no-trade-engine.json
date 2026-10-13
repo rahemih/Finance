@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13E_NO_TRADE_ENGINE",
+  "task_id": "FIN-P13-WE-001",
+  "decisions": [
+    "TIMING_ELIGIBLE",
+    "NO_TRADE"
+  ],
+  "hard_veto_reason_codes": [
+    "CANDIDATE_NOT_ELIGIBLE",
+    "CONTRADICTORY_EVIDENCE",
+    "DEGRADED_DATA",
+    "HIGH_EVENT_RISK",
+    "POOR_LIQUIDITY",
+    "EXCESSIVE_SPREAD",
+    "STALE_EVIDENCE",
+    "EXTREME_UNCERTAINTY"
+  ],
+  "signal_expiry_computation_in_scope": false,
+  "signal_probability_in_scope": false,
+  "portfolio_risk_budget_computation_in_scope": false,
+  "position_sizing_in_scope": false,
+  "risk_approval_in_scope": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
