@@ -750,6 +750,18 @@ jobs:
           cmp build/p12h-a.json build/p12h-b.json
           sha256sum build/p12h-a.json
 
+      - name: P13 timing opportunity unit tests
+        run: python -m unittest discover -s tests/p13 -p 'test_*.py' -v
+
+      - name: P13-A deterministic session market calendar evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p13a_evidence.py --output build/p13a-a.json
+          PYTHONPATH=. python scripts/ci/p13a_evidence.py --output build/p13a-b.json
+          cmp build/p13a-a.json build/p13a-b.json
+          sha256sum build/p13a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
