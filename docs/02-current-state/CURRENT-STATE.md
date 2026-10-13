@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P14 — Signal / Probability / Explainability / ACTIVE  
-Current Workstream: none — P14-C CANONICAL_COMPLETE; P14-D READY_NOT_STARTED  
+Current Workstream: P14-D — Sample Size / Confidence Interval / Regime Similarity / Uncertainty / IN_PROGRESS  
 Previous Workstream: P14-C — Probability / Calibration Engine / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -55,7 +55,7 @@ P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPL
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
-P14 state: ACTIVE / P14-A..P14-C CANONICAL_COMPLETE / P14-D READY_NOT_STARTED / P14-E..P14-I BLOCKED_BEHIND_P14D_SEQUENCE  
+P14 state: ACTIVE / P14-A..P14-C CANONICAL_COMPLETE / P14-D IN_PROGRESS / P14-E..P14-I NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -169,8 +169,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P14-WD-001`  
+Active lock: `LOCK-FIN-P14-WD-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5500,3 +5500,27 @@ P14-C canonical closure evidence:
 - FIN-P14-WC-001 = CANONICAL_COMPLETE
 - LOCK-FIN-P14-WC-001-01 = RELEASED
 - P14-D = READY_NOT_STARTED
+
+
+### P14-D — Sample Size / Confidence Interval / Regime Similarity / Uncertainty
+
+Task: `FIN-P14-WD-001`  
+Linear: `HOS-272`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P14-WD-001-01` / ACTIVE  
+Canonical base: `53e359a4b93f21762e98ce1d7ead503f04d68d3d`
+
+Scope:
+- deterministic 95% Wilson confidence interval around P14-C empirical probability;
+- explicit sample-support state;
+- explicit governed regime-similarity evidence and provenance;
+- conservative overall uncertainty = max(statistical interval, regime dissimilarity, regime evidence uncertainty);
+- empirical probability remains immutable;
+- P14-E TP/Stop probability remains NOT_STARTED.
+
+Safety:
+- regime similarity is not probability;
+- LLM probability/uncertainty authority = FORBIDDEN;
+- risk approval / sizing / execution authority = NONE;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
