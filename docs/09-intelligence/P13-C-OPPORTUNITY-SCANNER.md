@@ -1,8 +1,9 @@
 # P13-C — Opportunity Scanner
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WC-001`  
-Linear: `HOS-263`
+Linear: `HOS-263`  
+Lock: `LOCK-FIN-P13-WC-001-01` / RELEASED
 
 ## Objective
 
@@ -27,3 +28,16 @@ Output ordering is canonical and stable only. It is **not** opportunity ranking.
 - no risk approval or execution authority;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #270 = MERGED
+- implementation head `dcbdfceadd2fe0c2513e4666ca6ea4624458c9ff`
+- implementation Governance `38372941946` = SUCCESS
+- implementation artifact `sha256:5e75765661b0b0c257a5f75ca90a6e4bc36dc14e9d1bc9b660dfb9ef1096f107`
+- implementation merge SHA `cdbde3d847d01db3c09ced315601f028a070c052`
+- post-merge Governance `38373110107` = SUCCESS
+- Branch Hygiene `38373110028` = SUCCESS
+- implementation branch = DELETED
+- P13-D = READY_NOT_STARTED
