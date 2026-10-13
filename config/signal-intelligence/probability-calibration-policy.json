@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "mode": "EMPIRICAL_DIRECTIONAL_SUCCESS_CALIBRATION",
+  "absolute_score_bin_edges_bps": [0, 2500, 5000, 7500, 10001],
+  "minimum_calibration_samples": 5,
+  "probability_scale_bps": 10000,
+  "probability_estimator": "RAW_EMPIRICAL_FREQUENCY",
+  "synthetic_prior_enabled": false,
+  "smoothing_enabled": false,
+  "llm_probability_authority": false,
+  "training_outcome_cutoff_behavior": "FAIL_CLOSED",
+  "prediction_cutoff_behavior": "STRICTLY_AFTER_TRAINING_CUTOFF",
+  "context_mixing_behavior": "FAIL_CLOSED",
+  "confidence_interval_in_scope": false,
+  "regime_similarity_uncertainty_in_scope": false,
+  "tp_stop_probability_in_scope": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
