@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-E CANONICAL_COMPLETE / P13-F READY_NOT_STARTED / P13-G..P13-H BLOCKED_BEHIND_P13F_SEQUENCE
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-E CANONICAL_COMPLETE / P13-F IN_PROGRESS / P13-G..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1372,3 +1372,13 @@ Next:
 - P13-F — Signal Expiry / No-Chase = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13-F activation — 2026-10-13
+
+Task: `FIN-P13-WF-001`  
+Linear: `HOS-266`  
+Lock: `LOCK-FIN-P13-WF-001-01` / ACTIVE  
+Base: `ff49e83a886d5ea9202bfbc6dd58daf842b15d52`
+
+P13-F enforces explicit opportunity expiry and candidate-specific no-chase distance. It does not define a universal TTL/chase threshold and cannot bypass P13-E NO_TRADE. LIVE_TRADING and AUTO_TRADING remain DISABLED.
