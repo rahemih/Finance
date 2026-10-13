@@ -1,8 +1,9 @@
 # P13-H — Timing / Ranking Validation
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WH-001`  
-Linear: `HOS-268`
+Linear: `HOS-268`  
+Lock: `LOCK-FIN-P13-WH-001-01` / RELEASED
 
 ## Objective
 
@@ -35,3 +36,16 @@ P13-H validates existing P13 contracts. It does not introduce:
 - canonical tests are offline;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #280 = MERGED
+- implementation head `b10970eee4bc7dbda5aeccce434c89bf1638c4b9`
+- implementation Governance `38385409673` = SUCCESS
+- implementation artifact `sha256:f578447c1363d6870a237fcf529f1037166c102e2aa684e1ebc1ef7cbb833814`
+- implementation merge SHA `8a4d837f77354b65259b81a4e24b41cb7e1b52d3`
+- post-merge Governance `38385580257` = SUCCESS
+- Branch Hygiene `38385580155` = SUCCESS
+- implementation branch = DELETED
+- P13 phase closure = READY
