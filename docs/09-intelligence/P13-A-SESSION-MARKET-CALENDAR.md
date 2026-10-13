@@ -1,6 +1,6 @@
 # P13-A — Session / Market Calendar
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P13-WA-001`  
 Linear: `HOS-261`
 
@@ -32,3 +32,15 @@ P12-F keeps historical UTC seasonality ownership. P13-A owns session/calendar se
 - network/credentials not required;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure
+
+- implementation PR #265 = MERGED;
+- Governance `38369400516` = SUCCESS;
+- deterministic P13 unit tests = PASS;
+- deterministic P13-A evidence = PASS;
+- merge SHA = `6138b70824257b08c52ecb5d9d5fdacdc9528f27`;
+- post-merge Governance `38369680322` = SUCCESS;
+- Branch Hygiene `38369679759` = SUCCESS;
+- P13-B = READY_NOT_STARTED.
