@@ -163,7 +163,13 @@ def explain_signal_fa(
     uncertainty: ProbabilityUncertaintyQualification | None = None,
     outcomes: TPStopOutcomeProbability | None = None,
 ) -> PersianSignalExplanation:
+    if policy.language != "fa-IR" or policy.percentage_decimals != 2:
+        raise PersianExplainabilityError("invalid Persian explainability policy instance")
+    if policy.live_trading != "DISABLED" or policy.auto_trading != "DISABLED":
+        raise PersianExplainabilityError("P14-F cannot enable trading")
     subject = _text(fusion.subject_id, field="subject_id")
+    if fusion.as_of_time_ns < 0:
+        raise PersianExplainabilityError("as_of_time_ns must be non-negative")
     if fusion.state not in ("BLOCKED", "INSUFFICIENT_EVIDENCE", "FUSED"):
         raise PersianExplainabilityError("unsupported fusion state")
 
