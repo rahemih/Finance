@@ -1,6 +1,6 @@
 # P13-G — Scenario Engine
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P13-WG-001`  
 Linear: `HOS-267`
 
