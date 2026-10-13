@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P14 — Signal / Probability / Explainability / ACTIVE  
-Current Workstream: P14-G — Independent Red-Team Challenge / IN_PROGRESS  
-Previous Workstream: P14-F — Persian Explainability / CANONICAL_COMPLETE  
+Current Workstream: none — P14-G CANONICAL_COMPLETE; P14-H READY_NOT_STARTED  
+Previous Workstream: P14-G — Independent Red-Team Challenge / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -55,7 +55,7 @@ P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPL
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
-P14 state: ACTIVE / P14-A..P14-F CANONICAL_COMPLETE / P14-G IN_PROGRESS / P14-H..P14-I NOT_STARTED  
+P14 state: ACTIVE / P14-A..P14-G CANONICAL_COMPLETE / P14-H READY_NOT_STARTED / P14-I BLOCKED_BEHIND_P14H_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -169,8 +169,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P14-WG-001`  
-Active lock: `LOCK-FIN-P14-WG-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5639,3 +5639,31 @@ Safety:
 - final signal action = OUT_OF_SCOPE;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+### P14-G canonical closure
+
+Task: `FIN-P14-WG-001`  
+Linear: `SYNC_BLOCKED_FREE_ISSUE_LIMIT`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+Evidence:
+- implementation PR #295 = MERGED;
+- implementation Governance `38415271541` = SUCCESS;
+- artifact = `sha256:9f159da32b936bb55659a448eb5f9067e79659da31f7420dff49be5c3d7f604e`;
+- implementation merge = `be4e23889ee4bda02c994afa7ff0b293b01c29b0`;
+- post-merge Governance `38415523848` = SUCCESS;
+- Branch Hygiene `38415523798` = SUCCESS.
+
+Result:
+- deterministic independent challenge with CLEAR / CAUTION / REJECT;
+- blocked or insufficient analytical states remain fail-closed;
+- exact upstream probability/uncertainty/explanation values preserved;
+- no final signal action emitted;
+- P14-H = READY_NOT_STARTED.
+
+Linear issue creation remains blocked by the workspace free issue limit; GitHub remains canonical.
+
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.

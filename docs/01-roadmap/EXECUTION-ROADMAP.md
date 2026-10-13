@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-F CANONICAL_COMPLETE / P14-G IN_PROGRESS / P14-H..P14-I NOT_STARTED
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-G CANONICAL_COMPLETE / P14-H READY_NOT_STARTED / P14-I BLOCKED_BEHIND_P14H_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1709,3 +1709,19 @@ Lock: `LOCK-FIN-P14-WG-001-01` / ACTIVE
 Base: `247b311a2aaad524340785c7cec2f50bf3b2b969`
 
 P14-G performs an independent deterministic challenge over P14 analytical outputs. It may return CLEAR / CAUTION / REJECT but cannot alter upstream numeric values or emit the final signal action. Linear synchronization is temporarily blocked by the workspace free issue limit.
+
+
+## P14-G canonical closure — 2026-10-13
+
+`FIN-P14-WG-001` = CANONICAL_COMPLETE.  
+Lock `LOCK-FIN-P14-WG-001-01` = RELEASED.
+
+Evidence:
+- PR #295 MERGED;
+- Governance `38415271541` SUCCESS;
+- artifact `sha256:9f159da32b936bb55659a448eb5f9067e79659da31f7420dff49be5c3d7f604e`;
+- merge `be4e23889ee4bda02c994afa7ff0b293b01c29b0`;
+- post-merge Governance `38415523848` SUCCESS;
+- Branch Hygiene `38415523798` SUCCESS.
+
+P14-H is READY_NOT_STARTED. Linear synchronization remains blocked by the workspace free issue limit; GitHub remains canonical.

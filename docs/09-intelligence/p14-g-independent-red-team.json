@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14G_RED_TEAM_CHALLENGE",
   "task_id": "FIN-P14-WG-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
   "dispositions": [
     "CLEAR",
@@ -13,5 +13,13 @@
   "uncertainty_mutation_allowed": false,
   "final_signal_action_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation_pr": 295,
+  "implementation_governance_run": 38415271541,
+  "implementation_artifact_sha256": "9f159da32b936bb55659a448eb5f9067e79659da31f7420dff49be5c3d7f604e",
+  "implementation_merge_sha": "be4e23889ee4bda02c994afa7ff0b293b01c29b0",
+  "post_merge_governance_run": 38415523848,
+  "branch_hygiene_run": 38415523798,
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-H_READY_NOT_STARTED"
 }
