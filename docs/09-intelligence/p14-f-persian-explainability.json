@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14F_PERSIAN_EXPLAINABILITY",
+  "task_id": "FIN-P14-WF-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "language": "fa-IR",
+  "rendering": "GOVERNED_TEMPLATE_ONLY",
+  "probability_mutation_allowed": false,
+  "uncertainty_mutation_allowed": false,
+  "llm_freeform_numeric_authority": false,
+  "final_signal_action_in_scope": false,
+  "hard_veto_non_bypassable": true,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

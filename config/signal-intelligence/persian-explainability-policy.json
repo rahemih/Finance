@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_PERSIAN_SIGNAL_EXPLAINABILITY",
+  "language": "fa-IR",
+  "rendering": "GOVERNED_TEMPLATE_ONLY",
+  "percentage_decimals": 2,
+  "preserve_exact_upstream_values": true,
+  "hard_veto_non_bypassable": true,
+  "blocked_probability_behavior": "ABSENT",
+  "insufficient_probability_behavior": "ABSENT",
+  "llm_freeform_numeric_authority": false,
+  "probability_mutation_allowed": false,
+  "uncertainty_mutation_allowed": false,
+  "final_signal_action_in_scope": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -42,6 +42,13 @@ from .tp_stop_probability import (
     estimate_tp_stop_probabilities,
 )
 
+from .persian_explainability import (
+    PersianExplainabilityError,
+    PersianExplainabilityPolicy,
+    PersianSignalExplanation,
+    explain_signal_fa,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -74,4 +81,8 @@ __all__ = [
     "TPStopProbabilityPolicy",
     "build_tp_stop_model",
     "estimate_tp_stop_probabilities",
+    "PersianExplainabilityError",
+    "PersianExplainabilityPolicy",
+    "PersianSignalExplanation",
+    "explain_signal_fa",
 ]
