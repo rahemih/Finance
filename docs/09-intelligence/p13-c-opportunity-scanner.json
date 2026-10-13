@@ -27,5 +27,18 @@
   "signal_probability_in_scope": false,
   "execution_authority": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "state": "CANONICAL_COMPLETE",
+  "linear": "HOS-263",
+  "lock": "LOCK-FIN-P13-WC-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P13-D",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 270,
+  "implementation_head": "dcbdfceadd2fe0c2513e4666ca6ea4624458c9ff",
+  "implementation_artifact_sha256": "5e75765661b0b0c257a5f75ca90a6e4bc36dc14e9d1bc9b660dfb9ef1096f107",
+  "implementation_governance_run": 38372941946,
+  "implementation_merge_sha": "cdbde3d847d01db3c09ced315601f028a070c052",
+  "post_merge_governance_run": 38373110107,
+  "branch_hygiene_run": 38373110028
 }
