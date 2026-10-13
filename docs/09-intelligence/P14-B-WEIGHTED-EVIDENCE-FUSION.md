@@ -1,6 +1,6 @@
 # P14-B — Weighted Evidence Fusion
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WB-001`  
 Linear: `HOS-270`
 
