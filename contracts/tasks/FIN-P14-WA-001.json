@@ -1,0 +1,142 @@
+{
+  "task_id": "FIN-P14-WA-001",
+  "phase": "P14",
+  "workstream": "WA",
+  "objective": "Activate P14 and establish a deterministic cross-domain signal evidence contract over canonical P08-P13 outputs without performing evidence fusion, empirical probability calibration, risk approval, sizing or execution.",
+  "scope": [
+    "Define a governed cross-domain evidence envelope for P08 Technical, P09 Order Flow/Liquidity, P10 Fundamental/Macro, P11 News/Sentiment, P12 Market Memory and P13 Timing/Opportunity evidence",
+    "Preserve source phase/family, independence group, direction, strength, quality, sample size, regime/session/timeframe context, point-in-time timestamps and provenance",
+    "Require explicit validity deadline and expose expired evidence without silently treating it as fresh",
+    "Preserve upstream hard-veto state and reason codes so later P14 work cannot silently bypass P13 NO_TRADE or equivalent governed blocks",
+    "Provide deterministic evidence identity and canonical bundle identity",
+    "Generate deterministic offline P14-A evidence",
+    "Activate P14 governance state across GitHub and Linear"
+  ],
+  "out_of_scope": [
+    "Weighted evidence fusion (P14-B)",
+    "Probability/calibration engine (P14-C)",
+    "Sample-size/confidence-interval/regime-similarity uncertainty model (P14-D)",
+    "TP/Stop outcome probabilities (P14-E)",
+    "Persian explainability (P14-F)",
+    "Independent Red-Team challenge (P14-G)",
+    "Signal output contract (P14-H)",
+    "G7 signal validation gate (P14-I)",
+    "Portfolio risk, position sizing, independent risk approval or execution"
+  ],
+  "dependencies": [
+    "P13 CANONICAL_COMPLETE",
+    "P13 phase closure PR #282 MERGED",
+    "P13 phase closure post-merge Governance 38391620175 SUCCESS",
+    "P13 phase closure Branch Hygiene 38391620119 SUCCESS",
+    "Owner P14 phase authorization granted 2026-10-13",
+    "Fresh Live Guard: open PR none, active task none, active lock none"
+  ],
+  "read_paths": [
+    "packages/technical_intelligence/**",
+    "packages/order_flow_liquidity/**",
+    "packages/fundamental_intelligence/**",
+    "packages/news_sentiment/**",
+    "packages/market_memory/**",
+    "packages/timing_opportunity/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P14-WA-001.json",
+    "config/signal-intelligence/evidence-contract-policy.json",
+    "packages/signal_intelligence/__init__.py",
+    "packages/signal_intelligence/evidence_contract.py",
+    "tests/p14/__init__.py",
+    "tests/p14/test_evidence_contract.py",
+    "scripts/ci/p14a_evidence.py",
+    "docs/09-intelligence/P14-A-EVIDENCE-CONTRACT.md",
+    "docs/09-intelligence/p14-a-evidence-contract.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "packages/risk/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Canonical P08-P13 source phases/families are accepted",
+    "Unknown source phase/family fails closed",
+    "Event time after as-of time fails closed",
+    "Validity deadline before event time fails closed",
+    "Strength/quality/sample-count bounds fail closed",
+    "Hard-veto state and reason-code consistency is enforced",
+    "Expired evidence remains explicit and cannot masquerade as fresh",
+    "Evidence identity is deterministic and content-sensitive",
+    "Bundle identity is deterministic and input-order independent",
+    "Duplicate evidence identities fail closed",
+    "Bundle subject/as-of mismatches fail closed",
+    "Policy rejects weighted fusion or probability authority in P14-A",
+    "P14-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange/order adapter imported",
+    "No credential or network access required",
+    "LLM empirical-probability authority remains forbidden",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P13 canonical phase closure",
+    "P08 independence-group baseline",
+    "Deterministic P14-A evidence-contract artifact",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear HOS-269 reconciliation"
+  ],
+  "rollback": "Revert P14-A contract/policy/module/tests/evidence/CI/state activation; P13 remains canonical and P14-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P13 CANONICAL_COMPLETE",
+    "Owner P14 authorization granted",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Cross-domain evidence contract implemented",
+    "P08-P13 source lineage and independence metadata preserved",
+    "Validity and hard-veto semantics enforced",
+    "No fusion/probability/risk/execution authority introduced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P14-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-269 Done",
+    "P14-B becomes READY_NOT_STARTED"
+  ]
+}
