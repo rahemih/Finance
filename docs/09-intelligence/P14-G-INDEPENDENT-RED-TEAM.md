@@ -1,6 +1,6 @@
 # P14-G — Independent Red-Team Challenge
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WG-001`  
 Linear: BLOCKED_FREE_ISSUE_LIMIT
 
