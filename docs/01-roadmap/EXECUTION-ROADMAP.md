@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-F CANONICAL_COMPLETE / P14-G READY_NOT_STARTED / P14-H..P14-I BLOCKED_BEHIND_P14G_SEQUENCE
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-F CANONICAL_COMPLETE / P14-G IN_PROGRESS / P14-H..P14-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1698,3 +1698,14 @@ Next:
 - P14-G — Independent Red-Team Challenge = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P14-G activation — 2026-10-13
+
+Task: `FIN-P14-WG-001`  
+Linear: `SYNC_BLOCKED_FREE_ISSUE_LIMIT`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P14-WG-001-01` / ACTIVE  
+Base: `247b311a2aaad524340785c7cec2f50bf3b2b969`
+
+P14-G performs an independent deterministic challenge over P14 analytical outputs. It may return CLEAR / CAUTION / REJECT but cannot alter upstream numeric values or emit the final signal action. Linear synchronization is temporarily blocked by the workspace free issue limit.
