@@ -89,8 +89,10 @@ class LeadLagTests(unittest.TestCase):
 
     def test_exact_timestamp_pairing_rejects_missing_pairs_below_minimum(self) -> None:
         observations = self.observations((0,) + self.values[:-1])[:5]
-        with self.assertRaises(LeadLagError):
-            self.compute(observations)
+        result = self.compute(observations)
+        self.assertEqual(tuple(candidate.lag_steps for candidate in result.candidates), (0,))
+        self.assertEqual(result.lead_state, "CONTEMPORANEOUS")
+        self.assertEqual(result.selected_lag_steps, 0)
 
     def test_duplicate_timestamp_fails_closed(self) -> None:
         items = list(self.observations((0,) + self.values[:-1]))
