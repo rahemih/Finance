@@ -162,8 +162,6 @@ class CalibrationObservation:
             raise ProbabilityCalibrationError("calibration direction must be -1 or 1")
         if (score > 0) != (self.direction > 0):
             raise ProbabilityCalibrationError("signed score direction mismatch")
-        if not isinstance(self.success, bool):
-            raise ProbabilityCalibrationError("success must be boolean")
         decision = _non_negative_int(self.decision_as_of_ns, field="decision_as_of_ns")
         observed = _non_negative_int(self.outcome_observed_ns, field="outcome_observed_ns")
         if observed < decision:
