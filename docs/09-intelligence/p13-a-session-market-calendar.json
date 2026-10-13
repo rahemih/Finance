@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13A_SESSION_MARKET_CALENDAR",
+  "task_id": "FIN-P13-WA-001",
+  "calendar_timezone": "UTC",
+  "calendar_version": "P13-A-UTC-BASELINE-V1",
+  "markets": [
+    "CRYPTO_SPOT",
+    "CRYPTO_FUTURES",
+    "FOREX_SPOT"
+  ],
+  "regional_sessions": [
+    {
+      "name": "ASIA",
+      "start_minute_utc": 0,
+      "end_minute_utc": 480
+    },
+    {
+      "name": "EUROPE",
+      "start_minute_utc": 420,
+      "end_minute_utc": 960
+    },
+    {
+      "name": "US",
+      "start_minute_utc": 780,
+      "end_minute_utc": 1260
+    }
+  ],
+  "forex_weekly_boundary": {
+    "sunday_open_minute_utc": 1320,
+    "friday_close_minute_utc": 1320
+  },
+  "production_calendar_vendor": "NOT_SELECTED",
+  "holiday_calendar_in_scope": false,
+  "dynamic_dst_adjustment_in_scope": false,
+  "best_trading_time_in_scope": false,
+  "probability_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
