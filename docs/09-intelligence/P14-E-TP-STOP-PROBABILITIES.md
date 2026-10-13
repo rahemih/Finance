@@ -1,6 +1,6 @@
 # P14-E — TP / Stop Outcome Probabilities
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WE-001`  
 Linear: `HOS-273`
 
