@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14A_EVIDENCE_CONTRACT",
   "task_id": "FIN-P14-WA-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "source_phases": [
     "P08",
     "P09",
@@ -29,5 +29,18 @@
   "hard_veto_behavior": "PRESERVE_NON_BYPASSABLE",
   "expired_evidence_behavior": "PRESERVE_EXPLICIT_NOT_FRESH",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-269",
+  "lock": "LOCK-FIN-P14-WA-001-01",
+  "lock_state": "RELEASED",
+  "owner_phase_authorization": "GRANTED_2026-10-13",
+  "next_workstream": "P14-B",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 283,
+  "implementation_head": "0e31c2fe1cbe2db315946e09c42285b893dd0a98",
+  "implementation_artifact_sha256": "6b0fe84324d7c354173bcaeb46758d05e0084ebdef7e85e1d3846440c5037cf4",
+  "implementation_governance_run": 38395379599,
+  "implementation_merge_sha": "66abe430e2fe71bfda1edcd74b44926a3aa2088b",
+  "post_merge_governance_run": 38395557411,
+  "branch_hygiene_run": 38395557388
 }
