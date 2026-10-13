@@ -176,9 +176,6 @@ def assess_timing_window(
         raise BestTradingTimeError("mean_edge_bps outside governed bounds")
     if not policy.uncertainty_min_bps <= uncertainty <= policy.uncertainty_max_bps:
         raise BestTradingTimeError("uncertainty_bps outside governed bounds")
-    if not isinstance(evidence.market_open, bool):
-        raise BestTradingTimeError("market_open must be boolean")
-
     adjusted = max(policy.edge_min_bps, mean_edge - uncertainty)
     if not evidence.market_open:
         timing_class = "CLOSED_CONTEXT"
