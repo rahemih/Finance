@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A IN_PROGRESS / P13-B..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B READY_NOT_STARTED / P13-C..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1219,3 +1219,24 @@ Lock: `LOCK-FIN-P13-WA-001-01` / ACTIVE
 Base: `9f8678e8d4ec1c7d10619e34fc0e3dae941e4cd7`
 
 P13-A implements the canonical UTC-first Session / Market Calendar service. P13-B..P13-H remain sequentially not started. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## P13-A canonical closure — 2026-10-13
+
+Task: `FIN-P13-WA-001`  
+Linear: `HOS-261`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WA-001-01` / RELEASED
+
+Evidence:
+- implementation PR #265 = MERGED;
+- Governance `38369400516` = SUCCESS;
+- artifact `sha256:bcc3ba456a32e16d85152467db93cdf2b193935e237518650efbc7e30c5a5a51`;
+- merge SHA `6138b70824257b08c52ecb5d9d5fdacdc9528f27`;
+- post-merge Governance `38369680322` = SUCCESS;
+- post-merge Branch Hygiene `38369679759` = SUCCESS.
+
+Next:
+- P13-B — Best Trading Time Engine = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
