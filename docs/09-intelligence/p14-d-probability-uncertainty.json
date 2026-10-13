@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14D_PROBABILITY_UNCERTAINTY",
+  "task_id": "FIN-P14-WD-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "confidence_interval_method": "WILSON_SCORE_95_PERCENT",
+  "probability_mutation_allowed": false,
+  "sample_support_thresholds": {
+    "moderate_min": 20,
+    "strong_min": 50
+  },
+  "regime_similarity_sources": [
+    "P12_HISTORICAL_ANALOG",
+    "P08_REGIME"
+  ],
+  "regime_similarity_is_probability": false,
+  "overall_uncertainty_method": "MAX_COMPONENT",
+  "insufficient_calibration_uncertainty_bps": 10000,
+  "llm_probability_authority": false,
+  "llm_uncertainty_authority": false,
+  "tp_stop_probability_in_scope": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "execution_authority_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
