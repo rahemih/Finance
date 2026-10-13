@@ -77,7 +77,8 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-H CANONICAL_COMPLETE / PHASE_CLOSURE_READY
+- P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
+- P14 — Signal / Probability / Explainability: OWNER_PHASE_AUTHORIZATION_REQUIRED / NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1472,3 +1473,22 @@ Next:
 - P14 remains NOT_STARTED and requires explicit Owner phase authorization;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13 canonical phase closure — 2026-10-13
+
+P13 — Timing & Opportunity = CANONICAL_COMPLETE.
+
+Closure:
+- P13-A..P13-H are CANONICAL_COMPLETE;
+- all governed P13 locks are RELEASED;
+- no active P13 task or lock remains;
+- P13-H integrated timing/ranking validation passed;
+- phase closure dossier: `docs/09-intelligence/P13-PHASE-CLOSURE.md`;
+- phase closure manifest: `docs/09-intelligence/p13-phase-closure.json`;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
+
+Transition:
+- P14 — Signal / Probability / Explainability = OWNER_PHASE_AUTHORIZATION_REQUIRED / NOT_STARTED;
+- P14 execution is forbidden until explicit Owner authorization.
