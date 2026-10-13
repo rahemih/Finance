@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13B_BEST_TRADING_TIME",
+  "task_id": "FIN-P13-WB-001",
+  "adjusted_edge_formula": "mean_edge_bps - uncertainty_bps",
+  "timing_classes": [
+    "PREFERRED",
+    "STANDARD",
+    "WEAK",
+    "INSUFFICIENT_EVIDENCE",
+    "CLOSED_CONTEXT"
+  ],
+  "homogeneous_comparison_required": true,
+  "opportunity_ranking_in_scope": false,
+  "no_trade_authority": false,
+  "signal_probability_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
