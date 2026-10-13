@@ -1,6 +1,6 @@
 # P14-A — Evidence Contract
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P14-WA-001`  
 Linear: `HOS-269`
 
