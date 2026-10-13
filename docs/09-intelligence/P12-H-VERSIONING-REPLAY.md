@@ -2,8 +2,8 @@
 
 Task: `FIN-P12-WH-001`  
 Linear: `HOS-259`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WH-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WH-001-01` / RELEASED  
 Canonical base: `1eace688861d6010ec3be3d3415087edb04e9a03`
 
 ## Objective
@@ -43,3 +43,15 @@ P12-H validates market-memory reproducibility only. End-to-end decision replay, 
 ## Safety
 
 No probability, signal, risk approval or execution authority is introduced. Production memory-version storage vendor remains NOT_SELECTED. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## Canonical closure evidence
+- implementation PR #260 = MERGED
+- final implementation head `bfcca7a310cd70131bfa1676d9af7d14f35f6bef`
+- implementation Governance `38225349567` = SUCCESS
+- implementation artifact `sha256:8fab30e6b1172055feb12af2413f8ed58d473d6b168f1ab62eac7b222673187a`
+- implementation merge SHA `bae4cdfa94081a39977317074cdf8c2783e8fcb6`
+- post-merge Governance `38225564213` = SUCCESS
+- post-merge Branch Hygiene `38225564289` = SUCCESS
+- P12 phase closure = READY
+- P13 = OWNER_PHASE_AUTHORIZATION_REQUIRED after P12 canonical phase closure

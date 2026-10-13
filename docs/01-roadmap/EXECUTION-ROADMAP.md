@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P12-WH-001
-- active lock: LOCK-FIN-P12-WH-001-01 / ACQUIRED
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -1093,8 +1093,8 @@ P12-H is READY_NOT_STARTED.
 ### P12-H — Versioning / Replay
 Task: `FIN-P12-WH-001`  
 Linear: `HOS-259`  
-State: IMPLEMENTATION_ACTIVE  
-Lock: `LOCK-FIN-P12-WH-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P12-WH-001-01` / RELEASED  
 Canonical base: `1eace688861d6010ec3be3d3415087edb04e9a03`
 
 Scope:
@@ -1106,7 +1106,20 @@ Scope:
 - deterministic P12-B..P12-G output digests;
 - replay equivalence / mismatch fail-closed verification.
 
-P12 phase closure follows P12-H CANONICAL_COMPLETE. P13 remains OWNER_PHASE_AUTHORIZATION_REQUIRED.
+P12 phase closure is READY. P13 remains OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+### P12-H canonical closure — 2026-10-12
+- implementation PR: #260 / MERGED
+- final implementation head: `bfcca7a310cd70131bfa1676d9af7d14f35f6bef`
+- implementation Governance: `38225349567` = SUCCESS
+- implementation artifact: `sha256:8fab30e6b1172055feb12af2413f8ed58d473d6b168f1ab62eac7b222673187a`
+- implementation merge SHA: `bae4cdfa94081a39977317074cdf8c2783e8fcb6`
+- post-merge Governance: `38225564213` = SUCCESS
+- post-merge Branch Hygiene: `38225564289` = SUCCESS
+- task: `FIN-P12-WH-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P12-WH-001-01 = RELEASED`
+- phase closure: `P12 = READY_FOR_CANONICAL_CLOSURE`
+- next phase: `P13 = OWNER_PHASE_AUTHORIZATION_REQUIRED`
 
 Safety:
 - end-to-end decision replay remains P19;
