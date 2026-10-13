@@ -39,9 +39,9 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P12 — Market Memory & Knowledge Graph / CANONICAL_COMPLETE  
-Current Workstream: none — P13 OWNER_PHASE_AUTHORIZATION_REQUIRED  
-Previous Workstream: P12-H — Versioning / Replay / CANONICAL_COMPLETE  
+Current Phase: P13 — Timing & Opportunity / ACTIVE  
+Current Workstream: P13-A — Session / Market Calendar / IN_PROGRESS  
+Previous Workstream: P12 — Market Memory & Knowledge Graph / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -54,7 +54,7 @@ P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPL
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
-P13 state: OWNER_PHASE_AUTHORIZATION_REQUIRED / NOT_STARTED  
+P13 state: ACTIVE / P13-A IN_PROGRESS / P13-B..P13-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -168,8 +168,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P13-WA-001`  
+Active lock: `LOCK-FIN-P13-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5062,3 +5062,38 @@ P12 safety closure:
 - AUTO_TRADING = DISABLED.
 
 P13 MUST NOT start without explicit Owner phase authorization.
+
+
+## P13 execution activation — 2026-10-13
+
+Owner phase authorization: GRANTED.
+
+### P13-A — Session / Market Calendar
+
+Task: `FIN-P13-WA-001`  
+Linear: `HOS-261`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P13-WA-001-01` / ACTIVE  
+Canonical base: `9f8678e8d4ec1c7d10619e34fc0e3dae941e4cd7`
+
+Scope:
+- UTC-first deterministic Session / Market Calendar service;
+- Crypto Spot/Futures 24/7 baseline;
+- Forex Spot governed 24/5 weekly baseline;
+- ASIA / EUROPE / US contextual windows and overlaps;
+- production holiday/DST calendar vendor remains NOT_SELECTED;
+- P12-F seasonality boundary preserved;
+- P13-B Best Trading Time remains NOT_STARTED.
+
+Agents:
+- A0 Governance/Orchestrator;
+- A3 Market Intelligence;
+- A4 Quantitative Research/Validation;
+- A5 Risk;
+- A10 Audit/Evidence.
+
+Safety:
+- country assumption = NONE;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED;
+- probability/ranking/risk approval/execution authority = NONE.

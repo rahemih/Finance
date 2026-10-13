@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: OWNER_PHASE_AUTHORIZATION_REQUIRED / NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A IN_PROGRESS / P13-B..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1208,3 +1208,14 @@ Phase transition:
 - P12 = CANONICAL_COMPLETE;
 - P13 = OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - P13 execution is forbidden until explicit Owner authorization.
+
+
+## P13 activation — 2026-10-13
+
+Owner phase authorization: GRANTED.  
+Active task: `FIN-P13-WA-001`  
+Linear: `HOS-261`  
+Lock: `LOCK-FIN-P13-WA-001-01` / ACTIVE  
+Base: `9f8678e8d4ec1c7d10619e34fc0e3dae941e4cd7`
+
+P13-A implements the canonical UTC-first Session / Market Calendar service. P13-B..P13-H remain sequentially not started. LIVE_TRADING and AUTO_TRADING remain DISABLED.
