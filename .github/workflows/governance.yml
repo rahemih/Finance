@@ -798,6 +798,15 @@ jobs:
           cmp build/p13e-a.json build/p13e-b.json
           sha256sum build/p13e-a.json
 
+      - name: P13-F deterministic expiry no-chase evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p13f_evidence.py --output build/p13f-a.json
+          PYTHONPATH=. python scripts/ci/p13f_evidence.py --output build/p13f-b.json
+          cmp build/p13f-a.json build/p13f-b.json
+          sha256sum build/p13f-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
