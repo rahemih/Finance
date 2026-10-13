@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P14-WH-001",
+  "phase": "P14",
+  "workstream": "WH",
+  "objective": "Implement the deterministic final analytical signal output contract over canonical P13 timing and P14 analytical outputs without creating portfolio-risk or execution authority.",
+  "scope": [
+    "Consume canonical P13 OpportunityCandidate, NoTradeDecision and ExpiryNoChaseAssessment",
+    "Consume canonical P14-B fusion, P14-D uncertainty, P14-E barrier context/outcomes, P14-F explanation and P14-G challenge",
+    "Emit exactly one analytical action: LONG, SHORT, WAIT or NO_TRADE",
+    "Use explicit versioned price geometry; never invent reference price, entry offsets or invalidation distance",
+    "For LONG/SHORT only, emit entry zone, invalidation, candidate stop and candidate target as scaled integer prices",
+    "Preserve exact empirical probability, uncertainty, outcome probabilities, evidence freshness exclusions and reasons for/against",
+    "Enforce P13/P14 identity, timing, direction and lineage coherence",
+    "Generate deterministic offline P14-H evidence"
+  ],
+  "out_of_scope": [
+    "P14-I G7 signal validation",
+    "Position sizing, leverage, portfolio risk or capital allocation (P15)",
+    "Pre-trade approval (P16)",
+    "Broker order construction/execution (P20/P21)"
+  ],
+  "dependencies": [
+    "P14-G CANONICAL_COMPLETE",
+    "P14-G closure merge 4f3b3890267ff37fdf3bb81a4b4a4b92ea8ef567",
+    "P14-G closure post-merge Governance 38416788004 SUCCESS",
+    "P14-G closure Branch Hygiene 38416787938 SUCCESS",
+    "Fresh Live Guard: open PR none, active task none, active lock none",
+    "Linear new-issue creation blocked by workspace free issue limit; GitHub remains canonical"
+  ],
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "packages/timing_opportunity/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P14-WH-001.json",
+    "config/signal-intelligence/signal-output-contract-policy.json",
+    "packages/signal_intelligence/__init__.py",
+    "packages/signal_intelligence/signal_output_contract.py",
+    "tests/p14/test_signal_output_contract.py",
+    "scripts/ci/p14h_evidence.py",
+    "docs/09-intelligence/P14-H-SIGNAL-OUTPUT-CONTRACT.md",
+    "docs/09-intelligence/p14-h-signal-output-contract.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/risk/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear (sync blocked by free issue limit)"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P13 candidate/no-trade/expiry identity mismatch fails closed",
+    "Asset/strategy/timeframe/regime/session mismatch with P14-E barrier context fails closed",
+    "BLOCKED or NO_TRADE maps to NO_TRADE",
+    "EXPIRED or NO_CHASE maps to WAIT",
+    "Red-Team REJECT maps to NO_TRADE",
+    "Red-Team CAUTION maps to WAIT",
+    "Insufficient evidence/calibration/outcome data maps to WAIT unless hard-blocked",
+    "CLEAR + ACTIVE + qualified directional fusion maps to LONG/SHORT",
+    "LONG/SHORT requires explicit versioned price geometry",
+    "TP/Stop distances are inherited from canonical P14-E barrier context",
+    "Price geometry is deterministic and directionally coherent",
+    "WAIT/NO_TRADE expose no entry/SL/TP price geometry",
+    "Upstream probability/uncertainty values are preserved exactly",
+    "Signal identity is deterministic and content-sensitive",
+    "P14-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network/credentials required",
+    "No hard-veto or challenge-reject bypass",
+    "No probability mutation",
+    "No position sizing/leverage/risk approval/execution authority",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P14-G canonical closure",
+    "Deterministic P14-H signal output evidence",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear synchronization blocker documented"
+  ],
+  "rollback": "Revert P14-H contract/runtime/tests/evidence/CI/state changes; P14-G remains canonical and P14-I remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P14-G CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict",
+    "Linear sync blocker documented without replacing GitHub canonical truth"
+  ],
+  "definition_of_done": [
+    "Final analytical signal output contract implemented",
+    "LONG/SHORT/WAIT/NO_TRADE deterministic semantics pass",
+    "Price geometry explicit and non-invented",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P14-WH-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear sync blocker remains explicitly documented until capacity restored",
+    "P14-I READY_NOT_STARTED"
+  ]
+}
