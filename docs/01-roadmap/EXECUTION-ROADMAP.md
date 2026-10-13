@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-E CANONICAL_COMPLETE / P14-F IN_PROGRESS / P14-G..P14-I NOT_STARTED
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-F CANONICAL_COMPLETE / P14-G READY_NOT_STARTED / P14-H..P14-I BLOCKED_BEHIND_P14G_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1675,3 +1675,26 @@ Lock: `LOCK-FIN-P14-WF-001-01` / ACTIVE
 Base: `d0b7b120eb04fe10d637c572294c4141eb9220a2`
 
 P14-F renders deterministic Persian explanations from canonical P14 outputs without changing probability, uncertainty, veto or action authority. P14-G..P14-I remain NOT_STARTED.
+
+
+## P14-F canonical closure — 2026-10-13
+
+Task: `FIN-P14-WF-001`  
+Linear: `HOS-274`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P14-WF-001-01` / RELEASED
+
+Evidence:
+- implementation PR #293 = MERGED;
+- implementation head `20f8854a2ea142e92426d47956776ef1406961ca`;
+- Governance `38411846344` = SUCCESS;
+- artifact `sha256:5b18bed7ae5a27ec4bb232e8b2794437226bf5f281e1e3bb09af2cd3f7064070`;
+- merge SHA `a2d34e58e16185f9882c8e9b15063542f7b515c7`;
+- post-merge Governance `38412158040` = SUCCESS;
+- Branch Hygiene `38412157804` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P14-G — Independent Red-Team Challenge = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

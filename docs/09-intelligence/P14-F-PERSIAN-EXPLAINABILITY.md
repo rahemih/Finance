@@ -1,8 +1,9 @@
 # P14-F — Persian Explainability
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WF-001`  
-Linear: `HOS-274`
+Linear: `HOS-274`  
+Lock: `LOCK-FIN-P14-WF-001-01` / RELEASED
 
 ## Objective
 
@@ -38,3 +39,16 @@ The baseline renderer uses governed deterministic Persian templates. LLM/free-fo
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #293 = MERGED
+- implementation head `20f8854a2ea142e92426d47956776ef1406961ca`
+- implementation Governance `38411846344` = SUCCESS
+- implementation artifact `sha256:5b18bed7ae5a27ec4bb232e8b2794437226bf5f281e1e3bb09af2cd3f7064070`
+- implementation merge SHA `a2d34e58e16185f9882c8e9b15063542f7b515c7`
+- post-merge Governance `38412158040` = SUCCESS
+- Branch Hygiene `38412157804` = SUCCESS
+- implementation branch = DELETED
+- P14-G = READY_NOT_STARTED
