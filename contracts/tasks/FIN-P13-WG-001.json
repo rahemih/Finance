@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P13-WG-001",
+  "phase": "P13",
+  "workstream": "WG",
+  "objective": "Implement deterministic conditional scenario framing over canonical P13 opportunity/no-trade/expiry context without probability, price targets, position sizing, risk approval or execution authority.",
+  "scope": [
+    "Consume canonical P13-C OpportunityCandidate, P13-E NoTradeDecision and P13-F ExpiryNoChaseAssessment",
+    "Require exact candidate identity consistency across all upstream records",
+    "Generate CONTINUATION, DETERIORATION and INVALIDATION conditional frames only for ACTIVE TIMING_ELIGIBLE context",
+    "Return NON_ACTIONABLE with no scenario frames for EXPIRED, NO_CHASE or BLOCKED_BY_NO_TRADE context",
+    "Use deterministic SHA-256 scenario identity and canonical ordering",
+    "Generate deterministic offline P13-G evidence"
+  ],
+  "out_of_scope": [
+    "Scenario probability or confidence calibration",
+    "Price/return targets",
+    "Timing/ranking validation (P13-H)",
+    "Signal probability (P14)",
+    "Portfolio risk or sizing (P15)",
+    "Risk approval/firewall (P16)",
+    "Execution (P20)"
+  ],
+  "dependencies": [
+    "P13-F CANONICAL_COMPLETE",
+    "P13-F closure merge 792d535ee095a1480f827a6ae60404641e7f42eb",
+    "P13-F closure post-merge Governance 38382983096 SUCCESS",
+    "P13-F closure Branch Hygiene 38382983030 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/timing_opportunity/opportunity_scanner.py",
+    "packages/timing_opportunity/no_trade.py",
+    "packages/timing_opportunity/expiry_no_chase.py",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P13-WG-001.json",
+    "config/timing-opportunity/scenario-engine-policy.json",
+    "packages/timing_opportunity/__init__.py",
+    "packages/timing_opportunity/scenario_engine.py",
+    "tests/p13/test_scenario_engine.py",
+    "scripts/ci/p13g_evidence.py",
+    "docs/09-intelligence/P13-G-SCENARIO-ENGINE.md",
+    "docs/09-intelligence/p13-g-scenario-engine.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "ACTIVE TIMING_ELIGIBLE context generates exactly three canonical conditional scenario frames",
+    "Scenario identities are deterministic and independent of caller ordering",
+    "EXPIRED context produces NON_ACTIONABLE and no frames",
+    "NO_CHASE context produces NON_ACTIONABLE and no frames",
+    "BLOCKED_BY_NO_TRADE context produces NON_ACTIONABLE and no frames",
+    "Cross-record candidate identity mismatch fails closed",
+    "Upstream decision/state inconsistencies fail closed",
+    "No probability, price target, sizing, risk approval or execution authority is introduced",
+    "P13-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P13-F canonical closure",
+    "Deterministic P13-G conditional scenario evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-267 reconciliation"
+  ],
+  "rollback": "Revert P13-G policy/module/tests/evidence/CI/state changes; P13-A..P13-F remain canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P13-F CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Scenario Engine implemented",
+    "Scenario framing remains conditional, non-probabilistic and non-executing",
+    "Blocked/expired/no-chase contexts cannot produce actionable scenarios",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P13-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-267 Done",
+    "P13-H READY_NOT_STARTED"
+  ]
+}
