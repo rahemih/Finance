@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14E_TP_STOP_OUTCOME_PROBABILITIES",
   "task_id": "FIN-P14-WE-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "outcomes": [
     "TP_FIRST",
     "STOP_FIRST",
@@ -20,5 +20,17 @@
   "execution_authority_in_scope": false,
   "position_management_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "linear": "HOS-273",
+  "lock": "LOCK-FIN-P14-WE-001-01",
+  "lock_state": "RELEASED",
+  "next_workstream": "P14-F",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "implementation_pr": 291,
+  "implementation_head": "b2fba38326068f7347fdc953c300abd39551c469",
+  "implementation_artifact_sha256": "2a395d66c500cb40eb3ca7e4cca76dbd78c25e1c284407ca537296dcb42f76cc",
+  "implementation_governance_run": 38409106956,
+  "implementation_merge_sha": "afa55dded2c2a6ca41ae8e0cf177ae81dae170d5",
+  "post_merge_governance_run": 38409393554,
+  "branch_hygiene_run": 38409393398
 }

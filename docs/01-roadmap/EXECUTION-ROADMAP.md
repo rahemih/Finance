@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-D CANONICAL_COMPLETE / P14-E IN_PROGRESS / P14-F..P14-I NOT_STARTED
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-E CANONICAL_COMPLETE / P14-F READY_NOT_STARTED / P14-G..P14-I BLOCKED_BEHIND_P14F_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1641,3 +1641,26 @@ Lock: `LOCK-FIN-P14-WE-001-01` / ACTIVE
 Base: `4650d500174a28976952230825507da8e0e51c05`
 
 P14-E computes resolved TP_FIRST / STOP_FIRST / NEITHER empirical frequencies for an exact barrier-plan definition. Ambiguous price paths are rejected; general P14-C/P14-D probability remains separate context. P14-F..P14-I remain NOT_STARTED.
+
+
+## P14-E canonical closure — 2026-10-13
+
+Task: `FIN-P14-WE-001`  
+Linear: `HOS-273`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P14-WE-001-01` / RELEASED
+
+Evidence:
+- implementation PR #291 = MERGED;
+- implementation head `b2fba38326068f7347fdc953c300abd39551c469`;
+- Governance `38409106956` = SUCCESS;
+- artifact `sha256:2a395d66c500cb40eb3ca7e4cca76dbd78c25e1c284407ca537296dcb42f76cc`;
+- merge SHA `afa55dded2c2a6ca41ae8e0cf177ae81dae170d5`;
+- post-merge Governance `38409393554` = SUCCESS;
+- Branch Hygiene `38409393398` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P14-F — Persian Explainability = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

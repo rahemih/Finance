@@ -1,8 +1,9 @@
 # P14-E — TP / Stop Outcome Probabilities
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WE-001`  
-Linear: `HOS-273`
+Linear: `HOS-273`  
+Lock: `LOCK-FIN-P14-WE-001-01` / RELEASED
 
 ## Objective
 
@@ -55,3 +56,16 @@ If the TP/Stop dataset itself is below the governed minimum, P14-E returns `INSU
 - P20/P21 own execution and position management;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #291 = MERGED
+- implementation head `b2fba38326068f7347fdc953c300abd39551c469`
+- implementation Governance `38409106956` = SUCCESS
+- implementation artifact `sha256:2a395d66c500cb40eb3ca7e4cca76dbd78c25e1c284407ca537296dcb42f76cc`
+- implementation merge SHA `afa55dded2c2a6ca41ae8e0cf177ae81dae170d5`
+- post-merge Governance `38409393554` = SUCCESS
+- Branch Hygiene `38409393398` = SUCCESS
+- implementation branch = DELETED
+- P14-F = READY_NOT_STARTED
