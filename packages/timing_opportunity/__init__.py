@@ -51,3 +51,19 @@ __all__ += [
     "OpportunityScannerPolicy",
     "scan_opportunities",
 ]
+
+from .opportunity_ranking import (
+    OpportunityRankingError,
+    OpportunityRankingPolicy,
+    OpportunityRankingResult,
+    RankedOpportunity,
+    rank_opportunities,
+)
+
+__all__ += [
+    "OpportunityRankingError",
+    "OpportunityRankingPolicy",
+    "OpportunityRankingResult",
+    "RankedOpportunity",
+    "rank_opportunities",
+]
