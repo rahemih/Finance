@@ -99,3 +99,20 @@ __all__ += [
     "ExpiryNoChasePolicy",
     "assess_expiry_no_chase",
 ]
+
+
+from .scenario_engine import (
+    ScenarioEngineError,
+    ScenarioEnginePolicy,
+    ScenarioFrame,
+    ScenarioSet,
+    build_scenarios,
+)
+
+__all__ += [
+    "ScenarioEngineError",
+    "ScenarioEnginePolicy",
+    "ScenarioFrame",
+    "ScenarioSet",
+    "build_scenarios",
+]
