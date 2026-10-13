@@ -1,6 +1,6 @@
 # P13-F — Signal Expiry / No-Chase
 
-State: IMPLEMENTATION_ACTIVE  
+State: CLOSURE_RECONCILIATION  
 Task: `FIN-P13-WF-001`  
 Linear: `HOS-266`
 
