@@ -1,0 +1,121 @@
+{
+  "task_id": "FIN-P13-WD-001",
+  "phase": "P13",
+  "workstream": "WD",
+  "objective": "Implement deterministic ordinal ranking of eligible P13-C opportunity candidates across assets/setups while keeping ranking distinct from probability, no-trade authority, risk approval and execution.",
+  "scope": [
+    "Consume canonical P13-C OpportunityCandidate records",
+    "Rank only ELIGIBLE_TIMING_CONTEXT candidates",
+    "Use deterministic timing-class, adjusted-edge, sample-count and candidate-id ordering",
+    "Return explicit ordinal rank positions with no probabilistic score",
+    "Preserve excluded non-eligible candidate identities",
+    "Generate deterministic offline P13-D evidence"
+  ],
+  "out_of_scope": [
+    "Hard no-trade engine (P13-E)",
+    "Signal expiry/no-chase (P13-F)",
+    "Scenario generation (P13-G)",
+    "Timing/ranking validation (P13-H)",
+    "Signal probability (P14)",
+    "Risk approval or execution"
+  ],
+  "dependencies": [
+    "P13-C CANONICAL_COMPLETE",
+    "P13-C closure merge 5d54ea7d8f9198ea7a922b325416d6a37367cc3a",
+    "P13-C closure post-merge Governance 38373601793 SUCCESS",
+    "P13-C closure Branch Hygiene 38373601727 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/timing_opportunity/opportunity_scanner.py",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P13-WD-001.json",
+    "config/timing-opportunity/opportunity-ranking-policy.json",
+    "packages/timing_opportunity/__init__.py",
+    "packages/timing_opportunity/opportunity_ranking.py",
+    "tests/p13/test_opportunity_ranking.py",
+    "scripts/ci/p13d_evidence.py",
+    "docs/09-intelligence/P13-D-OPPORTUNITY-RANKING.md",
+    "docs/09-intelligence/p13-d-opportunity-ranking.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Only eligible timing-context candidates are ranked",
+    "Preferred timing class outranks standard timing class",
+    "Adjusted edge and sample count deterministically break ties",
+    "Candidate id is the final deterministic tie-breaker",
+    "Input order does not change ranking",
+    "Duplicate candidate ids fail closed",
+    "Ranking positions are contiguous ordinals starting at one",
+    "No probability, hard no-trade, risk approval or execution authority is introduced",
+    "P13-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P13-C canonical closure",
+    "Deterministic P13-D ranking evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-264 reconciliation"
+  ],
+  "rollback": "Revert P13-D policy/module/tests/evidence/CI/state changes; P13-A..P13-C remain canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P13-C CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Opportunity Ranking implemented",
+    "Ranking remains ordinal, non-probabilistic and non-executing",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P13-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-264 Done",
+    "P13-E READY_NOT_STARTED"
+  ]
+}
