@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P13 — Timing & Opportunity / ACTIVE  
-Current Workstream: P13-A — Session / Market Calendar / IN_PROGRESS  
-Previous Workstream: P12 — Market Memory & Knowledge Graph / CANONICAL_COMPLETE  
+Current Workstream: none — P13-A CANONICAL_COMPLETE; P13-B READY_NOT_STARTED  
+Previous Workstream: P13-A — Session / Market Calendar / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -54,7 +54,7 @@ P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPL
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
-P13 state: ACTIVE / P13-A IN_PROGRESS / P13-B..P13-H NOT_STARTED  
+P13 state: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B READY_NOT_STARTED / P13-C..P13-H BLOCKED_BEHIND_P13B_SEQUENCE  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -168,8 +168,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P13-WA-001`  
-Active lock: `LOCK-FIN-P13-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5061,7 +5061,7 @@ P12 safety closure:
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
 
-P13 MUST NOT start without explicit Owner phase authorization.
+P13 Owner phase authorization was GRANTED on 2026-10-13; execution activation is recorded below.
 
 
 ## P13 execution activation — 2026-10-13
@@ -5072,8 +5072,8 @@ Owner phase authorization: GRANTED.
 
 Task: `FIN-P13-WA-001`  
 Linear: `HOS-261`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P13-WA-001-01` / ACTIVE  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WA-001-01` / RELEASED  
 Canonical base: `9f8678e8d4ec1c7d10619e34fc0e3dae941e4cd7`
 
 Scope:
@@ -5083,7 +5083,7 @@ Scope:
 - ASIA / EUROPE / US contextual windows and overlaps;
 - production holiday/DST calendar vendor remains NOT_SELECTED;
 - P12-F seasonality boundary preserved;
-- P13-B Best Trading Time remains NOT_STARTED.
+- P13-B Best Trading Time is READY_NOT_STARTED.
 
 Agents:
 - A0 Governance/Orchestrator;
@@ -5097,3 +5097,16 @@ Safety:
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED;
 - probability/ranking/risk approval/execution authority = NONE.
+
+
+P13-A canonical closure evidence:
+- implementation PR #265 = MERGED
+- implementation head = `d6f2eeb87829f34a7dbb500283deb3cfe4d2c801`
+- implementation artifact SHA256 = `bcc3ba456a32e16d85152467db93cdf2b193935e237518650efbc7e30c5a5a51`
+- implementation Governance = `38369400516` / SUCCESS
+- implementation merge SHA = `6138b70824257b08c52ecb5d9d5fdacdc9528f27`
+- post-merge Governance = `38369680322` / SUCCESS
+- post-merge Branch Hygiene = `38369680256` / SUCCESS
+- FIN-P13-WA-001 = CANONICAL_COMPLETE
+- LOCK-FIN-P13-WA-001-01 = RELEASED
+- P13-B = READY_NOT_STARTED
