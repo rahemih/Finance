@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A IN_PROGRESS / P13-B..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B READY_NOT_STARTED / P13-C..P13-H BLOCKED_BEHIND_P13B_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1206,16 +1206,29 @@ Phase safety:
 
 Phase transition:
 - P12 = CANONICAL_COMPLETE;
-- P13 = OWNER_PHASE_AUTHORIZATION_REQUIRED;
-- P13 execution is forbidden until explicit Owner authorization.
+- P13 Owner phase authorization = GRANTED on 2026-10-13;
+- P13 execution activation is recorded below.
 
 
 ## P13 activation — 2026-10-13
 
 Owner phase authorization: GRANTED.  
-Active task: `FIN-P13-WA-001`  
+Active task: none  
 Linear: `HOS-261`  
-Lock: `LOCK-FIN-P13-WA-001-01` / ACTIVE  
+Lock: `LOCK-FIN-P13-WA-001-01` / RELEASED  
 Base: `9f8678e8d4ec1c7d10619e34fc0e3dae941e4cd7`
 
-P13-A implements the canonical UTC-first Session / Market Calendar service. P13-B..P13-H remain sequentially not started. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+P13-A is CANONICAL_COMPLETE. P13-B is READY_NOT_STARTED. P13-C..P13-H remain blocked behind the P13-B sequence. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+### P13-A canonical closure — 2026-10-13
+- implementation PR: #265 / MERGED
+- implementation head: `d6f2eeb87829f34a7dbb500283deb3cfe4d2c801`
+- implementation artifact: `sha256:bcc3ba456a32e16d85152467db93cdf2b193935e237518650efbc7e30c5a5a51`
+- implementation Governance run: `38369400516` = SUCCESS
+- implementation merge SHA: `6138b70824257b08c52ecb5d9d5fdacdc9528f27`
+- post-merge Governance run: `38369680322` = SUCCESS
+- post-merge Branch Hygiene run: `38369680256` = SUCCESS
+- task: `FIN-P13-WA-001 = CANONICAL_COMPLETE`
+- lock: `LOCK-FIN-P13-WA-001-01 = RELEASED`
+- next workstream: `P13-B = READY_NOT_STARTED`
