@@ -210,7 +210,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P13-WA-001 | P13 | Session / Market Calendar | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P13-WA-001.json` | RELEASED |
 
-| FIN-P13-WF-001 | P13 | Signal Expiry / No-Chase | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P13-WF-001.json` | `LOCK-FIN-P13-WF-001-01` ACTIVE |
+| FIN-P13-WF-001 | P13 | Signal Expiry / No-Chase | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P13-WF-001.json` | RELEASED |
 | FIN-P13-WE-001 | P13 | No-Trade Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P13-WE-001.json` | RELEASED |
 | FIN-P13-WD-001 | P13 | Opportunity Ranking | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P13-WD-001.json` | RELEASED |
 
