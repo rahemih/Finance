@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "mode": "EXPLICIT_DEADLINE_CANDIDATE_SPECIFIC_NO_CHASE",
+  "states": ["ACTIVE", "EXPIRED", "NO_CHASE", "BLOCKED_BY_NO_TRADE"],
+  "displacement_min_bps": 0,
+  "displacement_max_bps": 10000,
+  "universal_expiry_threshold_defined": false,
+  "universal_chase_threshold_defined": false,
+  "upstream_no_trade_bypass_allowed": false,
+  "signal_probability_in_scope": false,
+  "portfolio_risk_in_scope": false,
+  "position_sizing_in_scope": false,
+  "risk_approval_in_scope": false,
+  "execution_authority": false,
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

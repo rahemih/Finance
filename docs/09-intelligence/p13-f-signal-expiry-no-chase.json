@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P13F_EXPIRY_NO_CHASE",
+  "task_id": "FIN-P13-WF-001",
+  "states": [
+    "ACTIVE",
+    "EXPIRED",
+    "NO_CHASE",
+    "BLOCKED_BY_NO_TRADE"
+  ],
+  "explicit_validity_deadline_required": true,
+  "explicit_candidate_chase_limit_required": true,
+  "universal_expiry_threshold_defined": false,
+  "universal_chase_threshold_defined": false,
+  "upstream_no_trade_bypass_allowed": false,
+  "signal_probability_in_scope": false,
+  "portfolio_risk_in_scope": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P13-WF-001",
+  "phase": "P13",
+  "workstream": "WF",
+  "objective": "Implement deterministic expiry and no-chase enforcement over canonical P13 opportunity/no-trade context using explicit validity deadlines and candidate-specific chase limits, without universal threshold invention, probability, risk sizing or execution authority.",
+  "scope": [
+    "Consume canonical P13-C OpportunityCandidate and P13-E NoTradeDecision",
+    "Require explicit observed_at_ns, expires_at_ns and as_of_ns",
+    "Require explicit candidate/strategy-specific price displacement and maximum chase distance in basis points",
+    "Classify ACTIVE, EXPIRED, NO_CHASE or BLOCKED_BY_NO_TRADE",
+    "Preserve P13-E NO_TRADE as a non-bypassable upstream veto",
+    "Fail closed on identity, timestamp and basis-point bound violations",
+    "Generate deterministic offline P13-F evidence"
+  ],
+  "out_of_scope": [
+    "Universal strategy/market TTL calibration",
+    "Universal chase-threshold calibration",
+    "Scenario generation (P13-G)",
+    "Timing/ranking validation (P13-H)",
+    "Signal probability (P14)",
+    "Portfolio risk or sizing (P15)",
+    "Risk approval/firewall (P16)",
+    "Execution (P20)"
+  ],
+  "dependencies": [
+    "P13-E CANONICAL_COMPLETE",
+    "P13-E closure merge ff49e83a886d5ea9202bfbc6dd58daf842b15d52",
+    "P13-E closure post-merge Governance 38376064194 SUCCESS",
+    "P13-E closure Branch Hygiene 38376064367 SUCCESS",
+    "Fresh Live Guard: active task none, active lock none, open PR none"
+  ],
+  "read_paths": [
+    "packages/timing_opportunity/opportunity_scanner.py",
+    "packages/timing_opportunity/no_trade.py",
+    "packages/news_sentiment/event_decay.py",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P13-WF-001.json",
+    "config/timing-opportunity/expiry-no-chase-policy.json",
+    "packages/timing_opportunity/__init__.py",
+    "packages/timing_opportunity/expiry_no_chase.py",
+    "tests/p13/test_expiry_no_chase.py",
+    "scripts/ci/p13f_evidence.py",
+    "docs/09-intelligence/P13-F-SIGNAL-EXPIRY-NO-CHASE.md",
+    "docs/09-intelligence/p13-f-signal-expiry-no-chase.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Clean non-expired within-limit context remains ACTIVE",
+    "P13-E NO_TRADE becomes BLOCKED_BY_NO_TRADE and cannot be bypassed",
+    "as_of at or after explicit expiry becomes EXPIRED",
+    "displacement beyond explicit candidate chase limit becomes NO_CHASE",
+    "No-trade identity and decision/reason inconsistencies fail closed",
+    "Invalid temporal ordering and basis-point bounds fail closed",
+    "No universal TTL/chase threshold is introduced",
+    "No probability, sizing, risk approval or execution authority is introduced",
+    "P13-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials/network required",
+    "No execution imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P13-E canonical closure",
+    "P11-F explicit as-of freshness semantics reused by pattern only",
+    "Deterministic P13-F expiry/no-chase evidence",
+    "Implementation Governance",
+    "Post-merge Governance/Branch Hygiene",
+    "Linear HOS-266 reconciliation"
+  ],
+  "rollback": "Revert P13-F policy/module/tests/evidence/CI/state changes; P13-A..P13-E remain canonical.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P13-E CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Expiry / No-Chase engine implemented",
+    "P13-E NO_TRADE remains non-bypassable",
+    "No universal TTL/chase threshold is invented",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P13-WF-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear HOS-266 Done",
+    "P13-G READY_NOT_STARTED"
+  ]
+}
