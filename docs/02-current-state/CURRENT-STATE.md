@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P13 — Timing & Opportunity / ACTIVE  
-Current Workstream: P13-B — Best Trading Time Engine / READY_NOT_STARTED  
+Current Workstream: P13-B — Best Trading Time Engine / IN_PROGRESS  
 Previous Workstream: P13-A — Session / Market Calendar / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -54,7 +54,7 @@ P09 state: CANONICAL_COMPLETE / P09-A CANONICAL_COMPLETE / P09-B CANONICAL_COMPL
 P10 state: CANONICAL_COMPLETE / P10-A CANONICAL_COMPLETE / P10-B CANONICAL_COMPLETE / P10-C CANONICAL_COMPLETE / P10-D CANONICAL_COMPLETE / P10-E CANONICAL_COMPLETE / P10-F CANONICAL_COMPLETE / P10-G CANONICAL_COMPLETE / P10-H CANONICAL_COMPLETE  
 P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPLETE / P11-C CANONICAL_COMPLETE / P11-D CANONICAL_COMPLETE / P11-E CANONICAL_COMPLETE / P11-F CANONICAL_COMPLETE / P11-G CANONICAL_COMPLETE / P11-H CANONICAL_COMPLETE  
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
-P13 state: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B READY_NOT_STARTED / P13-C..P13-H NOT_STARTED  
+P13 state: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B IN_PROGRESS / P13-C..P13-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -168,8 +168,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P13-WB-001`  
+Active lock: `LOCK-FIN-P13-WB-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5111,3 +5111,26 @@ P13-A canonical closure evidence:
 - FIN-P13-WA-001 = CANONICAL_COMPLETE;
 - LOCK-FIN-P13-WA-001-01 = RELEASED;
 - P13-B = READY_NOT_STARTED.
+
+
+## P13-B — Best Trading Time Engine
+
+Task: `FIN-P13-WB-001`  
+Linear: `HOS-262`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P13-WB-001-01` / ACTIVE  
+Canonical base: `1b9276b7d542de6eb7f7f85ebcfbd6de22c62703`
+
+Scope:
+- historical timing-window quality by asset/strategy/timeframe/regime/session;
+- conservative adjusted edge = mean edge minus uncertainty;
+- PREFERRED / STANDARD / WEAK / INSUFFICIENT_EVIDENCE / CLOSED_CONTEXT;
+- homogeneous best-window selection only;
+- P13-D opportunity ranking remains out of scope;
+- P13-E hard no-trade authority remains out of scope;
+- P14 signal probability remains out of scope.
+
+Safety:
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED;
+- risk approval/execution authority = NONE.

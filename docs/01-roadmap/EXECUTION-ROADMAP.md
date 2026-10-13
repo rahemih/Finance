@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B READY_NOT_STARTED / P13-C..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A CANONICAL_COMPLETE / P13-B IN_PROGRESS / P13-C..P13-H NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1240,3 +1240,13 @@ Next:
 - P13-B — Best Trading Time Engine = READY_NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P13-B activation — 2026-10-13
+
+Task: `FIN-P13-WB-001`  
+Linear: `HOS-262`  
+Lock: `LOCK-FIN-P13-WB-001-01` / ACTIVE  
+Base: `1b9276b7d542de6eb7f7f85ebcfbd6de22c62703`
+
+P13-B evaluates deterministic historical timing quality and best-window selection within a homogeneous comparison set. Opportunity ranking remains P13-D; hard no-trade remains P13-E; signal probability remains P14.
