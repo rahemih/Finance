@@ -77,7 +77,7 @@ Phase transition:
 - P10-H — Reliability / Latency Validation: CANONICAL_COMPLETE
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
-- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-D CANONICAL_COMPLETE / P13-E IN_PROGRESS / P13-F..P13-H NOT_STARTED
+- P13 — Timing & Opportunity: ACTIVE / P13-A..P13-E CANONICAL_COMPLETE / P13-F READY_NOT_STARTED / P13-G..P13-H BLOCKED_BEHIND_P13F_SEQUENCE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1349,3 +1349,26 @@ Lock: `LOCK-FIN-P13-WE-001-01` / ACTIVE
 Base: `9f2680d2c6d539d30a7b7803473f86978a178304`
 
 P13-E implements the deterministic No-Trade Guardian for timing/intelligence context. Portfolio risk budget and capital-preservation computation remain P15/P22; independent risk approval remains P16. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## P13-E canonical closure — 2026-10-13
+
+Task: `FIN-P13-WE-001`  
+Linear: `HOS-265`  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P13-WE-001-01` / RELEASED
+
+Evidence:
+- implementation PR #274 = MERGED;
+- implementation head `059e918d6cdad110cea45d114c91ad8e4044988e`;
+- Governance `38375382619` = SUCCESS;
+- artifact `sha256:5cc3c8958b02d408fbc954d2315cc8600fff75d0da2b41d986a76b84cda78487`;
+- merge SHA `7b480d847b2303869220d2ef18acee93c5c66cb5`;
+- post-merge Governance `38375554474` = SUCCESS;
+- Branch Hygiene `38375554374` = SUCCESS;
+- implementation branch = DELETED.
+
+Next:
+- P13-F — Signal Expiry / No-Chase = READY_NOT_STARTED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
