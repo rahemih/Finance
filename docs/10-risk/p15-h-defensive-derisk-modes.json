@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15H_DEFENSIVE_DERISK_MODES",
+  "task_id": "FIN-P15-WH-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "normal_scale_bps": 10000,
+  "production_numeric_defaults": null,
+  "position_close_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

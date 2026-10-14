@@ -117,3 +117,19 @@ __all__ += [
     "CounterpartyRule",
     "evaluate_counterparty_capital",
 ]
+
+from .defensive_modes import (
+    DefensiveModeDecision,
+    DefensiveModeError,
+    DefensiveModePolicy,
+    DefensiveModeRequest,
+    select_defensive_mode,
+)
+
+__all__ += [
+    "DefensiveModeDecision",
+    "DefensiveModeError",
+    "DefensiveModePolicy",
+    "DefensiveModeRequest",
+    "select_defensive_mode",
+]
