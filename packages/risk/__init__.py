@@ -45,3 +45,23 @@ __all__ += [
     "LimitRule",
     "LimitUsage",
 ]
+
+from .portfolio_correlation import (
+    CorrelationPair,
+    ExposureLeg,
+    PortfolioCorrelationError,
+    PortfolioExposureDecision,
+    PortfolioExposurePolicy,
+    PortfolioExposureRequest,
+    evaluate_portfolio_exposure,
+)
+
+__all__ += [
+    "CorrelationPair",
+    "ExposureLeg",
+    "PortfolioCorrelationError",
+    "PortfolioExposureDecision",
+    "PortfolioExposurePolicy",
+    "PortfolioExposureRequest",
+    "evaluate_portfolio_exposure",
+]
