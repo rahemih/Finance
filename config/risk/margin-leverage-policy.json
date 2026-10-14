@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P15E_MARGIN_LEVERAGE_POLICY",
+  "task_id":"FIN-P15-WE-001",
+  "leverage_unit":"MILLI_X",
+  "margin_utilization_unit":"BPS_OF_ACCOUNT_EQUITY",
+  "initial_margin_rate_source":"EXPLICIT_INSTRUMENT_INPUT",
+  "production_numeric_defaults":null,
+  "rounding":"CONSERVATIVE_CEILING",
+  "requires_upstream_status":"PORTFOLIO_ELIGIBLE",
+  "execution_authority":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED"
+}
