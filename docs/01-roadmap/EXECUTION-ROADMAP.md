@@ -79,6 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
+- P15 — Risk & Portfolio: ACTIVE / P15-A IN_PROGRESS / P15-B..P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1773,6 +1774,24 @@ All P14 locks are released. No P14 task remains active.
 P15 — Risk & Portfolio remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED` and MUST NOT start without explicit Owner authorization.
 
 Linear creation for P14-G/P14-H/P14-I remains blocked by the workspace free issue limit; GitHub canonical evidence is complete and the reconciliation blocker remains documented.
+
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P15-A activation — 2026-10-14
+
+Task: `FIN-P15-WA-001`  
+Linear: `NEXUS QUANT — Management Control & Reporting Register-1`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P15-WA-001-01` / ACTIVE  
+Base: `85e74579924f4609dfd8ab3967826b05b668dc24`
+
+P15-A establishes the governed finite risk-budget hierarchy and non-bypassable A5 veto semantics.
+
+The hierarchy allocates percentages of a separately governed total risk budget; it does not invent a production dollar-risk ceiling, calculate position size or select leverage.
+
+P15-B..P15-I remain NOT_STARTED. P16 remains NOT_STARTED.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
