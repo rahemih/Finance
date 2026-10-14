@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15D_PORTFOLIO_CORRELATION_EXPOSURE",
   "task_id": "FIN-P15-WD-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "exposure_unit": "BPS_OF_ACCOUNT_NAV",
   "correlation_unit": "MILLI_CORRELATION",
   "requires_complete_pairwise_correlation": true,
@@ -12,5 +12,16 @@
   "execution_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 309,
+    "head_sha": "1e102bcd8d69cafa6d7c3a4241f59b981d720feb",
+    "governance_run": 38527337401,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "a942f9df87da82feb12cc9152d698b8398b6e734114605b36773e368ff273209",
+    "merge_sha": "f0c763a7da1d1d2989de7da125e5fd04729a9c38"
+  },
+  "lock": "RELEASED",
+  "p15_e_state": "READY_NOT_STARTED",
+  "p15_f_through_p15_i_state": "NOT_STARTED"
 }
