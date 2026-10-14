@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15B_POSITION_SIZING",
+  "task_id": "FIN-P15-WB-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "model": "LINEAR_PRICE_LOSS",
+  "requires_upstream_status": "POLICY_CAPACITY_ELIGIBLE",
+  "production_numeric_defaults": null,
+  "asset_strategy_limits_in_scope": false,
+  "portfolio_correlation_in_scope": false,
+  "leverage_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
