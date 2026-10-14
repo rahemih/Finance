@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P16 — Pre-Trade Risk Firewall / ACTIVE  
-Current Workstream: none — P16-B CANONICAL_COMPLETE; P16-C READY_NOT_STARTED  
-Previous Workstream: P16-A — Signal Age / Price-Deviation Check / CANONICAL_COMPLETE  
+Current Workstream: P16-C — Size / Leverage / Exposure Check / IN_PROGRESS  
+Previous Workstream: P16-B — Duplicate / Idempotency Precheck / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -57,7 +57,7 @@ P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPL
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
-P16 state: ACTIVE / P16-A..P16-B CANONICAL_COMPLETE / P16-C READY_NOT_STARTED / P16-D..P16-H NOT_STARTED / G8 NOT_REACHED  
+P16 state: ACTIVE / P16-A..P16-B CANONICAL_COMPLETE / P16-C IN_PROGRESS / P16-D..P16-H NOT_STARTED / G8 NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -171,8 +171,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P16-WC-001`  
+Active lock: `LOCK-FIN-P16-WC-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6168,5 +6168,24 @@ Governance `38567176911` = SUCCESS.
 Artifact = `sha256:430c0d88691e1f8d6f47d35a1cbeff2f7363c05261ee642bf11b7e90245b9d9f`.  
 Lock = RELEASED.  
 P16-C = READY_NOT_STARTED.  
+P16-D..P16-H = NOT_STARTED.  
+`G8_PRETRADE_SAFE` = NOT_REACHED.
+
+
+### P16-C — Size / Leverage / Exposure Check
+
+Task: `FIN-P16-WC-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P16-WC-001-01` / ACTIVE
+
+Scope:
+- P16-B VETO remains non-bypassable;
+- P15 independent validation PASS required;
+- final quantity bounded by P15-B candidate and P15-H risk scale;
+- final gross/net/correlated-cluster exposure bounded by P15-D analyzed envelope;
+- final leverage/margin utilization bounded by P15-E analyzed envelope;
+- imported P15 authority escalation fails closed;
+- no parallel production risk limits.
+
 P16-D..P16-H = NOT_STARTED.  
 `G8_PRETRADE_SAFE` = NOT_REACHED.
