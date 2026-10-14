@@ -1,0 +1,130 @@
+{
+  "task_id": "FIN-P14-WI-001",
+  "phase": "P14",
+  "workstream": "WI",
+  "objective": "Implement deterministic integrated replay validation for canonical P14 signal outputs and certify the phase exit gate G7_SIGNAL_VALIDATED without entering P15.",
+  "scope": [
+    "Replay canonical P14-H AnalyticalSignalOutput from the exact P13/P14 upstream inputs",
+    "Require exact signal_id and canonical payload match",
+    "Validate LONG/SHORT directional geometry and WAIT/NO_TRADE geometry absence",
+    "Validate preserved probability, uncertainty, TP/Stop outcome and lineage fields",
+    "Reject any downstream risk/sizing/leverage/execution authority in P14 outputs",
+    "Produce deterministic per-signal validation certificates",
+    "Require deterministic validation coverage of LONG, SHORT, WAIT and NO_TRADE before phase gate certification",
+    "Emit G7_SIGNAL_VALIDATED only when all required action classes are validated",
+    "Generate deterministic offline P14-I evidence"
+  ],
+  "out_of_scope": [
+    "Portfolio risk, position sizing, leverage or capital allocation (P15)",
+    "Pre-trade risk firewall (P16)",
+    "Execution/OMS/position management (P20/P21)",
+    "Starting P15"
+  ],
+  "dependencies": [
+    "P14-H CANONICAL_COMPLETE",
+    "P14-H closure merge da64c42c7866ebac9df756137f21b6e654313d1a",
+    "P14-H closure post-merge Governance 38515168621 SUCCESS",
+    "P14-H closure Branch Hygiene 38515168578 SUCCESS",
+    "Fresh Live Guard: open PR none, active task none, active lock none",
+    "Linear new-issue creation blocked by workspace free issue limit; GitHub remains canonical"
+  ],
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "packages/timing_opportunity/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P14-WI-001.json",
+    "config/signal-intelligence/signal-validation-policy.json",
+    "packages/signal_intelligence/__init__.py",
+    "packages/signal_intelligence/signal_validation.py",
+    "tests/p14/test_signal_validation.py",
+    "scripts/ci/p14i_evidence.py",
+    "docs/09-intelligence/P14-I-SIGNAL-VALIDATION-GATE.md",
+    "docs/09-intelligence/p14-i-signal-validation-gate.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/risk/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A0",
+    "A3",
+    "A4",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear (sync blocked by free issue limit)"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Exact replay match validates",
+    "Signal ID mismatch fails closed",
+    "Canonical payload mismatch fails closed",
+    "LONG/SHORT require complete directional geometry",
+    "WAIT/NO_TRADE forbid directional geometry",
+    "Risk/sizing/leverage/execution fields remain absent",
+    "Per-signal validation certificate identity is deterministic",
+    "Duplicate action certificates fail gate certification",
+    "Missing required action coverage fails gate certification",
+    "LONG/SHORT/WAIT/NO_TRADE validated matrix emits G7_SIGNAL_VALIDATED",
+    "P14-I evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network/credentials required",
+    "No hard-veto bypass",
+    "No probability mutation",
+    "No downstream risk/execution authority",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P14-H canonical closure",
+    "Deterministic P14-I replay/gate evidence",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear synchronization blocker documented"
+  ],
+  "rollback": "Revert P14-I validation/policy/tests/evidence/CI/state changes; P14-H remains canonical and G7 is not granted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P14-H CANONICAL_COMPLETE",
+    "No active task/lock/open PR conflict",
+    "Linear sync blocker documented without replacing GitHub canonical truth"
+  ],
+  "definition_of_done": [
+    "Integrated signal replay validation implemented",
+    "All required action classes validated",
+    "G7_SIGNAL_VALIDATED emitted deterministically",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P14-WI-001 CANONICAL_COMPLETE",
+    "P14 CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS",
+    "Lock released",
+    "Linear sync blocker remains explicitly documented until capacity restored",
+    "P15 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}
