@@ -25,7 +25,13 @@
     "P15-I READY_NOT_STARTED",
     "Owner P15 authorization already granted"
   ],
-  "read_paths": ["packages/risk/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "read_paths": [
+    "packages/risk/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
   "write_paths": [
     "contracts/tasks/FIN-P15-WI-001.json",
     "config/risk/independent-risk-validation.json",
@@ -39,7 +45,9 @@
     "scripts/ci/foundation_ci.py",
     "docs/01-roadmap/EXECUTION-ROADMAP.md",
     "docs/02-current-state/CURRENT-STATE.md",
-    "docs/13-tasks/TASK-CATALOG.md"
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/10-risk/P15-PHASE-CLOSURE.md",
+    "docs/10-risk/p15-phase-closure.json"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
@@ -49,10 +57,23 @@
     "credentials/**",
     "packages/risk_firewall/**"
   ],
-  "agents": ["A0","A5","A10"],
-  "plugins": ["GitHub","Linear"],
+  "agents": [
+    "A0",
+    "A5",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
   "skills": [],
-  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
   "secrets": [],
   "risk_level": "HIGH",
   "tests": [
@@ -79,7 +100,8 @@
     "Deterministic P15-I evidence",
     "Implementation Governance",
     "Closure revalidation",
-    "Linear continuation-register reconciliation"
+    "Linear continuation-register reconciliation",
+    "P15 canonical phase closure dossier"
   ],
   "rollback": "Revert P15-I validation/config/tests/evidence/CI/state changes; P15-H remains canonical complete and P16 remains not started.",
   "human_gate": false,
@@ -96,6 +118,9 @@
     "FIN-P15-WI-001 CANONICAL_COMPLETE",
     "Lock released",
     "P15 ready for canonical phase closure",
-    "P16 remains NOT_STARTED"
+    "P16 remains NOT_STARTED",
+    "P15 CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE",
+    "P15_INDEPENDENT_RISK_VALIDATION PASS recorded in phase closure",
+    "P16 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
   ]
 }
