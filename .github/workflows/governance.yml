@@ -900,6 +900,15 @@ jobs:
           cmp build/p14h-a.json build/p14h-b.json
           sha256sum build/p14h-a.json
 
+      - name: P14-I deterministic G7 signal validation twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p14i_evidence.py --output build/p14i-a.json
+          PYTHONPATH=. python scripts/ci/p14i_evidence.py --output build/p14i-b.json
+          cmp build/p14i-a.json build/p14i-b.json
+          sha256sum build/p14i-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
