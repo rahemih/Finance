@@ -133,3 +133,17 @@ __all__ += [
     "DefensiveModeRequest",
     "select_defensive_mode",
 ]
+
+from .independent_validation import (
+    IndependentRiskValidation,
+    IndependentRiskValidationError,
+    RiskValidationChain,
+    validate_risk_chain,
+)
+
+__all__ += [
+    "IndependentRiskValidation",
+    "IndependentRiskValidationError",
+    "RiskValidationChain",
+    "validate_risk_chain",
+]
