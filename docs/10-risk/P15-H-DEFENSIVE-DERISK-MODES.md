@@ -1,6 +1,6 @@
 # P15-H — Defensive / De-Risk Modes
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P15-WH-001`
 
 ## Objective
@@ -33,3 +33,16 @@ P16 remains NOT_STARTED.
 Production scaling defaults: **NONE**.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #318 = MERGED;
+- implementation head = `d8ffbba38e6586e7d69d4fb0f3ce6f270cc42a27`;
+- Governance `38533036900` = SUCCESS;
+- artifact = `sha256:808ad879aae8c45bfa3af81171252245ac666df37f6a45a538c141396bf604a7`;
+- implementation merge = `bb9b83c4cc379e489f8494bc0d0155148e731564`;
+- `FIN-P15-WH-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P15-WH-001-01` = RELEASED;
+- P15-I = READY_NOT_STARTED;
+- P16 = NOT_STARTED.
