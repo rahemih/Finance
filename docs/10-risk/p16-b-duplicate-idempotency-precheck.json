@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16B_DUPLICATE_IDEMPOTENCY_PRECHECK",
   "task_id": "FIN-P16-WB-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "replay_lookback_source": "EXPLICIT_GOVERNED_POLICY",
   "exact_key_replay_veto": true,
   "key_collision_veto": true,
@@ -12,5 +12,17 @@
   "execution_authority": false,
   "p16_c_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 325,
+    "head_sha": "6e9cca8463f2ac447128e1206add2ced4d04c099",
+    "governance_run": 38567176911,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "430c0d88691e1f8d6f47d35a1cbeff2f7363c05261ee642bf11b7e90245b9d9f",
+    "merge_sha": "fe36f4d033f3bf5f9ca679c48565250c75248efd"
+  },
+  "lock": "RELEASED",
+  "p16_c_state": "READY_NOT_STARTED",
+  "p16_d_through_p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
