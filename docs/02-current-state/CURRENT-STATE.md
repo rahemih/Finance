@@ -39,9 +39,9 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P15 — Risk & Portfolio / CANONICAL_COMPLETE  
-Current Workstream: none — P15 CANONICAL_COMPLETE  
-Previous Workstream: P15-I — Independent Risk Validation / CANONICAL_COMPLETE  
+Current Phase: P16 — Pre-Trade Risk Firewall / ACTIVE  
+Current Workstream: P16-A — Signal Age / Price-Deviation Check / IN_PROGRESS  
+Previous Workstream: P15 — Risk & Portfolio / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -57,7 +57,7 @@ P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPL
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
-P16 state: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED  
+P16 state: ACTIVE / P16-A IN_PROGRESS / P16-B..P16-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -171,8 +171,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P16-WA-001`  
+Active lock: `LOCK-FIN-P16-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6095,5 +6095,34 @@ Safety:
 - P15 does not grant final pre-trade approval;
 - P16 owns `G8_PRETRADE_SAFE`;
 - P16 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
+
+
+## P16 execution activation — 2026-10-14
+
+Owner phase authorization: GRANTED / CONSUMED.
+
+### P16-A — Signal Age / Price-Deviation Check
+
+Task: `FIN-P16-WA-001`  
+Linear: `NEXUS QUANT — Management Control & Reporting Register-1`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P16-WA-001-01` / ACTIVE  
+Canonical base: `b2d36ab92981ddb4ba585b6c8f1eb2d36bfea3df`
+
+Scope:
+- accept only P14-H directional LONG/SHORT signals;
+- explicit governed maximum signal age;
+- explicit governed maximum current-price deviation from the canonical entry zone;
+- conservative ceiling-bps deviation arithmetic;
+- non-directional signals and malformed/future-dated inputs fail closed;
+- positive P16-A output is only `PRETRADE_A_ELIGIBLE`.
+
+Boundaries:
+- P16-B..P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED;
+- final pre-trade approval = NONE;
+- execution authority = NONE;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
