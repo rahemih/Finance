@@ -1,6 +1,6 @@
 # P15-E — Margin / Leverage
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P15-WE-001`
 
 P15-E measures the post-candidate leverage and margin utilization using explicit account and instrument inputs.
@@ -20,3 +20,17 @@ P15-F..P15-I = NOT_STARTED.
 P16 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- PR #311 = MERGED;
+- implementation head = `bed0e8ed98ea3cc45bddad57f53ff14525f50219`;
+- Governance = `38528241794` / SUCCESS;
+- artifact = `sha256:8a8aaffacec0559f42c689fcaf2d3b8cfb1665b64544dc2302ab091b9be108f1`;
+- implementation merge = `5fcb7dc66bdfca259509f5a31899f6f68e366b59`;
+- `FIN-P15-WE-001` = CANONICAL_COMPLETE;
+- lock = RELEASED;
+- P15-F = READY_NOT_STARTED;
+- P15-G..P15-I = NOT_STARTED;
+- P16 = NOT_STARTED.
