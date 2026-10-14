@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-E CANONICAL_COMPLETE / P15-F IN_PROGRESS / P15-G..P15-I NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-F CANONICAL_COMPLETE / P15-G READY_NOT_STARTED / P15-H..P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1925,4 +1925,16 @@ Lock = `LOCK-FIN-P15-WF-001-01` / ACTIVE.
 Drawdown and ruin-risk controls use explicit governed thresholds and an explicit validated ruin-probability input. Defensive-mode selection remains P15-H.
 
 P15-G..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+## P15-F canonical closure — 2026-10-14
+
+`FIN-P15-WF-001` = CANONICAL_COMPLETE.  
+PR #314 = MERGED at `e37180e2ee37bc99a181f33509e56aaba50a2e68`.  
+Governance `38531298706` = SUCCESS.  
+Artifact `sha256:18ae003e66bfe34121030cd43443e6ebb25f75747231e3938195605d0630e244`.  
+Lock = RELEASED.  
+P15-G = READY_NOT_STARTED.  
+P15-H..P15-I = NOT_STARTED.  
 P16 = NOT_STARTED.

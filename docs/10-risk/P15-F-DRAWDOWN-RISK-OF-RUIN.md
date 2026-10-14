@@ -1,6 +1,6 @@
 # P15-F — Drawdown / Risk-of-Ruin
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P15-WF-001`
 
 ## Objective
@@ -37,3 +37,17 @@ No liquidation or broker/exchange order authority exists here.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #314 = MERGED;
+- implementation head = `591f8a476aa84dadc075382dd43d494ad28d1ba5`;
+- Governance `38531298706` = SUCCESS;
+- artifact = `sha256:18ae003e66bfe34121030cd43443e6ebb25f75747231e3938195605d0630e244`;
+- implementation merge = `e37180e2ee37bc99a181f33509e56aaba50a2e68`;
+- `FIN-P15-WF-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P15-WF-001-01` = RELEASED;
+- P15-G = READY_NOT_STARTED;
+- P15-H..P15-I = NOT_STARTED;
+- P16 = NOT_STARTED.
