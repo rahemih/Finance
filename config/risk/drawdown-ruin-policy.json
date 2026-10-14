@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15F_DRAWDOWN_RUIN_POLICY",
+  "task_id": "FIN-P15-WF-001",
+  "drawdown_threshold_source": "EXPLICIT_GOVERNED_POLICY",
+  "ruin_probability_source": "EXPLICIT_VALIDATED_MODEL_INPUT",
+  "production_numeric_defaults": null,
+  "requires_upstream_status": "MARGIN_LEVERAGE_ELIGIBLE",
+  "defensive_mode_selection_in_scope": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
