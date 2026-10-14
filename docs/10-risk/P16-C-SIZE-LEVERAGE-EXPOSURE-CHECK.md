@@ -1,6 +1,6 @@
 # P16-C — Size / Leverage / Exposure Check
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WC-001`
 
 ## Objective
@@ -34,3 +34,17 @@ P16-D..P16-H remain later workstreams.
 `G8_PRETRADE_SAFE` = NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #327 = MERGED;
+- implementation head = `d7b4e72bee5a89a4fab556dcddd20936c0fd474b`;
+- Governance `38568572787` = SUCCESS;
+- artifact = `sha256:fe325e366e30e2541527bb392595855ea9ad14f61d5b2a872758d88d195c1acf`;
+- implementation merge = `7793d255535759002d3a0c90170882a08c6bdbef`;
+- `FIN-P16-WC-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WC-001-01` = RELEASED;
+- P16-D = READY_NOT_STARTED;
+- P16-E..P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED.
