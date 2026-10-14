@@ -921,6 +921,15 @@ jobs:
           cmp build/p15a-a.json build/p15a-b.json
           sha256sum build/p15a-a.json
 
+      - name: P15-B deterministic position sizing evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p15b_evidence.py --output build/p15b-a.json
+          PYTHONPATH=. python scripts/ci/p15b_evidence.py --output build/p15b-b.json
+          cmp build/p15b-a.json build/p15b-b.json
+          sha256sum build/p15b-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
