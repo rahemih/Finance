@@ -227,7 +227,7 @@ This catalog is the canonical index of governed work.
 | FIN-P14-WF-001 | P14 | Persian Explainability | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WF-001.json` | RELEASED |
 | FIN-P14-WG-001 | P14 | Independent Red-Team Challenge | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WG-001.json` | RELEASED / LINEAR_SYNC_BLOCKED_FREE_ISSUE_LIMIT |
 | FIN-P14-WH-001 | P14 | Signal Output Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WH-001.json` | RELEASED / LINEAR_SYNC_BLOCKED_FREE_ISSUE_LIMIT |
-| FIN-P14-WI-001 | P14 | Signal Validation Gate | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P14-WI-001.json` | `LOCK-FIN-P14-WI-001-01` ACTIVE / LINEAR_SYNC_BLOCKED_FREE_ISSUE_LIMIT |
+| FIN-P14-WI-001 | P14 | Signal Validation Gate | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WI-001.json` | RELEASED / G7_SIGNAL_VALIDATED PASS / LINEAR_SYNC_BLOCKED_FREE_ISSUE_LIMIT |
 | FIN-P14-WA-001 | P14 | Evidence Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WA-001.json` | RELEASED |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
