@@ -2,8 +2,11 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16A_SIGNAL_AGE_PRICE_DEVIATION",
   "task_id": "FIN-P16-WA-001",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "accepted_actions": ["LONG", "SHORT"],
+  "state": "CANONICAL_COMPLETE",
+  "accepted_actions": [
+    "LONG",
+    "SHORT"
+  ],
   "price_deviation_reference": "NEAREST_ENTRY_ZONE_BOUNDARY",
   "price_deviation_rounding": "CEILING_BPS",
   "production_numeric_defaults": null,
@@ -11,5 +14,17 @@
   "execution_authority": false,
   "p16_b_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 323,
+    "head_sha": "0403c1ce119df04ec185c1f61842bf6be62a3309",
+    "governance_run": 38562758587,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "404e4fb6b350153593a905b8d9cc7209e5534c96c0b01b64efb692023a0ee5a4",
+    "merge_sha": "20a3dba64bc1da6647e91e7637fb0eb162337b79"
+  },
+  "lock": "RELEASED",
+  "p16_b_state": "READY_NOT_STARTED",
+  "p16_c_through_p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
