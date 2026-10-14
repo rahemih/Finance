@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15F_DRAWDOWN_RISK_OF_RUIN",
+  "task_id": "FIN-P15-WF-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "production_numeric_defaults": null,
+  "ruin_model_source": "EXPLICIT_VALIDATED_INPUT",
+  "defensive_mode_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

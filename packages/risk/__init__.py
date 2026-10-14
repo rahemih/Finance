@@ -81,3 +81,19 @@ __all__ += [
     "MarginLeverageRequest",
     "evaluate_margin_leverage",
 ]
+
+from .drawdown_ruin import (
+    DrawdownRuinDecision,
+    DrawdownRuinError,
+    DrawdownRuinPolicy,
+    DrawdownRuinRequest,
+    evaluate_drawdown_ruin,
+)
+
+__all__ += [
+    "DrawdownRuinDecision",
+    "DrawdownRuinError",
+    "DrawdownRuinPolicy",
+    "DrawdownRuinRequest",
+    "evaluate_drawdown_ruin",
+]
