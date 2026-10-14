@@ -1,6 +1,6 @@
 # P15-B — Position Sizing
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P15-WB-001`  
 Linear: `NEXUS QUANT — Management Control & Reporting Register-1`
 
@@ -43,3 +43,27 @@ P15-B does not:
 Production numeric defaults: **NONE**.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+Implementation:
+- PR #305 = MERGED;
+- final implementation head = `1d55482e082ddc819421be0404242af763de210f`;
+- PR Governance = `38525909195` / SUCCESS;
+- implementation artifact = `sha256:d4425d147c192c2eae63005b9931f472f42d346352504b2ac40f9e5b35cf879d`;
+- implementation merge = `b72145397a606be7908989fdbc48a9ed4cddd633`.
+
+Closure:
+- `FIN-P15-WB-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P15-WB-001-01` = RELEASED;
+- P15-C = READY_NOT_STARTED;
+- P15-D..P15-I = NOT_STARTED;
+- P16 = NOT_STARTED.
+
+Safety remains unchanged:
+- production numeric defaults = NONE;
+- leverage authority = NONE;
+- execution authority = NONE;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
