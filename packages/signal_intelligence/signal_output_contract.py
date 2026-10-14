@@ -294,15 +294,20 @@ def build_signal_output(
 
     if hard_block:
         action = "NO_TRADE"
-        reasons = tuple(sorted(set(no_trade.reason_codes) | {item.code for item in challenge.findings if item.severity == "REJECT"}))
+        reason_set: set[str] = set(no_trade.reason_codes)
+        reason_set.update(item.code for item in challenge.findings if item.severity == "REJECT")
+        reasons = tuple(sorted(reason_set))
     elif timing_wait or challenge.disposition == "CAUTION" or insufficient:
         action = "WAIT"
-        reasons = tuple(sorted(
-            ({expiry.state} if expiry.state != "ACTIVE" else set())
-            | ({item.code for item in challenge.findings})
-            | ({"CANDIDATE_NOT_ELIGIBLE"} if not candidate.eligible else set())
-            | ({"INSUFFICIENT_ANALYTICAL_STATE"} if insufficient else set())
-        ))
+        reason_set = set()
+        if expiry.state != "ACTIVE":
+            reason_set.add(expiry.state)
+        reason_set.update(item.code for item in challenge.findings)
+        if not candidate.eligible:
+            reason_set.add("CANDIDATE_NOT_ELIGIBLE")
+        if insufficient:
+            reason_set.add("INSUFFICIENT_ANALYTICAL_STATE")
+        reasons = tuple(sorted(reason_set))
     else:
         if no_trade.decision != "TIMING_ELIGIBLE" or expiry.state != "ACTIVE" or challenge.disposition != "CLEAR":
             raise SignalOutputContractError("directional signal prerequisites are not canonical")
