@@ -939,6 +939,15 @@ jobs:
           cmp build/p15c-a.json build/p15c-b.json
           sha256sum build/p15c-a.json
 
+      - name: P15-D deterministic portfolio correlation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p15d_evidence.py --output build/p15d-a.json
+          PYTHONPATH=. python scripts/ci/p15d_evidence.py --output build/p15d-b.json
+          cmp build/p15d-a.json build/p15d-b.json
+          sha256sum build/p15d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
