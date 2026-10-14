@@ -98,13 +98,20 @@ def evaluate_signal_freshness(
 
     if signal.action not in {"LONG", "SHORT"}:
         reasons.append("NON_DIRECTIONAL_SIGNAL")
-    if (
-        signal.entry_low_scaled is None
-        or signal.entry_high_scaled is None
-        or signal.price_scale is None
-    ):
+    geometry_fields = (
+        signal.entry_low_scaled,
+        signal.entry_high_scaled,
+        signal.invalidation_price_scaled,
+        signal.candidate_stop_scaled,
+        signal.candidate_target_scaled,
+        signal.price_scale,
+        signal.geometry_version_sha256,
+    )
+    if any(value is None for value in geometry_fields):
         reasons.append("MISSING_DIRECTIONAL_GEOMETRY")
-    if request.as_of_ns < signal.as_of_time_ns:
+    if signal.as_of_time_ns < 0:
+        reasons.append("INVALID_SIGNAL_TIMESTAMP")
+    elif request.as_of_ns < signal.as_of_time_ns:
         reasons.append("FUTURE_DATED_SIGNAL")
 
     signal_age_ns = max(0, request.as_of_ns - signal.as_of_time_ns)
