@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P15 — Risk & Portfolio / ACTIVE  
-Current Workstream: P15-A — Risk Policy / Budget Hierarchy / IN_PROGRESS  
-Previous Workstream: P14 — Signal / Probability / Explainability / CANONICAL_COMPLETE / G7 PASS  
+Current Workstream: none — P15-A CANONICAL_COMPLETE; P15-B READY_NOT_STARTED  
+Previous Workstream: P15-A — Risk Policy / Budget Hierarchy / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -56,7 +56,7 @@ P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPL
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
-P15 state: ACTIVE / P15-A IN_PROGRESS / P15-B..P15-I NOT_STARTED  
+P15 state: ACTIVE / P15-A CANONICAL_COMPLETE / P15-B READY_NOT_STARTED / P15-C..P15-I NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -170,8 +170,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P15-WA-001`  
-Active lock: `LOCK-FIN-P15-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5790,3 +5790,35 @@ Boundaries:
 - execution authority = NONE;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P15-A canonical closure — 2026-10-14
+
+Task: `FIN-P15-WA-001`  
+Linear: `NEXUS QUANT — Management Control & Reporting Register-1`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED
+
+Implementation evidence:
+- PR #302 = MERGED;
+- final implementation head = `e41055e256e675ce6d9fc3055470f0d754dc5c6a`;
+- PR Governance `38524129028` = SUCCESS;
+- artifact = `sha256:625e1c2d3d6a2048291efc3eae19eb28244f6dfbb4c7d79d4dd15c384044b3b1`;
+- implementation merge = `ecfafbfdc10b6354dff5ff84e6426c349db49e3b`;
+- canonical implementation branch = DELETED;
+- superseded `risk/` branch = NO PR / NON_CANONICAL.
+
+Result:
+- finite GLOBAL → PORTFOLIO → MARKET → ASSET → STRATEGY → TRADE risk-budget hierarchy;
+- non-bypassable A5 veto semantics;
+- no invented production monetary ceiling;
+- no position sizing, leverage selection or execution authority.
+
+Next:
+- P15-B — Position Sizing = READY_NOT_STARTED;
+- P15-C..P15-I = NOT_STARTED;
+- P16 = NOT_STARTED;
+- closure PR independent revalidation = PENDING.
+
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
