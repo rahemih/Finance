@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A CANONICAL_COMPLETE / P15-B READY_NOT_STARTED / P15-C..P15-I NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A CANONICAL_COMPLETE / P15-B IN_PROGRESS / P15-C..P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1820,5 +1820,22 @@ Final closure-head artifact = `sha256:07624507d123ceefaba6583653e5c0523b5a3037cd
 Closure PR #303 = MERGED at `582245ed21271160a56c3c9a0ba7344a984191af`.  
 Closure branch = DELETED.
 
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P15-B activation — 2026-10-14
+
+Task: `FIN-P15-WB-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P15-WB-001-01` / ACTIVE  
+Base: `4b1c4480c53cccb5fe59097943e7d41dbb3a3862`
+
+P15-B implements deterministic risk-based candidate sizing after P15-A capacity admission.
+
+No leverage approval, portfolio-limit approval, execution authority or P16 functionality is introduced.
+
+P15-C..P15-I remain NOT_STARTED.  
+P16 remains NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.

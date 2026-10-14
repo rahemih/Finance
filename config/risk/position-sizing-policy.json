@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15B_POSITION_SIZING_POLICY",
+  "task_id": "FIN-P15-WB-001",
+  "model": "LINEAR_PRICE_LOSS",
+  "risk_budget_source": "EXPLICIT_GOVERNED_INPUT",
+  "quantity_step_source": "EXPLICIT_INSTRUMENT_INPUT",
+  "contract_multiplier_source": "EXPLICIT_INSTRUMENT_INPUT",
+  "production_numeric_defaults": null,
+  "requires_upstream_status": "POLICY_CAPACITY_ELIGIBLE",
+  "leverage_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
