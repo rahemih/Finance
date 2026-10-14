@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16A_SIGNAL_AGE_PRICE_DEVIATION",
+  "task_id": "FIN-P16-WA-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "accepted_actions": ["LONG", "SHORT"],
+  "price_deviation_reference": "NEAREST_ENTRY_ZONE_BOUNDARY",
+  "price_deviation_rounding": "CEILING_BPS",
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "p16_b_through_p16_h_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

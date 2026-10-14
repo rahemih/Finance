@@ -993,6 +993,18 @@ jobs:
           cmp build/p15i-a.json build/p15i-b.json
           sha256sum build/p15i-a.json
 
+      - name: P16 pre-trade firewall tests
+        run: python -m unittest discover -s tests/p16 -p 'test_*.py' -v
+
+      - name: P16-A deterministic signal freshness evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p16a_evidence.py --output build/p16a-a.json
+          PYTHONPATH=. python scripts/ci/p16a_evidence.py --output build/p16a-b.json
+          cmp build/p16a-a.json build/p16a-b.json
+          sha256sum build/p16a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
