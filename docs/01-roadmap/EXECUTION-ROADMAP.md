@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS / PHASE_CLOSURE_READY
+- P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1762,3 +1762,17 @@ PR #299 merged at `fe168be546beeab9c6f27c5f4b387b46477cac58`.
 Implementation Governance `38515876520`, post-merge Governance `38516064645` and Branch Hygiene `38516064676` are SUCCESS.  
 `G7_SIGNAL_VALIDATED = PASS`.  
 P14 phase closure is READY. P15 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+
+## P14 canonical phase closure — 2026-10-14
+
+P14-A..P14-I are CANONICAL_COMPLETE and `G7_SIGNAL_VALIDATED = PASS`.
+
+All P14 locks are released. No P14 task remains active.
+
+P15 — Risk & Portfolio remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED` and MUST NOT start without explicit Owner authorization.
+
+Linear creation for P14-G/P14-H/P14-I remains blocked by the workspace free issue limit; GitHub canonical evidence is complete and the reconciliation blocker remains documented.
+
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
