@@ -241,12 +241,15 @@ def build_signal_output(
         raise SignalOutputContractError("P13 candidate identity mismatch")
     if candidate.asset_id != fusion.subject_id or candidate.asset_id != explanation.subject_id or candidate.asset_id != challenge.subject_id:
         raise SignalOutputContractError("asset/subject mismatch")
-    if candidate.regime_label != explanation.payload().get("fusion_state") and False:
-        raise SignalOutputContractError("unreachable")
     if explanation.fusion_id != fusion.fusion_id or challenge.fusion_id != fusion.fusion_id:
         raise SignalOutputContractError("fusion lineage mismatch")
     if challenge.explanation_id != explanation.explanation_id:
         raise SignalOutputContractError("explanation/challenge lineage mismatch")
+
+    if no_trade.decision not in ("NO_TRADE", "TIMING_ELIGIBLE"):
+        raise SignalOutputContractError("unsupported P13 no-trade decision")
+    if expiry.state not in ("ACTIVE", "BLOCKED_BY_NO_TRADE", "EXPIRED", "NO_CHASE"):
+        raise SignalOutputContractError("unsupported P13 expiry/no-chase state")
 
     hard_block = (
         no_trade.decision == "NO_TRADE"
