@@ -909,6 +909,18 @@ jobs:
           cmp build/p14i-a.json build/p14i-b.json
           sha256sum build/p14i-a.json
 
+      - name: P15 risk portfolio tests
+        run: python -m unittest discover -s tests/p15 -p 'test_*.py' -v
+
+      - name: P15-A deterministic risk policy hierarchy evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p15a_evidence.py --output build/p15a-a.json
+          PYTHONPATH=. python scripts/ci/p15a_evidence.py --output build/p15a-b.json
+          cmp build/p15a-a.json build/p15a-b.json
+          sha256sum build/p15a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
