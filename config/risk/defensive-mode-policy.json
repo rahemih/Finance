@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15H_DEFENSIVE_MODE_POLICY",
+  "task_id": "FIN-P15-WH-001",
+  "normal_scale_bps": 10000,
+  "reduced_risk_scale_source": "EXPLICIT_GOVERNED_POLICY",
+  "defensive_scale_source": "EXPLICIT_GOVERNED_POLICY",
+  "production_numeric_defaults": null,
+  "position_close_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
