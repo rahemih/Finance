@@ -87,7 +87,9 @@ Closure state:
 - P15-B = READY_NOT_STARTED;
 - P15-C..P15-I = NOT_STARTED;
 - P16 = NOT_STARTED;
-- closure PR independent revalidation = PENDING at this commit.
+- closure PR #303 independent revalidation Governance = `38524603270` / SUCCESS;
+- closure revalidation artifact = `sha256:8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa`;
+- final closure-head Governance after recording this evidence = REQUIRED_BEFORE_MERGE.
 
 Safety remains unchanged:
 - production monetary risk ceiling = UNSET;
