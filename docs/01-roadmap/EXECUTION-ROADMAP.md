@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-F CANONICAL_COMPLETE / P15-G IN_PROGRESS / P15-H..P15-I NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-G CANONICAL_COMPLETE / P15-H READY_NOT_STARTED / P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1948,4 +1948,16 @@ Lock = `LOCK-FIN-P15-WG-001-01` / ACTIVE.
 Counterparty and capital-segment allocations use explicit governed bps ceilings. Venue routing and execution remain out of scope.
 
 P15-H..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+## P15-G canonical closure — 2026-10-14
+
+`FIN-P15-WG-001` = CANONICAL_COMPLETE.  
+PR #316 = MERGED at `57bda0d5cff748d859a64db8b5dc9c06581f8398`.  
+Governance `38532052913` = SUCCESS.  
+Artifact `sha256:4438fa3b17de9e3700bbc8e3fc7c224a3a472d6d5f67ade6a04ef64b214f5dce`.  
+Lock = RELEASED.  
+P15-H = READY_NOT_STARTED.  
+P15-I = NOT_STARTED.  
 P16 = NOT_STARTED.
