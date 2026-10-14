@@ -78,7 +78,7 @@ Phase transition:
 - P11 — News & Sentiment: CANONICAL_COMPLETE
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
-- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-H CANONICAL_COMPLETE / P14-I READY_NOT_STARTED
+- P14 — Signal / Probability / Explainability: ACTIVE / P14-A..P14-H CANONICAL_COMPLETE / P14-I IN_PROGRESS
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1743,3 +1743,13 @@ FIN-P14-WH-001 = CANONICAL_COMPLETE.
 PR #297 merged at `394a2ee0aa194b119ac3441ac7b11e260353cd67`.  
 Implementation Governance `38514304803`, post-merge Governance `38514523908` and Branch Hygiene `38514523830` are SUCCESS.  
 P14-I is READY_NOT_STARTED. P15 remains NOT_STARTED.
+
+
+## P14-I activation — 2026-10-13
+
+Task: `FIN-P14-WI-001`  
+Linear: `SYNC_BLOCKED_FREE_ISSUE_LIMIT`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P14-WI-001-01` / ACTIVE
+
+P14-I performs exact replay validation and G7 action-coverage certification. P15 is explicitly not started and remains owner-gated.
