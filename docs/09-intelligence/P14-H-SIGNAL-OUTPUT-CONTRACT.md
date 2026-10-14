@@ -1,6 +1,6 @@
 # P14-H — Signal Output Contract
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WH-001`  
 Linear: SYNC_BLOCKED_FREE_ISSUE_LIMIT
 
@@ -53,3 +53,17 @@ P14-H has no portfolio-risk, sizing, leverage, risk-approval or execution author
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure
+
+- Implementation PR: #297
+- Implementation Governance: `38514304803` / SUCCESS
+- Implementation artifact: `sha256:56a1ca1ae2f175138290430fba40ad015fba4cbef7fe4e7a66500f9e27b277d0`
+- Implementation merge: `394a2ee0aa194b119ac3441ac7b11e260353cd67`
+- Post-merge Governance: `38514523908` / SUCCESS
+- Branch Hygiene: `38514523830` / SUCCESS
+- Lock: RELEASED
+- Linear sync: BLOCKED_FREE_ISSUE_LIMIT
+- P14-I: READY_NOT_STARTED
+- P15: NOT_STARTED

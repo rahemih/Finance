@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P14H_SIGNAL_OUTPUT_CONTRACT",
   "task_id": "FIN-P14-WH-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
   "actions": [
     "LONG",
@@ -23,5 +23,16 @@
   "leverage_in_scope": false,
   "execution_authority_in_scope": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "closure": {
+    "implementation_pr": 297,
+    "implementation_governance_run": 38514304803,
+    "implementation_artifact_sha256": "56a1ca1ae2f175138290430fba40ad015fba4cbef7fe4e7a66500f9e27b277d0",
+    "implementation_merge_sha": "394a2ee0aa194b119ac3441ac7b11e260353cd67",
+    "post_merge_governance_run": 38514523908,
+    "branch_hygiene_run": 38514523830,
+    "lock": "RELEASED",
+    "p14_i": "READY_NOT_STARTED",
+    "p15": "NOT_STARTED"
+  }
 }
