@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14I_SIGNAL_VALIDATION_GATE",
+  "task_id": "FIN-P14-WI-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
+  "gate_name": "G7_SIGNAL_VALIDATED",
+  "required_action_coverage": [
+    "LONG",
+    "SHORT",
+    "WAIT",
+    "NO_TRADE"
+  ],
+  "exact_replay_required": true,
+  "directional_geometry_required": true,
+  "non_directional_geometry_forbidden": true,
+  "risk_authority_forbidden": true,
+  "execution_authority_forbidden": true,
+  "p15_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
