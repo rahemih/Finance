@@ -964,6 +964,8 @@ BUILD_INPUTS = [
     "scripts/ci/p15i_evidence.py",
     "docs/10-risk/P15-I-INDEPENDENT-RISK-VALIDATION.md",
     "docs/10-risk/p15-i-independent-risk-validation.json",
+    "docs/10-risk/P15-PHASE-CLOSURE.md",
+    "docs/10-risk/p15-phase-closure.json",
     "contracts/tasks/FIN-P13-WA-001.json",
     "config/timing-opportunity/session-calendar-policy.json",
     "packages/timing_opportunity/__init__.py",
