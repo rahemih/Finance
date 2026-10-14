@@ -1,6 +1,6 @@
 # P14-I — Signal Validation Gate
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P14-WI-001`  
 Linear: SYNC_BLOCKED_FREE_ISSUE_LIMIT
 
@@ -47,3 +47,18 @@ P15 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure
+
+- Implementation PR: #299
+- Implementation Governance: `38515876520` / SUCCESS
+- Implementation artifact: `sha256:13ceeffc1f9799b809aa2506309d6070ac24a718acab51e7d0ca47a222ed9ae7`
+- Implementation merge: `fe168be546beeab9c6f27c5f4b387b46477cac58`
+- Post-merge Governance: `38516064645` / SUCCESS
+- Branch Hygiene: `38516064676` / SUCCESS
+- Gate: `G7_SIGNAL_VALIDATED / PASS`
+- Lock: RELEASED
+- Linear sync: BLOCKED_FREE_ISSUE_LIMIT
+- P14 phase closure: READY
+- P15: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
