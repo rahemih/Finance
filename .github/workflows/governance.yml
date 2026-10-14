@@ -1023,6 +1023,15 @@ jobs:
           cmp build/p16c-a.json build/p16c-b.json
           sha256sum build/p16c-a.json
 
+      - name: P16-D deterministic liquidity capacity evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p16d_evidence.py --output build/p16d-a.json
+          PYTHONPATH=. python scripts/ci/p16d_evidence.py --output build/p16d-b.json
+          cmp build/p16d-a.json build/p16d-b.json
+          sha256sum build/p16d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
