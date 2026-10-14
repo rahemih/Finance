@@ -1,0 +1,75 @@
+{
+  "task_id": "FIN-P15-WH-001",
+  "phase": "P15",
+  "workstream": "WH",
+  "objective": "Implement deterministic defensive/de-risk mode selection from canonical P15-F/G risk state and explicit operational health inputs, producing only governed new-risk scaling directives with no liquidation or execution authority.",
+  "scope": [
+    "Define NORMAL, REDUCED_RISK, DEFENSIVE and HALT_NEW_RISK modes",
+    "Use explicit governed reduced-risk and defensive scale basis points with no production defaults",
+    "Treat upstream capital VETO or critical operational health as HALT_NEW_RISK",
+    "Treat P15-F DE_RISK_REQUIRED as DEFENSIVE",
+    "Treat degraded data/counterparty health as REDUCED_RISK",
+    "Use most restrictive applicable mode deterministically",
+    "Emit risk_scale_bps for future risk admission only",
+    "Generate deterministic offline P15-H evidence"
+  ],
+  "out_of_scope": [
+    "Closing or liquidating existing positions",
+    "Broker/exchange order creation or routing",
+    "Independent integrated validation (P15-I)",
+    "P16 pre-trade firewall",
+    "Inventing production scale percentages"
+  ],
+  "dependencies": [
+    "P15-A..P15-G CANONICAL_COMPLETE",
+    "P15-H READY_NOT_STARTED",
+    "Owner P15 authorization already granted"
+  ],
+  "read_paths": ["packages/risk/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths": [
+    "contracts/tasks/FIN-P15-WH-001.json",
+    "config/risk/defensive-mode-policy.json",
+    "packages/risk/__init__.py",
+    "packages/risk/defensive_modes.py",
+    "tests/p15/test_defensive_modes.py",
+    "scripts/ci/p15h_evidence.py",
+    "docs/10-risk/P15-H-DEFENSIVE-DERISK-MODES.md",
+    "docs/10-risk/p15-h-defensive-derisk-modes.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A5","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Invalid policy scale ordering fails closed",
+    "Healthy eligible state emits NORMAL / 10000 bps",
+    "Degraded operational health emits REDUCED_RISK",
+    "P15-F DE_RISK_REQUIRED emits DEFENSIVE",
+    "Critical health emits HALT_NEW_RISK / 0 bps",
+    "Upstream capital VETO emits HALT_NEW_RISK / 0 bps",
+    "Most restrictive condition wins deterministically",
+    "Unknown health/status values fail closed",
+    "No position-close or execution authority is emitted",
+    "P15-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production scaling defaults",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": ["P15-G canonical closure","Deterministic P15-H evidence","Implementation Governance","Closure revalidation","Linear continuation-register reconciliation"],
+  "rollback": "Revert P15-H module/config/tests/evidence/CI/state changes; P15-G remains canonical complete and P15-I remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": ["P15-G CANONICAL_COMPLETE","No active governed task or lock conflict"],
+  "definition_of_done": ["Defensive mode contract implemented","No production defaults or execution authority","Strict CI and deterministic evidence pass","Implementation PR merged","Closure reconciliation merged","FIN-P15-WH-001 CANONICAL_COMPLETE","Lock released","P15-I becomes READY_NOT_STARTED"]
+}
