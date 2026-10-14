@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16C_PRETRADE_RISK_ENVELOPE_POLICY",
+  "task_id": "FIN-P16-WC-001",
+  "p15_validation_marker": "P15_INDEPENDENT_RISK_VALIDATION",
+  "size_limit_source": "P15_B_POSITION_SIZE_DECISION",
+  "defensive_scale_source": "P15_H_DEFENSIVE_MODE_DECISION",
+  "portfolio_exposure_limit_source": "P15_D_PORTFOLIO_EXPOSURE_DECISION",
+  "leverage_margin_limit_source": "P15_E_MARGIN_LEVERAGE_DECISION",
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
