@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16C_SIZE_LEVERAGE_EXPOSURE_CHECK",
   "task_id": "FIN-P16-WC-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "p15_validation_required": "P15_INDEPENDENT_RISK_VALIDATION_PASS",
   "size_source": "P15_B",
   "portfolio_exposure_source": "P15_D",
@@ -14,5 +14,17 @@
   "execution_authority": false,
   "p16_d_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 327,
+    "head_sha": "d7b4e72bee5a89a4fab556dcddd20936c0fd474b",
+    "governance_run": 38568572787,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "fe325e366e30e2541527bb392595855ea9ad14f61d5b2a872758d88d195c1acf",
+    "merge_sha": "7793d255535759002d3a0c90170882a08c6bdbef"
+  },
+  "lock": "RELEASED",
+  "p16_d_state": "READY_NOT_STARTED",
+  "p16_e_through_p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
