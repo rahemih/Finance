@@ -80,7 +80,7 @@ Phase transition:
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
-- P16 — Pre-Trade Risk Firewall: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A IN_PROGRESS / P16-B..P16-H NOT_STARTED / G8 NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2024,5 +2024,22 @@ All P15 locks = RELEASED.
 Active P15 task = none.
 
 P16 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P16-A activation — 2026-10-14
+
+Task: `FIN-P16-WA-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P16-WA-001-01` / ACTIVE  
+Base: `b2d36ab92981ddb4ba585b6c8f1eb2d36bfea3df`
+
+P16-A establishes the first independent fail-closed pre-trade check for canonical signal age and price deviation from the P14-H entry zone.
+
+All thresholds are explicit governed inputs; no production TTL or deviation defaults are invented.
+
+P16-B..P16-H remain NOT_STARTED.  
+`G8_PRETRADE_SAFE` remains NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
