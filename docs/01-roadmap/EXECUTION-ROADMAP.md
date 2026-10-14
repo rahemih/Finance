@@ -79,7 +79,8 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-I CANONICAL_COMPLETE / PHASE_CLOSURE_READY
+- P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
+- P16 — Pre-Trade Risk Firewall: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2008,3 +2009,20 @@ Lock = RELEASED.
 P15-A..P15-I = CANONICAL_COMPLETE.  
 P15 phase closure = READY.  
 P16 = NOT_STARTED.
+
+
+## P15 canonical phase closure — 2026-10-14
+
+P15 — Risk & Portfolio = CANONICAL_COMPLETE.  
+P15-A..P15-I = CANONICAL_COMPLETE.  
+`P15_INDEPENDENT_RISK_VALIDATION = PASS`.
+
+The frozen Master Roadmap defines no named P15 exit gate. This P15 validation marker is phase-local and does not replace P16's frozen `G8_PRETRADE_SAFE` gate.
+
+Canonical closure base = `a18c582855d15f15e17a011716358f00ba4e5181`.  
+All P15 locks = RELEASED.  
+Active P15 task = none.
+
+P16 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
