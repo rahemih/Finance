@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16D_SPREAD_LIQUIDITY_CAPACITY_POLICY",
+  "task_id": "FIN-P16-WD-001",
+  "spread_source": "P09_D_ORDER_BOOK_METRICS",
+  "displayed_capacity_source": "P09_E_LIQUIDITY_HEATMAP",
+  "spread_limit_source": "EXPLICIT_GOVERNED_POLICY",
+  "capacity_band_source": "EXPLICIT_GOVERNED_POLICY",
+  "capacity_utilization_limit_source": "EXPLICIT_GOVERNED_POLICY",
+  "capacity_rounding": "CEILING_BPS",
+  "hidden_liquidity_inference": false,
+  "fillability_claim": false,
+  "slippage_or_market_impact_claim": false,
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
