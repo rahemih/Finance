@@ -2,12 +2,32 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15I_INDEPENDENT_RISK_VALIDATION",
   "task_id": "FIN-P15-WI-001",
-  "state": "IMPLEMENTATION_ACTIVE",
-  "validated_workstreams": ["P15-A","P15-B","P15-C","P15-D","P15-E","P15-F","P15-G","P15-H"],
+  "state": "CANONICAL_COMPLETE",
+  "validated_workstreams": [
+    "P15-A",
+    "P15-B",
+    "P15-C",
+    "P15-D",
+    "P15-E",
+    "P15-F",
+    "P15-G",
+    "P15-H"
+  ],
   "pass_marker": "P15_INDEPENDENT_RISK_VALIDATION",
   "execution_authority": false,
   "p16_approval_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "pass_status": "PASS",
+  "implementation": {
+    "pr": 320,
+    "head_sha": "d61909b7e1364e79aff4a15cef11a34763615f67",
+    "governance_run": 38554807405,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "a4e15b61776aa9e7bd5eb57a603e72d1a68ecbbff1e89911de36473952470333",
+    "merge_sha": "6f93bf3a9d066e91af808aa348b7f6f4bf0236eb"
+  },
+  "lock": "RELEASED",
+  "p15_phase_closure": "READY"
 }
