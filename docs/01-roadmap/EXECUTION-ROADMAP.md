@@ -1813,7 +1813,9 @@ Evidence:
 P15-B — Position Sizing = READY_NOT_STARTED.  
 P15-C..P15-I = NOT_STARTED.  
 P16 = NOT_STARTED.  
-Closure PR independent revalidation = PENDING.
+Closure PR #303 independent revalidation Governance `38524603270` = SUCCESS.  
+Closure revalidation artifact = `sha256:8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa`.  
+Final closure-head Governance = REQUIRED_BEFORE_MERGE.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
