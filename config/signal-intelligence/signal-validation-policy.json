@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "mode": "DETERMINISTIC_SIGNAL_VALIDATION_GATE",
+  "gate_name": "G7_SIGNAL_VALIDATED",
+  "required_action_coverage": ["LONG", "SHORT", "WAIT", "NO_TRADE"],
+  "exact_signal_id_match_required": true,
+  "exact_payload_match_required": true,
+  "directional_geometry_required": true,
+  "non_directional_geometry_forbidden": true,
+  "risk_authority_forbidden": true,
+  "position_sizing_forbidden": true,
+  "leverage_forbidden": true,
+  "execution_authority_forbidden": true,
+  "duplicate_action_certificate_behavior": "FAIL_CLOSED",
+  "missing_action_coverage_behavior": "FAIL_CLOSED",
+  "canonical_tests_network_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
