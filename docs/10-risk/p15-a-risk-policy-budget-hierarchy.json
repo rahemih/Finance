@@ -2,9 +2,16 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15A_RISK_POLICY_BUDGET_HIERARCHY",
   "task_id": "FIN-P15-WA-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "budget_unit": "BPS_OF_GOVERNED_TOTAL_RISK_BUDGET",
-  "scope_order": ["GLOBAL", "PORTFOLIO", "MARKET", "ASSET", "STRATEGY", "TRADE"],
+  "scope_order": [
+    "GLOBAL",
+    "PORTFOLIO",
+    "MARKET",
+    "ASSET",
+    "STRATEGY",
+    "TRADE"
+  ],
   "root_budget_bps": 10000,
   "production_monetary_risk_ceiling": null,
   "production_numeric_defaults": null,
@@ -16,5 +23,26 @@
   "p15_b_through_p15_i_started": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 302,
+    "head_sha": "e41055e256e675ce6d9fc3055470f0d754dc5c6a",
+    "governance_run": 38524129028,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "625e1c2d3d6a2048291efc3eae19eb28244f6dfbb4c7d79d4dd15c384044b3b1",
+    "merge_sha": "ecfafbfdc10b6354dff5ff84e6426c349db49e3b",
+    "canonical_branch_deleted": true,
+    "superseded_branch": "risk/FIN-P15-WA-001-risk-policy-budget-hierarchy",
+    "superseded_branch_state": "NO_PR_NON_CANONICAL"
+  },
+  "lock": "RELEASED",
+  "p15_b_state": "READY_NOT_STARTED",
+  "p15_c_through_p15_i_state": "NOT_STARTED",
+  "closure_revalidation": {
+    "pr": 303,
+    "governance_run": 38524603270,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa",
+    "final_closure_head_governance": "REQUIRED_BEFORE_MERGE"
+  }
 }

@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A IN_PROGRESS / P15-B..P15-I NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A CANONICAL_COMPLETE / P15-B READY_NOT_STARTED / P15-C..P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1792,6 +1792,30 @@ P15-A establishes the governed finite risk-budget hierarchy and non-bypassable A
 The hierarchy allocates percentages of a separately governed total risk budget; it does not invent a production dollar-risk ceiling, calculate position size or select leverage.
 
 P15-B..P15-I remain NOT_STARTED. P16 remains NOT_STARTED.
+
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P15-A canonical closure — 2026-10-14
+
+`FIN-P15-WA-001` = CANONICAL_COMPLETE.  
+`LOCK-FIN-P15-WA-001-01` = RELEASED.
+
+Evidence:
+- implementation PR #302 = MERGED;
+- final implementation head `e41055e256e675ce6d9fc3055470f0d754dc5c6a`;
+- Governance `38524129028` = SUCCESS;
+- artifact `sha256:625e1c2d3d6a2048291efc3eae19eb28244f6dfbb4c7d79d4dd15c384044b3b1`;
+- implementation merge `ecfafbfdc10b6354dff5ff84e6426c349db49e3b`;
+- canonical implementation branch = DELETED.
+
+P15-B — Position Sizing = READY_NOT_STARTED.  
+P15-C..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.  
+Closure PR #303 independent revalidation Governance `38524603270` = SUCCESS.  
+Closure revalidation artifact = `sha256:8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa`.  
+Final closure-head Governance = REQUIRED_BEFORE_MERGE.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
