@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P15 — Risk & Portfolio / ACTIVE  
-Current Workstream: none — P15-C CANONICAL_COMPLETE; P15-D READY_NOT_STARTED  
+Current Workstream: P15-D — Portfolio / Correlation Exposure / IN_PROGRESS  
 Previous Workstream: P15-C — Asset / Strategy Limits / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -56,7 +56,7 @@ P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPL
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
-P15 state: ACTIVE / P15-A..P15-C CANONICAL_COMPLETE / P15-D READY_NOT_STARTED / P15-E..P15-I NOT_STARTED  
+P15 state: ACTIVE / P15-A..P15-C CANONICAL_COMPLETE / P15-D IN_PROGRESS / P15-E..P15-I NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -170,8 +170,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P15-WD-001`  
+Active lock: `LOCK-FIN-P15-WD-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5890,5 +5890,22 @@ Governance `38526638542` = SUCCESS.
 Artifact = `sha256:5015c19d10732264e8212da4a024b84a687ddd0a547ac819e765d6d459dd1451`.  
 Lock = RELEASED.  
 P15-D = READY_NOT_STARTED.  
+P15-E..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+### P15-D — Portfolio / Correlation Exposure
+
+Task: `FIN-P15-WD-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P15-WD-001-01` / ACTIVE
+
+Scope:
+- explicit gross and absolute-net portfolio exposure limits;
+- complete pairwise correlation coverage;
+- explicit correlation threshold and correlated-cluster gross limit;
+- unknown correlation fails closed;
+- no leverage/margin or execution authority.
+
 P15-E..P15-I = NOT_STARTED.  
 P16 = NOT_STARTED.
