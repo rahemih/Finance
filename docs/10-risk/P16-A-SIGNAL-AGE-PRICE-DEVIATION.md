@@ -1,6 +1,6 @@
 # P16-A — Signal Age / Price-Deviation Check
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WA-001`  
 Linear: `NEXUS QUANT — Management Control & Reporting Register-1`
 
@@ -44,3 +44,19 @@ P16-B..P16-H remain later workstreams.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #323 = MERGED;
+- implementation head = `0403c1ce119df04ec185c1f61842bf6be62a3309`;
+- Governance `38562758587` = SUCCESS;
+- artifact = `sha256:404e4fb6b350153593a905b8d9cc7209e5534c96c0b01b64efb692023a0ee5a4`;
+- implementation merge = `20a3dba64bc1da6647e91e7637fb0eb162337b79`;
+- `FIN-P16-WA-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WA-001-01` = RELEASED;
+- P16-B = READY_NOT_STARTED;
+- P16-C..P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.
