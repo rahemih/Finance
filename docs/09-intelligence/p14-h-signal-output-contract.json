@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14H_SIGNAL_OUTPUT_CONTRACT",
+  "task_id": "FIN-P14-WH-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "linear_sync": "BLOCKED_FREE_ISSUE_LIMIT",
+  "actions": [
+    "LONG",
+    "SHORT",
+    "WAIT",
+    "NO_TRADE"
+  ],
+  "precedence": [
+    "NO_TRADE_HARD_BLOCK",
+    "WAIT_CAUTION_OR_INSUFFICIENT",
+    "DIRECTIONAL_CLEAR_ONLY"
+  ],
+  "price_representation": "SCALED_POSITIVE_INTEGER",
+  "directional_geometry_required": true,
+  "probability_mutation_allowed": false,
+  "risk_approval_in_scope": false,
+  "position_sizing_in_scope": false,
+  "leverage_in_scope": false,
+  "execution_authority_in_scope": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
