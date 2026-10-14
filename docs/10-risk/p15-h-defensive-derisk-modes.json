@@ -2,12 +2,22 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15H_DEFENSIVE_DERISK_MODES",
   "task_id": "FIN-P15-WH-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "normal_scale_bps": 10000,
   "production_numeric_defaults": null,
   "position_close_authority": false,
   "execution_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 318,
+    "head_sha": "d8ffbba38e6586e7d69d4fb0f3ce6f270cc42a27",
+    "governance_run": 38533036900,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "808ad879aae8c45bfa3af81171252245ac666df37f6a45a538c141396bf604a7",
+    "merge_sha": "bb9b83c4cc379e489f8494bc0d0155148e731564"
+  },
+  "lock": "RELEASED",
+  "p15_i_state": "READY_NOT_STARTED"
 }
