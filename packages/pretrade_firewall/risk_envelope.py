@@ -93,12 +93,8 @@ class PreTradeRiskEnvelopeRequest:
             raise PreTradeRiskEnvelopeError(
                 "p15_validation_risk_scale_bps must be within [0, 10000]"
             )
-        proposed = _decimal(self.proposed_quantity, "proposed_quantity")
-        step = _decimal(self.quantity_step, "quantity_step")
-        if proposed % step != 0:
-            raise PreTradeRiskEnvelopeError(
-                "proposed_quantity must align to quantity_step"
-            )
+        _decimal(self.proposed_quantity, "proposed_quantity")
+        _decimal(self.quantity_step, "quantity_step")
         for field, value in (
             ("final_gross_exposure_bps", self.final_gross_exposure_bps),
             ("final_abs_net_exposure_bps", self.final_abs_net_exposure_bps),
@@ -180,6 +176,9 @@ def evaluate_risk_envelope(
         allow_zero=True,
     )
     proposed = _decimal(request.proposed_quantity, "proposed_quantity")
+    step = _decimal(request.quantity_step, "quantity_step")
+    if proposed % step != 0:
+        reasons.add("QUANTITY_STEP_MISALIGNED")
     scale = Decimal(request.defensive_mode.risk_scale_bps) / Decimal(10_000)
     maximum_scaled_quantity = candidate * scale
     if proposed > maximum_scaled_quantity:
