@@ -2,12 +2,23 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15G_COUNTERPARTY_CAPITAL_SEGMENTATION",
   "task_id": "FIN-P15-WG-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "allocation_unit": "BPS_OF_GOVERNED_TOTAL_CAPITAL",
   "production_numeric_defaults": null,
   "venue_routing_authority": false,
   "execution_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 316,
+    "head_sha": "5e636686adc5fa082167b08248f9a27aed265a22",
+    "governance_run": 38532052913,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "4438fa3b17de9e3700bbc8e3fc7c224a3a472d6d5f67ade6a04ef64b214f5dce",
+    "merge_sha": "57bda0d5cff748d859a64db8b5dc9c06581f8398"
+  },
+  "lock": "RELEASED",
+  "p15_h_state": "READY_NOT_STARTED",
+  "p15_i_state": "NOT_STARTED"
 }
