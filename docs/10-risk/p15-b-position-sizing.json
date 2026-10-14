@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15B_POSITION_SIZING",
   "task_id": "FIN-P15-WB-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "model": "LINEAR_PRICE_LOSS",
   "requires_upstream_status": "POLICY_CAPACITY_ELIGIBLE",
   "production_numeric_defaults": null,
@@ -12,5 +12,16 @@
   "execution_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 305,
+    "head_sha": "1d55482e082ddc819421be0404242af763de210f",
+    "governance_run": 38525909195,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "d4425d147c192c2eae63005b9931f472f42d346352504b2ac40f9e5b35cf879d",
+    "merge_sha": "b72145397a606be7908989fdbc48a9ed4cddd633"
+  },
+  "lock": "RELEASED",
+  "p15_c_state": "READY_NOT_STARTED",
+  "p15_d_through_p15_i_state": "NOT_STARTED"
 }
