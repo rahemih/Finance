@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P14_PHASE_CLOSURE",
+  "phase": "P14",
+  "title": "Signal / Probability / Explainability",
+  "state": "CANONICAL_COMPLETE",
+  "exit_gate": "G7_SIGNAL_VALIDATED",
+  "exit_gate_state": "PASS",
+  "canonical_closure_base": "4c22d2272770fb1256c52a465d609ff922e8e4ad",
+  "workstreams": {
+    "P14-A": {
+      "task_id": "FIN-P14-WA-001",
+      "linear": "HOS-269",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 283,
+      "closure_pr": 284
+    },
+    "P14-B": {
+      "task_id": "FIN-P14-WB-001",
+      "linear": "HOS-270",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 285,
+      "closure_pr": 286
+    },
+    "P14-C": {
+      "task_id": "FIN-P14-WC-001",
+      "linear": "HOS-271",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 287,
+      "closure_pr": 288
+    },
+    "P14-D": {
+      "task_id": "FIN-P14-WD-001",
+      "linear": "HOS-272",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 289,
+      "closure_pr": 290
+    },
+    "P14-E": {
+      "task_id": "FIN-P14-WE-001",
+      "linear": "HOS-273",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 291,
+      "closure_pr": 292
+    },
+    "P14-F": {
+      "task_id": "FIN-P14-WF-001",
+      "linear": "HOS-274",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 293,
+      "closure_pr": 294
+    },
+    "P14-G": {
+      "task_id": "FIN-P14-WG-001",
+      "linear": "SYNC_BLOCKED_FREE_ISSUE_LIMIT",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 295,
+      "closure_pr": 296
+    },
+    "P14-H": {
+      "task_id": "FIN-P14-WH-001",
+      "linear": "SYNC_BLOCKED_FREE_ISSUE_LIMIT",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 297,
+      "closure_pr": 298
+    },
+    "P14-I": {
+      "task_id": "FIN-P14-WI-001",
+      "linear": "SYNC_BLOCKED_FREE_ISSUE_LIMIT",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 299,
+      "closure_pr": 300
+    }
+  },
+  "p14_i_closure": {
+    "implementation_head": "ca60b403b7f3a49b82da2ca70dc24e66de3d47aa",
+    "implementation_governance_run": 38515876520,
+    "implementation_artifact_sha256": "13ceeffc1f9799b809aa2506309d6070ac24a718acab51e7d0ca47a222ed9ae7",
+    "implementation_merge_sha": "fe168be546beeab9c6f27c5f4b387b46477cac58",
+    "post_merge_governance_run": 38516064645,
+    "post_merge_branch_hygiene_run": 38516064676,
+    "closure_pr": 300,
+    "closure_governance_run": 38516476374,
+    "closure_merge_sha": "4c22d2272770fb1256c52a465d609ff922e8e4ad",
+    "closure_post_merge_governance_run": 38519260851,
+    "closure_post_merge_branch_hygiene_run": 38519260872,
+    "g7_signal_validated": "PASS"
+  },
+  "all_locks_released": true,
+  "active_task": null,
+  "active_lock": null,
+  "empirical_probability_is_guarantee": false,
+  "uncertainty_preserved": true,
+  "final_analytical_signal_is_risk_approval": false,
+  "final_analytical_signal_is_execution_order": false,
+  "p15_risk_ownership_preserved": true,
+  "p16_independent_approval_ownership_preserved": true,
+  "p20_p21_execution_ownership_preserved": true,
+  "linear_sync_blocked_workstreams": [
+    "P14-G",
+    "P14-H",
+    "P14-I"
+  ],
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_phase": "P15",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}

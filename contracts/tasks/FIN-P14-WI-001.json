@@ -48,7 +48,9 @@
     "scripts/ci/foundation_ci.py",
     "docs/01-roadmap/EXECUTION-ROADMAP.md",
     "docs/02-current-state/CURRENT-STATE.md",
-    "docs/13-tasks/TASK-CATALOG.md"
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/09-intelligence/P14-PHASE-CLOSURE.md",
+    "docs/09-intelligence/p14-phase-closure.json"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
@@ -104,7 +106,8 @@
     "Deterministic P14-I replay/gate evidence",
     "Implementation Governance",
     "Post-merge Governance and Branch Hygiene",
-    "Linear synchronization blocker documented"
+    "Linear synchronization blocker documented",
+    "P14 canonical phase closure dossier"
   ],
   "rollback": "Revert P14-I validation/policy/tests/evidence/CI/state changes; P14-H remains canonical and G7 is not granted.",
   "human_gate": false,
