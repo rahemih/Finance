@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16D_SPREAD_LIQUIDITY_CAPACITY_CHECK",
   "task_id": "FIN-P16-WD-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "spread_source": "P09_D",
   "displayed_capacity_source": "P09_E",
   "capacity_side_semantics": {
@@ -17,5 +17,17 @@
   "execution_authority": false,
   "p16_e_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 329,
+    "head_sha": "507014aa90e18c3b59d3119d8363f2e95729de4c",
+    "governance_run": 38569884213,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "0af93022fc3b85ea442dd4c1a0cdc4bfbeaf57f7a2eb11bf02c6ea4b868351e1",
+    "merge_sha": "240cb5a71011a9def64a44e54749a8aee7269472"
+  },
+  "lock": "RELEASED",
+  "p16_e_state": "READY_NOT_STARTED",
+  "p16_f_through_p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
