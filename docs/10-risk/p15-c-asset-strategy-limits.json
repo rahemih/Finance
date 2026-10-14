@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15C_ASSET_STRATEGY_LIMITS",
+  "task_id": "FIN-P15-WC-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "required_scopes": ["ASSET", "STRATEGY"],
+  "production_numeric_defaults": null,
+  "requires_upstream_status": "SIZE_CANDIDATE",
+  "portfolio_correlation_authority": false,
+  "leverage_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
