@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15D_PORTFOLIO_CORRELATION_EXPOSURE",
+  "task_id": "FIN-P15-WD-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "exposure_unit": "BPS_OF_ACCOUNT_NAV",
+  "correlation_unit": "MILLI_CORRELATION",
+  "requires_complete_pairwise_correlation": true,
+  "production_numeric_defaults": null,
+  "requires_upstream_status": "LIMITS_ELIGIBLE",
+  "leverage_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
