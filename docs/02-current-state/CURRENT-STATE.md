@@ -5820,7 +5820,10 @@ Next:
 - P16 = NOT_STARTED;
 - closure PR #303 revalidation Governance `38524603270` = SUCCESS;
 - closure revalidation artifact = `sha256:8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa`;
-- final closure-head Governance = REQUIRED_BEFORE_MERGE.
+- final closure-head Governance `38524782533` = SUCCESS;
+- final closure-head artifact = `sha256:07624507d123ceefaba6583653e5c0523b5a3037cd4fd2b6eed3d13f2cf5c35f`;
+- closure PR #303 = MERGED at `582245ed21271160a56c3c9a0ba7344a984191af`;
+- closure branch = DELETED.
 
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
