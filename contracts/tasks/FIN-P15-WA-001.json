@@ -1,0 +1,131 @@
+{
+  "task_id": "FIN-P15-WA-001",
+  "phase": "P15",
+  "workstream": "WA",
+  "objective": "Activate P15 and establish a deterministic hierarchical risk-policy and finite risk-budget contract that constrains downstream risk consumption without performing position sizing, leverage selection, portfolio-correlation optimization, counterparty allocation or execution.",
+  "scope": [
+    "Define a governed risk-budget hierarchy from GLOBAL through PORTFOLIO, MARKET, ASSET, STRATEGY and TRADE scopes",
+    "Express every child budget as basis points of one governed total risk budget so the root is structurally 10000 bps without inventing a production monetary risk ceiling",
+    "Require explicit per-node budgets with no production numeric defaults",
+    "Prevent downstream child budgets and direct-child aggregate allocations from exceeding their parent budget",
+    "Provide deterministic policy and decision identities",
+    "Evaluate incremental risk-budget admission against immutable policy ceilings and current governed utilization",
+    "Preserve A5 independent non-bypassable veto semantics",
+    "Generate deterministic offline P15-A evidence",
+    "Activate P15 governance state and Linear continuation-register tracking"
+  ],
+  "out_of_scope": [
+    "Position sizing or quantity calculation (P15-B)",
+    "Asset or strategy limit policy implementation beyond hierarchy structure (P15-C)",
+    "Portfolio/correlation exposure optimization (P15-D)",
+    "Margin or leverage selection (P15-E)",
+    "Drawdown or risk-of-ruin models (P15-F)",
+    "Counterparty or capital-segmentation implementation (P15-G)",
+    "Defensive/de-risk mode implementation (P15-H)",
+    "Independent integrated risk validation (P15-I)",
+    "Pre-trade firewall (P16)",
+    "Broker/exchange order creation, routing or execution"
+  ],
+  "dependencies": [
+    "P14 CANONICAL_COMPLETE",
+    "G7_SIGNAL_VALIDATED PASS",
+    "P14 phase closure PR #301 MERGED",
+    "P14 phase closure merge 85e74579924f4609dfd8ab3967826b05b668dc24",
+    "P14 phase closure post-merge Governance 38519779054 SUCCESS",
+    "P14 phase closure Branch Hygiene 38519779066 SUCCESS",
+    "Owner P15 phase authorization granted",
+    "Fresh checkpoint: open PR none, active task none, active lock none"
+  ],
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P15-WA-001.json",
+    "config/risk/risk-policy-hierarchy.json",
+    "packages/risk/__init__.py",
+    "packages/risk/policy_hierarchy.py",
+    "tests/p15/__init__.py",
+    "tests/p15/test_policy_hierarchy.py",
+    "scripts/ci/p15a_evidence.py",
+    "docs/10-risk/P15-A-RISK-POLICY-BUDGET-HIERARCHY.md",
+    "docs/10-risk/p15-a-risk-policy-budget-hierarchy.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A4", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Exactly one GLOBAL root is required",
+    "Root budget is structurally 10000 bps of governed total risk budget",
+    "Missing parents and invalid scope ordering fail closed",
+    "Child budget above parent fails closed",
+    "Direct child aggregate budget above parent fails closed",
+    "Duplicate node IDs fail closed",
+    "Budget bounds fail closed",
+    "Policy identity is deterministic and input-order independent",
+    "Disabled node causes non-bypassable veto",
+    "Utilization outside governed bounds fails closed",
+    "Incremental risk above any ancestor remaining budget is vetoed",
+    "Eligible budget request does not imply position sizing or execution approval",
+    "P15-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No broker/exchange/order adapter imported",
+    "No credential or network access required",
+    "A5 policy ceilings are immutable within evaluation",
+    "A5 cannot emit broker orders",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P14 canonical phase closure and G7 PASS",
+    "Deterministic P15-A risk-policy hierarchy artifact",
+    "Implementation Governance",
+    "Post-merge Governance and Branch Hygiene",
+    "Linear Management Control & Reporting Register-1 reconciliation"
+  ],
+  "rollback": "Revert P15-A policy/config/module/tests/evidence/CI/state activation; P14 remains canonical complete and P15-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P14 CANONICAL_COMPLETE and G7 PASS",
+    "Owner P15 authorization granted",
+    "No active task/lock/open PR conflict"
+  ],
+  "definition_of_done": [
+    "Hierarchical finite risk-budget contract implemented",
+    "No production monetary ceiling or sizing algorithm invented",
+    "Non-bypassable risk veto semantics enforced",
+    "Deterministic evidence and strict CI pass",
+    "Implementation PR merged",
+    "Post-merge Governance and Branch Hygiene pass",
+    "Closure reconciliation merged",
+    "FIN-P15-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "Linear continuation register reconciled",
+    "P15-B becomes READY_NOT_STARTED"
+  ]
+}
