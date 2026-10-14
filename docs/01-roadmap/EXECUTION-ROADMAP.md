@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-B CANONICAL_COMPLETE / P15-C IN_PROGRESS / P15-D..P15-I NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-C CANONICAL_COMPLETE / P15-D READY_NOT_STARTED / P15-E..P15-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1862,4 +1862,14 @@ Lock = `LOCK-FIN-P15-WC-001-01` / ACTIVE.
 Explicit asset/strategy hard limits are evaluated after P15-B sizing. No production defaults are introduced.
 
 P15-D..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+## P15-C canonical closure — 2026-10-14
+
+`FIN-P15-WC-001` = CANONICAL_COMPLETE.  
+PR #307 = MERGED at `f3bcff6c40cee0b82a75609b6729d880f75aa14c`.  
+Governance `38526638542` = SUCCESS.  
+Lock = RELEASED.  
+P15-D = READY_NOT_STARTED.  
 P16 = NOT_STARTED.
