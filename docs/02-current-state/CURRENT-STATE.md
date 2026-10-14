@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P15 — Risk & Portfolio / ACTIVE  
-Current Workstream: P15-I — Independent Risk Validation / IN_PROGRESS  
-Previous Workstream: P15-H — Defensive / De-Risk Modes / CANONICAL_COMPLETE  
+Current Workstream: none — P15-I CANONICAL_COMPLETE; P15 phase closure READY  
+Previous Workstream: P15-I — Independent Risk Validation / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -56,7 +56,7 @@ P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPL
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
-P15 state: ACTIVE / P15-A..P15-H CANONICAL_COMPLETE / P15-I IN_PROGRESS  
+P15 state: ACTIVE / P15-A..P15-I CANONICAL_COMPLETE / PHASE_CLOSURE_READY  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -170,8 +170,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P15-WI-001`  
-Active lock: `LOCK-FIN-P15-WI-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6054,4 +6054,17 @@ Scope:
 - deterministic marker `P15_INDEPENDENT_RISK_VALIDATION`;
 - no P16 approval authority.
 
+P16 = NOT_STARTED.
+
+
+### P15-I canonical closure — 2026-10-14
+
+`FIN-P15-WI-001` = CANONICAL_COMPLETE.  
+PR #320 = MERGED at `6f93bf3a9d066e91af808aa348b7f6f4bf0236eb`.  
+Governance `38554807405` = SUCCESS.  
+Artifact = `sha256:a4e15b61776aa9e7bd5eb57a603e72d1a68ecbbff1e89911de36473952470333`.  
+`P15_INDEPENDENT_RISK_VALIDATION = PASS`.  
+Lock = RELEASED.  
+P15-A..P15-I = CANONICAL_COMPLETE.  
+P15 phase closure = READY.  
 P16 = NOT_STARTED.
