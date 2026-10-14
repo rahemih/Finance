@@ -57,6 +57,14 @@ from .red_team_challenge import (
     challenge_signal,
 )
 
+from .signal_output_contract import (
+    AnalyticalSignalOutput,
+    CandidatePriceGeometry,
+    SignalOutputContractError,
+    SignalOutputPolicy,
+    build_signal_output,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -98,4 +106,9 @@ __all__ = [
     "RedTeamFinding",
     "RedTeamPolicy",
     "challenge_signal",
+    "AnalyticalSignalOutput",
+    "CandidatePriceGeometry",
+    "SignalOutputContractError",
+    "SignalOutputPolicy",
+    "build_signal_output",
 ]
