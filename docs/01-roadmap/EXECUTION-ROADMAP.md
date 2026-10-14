@@ -79,7 +79,7 @@ Phase transition:
 - P12 — Market Memory & Knowledge Graph: CANONICAL_COMPLETE / P12-A..P12-H CANONICAL_COMPLETE
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
-- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-H CANONICAL_COMPLETE / P15-I READY_NOT_STARTED
+- P15 — Risk & Portfolio: ACTIVE / P15-A..P15-H CANONICAL_COMPLETE / P15-I IN_PROGRESS
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1982,4 +1982,15 @@ Governance `38533036900` = SUCCESS.
 Artifact `sha256:808ad879aae8c45bfa3af81171252245ac666df37f6a45a538c141396bf604a7`.  
 Lock = RELEASED.  
 P15-I = READY_NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+## P15-I activation — 2026-10-14
+
+`FIN-P15-WI-001` = IN_PROGRESS.  
+Lock = `LOCK-FIN-P15-WI-001-01` / ACTIVE.
+
+Independent validation covers canonical P15-A..P15-H lineage, veto propagation, defensive-mode consistency and authority boundaries.
+
+This work grants no P16 approval or execution authority.  
 P16 = NOT_STARTED.

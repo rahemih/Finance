@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15I_INDEPENDENT_RISK_VALIDATION",
+  "task_id": "FIN-P15-WI-001",
+  "validated_workstreams": ["P15-A","P15-B","P15-C","P15-D","P15-E","P15-F","P15-G","P15-H"],
+  "validation_mode": "FAIL_CLOSED_LINEAGE_STATUS_AUTHORITY",
+  "phase_pass_marker": "P15_INDEPENDENT_RISK_VALIDATION",
+  "production_numeric_defaults": null,
+  "p16_approval_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

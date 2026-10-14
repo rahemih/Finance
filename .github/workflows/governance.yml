@@ -984,6 +984,15 @@ jobs:
           cmp build/p15h-a.json build/p15h-b.json
           sha256sum build/p15h-a.json
 
+      - name: P15-I deterministic independent risk validation twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p15i_evidence.py --output build/p15i-a.json
+          PYTHONPATH=. python scripts/ci/p15i_evidence.py --output build/p15i-b.json
+          cmp build/p15i-a.json build/p15i-b.json
+          sha256sum build/p15i-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
