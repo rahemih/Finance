@@ -1,0 +1,115 @@
+{
+  "task_id": "FIN-P16-WA-001",
+  "phase": "P16",
+  "workstream": "WA",
+  "objective": "Implement the first independent fail-closed pre-trade firewall check for signal age and price deviation from the canonical P14-H directional entry zone, using only explicit governed thresholds and without granting final G8 or execution authority.",
+  "scope": [
+    "Accept only canonical directional LONG/SHORT analytical signals",
+    "Require complete directional price geometry and a positive price scale",
+    "Compute signal age from signal as_of_time_ns to firewall as_of_ns",
+    "Reject future-dated signals",
+    "Compute current-price deviation from the signal entry zone with conservative ceiling basis-point arithmetic",
+    "Require current market price to use the same explicit scale as the signal",
+    "Apply explicit governed maximum signal-age and price-deviation thresholds",
+    "Emit deterministic PRETRADE_A_ELIGIBLE or VETO decisions",
+    "Generate deterministic offline P16-A evidence"
+  ],
+  "out_of_scope": [
+    "Duplicate/idempotency checks (P16-B)",
+    "Size/leverage/exposure checks (P16-C)",
+    "Spread/liquidity/capacity checks (P16-D)",
+    "Event/data/broker/system health checks (P16-E)",
+    "Daily loss/circuit breakers (P16-F)",
+    "Override governance (P16-G)",
+    "G8_PRETRADE_SAFE final gate (P16-H)",
+    "Broker/exchange order creation or execution"
+  ],
+  "dependencies": [
+    "P15 CANONICAL_COMPLETE",
+    "P15_INDEPENDENT_RISK_VALIDATION PASS",
+    "P16 owner phase authorization granted",
+    "P14-H signal output contract CANONICAL_COMPLETE"
+  ],
+  "read_paths": [
+    "packages/signal_intelligence/**",
+    "packages/risk/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P16-WA-001.json",
+    "config/risk/pretrade-signal-freshness-policy.json",
+    "packages/pretrade_firewall/__init__.py",
+    "packages/pretrade_firewall/signal_freshness.py",
+    "tests/p16/__init__.py",
+    "tests/p16/test_signal_freshness.py",
+    "scripts/ci/p16a_evidence.py",
+    "docs/10-risk/P16-A-SIGNAL-AGE-PRICE-DEVIATION.md",
+    "docs/10-risk/p16-a-signal-age-price-deviation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A5", "A6", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "WAIT and NO_TRADE signals fail closed",
+    "Missing directional geometry fails closed",
+    "Future-dated signal fails closed",
+    "Mismatched price scale fails closed",
+    "Signal age above explicit threshold vetoes",
+    "Current price inside entry zone yields zero deviation",
+    "Price deviation above explicit threshold vetoes",
+    "Boundary equality remains eligible",
+    "Deviation uses conservative ceiling arithmetic",
+    "Decision identity is deterministic",
+    "No G8 or execution authority is emitted",
+    "P16-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production threshold defaults",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P15 canonical phase closure",
+    "P14-H canonical signal output contract",
+    "Deterministic P16-A evidence",
+    "Implementation Governance",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P16-A package/config/tests/evidence/CI/state changes; P15 remains canonical complete and P16-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P15 CANONICAL_COMPLETE",
+    "P16 owner phase authorization granted",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Signal-age and price-deviation firewall implemented",
+    "No implicit production thresholds",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P16-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P16-B becomes READY_NOT_STARTED"
+  ]
+}
