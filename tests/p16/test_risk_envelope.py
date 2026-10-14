@@ -4,7 +4,6 @@ from dataclasses import replace
 import unittest
 
 from packages.pretrade_firewall.risk_envelope import (
-    PreTradeRiskEnvelopeError,
     PreTradeRiskEnvelopeRequest,
     evaluate_risk_envelope,
 )
@@ -166,9 +165,12 @@ class RiskEnvelopeTests(unittest.TestCase):
             decision.reason_codes,
         )
 
-    def test_quantity_step_misalignment_fails_closed(self) -> None:
-        with self.assertRaises(PreTradeRiskEnvelopeError):
+    def test_quantity_step_misalignment_vetoes(self) -> None:
+        decision = evaluate_risk_envelope(
             request(proposed_quantity="9.5", quantity_step="1")
+        )
+        self.assertEqual(decision.status, "VETO")
+        self.assertIn("QUANTITY_STEP_MISALIGNED", decision.reason_codes)
 
     def test_exposure_breach_vetoes(self) -> None:
         decision = evaluate_risk_envelope(
