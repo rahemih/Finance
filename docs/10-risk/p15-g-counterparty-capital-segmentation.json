@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15G_COUNTERPARTY_CAPITAL_SEGMENTATION",
+  "task_id": "FIN-P15-WG-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "allocation_unit": "BPS_OF_GOVERNED_TOTAL_CAPITAL",
+  "production_numeric_defaults": null,
+  "venue_routing_authority": false,
+  "execution_authority": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

@@ -1,0 +1,75 @@
+{
+  "task_id": "FIN-P15-WG-001",
+  "phase": "P15",
+  "workstream": "WG",
+  "objective": "Implement deterministic counterparty and capital-segmentation allocation controls using explicit governed basis-point ceilings without venue routing, execution or production defaults.",
+  "scope": [
+    "Define explicit counterparty allocation ceilings",
+    "Define explicit capital-segment allocation ceilings",
+    "Check total allocated capital remains within 10000 bps after candidate allocation",
+    "Fail closed when counterparty or segment rule is missing",
+    "Preserve P15-F WITHIN_LIMITS / DE_RISK_REQUIRED state and reject P15-F VETO",
+    "Emit deterministic allocation eligibility decisions with no routing authority",
+    "Generate deterministic offline P15-G evidence"
+  ],
+  "out_of_scope": [
+    "Defensive mode/scaling selection (P15-H)",
+    "Independent integrated validation (P15-I)",
+    "P16 pre-trade firewall",
+    "Venue selection/routing",
+    "Broker/exchange order creation or execution",
+    "Inventing production allocation percentages"
+  ],
+  "dependencies": [
+    "P15-A..P15-F CANONICAL_COMPLETE",
+    "P15-G READY_NOT_STARTED",
+    "Owner P15 authorization already granted"
+  ],
+  "read_paths": ["packages/risk/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths": [
+    "contracts/tasks/FIN-P15-WG-001.json",
+    "config/risk/counterparty-capital-segmentation-policy.json",
+    "packages/risk/__init__.py",
+    "packages/risk/counterparty_capital.py",
+    "tests/p15/test_counterparty_capital.py",
+    "scripts/ci/p15g_evidence.py",
+    "docs/10-risk/P15-G-COUNTERPARTY-CAPITAL-SEGMENTATION.md",
+    "docs/10-risk/p15-g-counterparty-capital-segmentation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A5","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Duplicate counterparty or segment rules fail closed",
+    "Missing counterparty or segment rule fails closed",
+    "P15-F VETO remains non-bypassable",
+    "Total allocation above 10000 bps is vetoed",
+    "Counterparty ceiling breach is vetoed",
+    "Capital-segment ceiling breach is vetoed",
+    "DE_RISK_REQUIRED state is preserved for P15-H",
+    "Decision identity is deterministic",
+    "No venue routing or execution authority is emitted",
+    "P15-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production allocation defaults",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": ["P15-F canonical closure","Deterministic P15-G evidence","Implementation Governance","Closure revalidation","Linear continuation-register reconciliation"],
+  "rollback": "Revert P15-G module/config/tests/evidence/CI/state changes; P15-F remains canonical complete and P15-H remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": ["P15-F CANONICAL_COMPLETE","No active governed task or lock conflict"],
+  "definition_of_done": ["Counterparty and capital-segmentation controls implemented","No production defaults","Strict CI and deterministic evidence pass","Implementation PR merged","Closure reconciliation merged","FIN-P15-WG-001 CANONICAL_COMPLETE","Lock released","P15-H becomes READY_NOT_STARTED"]
+}

@@ -40,8 +40,8 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P15 — Risk & Portfolio / ACTIVE  
-Current Workstream: none — P15-F CANONICAL_COMPLETE; P15-G READY_NOT_STARTED  
-Previous Workstream: P15-E — Margin / Leverage / CANONICAL_COMPLETE  
+Current Workstream: P15-G — Counterparty / Capital Segmentation / IN_PROGRESS  
+Previous Workstream: P15-F — Drawdown / Risk-of-Ruin / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -56,7 +56,7 @@ P11 state: CANONICAL_COMPLETE / P11-A CANONICAL_COMPLETE / P11-B CANONICAL_COMPL
 P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPLETE / P12-C CANONICAL_COMPLETE / P12-D CANONICAL_COMPLETE / P12-E CANONICAL_COMPLETE / P12-F CANONICAL_COMPLETE / P12-G CANONICAL_COMPLETE / P12-H CANONICAL_COMPLETE  
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
-P15 state: ACTIVE / P15-A..P15-F CANONICAL_COMPLETE / P15-G READY_NOT_STARTED / P15-H..P15-I NOT_STARTED  
+P15 state: ACTIVE / P15-A..P15-F CANONICAL_COMPLETE / P15-G IN_PROGRESS / P15-H..P15-I NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -170,8 +170,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P15-WG-001`  
+Active lock: `LOCK-FIN-P15-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -5978,5 +5978,23 @@ Governance `38531298706` = SUCCESS.
 Artifact = `sha256:18ae003e66bfe34121030cd43443e6ebb25f75747231e3938195605d0630e244`.  
 Lock = RELEASED.  
 P15-G = READY_NOT_STARTED.  
+P15-H..P15-I = NOT_STARTED.  
+P16 = NOT_STARTED.
+
+
+### P15-G — Counterparty / Capital Segmentation
+
+Task: `FIN-P15-WG-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P15-WG-001-01` / ACTIVE
+
+Scope:
+- explicit counterparty allocation ceilings;
+- explicit capital-segment allocation ceilings;
+- total capital allocation capped at 10000 bps;
+- P15-F VETO is non-bypassable;
+- DE_RISK_REQUIRED is preserved for P15-H;
+- no venue routing or execution authority.
+
 P15-H..P15-I = NOT_STARTED.  
 P16 = NOT_STARTED.

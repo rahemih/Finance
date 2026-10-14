@@ -97,3 +97,23 @@ __all__ += [
     "DrawdownRuinRequest",
     "evaluate_drawdown_ruin",
 ]
+
+from .counterparty_capital import (
+    CapitalSegmentRule,
+    CounterpartyCapitalDecision,
+    CounterpartyCapitalError,
+    CounterpartyCapitalPolicy,
+    CounterpartyCapitalRequest,
+    CounterpartyRule,
+    evaluate_counterparty_capital,
+)
+
+__all__ += [
+    "CapitalSegmentRule",
+    "CounterpartyCapitalDecision",
+    "CounterpartyCapitalError",
+    "CounterpartyCapitalPolicy",
+    "CounterpartyCapitalRequest",
+    "CounterpartyRule",
+    "evaluate_counterparty_capital",
+]
