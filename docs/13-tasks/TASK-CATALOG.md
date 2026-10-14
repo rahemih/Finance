@@ -231,7 +231,7 @@ This catalog is the canonical index of governed work.
 | FIN-P14-WA-001 | P14 | Evidence Contract | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P14-WA-001.json` | RELEASED |
 
 | FIN-P15-WA-001 | P15 | Risk Policy / Budget Hierarchy | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P15-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P15-WB-001 | P15 | Position Sizing | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P15-WB-001.json` | `LOCK-FIN-P15-WB-001-01` ACTIVE / LINEAR_CONTINUATION_REGISTER |
+| FIN-P15-WB-001 | P15 | Position Sizing | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P15-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
