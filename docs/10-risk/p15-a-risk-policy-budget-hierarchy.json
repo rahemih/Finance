@@ -38,5 +38,11 @@
   "lock": "RELEASED",
   "p15_b_state": "READY_NOT_STARTED",
   "p15_c_through_p15_i_state": "NOT_STARTED",
-  "closure_revalidation": "PENDING"
+  "closure_revalidation": {
+    "pr": 303,
+    "governance_run": 38524603270,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "8fc6e2219910a9dac4740d99af8a940ffda027135ca9656af9c4b11b5d6874fa",
+    "final_closure_head_governance": "REQUIRED_BEFORE_MERGE"
+  }
 }
