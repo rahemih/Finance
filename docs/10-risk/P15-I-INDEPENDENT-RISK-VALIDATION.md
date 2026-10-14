@@ -1,6 +1,6 @@
 # P15-I — Independent Risk Validation
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P15-WI-001`
 
 ## Objective
@@ -28,3 +28,18 @@ This marker is intentionally limited to P15. It is **not** a P16 approval and gr
 P16 — Pre-Trade Risk Firewall / Independent Approval remains NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #320 = MERGED;
+- implementation head = `d61909b7e1364e79aff4a15cef11a34763615f67`;
+- Governance `38554807405` = SUCCESS;
+- artifact = `sha256:a4e15b61776aa9e7bd5eb57a603e72d1a68ecbbff1e89911de36473952470333`;
+- implementation merge = `6f93bf3a9d066e91af808aa348b7f6f4bf0236eb`;
+- `P15_INDEPENDENT_RISK_VALIDATION = PASS`;
+- `FIN-P15-WI-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P15-WI-001-01` = RELEASED;
+- P15-A..P15-I = CANONICAL_COMPLETE;
+- P15 phase closure = READY;
+- P16 = NOT_STARTED.
