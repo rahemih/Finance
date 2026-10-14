@@ -1,0 +1,81 @@
+{
+  "task_id": "FIN-P16-WB-001",
+  "phase": "P16",
+  "workstream": "WB",
+  "objective": "Implement deterministic fail-closed duplicate and idempotency prechecks after P16-A using explicit governed replay retention, detecting exact key replays, key collisions and duplicate intent fingerprints without execution authority.",
+  "scope": [
+    "Require successful or vetoed P16-A lineage explicitly",
+    "Require non-empty idempotency key and SHA-256 intent fingerprint",
+    "Evaluate prior admissions inside an explicit governed replay lookback",
+    "Veto exact idempotency-key replay",
+    "Veto idempotency-key collision when the same key maps to another intent fingerprint",
+    "Veto duplicate intent fingerprint even when a different idempotency key is used",
+    "Fail closed on future-dated prior admissions",
+    "Make prior-admission ordering irrelevant to decision identity",
+    "Emit deterministic PRETRADE_B_ELIGIBLE or VETO decisions",
+    "Generate deterministic offline P16-B evidence"
+  ],
+  "out_of_scope": [
+    "Durable storage or distributed lock implementation",
+    "Size/leverage/exposure checks (P16-C)",
+    "Spread/liquidity/capacity checks (P16-D)",
+    "Health checks (P16-E)",
+    "Daily-loss/circuit-breaker checks (P16-F)",
+    "Override governance (P16-G)",
+    "G8_PRETRADE_SAFE final gate (P16-H)",
+    "Order creation, routing or execution"
+  ],
+  "dependencies": [
+    "P16-A CANONICAL_COMPLETE",
+    "P16-B READY_NOT_STARTED",
+    "Owner P16 authorization already granted"
+  ],
+  "read_paths": ["packages/pretrade_firewall/**","packages/signal_intelligence/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths": [
+    "contracts/tasks/FIN-P16-WB-001.json",
+    "config/risk/pretrade-idempotency-policy.json",
+    "packages/pretrade_firewall/__init__.py",
+    "packages/pretrade_firewall/idempotency.py",
+    "tests/p16/test_idempotency.py",
+    "scripts/ci/p16b_evidence.py",
+    "docs/10-risk/P16-B-DUPLICATE-IDEMPOTENCY-PRECHECK.md",
+    "docs/10-risk/p16-b-duplicate-idempotency-precheck.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A5","A6","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "P16-A VETO remains non-bypassable",
+    "Exact idempotency-key replay vetoes",
+    "Same key with different fingerprint vetoes as collision",
+    "Same intent fingerprint under another key vetoes",
+    "Prior records outside the explicit replay window do not veto",
+    "Replay-window boundary remains covered",
+    "Future-dated prior admission fails closed",
+    "Invalid fingerprint fails closed",
+    "Decision identity is independent of prior-record ordering",
+    "No G8 or execution authority is emitted",
+    "P16-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production replay-window default",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": ["P16-A canonical closure","Deterministic P16-B evidence","Implementation Governance","Closure revalidation","Linear continuation-register reconciliation"],
+  "rollback": "Revert P16-B module/config/tests/evidence/CI/state changes; P16-A remains canonical complete and P16-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": ["P16-A CANONICAL_COMPLETE","No active governed task or lock conflict"],
+  "definition_of_done": ["Duplicate/idempotency precheck implemented","No production replay default or execution authority","Strict CI and deterministic evidence pass","Implementation PR merged","Closure reconciliation merged","FIN-P16-WB-001 CANONICAL_COMPLETE","Lock released","P16-C becomes READY_NOT_STARTED"]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16B_DUPLICATE_IDEMPOTENCY_PRECHECK",
+  "task_id": "FIN-P16-WB-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "replay_lookback_source": "EXPLICIT_GOVERNED_POLICY",
+  "exact_key_replay_veto": true,
+  "key_collision_veto": true,
+  "duplicate_intent_fingerprint_veto": true,
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "p16_c_through_p16_h_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

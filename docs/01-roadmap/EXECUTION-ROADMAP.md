@@ -80,7 +80,7 @@ Phase transition:
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
-- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A CANONICAL_COMPLETE / P16-B READY_NOT_STARTED / P16-C..P16-H NOT_STARTED / G8 NOT_REACHED
+- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A CANONICAL_COMPLETE / P16-B IN_PROGRESS / P16-C..P16-H NOT_STARTED / G8 NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2053,5 +2053,16 @@ Governance `38562758587` = SUCCESS.
 Artifact `sha256:404e4fb6b350153593a905b8d9cc7209e5534c96c0b01b64efb692023a0ee5a4`.  
 Lock = RELEASED.  
 P16-B = READY_NOT_STARTED.  
+P16-C..P16-H = NOT_STARTED.  
+`G8_PRETRADE_SAFE` = NOT_REACHED.
+
+
+## P16-B activation — 2026-10-14
+
+`FIN-P16-WB-001` = IN_PROGRESS.  
+Lock = `LOCK-FIN-P16-WB-001-01` / ACTIVE.
+
+Duplicate/idempotency precheck uses explicit governed replay retention and fails closed on exact replay, key collision or duplicate intent fingerprint.
+
 P16-C..P16-H = NOT_STARTED.  
 `G8_PRETRADE_SAFE` = NOT_REACHED.

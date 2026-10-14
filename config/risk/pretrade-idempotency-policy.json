@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16B_DUPLICATE_IDEMPOTENCY_POLICY",
+  "task_id": "FIN-P16-WB-001",
+  "replay_lookback_source": "EXPLICIT_GOVERNED_POLICY",
+  "duplicate_dimensions": [
+    "IDEMPOTENCY_KEY",
+    "INTENT_FINGERPRINT"
+  ],
+  "key_collision_fail_closed": true,
+  "future_prior_admission_fail_closed": true,
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
