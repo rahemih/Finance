@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15C_ASSET_STRATEGY_LIMITS_POLICY",
+  "task_id": "FIN-P15-WC-001",
+  "required_scopes": ["ASSET", "STRATEGY"],
+  "risk_unit": "BPS_OF_GOVERNED_TOTAL_RISK_BUDGET",
+  "position_count_unit": "COUNT",
+  "production_numeric_defaults": null,
+  "missing_rule_behavior": "VETO",
+  "missing_usage_behavior": "VETO",
+  "requires_upstream_status": "SIZE_CANDIDATE",
+  "portfolio_correlation_authority": false,
+  "leverage_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
