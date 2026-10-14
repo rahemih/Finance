@@ -2,12 +2,23 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P15F_DRAWDOWN_RISK_OF_RUIN",
   "task_id": "FIN-P15-WF-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "production_numeric_defaults": null,
   "ruin_model_source": "EXPLICIT_VALIDATED_INPUT",
   "defensive_mode_authority": false,
   "execution_authority": false,
   "p16_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 314,
+    "head_sha": "591f8a476aa84dadc075382dd43d494ad28d1ba5",
+    "governance_run": 38531298706,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "18ae003e66bfe34121030cd43443e6ebb25f75747231e3938195605d0630e244",
+    "merge_sha": "e37180e2ee37bc99a181f33509e56aaba50a2e68"
+  },
+  "lock": "RELEASED",
+  "p15_g_state": "READY_NOT_STARTED",
+  "p15_h_through_p15_i_state": "NOT_STARTED"
 }
