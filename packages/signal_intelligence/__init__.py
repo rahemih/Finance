@@ -65,6 +65,15 @@ from .signal_output_contract import (
     build_signal_output,
 )
 
+from .signal_validation import (
+    SignalValidationCertificate,
+    SignalValidationError,
+    SignalValidationGate,
+    SignalValidationPolicy,
+    certify_g7_signal_gate,
+    validate_signal_output,
+)
+
 __all__ = [
     "EvidenceBundle",
     "EvidenceContractError",
@@ -111,4 +120,10 @@ __all__ = [
     "SignalOutputContractError",
     "SignalOutputPolicy",
     "build_signal_output",
+    "SignalValidationCertificate",
+    "SignalValidationError",
+    "SignalValidationGate",
+    "SignalValidationPolicy",
+    "certify_g7_signal_gate",
+    "validate_signal_output",
 ]
