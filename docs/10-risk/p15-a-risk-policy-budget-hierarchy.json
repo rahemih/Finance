@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P15A_RISK_POLICY_BUDGET_HIERARCHY",
+  "task_id": "FIN-P15-WA-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "budget_unit": "BPS_OF_GOVERNED_TOTAL_RISK_BUDGET",
+  "scope_order": ["GLOBAL", "PORTFOLIO", "MARKET", "ASSET", "STRATEGY", "TRADE"],
+  "root_budget_bps": 10000,
+  "production_monetary_risk_ceiling": null,
+  "production_numeric_defaults": null,
+  "risk_veto_non_bypassable": true,
+  "risk_agent_can_modify_ceilings": false,
+  "position_sizing_in_scope": false,
+  "leverage_selection_in_scope": false,
+  "execution_authority_in_scope": false,
+  "p15_b_through_p15_i_started": false,
+  "p16_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
