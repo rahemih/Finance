@@ -1,0 +1,91 @@
+{
+  "task_id": "FIN-P15-WC-001",
+  "phase": "P15",
+  "workstream": "WC",
+  "objective": "Implement deterministic hard asset and strategy limits over candidate risk and position counts without portfolio-correlation, leverage, execution or broker authority.",
+  "scope": [
+    "Require explicit ASSET and STRATEGY limit rules",
+    "Require explicit current usage for every evaluated rule",
+    "Consume only upstream SIZE_CANDIDATE position-sizing decisions",
+    "Enforce maximum risk utilization in basis points for asset and strategy scopes",
+    "Enforce maximum open-position counts for asset and strategy scopes",
+    "Fail closed when required rules or usage are missing",
+    "Provide deterministic decision identity and reason codes",
+    "Preserve A5 non-bypassable veto semantics",
+    "Generate deterministic offline P15-C evidence"
+  ],
+  "out_of_scope": [
+    "Portfolio/correlation exposure (P15-D)",
+    "Leverage/margin (P15-E)",
+    "Drawdown/risk-of-ruin (P15-F)",
+    "Counterparty/capital segmentation (P15-G)",
+    "Defensive/de-risk modes (P15-H)",
+    "Independent integrated risk validation (P15-I)",
+    "P16 pre-trade firewall",
+    "Broker/exchange order creation or execution"
+  ],
+  "dependencies": [
+    "P15-A CANONICAL_COMPLETE",
+    "P15-B CANONICAL_COMPLETE",
+    "P15-C READY_NOT_STARTED"
+  ],
+  "read_paths": ["packages/risk/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths": [
+    "contracts/tasks/FIN-P15-WC-001.json",
+    "config/risk/asset-strategy-limits-policy.json",
+    "packages/risk/__init__.py",
+    "packages/risk/asset_strategy_limits.py",
+    "tests/p15/test_asset_strategy_limits.py",
+    "scripts/ci/p15c_evidence.py",
+    "docs/10-risk/P15-C-ASSET-STRATEGY-LIMITS.md",
+    "docs/10-risk/p15-c-asset-strategy-limits.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A4","A5","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Missing asset or strategy rule fails closed",
+    "Missing usage fails closed",
+    "Upstream non-candidate fails closed",
+    "Risk utilization above asset limit vetoes",
+    "Risk utilization above strategy limit vetoes",
+    "Open-position count above asset limit vetoes",
+    "Open-position count above strategy limit vetoes",
+    "Exact limit boundary is eligible",
+    "Duplicate rule keys fail closed",
+    "Decision identity is deterministic",
+    "No portfolio, leverage or execution authority is emitted",
+    "P15-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production numeric defaults",
+    "A5 limit ceilings are immutable during evaluation",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": ["P15-B canonical closure","Deterministic P15-C limits evidence","Implementation Governance","Closure revalidation","Linear continuation-register reconciliation"],
+  "rollback": "Revert P15-C module/config/tests/evidence/CI/state changes; P15-B remains canonical complete and P15-D remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": ["P15-B CANONICAL_COMPLETE","No active governed task or lock conflict"],
+  "definition_of_done": [
+    "Asset/strategy hard limits implemented",
+    "No implicit production defaults",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P15-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P15-D becomes READY_NOT_STARTED"
+  ]
+}
