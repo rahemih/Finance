@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16E_EVENT_DATA_BROKER_SYSTEM_HEALTH_POLICY",
+  "task_id": "FIN-P16-WE-001",
+  "event_block_before_source": "EXPLICIT_GOVERNED_POLICY",
+  "event_block_after_source": "EXPLICIT_GOVERNED_POLICY",
+  "event_observation_freshness_source": "EXPLICIT_GOVERNED_POLICY",
+  "required_data_slo_status": "HEALTHY",
+  "required_stream_health": "HEALTHY",
+  "required_recovery_state": "ACTIVE",
+  "required_system_state": "NORMAL",
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
