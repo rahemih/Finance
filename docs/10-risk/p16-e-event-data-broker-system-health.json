@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16E_EVENT_DATA_BROKER_SYSTEM_HEALTH",
   "task_id": "FIN-P16-WE-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "canonical_sources": {
     "event": "P10-B",
     "data": "P07 Quality SLO",
@@ -19,5 +19,17 @@
   "execution_authority": false,
   "p16_f_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 332,
+    "head_sha": "b792e25315ee5d366f0aade5877752a408f22c61",
+    "governance_run": 38734602397,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "b1a7e6617cd8b83bd629f56e9cdb4bc849b5bc7a0a918bc840a979ee26abfb2c",
+    "merge_sha": "44b50a2e3784b94d7fe9bddaa9b07bf3f7facff7"
+  },
+  "lock": "RELEASED",
+  "p16_f_state": "READY_NOT_STARTED",
+  "p16_g_through_p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
