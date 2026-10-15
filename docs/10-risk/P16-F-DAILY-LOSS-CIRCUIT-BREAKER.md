@@ -1,6 +1,6 @@
 # P16-F — Daily Loss / Circuit Breaker
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WF-001`
 
 ## Objective
@@ -39,3 +39,17 @@ P16-G..P16-H remain later workstreams.
 `G8_PRETRADE_SAFE` = NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #334 = MERGED;
+- implementation head = `0f3f65a93a26793e7f10d7ec31199e4c1eb57bfc`;
+- Governance `38735737224` = SUCCESS;
+- artifact = `sha256:3a66660f397cbac42fbf1abd30691d6a606543c33b119218793429f6b268e28c`;
+- implementation merge = `f2705f6e265fda71a85a5dde5856d0104a873f5e`;
+- `FIN-P16-WF-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WF-001-01` = RELEASED;
+- P16-G = READY_NOT_STARTED;
+- P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED.
