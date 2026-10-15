@@ -241,6 +241,7 @@ This catalog is the canonical index of governed work.
 | FIN-P15-WI-001 | P15 | Independent Risk Validation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P15-WI-001.json` | RELEASED / P15_INDEPENDENT_RISK_VALIDATION PASS / LINEAR_CONTINUATION_REGISTER |
 | FIN-P16-WA-001 | P16 | Signal Age / Price-Deviation Check | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P16-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P16-WB-001 | P16 | Duplicate / Idempotency Precheck | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P16-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P16-WC-001 | P16 | Size / Leverage / Exposure Check | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P16-WC-001.json` | `LOCK-FIN-P16-WC-001-01` ACTIVE / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
