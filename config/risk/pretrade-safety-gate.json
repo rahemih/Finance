@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16H_PRETRADE_SAFETY_GATE_POLICY",
+  "task_id": "FIN-P16-WH-001",
+  "mode": "DETERMINISTIC_PRETRADE_SAFETY_GATE",
+  "gate_name": "G8_PRETRADE_SAFE",
+  "required_workstreams": [
+    {"workstream":"P16-A","required_status":"PRETRADE_A_ELIGIBLE"},
+    {"workstream":"P16-B","required_status":"PRETRADE_B_ELIGIBLE"},
+    {"workstream":"P16-C","required_status":"PRETRADE_C_ELIGIBLE"},
+    {"workstream":"P16-D","required_status":"PRETRADE_D_ELIGIBLE"},
+    {"workstream":"P16-E","required_status":"PRETRADE_E_ELIGIBLE"},
+    {"workstream":"P16-F","required_status":"PRETRADE_F_ELIGIBLE"},
+    {"workstream":"P16-G","required_status":"PRETRADE_G_ELIGIBLE"}
+  ],
+  "exact_lineage_required": true,
+  "duplicate_decision_ids_allowed": false,
+  "waiting_for_approval_allowed": false,
+  "veto_allowed": false,
+  "upstream_execution_authority_allowed": false,
+  "upstream_g8_authority_allowed": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p17_started": false,
+  "next_phase": "P17",
+  "next_phase_state_after_pass": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
