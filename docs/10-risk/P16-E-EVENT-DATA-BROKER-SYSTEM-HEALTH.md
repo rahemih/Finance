@@ -1,6 +1,6 @@
 # P16-E — Event / Data / Broker / System Health Check
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WE-001`
 
 ## Objective
@@ -41,3 +41,17 @@ P16-F..P16-H remain later workstreams.
 No order-routing or execution authority exists here.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #332 = MERGED;
+- implementation head = `b792e25315ee5d366f0aade5877752a408f22c61`;
+- Governance `38734602397` = SUCCESS;
+- artifact = `sha256:b1a7e6617cd8b83bd629f56e9cdb4bc849b5bc7a0a918bc840a979ee26abfb2c`;
+- implementation merge = `44b50a2e3784b94d7fe9bddaa9b07bf3f7facff7`;
+- `FIN-P16-WE-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WE-001-01` = RELEASED;
+- P16-F = READY_NOT_STARTED;
+- P16-G..P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED.
