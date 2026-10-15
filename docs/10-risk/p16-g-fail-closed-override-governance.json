@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16G_FAIL_CLOSED_OVERRIDE_GOVERNANCE",
+  "task_id": "FIN-P16-WG-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "normal_positive_status": "PRETRADE_G_ELIGIBLE",
+  "override_request_status": "WAITING_FOR_APPROVAL",
+  "veto_to_pass_allowed": false,
+  "auto_approval_allowed": false,
+  "approval_authority": false,
+  "reset_authority": false,
+  "risk_ceiling_authority": false,
+  "leverage_ceiling_authority": false,
+  "emergency_policy_mutation_authority": false,
+  "g8_authority": false,
+  "execution_authority": false,
+  "p16_h_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
