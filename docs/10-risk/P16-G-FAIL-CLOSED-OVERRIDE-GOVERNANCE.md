@@ -1,6 +1,6 @@
 # P16-G — Fail-Closed / Override Governance
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WG-001`
 
 ## Objective
@@ -60,3 +60,16 @@ P16-H remains the final gate.
 `G8_PRETRADE_SAFE` = NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #336 = MERGED;
+- implementation head = `623f9d93265a6d52e79fa4361200b4d9cd816a99`;
+- Governance `38736708270` = SUCCESS;
+- artifact = `sha256:57d1297420a78f0e89b6aa34d8d5a67a42c2100bd5328fab2963b2b8bf7fc001`;
+- implementation merge = `af3d4e27d0fdf00fed0a889b0fed3a24998bfae8`;
+- `FIN-P16-WG-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WG-001-01` = RELEASED;
+- P16-H = READY_NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED.
