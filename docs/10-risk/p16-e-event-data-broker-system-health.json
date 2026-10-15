@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16E_EVENT_DATA_BROKER_SYSTEM_HEALTH",
+  "task_id": "FIN-P16-WE-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "canonical_sources": {
+    "event": "P10-B",
+    "data": "P07 Quality SLO",
+    "broker_stream": "P05 StreamHealth",
+    "broker_recovery": "P05 RecoveryState",
+    "system": "CANONICAL_SYSTEM_STATE_MACHINE"
+  },
+  "required_data_slo_status": "HEALTHY",
+  "required_stream_health": "HEALTHY",
+  "required_recovery_state": "ACTIVE",
+  "required_system_state": "NORMAL",
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "p16_f_through_p16_h_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

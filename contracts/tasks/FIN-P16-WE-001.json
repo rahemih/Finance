@@ -1,0 +1,117 @@
+{
+  "task_id": "FIN-P16-WE-001",
+  "phase": "P16",
+  "workstream": "WE",
+  "objective": "Implement deterministic fail-closed event/data/broker/system health checks before final pre-trade approval using canonical health states and explicit event timing/freshness windows.",
+  "scope": [
+    "Require P16-D eligibility",
+    "Consume canonical economic calendar events",
+    "Apply explicit governed pre/post event blocking windows",
+    "Require economic-event observations to be fresh under an explicit governed maximum observation age",
+    "Require canonical Data Quality SLO state HEALTHY",
+    "Require market-data stream health HEALTHY",
+    "Require market-data recovery state ACTIVE",
+    "Require system state NORMAL",
+    "Veto future-dated health/event observations",
+    "Emit deterministic PRETRADE_E_ELIGIBLE or VETO decisions",
+    "Generate deterministic offline P16-E evidence"
+  ],
+  "out_of_scope": [
+    "Recomputing economic-event classification or forecasts",
+    "Creating new data-quality, broker-health or system-health engines",
+    "Daily loss/circuit breakers (P16-F)",
+    "Override governance (P16-G)",
+    "G8_PRETRADE_SAFE final gate (P16-H)",
+    "Order creation, routing or execution"
+  ],
+  "dependencies": [
+    "P16-A..P16-D CANONICAL_COMPLETE",
+    "P10-B economic calendar canonical",
+    "P07 trusted data canonical",
+    "P05 streaming/recovery canonical",
+    "Owner P16 authorization already granted"
+  ],
+  "read_paths": [
+    "packages/pretrade_firewall/**",
+    "packages/fundamental_intelligence/**",
+    "packages/data_quality/**",
+    "packages/market_data/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P16-WE-001.json",
+    "config/risk/pretrade-health-policy.json",
+    "packages/pretrade_firewall/__init__.py",
+    "packages/pretrade_firewall/health_check.py",
+    "tests/p16/test_health_check.py",
+    "scripts/ci/p16e_evidence.py",
+    "docs/10-risk/P16-E-EVENT-DATA-BROKER-SYSTEM-HEALTH.md",
+    "docs/10-risk/p16-e-event-data-broker-system-health.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A5","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "P16-D VETO remains non-bypassable",
+    "Blocking economic event window vetoes",
+    "Cancelled event does not block",
+    "Stale or future event observation vetoes",
+    "Data SLO WARNING/CRITICAL/NO_DATA veto",
+    "Broker stream NEVER_SEEN/STALE veto",
+    "Broker recovery states other than ACTIVE veto",
+    "System states other than NORMAL veto",
+    "Healthy event/data/broker/system inputs remain eligible",
+    "Decision identity is deterministic",
+    "No G8 or execution authority is emitted",
+    "P16-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange/order adapter imports",
+    "No production numeric defaults",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P16-D canonical closure",
+    "Canonical P10-B/P07/P05 health-state sources",
+    "Deterministic P16-E evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P16-E module/config/tests/evidence/CI/state changes; P16-D remains canonical complete and P16-F remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P16-D CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Event/data/broker/system health firewall implemented",
+    "No production defaults or execution authority",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P16-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P16-F becomes READY_NOT_STARTED"
+  ]
+}
