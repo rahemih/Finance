@@ -1,6 +1,6 @@
 # P16-D — Spread / Liquidity / Capacity Check
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WD-001`
 
 ## Objective
@@ -32,3 +32,17 @@ P16-E..P16-H remain later workstreams.
 `G8_PRETRADE_SAFE` = NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #329 = MERGED;
+- implementation head = `507014aa90e18c3b59d3119d8363f2e95729de4c`;
+- Governance `38569884213` = SUCCESS;
+- artifact = `sha256:0af93022fc3b85ea442dd4c1a0cdc4bfbeaf57f7a2eb11bf02c6ea4b868351e1`;
+- implementation merge = `240cb5a71011a9def64a44e54749a8aee7269472`;
+- `FIN-P16-WD-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WD-001-01` = RELEASED;
+- P16-E = READY_NOT_STARTED;
+- P16-F..P16-H = NOT_STARTED;
+- `G8_PRETRADE_SAFE` = NOT_REACHED.
