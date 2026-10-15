@@ -1024,6 +1024,8 @@ BUILD_INPUTS = [
     "scripts/ci/p16h_evidence.py",
     "docs/10-risk/P16-H-PRETRADE-SAFETY-GATE.md",
     "docs/10-risk/p16-h-pretrade-safety-gate.json",
+    "docs/10-risk/P16-PHASE-CLOSURE.md",
+    "docs/10-risk/p16-phase-closure.json",
     "contracts/tasks/FIN-P13-WA-001.json",
     "config/timing-opportunity/session-calendar-policy.json",
     "packages/timing_opportunity/__init__.py",
