@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16C_SIZE_LEVERAGE_EXPOSURE_POLICY",
+  "task_id": "FIN-P16-WC-001",
+  "comparison_mode": "NO_RISK_INCREASE_FROM_CANONICAL_P15_APPROVALS",
+  "approved_sources": ["P15-B","P15-D","P15-E"],
+  "lower_risk_drift_allowed": true,
+  "risk_increase_fail_closed": true,
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
