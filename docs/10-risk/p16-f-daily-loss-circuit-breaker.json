@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16F_DAILY_LOSS_CIRCUIT_BREAKER",
   "task_id": "FIN-P16-WF-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "day_boundary_source": "CALLER_SUPPLIED_TRADING_DAY_ID",
   "trip_semantics": "LOSS_GTE_LIMIT",
   "circuit_latching": true,
@@ -13,5 +13,17 @@
   "execution_authority": false,
   "p16_g_through_p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 334,
+    "head_sha": "0f3f65a93a26793e7f10d7ec31199e4c1eb57bfc",
+    "governance_run": 38735737224,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "3a66660f397cbac42fbf1abd30691d6a606543c33b119218793429f6b268e28c",
+    "merge_sha": "f2705f6e265fda71a85a5dde5856d0104a873f5e"
+  },
+  "lock": "RELEASED",
+  "p16_g_state": "READY_NOT_STARTED",
+  "p16_h_state": "NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
