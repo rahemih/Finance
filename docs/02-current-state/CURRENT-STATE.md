@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P16 — Pre-Trade Risk Firewall / ACTIVE  
-Current Workstream: P16-H — Pre-Trade Safety Gate / IN_PROGRESS  
+Current Workstream: none — P16-H CANONICAL_COMPLETE; P16 phase closure READY_NOT_STARTED  
 Previous Workstream: P16-C — Size / Leverage / Exposure Check / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -57,7 +57,7 @@ P12 state: CANONICAL_COMPLETE / P12-A CANONICAL_COMPLETE / P12-B CANONICAL_COMPL
 P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE  
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
-P16 state: ACTIVE / P16-A..P16-G CANONICAL_COMPLETE / P16-H IN_PROGRESS / G8 NOT_REACHED  
+P16 state: ACTIVE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS / PHASE_CLOSURE READY_NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -171,8 +171,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P16-WH-001`  
-Active lock: `LOCK-FIN-P16-WH-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6335,5 +6335,19 @@ Scope:
 - G8 PASS creates no execution or routing authority;
 - P17 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
 
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+### P16-H canonical closure — 2026-10-16
+
+`FIN-P16-WH-001` = CANONICAL_COMPLETE.  
+PR #338 = MERGED at `a7be5e3c4bba54512bc33dcc037a655c61f9b0ce`.  
+Governance `38820796164` = SUCCESS.  
+Artifact = `sha256:d5c5634f441884839769caf368be58a92c7bd448d7ef04e47c6ddda962212375`.  
+Lock = RELEASED.  
+`G8_PRETRADE_SAFE / PASS` = REACHED.  
+P16 canonical phase closure = READY_NOT_STARTED.  
+P17 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
