@@ -1059,6 +1059,15 @@ jobs:
           cmp build/p16g-a.json build/p16g-b.json
           sha256sum build/p16g-a.json
 
+      - name: P16-H deterministic G8 pretrade safety evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p16h_evidence.py --output build/p16h-a.json
+          PYTHONPATH=. python scripts/ci/p16h_evidence.py --output build/p16h-b.json
+          cmp build/p16h-a.json build/p16h-b.json
+          sha256sum build/p16h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
