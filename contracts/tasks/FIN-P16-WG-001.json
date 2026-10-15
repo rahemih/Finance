@@ -1,0 +1,113 @@
+{
+  "task_id": "FIN-P16-WG-001",
+  "phase": "P16",
+  "workstream": "WG",
+  "objective": "Implement deterministic fail-closed override governance that never converts a safety VETO into pre-trade eligibility, while producing auditable WAITING_FOR_APPROVAL records for explicit override requests.",
+  "scope": [
+    "Require P16-F lineage explicitly",
+    "Allow ordinary PRETRADE_G_ELIGIBLE only when P16-F is eligible and no override is requested",
+    "Preserve upstream P16-F VETO as VETO when no override request exists",
+    "Represent any explicit override request as WAITING_FOR_APPROVAL, never as eligible",
+    "Require requester identity, bounded scope, reason, evidence SHA-256, request timestamp and expiry",
+    "Require explicit governed maximum override-request TTL",
+    "Fail closed on future, expired or overlong override requests",
+    "Record deterministic override governance decisions",
+    "Generate deterministic offline P16-G evidence"
+  ],
+  "out_of_scope": [
+    "Auto-approving an override",
+    "Changing upstream risk/health/circuit states",
+    "Resetting circuit breakers or kill switches",
+    "Increasing risk or leverage ceilings",
+    "Emergency-policy mutation",
+    "G8_PRETRADE_SAFE final gate (P16-H)",
+    "Order creation, routing or execution"
+  ],
+  "dependencies": [
+    "P16-A..P16-F CANONICAL_COMPLETE",
+    "Automation Governance baseline",
+    "Owner Gates baseline",
+    "Change Control baseline",
+    "Owner P16 authorization already granted"
+  ],
+  "read_paths": [
+    "packages/pretrade_firewall/**",
+    "docs/00-governance/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P16-WG-001.json",
+    "config/risk/pretrade-override-governance.json",
+    "packages/pretrade_firewall/__init__.py",
+    "packages/pretrade_firewall/override_governance.py",
+    "tests/p16/test_override_governance.py",
+    "scripts/ci/p16g_evidence.py",
+    "docs/10-risk/P16-G-FAIL-CLOSED-OVERRIDE-GOVERNANCE.md",
+    "docs/10-risk/p16-g-fail-closed-override-governance.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A5","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Eligible P16-F with no override emits PRETRADE_G_ELIGIBLE",
+    "P16-F VETO with no override remains VETO",
+    "Any valid override request emits WAITING_FOR_APPROVAL and never eligibility",
+    "Future override request fails closed",
+    "Expired override request fails closed",
+    "Override request exceeding explicit TTL fails closed",
+    "Missing requester/reason/evidence fails closed",
+    "Unsupported override scope fails closed",
+    "Decision identity is deterministic",
+    "No approval, reset, G8 or execution authority is emitted",
+    "P16-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "Automation cannot auto-grant Owner-only gates",
+    "No VETO-to-PASS override path",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P16-F canonical closure",
+    "Automation Governance / Owner Gates / Change Control evidence",
+    "Deterministic P16-G evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P16-G module/config/tests/evidence/CI/state changes; P16-F remains canonical complete and P16-H remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P16-F CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Fail-closed override-governance contract implemented",
+    "No VETO-to-PASS or auto-approval path exists",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P16-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P16-H becomes READY_NOT_STARTED"
+  ]
+}
