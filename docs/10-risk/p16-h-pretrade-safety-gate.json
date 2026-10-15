@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16H_PRETRADE_SAFETY_GATE",
+  "task_id": "FIN-P16-WH-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "gate_name": "G8_PRETRADE_SAFE",
+  "gate_state": "NOT_REACHED",
+  "required_workstreams": ["P16-A","P16-B","P16-C","P16-D","P16-E","P16-F","P16-G"],
+  "exact_lineage_required": true,
+  "veto_allowed": false,
+  "waiting_for_approval_allowed": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p17_started": false,
+  "p17_state_after_pass": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
