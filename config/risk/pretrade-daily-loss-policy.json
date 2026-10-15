@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16F_DAILY_LOSS_CIRCUIT_BREAKER_POLICY",
+  "task_id": "FIN-P16-WF-001",
+  "daily_loss_limit_source": "EXPLICIT_GOVERNED_POLICY",
+  "day_boundary_source": "CALLER_SUPPLIED_TRADING_DAY_ID",
+  "rounding": "CONSERVATIVE_CEILING_BPS",
+  "trip_semantics": "LOSS_GTE_LIMIT",
+  "circuit_latching": true,
+  "production_numeric_defaults": null,
+  "reset_authority": false,
+  "position_close_authority": false,
+  "g8_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
