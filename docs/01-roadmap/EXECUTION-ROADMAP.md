@@ -80,7 +80,7 @@ Phase transition:
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
-- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A..P16-B CANONICAL_COMPLETE / P16-C READY_NOT_STARTED / P16-D..P16-H NOT_STARTED / G8 NOT_REACHED
+- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A..P16-B CANONICAL_COMPLETE / P16-C IN_PROGRESS / P16-D..P16-H NOT_STARTED / G8 NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2076,5 +2076,16 @@ Governance `38567176911` = SUCCESS.
 Artifact `sha256:430c0d88691e1f8d6f47d35a1cbeff2f7363c05261ee642bf11b7e90245b9d9f`.  
 Lock = RELEASED.  
 P16-C = READY_NOT_STARTED.  
+P16-D..P16-H = NOT_STARTED.  
+`G8_PRETRADE_SAFE` = NOT_REACHED.
+
+
+## P16-C activation — 2026-10-15
+
+`FIN-P16-WC-001` = IN_PROGRESS.  
+Lock = `LOCK-FIN-P16-WC-001-01` / ACTIVE.
+
+P16-C prevents final intent risk metrics from exceeding the canonical P15-B/P15-D/P15-E approvals. Lower-risk drift is permitted; risk-increase drift fails closed.
+
 P16-D..P16-H = NOT_STARTED.  
 `G8_PRETRADE_SAFE` = NOT_REACHED.
