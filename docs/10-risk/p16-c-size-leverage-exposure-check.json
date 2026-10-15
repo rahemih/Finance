@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P16C_SIZE_LEVERAGE_EXPOSURE_CHECK",
+  "task_id": "FIN-P16-WC-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "comparison_mode": "NO_RISK_INCREASE_FROM_CANONICAL_P15_APPROVALS",
+  "approved_sources": ["P15-B","P15-D","P15-E"],
+  "lower_risk_drift_allowed": true,
+  "production_numeric_defaults": null,
+  "g8_authority": false,
+  "execution_authority": false,
+  "p16_d_through_p16_h_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
