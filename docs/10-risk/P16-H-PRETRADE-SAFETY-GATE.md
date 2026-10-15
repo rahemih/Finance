@@ -1,6 +1,6 @@
 # P16-H — Pre-Trade Safety Gate
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P16-WH-001`  
 Frozen-roadmap gate: `G8_PRETRADE_SAFE`
 
@@ -43,3 +43,19 @@ After PASS:
 - P17 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`;
 - LIVE_TRADING remains DISABLED;
 - AUTO_TRADING remains DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #338 = MERGED;
+- implementation head = `544fd88d7a078c6aaffc19c5591630461c771c48`;
+- Governance `38820796164` = SUCCESS;
+- artifact = `sha256:d5c5634f441884839769caf368be58a92c7bd448d7ef04e47c6ddda962212375`;
+- implementation merge = `a7be5e3c4bba54512bc33dcc037a655c61f9b0ce`;
+- `FIN-P16-WH-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P16-WH-001-01` = RELEASED;
+- `G8_PRETRADE_SAFE / PASS` = REACHED;
+- P16 canonical phase closure = READY_NOT_STARTED;
+- P17 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

@@ -2,10 +2,18 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16H_PRETRADE_SAFETY_GATE",
   "task_id": "FIN-P16-WH-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "gate_name": "G8_PRETRADE_SAFE",
-  "gate_state": "NOT_REACHED",
-  "required_workstreams": ["P16-A","P16-B","P16-C","P16-D","P16-E","P16-F","P16-G"],
+  "gate_state": "PASS",
+  "required_workstreams": [
+    "P16-A",
+    "P16-B",
+    "P16-C",
+    "P16-D",
+    "P16-E",
+    "P16-F",
+    "P16-G"
+  ],
   "exact_lineage_required": true,
   "veto_allowed": false,
   "waiting_for_approval_allowed": false,
@@ -14,5 +22,15 @@
   "p17_started": false,
   "p17_state_after_pass": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 338,
+    "head_sha": "544fd88d7a078c6aaffc19c5591630461c771c48",
+    "governance_run": 38820796164,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "d5c5634f441884839769caf368be58a92c7bd448d7ef04e47c6ddda962212375",
+    "merge_sha": "a7be5e3c4bba54512bc33dcc037a655c61f9b0ce"
+  },
+  "lock": "RELEASED",
+  "p16_phase_closure_state": "READY_NOT_STARTED"
 }
