@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P16-WH-001",
+  "phase": "P16",
+  "workstream": "WH",
+  "objective": "Implement the deterministic independent P16 Pre-Trade Safety Gate and certify G8_PRETRADE_SAFE only when the complete P16-A..P16-G chain has exact eligible statuses, valid lineage and zero authority escalation.",
+  "scope": [
+    "Require exactly P16-A through P16-G safety certificates",
+    "Require canonical eligible status for every P16-A..P16-G workstream",
+    "Require exact A->G decision-id lineage",
+    "Reject missing, duplicate or unsupported workstream certificates",
+    "Reject duplicate decision IDs",
+    "Reject VETO and WAITING_FOR_APPROVAL states",
+    "Reject any upstream execution or G8 authority escalation",
+    "Emit deterministic G8_PRETRADE_SAFE / PASS only for a complete valid chain",
+    "Record P17 as NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED after pass",
+    "Generate deterministic offline P16-H evidence",
+    "Prepare P16 canonical phase closure evidence"
+  ],
+  "out_of_scope": [
+    "Changing any P16-A..P16-G decision",
+    "Approving or applying overrides",
+    "Order creation, routing or execution",
+    "Position management",
+    "Starting P17",
+    "Enabling Live Trading or Auto Trading"
+  ],
+  "dependencies": [
+    "P16-A..P16-G CANONICAL_COMPLETE",
+    "P16-H READY_NOT_STARTED",
+    "Owner P16 authorization already granted"
+  ],
+  "read_paths": [
+    "packages/pretrade_firewall/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P16-WH-001.json",
+    "config/risk/pretrade-safety-gate.json",
+    "packages/pretrade_firewall/__init__.py",
+    "packages/pretrade_firewall/safety_gate.py",
+    "tests/p16/test_safety_gate.py",
+    "scripts/ci/p16h_evidence.py",
+    "docs/10-risk/P16-H-PRETRADE-SAFETY-GATE.md",
+    "docs/10-risk/p16-h-pretrade-safety-gate.json",
+    "docs/10-risk/P16-PHASE-CLOSURE.md",
+    "docs/10-risk/p16-phase-closure.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A5","A6","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Complete canonical A-G chain certifies G8_PRETRADE_SAFE / PASS",
+    "Missing workstream fails closed",
+    "Duplicate or unsupported workstream fails closed",
+    "Any non-canonical status fails closed",
+    "WAITING_FOR_APPROVAL fails closed",
+    "Broken A->G lineage fails closed",
+    "Duplicate decision IDs fail closed",
+    "Any upstream execution authority fails closed",
+    "Any upstream G8 authority fails closed",
+    "Input ordering does not change gate identity",
+    "P17 remains NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "Gate has no order-routing or execution authority",
+    "P16-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No override or authority mutation",
+    "No execution adapter imports",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P16-A..P16-G canonical closure chain",
+    "Deterministic P16-H G8 evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation",
+    "P16 canonical phase closure dossier"
+  ],
+  "rollback": "Revert P16-H gate/config/tests/evidence/CI/state/phase-closure changes; P16-G remains canonical complete and G8 remains not reached.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P16-A..P16-G CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Independent A-G pre-trade safety gate implemented",
+    "G8_PRETRADE_SAFE PASS is deterministic and fail-closed",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P16-WH-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P16 CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE",
+    "G8_PRETRADE_SAFE PASS recorded",
+    "P17 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "LIVE_TRADING and AUTO_TRADING remain DISABLED"
+  ]
+}

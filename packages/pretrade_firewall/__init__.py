@@ -111,3 +111,21 @@ __all__ += [
     "OverrideRequest",
     "evaluate_override_governance",
 ]
+
+from .safety_gate import (
+    PreTradeSafetyGate,
+    PreTradeSafetyGateError,
+    PreTradeSafetyGatePolicy,
+    PreTradeStageCertificate,
+    RequiredPreTradeWorkstream,
+    certify_g8_pretrade_safe,
+)
+
+__all__ += [
+    "PreTradeSafetyGate",
+    "PreTradeSafetyGateError",
+    "PreTradeSafetyGatePolicy",
+    "PreTradeStageCertificate",
+    "RequiredPreTradeWorkstream",
+    "certify_g8_pretrade_safe",
+]
