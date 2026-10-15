@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P16G_FAIL_CLOSED_OVERRIDE_GOVERNANCE",
   "task_id": "FIN-P16-WG-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "normal_positive_status": "PRETRADE_G_ELIGIBLE",
   "override_request_status": "WAITING_FOR_APPROVAL",
   "veto_to_pass_allowed": false,
@@ -16,5 +16,16 @@
   "execution_authority": false,
   "p16_h_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 336,
+    "head_sha": "623f9d93265a6d52e79fa4361200b4d9cd816a99",
+    "governance_run": 38736708270,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "57d1297420a78f0e89b6aa34d8d5a67a42c2100bd5328fab2963b2b8bf7fc001",
+    "merge_sha": "af3d4e27d0fdf00fed0a889b0fed3a24998bfae8"
+  },
+  "lock": "RELEASED",
+  "p16_h_state": "READY_NOT_STARTED",
+  "g8_pretrade_safe": "NOT_REACHED"
 }
