@@ -80,7 +80,7 @@ Phase transition:
 - P13 — Timing & Opportunity: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
-- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A..P16-E CANONICAL_COMPLETE / P16-F IN_PROGRESS / P16-G..P16-H NOT_STARTED / G8 NOT_REACHED
+- P16 — Pre-Trade Risk Firewall: ACTIVE / P16-A..P16-F CANONICAL_COMPLETE / P16-G READY_NOT_STARTED / P16-H NOT_STARTED / G8 NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2157,4 +2157,16 @@ Lock = `LOCK-FIN-P16-WF-001-01` / ACTIVE.
 Daily-loss admission uses caller-supplied trading-day identity, explicit equity values and an explicit governed loss ceiling. The circuit is latched after trip; reset governance belongs to P16-G.
 
 P16-G..P16-H = NOT_STARTED.  
+`G8_PRETRADE_SAFE` = NOT_REACHED.
+
+
+## P16-F canonical closure — 2026-10-15
+
+`FIN-P16-WF-001` = CANONICAL_COMPLETE.  
+PR #334 = MERGED at `f2705f6e265fda71a85a5dde5856d0104a873f5e`.  
+Governance `38735737224` = SUCCESS.  
+Artifact `sha256:3a66660f397cbac42fbf1abd30691d6a606543c33b119218793429f6b268e28c`.  
+Lock = RELEASED.  
+P16-G = READY_NOT_STARTED.  
+P16-H = NOT_STARTED.  
 `G8_PRETRADE_SAFE` = NOT_REACHED.
