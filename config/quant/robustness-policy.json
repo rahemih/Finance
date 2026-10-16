@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17E_ROBUSTNESS_POLICY",
+  "task_id": "FIN-P17-WE-001",
+  "monte_carlo_method": "DETERMINISTIC_MOVING_BLOCK_BOOTSTRAP",
+  "sampling_source": "SHA256_COUNTER_DERIVATION",
+  "return_unit": "INTEGER_BPS",
+  "monte_carlo_parameters_source": "EXPLICIT_GOVERNED_INPUT",
+  "stress_scenarios_source": "EXPLICIT_GOVERNED_INPUT",
+  "sensitivity_variants_source": "EXPLICIT_GOVERNED_INPUT",
+  "production_numeric_defaults": null,
+  "profitability_claim_authority": false,
+  "candidate_selection_authority": false,
+  "g9_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
