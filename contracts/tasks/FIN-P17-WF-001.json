@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P17-WF-001",
+  "phase": "P17",
+  "workstream": "WF",
+  "objective": "Implement deterministic historical liquidity/capacity testing across explicit order-size scales using the canonical P17-B execution-realism participation policy and historical displayed depth.",
+  "scope": [
+    "Require P17-E robustness certificate lineage by SHA-256",
+    "Reuse canonical P17-B ExecutionRealismPolicy and HistoricalExecutionContext",
+    "Probe explicit order-size scales against historical displayed depth",
+    "Compute deterministic fill ratio, adverse displayed-depth slippage and displayed-capacity utilization",
+    "Aggregate worst-case diagnostics per scale across historical contexts",
+    "Record maximum tested scale that fully fills across every supplied context",
+    "Reject mixed assets/price scales, duplicate contexts or duplicate scale points",
+    "Canonicalize context/scale ordering for deterministic certificate identity",
+    "Generate deterministic offline P17-F evidence"
+  ],
+  "out_of_scope": [
+    "Hidden-liquidity inference",
+    "True market-impact or permanent-impact claims",
+    "Profitability pass/fail claims",
+    "Strategy or Model Registry (P17-G/P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Broker/exchange connectivity or execution",
+    "Production promotion"
+  ],
+  "dependencies": [
+    "P17-A..P17-E CANONICAL_COMPLETE",
+    "P17-B execution-realism policy baseline",
+    "P17-E robustness certificate baseline",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": [
+    "quant/backtesting/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WF-001.json",
+    "config/quant/liquidity-capacity-test-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/capacity_testing.py",
+    "tests/p17/test_capacity_testing.py",
+    "scripts/ci/p17f_evidence.py",
+    "docs/11-quant/P17-F-LIQUIDITY-CAPACITY-TESTING.md",
+    "docs/11-quant/p17-f-liquidity-capacity-testing.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P17-A..P17-E regression suites remain green",
+    "Full-fill and partial-fill scale diagnostics are deterministic",
+    "Displayed-depth slippage uses adverse conservative rounding",
+    "Capacity utilization can exceed 10000 bps when requested size exceeds displayed eligible capacity",
+    "Mixed asset/price-scale contexts fail closed",
+    "Duplicate context IDs/sequences or scale points fail closed",
+    "Context and scale input ordering does not change certificate identity",
+    "No hidden-liquidity/market-impact/profitability/G9/execution authority is emitted",
+    "P17-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No hidden-liquidity inference",
+    "No automatic strategy/model selection",
+    "No automatic production promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-E canonical closure",
+    "Deterministic P17-F liquidity/capacity evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-F capacity/config/tests/evidence/CI/state changes; P17-E remains canonical complete and P17-G remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17-E CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic historical liquidity/capacity testing implemented",
+    "No hidden-liquidity or market-impact claim authority",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WF-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-G becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}

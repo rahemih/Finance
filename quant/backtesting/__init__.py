@@ -99,3 +99,19 @@ __all__ += [
     "StressScenario",
     "evaluate_robustness",
 ]
+
+from .capacity_testing import (
+    CapacityProbeDiagnostic,
+    CapacityScaleSummary,
+    CapacityTestingError,
+    LiquidityCapacityCertificate,
+    evaluate_liquidity_capacity,
+)
+
+__all__ += [
+    "CapacityProbeDiagnostic",
+    "CapacityScaleSummary",
+    "CapacityTestingError",
+    "LiquidityCapacityCertificate",
+    "evaluate_liquidity_capacity",
+]

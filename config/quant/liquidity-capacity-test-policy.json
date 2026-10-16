@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17F_LIQUIDITY_CAPACITY_TEST_POLICY",
+  "task_id": "FIN-P17-WF-001",
+  "depth_source": "P17_B_HISTORICAL_EXECUTION_CONTEXT",
+  "participation_policy_source": "P17_B_EXECUTION_REALISM_POLICY",
+  "size_scales_source": "EXPLICIT_GOVERNED_INPUT",
+  "probe_limit_kind": "COMPUTATIONAL_SAFETY_ONLY",
+  "max_probe_count": 100000,
+  "production_numeric_defaults": null,
+  "hidden_liquidity_inference": false,
+  "market_impact_claim": false,
+  "profitability_claim_authority": false,
+  "g9_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
