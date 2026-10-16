@@ -1,6 +1,6 @@
 # P17-F — Liquidity / Capacity Testing
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WF-001`
 
 ## Objective
@@ -52,3 +52,17 @@ P17-G..P17-I remain later workstreams.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #352 = MERGED;
+- implementation head = `d2d35a523b7c116d18b9db55b5263ec4f5aea663`;
+- Governance `38933930665` = SUCCESS;
+- artifact = `sha256:50fbf5a9cba7cb10adac4c60fb5d934b4b3f9fba404385973561e1010e5e8ea8`;
+- implementation merge = `c4da5541426f87dae3edd8365b5e77a8d75a3ad1`;
+- `FIN-P17-WF-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WF-001-01` = RELEASED;
+- P17-G = READY_NOT_STARTED;
+- P17-H..P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
