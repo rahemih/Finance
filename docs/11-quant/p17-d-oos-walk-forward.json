@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17D_OOS_WALK_FORWARD",
   "task_id": "FIN-P17-WD-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "window_semantics": "HALF_OPEN_NS",
   "within_fold_order": "TRAIN_VALIDATION_TEST",
   "test_windows_non_overlapping": true,
@@ -17,5 +17,16 @@
   "p17_e_through_p17_i_started": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 348,
+    "head_sha": "3d698e20556005e31285df24002702656ded1667",
+    "governance_run": 38916445452,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "b77778b2f50fbc00b6d1bb828c797a868c6a46ddcb270759a1c13781343de417",
+    "merge_sha": "258bc3f817a6d26071c82c7a793936ae8fc36bba"
+  },
+  "lock": "RELEASED",
+  "p17_e_state": "READY_NOT_STARTED",
+  "p17_f_through_p17_i_state": "NOT_STARTED"
 }
