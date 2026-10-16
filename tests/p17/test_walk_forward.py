@@ -22,8 +22,8 @@ def fold(
         base+100,
         base+100,
         base+150,
-        base+150,
-        base+200,
+        base+160,
+        base+210,
     )
 
 
@@ -32,7 +32,7 @@ def selection(fold_id: str, base: int, suffix: str)->CandidateSelection:
         f"selection-{suffix}",
         fold_id,
         f"candidate-{suffix}",
-        base+140,
+        base+150,
         "a"*64,
         "b"*64,
     )
@@ -44,8 +44,8 @@ def result(fold_id: str, base: int, suffix: str)->OutOfSampleResultRef:
         fold_id,
         "c"*64,
         "d"*64,
-        base+150,
-        base+200,
+        base+160,
+        base+210,
     )
 
 
@@ -68,9 +68,9 @@ class WalkForwardTests(unittest.TestCase):
     def test_overlapping_test_windows_fail_closed(self)->None:
         with self.assertRaises(WalkForwardError):
             certify_walk_forward(
-                folds=(fold("f1",100),fold("f2",240)),
-                selections=(selection("f1",100,"1"),selection("f2",240,"2")),
-                results=(result("f1",100,"1"),result("f2",240,"2")),
+                folds=(fold("f1",100),fold("f2",140)),
+                selections=(selection("f1",100,"1"),selection("f2",140,"2")),
+                results=(result("f1",100,"1"),result("f2",140,"2")),
             )
 
     def test_test_informed_selection_fails_closed(self)->None:
@@ -78,7 +78,7 @@ class WalkForwardTests(unittest.TestCase):
         with self.assertRaises(WalkForwardError):
             certify_walk_forward(
                 folds=(fold("f1",100),),
-                selections=(replace(s,selected_at_ns=250),),
+                selections=(replace(s,selected_at_ns=260),),
                 results=(result("f1",100,"1"),),
             )
 
