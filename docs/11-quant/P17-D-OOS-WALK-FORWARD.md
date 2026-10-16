@@ -13,7 +13,7 @@ Every fold explicitly defines half-open windows:
 
 `train → validation → test`
 
-The windows must be strictly ordered and may touch at their boundaries, but must not overlap.
+The train and validation windows may touch at their boundaries. Validation must finish before the test window begins, leaving an explicit pre-test selection interval.
 
 Test windows across folds must also be chronological and non-overlapping.
 
@@ -25,7 +25,7 @@ Every fold must carry one candidate-selection record with:
 - training artifact SHA-256;
 - validation artifact SHA-256.
 
-The selection timestamp must be strictly before the test window begins.
+The selection timestamp must be at or after validation completion and strictly before the test window begins.
 
 This prevents test-informed model/strategy selection.
 
