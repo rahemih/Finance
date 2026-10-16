@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17F_LIQUIDITY_CAPACITY_TESTING",
   "task_id": "FIN-P17-WF-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "output_status": "CAPACITY_EVALUATED",
   "depth_source": "P17_B_HISTORICAL_EXECUTION_CONTEXT",
   "participation_policy_source": "P17_B_EXECUTION_REALISM_POLICY",
@@ -16,5 +16,17 @@
   "p17_g_through_p17_i_started": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 352,
+    "head_sha": "d2d35a523b7c116d18b9db55b5263ec4f5aea663",
+    "governance_run": 38933930665,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "50fbf5a9cba7cb10adac4c60fb5d934b4b3f9fba404385973561e1010e5e8ea8",
+    "merge_sha": "c4da5541426f87dae3edd8365b5e77a8d75a3ad1"
+  },
+  "lock": "RELEASED",
+  "p17_g_state": "READY_NOT_STARTED",
+  "p17_h_through_p17_i_state": "NOT_STARTED",
+  "g9_quant_validated": "NOT_REACHED"
 }
