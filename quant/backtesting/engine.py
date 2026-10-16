@@ -5,7 +5,7 @@ from decimal import Decimal, InvalidOperation
 import hashlib
 import json
 import re
-from typing import Protocol, Sequence
+from typing import Protocol, Sequence, cast
 
 from packages.historical_data.replay_snapshot import ReplaySnapshot
 
@@ -233,6 +233,39 @@ class SimulatedFill:
 
 
 @dataclass(frozen=True, slots=True)
+class SimulatedCashAdjustment:
+    adjustment_id: str
+    asset_id: str
+    event_time_ns: int
+    amount_cash: str
+    kind: str
+    evidence_sha256: str
+
+    def __post_init__(self) -> None:
+        _safe_id(self.adjustment_id, field="adjustment_id")
+        _safe_id(self.asset_id, field="asset_id")
+        if self.event_time_ns < 0:
+            raise BacktestEngineError("cash adjustment event_time_ns must be non-negative")
+        amount = _finite_decimal(self.amount_cash, field="amount_cash")
+        if amount == 0:
+            raise BacktestEngineError("cash adjustment amount_cash must be non-zero")
+        _safe_id(self.kind, field="kind")
+        _sha256_text(self.evidence_sha256, field="evidence_sha256")
+
+    def payload(self) -> dict[str, object]:
+        return {
+            "adjustment_id": self.adjustment_id,
+            "asset_id": self.asset_id,
+            "event_time_ns": self.event_time_ns,
+            "amount_cash": _decimal_text(
+                _finite_decimal(self.amount_cash, field="amount_cash")
+            ),
+            "kind": self.kind,
+            "evidence_sha256": self.evidence_sha256,
+        }
+
+
+@dataclass(frozen=True, slots=True)
 class BacktestPortfolioView:
     cash: str
     equity: str
@@ -278,6 +311,15 @@ class ExecutionSimulator(Protocol):
         ...
 
 
+class ExecutionCashFlowProvider(Protocol):
+    def cash_adjustments_on_market_event(
+        self,
+        event: BacktestMarketEvent,
+        portfolio: BacktestPortfolioView,
+    ) -> Sequence[SimulatedCashAdjustment]:
+        ...
+
+
 @dataclass(frozen=True, slots=True)
 class BacktestResult:
     result_id: str
@@ -287,6 +329,7 @@ class BacktestResult:
     event_count: int
     decision_ids: tuple[str, ...]
     fill_ids: tuple[str, ...]
+    cash_adjustment_ids: tuple[str, ...]
     pending_decision_ids: tuple[str, ...]
     initial_cash: str
     ending_cash: str
@@ -379,6 +422,8 @@ def run_backtest(
     decision_ids: list[str] = []
     fill_ids: list[str] = []
     seen_fill_ids: set[str] = set()
+    cash_adjustment_ids: list[str] = []
+    seen_cash_adjustment_ids: set[str] = set()
     equity_curve: list[EquityPoint] = []
 
     def apply_fill(fill: SimulatedFill, *, event: BacktestMarketEvent) -> None:
@@ -439,6 +484,30 @@ def run_backtest(
         seen_fill_ids.add(fill.fill_id)
         fill_ids.append(fill.fill_id)
 
+    def apply_cash_adjustment(
+        adjustment: SimulatedCashAdjustment,
+        *,
+        event: BacktestMarketEvent,
+    ) -> None:
+        nonlocal cash
+        if adjustment.adjustment_id in seen_cash_adjustment_ids:
+            raise BacktestEngineError("duplicate simulated cash adjustment ID")
+        if adjustment.event_time_ns != event.event_time_ns:
+            raise BacktestEngineError(
+                "simulated cash adjustment must be emitted on its event time"
+            )
+        if adjustment.asset_id not in marks:
+            raise BacktestEngineError(
+                "simulated cash adjustment asset has no known market mark"
+            )
+        amount = _finite_decimal(
+            adjustment.amount_cash,
+            field="adjustment.amount_cash",
+        )
+        cash += amount
+        seen_cash_adjustment_ids.add(adjustment.adjustment_id)
+        cash_adjustment_ids.append(adjustment.adjustment_id)
+
     for event in ordered:
         existing_scale = price_scales.get(event.asset_id)
         if existing_scale is not None and existing_scale != event.price_scale:
@@ -462,6 +531,25 @@ def run_backtest(
             positions=positions,
             marks=marks,
         )
+        if hasattr(execution, "cash_adjustments_on_market_event"):
+            cash_provider = cast(ExecutionCashFlowProvider, execution)
+            adjustments = tuple(
+                sorted(
+                    cash_provider.cash_adjustments_on_market_event(
+                        event,
+                        portfolio,
+                    ),
+                    key=lambda item: item.adjustment_id,
+                )
+            )
+            for adjustment in adjustments:
+                apply_cash_adjustment(adjustment, event=event)
+            portfolio = _portfolio_view(
+                cash=cash,
+                positions=positions,
+                marks=marks,
+            )
+
         decision = strategy.on_event(event, portfolio)
         if decision is not None:
             if decision.decision_time_ns != event.event_time_ns:
@@ -537,6 +625,7 @@ def run_backtest(
         "status": status,
         "decision_ids": decision_ids,
         "fill_ids": fill_ids,
+        "cash_adjustment_ids": cash_adjustment_ids,
         "pending_decision_ids": list(pending),
         "initial_cash": _decimal_text(initial_cash),
         "ending_cash": final_view.cash,
@@ -561,6 +650,7 @@ def run_backtest(
         event_count=len(ordered),
         decision_ids=tuple(decision_ids),
         fill_ids=tuple(fill_ids),
+        cash_adjustment_ids=tuple(cash_adjustment_ids),
         pending_decision_ids=pending,
         initial_cash=_decimal_text(initial_cash),
         ending_cash=final_view.cash,

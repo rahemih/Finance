@@ -1,0 +1,129 @@
+{
+  "task_id": "FIN-P17-WB-001",
+  "phase": "P17",
+  "workstream": "WB",
+  "objective": "Implement deterministic execution realism for P17 backtests: explicit fees, historical spread/depth-driven slippage, explicit latency, capacity-limited partial fills and historical funding cash flows, with no production numeric defaults.",
+  "scope": [
+    "Implement P17-A ExecutionSimulator-compatible deterministic realism model",
+    "Require explicit historical execution context for every simulated market event",
+    "Use explicit bid/ask depth for spread and depth-walk fill prices",
+    "Derive slippage from consumed historical depth rather than fixed hidden bps",
+    "Apply explicit governed taker fee bps supplied to the simulator",
+    "Apply explicit decision latency in nanoseconds",
+    "Limit fill quantity by explicit max displayed-depth participation bps",
+    "Support repeated partial fills across later market events",
+    "Support explicit historical funding-rate cash adjustments at caller-declared funding events",
+    "Preserve point-in-time availability for execution/funding evidence",
+    "Use conservative fill-price rounding for scaled integer fills",
+    "Extend P17-A accounting with optional signed simulated cash adjustments in a backward-compatible way",
+    "Produce deterministic audit diagnostics and P17-B evidence"
+  ],
+  "out_of_scope": [
+    "Lookahead/leakage/survivorship guards (P17-C)",
+    "Out-of-sample / Walk-Forward (P17-D)",
+    "Monte Carlo / stress / sensitivity (P17-E)",
+    "Liquidity/capacity validation claims (P17-F)",
+    "Strategy or Model Registry (P17-G/P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Broker/exchange connectivity or live order routing",
+    "Calibration of universal fee, latency, slippage or participation defaults",
+    "Profitability claims"
+  ],
+  "dependencies": [
+    "P17-A CANONICAL_COMPLETE",
+    "P09 order-book / liquidity / derivatives evidence baselines",
+    "P05 canonical clock baseline",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": [
+    "quant/backtesting/**",
+    "packages/order_flow_liquidity/**",
+    "packages/market_data/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WB-001.json",
+    "config/quant/execution-realism-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/engine.py",
+    "quant/backtesting/execution_realism.py",
+    "tests/p17/test_backtest_engine.py",
+    "tests/p17/test_execution_realism.py",
+    "scripts/ci/p17b_evidence.py",
+    "docs/11-quant/P17-B-EXECUTION-REALISM.md",
+    "docs/11-quant/p17-b-execution-realism.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P17-A regression suite remains green",
+    "Missing historical execution context fails closed",
+    "Future execution context fails closed",
+    "Buy fills consume asks and sell fills consume bids",
+    "Spread is reflected by executable side prices",
+    "Depth walking creates deterministic VWAP/slippage",
+    "Participation limit creates deterministic partial fill",
+    "Latency prevents fill before explicit eligibility time",
+    "Repeated later events can complete a partial order",
+    "Explicit fee bps is charged deterministically",
+    "Positive funding debits long and credits short positions",
+    "Funding is applied only when explicitly marked due",
+    "Duplicate funding/cash-adjustment identity fails closed in engine",
+    "No production realism numeric default exists",
+    "No G9/profitability/execution/order-routing authority is emitted",
+    "P17-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange adapter imports",
+    "No production fee/slippage/latency/participation defaults",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-A canonical closure",
+    "P09/P05 canonical evidence lineage",
+    "Deterministic P17-B evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-B realism/cash-adjustment/tests/evidence/CI/state changes; P17-A remains canonical complete and P17-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17-A CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Execution realism model implemented",
+    "Fees/spread/depth-slippage/funding/latency/partial fill explicit and deterministic",
+    "No production numeric defaults",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-C becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}

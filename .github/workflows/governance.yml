@@ -1080,6 +1080,15 @@ jobs:
           cmp build/p17a-a.json build/p17a-b.json
           sha256sum build/p17a-a.json
 
+      - name: P17-B deterministic execution realism evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p17b_evidence.py --output build/p17b-a.json
+          PYTHONPATH=. python scripts/ci/p17b_evidence.py --output build/p17b-b.json
+          cmp build/p17b-a.json build/p17b-b.json
+          sha256sum build/p17b-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |

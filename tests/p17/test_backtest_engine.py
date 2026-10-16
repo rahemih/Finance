@@ -14,6 +14,7 @@ from quant.backtesting.engine import (
     BacktestMarketEvent,
     BacktestPortfolioView,
     BacktestRunSpec,
+    SimulatedCashAdjustment,
     SimulatedFill,
     run_backtest,
 )
@@ -299,6 +300,25 @@ class MultiAssetStrategy:
         return None
 
 
+class DuplicateCashAdjustmentSimulator(ImmediateSimulator):
+    def cash_adjustments_on_market_event(
+        self,
+        event: BacktestMarketEvent,
+        portfolio: BacktestPortfolioView,
+    ) -> tuple[SimulatedCashAdjustment, ...]:
+        del portfolio
+        return (
+            SimulatedCashAdjustment(
+                "duplicate-adjustment",
+                event.asset_id,
+                event.event_time_ns,
+                "-1",
+                "FUNDING",
+                "a" * 64,
+            ),
+        )
+
+
 class BacktestEngineTests(unittest.TestCase):
     def test_round_trip_is_deterministic(self) -> None:
         snap = snapshot()
@@ -451,6 +471,17 @@ class BacktestEngineTests(unittest.TestCase):
             (("BTC-USD", "1"), ("ETH-USD", "2")),
         )
         self.assertEqual(result.ending_equity, "1000")
+
+    def test_duplicate_cash_adjustment_id_fails_closed(self) -> None:
+        snap = snapshot()
+        with self.assertRaises(BacktestEngineError):
+            run_backtest(
+                spec=spec(snap),
+                snapshot=snap,
+                events=events(),
+                strategy=BuyOnceStrategy(),
+                execution=DuplicateCashAdjustmentSimulator(),
+            )
 
     def test_price_scale_drift_fails_closed(self) -> None:
         snap = snapshot()
