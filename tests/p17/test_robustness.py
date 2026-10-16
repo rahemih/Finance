@@ -117,6 +117,10 @@ class RobustnessTests(unittest.TestCase):
         with self.assertRaises(RobustnessError):
             evaluate(spec=monte(block_size=99))
 
+    def test_monte_carlo_safety_cap(self) -> None:
+        with self.assertRaises(RobustnessError):
+            monte(path_count=1001, path_length=1000)
+
     def test_duplicate_scenario_and_variant_fail_closed(self) -> None:
         scenario = StressScenario("same", 1, 1)
         with self.assertRaises(RobustnessError):
