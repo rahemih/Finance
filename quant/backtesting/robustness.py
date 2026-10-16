@@ -13,7 +13,7 @@ class RobustnessError(ValueError):
 
 
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
-_SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]{0,191}$")
+_SAFE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]{0,191}$")\nMAX_MONTE_CARLO_OBSERVATIONS = 1_000_000
 
 
 def _safe_id(value: str, *, field: str) -> str:
