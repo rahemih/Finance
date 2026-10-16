@@ -1,6 +1,6 @@
 # P17-C — Lookahead / Leakage / Survivorship Guards
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WC-001`
 
 ## Objective
@@ -60,3 +60,17 @@ P17-D..P17-I = NOT_STARTED.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #346 = MERGED;
+- implementation head = `1e67791884992df3ba230bac4b93756736352759`;
+- Governance `38915003009` = SUCCESS;
+- artifact = `sha256:5b0c5606971dacfa4e9bb1cd8f5a5fef8bb8eeb694b6e87be180b0db49d13a96`;
+- implementation merge = `e095c3fb04f0f83f3ec4597f2870772bc566634a`;
+- `FIN-P17-WC-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WC-001-01` = RELEASED;
+- P17-D = READY_NOT_STARTED;
+- P17-E..P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
