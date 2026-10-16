@@ -87,6 +87,10 @@ class MonteCarloSpec:
             raise RobustnessError("path_length must be positive")
         if self.block_size <= 0:
             raise RobustnessError("block_size must be positive")
+        if self.path_count * self.path_length > MAX_MONTE_CARLO_OBSERVATIONS:
+            raise RobustnessError(
+                "Monte Carlo request exceeds computational safety cap"
+            )
 
     def payload(self) -> dict[str, object]:
         return {
