@@ -45,3 +45,19 @@ __all__ += [
     "HistoricalExecutionContext",
     "HistoricalExecutionSimulator",
 ]
+
+from .information_hygiene import (
+    DecisionInformationAudit,
+    InformationHygieneCertificate,
+    InformationHygieneError,
+    UniverseMembershipChange,
+    certify_information_hygiene,
+)
+
+__all__ += [
+    "DecisionInformationAudit",
+    "InformationHygieneCertificate",
+    "InformationHygieneError",
+    "UniverseMembershipChange",
+    "certify_information_hygiene",
+]

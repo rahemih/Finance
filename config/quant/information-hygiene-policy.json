@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17C_INFORMATION_HYGIENE_POLICY",
+  "task_id": "FIN-P17-WC-001",
+  "mode": "INDEPENDENT_POINT_IN_TIME_CERTIFICATION",
+  "feature_rule": "MATERIALIZATION_MUST_EXIST_IN_REPLAY_VIEW_AT_DECISION_TIME",
+  "vintage_rule": "VINTAGE_MUST_EXIST_IN_REPLAY_VIEW_AT_DECISION_TIME",
+  "dataset_rule": "DATASET_VERSION_MUST_BE_ACTIVE_IN_REPLAY_VIEW_AT_DECISION_TIME",
+  "outcome_label_access": "FORBIDDEN",
+  "universe_rule": "LATEST_EFFECTIVE_CHANGE_KNOWN_BY_DECISION_TIME",
+  "future_known_universe_changes": "IGNORED_UNTIL_AVAILABLE",
+  "automatic_repair": false,
+  "g9_authority": false,
+  "profitability_claim_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p18_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

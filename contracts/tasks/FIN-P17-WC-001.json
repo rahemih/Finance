@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P17-WC-001",
+  "phase": "P17",
+  "workstream": "WC",
+  "objective": "Implement deterministic independent lookahead, information-leakage and survivorship-bias guards for P17 backtest evidence, using canonical ReplaySnapshot point-in-time views and explicit historical universe membership changes.",
+  "scope": [
+    "Certify decision-time information access against canonical ReplaySnapshot.view_at(decision_time_ns)",
+    "Require every accessed feature materialization to exist in the point-in-time ReplayView",
+    "Require every accessed macro vintage to exist in the point-in-time ReplayView",
+    "Require every accessed dataset version to be active in the point-in-time ReplayView",
+    "Forbid outcome-label access in strategy decision information",
+    "Require explicit point-in-time universe membership for every audited decision asset",
+    "Build universe state only from membership changes both effective and known by decision time",
+    "Ignore future-known membership changes rather than leaking them backward",
+    "Reject decisions for assets known to be outside the point-in-time universe",
+    "Reject duplicate decision audits and duplicate universe change identities",
+    "Produce deterministic information-hygiene certificate evidence",
+    "Generate deterministic offline P17-C evidence"
+  ],
+  "out_of_scope": [
+    "Execution realism (P17-B)",
+    "Out-of-sample / Walk-Forward (P17-D)",
+    "Monte Carlo / stress / sensitivity (P17-E)",
+    "Liquidity / capacity validation (P17-F)",
+    "Strategy or Model Registry (P17-G/P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Automatic repair or imputation of leaked research inputs",
+    "Broker/exchange connectivity or order execution",
+    "Profitability claims"
+  ],
+  "dependencies": [
+    "P17-A..P17-B CANONICAL_COMPLETE",
+    "P06 ReplaySnapshot canonical point-in-time baseline",
+    "P06 dataset manifests and feature materialization baseline",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": [
+    "quant/backtesting/**",
+    "packages/historical_data/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WC-001.json",
+    "config/quant/information-hygiene-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/information_hygiene.py",
+    "tests/p17/test_information_hygiene.py",
+    "scripts/ci/p17c_evidence.py",
+    "docs/11-quant/P17-C-INFORMATION-HYGIENE.md",
+    "docs/11-quant/p17-c-information-hygiene.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P17-A/P17-B regression suites remain green",
+    "Canonical point-in-time feature access passes",
+    "Feature unavailable at decision time fails closed",
+    "Vintage unavailable at decision time fails closed",
+    "Dataset version outside active ReplayView fails closed",
+    "Outcome-label access fails closed",
+    "Missing point-in-time universe membership fails closed",
+    "Known non-member asset fails closed",
+    "Future-known universe removal cannot leak backward",
+    "Known effective universe removal blocks later decision",
+    "Duplicate decision audits fail closed",
+    "Duplicate universe change identities fail closed",
+    "Input ordering does not change certificate identity",
+    "No G9/profitability/execution/order-routing authority is emitted",
+    "P17-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange adapter imports",
+    "No automatic leakage repair",
+    "Production paths do not import research",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-B canonical closure",
+    "P06 ReplaySnapshot / dataset / feature lineage",
+    "Deterministic P17-C information-hygiene evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-C guard/config/tests/evidence/CI/state changes; P17-B remains canonical complete and P17-D remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17-B CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Independent point-in-time information-hygiene guard implemented",
+    "Lookahead/leakage/survivorship violations fail closed",
+    "No automatic repair or authority escalation",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-D becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}
