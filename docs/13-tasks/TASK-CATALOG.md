@@ -249,6 +249,7 @@ This catalog is the canonical index of governed work.
 | FIN-P16-WH-001 | P16 | Pre-Trade Safety Gate / G8 | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P16-WH-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P17-WA-001 | P17 | Backtest Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P17-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P17-WB-001 | P17 | Fees / Spread / Slippage / Funding / Latency / Partial Fill Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P17-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P17-WC-001 | P17 | Lookahead / Leakage / Survivorship Guards | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P17-WC-001.json` | `LOCK-FIN-P17-WC-001-01` ACTIVE / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
