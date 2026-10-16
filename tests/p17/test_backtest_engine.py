@@ -203,6 +203,101 @@ class UnknownDecisionSimulator:
             ),
         )
 
+    def submit(
+        self,
+        decision: BacktestDecision,
+        event: BacktestMarketEvent,
+    ) -> tuple[SimulatedFill, ...]:
+        del decision, event
+        return ()
+
+
+class DuplicateFillSimulator(ImmediateSimulator):
+    def submit(
+        self,
+        decision: BacktestDecision,
+        event: BacktestMarketEvent,
+    ) -> tuple[SimulatedFill, ...]:
+        return (
+            SimulatedFill(
+                "duplicate-fill",
+                decision.decision_id,
+                decision.asset_id,
+                event.event_time_ns,
+                "0.5",
+                event.price_scaled,
+                event.price_scale,
+                "0",
+            ),
+            SimulatedFill(
+                "duplicate-fill",
+                decision.decision_id,
+                decision.asset_id,
+                event.event_time_ns,
+                "0.5",
+                event.price_scaled,
+                event.price_scale,
+                "0",
+            ),
+        )
+
+
+class DelayedPartialFillSimulator:
+    def __init__(self) -> None:
+        self.pending_decision_id: str | None = None
+
+    def on_market_event(
+        self,
+        event: BacktestMarketEvent,
+    ) -> tuple[SimulatedFill, ...]:
+        if event.sequence != 2 or self.pending_decision_id is None:
+            return ()
+        return (
+            SimulatedFill(
+                "fill-later",
+                self.pending_decision_id,
+                "BTC-USD",
+                event.event_time_ns,
+                "0.6",
+                event.price_scaled,
+                event.price_scale,
+                "0",
+            ),
+        )
+
+    def submit(
+        self,
+        decision: BacktestDecision,
+        event: BacktestMarketEvent,
+    ) -> tuple[SimulatedFill, ...]:
+        self.pending_decision_id = decision.decision_id
+        return (
+            SimulatedFill(
+                "fill-now",
+                decision.decision_id,
+                decision.asset_id,
+                event.event_time_ns,
+                "0.4",
+                event.price_scaled,
+                event.price_scale,
+                "0",
+            ),
+        )
+
+
+class MultiAssetStrategy:
+    def on_event(
+        self,
+        event: BacktestMarketEvent,
+        portfolio: BacktestPortfolioView,
+    ) -> BacktestDecision | None:
+        del portfolio
+        if event.sequence == 1:
+            return BacktestDecision("btc-buy", "BTC-USD", event.event_time_ns, "1")
+        if event.sequence == 2:
+            return BacktestDecision("eth-buy", "ETH-USD", event.event_time_ns, "2")
+        return None
+
 
 class BacktestEngineTests(unittest.TestCase):
     def test_round_trip_is_deterministic(self) -> None:
@@ -312,6 +407,50 @@ class BacktestEngineTests(unittest.TestCase):
                 strategy=BuyOnceStrategy(),
                 execution=UnknownDecisionSimulator(),
             )
+
+    def test_duplicate_fill_id_fails_closed(self) -> None:
+        snap = snapshot()
+        with self.assertRaises(BacktestEngineError):
+            run_backtest(
+                spec=spec(snap),
+                snapshot=snap,
+                events=events(),
+                strategy=BuyOnceStrategy(),
+                execution=DuplicateFillSimulator(),
+            )
+
+    def test_delayed_partial_fills_are_accounted(self) -> None:
+        snap = snapshot()
+        result = run_backtest(
+            spec=spec(snap),
+            snapshot=snap,
+            events=events(),
+            strategy=BuyOnceStrategy(),
+            execution=DelayedPartialFillSimulator(),
+        )
+        self.assertEqual(result.status, "COMPLETED")
+        self.assertEqual(result.pending_decision_ids, ())
+        self.assertEqual(result.ending_positions, (("BTC-USD", "1"),))
+        self.assertEqual(result.ending_equity, "1004")
+
+    def test_multi_asset_accounting_is_deterministic(self) -> None:
+        snap = snapshot()
+        multi_events = (
+            BacktestMarketEvent(1, 1500, 1400, "BTC-USD", 100, 1),
+            BacktestMarketEvent(2, 2500, 2400, "ETH-USD", 50, 1),
+        )
+        result = run_backtest(
+            spec=spec(snap),
+            snapshot=snap,
+            events=multi_events,
+            strategy=MultiAssetStrategy(),
+            execution=ImmediateSimulator(),
+        )
+        self.assertEqual(
+            result.ending_positions,
+            (("BTC-USD", "1"), ("ETH-USD", "2")),
+        )
+        self.assertEqual(result.ending_equity, "1000")
 
     def test_price_scale_drift_fails_closed(self) -> None:
         snap = snapshot()
