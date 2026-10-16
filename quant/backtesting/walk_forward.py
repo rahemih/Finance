@@ -55,7 +55,7 @@ class WalkForwardFold:
         if not (
             self.train_start_ns < self.train_end_ns
             <= self.validation_start_ns < self.validation_end_ns
-            <= self.test_start_ns < self.test_end_ns
+            < self.test_start_ns < self.test_end_ns
         ):
             raise WalkForwardError(
                 "fold windows must be ordered train then validation then test"
@@ -191,8 +191,14 @@ def certify_walk_forward(
         selection=by_selection.get(fold.fold_id)
         if selection is None:
             raise WalkForwardError("missing candidate selection for fold")
-        if selection.selected_at_ns >= fold.test_start_ns:
-            raise WalkForwardError("candidate selection is test-informed")
+        if not (
+            fold.validation_end_ns
+            <= selection.selected_at_ns
+            < fold.test_start_ns
+        ):
+            raise WalkForwardError(
+                "candidate selection must occur after validation and before test"
+            )
 
         result=by_result.get(fold.fold_id)
         if result is None:
