@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17B_EXECUTION_REALISM",
   "task_id": "FIN-P17-WB-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "spread_model": "HISTORICAL_EXECUTABLE_SIDE",
   "slippage_model": "DEPTH_WALK_VWAP",
   "partial_fill_model": "EXPLICIT_DISPLAYED_DEPTH_PARTICIPATION",
@@ -20,5 +20,16 @@
   "order_routing_authority": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 344,
+    "head_sha": "67f3a312a9c971a9222da4703cbc622f45fb58ec",
+    "governance_run": 38830584699,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "191e13c893020b895c62384aaad0717bfe732f0d1c71caa38e218d5471609422",
+    "merge_sha": "2bdaa917a128986e9a2e69a7a88bba663031c366"
+  },
+  "lock": "RELEASED",
+  "p17_c_state": "READY_NOT_STARTED",
+  "p17_d_through_p17_i_state": "NOT_STARTED"
 }
