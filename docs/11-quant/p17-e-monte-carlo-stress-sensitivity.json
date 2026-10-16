@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17E_MONTE_CARLO_STRESS_SENSITIVITY",
+  "task_id": "FIN-P17-WE-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "output_status": "ROBUSTNESS_EVALUATED",
+  "monte_carlo_method": "DETERMINISTIC_MOVING_BLOCK_BOOTSTRAP",
+  "sampling_source": "SHA256_COUNTER_DERIVATION",
+  "production_numeric_defaults": null,
+  "profitability_claim_authority": false,
+  "candidate_selection_authority": false,
+  "g9_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p17_f_through_p17_i_started": false,
+  "p18_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
