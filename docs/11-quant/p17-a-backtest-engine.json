@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17A_BACKTEST_ENGINE",
   "task_id": "FIN-P17-WA-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "engine_mode": "DETERMINISTIC_EVENT_DRIVEN",
   "replay_source": "P06_CANONICAL_REPLAY_SNAPSHOT",
   "strategy_input_scope": "CURRENT_EVENT_AND_CURRENT_PORTFOLIO_ONLY",
@@ -18,5 +18,16 @@
   "order_routing_authority": false,
   "p17_b_through_p17_i_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 342,
+    "head_sha": "9a2bec9ed722f45bc905953cc7090dbc26cc2877",
+    "governance_run": 38829103464,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "c8e99b59503054aaa0934055fb2cbc2d5518f697df4f347b2bfbd985031d3675",
+    "merge_sha": "e3b1e50baa7e455740b7625192a680269b6055b4"
+  },
+  "lock": "RELEASED",
+  "p17_b_state": "READY_NOT_STARTED",
+  "p17_c_through_p17_i_state": "NOT_STARTED"
 }
