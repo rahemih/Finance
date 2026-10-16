@@ -81,7 +81,7 @@ Phase transition:
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
-- P17 — Backtesting / Strategy Factory: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
+- P17 — Backtesting / Strategy Factory: ACTIVE / P17-A IN_PROGRESS / P17-B..P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2226,5 +2226,23 @@ All governed P16 locks are RELEASED.
 `G8_PRETRADE_SAFE / PASS` is the frozen-roadmap exit gate result.  
 Canonical closure base = `d189b59a62f3a3be1e3a731e0fb60c53af1030e7`.  
 P17 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P17 activation — 2026-10-16
+
+Owner phase authorization = GRANTED / CONSUMED.
+
+P17-A — Backtest Engine:
+- `FIN-P17-WA-001` = IN_PROGRESS;
+- `LOCK-FIN-P17-WA-001-01` = ACTIVE;
+- deterministic event-driven core consumes canonical P06 ReplaySnapshot;
+- execution simulator is injected and has no production default;
+- P17-B remains owner of fees/spread/slippage/funding/latency/partial-fill realism.
+
+P17-B..P17-I = NOT_STARTED.  
+`G9_QUANT_VALIDATED` = NOT_REACHED.  
+P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
