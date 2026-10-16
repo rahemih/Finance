@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17C_INFORMATION_HYGIENE",
   "task_id": "FIN-P17-WC-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "mode": "INDEPENDENT_POINT_IN_TIME_CERTIFICATION",
   "lookahead_guard": true,
   "feature_leakage_guard": true,
@@ -20,5 +20,16 @@
   "p17_d_through_p17_i_started": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 346,
+    "head_sha": "1e67791884992df3ba230bac4b93756736352759",
+    "governance_run": 38915003009,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "5b0c5606971dacfa4e9bb1cd8f5a5fef8bb8eeb694b6e87be180b0db49d13a96",
+    "merge_sha": "e095c3fb04f0f83f3ec4597f2870772bc566634a"
+  },
+  "lock": "RELEASED",
+  "p17_d_state": "READY_NOT_STARTED",
+  "p17_e_through_p17_i_state": "NOT_STARTED"
 }
