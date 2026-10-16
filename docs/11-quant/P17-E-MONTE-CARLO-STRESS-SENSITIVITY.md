@@ -1,6 +1,6 @@
 # P17-E — Monte Carlo / Stress / Sensitivity
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WE-001`
 
 ## Objective
@@ -69,3 +69,17 @@ P17-F..P17-I remain later workstreams.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #350 = MERGED;
+- implementation head = `c13236d5432337e1e3624236e99764ee4e61125a`;
+- Governance `38932486210` = SUCCESS;
+- artifact = `sha256:f2b0542cc9eb43139b22c7680446295988c7d41aefa66d1142479c5b585cb7e1`;
+- implementation merge = `fbba261811d57fe0efae95b098d3ec9c3f011b1f`;
+- `FIN-P17-WE-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WE-001-01` = RELEASED;
+- P17-F = READY_NOT_STARTED;
+- P17-G..P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.

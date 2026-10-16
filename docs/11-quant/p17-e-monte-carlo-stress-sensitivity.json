@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17E_MONTE_CARLO_STRESS_SENSITIVITY",
   "task_id": "FIN-P17-WE-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "output_status": "ROBUSTNESS_EVALUATED",
   "monte_carlo_method": "DETERMINISTIC_MOVING_BLOCK_BOOTSTRAP",
   "sampling_source": "SHA256_COUNTER_DERIVATION",
@@ -15,5 +15,17 @@
   "p17_f_through_p17_i_started": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 350,
+    "head_sha": "c13236d5432337e1e3624236e99764ee4e61125a",
+    "governance_run": 38932486210,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "f2b0542cc9eb43139b22c7680446295988c7d41aefa66d1142479c5b585cb7e1",
+    "merge_sha": "fbba261811d57fe0efae95b098d3ec9c3f011b1f"
+  },
+  "lock": "RELEASED",
+  "p17_f_state": "READY_NOT_STARTED",
+  "p17_g_through_p17_i_state": "NOT_STARTED",
+  "g9_quant_validated": "NOT_REACHED"
 }
