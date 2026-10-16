@@ -81,7 +81,7 @@ Phase transition:
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
-- P17 — Backtesting / Strategy Factory: ACTIVE / P17-A..P17-C CANONICAL_COMPLETE / P17-D READY_NOT_STARTED / P17-E..P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED
+- P17 — Backtesting / Strategy Factory: ACTIVE / P17-A..P17-C CANONICAL_COMPLETE / P17-D IN_PROGRESS / P17-E..P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2303,5 +2303,16 @@ Governance `38915003009` = SUCCESS.
 Artifact `sha256:5b0c5606971dacfa4e9bb1cd8f5a5fef8bb8eeb694b6e87be180b0db49d13a96`.  
 Lock = RELEASED.  
 P17-D = READY_NOT_STARTED.  
+P17-E..P17-I = NOT_STARTED.  
+`G9_QUANT_VALIDATED` = NOT_REACHED.
+
+
+## P17-D activation — 2026-10-16
+
+`FIN-P17-WD-001` = IN_PROGRESS.  
+Lock = `LOCK-FIN-P17-WD-001-01` / ACTIVE.
+
+P17-D enforces explicit chronological train/validation/test windows, pre-test candidate selection, isolated OOS results and P17-C information-hygiene evidence per fold.
+
 P17-E..P17-I = NOT_STARTED.  
 `G9_QUANT_VALIDATED` = NOT_REACHED.

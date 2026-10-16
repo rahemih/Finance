@@ -1,0 +1,114 @@
+{
+  "task_id": "FIN-P17-WD-001",
+  "phase": "P17",
+  "workstream": "WD",
+  "objective": "Implement deterministic out-of-sample and walk-forward certification with explicit train/validation/test windows, no temporal overlap, pre-test candidate selection, and point-in-time hygiene evidence per fold.",
+  "scope": [
+    "Define explicit ordered train/validation/test windows per walk-forward fold",
+    "Require strict temporal separation inside every fold",
+    "Require non-overlapping chronological test windows across folds",
+    "Require candidate selection timestamp before each fold test window",
+    "Require training and validation artifact SHA-256 evidence for each selected candidate",
+    "Require exact OOS test-window result reference per fold",
+    "Require P17-C information-hygiene certificate ID for each OOS result",
+    "Reject missing/duplicate folds, selections or OOS results",
+    "Reject test-informed selection or mismatched test windows",
+    "Produce deterministic walk-forward certificate evidence",
+    "Generate deterministic offline P17-D evidence"
+  ],
+  "out_of_scope": [
+    "Monte Carlo / stress / sensitivity (P17-E)",
+    "Liquidity / capacity validation (P17-F)",
+    "Strategy or Model Registry (P17-G/P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Automatic hyperparameter optimization",
+    "Broker/exchange connectivity or order execution",
+    "Profitability claims"
+  ],
+  "dependencies": [
+    "P17-A..P17-C CANONICAL_COMPLETE",
+    "P17-C information-hygiene certificate baseline",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": [
+    "quant/backtesting/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WD-001.json",
+    "config/quant/walk-forward-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/walk_forward.py",
+    "tests/p17/test_walk_forward.py",
+    "scripts/ci/p17d_evidence.py",
+    "docs/11-quant/P17-D-OOS-WALK-FORWARD.md",
+    "docs/11-quant/p17-d-oos-walk-forward.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P17-A..P17-C regression suites remain green",
+    "Valid chronological folds pass",
+    "Within-fold temporal overlap fails closed",
+    "Overlapping test windows across folds fail closed",
+    "Candidate selected at/after test start fails closed",
+    "Missing training/validation evidence fails closed",
+    "Missing or mismatched OOS result fails closed",
+    "Missing information-hygiene certificate fails closed",
+    "Duplicate fold/selection/result IDs fail closed",
+    "Input ordering does not change certificate identity",
+    "No G9/profitability/execution/order-routing authority is emitted",
+    "P17-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No test-informed candidate selection",
+    "No automatic production promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-C canonical closure",
+    "Deterministic P17-D walk-forward evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-D walk-forward/config/tests/evidence/CI/state changes; P17-C remains canonical complete and P17-E remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17-C CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic OOS/walk-forward certification implemented",
+    "No temporal overlap or test-informed selection accepted",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-E becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}
