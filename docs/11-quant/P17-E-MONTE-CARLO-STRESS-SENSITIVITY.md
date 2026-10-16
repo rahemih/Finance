@@ -18,6 +18,8 @@ Sampling is derived from:
 
 No environment RNG, random device, clock or implicit seed is used.
 
+A fixed computational safety cap bounds total simulated observations to prevent resource-exhaustion. This is an execution-safety ceiling, not a financial threshold or production modeling default.
+
 The governed input explicitly supplies:
 - path count;
 - path length;
