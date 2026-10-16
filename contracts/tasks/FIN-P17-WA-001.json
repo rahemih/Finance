@@ -1,0 +1,131 @@
+{
+  "task_id": "FIN-P17-WA-001",
+  "phase": "P17",
+  "workstream": "WA",
+  "objective": "Implement the deterministic event-driven Backtest Engine core on canonical P06 ReplaySnapshot inputs, with point-in-time enforcement, multi-asset portfolio accounting and injected execution simulation while leaving execution realism to P17-B.",
+  "scope": [
+    "Consume canonical P06 ReplaySnapshot identity and time window",
+    "Process market events in deterministic sequence order",
+    "Reject duplicate sequence and decreasing simulated event time",
+    "Reject information availability after simulated event time",
+    "Expose only current event plus current portfolio view to strategy evaluators",
+    "Require injected execution simulator; provide no production fill/cost default",
+    "Support delayed/partial simulated fills through event callbacks",
+    "Prevent unknown-decision fills, duplicate fill IDs, overfills and overlapping unresolved decisions per asset",
+    "Maintain deterministic multi-asset cash/position/mark-to-market accounting",
+    "Record unresolved simulated decisions explicitly",
+    "Produce content-addressed BacktestResult evidence",
+    "Generate deterministic offline P17-A evidence"
+  ],
+  "out_of_scope": [
+    "Fees/spread/slippage/funding/latency/partial-fill realism policy (P17-B)",
+    "Lookahead/leakage/survivorship validation suite (P17-C)",
+    "OOS/Walk-Forward (P17-D)",
+    "Monte Carlo/stress/sensitivity (P17-E)",
+    "Liquidity/capacity validation (P17-F)",
+    "Strategy registry (P17-G)",
+    "Model registry (P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Broker/exchange connectivity or order execution",
+    "Profitability or production-validation claims"
+  ],
+  "dependencies": [
+    "P16 CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS",
+    "P06 Replay Snapshot canonical baseline",
+    "P04 deterministic test harness baseline",
+    "Owner P17 phase authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "quant/**",
+    "packages/historical_data/**",
+    "packages/signal_intelligence/**",
+    "packages/pretrade_firewall/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WA-001.json",
+    "config/quant/backtest-engine-policy.json",
+    "quant/__init__.py",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/engine.py",
+    "tests/p17/__init__.py",
+    "tests/p17/test_backtest_engine.py",
+    "scripts/ci/p17a_evidence.py",
+    "docs/11-quant/P17-A-BACKTEST-ENGINE.md",
+    "docs/11-quant/p17-a-backtest-engine.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same inputs produce identical result identity",
+    "Input market-event ordering cannot change canonical run identity when sequence is unchanged",
+    "Duplicate event sequence fails closed",
+    "Decreasing event time fails closed",
+    "Future information availability fails closed",
+    "Replay snapshot mismatch/out-of-window event fails closed",
+    "Unknown decision fill fails closed",
+    "Duplicate fill ID fails closed",
+    "Overfill fails closed",
+    "Asset price-scale drift fails closed",
+    "Overlapping unresolved decision for one asset fails closed",
+    "Unfilled simulated decision is recorded explicitly",
+    "Multi-asset equity accounting is deterministic",
+    "No G9, execution, routing, Live or Auto authority is emitted",
+    "P17-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange adapter imports",
+    "No production fill/cost/slippage defaults",
+    "Production paths do not import research",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P16 canonical closure / G8 PASS",
+    "P06 ReplaySnapshot lineage",
+    "Deterministic P17-A evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-A quant/config/tests/evidence/CI/state changes; P16 remains canonical complete and P17-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P16 CANONICAL_COMPLETE / G8 PASS",
+    "Owner P17 authorization consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic event-driven backtest core implemented",
+    "P06 ReplaySnapshot/time lineage enforced",
+    "Injected execution simulator required with no production realism defaults",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-B becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}
