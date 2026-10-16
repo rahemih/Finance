@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17A_BACKTEST_ENGINE_POLICY",
+  "task_id": "FIN-P17-WA-001",
+  "mode": "DETERMINISTIC_EVENT_DRIVEN_BACKTEST_CORE",
+  "replay_source": "P06_CANONICAL_REPLAY_SNAPSHOT",
+  "point_in_time_rule": "AVAILABLE_AT_NOT_AFTER_SIMULATED_EVENT_TIME",
+  "execution_simulator": "REQUIRED_INJECTED_INTERFACE",
+  "production_execution_simulator_default": null,
+  "execution_realism_owner": "P17-B",
+  "production_cost_defaults": null,
+  "network_required": false,
+  "credentials_required": false,
+  "research_import_allowed": false,
+  "g9_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "profitability_claim_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

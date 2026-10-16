@@ -1068,6 +1068,18 @@ jobs:
           cmp build/p16h-a.json build/p16h-b.json
           sha256sum build/p16h-a.json
 
+      - name: P17 backtesting tests
+        run: python -m unittest discover -s tests/p17 -p 'test_*.py' -v
+
+      - name: P17-A deterministic backtest evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p17a_evidence.py --output build/p17a-a.json
+          PYTHONPATH=. python scripts/ci/p17a_evidence.py --output build/p17a-b.json
+          cmp build/p17a-a.json build/p17a-b.json
+          sha256sum build/p17a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
