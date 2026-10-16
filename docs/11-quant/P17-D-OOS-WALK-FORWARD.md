@@ -1,6 +1,6 @@
 # P17-D — Out-of-Sample / Walk-Forward
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WD-001`
 
 ## Objective
@@ -57,3 +57,17 @@ P17-E..P17-I = NOT_STARTED.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #348 = MERGED;
+- implementation head = `3d698e20556005e31285df24002702656ded1667`;
+- Governance `38916445452` = SUCCESS;
+- artifact = `sha256:b77778b2f50fbc00b6d1bb828c797a868c6a46ddcb270759a1c13781343de417`;
+- implementation merge = `258bc3f817a6d26071c82c7a793936ae8fc36bba`;
+- `FIN-P17-WD-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WD-001-01` = RELEASED;
+- P17-E = READY_NOT_STARTED;
+- P17-F..P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
