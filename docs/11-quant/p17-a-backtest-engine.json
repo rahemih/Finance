@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17A_BACKTEST_ENGINE",
+  "task_id": "FIN-P17-WA-001",
+  "state": "IMPLEMENTATION_ACTIVE",
+  "engine_mode": "DETERMINISTIC_EVENT_DRIVEN",
+  "replay_source": "P06_CANONICAL_REPLAY_SNAPSHOT",
+  "strategy_input_scope": "CURRENT_EVENT_AND_CURRENT_PORTFOLIO_ONLY",
+  "execution_simulator_required": true,
+  "production_execution_simulator_default": null,
+  "execution_realism_owner": "P17-B",
+  "unresolved_execution_is_explicit": true,
+  "ar1_state_unchanged": "READY_NOT_STARTED",
+  "g9_quant_validated": "NOT_REACHED",
+  "g9_authority": false,
+  "profitability_claim_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p17_b_through_p17_i_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
