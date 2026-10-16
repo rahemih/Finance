@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P17 — Backtesting / Strategy Factory / ACTIVE  
-Current Workstream: P17-C — Lookahead / Leakage / Survivorship Guards / IN_PROGRESS  
+Current Workstream: none — P17-C CANONICAL_COMPLETE; P17-D READY_NOT_STARTED  
 Previous Workstream: P16 — Pre-Trade Risk Firewall / CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -58,7 +58,7 @@ P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
-P17 state: ACTIVE / P17-A..P17-B CANONICAL_COMPLETE / P17-C IN_PROGRESS / P17-D..P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED  
+P17 state: ACTIVE / P17-A..P17-C CANONICAL_COMPLETE / P17-D READY_NOT_STARTED / P17-E..P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -172,8 +172,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P17-WC-001`  
-Active lock: `LOCK-FIN-P17-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6453,4 +6453,16 @@ Scope:
 - no automatic repair, G9 or execution authority.
 
 P17-D..P17-I = NOT_STARTED.  
+`G9_QUANT_VALIDATED` = NOT_REACHED.
+
+
+### P17-C canonical closure — 2026-10-16
+
+`FIN-P17-WC-001` = CANONICAL_COMPLETE.  
+PR #346 = MERGED at `e095c3fb04f0f83f3ec4597f2870772bc566634a`.  
+Governance `38915003009` = SUCCESS.  
+Artifact = `sha256:5b0c5606971dacfa4e9bb1cd8f5a5fef8bb8eeb694b6e87be180b0db49d13a96`.  
+Lock = RELEASED.  
+P17-D = READY_NOT_STARTED.  
+P17-E..P17-I = NOT_STARTED.  
 `G9_QUANT_VALIDATED` = NOT_REACHED.
