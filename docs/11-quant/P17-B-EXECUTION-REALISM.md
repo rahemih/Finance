@@ -1,6 +1,6 @@
 # P17-B — Fees / Spread / Slippage / Funding / Latency / Partial Fill Model
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WB-001`
 
 ## Objective
@@ -126,3 +126,17 @@ P17-C..P17-I = NOT_STARTED.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #344 = MERGED;
+- implementation head = `67f3a312a9c971a9222da4703cbc622f45fb58ec`;
+- Governance `38830584699` = SUCCESS;
+- artifact = `sha256:191e13c893020b895c62384aaad0717bfe732f0d1c71caa38e218d5471609422`;
+- implementation merge = `2bdaa917a128986e9a2e69a7a88bba663031c366`;
+- `FIN-P17-WB-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WB-001-01` = RELEASED;
+- P17-C = READY_NOT_STARTED;
+- P17-D..P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
