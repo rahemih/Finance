@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P17-WE-001",
+  "phase": "P17",
+  "workstream": "WE",
+  "objective": "Implement deterministic Monte Carlo, stress and sensitivity robustness analysis linked to the canonical P17-D walk-forward certificate, without profitability claims, automatic model selection or G9 authority.",
+  "scope": [
+    "Require canonical P17-D walk-forward certificate lineage by SHA-256",
+    "Consume an explicit chronological OOS return series in integer basis points",
+    "Implement deterministic moving-block bootstrap Monte Carlo using SHA-256-derived sampling",
+    "Require explicit Monte Carlo seed, path count, path length and block size",
+    "Compute terminal-return and max-drawdown distribution diagnostics",
+    "Evaluate explicit stress scenarios as additional loss/cost drag",
+    "Evaluate explicit sensitivity variants against a declared baseline metric",
+    "Canonicalize scenario/variant ordering for deterministic certificate identity",
+    "Emit a deterministic robustness certificate and diagnostics",
+    "Generate deterministic offline P17-E evidence"
+  ],
+  "out_of_scope": [
+    "Profitability pass/fail claims",
+    "Automatic hyperparameter optimization or candidate selection",
+    "Liquidity/capacity testing (P17-F)",
+    "Strategy or Model Registry (P17-G/P17-H)",
+    "G9_QUANT_VALIDATED (P17-I)",
+    "Broker/exchange connectivity or execution",
+    "Production promotion"
+  ],
+  "dependencies": [
+    "P17-A..P17-D CANONICAL_COMPLETE",
+    "P17-D walk-forward certificate baseline",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": [
+    "quant/backtesting/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WE-001.json",
+    "config/quant/robustness-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/robustness.py",
+    "tests/p17/test_robustness.py",
+    "scripts/ci/p17e_evidence.py",
+    "docs/11-quant/P17-E-MONTE-CARLO-STRESS-SENSITIVITY.md",
+    "docs/11-quant/p17-e-monte-carlo-stress-sensitivity.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "research/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "P17-A..P17-D regression suites remain green",
+    "Same explicit seed/input produces identical Monte Carlo diagnostics and certificate",
+    "Monte Carlo uses deterministic moving-block bootstrap",
+    "Invalid OOS returns fail closed",
+    "Invalid or missing Monte Carlo parameters fail closed",
+    "Duplicate stress scenario or sensitivity variant IDs fail closed",
+    "Stress scenarios produce explicit deterministic diagnostics",
+    "Sensitivity diagnostics are canonical regardless of input ordering",
+    "No profitability/G9/execution/order-routing authority is emitted",
+    "P17-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No environment/random-device dependence",
+    "No automatic strategy/model selection",
+    "No automatic production promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-D canonical closure",
+    "Deterministic P17-E robustness evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P17-E robustness/config/tests/evidence/CI/state changes; P17-D remains canonical complete and P17-F remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17-D CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Monte Carlo/stress/sensitivity analysis implemented",
+    "No profitability claim or automatic selection authority",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17-F becomes READY_NOT_STARTED",
+    "G9_QUANT_VALIDATED remains NOT_REACHED"
+  ]
+}
