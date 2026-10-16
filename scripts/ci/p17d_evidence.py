@@ -18,16 +18,16 @@ def main()->int:
     args=parser.parse_args()
 
     folds=(
-        WalkForwardFold("f1",100,200,200,250,250,300),
-        WalkForwardFold("f2",300,400,400,450,450,500),
+        WalkForwardFold("f1",100,200,200,250,260,310),
+        WalkForwardFold("f2",320,420,420,470,480,530),
     )
     selections=(
-        CandidateSelection("s1","f1","c1",240,"a"*64,"b"*64),
-        CandidateSelection("s2","f2","c2",440,"c"*64,"d"*64),
+        CandidateSelection("s1","f1","c1",250,"a"*64,"b"*64),
+        CandidateSelection("s2","f2","c2",470,"c"*64,"d"*64),
     )
     results=(
-        OutOfSampleResultRef("r1","f1","e"*64,"f"*64,250,300),
-        OutOfSampleResultRef("r2","f2","1"*64,"2"*64,450,500),
+        OutOfSampleResultRef("r1","f1","e"*64,"f"*64,260,310),
+        OutOfSampleResultRef("r2","f2","1"*64,"2"*64,480,530),
     )
     cert=certify_walk_forward(
         folds=folds,
