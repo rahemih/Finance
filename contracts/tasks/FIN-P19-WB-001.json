@@ -1,0 +1,116 @@
+{
+  "task_id": "FIN-P19-WB-001",
+  "phase": "P19",
+  "workstream": "WB",
+  "objective": "Implement deterministic point-in-time Data Replay over canonical P06-G ReplaySnapshot inputs so the exact historical event stream can be reconstructed for later P19-C Decision Replay without introducing decision, fill, routing or execution authority.",
+  "scope": [
+    "Consume canonical P06-G ReplaySnapshot and preserve its snapshot identity",
+    "Replay dataset events only when visible under ReplaySnapshot.view_at anti-lookahead semantics",
+    "Bind every replay event to exact dataset name/version, entity, event time, availability time and source evidence SHA-256",
+    "Reject unknown dataset versions, events outside replay windows, future availability, duplicate sequence/event identity and non-monotonic canonical ordering",
+    "Support deterministic replay through an explicit simulated decision time",
+    "Produce a content-addressed replay result containing the ordered emitted event identities",
+    "Preserve clock-mode and point-in-time provenance for P19-C consumption",
+    "Generate deterministic same-run P19-B evidence"
+  ],
+  "out_of_scope": [
+    "Shadow Decisioning ownership (P19-A)",
+    "Decision Replay (P19-C)",
+    "Incident Replay (P19-D)",
+    "Digital Twin fills/slippage (P19-E)",
+    "Paper/Live Drift Metrics (P19-F)",
+    "G10 Shadow Validation Gate (P19-H)",
+    "Broker/exchange adapters or OMS (P20)",
+    "Order creation, fills or capital authority",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P19-A CANONICAL_COMPLETE",
+    "P06-G Replay Snapshot Interfaces CANONICAL_COMPLETE",
+    "P12-H Versioning / Replay CANONICAL_COMPLETE",
+    "Owner P19 phase authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/historical_data/**",
+    "packages/market_memory/**",
+    "packages/shadow/**",
+    "research/reference-data/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P19-WB-001.json",
+    "config/shadow/data-replay-policy.json",
+    "packages/shadow/data_replay.py",
+    "tests/p19/test_data_replay.py",
+    "scripts/ci/p19b_evidence.py",
+    "docs/14-shadow/P19-B-DATA-REPLAY.md",
+    "docs/14-shadow/p19-b-data-replay.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A6","A7","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same ReplaySnapshot and event set produce identical replay result identity",
+    "Input order cannot change canonical replay result",
+    "Unknown dataset name/version fails closed",
+    "Event outside snapshot/dataset window fails closed",
+    "Future-available event is withheld until visible",
+    "Duplicate sequence or duplicate event identity fails closed",
+    "Replay through time emits only point-in-time visible events",
+    "Replay event ordering is deterministic",
+    "No decision/fill/execution/order-routing authority is emitted",
+    "P19-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credentials",
+    "No broker/exchange adapters",
+    "No order submission or fill generation",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P19-A canonical closure",
+    "P06-G ReplaySnapshot identity",
+    "Deterministic P19-B replay evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P19-B data replay package/config/tests/evidence/CI/state changes; P19-A remains canonical complete and P19-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P19-A CANONICAL_COMPLETE",
+    "P19 phase authorization already consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Data Replay implemented",
+    "P06-G anti-lookahead semantics preserved",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P19-WB-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P19-C becomes READY_NOT_STARTED",
+    "P20 remains NOT_STARTED"
+  ]
+}

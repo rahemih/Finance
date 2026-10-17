@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19B_DATA_REPLAY_POLICY",
+  "task_id": "FIN-P19-WB-001",
+  "mode": "DETERMINISTIC_POINT_IN_TIME_DATA_REPLAY",
+  "anti_lookahead_owner": "P06_G_REPLAY_SNAPSHOT",
+  "accepted_clock_modes": ["EVENT_TIME", "RECEIVE_TIME", "CONTROLLED_SIMULATION_CLOCK"],
+  "event_identity": "SHA256_CANONICAL_EVENT_PAYLOAD",
+  "duplicate_sequence_allowed": false,
+  "duplicate_event_id_allowed": false,
+  "future_information_allowed": false,
+  "network_required": false,
+  "credentials_required": false,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

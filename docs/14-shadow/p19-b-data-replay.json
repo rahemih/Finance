@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19B_DATA_REPLAY",
+  "task_id": "FIN-P19-WB-001",
+  "phase": "P19",
+  "workstream": "P19-B",
+  "state": "IN_PROGRESS",
+  "dependency": "P19-A_CANONICAL_COMPLETE",
+  "anti_lookahead_owner": "P06_G_REPLAY_SNAPSHOT",
+  "package": "packages/shadow/data_replay.py",
+  "policy": "config/shadow/data-replay-policy.json",
+  "input_order_independent": true,
+  "deterministic_replay": true,
+  "point_in_time_visibility": true,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

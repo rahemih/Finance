@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P19-WB-001 — Data Replay
+- active lock: LOCK-FIN-P19-WB-001-01 / ACTIVE
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -83,7 +83,7 @@ Phase transition:
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
 - P18 — Continuous Demo Learning: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
-- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A CANONICAL_COMPLETE / P19-B READY_NOT_STARTED
+- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A CANONICAL_COMPLETE / P19-B ACTIVE
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2654,3 +2654,12 @@ P19-C..P19-H remain NOT_STARTED.
 G10_SHADOW_VALIDATED remains PENDING.  
 P20 remains NOT_STARTED.  
 LIVE_TRADING/AUTO_TRADING remain DISABLED.
+
+
+## P19-B activation — 2026-10-17
+
+P19-B — Data Replay = IN_PROGRESS.  
+Task `FIN-P19-WB-001`; Lock `LOCK-FIN-P19-WB-001-01` ACTIVE.  
+P06-G ReplaySnapshot remains anti-lookahead owner.  
+P19-B reconstructs deterministic point-in-time raw event streams only; it cannot emit decisions, fills, orders or execution authority.  
+P19-C..P19-H remain NOT_STARTED. G10 pending. P20 NOT_STARTED. Live/Auto disabled.
