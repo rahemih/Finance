@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18_PHASE_CLOSURE",
+  "phase": "P18",
+  "title": "Continuous Demo Learning",
+  "state": "CANONICAL_COMPLETE",
+  "roadmap_exit_gate": null,
+  "phase_closure_validation": "PASS",
+  "canonical_closure_base": "2919526b48e49c0130d312a78fe41c136c575dd4",
+  "workstreams": {
+    "P18-A": {
+      "task_id": "FIN-P18-WA-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 361,
+      "closure_pr": 362
+    },
+    "P18-B": {
+      "task_id": "FIN-P18-WB-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 363,
+      "closure_pr": 364
+    },
+    "P18-C": {
+      "task_id": "FIN-P18-WC-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 365,
+      "closure_pr": 366
+    },
+    "P18-D": {
+      "task_id": "FIN-P18-WD-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 367,
+      "closure_pr": 368
+    },
+    "P18-E": {
+      "task_id": "FIN-P18-WE-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 369,
+      "closure_pr": 370
+    },
+    "P18-F": {
+      "task_id": "FIN-P18-WF-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 371,
+      "closure_pr": 372
+    },
+    "P18-G": {
+      "task_id": "FIN-P18-WG-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 373,
+      "closure_pr": 374
+    },
+    "P18-H": {
+      "task_id": "FIN-P18-WH-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 376,
+      "closure_pr": 377
+    },
+    "P18-I": {
+      "task_id": "FIN-P18-WI-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 378,
+      "closure_pr": 379
+    }
+  },
+  "duplicate_noncanonical_prs": [
+    375
+  ],
+  "p18_i_closure": {
+    "implementation_head": "eea542cdf95499e23337d6ef5479d76855ec1c70",
+    "implementation_governance_run": 39026072908,
+    "implementation_artifact_sha256": "a36bf9d230cfb5da7be8d4e0c18b674c3f9f6971493f57aceb3873d7239da178",
+    "implementation_merge_sha": "f71a058affd1f00a20dd89e98d883315b9af27ae",
+    "closure_pr": 379,
+    "closure_governance_run": 39026272055,
+    "closure_artifact_sha256": "d0bc544648dc498e208985ba80580164a0f5c66aa50111b528032a32bf9e4f2f",
+    "closure_merge_sha": "2919526b48e49c0130d312a78fe41c136c575dd4"
+  },
+  "learning_cycle_complete_status": "CYCLE_COMPLETE_DEMO_ONLY",
+  "automated_controlled_retraining": true,
+  "automatic_live_promotion": false,
+  "registry_live_mutation": false,
+  "broker_exchange_routing": false,
+  "all_locks_released": true,
+  "active_task": null,
+  "active_lock": null,
+  "profitability_guarantee": false,
+  "execution_authority": false,
+  "p19_started": false,
+  "p19_state": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_phase": "P19",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
