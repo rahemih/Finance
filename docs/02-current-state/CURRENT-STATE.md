@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P17 — Backtesting / Strategy Factory / ACTIVE  
-Current Workstream: none — P17-G CANONICAL_COMPLETE; P17-H READY_NOT_STARTED  
+Current Workstream: P17-H — Model Registry / IN_PROGRESS  
 Previous Workstream: P16 — Pre-Trade Risk Firewall / CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -58,7 +58,7 @@ P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
-P17 state: ACTIVE / P17-A..P17-G CANONICAL_COMPLETE / P17-H READY_NOT_STARTED / P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED  
+P17 state: ACTIVE / P17-A..P17-G CANONICAL_COMPLETE / P17-H IN_PROGRESS / P17-I NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -172,8 +172,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P17-WH-001`  
+Active lock: `LOCK-FIN-P17-WH-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6578,5 +6578,17 @@ Governance `39008606942` = SUCCESS.
 Artifact = `sha256:956457f99ba648812f3bfb231f2521820dd619a30fc8277122c92cf7d2cdc19e`.  
 Lock = RELEASED.  
 P17-H = READY_NOT_STARTED.  
+P17-I = NOT_STARTED.  
+`G9_QUANT_VALIDATED` = NOT_REACHED.
+
+
+### P17-H — Model Registry
+
+Task: `FIN-P17-WH-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P17-WH-001-01` / ACTIVE
+
+Immutable model versions bind model/code/config, feature schema, training dataset and Strategy Registry identities. VALIDATED models require P17-D/E lineage. Automatic retraining/promotion/profitability/G9/execution authority are disabled.
+
 P17-I = NOT_STARTED.  
 `G9_QUANT_VALIDATED` = NOT_REACHED.
