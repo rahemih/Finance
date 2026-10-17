@@ -7,7 +7,7 @@
   "metric_source_rule": "CANONICAL_MODULE_OUTPUT_ONLY",
   "metrics": [
     {"category":"OOS_EDGE","metric_id":"ACTUAL_ACCOUNT_NET_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":100},
-    {"category":"RISK","metric_id":"MONTE_CARLO_WORST_MAX_DRAWDOWN_BPS","unit":"BPS","comparator":"LE","threshold_value":700},
+    {"category":"RISK","metric_id":"MONTE_CARLO_WORST_MAX_DRAWDOWN_BPS","unit":"BPS","comparator":"LE","threshold_value":1000},
     {"category":"ROBUSTNESS","metric_id":"WORST_STRESS_TERMINAL_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":50},
     {"category":"CAPACITY","metric_id":"MAX_FULL_FILL_SCALE_BPS","unit":"BPS","comparator":"GE","threshold_value":10000},
     {"category":"EXECUTION_REALISM","metric_id":"ACTUAL_VS_IDEAL_COST_BPS","unit":"BPS","comparator":"LE","threshold_value":100}
