@@ -129,3 +129,17 @@ __all__ += [
     "StrategyVersion",
     "build_strategy_registry",
 ]
+
+from .model_registry import (
+    ModelRegistry,
+    ModelRegistryError,
+    ModelVersion,
+    build_model_registry,
+)
+
+__all__ += [
+    "ModelRegistry",
+    "ModelRegistryError",
+    "ModelVersion",
+    "build_model_registry",
+]
