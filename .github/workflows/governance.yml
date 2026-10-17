@@ -1218,6 +1218,15 @@ jobs:
           cmp build/p18g-a.json build/p18g-b.json
           sha256sum build/p18g-a.json
 
+      - name: P18-H deterministic promotion governance evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p18h_evidence.py --output build/p18h-a.json
+          PYTHONPATH=. python scripts/ci/p18h_evidence.py --output build/p18h-b.json
+          cmp build/p18h-a.json build/p18h-b.json
+          sha256sum build/p18h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1344,6 +1353,7 @@ jobs:
             build/p18e-a.json
             build/p18f-a.json
             build/p18g-a.json
+            build/p18h-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
