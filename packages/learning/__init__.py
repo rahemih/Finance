@@ -93,3 +93,18 @@ __all__ += [
     "RetrainingResult",
     "TrainerOutput",
 ]
+
+from .champion_challenger import (
+    ChampionChallengerError,
+    ComparisonPolicy,
+    ComparisonResult,
+    EvaluationRecord,
+    compare,
+)
+__all__ += [
+    "ChampionChallengerError",
+    "ComparisonPolicy",
+    "ComparisonResult",
+    "EvaluationRecord",
+    "compare",
+]
