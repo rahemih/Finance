@@ -50,7 +50,9 @@
     "docs/12-learning/p18-phase-closure.json",
     "docs/02-current-state/CURRENT-STATE.md",
     "docs/13-tasks/TASK-CATALOG.md",
-    "research/reference-data/btc-usd-daily-2026-09-yahoo.json"
+    "research/reference-data/btc-usd-daily-2026-09-yahoo.json",
+    "config/supply-chain/license-policy.json",
+    "docs/06-engineering/DEPENDENCY-LICENSE-SBOM-GOVERNANCE.md"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
