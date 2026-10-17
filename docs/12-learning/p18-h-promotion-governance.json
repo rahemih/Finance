@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0","kind":"NEXUS_QUANT_P18H_PROMOTION_GOVERNANCE",
+  "task_id":"FIN-P18-WH-001","state":"IN_PROGRESS","dependency":"P18-G_CANONICAL_COMPLETE",
+  "demo_governance_record_allowed":true,"registry_mutation":false,
+  "live_target_status":"OWNER_LIVE_GATE_REQUIRED","promotion_execution_authority":false,
+  "automatic_live_promotion":false,"p18_i_started":false,"p19_started":false,
+  "live_trading":"DISABLED","auto_trading":"DISABLED"
+}

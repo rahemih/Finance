@@ -123,3 +123,13 @@ __all__ += [
     "MonitoringWindow",
     "assess_drift",
 ]
+
+from .promotion import (
+    PromotionDecision,
+    PromotionGovernanceError,
+    PromotionGovernor,
+    PromotionRequest,
+)
+__all__ += [
+    "PromotionDecision","PromotionGovernanceError","PromotionGovernor","PromotionRequest",
+]
