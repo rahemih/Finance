@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0","kind":"NEXUS_QUANT_P18G_DRIFT_DECAY_POLICY","task_id":"FIN-P18-WG-001",
+  "mode":"DETERMINISTIC_MONITOR_ONLY",
+  "warn_distribution_drift":"0.10","decay_distribution_drift":"0.20",
+  "warn_performance_degradation":"0.05","decay_performance_degradation":"0.10",
+  "warn_calibration_degradation":"0.03","decay_calibration_degradation":"0.06",
+  "retrain_on_decay":true,"direct_retraining_authority":false,"promotion_authority":false,
+  "automatic_live_promotion":false,"live_trading":"DISABLED","auto_trading":"DISABLED"
+}
