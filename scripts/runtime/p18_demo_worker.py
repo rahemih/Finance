@@ -127,7 +127,22 @@ def main() -> int:
     )
     reports = runtime.run_cycles(cycle_prefix="p18-reference", count=args.cycles)
     if len(reports) != args.cycles:
-        raise RuntimeError("runtime stopped before requested cycle count")
+        diagnostic = {
+            "requested_cycles": args.cycles,
+            "completed_reports": len(reports),
+            "last_report": None if not reports else reports[-1].payload(),
+        }
+        if args.telemetry.exists():
+            lines = [
+                line
+                for line in args.telemetry.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            diagnostic["telemetry_tail"] = lines[-8:]
+        raise RuntimeError(
+            "runtime stopped before requested cycle count: "
+            + json.dumps(diagnostic, sort_keys=True)
+        )
     if any(row.status != "CYCLE_COMPLETE_DEMO_ONLY" for row in reports):
         raise RuntimeError("runtime cycle did not close DEMO_ONLY")
 
