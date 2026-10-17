@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18B_DECISION_OUTCOME_JOURNAL",
+  "task_id": "FIN-P18-WB-001",
+  "state": "IN_PROGRESS",
+  "dependency": "P18-A_CANONICAL_COMPLETE",
+  "content_addressed_records": true,
+  "append_only": true,
+  "point_in_time_outcome_visibility": true,
+  "outcome_definition_version_required": true,
+  "exact_decision_lineage_required": true,
+  "dataset_curation_owner": "P18-C",
+  "dataset_curation_authority": false,
+  "training_authority": false,
+  "broker_exchange_routing": false,
+  "automatic_live_promotion": false,
+  "p18_c_started": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
