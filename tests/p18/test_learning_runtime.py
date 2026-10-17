@@ -131,6 +131,8 @@ class LearningRuntimeTests(unittest.TestCase):
                 all(row.status == "CYCLE_COMPLETE_DEMO_ONLY" for row in reports)
             )
             self.assertEqual(reports[-1].completed_cycles, 20)
+            checkpoint_ids = {row.checkpoint_id for row in reports}
+            self.assertEqual(len(checkpoint_ids), 20)
             saved = JsonCheckpointStore(path).load()
             self.assertIsNotNone(saved)
             assert saved is not None
