@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P18-WF-001 — Champion / Challenger
+- active lock: LOCK-FIN-P18-WF-001-01
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -82,7 +82,7 @@ Phase transition:
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
-- P18 — Continuous Demo Learning: ACTIVE / P18-A..P18-E CANONICAL_COMPLETE / P18-F READY_NOT_STARTED / P18-G..P18-I NOT_STARTED
+- P18 — Continuous Demo Learning: ACTIVE / P18-A..P18-E CANONICAL_COMPLETE / P18-F IN_PROGRESS / P18-G..P18-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2591,3 +2591,8 @@ Controlled Retraining = IN_PROGRESS. Injected offline trainer; deterministic see
 ## P18-E canonical closure — 2026-10-17
 
 P18-E = CANONICAL_COMPLETE. PR #369 / Governance `39021866808` SUCCESS / artifact `sha256:28bee0e74f500e84f4c71ac744ffa7903eaabca3b4e59dfc190a313897a2f302`. Lock RELEASED. P18-F READY_NOT_STARTED.
+
+
+## P18-F activation — 2026-10-17
+
+Champion/Challenger = IN_PROGRESS. Deterministic recommendation-only comparison; no registry mutation or promotion authority. P18-G..I/P19 NOT_STARTED.
