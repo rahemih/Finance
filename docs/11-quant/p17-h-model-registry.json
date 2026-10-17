@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P17H_MODEL_REGISTRY",
+  "task_id":"FIN-P17-WH-001",
+  "state":"IMPLEMENTATION_ACTIVE",
+  "immutable_version_records":true,
+  "validated_requires_strategy_and_p17_d_e_lineage":true,
+  "automatic_retraining":false,
+  "automatic_promotion":false,
+  "profitability_authority":false,
+  "g9_authority":false,
+  "execution_authority":false,
+  "p17_i_started":false,
+  "p18_started":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED"
+}
