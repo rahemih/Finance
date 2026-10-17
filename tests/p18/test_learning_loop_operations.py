@@ -8,7 +8,7 @@ POLICY=LearningLoopPolicy(cadence_ns=1000,max_market_staleness_ns=100,max_consec
 STAGES=("OBSERVE_ANALYZE","DEMO_TRADE","OUTCOME","JOURNAL","DATASET","EXPERIMENT","RETRAIN_VALIDATE","CHALLENGER","PROMOTION_GOVERNANCE")
 
 def evidence(n: int) -> tuple[tuple[str,str],...]:
-    return tuple((stage, chr(97+i)*64) for i,stage in enumerate(STAGES[:n]))
+    hex_chars=("a","b","c","d","e","f","0","1","2")\n    return tuple((stage, hex_chars[i]*64) for i,stage in enumerate(STAGES[:n]))
 
 def tick(*, n:int=0,time:int=1000,watermark:int=950,state:str="NORMAL",failures:int=0,prev:str|None=None,cycle:str="cycle-1")->LoopTick:
     return LoopTick(cycle_name=cycle,tick_time_ns=time,market_watermark_ns=watermark,system_state=state,consecutive_failures=failures,stage_evidence=evidence(n),previous_checkpoint_id=prev)
