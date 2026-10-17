@@ -1,6 +1,6 @@
 # Current State
 
-Last reconciled: 2026-10-16
+Last reconciled: 2026-10-17
 
 ## Repository
 
@@ -39,8 +39,8 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P19 — Shadow / Replay / Digital Twin / NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED  
-Current Workstream: none — P18 CANONICAL_COMPLETE  
+Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
+Current Workstream: P19-A — Shadow Decisioning / IN_PROGRESS / FIN-P19-WA-001  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED  
+P19 state: IN_PROGRESS / P19-A ACTIVE / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P19-WA-001`  
+Active lock: `LOCK-FIN-P19-WA-001-01` / ACTIVE  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6930,5 +6930,28 @@ Production-scale empirical validation = NOT_CLAIMED.
 Automatic Live promotion = FORBIDDEN.  
 Broker/exchange routing = DISABLED.  
 P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19 phase activation / P19-A — 2026-10-17
+
+P19 — Shadow / Replay / Digital Twin = IN_PROGRESS.  
+Owner phase authorization = GRANTED / CONSUMED.  
+Active workstream = P19-A — Shadow Decisioning.  
+Task = `FIN-P19-WA-001`.  
+Lock = `LOCK-FIN-P19-WA-001-01` / ACTIVE.  
+Primary agents = A4 / A6 / A7 / A9 / A10 with A0 governance and A5 safety context.  
+
+P19-A scope:
+- bind canonical P14 signal, P15 risk-validation, P16 G8 firewall and P17 Strategy/Model identities;
+- produce deterministic SHADOW_ONLY records;
+- reject duplicate/non-monotonic/future-information inputs;
+- preserve chained record/snapshot identity for later P19-B/P19-C replay;
+- no broker/exchange routing or execution authority.
+
+P19-B..P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
