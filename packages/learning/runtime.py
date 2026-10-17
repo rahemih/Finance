@@ -218,11 +218,21 @@ class BundleStageExecutor:
         cycle_name: str,
         prior_evidence: tuple[tuple[str, str], ...],
     ) -> str:
-        del cycle_name, prior_evidence
         try:
-            return self._evidence[stage]
+            base_evidence = self._evidence[stage]
         except KeyError as exc:
             raise LearningRuntimeError(f"unknown runtime stage: {stage}") from exc
+        return hashlib.sha256(
+            _canonical_bytes(
+                {
+                    "schema_version": "1.0",
+                    "stage": stage,
+                    "base_evidence_sha256": base_evidence,
+                    "cycle_name": cycle_name,
+                    "prior_stage_evidence": [list(item) for item in prior_evidence],
+                }
+            )
+        ).hexdigest()
 
 
 @dataclass(frozen=True, slots=True)
