@@ -1,0 +1,27 @@
+{
+  "task_id":"FIN-P18-WG-001","phase":"P18","workstream":"WG",
+  "objective":"Implement deterministic drift and strategy-decay monitoring over canonical model/strategy performance windows, producing fail-closed NORMAL/WARN/DECAY status and retraining recommendations without automatic promotion.",
+  "scope":[
+    "Record immutable baseline and current monitoring windows for one strategy/model lineage",
+    "Measure explicit feature-distribution drift, performance degradation and calibration degradation",
+    "Apply versioned thresholds and deterministic severity",
+    "Produce RETRAIN_RECOMMENDED on decay while leaving execution to P18-I/P18-E",
+    "Content-address monitoring windows and assessments",
+    "Reject lineage mismatch, time overlap/inversion, missing metrics and non-finite values",
+    "No live promotion or registry mutation",
+    "Generate deterministic P18-G evidence"
+  ],
+  "out_of_scope":["Promotion Governance (P18-H)","24/7 Loop orchestration (P18-I)","P19","Live execution","Automatic live promotion"],
+  "dependencies":["P18-F CANONICAL_COMPLETE","P18-E CANONICAL_COMPLETE","P18-B journal","P18-C dataset"],
+  "read_paths":["packages/learning/**","config/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths":["contracts/tasks/FIN-P18-WG-001.json","config/learning/drift-strategy-decay-policy.json","packages/learning/__init__.py","packages/learning/drift_decay.py","tests/p18/test_drift_decay.py","scripts/ci/p18g_evidence.py","docs/12-learning/P18-G-DRIFT-STRATEGY-DECAY.md","docs/12-learning/p18-g-drift-strategy-decay.json",".github/workflows/governance.yml","scripts/ci/foundation_ci.py","docs/01-roadmap/EXECUTION-ROADMAP.md","docs/02-current-state/CURRENT-STATE.md","docs/13-tasks/TASK-CATALOG.md"],
+  "forbidden_paths":["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","adapters/execution/**","packages/execution/**","secrets/**","credentials/**"],
+  "agents":["A0","A4","A5","A7","A9","A10"],"plugins":["GitHub","Linear"],"skills":[],"access":["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],"secrets":[],"risk_level":"CRITICAL",
+  "tests":["Strict Pyright passes","Window/assessment identities deterministic","Lineage and metric-set mismatch fail closed","Time range validation fail closed","Threshold severity deterministic","Decay emits retrain recommendation only","No promotion/live authority","P18-G evidence byte-identical"],
+  "security_tests":["No network/credentials","No automatic promotion","No direct retraining execution","LIVE_TRADING/AUTO_TRADING disabled"],
+  "evidence":["P18-F canonical closure","Deterministic P18-G evidence","Implementation Governance","Closure revalidation","Linear reconciliation"],
+  "rollback":"Revert P18-G files/state; P18-F remains canonical and P18-H remains unstarted.",
+  "human_gate":false,
+  "definition_of_ready":["P18-F CANONICAL_COMPLETE","No active task/lock conflict"],
+  "definition_of_done":["Drift/decay monitoring implemented","Retrain recommendation boundary enforced","CI/evidence pass","Implementation/closure PRs merged","FIN-P18-WG-001 CANONICAL_COMPLETE","Lock released","P18-H READY_NOT_STARTED","P19 NOT_STARTED"]
+}

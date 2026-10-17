@@ -108,3 +108,18 @@ __all__ += [
     "EvaluationRecord",
     "compare",
 ]
+
+from .drift_decay import (
+    DriftAssessment,
+    DriftDecayError,
+    DriftPolicy,
+    MonitoringWindow,
+    assess_drift,
+)
+__all__ += [
+    "DriftAssessment",
+    "DriftDecayError",
+    "DriftPolicy",
+    "MonitoringWindow",
+    "assess_drift",
+]

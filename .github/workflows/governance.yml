@@ -1209,6 +1209,15 @@ jobs:
           cmp build/p18f-a.json build/p18f-b.json
           sha256sum build/p18f-a.json
 
+      - name: P18-G deterministic drift decay evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p18g_evidence.py --output build/p18g-a.json
+          PYTHONPATH=. python scripts/ci/p18g_evidence.py --output build/p18g-b.json
+          cmp build/p18g-a.json build/p18g-b.json
+          sha256sum build/p18g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1334,6 +1343,7 @@ jobs:
             build/p18d-a.json
             build/p18e-a.json
             build/p18f-a.json
+            build/p18g-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
