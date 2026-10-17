@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+from dataclasses import replace
 from pathlib import Path
 import unittest
 
@@ -171,12 +172,7 @@ class ShadowDecisioningTests(unittest.TestCase):
 
     def test_incoherent_directional_geometry_is_rejected(self) -> None:
         with self.assertRaises(ShadowDecisionError):
-            ShadowDecisionInput(
-                **{
-                    **directional().__dict__,
-                    "candidate_stop_scaled": 101_000,
-                }
-            )
+            replace(directional(), candidate_stop_scaled=101_000)
 
     def test_risk_and_firewall_blocks_cannot_would_trade(self) -> None:
         risk = ShadowDecisionLedger(self.policy()).append(
