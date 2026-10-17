@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P19-WA-001",
+  "phase": "P19",
+  "workstream": "WA",
+  "objective": "Implement deterministic Shadow Decisioning that records what the governed system would decide under current market context while preserving exact P14/P15/P16/P17 lineage and forbidding all broker/exchange order routing or execution authority.",
+  "scope": [
+    "Consume canonical P14 analytical signal identity and action",
+    "Consume canonical P15 independent risk validation identity/status/scale",
+    "Consume canonical P16 G8 firewall identity/state",
+    "Bind P17 Strategy Registry and Model Registry record identities",
+    "Produce deterministic SHADOW_ONLY decision records for LONG/SHORT/WAIT/NO_TRADE outcomes",
+    "Fail closed on duplicate inputs, non-monotonic event time, future information, malformed identities or incoherent directional geometry",
+    "Chain shadow records with deterministic previous-record lineage and ledger snapshot identity",
+    "Preserve zero execution, routing, Live and Auto authority",
+    "Generate deterministic P19-A evidence from same-run canonical upstream evidence"
+  ],
+  "out_of_scope": [
+    "Data Replay (P19-B)",
+    "Decision Replay (P19-C)",
+    "Incident Replay (P19-D)",
+    "Digital Twin fills/slippage (P19-E)",
+    "Paper/Live drift metrics (P19-F)",
+    "Deterministic reproducibility gate (P19-G)",
+    "G10 Shadow Validation Gate (P19-H)",
+    "Broker/exchange adapter work (P20)",
+    "Real order submission",
+    "Live/Auto trading",
+    "Profitability guarantee"
+  ],
+  "dependencies": [
+    "P18 CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE",
+    "P17 CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS",
+    "P14 G7_SIGNAL_VALIDATED PASS",
+    "P15 P15_INDEPENDENT_RISK_VALIDATION PASS",
+    "P16 G8_PRETRADE_SAFE PASS",
+    "Owner P19 phase authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/**",
+    "quant/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P19-WA-001.json",
+    "config/shadow/shadow-decisioning-policy.json",
+    "packages/shadow/__init__.py",
+    "packages/shadow/shadow_decisioning.py",
+    "tests/p19/__init__.py",
+    "tests/p19/test_shadow_decisioning.py",
+    "scripts/ci/p19a_evidence.py",
+    "docs/14-shadow/P19-A-SHADOW-DECISIONING.md",
+    "docs/14-shadow/p19-a-shadow-decisioning.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A4","A5","A6","A7","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same canonical input produces identical shadow record identity",
+    "Duplicate input fails closed",
+    "Non-monotonic event time fails closed",
+    "Future information availability fails closed",
+    "Directional LONG/SHORT requires coherent price geometry",
+    "WAIT/NO_TRADE cannot carry directional geometry",
+    "Risk veto or zero risk scale cannot produce SHADOW_WOULD_TRADE",
+    "Firewall non-PASS cannot produce SHADOW_WOULD_TRADE",
+    "Ledger snapshot identity is deterministic and chained",
+    "No execution/order-routing/broker authority is emitted",
+    "P19-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange adapter imports",
+    "No external order submission",
+    "No automatic Live promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P18 canonical closure",
+    "Same-run P14/P15/P16/P17 canonical evidence",
+    "Deterministic P19-A shadow decision evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P19-A shadow package/config/tests/evidence/CI/state changes; P18 remains canonical complete and P19-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P18 CANONICAL_COMPLETE",
+    "Owner P19 authorization consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Shadow Decisioning implemented",
+    "Exact P14/P15/P16/P17 lineage preserved",
+    "Fail-closed shadow-only authority boundary enforced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P19-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P19-B becomes READY_NOT_STARTED",
+    "P20 remains NOT_STARTED"
+  ]
+}
