@@ -2,7 +2,7 @@
 
 Task: `FIN-P19-WA-001`  
 Phase: P19 — Shadow / Replay / Digital Twin  
-State during implementation: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Owner P19 authorization: GRANTED / CONSUMED
 
 ## Objective
@@ -51,3 +51,17 @@ This record chain is the upstream baseline for P19-B Data Replay and P19-C Decis
 - AUTO_TRADING = DISABLED.
 
 P19-A does not claim fill realism, Digital Twin accuracy, live-vs-paper drift validation or G10. Those belong to later P19 workstreams.
+
+
+## Canonical closure evidence
+
+- Implementation PR: #391 / MERGED.
+- Implementation head: `626607a77812da5790714c6aef9981f3fdba24f7`.
+- PR Governance: `39045419135` / SUCCESS.
+- PR artifact: `12105482008` / `sha256:675bae216666d58e5c662a494ba2bfbd06bc9d3dd2523bfaca1bd4c37d06d474`.
+- Merge SHA: `28b650a01a19323506a5fdd69fa8a1ec912f11b5`.
+- Post-merge Governance: `39045586525` / SUCCESS.
+- Post-merge artifact: `12105956192` / `sha256:8d9a90ba5e5ce75cf4ff4fef26c09f1ce3d657456f48f8a1629e8abd4234a559`.
+- Post-merge Branch Hygiene: `39045586461` / SUCCESS.
+- Lock: RELEASED.
+- Next workstream: P19-B / READY_NOT_STARTED.
