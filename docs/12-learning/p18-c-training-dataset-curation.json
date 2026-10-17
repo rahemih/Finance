@@ -2,12 +2,16 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P18C_TRAINING_DATASET_CURATION",
   "task_id": "FIN-P18-WC-001",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": "P18-B_CANONICAL_COMPLETE",
   "source": "P18_B_DECISION_OUTCOME_JOURNAL",
   "content_addressed_rows": true,
   "content_addressed_manifest": true,
-  "temporal_splits": ["TRAIN", "VALIDATION", "TEST"],
+  "temporal_splits": [
+    "TRAIN",
+    "VALIDATION",
+    "TEST"
+  ],
   "split_label_availability_required": true,
   "final_dataset_cutoff_required": true,
   "outcome_definition_uniformity_required": true,
@@ -21,5 +25,12 @@
   "p18_d_started": false,
   "p19_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation_pr": 365,
+  "implementation_head": "e71c7605d5ffe8e32582200bb592c282acb4ccd4",
+  "implementation_governance_run": 39020172148,
+  "implementation_artifact_sha256": "eb64fd4c11a468f83e1cb5ded4c518efd40eded43e2ef40a3a89c8039be0e15d",
+  "implementation_merge_sha": "444c051a88be6738e706abd6c11ef5c1416130e0",
+  "lock_state": "RELEASED",
+  "p18_d_state": "READY_NOT_STARTED"
 }

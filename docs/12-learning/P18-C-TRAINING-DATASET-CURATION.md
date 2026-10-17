@@ -1,6 +1,6 @@
 # P18-C — Training Dataset Curation
 
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P18-WC-001`  
 Phase: P18 — Continuous Demo Learning
 
@@ -76,3 +76,18 @@ There is no broker/exchange routing, automatic live promotion, Live Trading or A
 ## Validation
 
 Governed tests and deterministic CI evidence cover temporal split assignment, split-specific label availability, final cutoff handling, lineage preservation, identity/deduplication invariants, outcome-definition uniformity and authority boundaries.
+
+
+## Canonical closure
+
+Implementation PR #365 is MERGED.
+
+- implementation head: `e71c7605d5ffe8e32582200bb592c282acb4ccd4`;
+- Governance: `39020172148` / SUCCESS;
+- deterministic foundation artifact: `sha256:eb64fd4c11a468f83e1cb5ded4c518efd40eded43e2ef40a3a89c8039be0e15d`;
+- implementation merge SHA: `444c051a88be6738e706abd6c11ef5c1416130e0`;
+- governed lock: RELEASED;
+- P18-D: READY_NOT_STARTED;
+- P19: NOT_STARTED.
+
+P18-C closure does not start experiments, training/retraining, Champion/Challenger selection or promotion.
