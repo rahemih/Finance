@@ -133,3 +133,15 @@ from .promotion import (
 __all__ += [
     "PromotionDecision","PromotionGovernanceError","PromotionGovernor","PromotionRequest",
 ]
+
+from .loop_operations import (
+    LearningLoopCoordinator,
+    LearningLoopOperationsError,
+    LearningLoopPolicy,
+    LoopCheckpoint,
+    LoopTick,
+)
+__all__ += [
+    "LearningLoopCoordinator","LearningLoopOperationsError","LearningLoopPolicy",
+    "LoopCheckpoint","LoopTick",
+]

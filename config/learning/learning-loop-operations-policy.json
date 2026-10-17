@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0","kind":"NEXUS_QUANT_P18I_LEARNING_LOOP_OPERATIONS_POLICY",
+  "task_id":"FIN-P18-WI-001","mode":"DETERMINISTIC_24X7_DEMO_LEARNING_LOOP",
+  "stage_order":["OBSERVE_ANALYZE","DEMO_TRADE","OUTCOME","JOURNAL","DATASET","EXPERIMENT","RETRAIN_VALIDATE","CHALLENGER","PROMOTION_GOVERNANCE"],
+  "checkpoint_chain_required":true,"cadence_required":true,"market_staleness_guard":true,
+  "safe_hold_on_failure_threshold":true,"automated_controlled_retraining":true,
+  "automatic_live_promotion":false,"broker_exchange_routing":false,
+  "live_trading":"DISABLED","auto_trading":"DISABLED"
+}

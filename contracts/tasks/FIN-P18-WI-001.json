@@ -1,0 +1,42 @@
+{
+  "task_id":"FIN-P18-WI-001",
+  "phase":"P18",
+  "workstream":"WI",
+  "objective":"Implement deterministic 24/7 Continuous Demo Learning loop operations with ordered stage evidence, cadence, checkpoint/resume, stale-data/backpressure and safe-hold controls while allowing automated controlled retraining but never automated live promotion.",
+  "scope":[
+    "Define deterministic permanent learning-loop stage order from observe/analyze through promotion governance",
+    "Require content-addressed evidence for each completed stage",
+    "Enforce prefix ordering so later stages cannot skip earlier stages",
+    "Implement deterministic cadence and next-due checkpoint",
+    "Fail closed on stale market watermark, unhealthy system state or excessive consecutive failures",
+    "Support content-addressed checkpoint/resume identity",
+    "Allow automated Controlled Retraining action only inside P18-E boundary",
+    "Route promotion step only to P18-H governance evaluation",
+    "Never emit live promotion/execution authority",
+    "Generate deterministic offline P18-I evidence"
+  ],
+  "out_of_scope":[
+    "P19 Shadow/Replay/Digital Twin",
+    "Broker/exchange execution",
+    "Live model promotion",
+    "Capital deployment",
+    "Production scheduler infrastructure outside the deterministic loop contract"
+  ],
+  "dependencies":["P18-H CANONICAL_COMPLETE","P18-A..P18-G CANONICAL_COMPLETE","P04 deterministic harness"],
+  "read_paths":["packages/learning/**","config/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths":["contracts/tasks/FIN-P18-WI-001.json","config/learning/learning-loop-operations-policy.json","packages/learning/__init__.py","packages/learning/loop_operations.py","tests/p18/test_learning_loop_operations.py","scripts/ci/p18i_evidence.py","docs/12-learning/P18-I-24X7-LEARNING-LOOP-OPERATIONS.md","docs/12-learning/p18-i-learning-loop-operations.json",".github/workflows/governance.yml","scripts/ci/foundation_ci.py","docs/01-roadmap/EXECUTION-ROADMAP.md","docs/02-current-state/CURRENT-STATE.md","docs/13-tasks/TASK-CATALOG.md"],
+  "forbidden_paths":["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","adapters/execution/**","packages/execution/**","secrets/**","credentials/**"],
+  "agents":["A0","A4","A5","A7","A9","A10"],
+  "plugins":["GitHub","Linear"],
+  "skills":[],
+  "access":["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets":[],
+  "risk_level":"CRITICAL",
+  "tests":["Strict Pyright passes","Stage ordering deterministic and skip attempts fail closed","Checkpoint/resume identity deterministic","Stale data -> WAIT_FOR_FRESH_DATA","Failure threshold -> SAFE_HOLD","Unhealthy state -> HALT_SAFE","Complete cycle remains DEMO_ONLY","Automated retraining allowed but automated live promotion false","P18-I evidence byte-identical"],
+  "security_tests":["No network/credentials","No broker/execution imports","No automatic live promotion","LIVE_TRADING/AUTO_TRADING disabled"],
+  "evidence":["P18-H canonical closure","Deterministic P18-I evidence","Implementation Governance","Closure revalidation","P18 phase closure evidence","Linear reconciliation"],
+  "rollback":"Revert P18-I loop/config/tests/evidence/CI/state; P18-H remains canonical and P19 remains unstarted.",
+  "human_gate":false,
+  "definition_of_ready":["P18-H CANONICAL_COMPLETE","No active governed task/lock conflict"],
+  "definition_of_done":["24/7 learning-loop operational contract implemented","Strict CI/evidence pass","Implementation/closure PRs merged","FIN-P18-WI-001 CANONICAL_COMPLETE","Lock released","P18 phase closure PASS","P19 remains OWNER_PHASE_AUTHORIZATION_REQUIRED"]
+}
