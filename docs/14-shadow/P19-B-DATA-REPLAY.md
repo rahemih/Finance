@@ -2,7 +2,7 @@
 
 Task: `FIN-P19-WB-001`  
 Phase: P19 — Shadow / Replay / Digital Twin  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Dependency: P19-A CANONICAL_COMPLETE
 
 ## Objective
@@ -60,3 +60,17 @@ Broker/exchange routing: false.
 P20: NOT_STARTED.  
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR #394 = MERGED.
+- Final implementation head: `22e9335d33f544a2e79866587717dde805f5f115`.
+- PR Governance: `39048625186` / SUCCESS.
+- PR artifact: `12106314783` / `sha256:dd534780d052f93efb5dcceaaf4c18be6b477beb23ce37b74482e5a87274b1dc`.
+- Merge SHA: `828ca9047a2863cb3558343cf4d7d53e95f7eef8`.
+- Post-merge Governance: `39048812613` / SUCCESS.
+- Post-merge artifact: `12107295208` / `sha256:c0efde8b800cc39545798d3f1cd6c5c95001487cbea82e91140b2a75418326f7`.
+- Post-merge Branch Hygiene: `39048812492` / SUCCESS.
+- Lock: RELEASED.
+- Next workstream: P19-C / READY_NOT_STARTED.
