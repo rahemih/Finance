@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P18-WA-001",
+  "phase": "P18",
+  "workstream": "WA",
+  "objective": "Implement the deterministic Demo / Paper Trading Engine that continuously simulates governed strategy decisions without broker/exchange routing, preserves point-in-time state and produces auditable decision/fill/outcome events for later P18 learning workstreams.",
+  "scope": [
+    "Consume trusted point-in-time market observations and canonical strategy/model identities",
+    "Run deterministic paper sessions with monotonic event sequence and event-time enforcement",
+    "Require an injected paper execution simulator with no production execution default",
+    "Maintain deterministic cash, positions, marks, equity and pending simulated decisions",
+    "Support deterministic session snapshots and resume identity",
+    "Reject duplicate events, future information, unknown fills, duplicate fills and overfills",
+    "Emit auditable paper decision/fill/outcome records for P18-B journal consumption",
+    "Keep Demo/Paper mode isolated from broker/exchange order routing",
+    "Generate deterministic offline P18-A evidence"
+  ],
+  "out_of_scope": [
+    "Decision / Outcome Journal ownership (P18-B)",
+    "Training Dataset Curation (P18-C)",
+    "Experiment Tracking (P18-D)",
+    "Controlled Retraining (P18-E)",
+    "Champion / Challenger (P18-F)",
+    "Drift / Strategy Decay (P18-G)",
+    "Promotion Governance (P18-H)",
+    "24/7 Learning Loop Operations (P18-I)",
+    "Shadow / Digital Twin work (P19)",
+    "Broker/exchange connectivity or live order execution",
+    "Automatic live promotion",
+    "Profitability guarantees"
+  ],
+  "dependencies": [
+    "P17 CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS",
+    "P17-G Strategy Registry canonical baseline",
+    "P17-H Model Registry canonical baseline",
+    "P04 deterministic test harness baseline",
+    "Owner P18 phase authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/**",
+    "quant/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P18-WA-001.json",
+    "config/learning/demo-paper-engine-policy.json",
+    "packages/learning/__init__.py",
+    "packages/learning/demo_paper.py",
+    "tests/p18/__init__.py",
+    "tests/p18/test_demo_paper_engine.py",
+    "scripts/ci/p18a_evidence.py",
+    "docs/12-learning/P18-A-DEMO-PAPER-TRADING-ENGINE.md",
+    "docs/12-learning/p18-a-demo-paper-trading-engine.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A4","A5","A7","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same inputs produce identical paper session state identity",
+    "Duplicate or decreasing event sequence/time fails closed",
+    "Future information availability fails closed",
+    "Unknown or duplicate simulated fill fails closed",
+    "Overfill and asset/price-scale mismatch fail closed",
+    "Session snapshot/resume identity is deterministic",
+    "Multi-asset paper equity accounting is deterministic",
+    "No broker/exchange routing authority is emitted",
+    "No Live/Auto or automatic-promotion authority is emitted",
+    "P18-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange execution adapter imports",
+    "No production execution defaults",
+    "No automatic live promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17 canonical closure / G9 PASS",
+    "Deterministic P18-A evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P18-A learning/config/tests/evidence/CI/state changes; P17 remains canonical complete and P18-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P17 CANONICAL_COMPLETE / G9 PASS",
+    "Owner P18 authorization consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Demo / Paper Trading Engine implemented",
+    "Point-in-time event and state invariants enforced",
+    "Injected paper execution simulator required with no production routing default",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P18-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P18-B becomes READY_NOT_STARTED",
+    "P19 remains NOT_STARTED"
+  ]
+}

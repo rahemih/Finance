@@ -1152,6 +1152,18 @@ jobs:
           cmp build/p17i-a.json build/p17i-b.json
           sha256sum build/p17i-a.json
 
+      - name: P18-A demo paper engine tests
+        run: python -m unittest discover -s tests/p18 -p 'test_*.py' -v
+
+      - name: P18-A deterministic demo paper evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p18a_evidence.py --output build/p18a-a.json
+          PYTHONPATH=. python scripts/ci/p18a_evidence.py --output build/p18a-b.json
+          cmp build/p18a-a.json build/p18a-b.json
+          sha256sum build/p18a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1271,6 +1283,7 @@ jobs:
             build/p05g-contract-a.json
             build/p05g-performance.json
             build/p06a-a.json
+            build/p18a-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

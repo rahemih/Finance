@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18A_DEMO_PAPER_ENGINE",
+  "task_id": "FIN-P18-WA-001",
+  "state": "IN_PROGRESS",
+  "mode": "DEMO_PAPER_ONLY",
+  "dependency_gate": "G9_QUANT_VALIDATED_PASS",
+  "point_in_time_required": true,
+  "deterministic_state_identity": true,
+  "snapshot_restore_supported": true,
+  "strategy_registry_identity_required": true,
+  "model_registry_identity_required": true,
+  "injected_paper_execution_simulator_required": true,
+  "broker_exchange_routing": false,
+  "decision_outcome_journal_owner": "P18-B",
+  "automatic_live_promotion": false,
+  "p18_b_started": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
