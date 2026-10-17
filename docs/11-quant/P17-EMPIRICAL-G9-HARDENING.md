@@ -28,3 +28,17 @@ This is a small public-market reference certification used to prove end-to-end e
 ## Safety
 
 No broker/exchange routing, execution authority, automatic live promotion, Live Trading or Auto Trading is enabled. P19 is not started by this repair.
+
+
+## R03 final canonical execution — FIN-P18-WI-001-R03
+
+R03 supersedes R01 as the authoritative empirical G9 implementation path.
+
+The authoritative CI path now calls the actual canonical modules in sequence:
+`P17-A Backtest Engine -> P17-B Execution Realism -> P17-C Information Hygiene -> P17-D Walk-Forward -> P17-E Robustness -> P17-F Capacity -> P17-G Strategy Registry -> P17-H Model Registry -> P17-I empirical G9`.
+
+The earlier R01 direct-calculation reference script is retained only as a compatibility/regression surface and explicitly reports `authoritative_g9=false`. Its compatibility metrics are isolated from the canonical metric policy.
+
+Governance `39039915556` and post-merge Governance `39040128212` both passed the canonical pipeline twice with deterministic output. The result remains a small governed public-market reference validation, not a production-scale edge or profitability proof.
+
+P19 remains NOT_STARTED. Live/Auto remain disabled.

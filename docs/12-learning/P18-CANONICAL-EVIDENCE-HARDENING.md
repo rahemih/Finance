@@ -49,3 +49,18 @@ Authoritative Demo promotion accepts artifact references only. It resolves their
 Governance derives canonical P18 lineage from the same-run P14-H, P15-I, P16-H and empirical P17 evidence outputs and requires deterministic byte-identical evidence twice.
 
 P19 is not started by this repair. Live/Auto remain disabled.
+
+
+## R03 typed trust-boundary closure — FIN-P18-WI-001-R03
+
+R03 removes the remaining wrapper trust boundary.
+
+- P17 Strategy/Model identities come from the actual canonical P17 module outputs.
+- P14 Signal, P15 independent Risk Validation and P16 G8 Firewall identities are parsed and validated from their typed source evidence; whole-file hashes are provenance only and cannot masquerade as typed identities.
+- authoritative Demo promotion resolves candidate validation, challenger comparison, drift, risk review and audit artifacts from `CanonicalEvidenceStore`; caller booleans remain non-authoritative.
+- Controlled Retraining uses a subprocess sandbox with Linux CPU and address-space ceilings, subprocess wall timeout and bounded attempts. The resulting candidate still has no champion/promotion/execution authority.
+- LIVE targets remain fail-closed at `OWNER_LIVE_GATE_REQUIRED`.
+
+PR Governance `39039915556`, post-merge Governance `39040128212`, post-merge runtime `39040128177` and Branch Hygiene `39040128159` all passed.
+
+This closes the technical acceptance criteria behind audits #382, #383 and #384 without starting P19 or enabling Live/Auto trading.
