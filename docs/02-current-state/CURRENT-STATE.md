@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P17 — Backtesting / Strategy Factory / ACTIVE  
-Current Workstream: P17-I — Benchmark / Quant Gate / IN_PROGRESS  
+Current Workstream: none — P17-I CANONICAL_COMPLETE; P17 phase closure READY  
 Previous Workstream: P16 — Pre-Trade Risk Firewall / CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -58,7 +58,7 @@ P13 state: CANONICAL_COMPLETE / P13-A..P13-H CANONICAL_COMPLETE
 P14 state: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS  
 P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS  
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
-P17 state: ACTIVE / P17-A..P17-H CANONICAL_COMPLETE / P17-I IN_PROGRESS / G9_QUANT_VALIDATED NOT_REACHED  
+P17 state: ACTIVE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS / PHASE_CLOSURE_READY  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -172,8 +172,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P17-WI-001`  
-Active lock: `LOCK-FIN-P17-WI-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -6622,3 +6622,15 @@ Scope:
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+### P17-I canonical closure — 2026-10-17
+
+`FIN-P17-WI-001` = CANONICAL_COMPLETE.  
+PR #358 = MERGED at `0da38f07a7690ebafec1d407b875f2b3bd06eb3a`.  
+Governance `39009925612` = SUCCESS.  
+Artifact = `sha256:9a1ef4d26afcfd6a9952a9c0ce0d8f6f24aa7b781b646fecd5f6e5361860d4ea`.  
+Lock = RELEASED.  
+`G9_QUANT_VALIDATED` = PASS.  
+P17 phase closure = READY.  
+P18 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
