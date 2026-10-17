@@ -40,7 +40,7 @@ def _decimal(value:str,*,field:str)->Decimal:
 
 
 def _metric_map(values:Mapping[str,str],*,field:str)->tuple[tuple[str,str],...]:
-    out=[]
+    out: list[tuple[str, str]] = []
     for k,v in sorted(values.items()):
         key=_safe(k,field=f"{field}.key"); d=_decimal(v,field=f"{field}.{k}")
         text="0" if d==0 else format(d.normalize(),"f")
