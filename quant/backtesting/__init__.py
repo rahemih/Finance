@@ -143,3 +143,19 @@ __all__ += [
     "ModelVersion",
     "build_model_registry",
 ]
+
+from .quant_gate import (
+    BenchmarkCriterion,
+    QuantGateCertificate,
+    QuantGateError,
+    WorkstreamEvidence,
+    certify_g9_quant_validated,
+)
+
+__all__ += [
+    "BenchmarkCriterion",
+    "QuantGateCertificate",
+    "QuantGateError",
+    "WorkstreamEvidence",
+    "certify_g9_quant_validated",
+]
