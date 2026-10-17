@@ -1,6 +1,6 @@
 # P18-B — Decision / Outcome Journal
 
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P18-WB-001`  
 Phase: P18 — Continuous Demo Learning
 
@@ -55,3 +55,18 @@ It has no broker/exchange routing, Live Trading, Auto Trading or automatic live-
 ## Validation
 
 The governed tests and deterministic CI evidence cover content-addressed identity, journal-root determinism, duplicate/conflict rejection, unknown-decision rejection, temporal outcome safety, exact lineage preservation and future-outcome exclusion.
+
+
+## Canonical closure
+
+Implementation PR #363 is MERGED.
+
+- implementation head: `6c311d59eb6ab7880d677c9763488ae63c323ab8`;
+- Governance: `39017065770` / SUCCESS;
+- deterministic foundation artifact: `sha256:3491ad0457bf91ffaafccf2b3b20dd9436410574e316b7928b3764a6178e3576`;
+- implementation merge SHA: `c1dd0ae29fca2c01246fc8214b7e005703d31621`;
+- governed lock: RELEASED;
+- P18-C: READY_NOT_STARTED;
+- P19: NOT_STARTED.
+
+P18-B closure does not create dataset/training, retraining, promotion, execution or live-trading authority.

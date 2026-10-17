@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P18B_DECISION_OUTCOME_JOURNAL",
   "task_id": "FIN-P18-WB-001",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": "P18-A_CANONICAL_COMPLETE",
   "content_addressed_records": true,
   "append_only": true,
@@ -17,5 +17,12 @@
   "p18_c_started": false,
   "p19_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation_pr": 363,
+  "implementation_head": "6c311d59eb6ab7880d677c9763488ae63c323ab8",
+  "implementation_governance_run": 39017065770,
+  "implementation_artifact_sha256": "3491ad0457bf91ffaafccf2b3b20dd9436410574e316b7928b3764a6178e3576",
+  "implementation_merge_sha": "c1dd0ae29fca2c01246fc8214b7e005703d31621",
+  "lock_state": "RELEASED",
+  "p18_c_state": "READY_NOT_STARTED"
 }
