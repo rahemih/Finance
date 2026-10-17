@@ -6896,3 +6896,8 @@ State: CANONICAL_COMPLETE after governed merge. GitHub #384 is resolved by an au
 ## P18 runtime operationalization — FIN-P18-WI-001-R01
 
 State: CANONICAL_COMPLETE after governed merge. GitHub #383 is resolved by a persistent DEMO-only runtime that drives all nine P18 stages, atomically checkpoints every stage, resumes across process/scheduled-run restarts, retries with bounded backoff, emits telemetry/alerts, and SAFE_HOLDs after repeated failure. Governance requires two deterministic 20-cycle soaks. The public scheduled reference runtime runs hourly and advances three cycles while restoring prior cached state. Runtime stage evidence is cycle-specific and grounded in corrected non-fixture public-market reference data plus authoritative P14/P15/P16/P17 lineage. P19 remains NOT_STARTED; Live/Auto remain disabled.
+
+
+## Branch hygiene retirement — FIN-P04-WF-001-R01
+
+State: CANONICAL_COMPLETE after governed merge. GitHub #233 is resolved without raising the configured non-canonical branch threshold. Cleanup may retire branch aliases whose current tip commit is proven part of a merged same-repository PR, plus three exact closed/superseded branches (#375, #313, #247) only after runtime PR/ref/SHA verification. Open-PR and all other unproven unique branches remain protected/report-only. Audit now runs after main pushes and closes #233 only when inventory is actually within policy. P19 authorization remains unchanged.
