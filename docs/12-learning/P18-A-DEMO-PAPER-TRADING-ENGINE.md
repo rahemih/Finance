@@ -1,6 +1,6 @@
 # P18-A — Demo / Paper Trading Engine
 
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P18-WA-001`  
 Phase: P18 — Continuous Demo Learning
 
@@ -59,3 +59,18 @@ P18-A emits auditable Demo decision/fill/state records. P18-B owns the Decision 
 ## Validation
 
 The governed test/evidence package covers deterministic replay, snapshot/restore identity, future-information rejection, duplicate sequence rejection, unknown fill rejection, overfill rejection, price-scale drift rejection and safety-authority boundaries.
+
+
+## Canonical closure
+
+Implementation PR #361 is MERGED.
+
+- implementation head: `620cccc3b7918848d8a85191473390db56dedbe7`;
+- Governance: `39014371574` / SUCCESS;
+- deterministic foundation artifact: `sha256:deb3e0692b1465dd2c3d61242f400b27dffda06c8c7c9408f61a75a56c55b100`;
+- implementation merge SHA: `5cfeebcf5d47945b2fb32177dd7986397f6a67a6`;
+- governed lock: RELEASED;
+- P18-B: READY_NOT_STARTED;
+- P19: NOT_STARTED.
+
+P18-A closure does not authorize retraining, promotion, broker/exchange routing, Live Trading or Auto Trading.
