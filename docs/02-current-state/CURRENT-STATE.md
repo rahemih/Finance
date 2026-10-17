@@ -6901,3 +6901,34 @@ State: CANONICAL_COMPLETE after governed merge. GitHub #383 is resolved by a per
 ## Branch Hygiene post-audit reconciliation — FIN-P18-WI-001-R02
 
 State: CANONICAL_COMPLETE after governed merge. GitHub #233 is resolved without deleting unique historical commits: exact branch-name + SHA archive governance separates intentionally retained historical branches from active/unclassified work. Any archived SHA drift automatically returns the branch to active audit scope. Branch Hygiene audit now also runs on every main push and closes a clean report immediately. P19 remains NOT_STARTED.
+
+
+## P17/P18 final canonical end-to-end audit closure — FIN-P18-WI-001-R03 — 2026-10-17
+
+State: CANONICAL_COMPLETE after governed merge and post-merge verification.  
+Implementation PR #389 = MERGED at `36b073c7362a4a01f6a56a6ba7c18a88b0acc3e8`.  
+Implementation PR Governance `39039915556` = SUCCESS.  
+Fast canonical runtime preflight `39039915544` = SUCCESS.  
+Post-merge Governance `39040128212` = SUCCESS.  
+Post-merge Governance artifact `foundation-ci-manifest` = artifact `12103448704` / `sha256:31959e41823803d3fa45d65ab0e505c193c67517cfb561674715177c013d9ca1`.  
+Post-merge canonical runtime `39040128177` = SUCCESS.  
+Runtime artifact `p18-demo-runtime-canonical-39040128177` = artifact `12103478518` / `sha256:54cd6dd7d776b85d8508894aa5844c0d3adcaf25ed25798f0fc09b9c89c57f32`.  
+Post-merge Branch Hygiene `39040128159` = SUCCESS.  
+
+R03 supersedes the earlier R01 audit-hardening claims as the authoritative implementation path:
+- P17 empirical G9 now executes the canonical P17-A through P17-I modules end to end; legacy direct-calculation empirical evidence remains regression-only and non-authoritative.
+- P18 resolves typed P14/P15/P16/P17 identities from their source schemas; whole-file hashes cannot stand in for typed decision identities.
+- P18 runtime executes the canonical Demo/Paper, Outcome, Journal, Dataset, Experiment, Controlled Retraining, Champion/Challenger, Drift and Promotion Governance components for each cycle.
+- Controlled Retraining runs in a bounded subprocess with CPU, address-space memory, wall-time and attempt ceilings.
+- Every canonical runtime stage persists a content-addressed artifact and restart verifies persisted artifact identity before continuing.
+- Governance passed two independent deterministic 20-cycle end-to-end soaks.
+- Scheduled runtime cache lineage is isolated as `canonical-v2`; legacy Bundle runtime state cannot be resumed into the canonical executor.
+
+GitHub audits #382, #383 and #384 = closure-ready after this reconciliation.  
+Profitability guarantee = NONE.  
+Production-scale empirical validation = NOT_CLAIMED.  
+Automatic Live promotion = FORBIDDEN.  
+Broker/exchange routing = DISABLED.  
+P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
