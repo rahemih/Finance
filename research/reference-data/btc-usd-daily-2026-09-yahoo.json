@@ -10,21 +10,122 @@
     "page": "Bitcoin USD (BTC-USD) historical data",
     "url": "https://finance.yahoo.com/quote/BTC-USD/history/",
     "retrieved_on": "2026-10-17",
-    "usage": "small governed reference sample for empirical CI binding; not a production research dataset"
+    "usage": "small governed reference sample for empirical CI binding; not a production research dataset",
+    "verified_on": "2026-10-17",
+    "verification_note": "Values reconciled against Yahoo Finance BTC-USD historical table; Sep 28 added and Sep 29 corrected during post-audit runtime hardening."
   },
   "rows": [
-    {"date":"2026-09-16","open":75611.80,"high":76474.08,"low":74995.52,"close":76150.32,"quote_volume":30053315577},
-    {"date":"2026-09-17","open":76152.05,"high":77079.16,"low":75945.55,"close":76403.77,"quote_volume":21917458567},
-    {"date":"2026-09-18","open":76405.02,"high":81331.77,"low":76228.33,"close":80901.46,"quote_volume":40378562386},
-    {"date":"2026-09-19","open":80900.29,"high":81911.14,"low":80814.94,"close":81233.68,"quote_volume":20505634866},
-    {"date":"2026-09-20","open":81234.30,"high":81455.20,"low":80098.77,"close":81142.61,"quote_volume":21259753701},
-    {"date":"2026-09-21","open":81143.63,"high":87363.76,"low":80867.09,"close":86602.91,"quote_volume":57676223471},
-    {"date":"2026-09-22","open":86604.38,"high":86700.00,"low":85098.01,"close":86172.28,"quote_volume":40800687783},
-    {"date":"2026-09-23","open":86176.77,"high":87265.49,"low":83519.73,"close":84383.01,"quote_volume":46088463341},
-    {"date":"2026-09-24","open":84381.59,"high":84876.23,"low":82906.62,"close":84379.06,"quote_volume":37106744985},
-    {"date":"2026-09-25","open":84379.52,"high":85230.05,"low":83165.53,"close":84034.92,"quote_volume":34118533914},
-    {"date":"2026-09-26","open":84035.82,"high":84423.18,"low":83781.11,"close":84406.45,"quote_volume":15169336375},
-    {"date":"2026-09-27","open":84412.72,"high":85126.11,"low":84121.33,"close":84458.09,"quote_volume":19386591468},
-    {"date":"2026-09-29","open":83488.00,"high":83539.03,"low":82800.40,"close":83087.59,"quote_volume":38168252416}
+    {
+      "date": "2026-09-16",
+      "open": 75611.8,
+      "high": 76474.08,
+      "low": 74995.52,
+      "close": 76150.32,
+      "quote_volume": 30053315577
+    },
+    {
+      "date": "2026-09-17",
+      "open": 76152.05,
+      "high": 77079.16,
+      "low": 75945.55,
+      "close": 76403.77,
+      "quote_volume": 21917458567
+    },
+    {
+      "date": "2026-09-18",
+      "open": 76405.02,
+      "high": 81331.77,
+      "low": 76228.33,
+      "close": 80901.46,
+      "quote_volume": 40378562386
+    },
+    {
+      "date": "2026-09-19",
+      "open": 80900.29,
+      "high": 81911.14,
+      "low": 80814.94,
+      "close": 81233.68,
+      "quote_volume": 20505634866
+    },
+    {
+      "date": "2026-09-20",
+      "open": 81234.3,
+      "high": 81455.2,
+      "low": 80098.77,
+      "close": 81142.61,
+      "quote_volume": 21259753701
+    },
+    {
+      "date": "2026-09-21",
+      "open": 81143.63,
+      "high": 87363.76,
+      "low": 80867.09,
+      "close": 86602.91,
+      "quote_volume": 57676223471
+    },
+    {
+      "date": "2026-09-22",
+      "open": 86604.38,
+      "high": 86700,
+      "low": 85098.01,
+      "close": 86172.28,
+      "quote_volume": 40800687783
+    },
+    {
+      "date": "2026-09-23",
+      "open": 86176.77,
+      "high": 87265.49,
+      "low": 83519.73,
+      "close": 84383.01,
+      "quote_volume": 46088463341
+    },
+    {
+      "date": "2026-09-24",
+      "open": 84381.59,
+      "high": 84876.23,
+      "low": 82906.62,
+      "close": 84379.06,
+      "quote_volume": 37106744985
+    },
+    {
+      "date": "2026-09-25",
+      "open": 84379.52,
+      "high": 85230.05,
+      "low": 83165.53,
+      "close": 84034.92,
+      "quote_volume": 34118533914
+    },
+    {
+      "date": "2026-09-26",
+      "open": 84035.82,
+      "high": 84423.18,
+      "low": 83781.11,
+      "close": 84406.45,
+      "quote_volume": 15169336375
+    },
+    {
+      "date": "2026-09-27",
+      "open": 84412.72,
+      "high": 85126.11,
+      "low": 84121.33,
+      "close": 84458.09,
+      "quote_volume": 19386591468
+    },
+    {
+      "date": "2026-09-28",
+      "open": 84454.12,
+      "high": 84972.66,
+      "low": 82570.72,
+      "close": 83502.61,
+      "quote_volume": 42589028679
+    },
+    {
+      "date": "2026-09-29",
+      "open": 83500.32,
+      "high": 84511.28,
+      "low": 82739.09,
+      "close": 83622.43,
+      "quote_volume": 28029782264
+    }
   ]
 }
