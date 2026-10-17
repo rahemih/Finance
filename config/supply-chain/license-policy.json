@@ -102,6 +102,13 @@
       "scope": "Exact third-party GitHub Action version used by canonical repository workflows"
     },
     {
+      "identity_prefix": "pkg:github/actions/cache",
+      "exact_version": "v4.2.0",
+      "license": "MIT",
+      "evidence": "actions/cache tag v4.2.0 LICENSE (MIT); tag commit 1bd1e32a3bdc45362d1e726936510720a7c30a57",
+      "scope": "Exact GitHub Actions cache version used only for persistent P18 reference-runtime checkpoint state"
+    },
+    {
       "identity_prefix": "pkg:github/actions/github-script",
       "exact_version": "v9.0.0",
       "license": "MIT",

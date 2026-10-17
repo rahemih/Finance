@@ -6891,3 +6891,8 @@ State: CANONICAL_COMPLETE after governed merge. GitHub audit #382 is resolved by
 ## P18 canonical evidence hardening — FIN-P18-WH-001-R01
 
 State: CANONICAL_COMPLETE after governed merge. GitHub #384 is resolved by an authoritative resolver that independently validates P17 Strategy/Model identities, same-run P14/P15/P16 evidence, governed metric definitions and retraining resource budgets before canonical learning/promotion evidence is accepted. Caller-supplied promotion booleans are non-authoritative. P19 authorization remains unchanged.
+
+
+## P18 runtime operationalization — FIN-P18-WI-001-R01
+
+State: CANONICAL_COMPLETE after governed merge. GitHub #383 is resolved by a persistent DEMO-only runtime that drives all nine P18 stages, atomically checkpoints every stage, resumes across process/scheduled-run restarts, retries with bounded backoff, emits telemetry/alerts, and SAFE_HOLDs after repeated failure. Governance requires two deterministic 20-cycle soaks. The public scheduled reference runtime runs hourly and advances three cycles while restoring prior cached state. Runtime stage evidence is cycle-specific and grounded in corrected non-fixture public-market reference data plus authoritative P14/P15/P16/P17 lineage. P19 remains NOT_STARTED; Live/Auto remain disabled.

@@ -112,6 +112,24 @@
       "caller_promotion_booleans_authoritative": false,
       "automatic_live_promotion": false,
       "p19_started": false
+    },
+    "FIN-P18-WI-001-R01": {
+      "state": "CANONICAL_COMPLETE",
+      "audit_issue": 383,
+      "persistent_runtime": true,
+      "scheduled_reference_runtime": true,
+      "schedule": "hourly",
+      "cross_run_checkpoint_resume": true,
+      "retry_backoff": true,
+      "telemetry_alerts": true,
+      "cycle_specific_stage_evidence": true,
+      "public_market_reference_non_fixture": true,
+      "canonical_lineage_binding": true,
+      "ci_soak_cycles": 20,
+      "ci_soak_repeated_twice": true,
+      "automatic_live_promotion": false,
+      "broker_exchange_routing": false,
+      "p19_started": false
     }
   }
 }
