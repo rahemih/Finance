@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0","kind":"NEXUS_QUANT_P18F_CHAMPION_CHALLENGER_POLICY","task_id":"FIN-P18-WF-001",
+  "mode":"DETERMINISTIC_RECOMMENDATION_ONLY",
+  "same_dataset_required":true,"minimum_performance_improvement":"0.02","maximum_risk_degradation":"0.00",
+  "registry_mutation_authority":false,"promotion_authority":false,"automatic_live_promotion":false,
+  "live_trading":"DISABLED","auto_trading":"DISABLED"
+}
