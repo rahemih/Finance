@@ -61,3 +61,18 @@ __all__ += [
     "TrainingDatasetSpec",
     "curate_training_dataset",
 ]
+
+from .experiments import (
+    ExperimentRegistry,
+    ExperimentRegistrySnapshot,
+    ExperimentRun,
+    ExperimentSpec,
+    ExperimentTrackingError,
+)
+__all__ += [
+    "ExperimentRegistry",
+    "ExperimentRegistrySnapshot",
+    "ExperimentRun",
+    "ExperimentSpec",
+    "ExperimentTrackingError",
+]

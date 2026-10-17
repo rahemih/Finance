@@ -1,0 +1,18 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P18D_EXPERIMENT_TRACKING_POLICY",
+  "task_id":"FIN-P18-WD-001",
+  "mode":"IMMUTABLE_DETERMINISTIC_EXPERIMENT_REGISTRY",
+  "dataset_manifest_required":true,
+  "code_lineage_required":true,
+  "strategy_model_lineage_required":true,
+  "content_addressed_experiments":true,
+  "content_addressed_runs":true,
+  "training_execution_authority":false,
+  "retraining_authority":false,
+  "promotion_authority":false,
+  "broker_exchange_routing":false,
+  "automatic_live_promotion":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED"
+}

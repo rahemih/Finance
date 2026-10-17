@@ -259,6 +259,7 @@ This catalog is the canonical index of governed work.
 | FIN-P18-WA-001 | P18 | Demo / Paper Trading Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P18-WB-001 | P18 | Decision / Outcome Journal | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P18-WC-001 | P18 | Training Dataset Curation | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WC-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P18-WD-001 | P18 | Experiment Tracking | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P18-WD-001.json` | `LOCK-FIN-P18-WD-001-01` / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
