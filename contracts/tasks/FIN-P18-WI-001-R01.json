@@ -27,7 +27,14 @@
     "Public repository standard GitHub Actions availability",
     "Owner repair authorization"
   ],
-  "read_paths": ["packages/learning/**","research/reference-data/**","scripts/ci/**","docs/**","contracts/tasks/**",".github/workflows/**"],
+  "read_paths": [
+    "packages/learning/**",
+    "research/reference-data/**",
+    "scripts/ci/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/**"
+  ],
   "write_paths": [
     "contracts/tasks/FIN-P18-WI-001-R01.json",
     "config/learning/runtime-worker-policy.json",
@@ -42,13 +49,35 @@
     "docs/12-learning/P18-PHASE-CLOSURE.md",
     "docs/12-learning/p18-phase-closure.json",
     "docs/02-current-state/CURRENT-STATE.md",
-    "docs/13-tasks/TASK-CATALOG.md"
+    "docs/13-tasks/TASK-CATALOG.md",
+    "research/reference-data/btc-usd-daily-2026-09-yahoo.json"
   ],
-  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","adapters/execution/**","packages/execution/**","secrets/**","credentials/**"],
-  "agents": ["A0","A4","A7","A9","A10"],
-  "plugins": ["GitHub","Linear"],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A4",
+    "A7",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
   "skills": [],
-  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
   "secrets": [],
   "risk_level": "CRITICAL",
   "tests": [
@@ -63,7 +92,9 @@
     "Scheduled workflow is security-pinned and requires no secrets",
     "P19 remains unstarted"
   ],
-  "performance_tests": ["20-cycle bounded CI soak"],
+  "performance_tests": [
+    "20-cycle bounded CI soak"
+  ],
   "security_tests": [
     "Scheduled workflow contents permission is read-only",
     "No secrets or broker credentials",
@@ -81,7 +112,10 @@
   ],
   "rollback": "Disable/remove the scheduled reference runtime and revert FIN-P18-WI-001-R01 runtime files; retain the validated P18 operating contract and P19 remains unstarted.",
   "human_gate": false,
-  "definition_of_ready": ["FIN-P18-WH-001-R01 merged","P18 safety boundaries stable"],
+  "definition_of_ready": [
+    "FIN-P18-WH-001-R01 merged",
+    "P18 safety boundaries stable"
+  ],
   "definition_of_done": [
     "Runtime worker drives all nine ordered stages",
     "Durable checkpoint/resume and retry/alert controls pass",

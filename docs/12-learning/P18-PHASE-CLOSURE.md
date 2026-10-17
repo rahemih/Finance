@@ -111,3 +111,7 @@ P19 — Shadow / Replay / Digital Twin remains NOT_STARTED and MUST NOT start un
 ## Post-closure canonical evidence hardening
 
 FIN-P18-WH-001-R01 resolves GitHub audit #384. Cross-phase learning and promotion claims now use an authoritative canonical evidence resolver. The resolver verifies P17 Strategy/Model records plus P14/P15/P16 evidence identities from the same Governance run, enforces versioned metric semantics and retraining resource budgets, and authorizes Demo promotion only from resolved canonical artifacts. Existing pure P18 primitives remain deterministic local components but caller-provided IDs/booleans are not authoritative promotion evidence. P19 remains unstarted.
+
+## Post-closure runtime operationalization
+
+FIN-P18-WI-001-R01 resolves GitHub audit #383. P18-I now has a persistent reference runtime, not only a coordinator contract. The runtime executes all nine ordered DEMO stages, persists atomic checkpoints, resumes across process and scheduled-run restarts, retries with bounded backoff, emits telemetry/alerts, enters SAFE_HOLD on repeated failure, and generates cycle-specific evidence grounded in non-fixture public-market plus canonical P14/P15/P16/P17 lineage. Governance requires two independent 20-cycle deterministic soaks. An hourly read-only GitHub Actions workflow restores prior runtime state and advances three additional DEMO cycles per run. Automatic Live promotion, broker routing and P19 remain disabled.

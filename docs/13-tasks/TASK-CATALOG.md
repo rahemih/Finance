@@ -279,3 +279,5 @@ This catalog is the canonical index of governed work.
 FIN-P17-WI-001-R01 — P17 empirical G9 evidence hardening — CANONICAL_COMPLETE — GitHub #382 — RELEASED / LINEAR_CONTINUATION_REGISTER
 
 FIN-P18-WH-001-R01 — P18 canonical evidence / promotion lineage hardening — CANONICAL_COMPLETE — GitHub #384 — RELEASED / LINEAR_CONTINUATION_REGISTER
+
+FIN-P18-WI-001-R01 — P18 persistent scheduled Demo learning runtime — CANONICAL_COMPLETE — GitHub #383 — RELEASED / LINEAR_CONTINUATION_REGISTER
