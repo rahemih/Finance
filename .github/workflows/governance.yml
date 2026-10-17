@@ -1165,6 +1165,15 @@ jobs:
           cmp build/p17-empirical-g9-a.json build/p17-empirical-g9-b.json
           sha256sum build/p17-empirical-g9-a.json
 
+      - name: P17 canonical empirical pipeline evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p17_canonical_empirical_pipeline.py --output build/p17-canonical-empirical-a.json
+          PYTHONPATH=. python scripts/ci/p17_canonical_empirical_pipeline.py --output build/p17-canonical-empirical-b.json
+          cmp build/p17-canonical-empirical-a.json build/p17-canonical-empirical-b.json
+          sha256sum build/p17-canonical-empirical-a.json
+
       - name: P18 canonical upstream lineage evidence twice
         shell: bash
         run: |
@@ -1174,27 +1183,57 @@ jobs:
           cmp build/p18-canonical-lineage-a.json build/p18-canonical-lineage-b.json
           sha256sum build/p18-canonical-lineage-a.json
 
-      - name: P18 reference runtime stage bundle twice
+      - name: P18 canonical end-to-end runtime twenty-cycle soak twice
         shell: bash
         run: |
           set -euo pipefail
-          PYTHONPATH=. python scripts/ci/p18_reference_stage_bundle.py --market research/reference-data/btc-usd-daily-2026-09-yahoo.json --p17-empirical build/p17-empirical-g9-a.json --canonical-lineage build/p18-canonical-lineage-a.json --output build/p18-runtime-stage-bundle-a.json
-          PYTHONPATH=. python scripts/ci/p18_reference_stage_bundle.py --market research/reference-data/btc-usd-daily-2026-09-yahoo.json --p17-empirical build/p17-empirical-g9-a.json --canonical-lineage build/p18-canonical-lineage-a.json --output build/p18-runtime-stage-bundle-b.json
-          cmp build/p18-runtime-stage-bundle-a.json build/p18-runtime-stage-bundle-b.json
-          sha256sum build/p18-runtime-stage-bundle-a.json
-
-      - name: P18 operational runtime twenty-cycle soak twice
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf build/p18-soak-a build/p18-soak-b
-          mkdir -p build/p18-soak-a build/p18-soak-b
-          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py --bundle build/p18-runtime-stage-bundle-a.json --checkpoint build/p18-soak-a/checkpoint.json --telemetry build/p18-soak-a/telemetry.jsonl --alerts build/p18-soak-a/alerts.jsonl --output build/p18-runtime-soak-a.json --cycles 20 --deterministic-start-ns 1000000
-          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py --bundle build/p18-runtime-stage-bundle-a.json --checkpoint build/p18-soak-b/checkpoint.json --telemetry build/p18-soak-b/telemetry.jsonl --alerts build/p18-soak-b/alerts.jsonl --output build/p18-runtime-soak-b.json --cycles 20 --deterministic-start-ns 1000000
-          cmp build/p18-runtime-soak-a.json build/p18-runtime-soak-b.json
-          cmp build/p18-soak-a/checkpoint.json build/p18-soak-b/checkpoint.json
-          cmp build/p18-soak-a/telemetry.jsonl build/p18-soak-b/telemetry.jsonl
-          sha256sum build/p18-runtime-soak-a.json build/p18-soak-a/checkpoint.json
+          rm -rf build/p18-e2e-soak-a build/p18-e2e-soak-b
+          mkdir -p build/p18-e2e-soak-a build/p18-e2e-soak-b
+          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py \
+            --p17-canonical build/p17-canonical-empirical-a.json \
+            --signal build/p14h-a.json \
+            --risk build/p15i-a.json \
+            --firewall build/p16h-a.json \
+            --state-root build/p18-e2e-soak-a/state \
+            --checkpoint build/p18-e2e-soak-a/checkpoint.json \
+            --telemetry build/p18-e2e-soak-a/telemetry.jsonl \
+            --alerts build/p18-e2e-soak-a/alerts.jsonl \
+            --output build/p18-e2e-soak-a/report.json \
+            --cycles 20 \
+            --deterministic-start-ns 1000000
+          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py \
+            --p17-canonical build/p17-canonical-empirical-a.json \
+            --signal build/p14h-a.json \
+            --risk build/p15i-a.json \
+            --firewall build/p16h-a.json \
+            --state-root build/p18-e2e-soak-b/state \
+            --checkpoint build/p18-e2e-soak-b/checkpoint.json \
+            --telemetry build/p18-e2e-soak-b/telemetry.jsonl \
+            --alerts build/p18-e2e-soak-b/alerts.jsonl \
+            --output build/p18-e2e-soak-b/report.json \
+            --cycles 20 \
+            --deterministic-start-ns 1000000
+          cmp build/p18-e2e-soak-a/report.json build/p18-e2e-soak-b/report.json
+          cmp build/p18-e2e-soak-a/checkpoint.json build/p18-e2e-soak-b/checkpoint.json
+          cmp build/p18-e2e-soak-a/telemetry.jsonl build/p18-e2e-soak-b/telemetry.jsonl
+          diff -ru build/p18-e2e-soak-a/state/stage-artifacts build/p18-e2e-soak-b/state/stage-artifacts
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("build/p18-e2e-soak-a/report.json").read_text())
+          assert report["canonical_stage_execution"] is True
+          assert report["runtime_mode"] == "CANONICAL_END_TO_END_DEMO_REFERENCE"
+          assert report["requested_cycles"] == 20
+          assert report["completed_cycles"] == 20
+          assert report["automatic_live_promotion"] is False
+          assert report["broker_exchange_routing"] is False
+          assert report["p19_started"] is False
+          assert report["live_trading"] == "DISABLED"
+          assert report["auto_trading"] == "DISABLED"
+          stage_files = list(Path("build/p18-e2e-soak-a/state/stage-artifacts").glob("*/*.json"))
+          assert len(stage_files) == 180
+          PY
+          sha256sum build/p18-e2e-soak-a/report.json build/p18-e2e-soak-a/checkpoint.json
 
       - name: P18-A demo paper engine tests
         run: python -m unittest discover -s tests/p18 -p 'test_*.py' -v
@@ -1409,6 +1448,11 @@ jobs:
             build/p05g-performance.json
             build/p06a-a.json
             build/p17-empirical-g9-a.json
+            build/p17-canonical-empirical-a.json
+            build/p18-e2e-soak-a/report.json
+            build/p18-e2e-soak-a/checkpoint.json
+            build/p18-e2e-soak-a/telemetry.jsonl
+            build/p18-e2e-soak-a/state/stage-artifacts/**
             build/p18-canonical-lineage-a.json
             build/p18-runtime-stage-bundle-a.json
             build/p18-runtime-soak-a.json
