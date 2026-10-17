@@ -82,7 +82,8 @@ Phase transition:
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
-- P18 — Continuous Demo Learning: ACTIVE / P18-A..P18-I CANONICAL_COMPLETE / PHASE_CLOSURE_PENDING
+- P18 — Continuous Demo Learning: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
+- P19 — Shadow / Replay / Digital Twin: NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2631,3 +2632,8 @@ P18-H = CANONICAL_COMPLETE. PR #376 merged at `149f50d225cdf5af99fb2eef79fb82712
 ## P18-I canonical closure — 2026-10-17
 
 P18-I = CANONICAL_COMPLETE. PR #378 merged at `f71a058affd1f00a20dd89e98d883315b9af27ae`; Governance `39026072908` SUCCESS; artifact `sha256:a36bf9d230cfb5da7be8d4e0c18b674c3f9f6971493f57aceb3873d7239da178`. Lock RELEASED. P18-A..I complete; phase closure pending. P19 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
+
+
+## P18 canonical phase closure — 2026-10-17
+
+P18 — Continuous Demo Learning = CANONICAL_COMPLETE. P18-A..P18-I are all CANONICAL_COMPLETE and every P18 lock is RELEASED. The frozen roadmap defines no named P18 exit gate; deterministic phase-closure validation is PASS. Completed learning cycles remain DEMO_ONLY. Automated Controlled Retraining is allowed only inside P18 governance; automatic Live promotion remains forbidden. P19 is NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
