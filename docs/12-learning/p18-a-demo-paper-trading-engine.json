@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P18A_DEMO_PAPER_ENGINE",
   "task_id": "FIN-P18-WA-001",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "mode": "DEMO_PAPER_ONLY",
   "dependency_gate": "G9_QUANT_VALIDATED_PASS",
   "point_in_time_required": true,
@@ -17,5 +17,12 @@
   "p18_b_started": false,
   "p19_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation_pr": 361,
+  "implementation_head": "620cccc3b7918848d8a85191473390db56dedbe7",
+  "implementation_governance_run": 39014371574,
+  "implementation_artifact_sha256": "deb3e0692b1465dd2c3d61242f400b27dffda06c8c7c9408f61a75a56c55b100",
+  "implementation_merge_sha": "5cfeebcf5d47945b2fb32177dd7986397f6a67a6",
+  "lock_state": "RELEASED",
+  "p18_b_state": "READY_NOT_STARTED"
 }
