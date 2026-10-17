@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0","kind":"NEXUS_QUANT_P18H_PROMOTION_GOVERNANCE_POLICY",
+  "task_id":"FIN-P18-WH-001","mode":"FAIL_CLOSED_PROMOTION_GOVERNANCE",
+  "demo_target_allowed":true,"live_target_allowed":false,
+  "candidate_validation_required":true,"challenger_recommendation_required":true,
+  "risk_review_required":true,"audit_complete_required":true,"zero_critical_blockers_required":true,
+  "registry_mutation":false,"automatic_live_promotion":false,
+  "live_trading":"DISABLED","auto_trading":"DISABLED"
+}
