@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P18-WC-001",
+  "phase": "P18",
+  "workstream": "WC",
+  "objective": "Implement deterministic point-in-time-safe Training Dataset Curation from canonical P18-B Decision / Outcome Journal records, with immutable dataset manifests, exact lineage, temporal split governance, deduplication and fail-closed leakage controls while leaving experiment execution to P18-D.",
+  "scope": [
+    "Curate eligible decision/outcome journal pairs into immutable training rows",
+    "Require decision and outcome records to be visible by an explicit dataset cutoff time",
+    "Preserve session/strategy/model/signal/risk/firewall and evidence lineage in every row",
+    "Require one explicit outcome-definition ID/version per curated dataset",
+    "Reject unknown decision references, duplicate decisions, duplicate outcomes and conflicting labels",
+    "Apply deterministic temporal TRAIN/VALIDATION/TEST split boundaries",
+    "Prevent one decision from appearing in multiple splits",
+    "Produce deterministic exclusion reasons for ineligible records",
+    "Generate content-addressed dataset manifest and row identities",
+    "Expose dataset metadata only; do not execute experiments or retraining",
+    "Generate deterministic offline P18-C evidence"
+  ],
+  "out_of_scope": [
+    "Experiment Tracking (P18-D)",
+    "Training run execution",
+    "Controlled Retraining (P18-E)",
+    "Champion / Challenger (P18-F)",
+    "Drift / Strategy Decay (P18-G)",
+    "Promotion Governance (P18-H)",
+    "24/7 Learning Loop Operations (P18-I)",
+    "Shadow / Replay / Digital Twin (P19)",
+    "Broker/exchange routing or live execution",
+    "Automatic live promotion",
+    "Profitability guarantees"
+  ],
+  "dependencies": [
+    "P18-B CANONICAL_COMPLETE",
+    "P18-A CANONICAL_COMPLETE",
+    "P06 dataset manifest/versioning baseline",
+    "P17-G Strategy Registry canonical baseline",
+    "P17-H Model Registry canonical baseline",
+    "P04 deterministic test harness baseline"
+  ],
+  "read_paths": [
+    "packages/learning/**",
+    "packages/historical_data/**",
+    "quant/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P18-WC-001.json",
+    "config/learning/training-dataset-curation-policy.json",
+    "packages/learning/__init__.py",
+    "packages/learning/dataset_curation.py",
+    "tests/p18/test_training_dataset_curation.py",
+    "scripts/ci/p18c_evidence.py",
+    "docs/12-learning/P18-C-TRAINING-DATASET-CURATION.md",
+    "docs/12-learning/p18-c-training-dataset-curation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A2","A4","A5","A7","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same journal inputs and policy produce identical row and manifest identities",
+    "Outcome observed after dataset cutoff is excluded",
+    "Decision after dataset cutoff is excluded",
+    "Outcome before decision fails closed",
+    "Unknown decision outcome fails closed",
+    "Duplicate decision or outcome identity fails closed",
+    "Conflicting outcome label for one decision fails closed",
+    "Outcome definition mismatch fails closed",
+    "Temporal split assignment is deterministic",
+    "One decision cannot appear in more than one split",
+    "Exact lineage is preserved in curated rows",
+    "No P18-D experiment or training authority is emitted",
+    "No broker/exchange, Live/Auto or promotion authority is emitted",
+    "P18-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No broker/exchange execution imports",
+    "No future-label visibility beyond dataset cutoff",
+    "No automatic retraining or experiment execution",
+    "No automatic live promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P18-B canonical closure",
+    "Deterministic P18-C evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P18-C curation/config/tests/evidence/CI/state changes; P18-B remains canonical complete and P18-D remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P18-B CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic point-in-time-safe dataset curation implemented",
+    "Immutable row and dataset manifest identities implemented",
+    "Temporal split and leakage controls enforced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P18-WC-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P18-D becomes READY_NOT_STARTED",
+    "P19 remains NOT_STARTED"
+  ]
+}
