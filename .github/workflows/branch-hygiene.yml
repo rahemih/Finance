@@ -146,7 +146,7 @@ jobs:
             }
 
   audit:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     needs: [cleanup-known-merged]
     runs-on: ubuntu-latest
     env:
@@ -163,10 +163,68 @@ jobs:
             const maxBranches = Number(process.env.MAX_NON_CANONICAL_BRANCHES);
             const defaultBranch = context.payload.repository?.default_branch || 'main';
 
+            const archiveResponse = await github.rest.repos.getContent({
+              owner,
+              repo,
+              path: 'config/governance/branch-hygiene-archive.json',
+              ref: defaultBranch,
+            });
+            if (
+              Array.isArray(archiveResponse.data) ||
+              archiveResponse.data.type !== 'file' ||
+              !archiveResponse.data.content
+            ) {
+              throw new Error('Branch hygiene archive registry must be a file.');
+            }
+            const archive = JSON.parse(
+              Buffer.from(archiveResponse.data.content, 'base64').toString('utf8')
+            );
+            if (archive.kind !== 'NEXUS_QUANT_BRANCH_HYGIENE_ARCHIVE') {
+              throw new Error('Unexpected branch hygiene archive kind.');
+            }
+            if (!Array.isArray(archive.branches)) {
+              throw new Error('Branch hygiene archive requires branches array.');
+            }
+            const archivedByName = new Map();
+            for (const item of archive.branches) {
+              if (
+                !item ||
+                typeof item.name !== 'string' ||
+                typeof item.sha !== 'string' ||
+                !/^[0-9a-f]{40}$/.test(item.sha)
+              ) {
+                throw new Error('Invalid branch hygiene archive entry.');
+              }
+              if (archivedByName.has(item.name)) {
+                throw new Error(`Duplicate archived branch: ${item.name}`);
+              }
+              archivedByName.set(item.name, item.sha);
+            }
+
             const branches = await github.paginate(github.rest.repos.listBranches, {
               owner, repo, per_page: 100,
             });
-            const nonCanonical = branches.filter(b => b.name !== defaultBranch && b.name !== 'main');
+            const rawNonCanonical = branches.filter(
+              b => b.name !== defaultBranch && b.name !== 'main'
+            );
+            const archived = [];
+            const archiveDrift = [];
+            const nonCanonical = [];
+            for (const branch of rawNonCanonical) {
+              const expectedSha = archivedByName.get(branch.name);
+              if (expectedSha === branch.commit.sha) {
+                archived.push(branch);
+                continue;
+              }
+              if (expectedSha) {
+                archiveDrift.push({
+                  name: branch.name,
+                  expectedSha,
+                  actualSha: branch.commit.sha,
+                });
+              }
+              nonCanonical.push(branch);
+            }
 
             const openPulls = await github.paginate(github.rest.pulls.list, {
               owner, repo, state: 'open', per_page: 100,
@@ -208,13 +266,22 @@ jobs:
               '## Automated Branch Hygiene Report',
               '',
               `Default branch: \`${defaultBranch}\``,
-              `Non-canonical branch count: **${nonCanonical.length}** (warning threshold: ${maxBranches})`,
+              `Total non-canonical branches: **${rawNonCanonical.length}**`,
+              `Archived historical branches (exact SHA): **${archived.length}**`,
+              `Active/unclassified non-canonical branches: **${nonCanonical.length}** (warning threshold: ${maxBranches})`,
               `Stale threshold: **${staleDays} days**`,
+              '',
+              '### Archive integrity',
+              archiveDrift.length
+                ? archiveDrift.map(b => `- DRIFT \`${b.name}\` expected \`${b.expectedSha.slice(0, 12)}\` actual \`${b.actualSha.slice(0, 12)}\``).join('\\n')
+                : '- All present archived branches match their registered SHA.',
               '',
               '### Safety policy',
               '- Branches with exact proof of a merged same-repository PR are deleted automatically.',
               '- Unprotected branches with no open PR and GitHub compare `ahead_by=0` are also deleted automatically because they contain no unique commits.',
               '- Unmerged branches with unique commits are **report-only** and are never deleted automatically.',
+              '- Historical unique branches may be excluded from active-count warnings only by exact branch-name + SHA archive registration.',
+              '- Any archived branch SHA drift automatically returns that branch to active audit scope.',
               '',
               '### Stale branches without an open PR',
               stale.length
@@ -263,5 +330,5 @@ jobs:
             }
 
             if (excessive) {
-              core.setFailed(`Non-canonical branch count ${nonCanonical.length} exceeds threshold ${maxBranches}.`);
+              core.setFailed(`Active non-canonical branch count ${nonCanonical.length} exceeds threshold ${maxBranches}.`);
             }

@@ -116,6 +116,10 @@ jobs:
       - name: Config / environment contract
         run: python scripts/ci/config_contract.py
 
+      - name: Branch hygiene archive contract
+        run: python scripts/ci/branch_hygiene_archive.py
+
+
       - name: Foundation test harness
         run: python -m unittest discover -s tests/foundation -p 'test_*.py' -v
 
