@@ -8,7 +8,8 @@ STAGES=("OBSERVE_ANALYZE","DEMO_TRADE","OUTCOME","JOURNAL","DATASET","EXPERIMENT
 
 def build()->dict[str,object]:
     policy=LearningLoopPolicy(cadence_ns=1000,max_market_staleness_ns=100,max_consecutive_failures=3)
-    hex_chars=("a","b","c","d","e","f","0","1","2")\n    stage_evidence=tuple((stage,hex_chars[i]*64) for i,stage in enumerate(STAGES))
+    hex_chars=("a","b","c","d","e","f","0","1","2")
+    stage_evidence=tuple((stage,hex_chars[i]*64) for i,stage in enumerate(STAGES))
     complete=LearningLoopCoordinator(policy).evaluate(LoopTick(
         cycle_name="p18i-ci",tick_time_ns=10000,market_watermark_ns=9950,
         system_state="NORMAL",consecutive_failures=0,stage_evidence=stage_evidence,
