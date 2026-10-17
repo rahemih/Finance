@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "kind": "NEXUS_QUANT_P17G_STRATEGY_REGISTRY",
   "task_id": "FIN-P17-WG-001",
-  "state": "IMPLEMENTATION_ACTIVE",
+  "state": "CANONICAL_COMPLETE",
   "immutable_version_records": true,
   "validated_requires_p17_d_e_f_lineage": true,
   "automatic_promotion": false,
@@ -12,5 +12,17 @@
   "p17_h_through_p17_i_started": false,
   "p18_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "implementation": {
+    "pr": 354,
+    "head_sha": "25f255f312ffe17091d43085926c0fc9c1da5c9f",
+    "governance_run": 39008606942,
+    "governance_status": "SUCCESS",
+    "artifact_sha256": "956457f99ba648812f3bfb231f2521820dd619a30fc8277122c92cf7d2cdc19e",
+    "merge_sha": "c66d0118ae289a62a19dd1c90b3833c7918d1a8b"
+  },
+  "lock": "RELEASED",
+  "p17_h_state": "READY_NOT_STARTED",
+  "p17_i_state": "NOT_STARTED",
+  "g9_quant_validated": "NOT_REACHED"
 }
