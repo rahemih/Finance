@@ -100,5 +100,18 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_phase": "P19",
-  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "post_closure_hardening": {
+    "FIN-P18-WH-001-R01": {
+      "state": "CANONICAL_COMPLETE",
+      "audit_issue": 384,
+      "canonical_evidence_resolver": true,
+      "same_run_upstream_binding": true,
+      "governed_metric_schemas": true,
+      "retraining_resource_budget_enforced": true,
+      "caller_promotion_booleans_authoritative": false,
+      "automatic_live_promotion": false,
+      "p19_started": false
+    }
+  }
 }
