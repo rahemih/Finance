@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17G_STRATEGY_REGISTRY_POLICY",
+  "task_id": "FIN-P17-WG-001",
+  "allowed_lifecycle_states": ["DRAFT","RESEARCH","VALIDATED","RETIRED"],
+  "validated_requires": ["walk_forward_certificate_sha256","robustness_certificate_sha256","capacity_certificate_sha256"],
+  "immutable_version_records": true,
+  "automatic_promotion": false,
+  "profitability_authority": false,
+  "g9_authority": false,
+  "execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
