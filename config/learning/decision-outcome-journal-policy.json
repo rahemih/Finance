@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18B_DECISION_OUTCOME_JOURNAL_POLICY",
+  "task_id": "FIN-P18-WB-001",
+  "mode": "IMMUTABLE_POINT_IN_TIME_JOURNAL",
+  "decision_source": "P18_A_DEMO_PAPER_ENGINE",
+  "content_addressed_records": true,
+  "append_only": true,
+  "outcome_definition_version_required": true,
+  "future_outcome_visibility": false,
+  "dataset_curation_owner": "P18-C",
+  "training_authority": false,
+  "broker_exchange_routing": false,
+  "automatic_live_promotion": false,
+  "network_required": false,
+  "credentials_required": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
