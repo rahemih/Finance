@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P18_CANONICAL_EVIDENCE_POLICY",
+  "task_id":"FIN-P18-WH-001-R01",
+  "authoritative_path":"packages.learning.canonical_evidence",
+  "canonical_resolver_required":true,
+  "required_upstream_kinds":["STRATEGY_RECORD","MODEL_RECORD","SIGNAL_DECISION","RISK_DECISION","FIREWALL_DECISION"],
+  "metric_policy_required":true,
+  "metric_units_required":true,
+  "metric_direction_required":true,
+  "retraining_resource_budget_required":true,
+  "caller_promotion_booleans_authoritative":false,
+  "automatic_live_promotion":false,
+  "broker_exchange_routing":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED"
+}

@@ -107,3 +107,7 @@ P18 execution and closure evidence are synchronized through the Finance manageme
 P18 is CANONICAL_COMPLETE.
 
 P19 — Shadow / Replay / Digital Twin remains NOT_STARTED and MUST NOT start until explicit Owner phase authorization is provided.
+
+## Post-closure canonical evidence hardening
+
+FIN-P18-WH-001-R01 resolves GitHub audit #384. Cross-phase learning and promotion claims now use an authoritative canonical evidence resolver. The resolver verifies P17 Strategy/Model records plus P14/P15/P16 evidence identities from the same Governance run, enforces versioned metric semantics and retraining resource budgets, and authorizes Demo promotion only from resolved canonical artifacts. Existing pure P18 primitives remain deterministic local components but caller-provided IDs/booleans are not authoritative promotion evidence. P19 remains unstarted.

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18_CANONICAL_EVIDENCE_HARDENING",
+  "task_id": "FIN-P18-WH-001-R01",
+  "state": "CANONICAL_COMPLETE",
+  "authoritative_path": "packages.learning.canonical_evidence",
+  "same_run_upstream_evidence": [
+    "P14-H",
+    "P15-I",
+    "P16-H",
+    "P17_EMPIRICAL_G9_REFERENCE"
+  ],
+  "caller_promotion_booleans_authoritative": false,
+  "canonical_artifact_resolution": true,
+  "governed_metric_policy": true,
+  "retraining_resource_budgets": [
+    "CPU_SECONDS",
+    "PEAK_MEMORY_MB",
+    "WALL_SECONDS",
+    "ATTEMPTS"
+  ],
+  "automatic_live_promotion": false,
+  "broker_exchange_routing": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

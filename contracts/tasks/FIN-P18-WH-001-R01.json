@@ -1,0 +1,86 @@
+{
+  "task_id": "FIN-P18-WH-001-R01",
+  "phase": "P18",
+  "workstream": "WH",
+  "objective": "Make the authoritative P18 learning/promotion path independently resolve canonical upstream evidence, governed metric schemas and retraining resource budgets.",
+  "scope": [
+    "Add a canonical evidence store/resolver for P17 strategy/model, P14 signal, P15 risk, P16 firewall, dataset, experiment and promotion artifacts",
+    "Require non-degenerate content-addressed identities and expected artifact kinds/states",
+    "Add versioned metric definitions with unit and direction semantics",
+    "Bind canonical evaluations to a metric policy identity",
+    "Add retraining CPU, memory, wall-time and attempt budgets with usage enforcement",
+    "Add authoritative promotion governance that resolves evidence records rather than trusting caller booleans",
+    "Generate CI evidence using actual upstream P14/P15/P16 and empirical P17 evidence from the same Governance run",
+    "Reconcile P18 documentation and audit issue #384"
+  ],
+  "out_of_scope": [
+    "P19 work",
+    "Broker/exchange execution",
+    "Automatic live promotion",
+    "Replacing the existing pure deterministic primitives used for local unit testing"
+  ],
+  "dependencies": [
+    "FIN-P17-WI-001-R01 empirical G9 hardening",
+    "P18 CANONICAL_COMPLETE",
+    "P14/P15/P16 canonical evidence",
+    "Owner repair authorization"
+  ],
+  "read_paths": ["packages/learning/**","quant/**","scripts/ci/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P18-WH-001-R01.json",
+    "config/learning/canonical-evidence-policy.json",
+    "packages/learning/canonical_evidence.py",
+    "tests/p18/test_canonical_evidence.py",
+    "scripts/ci/p18_canonical_lineage_evidence.py",
+    ".github/workflows/governance.yml",
+    "docs/12-learning/P18-CANONICAL-EVIDENCE-HARDENING.md",
+    "docs/12-learning/p18-canonical-evidence-hardening.json",
+    "docs/12-learning/P18-PHASE-CLOSURE.md",
+    "docs/12-learning/p18-phase-closure.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","adapters/execution/**","packages/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Unknown/mismatched canonical artifacts fail closed",
+    "Metric policy enforces exact metric names, units and direction metadata",
+    "Retraining resource budget overruns fail closed",
+    "Demo promotion cannot be approved with unresolved evidence",
+    "Live target remains OWNER_LIVE_GATE_REQUIRED",
+    "CI lineage evidence consumes actual upstream P14/P15/P16/P17 artifacts",
+    "P19 remains unstarted"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No broker/exchange routing",
+    "No automatic live promotion",
+    "No caller boolean can independently authorize canonical Demo promotion",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Canonical lineage CI evidence",
+    "Actual same-run upstream evidence hashes",
+    "Governance CI",
+    "GitHub #384 closure",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert the canonical evidence resolver/facade and retain P18 primitives as non-authoritative local components; no P19 or trading state changes.",
+  "human_gate": false,
+  "definition_of_ready": ["FIN-P17-WI-001-R01 available in branch ancestry","P18 canonical state stable"],
+  "definition_of_done": [
+    "Authoritative learning path resolves upstream canonical evidence",
+    "Metric schemas are versioned and enforced",
+    "Retraining resource budgets are explicit and enforced",
+    "Promotion approval depends on resolved canonical artifacts",
+    "Governance passes",
+    "Issue #384 closed",
+    "P19 remains NOT_STARTED"
+  ]
+}
