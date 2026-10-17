@@ -25,3 +25,19 @@ __all__ = [
     "DemoStrategy",
     "PaperTradingEngine",
 ]
+
+from .journal import (
+    DecisionJournalEntry,
+    DecisionOutcomeJournal,
+    DecisionOutcomeJournalError,
+    JournalView,
+    OutcomeJournalEntry,
+)
+
+__all__ += [
+    "DecisionJournalEntry",
+    "DecisionOutcomeJournal",
+    "DecisionOutcomeJournalError",
+    "JournalView",
+    "OutcomeJournalEntry",
+]
