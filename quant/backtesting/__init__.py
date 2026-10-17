@@ -115,3 +115,17 @@ __all__ += [
     "LiquidityCapacityCertificate",
     "evaluate_liquidity_capacity",
 ]
+
+from .strategy_registry import (
+    StrategyRegistry,
+    StrategyRegistryError,
+    StrategyVersion,
+    build_strategy_registry,
+)
+
+__all__ += [
+    "StrategyRegistry",
+    "StrategyRegistryError",
+    "StrategyVersion",
+    "build_strategy_registry",
+]
