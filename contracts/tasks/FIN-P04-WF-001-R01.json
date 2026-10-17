@@ -1,0 +1,84 @@
+{
+  "task_id": "FIN-P04-WF-001-R01",
+  "phase": "P04",
+  "workstream": "WF",
+  "objective": "Resolve branch hygiene issue #233 without deleting active or unproven unique work.",
+  "scope": [
+    "Treat a non-canonical branch as safely absorbed when its current tip commit is associated with any merged same-repository PR",
+    "Retire only three explicitly proven superseded/duplicate branch tips through exact closed-PR head/ref/SHA checks",
+    "Run branch inventory audit after main pushes as well as scheduled/manual runs",
+    "Close the automated hygiene issue only when stale/excessive conditions are actually absent",
+    "Document the retirement proof set and preserve all unproven unique branches"
+  ],
+  "out_of_scope": [
+    "Deleting branches with open PRs",
+    "Deleting unproven unique commits",
+    "Changing the branch-count threshold",
+    "Starting P19",
+    "Changing trading behavior"
+  ],
+  "dependencies": [
+    "P04 engineering foundation canonical baseline",
+    "GitHub issue #233 open",
+    "P17/P18 audit repairs merged",
+    "Owner directive to fix remaining non-PASS checklist items"
+  ],
+  "read_paths": [".github/workflows/branch-hygiene.yml","docs/**","contracts/tasks/**"],
+  "write_paths": [
+    "contracts/tasks/FIN-P04-WF-001-R01.json",
+    ".github/workflows/branch-hygiene.yml",
+    "docs/06-engineering/BRANCH-HYGIENE-RETIREMENT.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/**",
+    "adapters/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A8","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Open-PR branches are preserved",
+    "Exact merged PR branches remain deletable",
+    "Alias branches are deletable only when tip commit is associated with a merged same-repository PR",
+    "Explicit superseded deletion requires exact closed PR number, branch ref and head SHA",
+    "All other ahead-by-positive branches remain report-only",
+    "Post-cleanup non-canonical branch count is at or below 12",
+    "Issue #233 closes only after clean audit",
+    "P19 remains unstarted"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No force push",
+    "No main deletion",
+    "No active PR branch deletion",
+    "No unproven unique branch deletion"
+  ],
+  "evidence": [
+    "Merged PR associations #43 #58 #34 #302 #381",
+    "Explicit superseded PRs #375 #313 #247",
+    "Branch Hygiene workflow run",
+    "GitHub issue #233 closure",
+    "Linear reconciliation"
+  ],
+  "rollback": "Restore workflow logic from previous main; deleted historical branches can be recreated at their recorded tip SHAs if required.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "All target branch tip SHAs and PR proofs are recorded",
+    "No target branch has an open PR"
+  ],
+  "definition_of_done": [
+    "Only proven absorbed/superseded branches are deleted",
+    "Non-canonical branch count is within threshold",
+    "Branch Hygiene audit passes and #233 is closed",
+    "Governance passes",
+    "P19 remains NOT_STARTED"
+  ]
+}
