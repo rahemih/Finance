@@ -104,6 +104,13 @@ def load(path: Path) -> dict[str, object]:
     return value
 
 
+def load_exact(path: Path) -> dict[str, object]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise RuntimeError(f"object required: {path}")
+    return value
+
+
 def sha(value: object, *, field: str) -> str:
     if not isinstance(value, str) or len(value) != 64:
         raise RuntimeError(f"{field} must be SHA-256")
@@ -958,7 +965,7 @@ class CanonicalPipelineStageExecutor:
             path = self._artifact_path(cycle_name, stage)
             if not path.is_file():
                 raise RuntimeError(f"missing persisted canonical stage artifact: {stage}")
-            payload = load(path)
+            payload = load_exact(path)
             if digest(payload) != evidence:
                 raise RuntimeError(f"persisted canonical stage artifact identity mismatch: {stage}")
 
