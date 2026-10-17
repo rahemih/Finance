@@ -281,3 +281,5 @@ FIN-P17-WI-001-R01 — P17 empirical G9 evidence hardening — CANONICAL_COMPLET
 FIN-P18-WH-001-R01 — P18 canonical evidence / promotion lineage hardening — CANONICAL_COMPLETE — GitHub #384 — RELEASED / LINEAR_CONTINUATION_REGISTER
 
 FIN-P18-WI-001-R01 — P18 persistent scheduled Demo learning runtime — CANONICAL_COMPLETE — GitHub #383 — RELEASED / LINEAR_CONTINUATION_REGISTER
+
+FIN-P04-WF-001-R01 — Safe branch retirement / hygiene reconciliation — CANONICAL_COMPLETE — GitHub #233 — RELEASED / LINEAR_CONTINUATION_REGISTER
