@@ -1,6 +1,6 @@
 # P17-I — Benchmark / Quant Gate
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WI-001`  
 Frozen-roadmap gate: `G9_QUANT_VALIDATED`
 
@@ -43,3 +43,17 @@ After PASS:
 - P18 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`;
 - LIVE_TRADING remains DISABLED;
 - AUTO_TRADING remains DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #358 = MERGED;
+- implementation head = `45d3f5acb9e4eb23033e7857053318fc06767c05`;
+- Governance `39009925612` = SUCCESS;
+- artifact = `sha256:9a1ef4d26afcfd6a9952a9c0ce0d8f6f24aa7b781b646fecd5f6e5361860d4ea`;
+- implementation merge = `0da38f07a7690ebafec1d407b875f2b3bd06eb3a`;
+- `FIN-P17-WI-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WI-001-01` = RELEASED;
+- `G9_QUANT_VALIDATED` = PASS;
+- P17 phase closure = READY;
+- P18 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
