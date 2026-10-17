@@ -6881,3 +6881,8 @@ Automatic Live Promotion = FORBIDDEN.
 P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## P17 post-closure audit hardening — FIN-P17-WI-001-R01
+
+State: CANONICAL_COMPLETE after governed merge. GitHub audit #382 is resolved by a separate empirical G9 reference path that rejects fixture-only and degenerate placeholder evidence, binds measurements to versioned metric schemas and a content-addressed public-market dataset, and derives Strategy/Model Registry identities from the same evidence lineage. Original fixture evidence remains CI self-test only. Profitability guarantee: NONE. P19 authorization: UNCHANGED.

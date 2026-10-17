@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17_EMPIRICAL_G9_HARDENING",
+  "task_id": "FIN-P17-WI-001-R01",
+  "state": "CANONICAL_COMPLETE",
+  "public_market_reference": "research/reference-data/btc-usd-daily-2026-09-yahoo.json",
+  "empirical_policy": "config/quant/empirical-quant-gate-policy.json",
+  "fixture_only_allowed": false,
+  "placeholder_identity_rejection": true,
+  "governed_metric_schemas": true,
+  "strategy_model_registry_binding": true,
+  "deterministic_ci_twice": true,
+  "production_scale_validation": false,
+  "profitability_guarantee": false,
+  "execution_authority": false,
+  "automatic_live_promotion": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

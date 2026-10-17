@@ -1,0 +1,30 @@
+# P17 Empirical G9 Hardening — FIN-P17-WI-001-R01
+
+State: CANONICAL_COMPLETE after governed merge
+
+## Purpose
+
+The original P17-A..P17-I CI evidence remains a deterministic self-test suite. It is intentionally retained, but it is no longer sufficient by itself to represent empirical G9 evidence.
+
+FIN-P17-WI-001-R01 adds a second, fail-closed empirical certification path.
+
+## Empirical reference binding
+
+- public-market BTC-USD daily reference observations are checked in with source metadata and `fixture_only=false`;
+- the dataset bytes and threshold policy bytes are content-addressed;
+- P17-A..P17-H empirical evidence hashes are derived from the reference run, not repeated-character placeholders;
+- Strategy Registry and Model Registry identities are constructed from the actual reference dataset, code, policy and D/E/F certificate lineage;
+- every benchmark category has a versioned metric schema, unit, comparator and governed threshold;
+- every measurement is bound to the dataset and its metric-schema identity;
+- fixture-only evidence and degenerate placeholder SHA-256 identities fail closed;
+- Governance executes the empirical reference twice and requires byte-identical output.
+
+Required categories remain OOS_EDGE, RISK, ROBUSTNESS, CAPACITY and EXECUTION_REALISM.
+
+## Reference scope
+
+This is a small public-market reference certification used to prove end-to-end empirical binding in CI. It is not a production-scale multi-year research result and is not a profitability guarantee.
+
+## Safety
+
+No broker/exchange routing, execution authority, automatic live promotion, Live Trading or Auto Trading is enabled. P19 is not started by this repair.
