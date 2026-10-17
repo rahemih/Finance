@@ -76,3 +76,17 @@ __all__ += [
     "ExperimentSpec",
     "ExperimentTrackingError",
 ]
+
+from .retraining import (
+    CandidateRecord,
+    ControlledRetrainer,
+    ControlledRetrainingError,
+    OfflineTrainer,
+    ResourceBudget,
+    RetrainingRequest,
+    TrainerResult,
+)
+__all__ += [
+    "CandidateRecord","ControlledRetrainer","ControlledRetrainingError",
+    "OfflineTrainer","ResourceBudget","RetrainingRequest","TrainerResult",
+]
