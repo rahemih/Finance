@@ -1328,7 +1328,7 @@ jobs:
           cmp build/p18-phase-a.json build/p18-phase-b.json
           sha256sum build/p18-phase-a.json
 
-      - name: P19-A shadow decisioning tests
+      - name: P19 shadow / replay tests
         run: python -m unittest discover -s tests/p19 -p 'test_*.py' -v
 
       - name: P19-A deterministic shadow decision evidence twice
@@ -1339,6 +1339,15 @@ jobs:
           PYTHONPATH=. python scripts/ci/p19a_evidence.py --signal build/p14h-a.json --risk build/p15i-a.json --firewall build/p16h-a.json --p17 build/p17-canonical-empirical-a.json --output build/p19a-b.json
           cmp build/p19a-a.json build/p19a-b.json
           sha256sum build/p19a-a.json
+
+      - name: P19-B deterministic data replay evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p19b_evidence.py --output build/p19b-a.json
+          PYTHONPATH=. python scripts/ci/p19b_evidence.py --output build/p19b-b.json
+          cmp build/p19b-a.json build/p19b-b.json
+          sha256sum build/p19b-a.json
 
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
@@ -1481,6 +1490,7 @@ jobs:
             build/p18i-a.json
             build/p18-phase-a.json
             build/p19a-a.json
+            build/p19b-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
