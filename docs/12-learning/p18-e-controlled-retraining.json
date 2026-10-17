@@ -1,1 +1,24 @@
-{"schema_version":"1.0","kind":"NEXUS_QUANT_P18E_CONTROLLED_RETRAINING","task_id":"FIN-P18-WE-001","state":"IN_PROGRESS","dependency":"P18-D_CANONICAL_COMPLETE","offline_deterministic_trainer":true,"candidate_only":true,"champion_selection_owner":"P18-F","champion_selection_authority":false,"promotion_authority":false,"automatic_live_promotion":false,"p18_f_started":false,"p19_started":false,"live_trading":"DISABLED","auto_trading":"DISABLED"}
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18E_CONTROLLED_RETRAINING",
+  "task_id": "FIN-P18-WE-001",
+  "state": "CANONICAL_COMPLETE",
+  "dependency": "P18-D_CANONICAL_COMPLETE",
+  "offline_deterministic_trainer": true,
+  "candidate_only": true,
+  "champion_selection_owner": "P18-F",
+  "champion_selection_authority": false,
+  "promotion_authority": false,
+  "automatic_live_promotion": false,
+  "p18_f_started": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "implementation_pr": 369,
+  "implementation_head": "109c6edc1d15fd1d9942bdf7ce7689a0228c86b6",
+  "implementation_governance_run": 39021866808,
+  "implementation_artifact_sha256": "28bee0e74f500e84f4c71ac744ffa7903eaabca3b4e59dfc190a313897a2f302",
+  "implementation_merge_sha": "0acd470bd7c49c37174c62d53a5efb9bdc68a7b0",
+  "lock_state": "RELEASED",
+  "p18_f_state": "READY_NOT_STARTED"
+}
