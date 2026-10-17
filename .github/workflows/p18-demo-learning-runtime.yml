@@ -13,6 +13,18 @@ on:
       - 'config/quant/**'
       - 'research/reference-data/**'
       - '.github/workflows/p18-demo-learning-runtime.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/learning/**'
+      - 'quant/backtesting/**'
+      - 'scripts/runtime/**'
+      - 'scripts/ci/p17_*.py'
+      - 'scripts/ci/p18_*.py'
+      - 'config/learning/**'
+      - 'config/quant/**'
+      - 'research/reference-data/**'
+      - '.github/workflows/p18-demo-learning-runtime.yml'
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
