@@ -77,7 +77,7 @@ STAGES = (
 def canonical_bytes(value: object) -> bytes:
     def encode_special(item: object) -> str:
         if isinstance(item, Decimal):
-            return decimal_text(item)
+            return scalar_text(item)
         raise TypeError(f"unsupported canonical JSON type: {type(item).__name__}")
 
     return json.dumps(
