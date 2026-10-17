@@ -1,6 +1,6 @@
 # P17-G — Strategy Registry
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WG-001`
 
 ## Objective
@@ -32,3 +32,17 @@ P17-H..P17-I remain later workstreams.
 `G9_QUANT_VALIDATED` = NOT_REACHED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #354 = MERGED;
+- implementation head = `25f255f312ffe17091d43085926c0fc9c1da5c9f`;
+- Governance `39008606942` = SUCCESS;
+- artifact = `sha256:956457f99ba648812f3bfb231f2521820dd619a30fc8277122c92cf7d2cdc19e`;
+- implementation merge = `c66d0118ae289a62a19dd1c90b3833c7918d1a8b`;
+- `FIN-P17-WG-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WG-001-01` = RELEASED;
+- P17-H = READY_NOT_STARTED;
+- P17-I = NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
