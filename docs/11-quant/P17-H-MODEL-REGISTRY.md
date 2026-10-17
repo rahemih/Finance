@@ -1,6 +1,6 @@
 # P17-H — Model Registry
 
-State: IMPLEMENTATION_ACTIVE  
+State: CANONICAL_COMPLETE  
 Task: `FIN-P17-WH-001`
 
 ## Objective
@@ -30,3 +30,16 @@ P17-I remains the final Benchmark / Quant Gate.
 P18 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #356 = MERGED;
+- implementation head = `1a12c42e270017295df9f8fc71fbed3b22ac5cb9`;
+- Governance `39009154719` = SUCCESS;
+- artifact = `sha256:5d754f4f6b5bf5af09e525fbef5e4d7d1df1bcb2422a306462c912b820fafaab`;
+- implementation merge = `e11a8262f2d9e61d5f5fd1f83c25d6cd72319922`;
+- `FIN-P17-WH-001` = CANONICAL_COMPLETE;
+- `LOCK-FIN-P17-WH-001-01` = RELEASED;
+- P17-I = READY_NOT_STARTED;
+- `G9_QUANT_VALIDATED` = NOT_REACHED.
