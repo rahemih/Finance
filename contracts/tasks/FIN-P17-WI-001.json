@@ -1,0 +1,97 @@
+{
+  "task_id": "FIN-P17-WI-001",
+  "phase": "P17",
+  "workstream": "WI",
+  "objective": "Implement the deterministic P17 Benchmark / Quant Gate and certify G9_QUANT_VALIDATED only when complete P17-A..P17-H lineage and all required governed benchmark categories pass.",
+  "scope": [
+    "Require exact canonical evidence coverage for P17-A through P17-H",
+    "Require Strategy Registry and Model Registry identities",
+    "Require explicit governed benchmark criteria with no production numeric defaults",
+    "Require benchmark categories OOS_EDGE, RISK, ROBUSTNESS, CAPACITY and EXECUTION_REALISM",
+    "Support explicit GE and LE comparators over scaled integer metrics",
+    "Require SHA-256 evidence identity per benchmark criterion",
+    "Reject duplicate categories, duplicate workstream evidence, invalid lineage identities or failing criteria",
+    "Canonicalize inputs for deterministic G9 identity",
+    "Emit G9_QUANT_VALIDATED / PASS only for complete valid evidence",
+    "Generate deterministic offline P17-I evidence"
+  ],
+  "out_of_scope": [
+    "Inventing production benchmark thresholds",
+    "Changing Strategy or Model Registry records",
+    "Automatic promotion to P18",
+    "Demo learning or retraining",
+    "Broker/exchange connectivity or execution",
+    "Profitability guarantee"
+  ],
+  "dependencies": [
+    "P17-A..P17-H CANONICAL_COMPLETE",
+    "P17-G Strategy Registry canonical",
+    "P17-H Model Registry canonical",
+    "Owner P17 phase authorization already consumed"
+  ],
+  "read_paths": ["quant/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WI-001.json",
+    "config/quant/quant-gate-policy.json",
+    "quant/backtesting/__init__.py",
+    "quant/backtesting/quant_gate.py",
+    "tests/p17/test_quant_gate.py",
+    "scripts/ci/p17i_evidence.py",
+    "docs/11-quant/P17-I-BENCHMARK-QUANT-GATE.md",
+    "docs/11-quant/p17-i-benchmark-quant-gate.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Complete P17-A..P17-H evidence + passing benchmark categories certifies G9_QUANT_VALIDATED",
+    "Missing/duplicate/unsupported workstream evidence fails closed",
+    "Missing/duplicate benchmark category fails closed",
+    "Failing GE/LE benchmark criterion fails closed",
+    "Invalid SHA-256 evidence fails closed",
+    "Input ordering does not change gate identity",
+    "P18 remains NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "No execution or production-promotion authority is emitted",
+    "P17-I evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credential access",
+    "No production numeric benchmark defaults",
+    "No automatic P18 promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P17-A..P17-H canonical closures",
+    "Deterministic P17-I G9 evidence",
+    "Implementation Governance",
+    "Closure revalidation",
+    "Linear continuation-register reconciliation",
+    "P17 canonical phase closure dossier"
+  ],
+  "rollback": "Revert P17-I gate/config/tests/evidence/CI/state changes; P17-H remains canonical complete and G9 remains not reached.",
+  "human_gate": false,
+  "definition_of_ready": ["P17-A..P17-H CANONICAL_COMPLETE","No active governed task or lock conflict"],
+  "definition_of_done": [
+    "Deterministic Benchmark / Quant Gate implemented",
+    "G9_QUANT_VALIDATED PASS is deterministic and fail-closed",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Closure reconciliation merged",
+    "FIN-P17-WI-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P17 CANONICAL_COMPLETE",
+    "P17-A..P17-I CANONICAL_COMPLETE",
+    "G9_QUANT_VALIDATED PASS recorded",
+    "P18 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ]
+}

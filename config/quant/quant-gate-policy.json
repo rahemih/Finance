@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17I_BENCHMARK_QUANT_GATE_POLICY",
+  "task_id": "FIN-P17-WI-001",
+  "gate_name": "G9_QUANT_VALIDATED",
+  "required_workstreams": ["P17-A","P17-B","P17-C","P17-D","P17-E","P17-F","P17-G","P17-H"],
+  "required_benchmark_categories": ["OOS_EDGE","RISK","ROBUSTNESS","CAPACITY","EXECUTION_REALISM"],
+  "allowed_comparators": ["GE","LE"],
+  "production_numeric_defaults": null,
+  "automatic_p18_promotion": false,
+  "profitability_guarantee": false,
+  "execution_authority": false,
+  "next_phase": "P18",
+  "next_phase_state_after_pass": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

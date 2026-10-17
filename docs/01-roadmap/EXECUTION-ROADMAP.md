@@ -81,7 +81,7 @@ Phase transition:
 - P14 — Signal / Probability / Explainability: CANONICAL_COMPLETE / P14-A..P14-I CANONICAL_COMPLETE / G7_SIGNAL_VALIDATED PASS
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
-- P17 — Backtesting / Strategy Factory: ACTIVE / P17-A..P17-H CANONICAL_COMPLETE / P17-I READY_NOT_STARTED / G9_QUANT_VALIDATED NOT_REACHED
+- P17 — Backtesting / Strategy Factory: ACTIVE / P17-A..P17-H CANONICAL_COMPLETE / P17-I IN_PROGRESS / G9_QUANT_VALIDATED NOT_REACHED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2421,3 +2421,15 @@ Artifact `sha256:5d754f4f6b5bf5af09e525fbef5e4d7d1df1bcb2422a306462c912b820fafaa
 Lock = RELEASED.  
 P17-I = READY_NOT_STARTED.  
 `G9_QUANT_VALIDATED` = NOT_REACHED.
+
+
+## P17-I activation — 2026-10-17
+
+`FIN-P17-WI-001` = IN_PROGRESS.  
+Lock = `LOCK-FIN-P17-WI-001-01` / ACTIVE.
+
+P17-I owns `G9_QUANT_VALIDATED`. PASS requires exact P17-A..P17-H evidence, Strategy/Model Registry identity and passing governed benchmark categories with no production numeric defaults.
+
+P18 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
