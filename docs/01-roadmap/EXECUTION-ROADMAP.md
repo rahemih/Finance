@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P18-WC-001 — Training Dataset Curation
-- active lock: LOCK-FIN-P18-WC-001-01
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -82,7 +82,7 @@ Phase transition:
 - P15 — Risk & Portfolio: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDENT_RISK_VALIDATION PASS
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
-- P18 — Continuous Demo Learning: ACTIVE / P18-A..P18-B CANONICAL_COMPLETE / P18-C IN_PROGRESS / P18-D..P18-I NOT_STARTED
+- P18 — Continuous Demo Learning: ACTIVE / P18-A..P18-C CANONICAL_COMPLETE / P18-D READY_NOT_STARTED / P18-E..P18-I NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2552,3 +2552,18 @@ Boundary:
 
 P18-D..P18-I remain NOT_STARTED.  
 P19 remains NOT_STARTED.
+
+
+## P18-C canonical closure — 2026-10-17
+
+P18-C — Training Dataset Curation = CANONICAL_COMPLETE.  
+Implementation PR #365 = MERGED.  
+Implementation head = `e71c7605d5ffe8e32582200bb592c282acb4ccd4`.  
+Governance `39020172148` = SUCCESS.  
+Artifact `sha256:eb64fd4c11a468f83e1cb5ded4c518efd40eded43e2ef40a3a89c8039be0e15d`.  
+Implementation merge SHA = `444c051a88be6738e706abd6c11ef5c1416130e0`.  
+Lock = RELEASED.  
+P18-D = READY_NOT_STARTED.  
+P18-E..P18-I remain NOT_STARTED.  
+P19 remains NOT_STARTED.  
+LIVE_TRADING and AUTO_TRADING remain DISABLED.
