@@ -1,0 +1,28 @@
+{
+  "task_id":"FIN-P18-WE-001","phase":"P18","workstream":"WE",
+  "objective":"Implement deterministic controlled retraining that consumes canonical P18-C datasets and P18-D experiment lineage through an injected offline trainer, emits immutable candidate-model artifacts and metrics, and never performs automatic promotion.",
+  "scope":[
+    "Define immutable retraining request bound to dataset, experiment, base model, code and trainer lineage",
+    "Require deterministic seed and explicit trainer identity/version",
+    "Invoke only an injected offline deterministic trainer interface",
+    "Validate returned candidate artifact/model lineage and metrics",
+    "Content-address retraining request and result",
+    "Reject mismatched lineage, non-finite metrics, duplicate candidate identities and unauthorized authority flags",
+    "Generate candidate only; P18-F owns Champion/Challenger",
+    "Generate deterministic P18-E evidence"
+  ],
+  "out_of_scope":["Champion/Challenger selection (P18-F)","Drift/Decay (P18-G)","Promotion Governance (P18-H)","24/7 Loop (P18-I)","P19","Broker/exchange execution","Automatic live promotion"],
+  "dependencies":["P18-D CANONICAL_COMPLETE","P18-C CANONICAL_COMPLETE","P17-H Model Registry","P04 deterministic harness"],
+  "read_paths":["packages/learning/**","config/**","docs/**","contracts/tasks/**",".github/workflows/governance.yml","scripts/ci/foundation_ci.py"],
+  "write_paths":["contracts/tasks/FIN-P18-WE-001.json","config/learning/controlled-retraining-policy.json","packages/learning/__init__.py","packages/learning/retraining.py","tests/p18/test_controlled_retraining.py","scripts/ci/p18e_evidence.py","docs/12-learning/P18-E-CONTROLLED-RETRAINING.md","docs/12-learning/p18-e-controlled-retraining.json",".github/workflows/governance.yml","scripts/ci/foundation_ci.py","docs/01-roadmap/EXECUTION-ROADMAP.md","docs/02-current-state/CURRENT-STATE.md","docs/13-tasks/TASK-CATALOG.md"],
+  "forbidden_paths":["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","adapters/execution/**","packages/execution/**","secrets/**","credentials/**"],
+  "agents":["A0","A4","A5","A7","A9","A10"],"plugins":["GitHub","Linear"],"skills":[],
+  "access":["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],"secrets":[],"risk_level":"CRITICAL",
+  "tests":["Strict Pyright passes","Request/result identities deterministic","Trainer lineage and seed required","Trainer output lineage mismatch fails closed","Candidate artifact/model identity deterministic","Non-finite metrics fail closed","No Champion/Promotion/Live authority","P18-E evidence byte-identical"],
+  "security_tests":["Injected offline trainer only","No network/credentials","No automatic promotion","LIVE_TRADING/AUTO_TRADING disabled"],
+  "evidence":["P18-D canonical closure","Deterministic P18-E evidence","Implementation Governance","Closure revalidation","Linear reconciliation"],
+  "rollback":"Revert P18-E files/state; P18-D remains canonical and P18-F remains unstarted.",
+  "human_gate":false,
+  "definition_of_ready":["P18-D CANONICAL_COMPLETE","No active task/lock conflict"],
+  "definition_of_done":["Controlled retraining implemented","Candidate-only output enforced","Strict CI/evidence pass","Implementation and closure PRs merged","FIN-P18-WE-001 CANONICAL_COMPLETE","Lock released","P18-F READY_NOT_STARTED","P19 NOT_STARTED"]
+}
