@@ -5,7 +5,7 @@ from decimal import Decimal, InvalidOperation
 import hashlib
 import json
 import re
-from typing import Mapping, Sequence
+from typing import Mapping
 
 
 class ExperimentTrackingError(ValueError):
