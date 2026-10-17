@@ -4,7 +4,7 @@
   "task_id": "FIN-P19-WA-001",
   "phase": "P19",
   "workstream": "P19-A",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "owner_phase_authorization": "GRANTED_CONSUMED",
   "policy": "config/shadow/shadow-decisioning-policy.json",
   "package": "packages/shadow/shadow_decisioning.py",
@@ -31,5 +31,21 @@
   "automatic_live_promotion": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "lock": "RELEASED",
+  "implementation": {
+    "pr": 391,
+    "head": "626607a77812da5790714c6aef9981f3fdba24f7",
+    "governance_run": 39045419135,
+    "artifact_id": 12105482008,
+    "artifact_sha256": "675bae216666d58e5c662a494ba2bfbd06bc9d3dd2523bfaca1bd4c37d06d474",
+    "merge_sha": "28b650a01a19323506a5fdd69fa8a1ec912f11b5",
+    "post_merge_governance_run": 39045586525,
+    "post_merge_artifact_id": 12105956192,
+    "post_merge_artifact_sha256": "8d9a90ba5e5ce75cf4ff4fef26c09f1ce3d657456f48f8a1629e8abd4234a559",
+    "post_merge_branch_hygiene_run": 39045586461
+  },
+  "next_workstream": "P19-B",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "g10_shadow_validated": "PENDING"
 }
