@@ -264,7 +264,7 @@ This catalog is the canonical index of governed work.
 | FIN-P18-WF-001 | P18 | Champion / Challenger | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WF-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P18-WG-001 | P18 | Drift / Strategy Decay | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WG-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P18-WH-001 | P18 | Promotion Governance | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WH-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P18-WI-001 | P18 | 24/7 Learning Loop Operations | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P18-WI-001.json` | `LOCK-FIN-P18-WI-001-01` / LINEAR_CONTINUATION_REGISTER |
+| FIN-P18-WI-001 | P18 | 24/7 Learning Loop Operations | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WI-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
