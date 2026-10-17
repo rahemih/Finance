@@ -61,7 +61,18 @@ REPLAY_POLICY = ROOT / "config/historical-data/replay-snapshot-policy.json"
 
 
 def canonical_bytes(value: object) -> bytes:
-    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    def encode_special(item: object) -> str:
+        if isinstance(item, Decimal):
+            return decimal_text(item)
+        raise TypeError(f"unsupported canonical JSON type: {type(item).__name__}")
+
+    return json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+        default=encode_special,
+    ).encode("utf-8")
 
 
 def digest(value: object) -> str:
