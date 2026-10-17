@@ -1,1 +1,27 @@
-{"schema_version":"1.0","kind":"NEXUS_QUANT_P18G_DRIFT_STRATEGY_DECAY","task_id":"FIN-P18-WG-001","state":"IN_PROGRESS","dependency":"P18-F_CANONICAL_COMPLETE","severity":["NORMAL","WARN","DECAY"],"retrain_on_decay":true,"direct_retraining_authority":false,"promotion_authority":false,"automatic_live_promotion":false,"p18_h_started":false,"p19_started":false,"live_trading":"DISABLED","auto_trading":"DISABLED"}
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P18G_DRIFT_STRATEGY_DECAY",
+  "task_id": "FIN-P18-WG-001",
+  "state": "CANONICAL_COMPLETE",
+  "dependency": "P18-F_CANONICAL_COMPLETE",
+  "severity": [
+    "NORMAL",
+    "WARN",
+    "DECAY"
+  ],
+  "retrain_on_decay": true,
+  "direct_retraining_authority": false,
+  "promotion_authority": false,
+  "automatic_live_promotion": false,
+  "p18_h_started": false,
+  "p19_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "implementation_pr": 373,
+  "implementation_head": "8ef6a47dfde1dbbcd488acd1537d48c283651ef4",
+  "implementation_governance_run": 39022774417,
+  "implementation_artifact_sha256": "fe55d6e7bd5d92f0f499ba095cb30f04888cdf640a81186255330f432c916b5a",
+  "implementation_merge_sha": "1c53636ec0f71648dfbafc3bf5cc425cf8b93a8d",
+  "lock_state": "RELEASED",
+  "p18_h_state": "READY_NOT_STARTED"
+}
