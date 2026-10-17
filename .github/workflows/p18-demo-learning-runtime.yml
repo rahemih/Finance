@@ -1,6 +1,15 @@
 name: P18 Demo Learning Runtime
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/learning/**'
+      - 'scripts/runtime/**'
+      - 'scripts/ci/p18_*.py'
+      - 'config/learning/**'
+      - 'research/reference-data/**'
+      - '.github/workflows/p18-demo-learning-runtime.yml'
   schedule:
     - cron: "17 * * * *"
   workflow_dispatch:
