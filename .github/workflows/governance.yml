@@ -1170,6 +1170,28 @@ jobs:
           cmp build/p18-canonical-lineage-a.json build/p18-canonical-lineage-b.json
           sha256sum build/p18-canonical-lineage-a.json
 
+      - name: P18 reference runtime stage bundle twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p18_reference_stage_bundle.py --market research/reference-data/btc-usd-daily-2026-09-yahoo.json --p17-empirical build/p17-empirical-g9-a.json --canonical-lineage build/p18-canonical-lineage-a.json --output build/p18-runtime-stage-bundle-a.json
+          PYTHONPATH=. python scripts/ci/p18_reference_stage_bundle.py --market research/reference-data/btc-usd-daily-2026-09-yahoo.json --p17-empirical build/p17-empirical-g9-a.json --canonical-lineage build/p18-canonical-lineage-a.json --output build/p18-runtime-stage-bundle-b.json
+          cmp build/p18-runtime-stage-bundle-a.json build/p18-runtime-stage-bundle-b.json
+          sha256sum build/p18-runtime-stage-bundle-a.json
+
+      - name: P18 operational runtime twenty-cycle soak twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf build/p18-soak-a build/p18-soak-b
+          mkdir -p build/p18-soak-a build/p18-soak-b
+          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py --bundle build/p18-runtime-stage-bundle-a.json --checkpoint build/p18-soak-a/checkpoint.json --telemetry build/p18-soak-a/telemetry.jsonl --alerts build/p18-soak-a/alerts.jsonl --output build/p18-runtime-soak-a.json --cycles 20 --deterministic-start-ns 1000000
+          PYTHONPATH=. python scripts/runtime/p18_demo_worker.py --bundle build/p18-runtime-stage-bundle-a.json --checkpoint build/p18-soak-b/checkpoint.json --telemetry build/p18-soak-b/telemetry.jsonl --alerts build/p18-soak-b/alerts.jsonl --output build/p18-runtime-soak-b.json --cycles 20 --deterministic-start-ns 1000000
+          cmp build/p18-runtime-soak-a.json build/p18-runtime-soak-b.json
+          cmp build/p18-soak-a/checkpoint.json build/p18-soak-b/checkpoint.json
+          cmp build/p18-soak-a/telemetry.jsonl build/p18-soak-b/telemetry.jsonl
+          sha256sum build/p18-runtime-soak-a.json build/p18-soak-a/checkpoint.json
+
       - name: P18-A demo paper engine tests
         run: python -m unittest discover -s tests/p18 -p 'test_*.py' -v
 
@@ -1384,6 +1406,10 @@ jobs:
             build/p06a-a.json
             build/p17-empirical-g9-a.json
             build/p18-canonical-lineage-a.json
+            build/p18-runtime-stage-bundle-a.json
+            build/p18-runtime-soak-a.json
+            build/p18-soak-a/checkpoint.json
+            build/p18-soak-a/telemetry.jsonl
             build/p18a-a.json
             build/p18b-a.json
             build/p18c-a.json
