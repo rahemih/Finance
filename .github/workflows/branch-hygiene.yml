@@ -80,6 +80,12 @@ jobs:
                 .map(pr => pr.head.ref)
             );
 
+            const explicitSuperseded = new Map([
+              ['feat/FIN-P18-WE-001-controlled-retraining', { pr: 375, canonical: '#369/#370' }],
+              ['docs/FIN-P15-WB-001-position-sizing-close', { pr: 313, canonical: '#306' }],
+              ['docs/FIN-P00-WY-001-canonical-close', { pr: 247, canonical: '#246' }],
+            ]);
+
             for (const branch of branches) {
               if (branch.name === defaultBranch || branch.name === 'main') continue;
               if (openHeads.has(branch.name)) {
@@ -97,17 +103,46 @@ jobs:
                 }
               );
 
-              const provenMerged = associated.some(pr =>
+              const exactMerged = associated.find(pr =>
                 pr.merged_at &&
                 pr.head.repo?.full_name === `${owner}/${repo}` &&
                 pr.head.ref === branch.name &&
                 pr.head.sha === branch.commit.sha
               );
+              const absorbedByMerged = associated.find(pr =>
+                pr.merged_at &&
+                pr.head.repo?.full_name === `${owner}/${repo}`
+              );
 
               let deleteReason = null;
 
-              if (provenMerged) {
-                deleteReason = 'exact merged-PR proof';
+              if (exactMerged) {
+                deleteReason = `exact merged-PR proof #${exactMerged.number}`;
+              } else if (absorbedByMerged) {
+                deleteReason =
+                  `tip commit is proven part of merged same-repository PR #${absorbedByMerged.number}`;
+              } else if (explicitSuperseded.has(branch.name)) {
+                const expected = explicitSuperseded.get(branch.name);
+                const proof = await github.rest.pulls.get({
+                  owner,
+                  repo,
+                  pull_number: expected.pr,
+                });
+                const pr = proof.data;
+                const exactClosedSuperseded =
+                  pr.state === 'closed' &&
+                  !pr.merged_at &&
+                  pr.head.repo?.full_name === `${owner}/${repo}` &&
+                  pr.head.ref === branch.name &&
+                  pr.head.sha === branch.commit.sha;
+
+                if (!exactClosedSuperseded) {
+                  throw new Error(
+                    `Superseded proof mismatch for ${branch.name}: expected closed PR #${expected.pr}`
+                  );
+                }
+                deleteReason =
+                  `explicit superseded PR #${expected.pr}; canonical replacement ${expected.canonical}`;
               } else if (!branch.protected) {
                 const comparison = await github.rest.repos.compareCommitsWithBasehead({
                   owner,
@@ -146,7 +181,10 @@ jobs:
             }
 
   audit:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: >-
+      github.event_name == 'push' ||
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch'
     needs: [cleanup-known-merged]
     runs-on: ubuntu-latest
     env:
@@ -212,9 +250,11 @@ jobs:
               `Stale threshold: **${staleDays} days**`,
               '',
               '### Safety policy',
-              '- Branches with exact proof of a merged same-repository PR are deleted automatically.',
+              '- Branches with exact merged-PR proof are deleted automatically.',
+              '- Branch aliases whose current tip commit is proven part of a merged same-repository PR are also safely retired.',
+              '- Three exact closed-PR superseded branches are retired only after branch/ref/SHA proof matches the governed allowlist.',
               '- Unprotected branches with no open PR and GitHub compare `ahead_by=0` are also deleted automatically because they contain no unique commits.',
-              '- Unmerged branches with unique commits are **report-only** and are never deleted automatically.',
+              '- Any other unmerged branch with unique commits remains **report-only** and is never deleted automatically.',
               '',
               '### Stale branches without an open PR',
               stale.length
