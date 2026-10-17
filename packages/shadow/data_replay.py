@@ -85,7 +85,10 @@ class DataReplayPolicy:
         modes_raw = raw.get("accepted_clock_modes")
         if not isinstance(modes_raw, list):
             raise DataReplayError("accepted_clock_modes must be a list")
-        modes = tuple(str(item) for item in modes_raw)
+        modes = tuple(
+            _text(item, field="accepted_clock_mode")
+            for item in cast(list[object], modes_raw)
+        )
         expected_modes = (
             "EVENT_TIME",
             "RECEIVE_TIME",
