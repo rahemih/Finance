@@ -1,0 +1,91 @@
+{
+  "task_id": "FIN-P18-WI-001-R02",
+  "phase": "P18",
+  "workstream": "WI",
+  "objective": "Resolve repository-wide Branch Hygiene #233 without deleting historical branches that still contain unique commits by introducing exact-SHA archival governance and auditing only active/unclassified non-canonical branches.",
+  "scope": [
+    "Add an exact name+SHA archive registry for intentionally retained historical branches",
+    "Fail open historical retention only when the branch still matches its archived SHA; moved branches automatically become active audit targets",
+    "Exclude exact archived branches from active non-canonical branch count and stale-branch warnings",
+    "Continue deleting branches with exact merged-PR proof or ahead_by=0",
+    "Run Branch Hygiene audit on main pushes as well as schedule/workflow_dispatch",
+    "Validate archive-registry syntax and SHA integrity in Governance",
+    "Close #233 automatically when the active branch inventory is clean",
+    "Keep P19 unstarted"
+  ],
+  "out_of_scope": [
+    "Deleting unmerged branches with unique commits",
+    "Rewriting historical branch contents",
+    "Changing the frozen Master Roadmap",
+    "Starting P19"
+  ],
+  "dependencies": [
+    "P17/P18 post-closure repairs merged",
+    "Branch Hygiene issue #233 open",
+    "Owner instruction to make all non-PASS checklist items pass"
+  ],
+  "read_paths": [
+    ".github/workflows/branch-hygiene.yml",
+    "config/governance/**",
+    "scripts/ci/**",
+    "docs/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P18-WI-001-R02.json",
+    "config/governance/branch-hygiene-archive.json",
+    "scripts/ci/branch_hygiene_archive.py",
+    ".github/workflows/branch-hygiene.yml",
+    ".github/workflows/governance.yml",
+    "docs/06-engineering/BRANCH-HYGIENE-ARCHIVE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/02-current-state/CURRENT-STATE.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Archive JSON syntax is valid",
+    "Archive branch names are unique",
+    "Archive SHA values are lowercase 40-character Git SHAs",
+    "Branch Hygiene workflow remains SHA-pinned and secure",
+    "Exact archived SHA is excluded from active branch count",
+    "Archive SHA drift returns branch to active audit scope",
+    "Main push runs audit and closes clean #233 report",
+    "P19 remains unstarted"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No force deletion of unique historical branches",
+    "No secrets",
+    "No trading authority changes"
+  ],
+  "evidence": [
+    "Archive registry",
+    "Governance validation",
+    "Branch Hygiene post-merge run",
+    "Issue #233 closure",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert archival governance and restore the previous total non-canonical count audit; no branch contents are rewritten or deleted by this repair.",
+  "human_gate": false,
+  "definition_of_ready": ["Current branch inventory captured with exact SHAs","No open PR branches require archival"],
+  "definition_of_done": [
+    "Historical unique branches are explicitly governed",
+    "Active non-canonical branch count is within threshold",
+    "Governance passes",
+    "Post-merge Branch Hygiene audit passes",
+    "Issue #233 closes",
+    "P19 remains NOT_STARTED"
+  ]
+}

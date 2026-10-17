@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_BRANCH_HYGIENE_ARCHIVE",
+  "task_id": "FIN-P18-WI-001-R02",
+  "policy": {
+    "matching_rule": "EXACT_BRANCH_NAME_AND_SHA",
+    "sha_drift_behavior": "RETURN_TO_ACTIVE_AUDIT",
+    "delete_archived_unique_history": false,
+    "active_noncanonical_warning_threshold": 12
+  },
+  "branches": [
+    {"name":"agents/FIN-P01-WG-002-build-readiness","sha":"bcdc5bb46ca1ae9b0c48af75463a7bcb66d4af49","reason":"historical agent-layer build-readiness branch with unique commits"},
+    {"name":"architecture/FIN-P02-WA-001-principles-adr-framework","sha":"cc7cc7eab43de57b14b2ac5d1454889f1d300ed2","reason":"historical architecture branch with unique commits"},
+    {"name":"docs/FIN-P00-WY-001-canonical-close","sha":"9c54835157b45517bfa3fc58532dc2fa5448fda1","reason":"historical P00 closure branch with unique commits"},
+    {"name":"docs/FIN-P00-WY-001-staged-scaling","sha":"77d3e525fbe595d91f977b15d2867aac8ea1f467","reason":"historical staged-scaling branch with unique commits"},
+    {"name":"docs/FIN-P11-WG-001-canonical-close","sha":"695a5de74b0af18e94f08c1a75238fa47ac1430a","reason":"historical P11 closure branch retained at current unique head"},
+    {"name":"docs/FIN-P15-WB-001-position-sizing-close","sha":"348ad1084f4d26282ab152a15d4cdbe04658763b","reason":"historical P15-B closure branch retained at current unique head"},
+    {"name":"docs/FIN-P18-WI-001-phase-close","sha":"02dcb7a7f236fe76559197fcac2b018c0cae9c2b","reason":"historical P18 phase-closure head retained for audit lineage"},
+    {"name":"docs/P18-continuous-demo-learning-phase-closure","sha":"02dcb7a7f236fe76559197fcac2b018c0cae9c2b","reason":"superseded P18 closure branch retained for audit lineage"},
+    {"name":"feat/FIN-P18-WE-001-controlled-retraining","sha":"2bf6bcfe0ef2e789423fb48a4ea47401ab7b020f","reason":"closed duplicate P18-E branch with unique commits; preserved rather than force-deleted"},
+    {"name":"fix/FIN-P01-WG-001-R01-canonical-close","sha":"c3f904310cca17b98e4e6983c1ffe349f2ae6f89","reason":"historical P01 repair branch with unique commits"},
+    {"name":"research/FIN-P01-WB-001-market-data-providers","sha":"48010b75cf17c74486d7034549003801fc8e87ab","reason":"historical P01 market-data research branch"},
+    {"name":"research/FIN-P01-WD-001-compliance-jurisdiction","sha":"699b7d28ff755e4b61726965b7cec066212a63c2","reason":"historical compliance research branch"},
+    {"name":"research/FIN-P01-WD-001-compliance-jurisdiction-R01","sha":"23dbb9b5e3ccb8e840942261b72300540eee4017","reason":"historical compliance research repair branch"},
+    {"name":"research/FIN-P01-WD-001-compliance-jurisdiction-R02","sha":"c650f2ffa10541740d94cf28ee1aa0386e25bf34","reason":"historical compliance research repair branch"},
+    {"name":"research/FIN-P01-WE-001-cost-licensing-data-rights","sha":"1ac34580543ecd187a64e0ccc9d63cf1dc2f2364","reason":"historical data-rights research branch"},
+    {"name":"research/FIN-P01-WS-001-close","sha":"40351fab63dd0ae4948ca7187af23248b7b534ea","reason":"historical P01 research closure branch"},
+    {"name":"research/FIN-P01-WS-001-security-tooling-registry","sha":"cb17f2f8cfa78e9c31542564733bd054bec40e96","reason":"historical security-tooling research branch"},
+    {"name":"research/FIN-P01-WUI-001-frontend-uiux-registry","sha":"c7788978759ff13f73193b3cdc2363f11eddc0b0","reason":"historical UI/UX research branch"},
+    {"name":"research/FIN-P01-WUI-001-frontend-uiux-registry-R01","sha":"a231810667fc5e9bf8ea7dc605e11cef91eb20d1","reason":"historical UI/UX research repair branch"},
+    {"name":"risk/FIN-P15-WA-001-risk-policy-budget-hierarchy","sha":"e41055e256e675ce6d9fc3055470f0d754dc5c6a","reason":"historical P15 risk branch with unique commits"}
+  ],
+  "p19_started": false
+}
