@@ -41,3 +41,23 @@ __all__ += [
     "JournalView",
     "OutcomeJournalEntry",
 ]
+
+from .dataset_curation import (
+    CuratedTrainingDataset,
+    CuratedTrainingRow,
+    DatasetExclusion,
+    TrainingDatasetCurationError,
+    TrainingDatasetManifest,
+    TrainingDatasetSpec,
+    curate_training_dataset,
+)
+
+__all__ += [
+    "CuratedTrainingDataset",
+    "CuratedTrainingRow",
+    "DatasetExclusion",
+    "TrainingDatasetCurationError",
+    "TrainingDatasetManifest",
+    "TrainingDatasetSpec",
+    "curate_training_dataset",
+]
