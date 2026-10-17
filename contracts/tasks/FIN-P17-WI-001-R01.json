@@ -1,0 +1,91 @@
+{
+  "task_id": "FIN-P17-WI-001-R01",
+  "phase": "P17",
+  "workstream": "WI",
+  "objective": "Harden G9_QUANT_VALIDATED so empirical certification cannot be satisfied by fixture-only, placeholder or unbound benchmark evidence.",
+  "scope": [
+    "Add a separate empirical G9 certification path with explicit non-fixture provenance",
+    "Require exact P17-A through P17-H empirical evidence coverage",
+    "Require versioned metric schemas with units, comparator semantics and governed thresholds",
+    "Require content-addressed dataset, threshold-policy, Strategy Registry and Model Registry identities",
+    "Reject degenerate placeholder SHA-256 identities and fixture-only evidence",
+    "Add a checked-in public-market reference dataset and deterministic empirical reference certification",
+    "Add negative tests for fixture, placeholder, lineage, schema and threshold failures",
+    "Run empirical reference evidence twice in Governance and publish it in the CI artifact",
+    "Reconcile P17 closure/current-state/task documentation and issue #382"
+  ],
+  "out_of_scope": [
+    "Profitability guarantee",
+    "Live trading or broker/exchange execution",
+    "Changing the frozen Master Roadmap",
+    "Starting P19",
+    "Replacing later production-scale multi-year validation"
+  ],
+  "dependencies": [
+    "P17 CANONICAL_COMPLETE",
+    "P17-G Strategy Registry canonical baseline",
+    "P17-H Model Registry canonical baseline",
+    "P18 CANONICAL_COMPLETE",
+    "Owner repair authorization in conversation"
+  ],
+  "read_paths": ["quant/**","config/quant/**","docs/**","contracts/tasks/**","scripts/ci/**","tests/p17/**",".github/workflows/governance.yml","research/reference-data/**"],
+  "write_paths": [
+    "contracts/tasks/FIN-P17-WI-001-R01.json",
+    "quant/backtesting/empirical_quant_gate.py",
+    "config/quant/empirical-quant-gate-policy.json",
+    "research/reference-data/btc-usd-daily-2026-09-yahoo.json",
+    "tests/p17/test_empirical_quant_gate.py",
+    "scripts/ci/p17i_empirical_reference.py",
+    ".github/workflows/governance.yml",
+    "docs/11-quant/P17-EMPIRICAL-G9-HARDENING.md",
+    "docs/11-quant/p17-empirical-g9-hardening.json",
+    "docs/11-quant/P17-PHASE-CLOSURE.md",
+    "docs/11-quant/p17-phase-closure.json",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A2","A4","A5","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Fixture-only empirical evidence fails closed",
+    "Degenerate placeholder SHA-256 identities fail closed",
+    "Missing/duplicate P17-A..P17-H evidence fails closed",
+    "Metric schema/category/dataset mismatches fail closed",
+    "Failing empirical threshold fails closed",
+    "Reference public-market evidence is deterministic across two runs",
+    "Reference Strategy/Model Registry identities are derived from actual evidence rather than placeholders",
+    "P19 remains unstarted"
+  ],
+  "performance_tests": [],
+  "security_tests": [
+    "No credentials required",
+    "No broker/exchange routing",
+    "No live promotion/execution authority",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Public-market reference dataset with source metadata",
+    "Deterministic empirical G9 reference evidence",
+    "Governance CI",
+    "Issue #382 closure evidence",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert FIN-P17-WI-001-R01 empirical gate, reference evidence, CI and documentation changes; retain the original fixture self-tests without treating them as empirical proof.",
+  "human_gate": false,
+  "definition_of_ready": ["P17/P18 canonical states stable","No P19 work active"],
+  "definition_of_done": [
+    "Empirical gate cannot pass fixture-only or placeholder evidence",
+    "Metric schemas and threshold policy are versioned and content addressed",
+    "Reference real-market dataset produces deterministic empirical certification",
+    "Governance passes",
+    "Issue #382 closed",
+    "Linear reconciled",
+    "P19 remains NOT_STARTED"
+  ]
+}
