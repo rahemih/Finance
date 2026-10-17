@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "kind":"NEXUS_QUANT_P18E_CONTROLLED_RETRAINING_POLICY",
+  "task_id":"FIN-P18-WE-001",
+  "mode":"DETERMINISTIC_OFFLINE_CANDIDATE_ONLY",
+  "deterministic_seed_required":true,
+  "resource_budget_required":true,
+  "injected_offline_trainer_required":true,
+  "validation_required":true,
+  "candidate_only":true,
+  "promotion_authority":false,
+  "broker_exchange_routing":false,
+  "automatic_live_promotion":false,
+  "live_trading":"DISABLED",
+  "auto_trading":"DISABLED"
+}
