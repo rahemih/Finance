@@ -125,8 +125,19 @@ def validate_upstream(
     if p17.get("fixture_only") is not False or p17.get("gate_state") != "PASS_EMPIRICAL_REFERENCE":
         raise RuntimeError("P17 empirical gate must be non-fixture PASS")
     modules = p17.get("canonical_modules_executed")
-    if not isinstance(modules, list) or len(modules) != 9:
-        raise RuntimeError("P17 canonical module coverage incomplete")
+    expected_modules = [
+        "P17-A_BACKTEST_ENGINE",
+        "P17-B_EXECUTION_REALISM",
+        "P17-C_INFORMATION_HYGIENE",
+        "P17-D_WALK_FORWARD",
+        "P17-E_ROBUSTNESS",
+        "P17-F_LIQUIDITY_CAPACITY",
+        "P17-G_STRATEGY_REGISTRY",
+        "P17-H_MODEL_REGISTRY",
+        "P17-I_EMPIRICAL_G9",
+    ]
+    if modules != expected_modules:
+        raise RuntimeError("P17 canonical module coverage/order incomplete")
 
     signal = load(signal_path)
     if signal.get("kind") != "NEXUS_QUANT_P14H_SIGNAL_OUTPUT_EVIDENCE":
