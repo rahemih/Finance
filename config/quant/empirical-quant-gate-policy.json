@@ -1,22 +1,23 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "kind": "NEXUS_QUANT_P17_EMPIRICAL_G9_POLICY",
-  "task_id": "FIN-P17-WI-001-R01",
-  "reference_scope": "BTC-USD / DAILY / PUBLIC_MARKET_REFERENCE",
+  "task_id": "FIN-P18-WI-001-R03",
+  "reference_scope": "BTC-USD / DAILY / PUBLIC_MARKET_REFERENCE / CANONICAL_P17_MODULES",
   "fixture_only_allowed": false,
-  "reference_notional_usd": 100000,
-  "governed_roundtrip_cost_bps": 50,
-  "robustness_stress_cost_bps": 100,
+  "metric_source_rule": "CANONICAL_MODULE_OUTPUT_ONLY",
   "metrics": [
-    {"category":"OOS_EDGE","metric_id":"TOTAL_NET_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":100},
-    {"category":"RISK","metric_id":"MAX_DRAWDOWN_BPS","unit":"BPS","comparator":"LE","threshold_value":700},
-    {"category":"ROBUSTNESS","metric_id":"STRESSED_NET_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":50},
-    {"category":"CAPACITY","metric_id":"MAX_NOTIONAL_TO_DAILY_QUOTE_VOLUME_PPM","unit":"PPM","comparator":"LE","threshold_value":20},
-    {"category":"EXECUTION_REALISM","metric_id":"GOVERNED_ROUNDTRIP_COST_BPS","unit":"BPS","comparator":"LE","threshold_value":100}
+    {"category":"OOS_EDGE","metric_id":"ACTUAL_ACCOUNT_NET_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":100},
+    {"category":"RISK","metric_id":"MONTE_CARLO_WORST_MAX_DRAWDOWN_BPS","unit":"BPS","comparator":"LE","threshold_value":700},
+    {"category":"ROBUSTNESS","metric_id":"WORST_STRESS_TERMINAL_RETURN_BPS","unit":"BPS","comparator":"GE","threshold_value":50},
+    {"category":"CAPACITY","metric_id":"MAX_FULL_FILL_SCALE_BPS","unit":"BPS","comparator":"GE","threshold_value":10000},
+    {"category":"EXECUTION_REALISM","metric_id":"ACTUAL_VS_IDEAL_COST_BPS","unit":"BPS","comparator":"LE","threshold_value":100}
   ],
+  "production_scale_validation": false,
   "profitability_guarantee": false,
   "production_threshold_authority": false,
   "execution_authority": false,
+  "automatic_live_promotion": false,
+  "p19_started": false,
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED"
 }
