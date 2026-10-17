@@ -1092,6 +1092,8 @@ BUILD_INPUTS = [
     "scripts/ci/p17i_evidence.py",
     "docs/11-quant/P17-I-BENCHMARK-QUANT-GATE.md",
     "docs/11-quant/p17-i-benchmark-quant-gate.json",
+    "docs/11-quant/P17-PHASE-CLOSURE.md",
+    "docs/11-quant/p17-phase-closure.json",
     "contracts/tasks/FIN-P13-WA-001.json",
     "config/timing-opportunity/session-calendar-policy.json",
     "packages/timing_opportunity/__init__.py",
