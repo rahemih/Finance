@@ -1236,6 +1236,15 @@ jobs:
           cmp build/p18i-a.json build/p18i-b.json
           sha256sum build/p18i-a.json
 
+      - name: P18 deterministic phase closure evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p18_phase_closure.py --manifest docs/12-learning/p18-phase-closure.json --output build/p18-phase-a.json
+          PYTHONPATH=. python scripts/ci/p18_phase_closure.py --manifest docs/12-learning/p18-phase-closure.json --output build/p18-phase-b.json
+          cmp build/p18-phase-a.json build/p18-phase-b.json
+          sha256sum build/p18-phase-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1364,6 +1373,7 @@ jobs:
             build/p18g-a.json
             build/p18h-a.json
             build/p18i-a.json
+            build/p18-phase-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
