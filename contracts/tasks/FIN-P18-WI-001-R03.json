@@ -1,0 +1,100 @@
+{
+  "task_id": "FIN-P18-WI-001-R03",
+  "phase": "P18",
+  "workstream": "WI",
+  "objective": "Close the remaining P17/P18 audit gaps by executing canonical P17 A-H modules and canonical P18 A-H learning modules end-to-end inside the governed empirical/reference runtime, with typed upstream evidence resolution and OS-enforced retraining resource limits.",
+  "scope": [
+    "Execute canonical P17 Backtest Engine, Execution Realism, Information Hygiene, Walk-Forward, Robustness and Capacity modules over the governed public-market reference dataset",
+    "Build Strategy Registry and Model Registry from those actual canonical certificate identities and certify empirical G9 from the resulting P17-A..P17-H evidence",
+    "Parse and validate P14/P15/P16 evidence schemas and extract their canonical signal/risk/firewall identities instead of promoting whole-file hashes into typed artifacts",
+    "Add a canonical P18 stage executor that invokes Demo/Paper Trading, Journal, Dataset Curation, Experiment Tracking, Controlled Retraining, Champion/Challenger, Drift/Decay and canonical Promotion Governance per runtime cycle",
+    "Run the reference trainer in a Linux subprocess sandbox with CPU, address-space memory, wall-time and attempt ceilings",
+    "Persist content-addressed stage artifacts per cycle so runtime resume can reconstruct actual prior stage outputs",
+    "Switch the scheduled P18 runtime and Governance soak from BundleStageExecutor to the canonical end-to-end stage executor",
+    "Require repeated end-to-end soak and cross-run persistence without broker/exchange routing or Live authority",
+    "Close GitHub audit issues #382, #383 and #384 only after governed CI passes",
+    "Keep P19 NOT_STARTED"
+  ],
+  "out_of_scope": [
+    "Profitability guarantee",
+    "Production-scale multi-year strategy validation",
+    "Broker/exchange connectivity",
+    "Live model promotion",
+    "P19 Shadow/Replay/Digital Twin",
+    "Changing the frozen Master Roadmap"
+  ],
+  "dependencies": [
+    "FIN-P17-WI-001-R01 merged",
+    "FIN-P18-WH-001-R01 merged",
+    "FIN-P18-WI-001-R01 merged",
+    "FIN-P18-WI-001-R02 merged",
+    "Owner repair authorization"
+  ],
+  "read_paths": ["quant/**","packages/**","research/reference-data/**","scripts/**","config/**","docs/**","contracts/tasks/**",".github/workflows/**"],
+  "write_paths": [
+    "contracts/tasks/FIN-P18-WI-001-R03.json",
+    "config/learning/end-to-end-reference-policy.json",
+    "scripts/ci/p17_canonical_empirical_pipeline.py",
+    "packages/learning/training_sandbox.py",
+    "scripts/runtime/p18_reference_trainer.py",
+    "packages/learning/reference_pipeline.py",
+    "tests/p17/test_canonical_empirical_pipeline.py",
+    "tests/p18/test_reference_pipeline.py",
+    "scripts/runtime/p18_demo_worker.py",
+    ".github/workflows/governance.yml",
+    ".github/workflows/p18-demo-learning-runtime.yml",
+    "docs/11-quant/P17-EMPIRICAL-G9-HARDENING.md",
+    "docs/12-learning/P18-RUNTIME-OPERATIONALIZATION.md",
+    "docs/12-learning/P18-CANONICAL-EVIDENCE-HARDENING.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md","packages/execution/**","adapters/execution/**","secrets/**","credentials/**"],
+  "agents": ["A0","A2","A4","A5","A7","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Canonical P17 empirical pipeline invokes P17-A through P17-H modules and emits their actual result/certificate/registry identities",
+    "Empirical G9 rejects fixture-only/placeholder/unbound evidence and passes only with canonical module lineage",
+    "Typed P14/P15/P16 evidence kind/state/identity validation fails closed on mismatch",
+    "Every P18 runtime stage invokes its canonical component and persists a content-addressed stage artifact",
+    "Sandbox trainer enforces CPU, address-space memory, wall-time and attempt ceilings",
+    "Runtime restart resumes actual stage artifacts without repeating completed stages",
+    "Twenty-cycle end-to-end soak completes twice deterministically",
+    "Live target remains OWNER_LIVE_GATE_REQUIRED",
+    "P19 remains unstarted"
+  ],
+  "performance_tests": ["Two deterministic 20-cycle end-to-end reference soaks"],
+  "security_tests": [
+    "Trainer subprocess has bounded CPU/memory/wall-time/attempts",
+    "No network or credentials",
+    "No broker/exchange routing",
+    "No automatic Live promotion",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Canonical P17 empirical pipeline evidence",
+    "Typed upstream P14/P15/P16 identity evidence",
+    "Canonical P18 end-to-end runtime evidence",
+    "Two 20-cycle deterministic soaks",
+    "Governance and post-merge runtime evidence",
+    "GitHub #382/#383/#384 closure reconciliation",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert FIN-P18-WI-001-R03 and return to the prior validated wrapper/runtime layers; P19 and Live/Auto remain disabled.",
+  "human_gate": false,
+  "definition_of_ready": ["P17/P18 repair baseline merged","Audit issues #382/#383/#384 open","P19 NOT_STARTED"],
+  "definition_of_done": [
+    "Canonical P17 modules provide empirical gate evidence",
+    "Typed upstream evidence trust boundary is closed",
+    "Canonical P18 modules execute per scheduled runtime cycle",
+    "Retraining resource limits are operationally enforced",
+    "End-to-end deterministic soak passes",
+    "Issues #382/#383/#384 close",
+    "Linear reports P17/P18 audit repairs PASS",
+    "P19 remains NOT_STARTED"
+  ]
+}

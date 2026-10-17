@@ -5,9 +5,24 @@ on:
     branches: [main]
     paths:
       - 'packages/learning/**'
+      - 'quant/backtesting/**'
       - 'scripts/runtime/**'
+      - 'scripts/ci/p17_*.py'
       - 'scripts/ci/p18_*.py'
       - 'config/learning/**'
+      - 'config/quant/**'
+      - 'research/reference-data/**'
+      - '.github/workflows/p18-demo-learning-runtime.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/learning/**'
+      - 'quant/backtesting/**'
+      - 'scripts/runtime/**'
+      - 'scripts/ci/p17_*.py'
+      - 'scripts/ci/p18_*.py'
+      - 'config/learning/**'
+      - 'config/quant/**'
       - 'research/reference-data/**'
       - '.github/workflows/p18-demo-learning-runtime.yml'
   schedule:
@@ -24,7 +39,7 @@ concurrency:
 jobs:
   reference-runtime:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -41,11 +56,11 @@ jobs:
         uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
         with:
           path: build/p18-runtime-state
-          key: p18-runtime-state-${{ github.run_id }}
+          key: p18-runtime-state-canonical-v2-${{ github.run_id }}
           restore-keys: |
-            p18-runtime-state-
+            p18-runtime-state-canonical-v2-
 
-      - name: Build canonical upstream evidence
+      - name: Build typed canonical upstream evidence
         shell: bash
         run: |
           set -euo pipefail
@@ -53,32 +68,25 @@ jobs:
           PYTHONPATH=. python scripts/ci/p14h_evidence.py --output build/p14h-runtime.json
           PYTHONPATH=. python scripts/ci/p15i_evidence.py --output build/p15i-runtime.json
           PYTHONPATH=. python scripts/ci/p16h_evidence.py --output build/p16h-runtime.json
-          PYTHONPATH=. python scripts/ci/p17i_empirical_reference.py --output build/p17-empirical-runtime.json
-          PYTHONPATH=. python scripts/ci/p18_canonical_lineage_evidence.py \
-            --p17-empirical build/p17-empirical-runtime.json \
-            --signal build/p14h-runtime.json \
-            --risk build/p15i-runtime.json \
-            --firewall build/p16h-runtime.json \
-            --output build/p18-canonical-lineage-runtime.json
-          PYTHONPATH=. python scripts/ci/p18_reference_stage_bundle.py \
-            --market research/reference-data/btc-usd-daily-2026-09-yahoo.json \
-            --p17-empirical build/p17-empirical-runtime.json \
-            --canonical-lineage build/p18-canonical-lineage-runtime.json \
-            --output build/p18-runtime-stage-bundle.json
+          PYTHONPATH=. python scripts/ci/p17_canonical_empirical_pipeline.py --output build/p17-canonical-empirical-runtime.json
 
-      - name: Run three persistent Demo learning cycles
+      - name: Run three persistent canonical Demo learning cycles
         shell: bash
         run: |
           set -euo pipefail
           PYTHONPATH=. python scripts/runtime/p18_demo_worker.py \
-            --bundle build/p18-runtime-stage-bundle.json \
+            --p17-canonical build/p17-canonical-empirical-runtime.json \
+            --signal build/p14h-runtime.json \
+            --risk build/p15i-runtime.json \
+            --firewall build/p16h-runtime.json \
+            --state-root build/p18-runtime-state \
             --checkpoint build/p18-runtime-state/checkpoint.json \
             --telemetry build/p18-runtime-state/telemetry.jsonl \
             --alerts build/p18-runtime-state/alerts.jsonl \
             --output build/p18-runtime-report.json \
             --cycles 3
 
-      - name: Verify safety boundary
+      - name: Verify canonical safety boundary
         shell: bash
         run: |
           set -euo pipefail
@@ -86,24 +94,28 @@ jobs:
           import json
           from pathlib import Path
           report = json.loads(Path("build/p18-runtime-report.json").read_text())
+          assert report["canonical_stage_execution"] is True
+          assert report["runtime_mode"] == "CANONICAL_END_TO_END_DEMO_REFERENCE"
           assert report["automatic_live_promotion"] is False
           assert report["broker_exchange_routing"] is False
           assert report["p19_started"] is False
           assert report["live_trading"] == "DISABLED"
           assert report["auto_trading"] == "DISABLED"
           assert report["requested_cycles"] == 3
+          assert report["completed_cycles"] >= 3
           PY
 
-      - name: Upload reference runtime evidence
+      - name: Upload canonical runtime evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: p18-demo-runtime-reference-${{ github.run_id }}
+          name: p18-demo-runtime-canonical-${{ github.run_id }}
           path: |
+            build/p17-canonical-empirical-runtime.json
             build/p18-runtime-report.json
-            build/p18-runtime-stage-bundle.json
             build/p18-runtime-state/checkpoint.json
             build/p18-runtime-state/telemetry.jsonl
             build/p18-runtime-state/alerts.jsonl
+            build/p18-runtime-state/stage-artifacts/**
           if-no-files-found: warn
           retention-days: 30

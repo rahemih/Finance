@@ -225,9 +225,9 @@ def build_evidence() -> dict[str, object]:
         for letter, payload in zip("ABCDEFGH", payloads, strict=True)
     )
 
-    metrics_raw = policy.get("metrics")
+    metrics_raw = policy.get("legacy_metrics")
     if not isinstance(metrics_raw, list):
-        raise RuntimeError("empirical policy metrics must be a list")
+        raise RuntimeError("legacy empirical compatibility metrics must be a list")
     metric_schemas = tuple(
         MetricSchema(
             category=str(row["category"]),
@@ -283,6 +283,8 @@ def build_evidence() -> dict[str, object]:
         "source": source,
         "fixture_only": False,
         "empirical_reference": True,
+        "legacy_reference_only": True,
+        "authoritative_g9": False,
         "dataset_sha256": dataset_sha,
         "threshold_policy_sha256": policy_sha,
         "strategy_record_id": strategy.record_id,

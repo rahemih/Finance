@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -18,6 +19,7 @@ from packages.learning.runtime import (
     SystemClock,
     SystemSleeper,
 )
+from scripts.runtime.p18_reference_pipeline import CanonicalPipelineStageExecutor
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -33,7 +35,12 @@ def load(path: Path) -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--bundle", type=Path, required=True)
+    parser.add_argument("--bundle", type=Path)
+    parser.add_argument("--p17-canonical", type=Path)
+    parser.add_argument("--signal", type=Path)
+    parser.add_argument("--risk", type=Path)
+    parser.add_argument("--firewall", type=Path)
+    parser.add_argument("--state-root", type=Path)
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--telemetry", type=Path, required=True)
     parser.add_argument("--alerts", type=Path, required=True)
@@ -43,12 +50,53 @@ def main() -> int:
     args = parser.parse_args()
 
     policy_data = load(POLICY_PATH)
-    bundle = load(args.bundle)
-    stage_evidence = bundle.get("stage_evidence")
-    if not isinstance(stage_evidence, dict):
-        raise RuntimeError("stage_evidence object required")
-    stage_map = {str(key): str(value) for key, value in stage_evidence.items()}
-    source_bundle_sha = str(bundle["source_bundle_sha256"])
+    if args.bundle is not None:
+        bundle = load(args.bundle)
+        stage_evidence = bundle.get("stage_evidence")
+        if not isinstance(stage_evidence, dict):
+            raise RuntimeError("stage_evidence object required")
+        stage_map = {str(key): str(value) for key, value in stage_evidence.items()}
+        source_bundle_sha = str(bundle["source_bundle_sha256"])
+        executor = BundleStageExecutor(stage_map)
+        runtime_mode = "LEGACY_BUNDLE_SELF_TEST"
+    else:
+        required = {
+            "--p17-canonical": args.p17_canonical,
+            "--signal": args.signal,
+            "--risk": args.risk,
+            "--firewall": args.firewall,
+            "--state-root": args.state_root,
+        }
+        missing = [name for name, value in required.items() if value is None]
+        if missing:
+            raise RuntimeError(
+                "canonical runtime inputs required when --bundle is omitted: "
+                + ", ".join(missing)
+            )
+        assert args.p17_canonical is not None
+        assert args.signal is not None
+        assert args.risk is not None
+        assert args.firewall is not None
+        assert args.state_root is not None
+        executor = CanonicalPipelineStageExecutor(
+            state_root=args.state_root,
+            p17_path=args.p17_canonical,
+            signal_path=args.signal,
+            risk_path=args.risk,
+            firewall_path=args.firewall,
+        )
+        source_bundle_sha = hashlib.sha256(
+            b"".join(
+                path.read_bytes()
+                for path in (
+                    args.p17_canonical,
+                    args.signal,
+                    args.risk,
+                    args.firewall,
+                )
+            )
+        ).hexdigest()
+        runtime_mode = "CANONICAL_END_TO_END_DEMO_REFERENCE"
 
     if args.deterministic_start_ns is None:
         clock = SystemClock()
@@ -64,7 +112,7 @@ def main() -> int:
             max_consecutive_failures=int(policy_data["max_consecutive_failures"]),
         ),
         checkpoint_store=JsonCheckpointStore(args.checkpoint),
-        stage_executor=BundleStageExecutor(stage_map),
+        stage_executor=executor,
         watermark_source=FixedLagWatermarkSource(
             evidence_sha256=source_bundle_sha,
             lag_ns=0,
@@ -79,7 +127,22 @@ def main() -> int:
     )
     reports = runtime.run_cycles(cycle_prefix="p18-reference", count=args.cycles)
     if len(reports) != args.cycles:
-        raise RuntimeError("runtime stopped before requested cycle count")
+        diagnostic = {
+            "requested_cycles": args.cycles,
+            "completed_reports": len(reports),
+            "last_report": None if not reports else reports[-1].payload(),
+        }
+        if args.telemetry.exists():
+            lines = [
+                line
+                for line in args.telemetry.read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            diagnostic["telemetry_tail"] = lines[-8:]
+        raise RuntimeError(
+            "runtime stopped before requested cycle count: "
+            + json.dumps(diagnostic, sort_keys=True)
+        )
     if any(row.status != "CYCLE_COMPLETE_DEMO_ONLY" for row in reports):
         raise RuntimeError("runtime cycle did not close DEMO_ONLY")
 
@@ -87,8 +150,9 @@ def main() -> int:
         "schema_version": "1.0",
         "kind": "NEXUS_QUANT_P18_OPERATIONAL_RUNTIME_EVIDENCE",
         "task_id": "FIN-P18-WI-001-R01",
-        "runtime_mode": policy_data["mode"],
+        "runtime_mode": runtime_mode,
         "source_bundle_sha256": source_bundle_sha,
+        "canonical_stage_execution": args.bundle is None,
         "requested_cycles": args.cycles,
         "completed_cycles": reports[-1].completed_cycles,
         "reports": [row.payload() for row in reports],
