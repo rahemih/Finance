@@ -107,3 +107,7 @@ P17 execution, G9 and closure evidence are synchronized through the Finance mana
 P17 is CANONICAL_COMPLETE.
 
 P18 remains NOT_STARTED and MUST NOT start until explicit Owner phase authorization is provided.
+
+## Post-closure empirical hardening
+
+FIN-P17-WI-001-R01 closes the P17 audit gap recorded in GitHub #382. The original fixture evidence is retained as deterministic self-test evidence, while a separate empirical reference path now requires non-fixture provenance, non-degenerate identities, governed metric schemas, real Strategy/Model Registry identities and dataset-bound measurements. Governance executes the empirical reference twice. This hardening does not claim production-scale profitability and does not authorize P19 or trading.

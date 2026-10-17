@@ -8,15 +8,69 @@
   "roadmap_exit_gate_state": "PASS",
   "canonical_closure_base": "55ed94966f91f6168b31f58b2ff9fcbba010a652",
   "workstreams": {
-    "P17-A": {"task_id":"FIN-P17-WA-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":342,"closure_pr":343},
-    "P17-B": {"task_id":"FIN-P17-WB-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":344,"closure_pr":345},
-    "P17-C": {"task_id":"FIN-P17-WC-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":346,"closure_pr":347},
-    "P17-D": {"task_id":"FIN-P17-WD-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":348,"closure_pr":349},
-    "P17-E": {"task_id":"FIN-P17-WE-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":350,"closure_pr":351},
-    "P17-F": {"task_id":"FIN-P17-WF-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":352,"closure_pr":353},
-    "P17-G": {"task_id":"FIN-P17-WG-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":354,"closure_pr":355},
-    "P17-H": {"task_id":"FIN-P17-WH-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":356,"closure_pr":357},
-    "P17-I": {"task_id":"FIN-P17-WI-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":358,"closure_pr":359}
+    "P17-A": {
+      "task_id": "FIN-P17-WA-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 342,
+      "closure_pr": 343
+    },
+    "P17-B": {
+      "task_id": "FIN-P17-WB-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 344,
+      "closure_pr": 345
+    },
+    "P17-C": {
+      "task_id": "FIN-P17-WC-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 346,
+      "closure_pr": 347
+    },
+    "P17-D": {
+      "task_id": "FIN-P17-WD-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 348,
+      "closure_pr": 349
+    },
+    "P17-E": {
+      "task_id": "FIN-P17-WE-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 350,
+      "closure_pr": 351
+    },
+    "P17-F": {
+      "task_id": "FIN-P17-WF-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 352,
+      "closure_pr": 353
+    },
+    "P17-G": {
+      "task_id": "FIN-P17-WG-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 354,
+      "closure_pr": 355
+    },
+    "P17-H": {
+      "task_id": "FIN-P17-WH-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 356,
+      "closure_pr": 357
+    },
+    "P17-I": {
+      "task_id": "FIN-P17-WI-001",
+      "linear": "CONTINUATION_REGISTER",
+      "state": "CANONICAL_COMPLETE",
+      "implementation_pr": 358,
+      "closure_pr": 359
+    }
   },
   "p17_i_closure": {
     "implementation_head": "45d3f5acb9e4eb23033e7857053318fc06767c05",
@@ -48,5 +102,19 @@
   "live_trading": "DISABLED",
   "auto_trading": "DISABLED",
   "next_phase": "P18",
-  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "post_closure_hardening": {
+    "FIN-P17-WI-001-R01": {
+      "state": "CANONICAL_COMPLETE",
+      "purpose": "EMPIRICAL_G9_NON_FIXTURE_BINDING",
+      "empirical_reference_validation": "PASS",
+      "fixture_only_allowed": false,
+      "placeholder_identity_rejection": true,
+      "governed_metric_schemas": true,
+      "actual_strategy_model_registry_binding": true,
+      "profitability_guarantee": false,
+      "execution_authority": false,
+      "p19_started": false
+    }
+  }
 }
