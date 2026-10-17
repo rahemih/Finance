@@ -65,9 +65,13 @@ def _sha(value: str, *, field: str) -> str:
 def _as_mapping(value: object, *, field: str) -> dict[str, object]:
     if not isinstance(value, dict):
         raise LearningRuntimeError(f"{field} must be an object")
-    if not all(isinstance(key, str) for key in value):
-        raise LearningRuntimeError(f"{field} keys must be strings")
-    return cast(dict[str, object], value)
+    raw = cast(dict[object, object], value)
+    result: dict[str, object] = {}
+    for key, item in raw.items():
+        if not isinstance(key, str):
+            raise LearningRuntimeError(f"{field} keys must be strings")
+        result[key] = item
+    return result
 
 
 def _as_str(value: object, *, field: str) -> str:
@@ -295,11 +299,15 @@ class RuntimeState:
             raise LearningRuntimeError("stage_evidence must be an array")
         evidence: list[tuple[str, str]] = []
         for index, raw in enumerate(cast(list[object], evidence_raw)):
-            if not isinstance(raw, list) or len(raw) != 2:
+            if not isinstance(raw, list):
                 raise LearningRuntimeError(
                     f"stage_evidence[{index}] must be a pair"
                 )
             pair = cast(list[object], raw)
+            if len(pair) != 2:
+                raise LearningRuntimeError(
+                    f"stage_evidence[{index}] must be a pair"
+                )
             evidence.append(
                 (
                     _as_str(pair[0], field=f"stage_evidence[{index}].stage"),
@@ -316,9 +324,11 @@ class RuntimeState:
                 raise LearningRuntimeError("checkpoint.stage_evidence must be an array")
             cp_evidence: list[tuple[str, str]] = []
             for index, raw in enumerate(cast(list[object], cp_evidence_raw)):
-                if not isinstance(raw, list) or len(raw) != 2:
+                if not isinstance(raw, list):
                     raise LearningRuntimeError("invalid checkpoint stage evidence")
                 pair = cast(list[object], raw)
+                if len(pair) != 2:
+                    raise LearningRuntimeError("invalid checkpoint stage evidence")
                 cp_evidence.append(
                     (
                         _as_str(pair[0], field=f"checkpoint.stage[{index}]"),
