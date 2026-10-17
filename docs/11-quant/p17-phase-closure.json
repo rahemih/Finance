@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P17_PHASE_CLOSURE",
+  "phase": "P17",
+  "title": "Backtesting / Strategy Factory",
+  "state": "CANONICAL_COMPLETE",
+  "roadmap_exit_gate": "G9_QUANT_VALIDATED",
+  "roadmap_exit_gate_state": "PASS",
+  "canonical_closure_base": "55ed94966f91f6168b31f58b2ff9fcbba010a652",
+  "workstreams": {
+    "P17-A": {"task_id":"FIN-P17-WA-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":342,"closure_pr":343},
+    "P17-B": {"task_id":"FIN-P17-WB-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":344,"closure_pr":345},
+    "P17-C": {"task_id":"FIN-P17-WC-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":346,"closure_pr":347},
+    "P17-D": {"task_id":"FIN-P17-WD-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":348,"closure_pr":349},
+    "P17-E": {"task_id":"FIN-P17-WE-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":350,"closure_pr":351},
+    "P17-F": {"task_id":"FIN-P17-WF-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":352,"closure_pr":353},
+    "P17-G": {"task_id":"FIN-P17-WG-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":354,"closure_pr":355},
+    "P17-H": {"task_id":"FIN-P17-WH-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":356,"closure_pr":357},
+    "P17-I": {"task_id":"FIN-P17-WI-001","linear":"CONTINUATION_REGISTER","state":"CANONICAL_COMPLETE","implementation_pr":358,"closure_pr":359}
+  },
+  "p17_i_closure": {
+    "implementation_head": "45d3f5acb9e4eb23033e7857053318fc06767c05",
+    "implementation_governance_run": 39009925612,
+    "implementation_artifact_sha256": "9a1ef4d26afcfd6a9952a9c0ce0d8f6f24aa7b781b646fecd5f6e5361860d4ea",
+    "implementation_merge_sha": "0da38f07a7690ebafec1d407b875f2b3bd06eb3a",
+    "closure_pr": 359,
+    "closure_governance_run": 39010100372,
+    "closure_artifact_sha256": "0bd88e03180605d407fba2062e3503df80987a25692a8bfc46cef872579f5249",
+    "closure_merge_sha": "55ed94966f91f6168b31f58b2ff9fcbba010a652",
+    "g9_quant_validated": "PASS"
+  },
+  "required_benchmark_categories": [
+    "OOS_EDGE",
+    "RISK",
+    "ROBUSTNESS",
+    "CAPACITY",
+    "EXECUTION_REALISM"
+  ],
+  "production_numeric_defaults": null,
+  "all_locks_released": true,
+  "active_task": null,
+  "active_lock": null,
+  "profitability_guarantee": false,
+  "automatic_p18_promotion": false,
+  "execution_authority": false,
+  "p18_started": false,
+  "p18_state": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "next_phase": "P18",
+  "next_phase_state": "OWNER_PHASE_AUTHORIZATION_REQUIRED"
+}
