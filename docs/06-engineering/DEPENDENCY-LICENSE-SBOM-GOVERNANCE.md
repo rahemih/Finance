@@ -116,6 +116,7 @@ Canonical workflow action assertions:
 - `actions/setup-node@v7.0.0` → MIT
 - `actions/setup-python@v7.0.0` → MIT
 - `actions/upload-artifact@v7.0.1` → MIT
+- `actions/cache@v4.2.0` → MIT (P18 persistent DEMO runtime checkpoint cache only)
 - `actions/github-script@v9.0.0` → MIT
 - `astral-sh/setup-uv@v10.2.0` → MIT
 - `anchore/sbom-action@v0.24.3` → Apache-2.0
