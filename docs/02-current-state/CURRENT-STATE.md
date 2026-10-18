@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-C — Decision Replay / IN_PROGRESS / FIN-P19-WC-001  
+Current Workstream: P19-D — Incident Replay / READY_NOT_STARTED  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P19-WC-001`  
-Active lock: `LOCK-FIN-P19-WC-001-01` / ACTIVE  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7044,6 +7044,36 @@ Boundary:
 - no fill/order/execution authority.
 
 P19-D..P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-C canonical closure — 2026-10-17
+
+P19-C — Decision Replay = CANONICAL_COMPLETE.  
+Task = `FIN-P19-WC-001`.  
+Implementation PR #396 = MERGED.  
+Implementation head = `bef19d07334d323b2f2d0e384f25658d6394dfc5`.  
+PR Governance = `39103642228` / SUCCESS.  
+PR artifact = `12127024788` / `sha256:97bc76940b6b81fbb1116107787ad8c6b8d010cbcd6f87d2b8fd5057e21aa1e2`.  
+Implementation merge SHA = `71cfc8ef01366caf6d576a750831962a0a1e01a0`.  
+Post-merge Governance = `39103923348` / SUCCESS.  
+Post-merge artifact = `12126659832` / `sha256:e1bdee56ac373388eae932a5dc179d26f104edb81f805ff62ba7c79f3394575d`.  
+Post-merge Branch Hygiene = `39103923294` / SUCCESS.  
+Lock = RELEASED.  
+
+Validated:
+- exact ordered P19-B visible-event prefix;
+- exact P19-A input_id / record_id / disposition / previous-record-chain replay;
+- strict multi-decision monotonic time;
+- drift in events/input/record/disposition/chain fails closed;
+- decision/fill/order/execution authority = false;
+- deterministic P19-C evidence byte-identical across two Governance runs.
+
+P19-D — Incident Replay = READY_NOT_STARTED.  
+P19-E..P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
