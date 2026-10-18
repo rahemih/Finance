@@ -29,5 +29,12 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "reference_depth_derivation": {
+    "method": "CLOSE_CENTERED_SYNTHETIC_BOOK_V1",
+    "half_spread_bps": 5,
+    "level_spacing_bps": 5,
+    "levels_per_side": 2,
+    "displayed_quantity_btc": "1"
+  }
 }
