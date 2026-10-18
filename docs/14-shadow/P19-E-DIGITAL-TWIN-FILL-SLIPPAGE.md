@@ -2,7 +2,7 @@
 
 Task: `FIN-P19-WE-001`  
 Phase: P19 — Shadow / Replay / Digital Twin  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Dependencies: P19-A..P19-D CANONICAL_COMPLETE; P17-B CANONICAL_COMPLETE
 
 ## Objective
@@ -69,3 +69,19 @@ Broker/exchange routing: false.
 P20: NOT_STARTED.  
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: #400 / MERGED.
+- Implementation head: `e1e8ff4719002ef8aea77b7205e2b68c0d63db73`.
+- PR Governance: `39115046346` / SUCCESS.
+- PR artifact: `12131644157` / `sha256:7342827fee43a5c912cdff65d3af27cfd6641df503dc6e450e962fa35f69562c`.
+- Merge SHA: `85495db998a5937d269824221fe6d60115b8b594`.
+- Post-merge Governance: `39115194869` / SUCCESS.
+- Post-merge artifact: `12131792625` / `sha256:5ba0097fb72a3fc2e7f4c418b21c920dc976c70a131b5c744b9dde632c31d51e`.
+- Post-merge Branch Hygiene: `39115194680` / SUCCESS.
+- Lock: RELEASED.
+- Next workstream: P19-F / READY_NOT_STARTED.
+
+The canonical CI Digital Twin remains a deterministic reference model over derived depth. It does not establish production fill accuracy or broker truth.
