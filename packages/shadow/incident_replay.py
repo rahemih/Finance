@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Mapping, Sequence, cast
 
-from packages.shadow.data_replay import DataReplayEngine
+from packages.shadow.data_replay import DataReplayEngine, DataReplayError
 
 
 class IncidentReplayError(ValueError):
@@ -60,6 +60,7 @@ def _positive_int(value: object, *, field: str) -> int:
 class IncidentReplayPolicy:
     incident_types: tuple[str, ...]
     system_states: tuple[str, ...]
+    system_event_types: tuple[str, ...]
     max_window_ns: int
     live_trading: str
     auto_trading: str
@@ -87,10 +88,16 @@ class IncidentReplayPolicy:
                 raise IncidentReplayError(f"P19-D policy mismatch: {key}")
         incident_raw = raw.get("supported_incident_types")
         state_raw = raw.get("supported_system_states")
-        if not isinstance(incident_raw, list) or not isinstance(state_raw, list):
+        event_type_raw = raw.get("supported_system_event_types")
+        if (
+            not isinstance(incident_raw, list)
+            or not isinstance(state_raw, list)
+            or not isinstance(event_type_raw, list)
+        ):
             raise IncidentReplayError("incident/system taxonomies must be lists")
         incident_types = tuple(str(item) for item in incident_raw)
         system_states = tuple(str(item) for item in state_raw)
+        system_event_types = tuple(str(item) for item in event_type_raw)
         max_window = _positive_int(raw.get("max_window_ns"), field="max_window_ns")
         required_false = (
             "future_information_allowed",
@@ -109,6 +116,7 @@ class IncidentReplayPolicy:
         return cls(
             incident_types=incident_types,
             system_states=system_states,
+            system_event_types=system_event_types,
             max_window_ns=max_window,
             live_trading="DISABLED",
             auto_trading="DISABLED",
@@ -121,6 +129,7 @@ class IncidentReplayPolicy:
                 {
                     "incident_types": list(self.incident_types),
                     "system_states": list(self.system_states),
+                    "system_event_types": list(self.system_event_types),
                     "max_window_ns": self.max_window_ns,
                     "decision_match_required": "EXACT_MATCH",
                     "live_trading": self.live_trading,
@@ -332,7 +341,10 @@ class IncidentReplayEngine:
         if not decisions:
             raise IncidentReplayError("incident replay requires at least one P19-C decision reference")
 
-        end_state = self._data_replay.replay_through(marker.window_end_ns)
+        try:
+            end_state = self._data_replay.replay_through(marker.window_end_ns)
+        except DataReplayError as exc:
+            raise IncidentReplayError(f"incident data replay failed closed: {exc}") from exc
         data_events = tuple(
             event
             for event in end_state.events
@@ -370,6 +382,8 @@ class IncidentReplayEngine:
                 raise IncidentReplayError("duplicate incident system sequence")
             if event.event_id in system_ids:
                 raise IncidentReplayError("duplicate incident system event identity")
+            if event.event_type not in self._policy.system_event_types:
+                raise IncidentReplayError("unsupported incident system event type")
             if event.system_state not in self._policy.system_states:
                 raise IncidentReplayError("unsupported incident system state")
             if event.available_at_ns > marker.window_end_ns:
