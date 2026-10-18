@@ -99,8 +99,15 @@ class IncidentReplayPolicy:
         system_states = tuple(str(item) for item in state_raw)
         system_event_types = tuple(str(item) for item in event_type_raw)
         max_window = _positive_int(raw.get("max_window_ns"), field="max_window_ns")
+        required_true = (
+            "known_at_decision_partition_required",
+            "retrospective_discovery_partition_required",
+        )
+        if any(raw.get(field) is not True for field in required_true):
+            raise IncidentReplayError("P19-D knowledge-time partition disabled")
         required_false = (
             "future_information_allowed",
+            "hindsight_leakage_allowed",
             "duplicate_system_event_allowed",
             "network_required",
             "credentials_required",
@@ -269,6 +276,59 @@ class IncidentSystemEvent:
 
 
 @dataclass(frozen=True, slots=True)
+class IncidentDecisionContext:
+    decision_ref_id: str
+    decision_time_ns: int
+    known_system_event_ids: tuple[str, ...]
+    retrospective_discovery_event_ids: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self,
+            "decision_ref_id",
+            _sha(self.decision_ref_id, field="decision_ref_id"),
+        )
+        object.__setattr__(
+            self,
+            "decision_time_ns",
+            _positive_int(self.decision_time_ns, field="decision_time_ns"),
+        )
+        for field, values in (
+            ("known_system_event_ids", self.known_system_event_ids),
+            (
+                "retrospective_discovery_event_ids",
+                self.retrospective_discovery_event_ids,
+            ),
+        ):
+            normalized = tuple(_sha(value, field=field) for value in values)
+            if len(normalized) != len(set(normalized)):
+                raise IncidentReplayError(f"{field} cannot contain duplicates")
+            object.__setattr__(self, field, normalized)
+        overlap = set(self.known_system_event_ids) & set(
+            self.retrospective_discovery_event_ids
+        )
+        if overlap:
+            raise IncidentReplayError(
+                "incident evidence cannot be both known and retrospective"
+            )
+
+    def payload(self) -> dict[str, object]:
+        return {
+            "schema_version": "1.0",
+            "decision_ref_id": self.decision_ref_id,
+            "decision_time_ns": self.decision_time_ns,
+            "known_system_event_ids": list(self.known_system_event_ids),
+            "retrospective_discovery_event_ids": list(
+                self.retrospective_discovery_event_ids
+            ),
+        }
+
+    @property
+    def context_id(self) -> str:
+        return hashlib.sha256(_canonical_bytes(self.payload())).hexdigest()
+
+
+@dataclass(frozen=True, slots=True)
 class IncidentReplayResult:
     marker_id: str
     policy_id: str
@@ -278,6 +338,7 @@ class IncidentReplayResult:
     data_event_ids: tuple[str, ...]
     decision_ref_ids: tuple[str, ...]
     system_event_ids: tuple[str, ...]
+    decision_contexts: tuple[IncidentDecisionContext, ...]
     decision_authority: bool = False
     fill_authority: bool = False
     execution_authority: bool = False
@@ -298,6 +359,9 @@ class IncidentReplayResult:
             "data_event_ids": list(self.data_event_ids),
             "decision_ref_ids": list(self.decision_ref_ids),
             "system_event_ids": list(self.system_event_ids),
+            "decision_contexts": [
+                context.payload() for context in self.decision_contexts
+            ],
             "decision_authority": self.decision_authority,
             "fill_authority": self.fill_authority,
             "execution_authority": self.execution_authority,
@@ -406,6 +470,26 @@ class IncidentReplayEngine:
             )
         )
 
+        decision_contexts = tuple(
+            IncidentDecisionContext(
+                decision_ref_id=decision.ref_id,
+                decision_time_ns=decision.decision_time_ns,
+                known_system_event_ids=tuple(
+                    event.event_id
+                    for event in validated_system
+                    if event.event_time_ns <= decision.decision_time_ns
+                    and event.available_at_ns <= decision.decision_time_ns
+                ),
+                retrospective_discovery_event_ids=tuple(
+                    event.event_id
+                    for event in validated_system
+                    if event.event_time_ns <= decision.decision_time_ns
+                    < event.available_at_ns
+                ),
+            )
+            for decision in validated_decisions
+        )
+
         return IncidentReplayResult(
             marker_id=marker.marker_id,
             policy_id=self._policy.policy_id,
@@ -415,6 +499,7 @@ class IncidentReplayEngine:
             data_event_ids=tuple(event.event_id for event in data_events),
             decision_ref_ids=tuple(item.ref_id for item in validated_decisions),
             system_event_ids=tuple(item.event_id for item in validated_system),
+            decision_contexts=decision_contexts,
             live_trading=self._policy.live_trading,
             auto_trading=self._policy.auto_trading,
         )
