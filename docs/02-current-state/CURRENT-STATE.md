@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-D — Incident Replay / IN_PROGRESS / FIN-P19-WD-001  
+Current Workstream: P19-E — Digital Twin Fill / Slippage Model / READY_NOT_STARTED  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: IN_PROGRESS / P19-A..P19-C CANONICAL_COMPLETE / P19-D ACTIVE / G10_SHADOW_VALIDATED PENDING  
+P19 state: IN_PROGRESS / P19-A..P19-D CANONICAL_COMPLETE / P19-E READY_NOT_STARTED / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P19-WD-001`  
-Active lock: `LOCK-FIN-P19-WD-001-01` / ACTIVE  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7096,6 +7096,37 @@ Boundary:
 - no decision/fill/order/execution authority.
 
 P19-E..P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-D canonical closure — 2026-10-18
+
+P19-D — Incident Replay = CANONICAL_COMPLETE.  
+Task = `FIN-P19-WD-001`.  
+Implementation PR #398 = MERGED.  
+Implementation head = `02614c8e07fd2926d920dd0e118451dc0ea966a5`.  
+PR Governance = `39106542403` / SUCCESS.  
+PR artifact = `12129115088` / `sha256:28bed80d5067b02e8fef268239e38b97969147283f50061535d075cac95df42f`.  
+Implementation merge SHA = `bda8be3f9bb19f8bf173b2ee688a4ba793f1bc07`.  
+Post-merge Governance = `39106650351` / SUCCESS.  
+Post-merge artifact = `12128931702` / `sha256:942f3da762ffceb418d685a6045d064c3be3becde8de67348bfcf5cab1b42a28`.  
+Post-merge Branch Hygiene = `39106650334` / SUCCESS.  
+Lock = RELEASED.  
+
+Validated:
+- deterministic bounded incident replay root;
+- exact-match P19-C decision references only;
+- governed system/risk/firewall/data-quality/review event taxonomy;
+- known-at-decision vs retrospective-discovery partition;
+- hindsight leakage forbidden;
+- decision/fill/order/execution authority = false;
+- deterministic P19-D evidence byte-identical across two Governance runs.
+
+P19-E — Digital Twin Fill / Slippage Model = READY_NOT_STARTED.  
+P19-F..P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  

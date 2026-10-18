@@ -4,7 +4,7 @@
   "task_id": "FIN-P19-WD-001",
   "phase": "P19",
   "workstream": "P19-D",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependencies": [
     "P19-B_CANONICAL_COMPLETE",
     "P19-C_CANONICAL_COMPLETE"
@@ -26,5 +26,21 @@
   "auto_trading": "DISABLED",
   "hindsight_leakage_allowed": false,
   "known_at_decision_partition": true,
-  "retrospective_discovery_partition": true
+  "retrospective_discovery_partition": true,
+  "lock": "RELEASED",
+  "implementation": {
+    "pr": 398,
+    "head": "02614c8e07fd2926d920dd0e118451dc0ea966a5",
+    "governance_run": 39106542403,
+    "artifact_id": 12129115088,
+    "artifact_sha256": "28bed80d5067b02e8fef268239e38b97969147283f50061535d075cac95df42f",
+    "merge_sha": "bda8be3f9bb19f8bf173b2ee688a4ba793f1bc07",
+    "post_merge_governance_run": 39106650351,
+    "post_merge_artifact_id": 12128931702,
+    "post_merge_artifact_sha256": "942f3da762ffceb418d685a6045d064c3be3becde8de67348bfcf5cab1b42a28",
+    "post_merge_branch_hygiene_run": 39106650334
+  },
+  "next_workstream": "P19-E",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "g10_shadow_validated": "PENDING"
 }
