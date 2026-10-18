@@ -1349,6 +1349,15 @@ jobs:
           cmp build/p19b-a.json build/p19b-b.json
           sha256sum build/p19b-a.json
 
+      - name: P19-C deterministic decision replay evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p19c_evidence.py --signal build/p14h-a.json --risk build/p15i-a.json --firewall build/p16h-a.json --p17 build/p17-canonical-empirical-a.json --p19a build/p19a-a.json --p19b build/p19b-a.json --output build/p19c-a.json
+          PYTHONPATH=. python scripts/ci/p19c_evidence.py --signal build/p14h-a.json --risk build/p15i-a.json --firewall build/p16h-a.json --p17 build/p17-canonical-empirical-a.json --p19a build/p19a-a.json --p19b build/p19b-a.json --output build/p19c-b.json
+          cmp build/p19c-a.json build/p19c-b.json
+          sha256sum build/p19c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1491,6 +1500,7 @@ jobs:
             build/p18-phase-a.json
             build/p19a-a.json
             build/p19b-a.json
+            build/p19c-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
