@@ -36,5 +36,10 @@
     "level_spacing_bps": 5,
     "levels_per_side": 2,
     "displayed_quantity_btc": "1"
+  },
+  "reference_simulation_request": {
+    "quantity_btc": "0.01",
+    "direction_source": "P19_A_SIGNAL_ACTION",
+    "reference_price_source": "LATEST_P19_B_VISIBLE_CLOSE"
   }
 }
