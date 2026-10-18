@@ -92,6 +92,7 @@ class DecisionReplayPolicy:
         required_false = (
             "network_required",
             "credentials_required",
+            "decision_authority",
             "fill_authority",
             "execution_authority",
             "order_routing_authority",
@@ -201,6 +202,7 @@ class DecisionReplayResult:
     replayed_disposition: str
     previous_record_id: str | None
     match_state: str = "EXACT_MATCH"
+    decision_authority: bool = False
     fill_authority: bool = False
     execution_authority: bool = False
     order_routing_authority: bool = False
@@ -221,6 +223,7 @@ class DecisionReplayResult:
             "replayed_disposition": self.replayed_disposition,
             "previous_record_id": self.previous_record_id,
             "match_state": self.match_state,
+            "decision_authority": self.decision_authority,
             "fill_authority": self.fill_authority,
             "execution_authority": self.execution_authority,
             "order_routing_authority": self.order_routing_authority,
@@ -240,6 +243,7 @@ class DecisionReplaySession:
     policy_id: str
     result_ids: tuple[str, ...]
     results: tuple[DecisionReplayResult, ...]
+    decision_authority: bool = False
     fill_authority: bool = False
     execution_authority: bool = False
     order_routing_authority: bool = False
@@ -253,6 +257,7 @@ class DecisionReplaySession:
             "policy_id": self.policy_id,
             "result_ids": list(self.result_ids),
             "results": [result.payload() for result in self.results],
+            "decision_authority": self.decision_authority,
             "fill_authority": self.fill_authority,
             "execution_authority": self.execution_authority,
             "order_routing_authority": self.order_routing_authority,
