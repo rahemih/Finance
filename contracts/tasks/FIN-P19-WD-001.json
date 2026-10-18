@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P19-WD-001",
+  "phase": "P19",
+  "workstream": "WD",
+  "objective": "Implement deterministic Incident Replay that reconstructs a bounded incident window from canonical P19-B data replay, P19-C exact-match decision replay references and system-state evidence, without re-owning decision logic or introducing any execution authority.",
+  "scope": [
+    "Define canonical incident marker with incident type, detected time, bounded pre/post window and trigger evidence",
+    "Consume P19-B DataReplayEngine to reconstruct point-in-time market/data context inside the incident window",
+    "Consume P19-C exact-match decision replay result/session references without re-running or mutating decision policy ownership",
+    "Bind ordered system-state / risk / firewall / data-quality incident events with exact event/availability time and source evidence SHA-256",
+    "Partition incident system evidence for every decision into known-at-decision versus retrospectively-discovered evidence using availability time, so later discoveries cannot retroactively influence the historical decision context",
+    "Produce deterministic incident replay bundle and root identity",
+    "Fail closed on incident window overflow, future system evidence, duplicate sequence/event identity, non-exact P19-C decision references, decision references outside the window or unsupported system-state taxonomy",
+    "Make input ordering irrelevant by canonical deterministic ordering",
+    "Generate deterministic P19-D same-run evidence from canonical P19-B/P19-C evidence"
+  ],
+  "out_of_scope": [
+    "Digital Twin fills/slippage (P19-E)",
+    "Paper/Live Drift Metrics (P19-F)",
+    "Deterministic Reproducibility Gate (P19-G)",
+    "Shadow Validation Gate G10 (P19-H)",
+    "Broker/exchange adapters, OMS, fills or orders (P20)",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P19-A CANONICAL_COMPLETE",
+    "P19-B CANONICAL_COMPLETE",
+    "P19-C CANONICAL_COMPLETE",
+    "Owner P19 authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/shadow/**",
+    "packages/historical_data/**",
+    "docs/14-shadow/**",
+    "config/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P19-WD-001.json",
+    "config/shadow/incident-replay-policy.json",
+    "packages/shadow/incident_replay.py",
+    "tests/p19/test_incident_replay.py",
+    "scripts/ci/p19d_evidence.py",
+    "docs/14-shadow/P19-D-INCIDENT-REPLAY.md",
+    "docs/14-shadow/p19-d-incident-replay.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A4",
+    "A6",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same incident marker/data/decision/system context produces identical incident replay root",
+    "Input order of decision/system references cannot change canonical result",
+    "Incident window must remain inside canonical replay bounds",
+    "Future-available system event fails closed",
+    "Duplicate system sequence/event identity fails closed",
+    "Unsupported system state fails closed",
+    "Decision replay reference must be EXACT_MATCH and lie inside incident window",
+    "Data events outside incident window are excluded deterministically",
+    "System evidence with event_time before the decision but availability after the decision is classified as retrospective discovery, never known-at-decision",
+    "System evidence available by the decision time is classified as known-at-decision",
+    "No decision/fill/execution/order-routing authority is emitted",
+    "P19-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network/credentials",
+    "No broker/exchange adapter imports",
+    "No order/fill generation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P19-B canonical data replay evidence",
+    "P19-C canonical decision replay evidence",
+    "deterministic system/incident replay evidence",
+    "Governance CI",
+    "post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P19-D incident replay package/config/tests/evidence/CI/state changes; P19-A..P19-C remain canonical complete and P19-E remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P19-A..P19-C CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic Incident Replay implemented",
+    "P19-B/P19-C ownership boundaries preserved",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P19-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P19-E becomes READY_NOT_STARTED",
+    "P20 remains NOT_STARTED"
+  ]
+}

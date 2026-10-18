@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19D_INCIDENT_REPLAY_POLICY",
+  "task_id": "FIN-P19-WD-001",
+  "mode": "DETERMINISTIC_INCIDENT_REPLAY",
+  "data_replay_owner": "P19_B_DATA_REPLAY",
+  "decision_replay_owner": "P19_C_DECISION_REPLAY",
+  "supported_incident_types": [
+    "DECISION_REPLAY_MISMATCH",
+    "RISK_BLOCK",
+    "FIREWALL_BLOCK",
+    "DATA_QUALITY",
+    "SYSTEM_STATE",
+    "MANUAL_REVIEW"
+  ],
+  "supported_system_states": [
+    "NORMAL",
+    "DEGRADED",
+    "SAFE_MODE",
+    "HALTED",
+    "EMERGENCY",
+    "RECOVERY"
+  ],
+  "decision_match_required": "EXACT_MATCH",
+  "max_window_ns": 1000000000000,
+  "future_information_allowed": false,
+  "duplicate_system_event_allowed": false,
+  "network_required": false,
+  "credentials_required": false,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "supported_system_event_types": [
+    "SYSTEM_STATE_CHANGE",
+    "RISK_EVENT",
+    "FIREWALL_EVENT",
+    "DATA_QUALITY_EVENT",
+    "REPLAY_EVENT",
+    "MANUAL_REVIEW_EVENT"
+  ],
+  "hindsight_leakage_allowed": false,
+  "known_at_decision_partition_required": true,
+  "retrospective_discovery_partition_required": true
+}
