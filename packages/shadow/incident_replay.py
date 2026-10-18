@@ -95,9 +95,18 @@ class IncidentReplayPolicy:
             or not isinstance(event_type_raw, list)
         ):
             raise IncidentReplayError("incident/system taxonomies must be lists")
-        incident_types = tuple(str(item) for item in incident_raw)
-        system_states = tuple(str(item) for item in state_raw)
-        system_event_types = tuple(str(item) for item in event_type_raw)
+        incident_types = tuple(
+            _text(item, field="supported_incident_type")
+            for item in cast(list[object], incident_raw)
+        )
+        system_states = tuple(
+            _text(item, field="supported_system_state")
+            for item in cast(list[object], state_raw)
+        )
+        system_event_types = tuple(
+            _text(item, field="supported_system_event_type")
+            for item in cast(list[object], event_type_raw)
+        )
         max_window = _positive_int(raw.get("max_window_ns"), field="max_window_ns")
         required_true = (
             "known_at_decision_partition_required",
