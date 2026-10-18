@@ -23,5 +23,8 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "hindsight_leakage_allowed": false,
+  "known_at_decision_partition": true,
+  "retrospective_discovery_partition": true
 }
