@@ -42,5 +42,8 @@
     "DATA_QUALITY_EVENT",
     "REPLAY_EVENT",
     "MANUAL_REVIEW_EVENT"
-  ]
+  ],
+  "hindsight_leakage_allowed": false,
+  "known_at_decision_partition_required": true,
+  "retrospective_discovery_partition_required": true
 }
