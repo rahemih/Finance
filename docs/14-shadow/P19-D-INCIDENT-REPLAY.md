@@ -29,6 +29,12 @@ P19-D accepts only P19-C references with `EXACT_MATCH`. It does not re-run or mu
 
 System events are content-addressed and deterministically ordered by availability time, event time, sequence and identity. Event taxonomy and system-state taxonomy are governed. Future system evidence, duplicate sequence/identity and out-of-window evidence fail closed.
 
+For every decision reference, P19-D explicitly separates:
+- **known-at-decision** evidence: event time and availability time are both no later than the decision time;
+- **retrospective discovery**: the underlying condition/event existed no later than the decision time, but its evidence became available only afterwards.
+
+Retrospective discoveries are preserved for forensic analysis but are never injected into the historical decision context. This is the P19-D hindsight-leakage barrier.
+
 ## Output
 
 The incident replay root binds:
@@ -36,6 +42,7 @@ The incident replay root binds:
 - bounded P19-B data event IDs;
 - ordered P19-C decision reference IDs;
 - ordered system event IDs;
+- per-decision known-at-decision and retrospective-discovery partitions;
 - zero downstream authority.
 
 P19-E Digital Twin consumes this replay context for fill/slippage simulation.
