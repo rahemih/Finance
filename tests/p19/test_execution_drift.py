@@ -99,7 +99,7 @@ class ExecutionDriftTests(unittest.TestCase):
         for o in (
             replace(observed(p), asset_id="ETH-USD"),
             replace(observed(p), side="SELL"),
-            replace(observed(p), requested_quantity="2"),
+            replace(observed(p), requested_quantity="2", filled_quantity="2"),
         ):
             with self.assertRaises(ExecutionDriftError):
                 compare_execution_drift(paper=p, observed=o, policy=POLICY)
