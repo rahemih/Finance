@@ -330,6 +330,7 @@ def main() -> int:
         raise RuntimeError("P19-C record replay mismatch")
     if any(
         (
+            session.decision_authority,
             session.fill_authority,
             session.execution_authority,
             session.order_routing_authority,
@@ -360,6 +361,7 @@ def main() -> int:
         "decision_replay_result_id": result.result_id,
         "decision_replay_session_id": session.session_id,
         "match_state": result.match_state,
+        "decision_authority": False,
         "fill_authority": False,
         "execution_authority": False,
         "order_routing_authority": False,
