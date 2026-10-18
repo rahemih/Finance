@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19C_DECISION_REPLAY",
+  "task_id": "FIN-P19-WC-001",
+  "phase": "P19",
+  "workstream": "P19-C",
+  "state": "IN_PROGRESS",
+  "dependencies": [
+    "P19-A_CANONICAL_COMPLETE",
+    "P19-B_CANONICAL_COMPLETE"
+  ],
+  "package": "packages/shadow/decision_replay.py",
+  "policy": "config/shadow/decision-replay-policy.json",
+  "visible_event_match": "EXACT_ORDERED_PREFIX",
+  "input_identity_match_required": true,
+  "record_identity_match_required": true,
+  "disposition_match_required": true,
+  "previous_record_chain_match_required": true,
+  "deterministic_replay": true,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
