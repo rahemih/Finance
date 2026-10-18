@@ -4,7 +4,7 @@
   "task_id": "FIN-P19-WC-001",
   "phase": "P19",
   "workstream": "P19-C",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependencies": [
     "P19-A_CANONICAL_COMPLETE",
     "P19-B_CANONICAL_COMPLETE"
@@ -23,5 +23,21 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "lock": "RELEASED",
+  "implementation": {
+    "pr": 396,
+    "head": "bef19d07334d323b2f2d0e384f25658d6394dfc5",
+    "governance_run": 39103642228,
+    "artifact_id": 12127024788,
+    "artifact_sha256": "97bc76940b6b81fbb1116107787ad8c6b8d010cbcd6f87d2b8fd5057e21aa1e2",
+    "merge_sha": "71cfc8ef01366caf6d576a750831962a0a1e01a0",
+    "post_merge_governance_run": 39103923348,
+    "post_merge_artifact_id": 12126659832,
+    "post_merge_artifact_sha256": "e1bdee56ac373388eae932a5dc179d26f104edb81f805ff62ba7c79f3394575d",
+    "post_merge_branch_hygiene_run": 39103923294
+  },
+  "next_workstream": "P19-D",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "g10_shadow_validated": "PENDING"
 }
