@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19E_DIGITAL_TWIN_FILL_POLICY",
+  "task_id": "FIN-P19-WE-001",
+  "mode": "P17B_EXECUTION_REALISM_DIGITAL_TWIN",
+  "execution_realism_owner": "P17-B",
+  "incident_replay_owner": "P19-D",
+  "accepted_context_quality": [
+    "EXPLICIT_HISTORICAL_DEPTH",
+    "DERIVED_REFERENCE_DEPTH"
+  ],
+  "reference_context_quality": "DERIVED_REFERENCE_DEPTH",
+  "reference_execution_policy": {
+    "policy_version": "p19e-reference-v1",
+    "taker_fee_bps": 5,
+    "decision_latency_ns": 0,
+    "max_displayed_depth_participation_bps": 5000
+  },
+  "production_quality_context_required_for_production_claim": true,
+  "reference_only_context_cannot_claim_production_fill_accuracy": true,
+  "production_fill_accuracy_claim": false,
+  "broker_truth": false,
+  "network_required": false,
+  "credentials_required": false,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
