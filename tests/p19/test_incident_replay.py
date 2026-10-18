@@ -210,6 +210,34 @@ class IncidentReplayTests(unittest.TestCase):
                 system_events=(),
             )
 
+    def test_system_evidence_available_by_decision_is_known(self) -> None:
+        known = system_event(1, available_at=3000)
+        result = self.replay_engine().replay(
+            marker=marker(),
+            decisions=(decision(3001),),
+            system_events=(known,),
+        )
+        context = result.decision_contexts[0]
+        self.assertEqual(context.known_system_event_ids, (known.event_id,))
+        self.assertEqual(context.retrospective_discovery_event_ids, ())
+
+    def test_late_discovery_never_becomes_known_at_decision(self) -> None:
+        retrospective = replace(
+            system_event(2, available_at=3500),
+            event_time_ns=2900,
+        )
+        result = self.replay_engine().replay(
+            marker=marker(),
+            decisions=(decision(3001),),
+            system_events=(retrospective,),
+        )
+        context = result.decision_contexts[0]
+        self.assertEqual(context.known_system_event_ids, ())
+        self.assertEqual(
+            context.retrospective_discovery_event_ids,
+            (retrospective.event_id,),
+        )
+
     def test_result_has_zero_authority(self) -> None:
         result = self.replay_engine().replay(
             marker=marker(), decisions=(decision(),), system_events=()
