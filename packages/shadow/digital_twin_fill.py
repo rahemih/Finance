@@ -86,6 +86,9 @@ class DigitalTwinFillPolicy:
     reference_level_spacing_bps: int = 5
     reference_levels_per_side: int = 2
     reference_displayed_quantity: str = "1"
+    reference_quantity: str = "0.01"
+    reference_direction_source: str = "P19_A_SIGNAL_ACTION"
+    reference_price_source: str = "LATEST_P19_B_VISIBLE_CLOSE"
     live_trading: str = "DISABLED"
     auto_trading: str = "DISABLED"
 
@@ -161,6 +164,28 @@ class DigitalTwinFillPolicy:
         displayed = _decimal(displayed_quantity, field="displayed_quantity_btc")
         if displayed <= 0:
             raise DigitalTwinFillError("displayed_quantity_btc must be positive")
+        request_raw = _mapping(
+            raw.get("reference_simulation_request"),
+            field="reference_simulation_request",
+        )
+        reference_quantity = _decimal(
+            request_raw.get("quantity_btc"),
+            field="reference_simulation_request.quantity_btc",
+        )
+        if reference_quantity <= 0:
+            raise DigitalTwinFillError("reference simulation quantity must be positive")
+        direction_source = _text(
+            request_raw.get("direction_source"),
+            field="reference_simulation_request.direction_source",
+        )
+        price_source = _text(
+            request_raw.get("reference_price_source"),
+            field="reference_simulation_request.reference_price_source",
+        )
+        if direction_source != "P19_A_SIGNAL_ACTION":
+            raise DigitalTwinFillError("unsupported reference direction source")
+        if price_source != "LATEST_P19_B_VISIBLE_CLOSE":
+            raise DigitalTwinFillError("unsupported reference price source")
         required_true = (
             "production_quality_context_required_for_production_claim",
             "reference_only_context_cannot_claim_production_fill_accuracy",
@@ -193,6 +218,9 @@ class DigitalTwinFillPolicy:
             reference_level_spacing_bps=level_spacing,
             reference_levels_per_side=levels_per_side,
             reference_displayed_quantity=_decimal_text(displayed),
+            reference_quantity=_decimal_text(reference_quantity),
+            reference_direction_source=direction_source,
+            reference_price_source=price_source,
         )
 
     @property
@@ -209,6 +237,11 @@ class DigitalTwinFillPolicy:
                         "level_spacing_bps": self.reference_level_spacing_bps,
                         "levels_per_side": self.reference_levels_per_side,
                         "displayed_quantity_btc": self.reference_displayed_quantity,
+                    },
+                    "reference_simulation_request": {
+                        "quantity_btc": self.reference_quantity,
+                        "direction_source": self.reference_direction_source,
+                        "reference_price_source": self.reference_price_source,
                     },
                     "production_fill_accuracy_claim": False,
                     "live_trading": self.live_trading,
