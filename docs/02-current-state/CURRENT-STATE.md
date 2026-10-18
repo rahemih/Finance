@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-C — Decision Replay / READY_NOT_STARTED  
+Current Workstream: P19-C — Decision Replay / IN_PROGRESS / FIN-P19-WC-001  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P19-WC-001`  
+Active lock: `LOCK-FIN-P19-WC-001-01` / ACTIVE  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7022,6 +7022,27 @@ Post-merge artifact = `12107295208` / `sha256:c0efde8b800cc39545798d3f1cd6c5c950
 Post-merge Branch Hygiene = `39048812492` / SUCCESS.  
 Lock = RELEASED.  
 P19-C — Decision Replay = READY_NOT_STARTED.  
+P19-D..P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-C activation — 2026-10-17
+
+P19-C — Decision Replay = IN_PROGRESS.  
+Task = `FIN-P19-WC-001`.  
+Lock = `LOCK-FIN-P19-WC-001-01` / ACTIVE.  
+Dependencies = P19-A/P19-B CANONICAL_COMPLETE.  
+
+Boundary:
+- exact ordered P19-B visible event prefix;
+- exact replay of P19-A input_id / record_id / disposition / previous-record chain;
+- strictly increasing decision times for multi-case sessions;
+- any event/input/record/chain drift fails closed;
+- no fill/order/execution authority.
+
 P19-D..P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED.  
