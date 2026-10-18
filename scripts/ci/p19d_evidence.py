@@ -210,7 +210,7 @@ def main() -> int:
         ),
         IncidentSystemEvent(
             sequence=2,
-            event_time_ns=detected_at - 10,
+            event_time_ns=decision_time - 50,
             available_at_ns=detected_at,
             event_type="MANUAL_REVIEW_EVENT",
             system_state="NORMAL",
@@ -231,6 +231,13 @@ def main() -> int:
         raise RuntimeError("canonical incident window must contain three newly-visible data events")
     if len(result.decision_ref_ids) != 1 or len(result.system_event_ids) != 2:
         raise RuntimeError("canonical incident context cardinality mismatch")
+    context = result.decision_contexts[0]
+    if len(context.known_system_event_ids) != 1:
+        raise RuntimeError("canonical incident replay must preserve one known-at-decision event")
+    if len(context.retrospective_discovery_event_ids) != 1:
+        raise RuntimeError("canonical incident replay must preserve one retrospective discovery")
+    if set(context.known_system_event_ids) & set(context.retrospective_discovery_event_ids):
+        raise RuntimeError("known and retrospective incident evidence cannot overlap")
     if any(
         (
             result.decision_authority,
@@ -264,6 +271,13 @@ def main() -> int:
         "decision_ref_ids": list(result.decision_ref_ids),
         "system_event_count": len(result.system_event_ids),
         "system_event_ids": list(result.system_event_ids),
+        "known_at_decision_system_event_ids": list(
+            context.known_system_event_ids
+        ),
+        "retrospective_discovery_system_event_ids": list(
+            context.retrospective_discovery_event_ids
+        ),
+        "hindsight_leakage_allowed": False,
         "incident_replay_root_id": result.replay_root_id,
         "decision_match_state": "EXACT_MATCH",
         "decision_authority": False,
