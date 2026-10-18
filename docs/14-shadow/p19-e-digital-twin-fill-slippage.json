@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19E_DIGITAL_TWIN_FILL_SLIPPAGE",
+  "task_id": "FIN-P19-WE-001",
+  "phase": "P19",
+  "workstream": "P19-E",
+  "state": "IN_PROGRESS",
+  "dependencies": [
+    "P19-A..P19-D_CANONICAL_COMPLETE",
+    "P17-B_CANONICAL_COMPLETE"
+  ],
+  "execution_realism_owner": "P17-B",
+  "incident_replay_owner": "P19-D",
+  "package": "packages/shadow/digital_twin_fill.py",
+  "policy": "config/shadow/digital-twin-fill-policy.json",
+  "accepted_context_quality": [
+    "EXPLICIT_HISTORICAL_DEPTH",
+    "DERIVED_REFERENCE_DEPTH"
+  ],
+  "canonical_reference_context_quality": "DERIVED_REFERENCE_DEPTH",
+  "production_fill_accuracy_claim": false,
+  "broker_truth": false,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
