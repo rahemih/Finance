@@ -267,7 +267,7 @@ This catalog is the canonical index of governed work.
 | FIN-P18-WI-001 | P18 | 24/7 Learning Loop Operations | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P18-WI-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P19-WA-001 | P19 | Shadow Decisioning | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P19-WB-001 | P19 | Data Replay | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P19-WC-001 | P19 | Decision Replay | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P19-WC-001.json` | ACTIVE / LINEAR_CONTINUATION_REGISTER |
+| FIN-P19-WC-001 | P19 | Decision Replay | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WC-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
