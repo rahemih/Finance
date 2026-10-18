@@ -82,6 +82,10 @@ def _positive_int(value: object, *, field: str) -> int:
 class DigitalTwinFillPolicy:
     accepted_context_quality: tuple[str, ...]
     execution_policy: ExecutionRealismPolicy
+    reference_half_spread_bps: int = 5
+    reference_level_spacing_bps: int = 5
+    reference_levels_per_side: int = 2
+    reference_displayed_quantity: str = "1"
     live_trading: str = "DISABLED"
     auto_trading: str = "DISABLED"
 
@@ -132,6 +136,31 @@ class DigitalTwinFillPolicy:
             or not isinstance(participation, int)
         ):
             raise DigitalTwinFillError("reference execution policy values must be integers")
+        derivation = _mapping(
+            raw.get("reference_depth_derivation"),
+            field="reference_depth_derivation",
+        )
+        if derivation.get("method") != "CLOSE_CENTERED_SYNTHETIC_BOOK_V1":
+            raise DigitalTwinFillError("unsupported reference depth derivation")
+        half_spread = derivation.get("half_spread_bps")
+        level_spacing = derivation.get("level_spacing_bps")
+        levels_per_side = derivation.get("levels_per_side")
+        displayed_quantity = derivation.get("displayed_quantity_btc")
+        if (
+            isinstance(half_spread, bool)
+            or not isinstance(half_spread, int)
+            or not 1 <= half_spread <= 10_000
+            or isinstance(level_spacing, bool)
+            or not isinstance(level_spacing, int)
+            or not 1 <= level_spacing <= 10_000
+            or isinstance(levels_per_side, bool)
+            or not isinstance(levels_per_side, int)
+            or not 1 <= levels_per_side <= 16
+        ):
+            raise DigitalTwinFillError("invalid reference depth derivation integers")
+        displayed = _decimal(displayed_quantity, field="displayed_quantity_btc")
+        if displayed <= 0:
+            raise DigitalTwinFillError("displayed_quantity_btc must be positive")
         required_true = (
             "production_quality_context_required_for_production_claim",
             "reference_only_context_cannot_claim_production_fill_accuracy",
@@ -160,6 +189,10 @@ class DigitalTwinFillPolicy:
                 decision_latency_ns=latency,
                 max_displayed_depth_participation_bps=participation,
             ),
+            reference_half_spread_bps=half_spread,
+            reference_level_spacing_bps=level_spacing,
+            reference_levels_per_side=levels_per_side,
+            reference_displayed_quantity=_decimal_text(displayed),
         )
 
     @property
@@ -170,6 +203,13 @@ class DigitalTwinFillPolicy:
                     "accepted_context_quality": list(self.accepted_context_quality),
                     "execution_policy_id": self.execution_policy.policy_id,
                     "execution_realism_owner": "P17-B",
+                    "reference_depth_derivation": {
+                        "method": "CLOSE_CENTERED_SYNTHETIC_BOOK_V1",
+                        "half_spread_bps": self.reference_half_spread_bps,
+                        "level_spacing_bps": self.reference_level_spacing_bps,
+                        "levels_per_side": self.reference_levels_per_side,
+                        "displayed_quantity_btc": self.reference_displayed_quantity,
+                    },
                     "production_fill_accuracy_claim": False,
                     "live_trading": self.live_trading,
                     "auto_trading": self.auto_trading,
