@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19F_EXECUTION_DRIFT_POLICY",
+  "task_id": "FIN-P19-WF-001",
+  "mode": "DETERMINISTIC_PAPER_OBSERVED_EXECUTION_DRIFT",
+  "paper_execution_owner": "P19-E",
+  "live_observation_owner": "P20-H",
+  "broker_certification_owner": "P20-I",
+  "accepted_observation_classes": [
+    "REFERENCE_OBSERVATION",
+    "BROKER_CERTIFICATION_OBSERVATION",
+    "LIVE_EXECUTION_OBSERVATION"
+  ],
+  "canonical_ci_observation_class": "REFERENCE_OBSERVATION",
+  "mixed_observation_classes_allowed": false,
+  "minimum_live_samples": 20,
+  "thresholds": {
+    "warn_abs_slippage_drift_bps": "15",
+    "fail_abs_slippage_drift_bps": "50",
+    "warn_fill_ratio_drift_bps": "500",
+    "fail_fill_ratio_drift_bps": "2000",
+    "warn_fee_drift_bps": "2",
+    "fail_fee_drift_bps": "10",
+    "warn_latency_drift_ns": 500000000,
+    "fail_latency_drift_ns": 2000000000,
+    "fill_status_mismatch_is_fail": true
+  },
+  "reference_observation_cannot_claim_live_drift": true,
+  "broker_certification_cannot_claim_live_drift": true,
+  "live_claim_requires_live_observation_class": true,
+  "live_claim_requires_minimum_samples": true,
+  "live_claim_requires_normal_severity": true,
+  "canonical_ci_live_drift_validated": false,
+  "g10_authority": false,
+  "production_readiness_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
