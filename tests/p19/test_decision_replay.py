@@ -242,6 +242,7 @@ class DecisionReplayTests(unittest.TestCase):
         replay, data = engine()
         baseline = ShadowDecisionLedger(SHADOW_POLICY)
         result = replay.replay((case_for(baseline, data, name="one", observed=3001),))
+        self.assertFalse(result.decision_authority)
         self.assertFalse(result.fill_authority)
         self.assertFalse(result.execution_authority)
         self.assertFalse(result.order_routing_authority)
