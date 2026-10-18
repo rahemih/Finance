@@ -1367,6 +1367,15 @@ jobs:
           cmp build/p19d-a.json build/p19d-b.json
           sha256sum build/p19d-a.json
 
+      - name: P19-E deterministic Digital Twin fill evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p19e_evidence.py --p19a build/p19a-a.json --p19b build/p19b-a.json --p19c build/p19c-a.json --p19d build/p19d-a.json --output build/p19e-a.json
+          PYTHONPATH=. python scripts/ci/p19e_evidence.py --p19a build/p19a-a.json --p19b build/p19b-a.json --p19c build/p19c-a.json --p19d build/p19d-a.json --output build/p19e-b.json
+          cmp build/p19e-a.json build/p19e-b.json
+          sha256sum build/p19e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1511,6 +1520,7 @@ jobs:
             build/p19b-a.json
             build/p19c-a.json
             build/p19d-a.json
+            build/p19e-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
