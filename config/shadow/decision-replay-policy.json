@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19C_DECISION_REPLAY_POLICY",
+  "task_id": "FIN-P19-WC-001",
+  "mode": "DETERMINISTIC_DECISION_REPLAY",
+  "data_replay_owner": "P19_B_DATA_REPLAY",
+  "decision_owner": "P19_A_SHADOW_DECISIONING",
+  "visible_event_match": "EXACT_ORDERED_PREFIX",
+  "input_identity_match_required": true,
+  "record_identity_match_required": true,
+  "disposition_match_required": true,
+  "previous_record_chain_match_required": true,
+  "strictly_increasing_decision_time_required": true,
+  "network_required": false,
+  "credentials_required": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
