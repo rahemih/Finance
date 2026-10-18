@@ -37,6 +37,7 @@ P19-D Incident Replay consumes P19-C exact-match decision sessions and adds boun
 ## Safety
 
 Network/credentials: NONE.  
+Decision authority: false.  
 Fill authority: false.  
 Execution authority: false.  
 Order-routing authority: false.  
