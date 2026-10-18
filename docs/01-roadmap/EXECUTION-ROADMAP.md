@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P19-WC-001 — Decision Replay
-- active lock: LOCK-FIN-P19-WC-001-01 / ACTIVE
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -83,7 +83,7 @@ Phase transition:
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
 - P18 — Continuous Demo Learning: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
-- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A..P19-B CANONICAL_COMPLETE / P19-C ACTIVE
+- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A..P19-C CANONICAL_COMPLETE / P19-D READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -1180,8 +1180,8 @@ Safety:
 State: CANONICAL_COMPLETE  
 Closure base: `9ffabd45f2b2ce78877a5169ecec884188f5923b`  
 P12-A..P12-H: CANONICAL_COMPLETE  
-Active governed task: `FIN-P19-WC-001`  
-Active lock: `LOCK-FIN-P19-WC-001-01` / ACTIVE  
+Active governed task: none  
+Active lock: none  
 Linear milestone: 100%
 
 Canonical closure dossier:
@@ -2673,3 +2673,18 @@ PR Governance `39048625186` = SUCCESS; artifact `sha256:dd534780d052f93efb5dccea
 Post-merge Governance `39048812613` = SUCCESS; artifact `sha256:c0efde8b800cc39545798d3f1cd6c5c95001487cbea82e91140b2a75418326f7`.  
 Post-merge Branch Hygiene `39048812492` = SUCCESS.  
 Lock RELEASED. P19-C READY_NOT_STARTED. G10 pending. P20 NOT_STARTED. Live/Auto disabled.
+
+
+## P19-C canonical closure — 2026-10-17
+
+P19-C — Decision Replay = CANONICAL_COMPLETE.  
+Implementation PR #396 merged at `71cfc8ef01366caf6d576a750831962a0a1e01a0`.  
+PR Governance `39103642228` = SUCCESS.  
+PR artifact `sha256:97bc76940b6b81fbb1116107787ad8c6b8d010cbcd6f87d2b8fd5057e21aa1e2`.  
+Post-merge Governance `39103923348` = SUCCESS.  
+Post-merge artifact `sha256:e1bdee56ac373388eae932a5dc179d26f104edb81f805ff62ba7c79f3394575d`.  
+Post-merge Branch Hygiene `39103923294` = SUCCESS.  
+Lock RELEASED.  
+P19-D = READY_NOT_STARTED.  
+P19-E..P19-H = NOT_STARTED.  
+G10 pending. P20 NOT_STARTED. Live/Auto disabled.
