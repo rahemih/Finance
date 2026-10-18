@@ -8,6 +8,7 @@
     "Consume P19-B DataReplayEngine to reconstruct point-in-time market/data context inside the incident window",
     "Consume P19-C exact-match decision replay result/session references without re-running or mutating decision policy ownership",
     "Bind ordered system-state / risk / firewall / data-quality incident events with exact event/availability time and source evidence SHA-256",
+    "Partition incident system evidence for every decision into known-at-decision versus retrospectively-discovered evidence using availability time, so later discoveries cannot retroactively influence the historical decision context",
     "Produce deterministic incident replay bundle and root identity",
     "Fail closed on incident window overflow, future system evidence, duplicate sequence/event identity, non-exact P19-C decision references, decision references outside the window or unsupported system-state taxonomy",
     "Make input ordering irrelevant by canonical deterministic ordering",
@@ -57,10 +58,25 @@
     "secrets/**",
     "credentials/**"
   ],
-  "agents": ["A0","A4","A6","A9","A10"],
-  "plugins": ["GitHub","Linear"],
+  "agents": [
+    "A0",
+    "A4",
+    "A6",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
   "skills": [],
-  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
   "secrets": [],
   "risk_level": "HIGH",
   "tests": [
@@ -73,6 +89,8 @@
     "Unsupported system state fails closed",
     "Decision replay reference must be EXACT_MATCH and lie inside incident window",
     "Data events outside incident window are excluded deterministically",
+    "System evidence with event_time before the decision but availability after the decision is classified as retrospective discovery, never known-at-decision",
+    "System evidence available by the decision time is classified as known-at-decision",
     "No decision/fill/execution/order-routing authority is emitted",
     "P19-D evidence is byte-identical across two runs"
   ],
