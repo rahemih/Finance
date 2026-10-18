@@ -19,5 +19,6 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "decision_authority": false
 }
