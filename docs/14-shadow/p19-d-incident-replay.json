@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19D_INCIDENT_REPLAY",
+  "task_id": "FIN-P19-WD-001",
+  "phase": "P19",
+  "workstream": "P19-D",
+  "state": "IN_PROGRESS",
+  "dependencies": [
+    "P19-B_CANONICAL_COMPLETE",
+    "P19-C_CANONICAL_COMPLETE"
+  ],
+  "package": "packages/shadow/incident_replay.py",
+  "policy": "config/shadow/incident-replay-policy.json",
+  "bounded_window": true,
+  "point_in_time_data_owner": "P19_B_DATA_REPLAY",
+  "decision_owner": "P19_C_DECISION_REPLAY",
+  "exact_match_decisions_only": true,
+  "deterministic_system_context": true,
+  "decision_authority": false,
+  "fill_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
