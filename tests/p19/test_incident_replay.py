@@ -126,7 +126,7 @@ class IncidentReplayTests(unittest.TestCase):
         )
         self.assertEqual(left.replay_root_id, right.replay_root_id)
 
-    def test_input_order_does_not_change_incident_root(self) -> None:
+    def test_system_input_order_does_not_change_incident_root(self) -> None:
         first = system_event(1, available_at=3200)
         second = system_event(2, available_at=4500)
         left = self.replay_engine().replay(
@@ -134,6 +134,18 @@ class IncidentReplayTests(unittest.TestCase):
         )
         right = self.replay_engine().replay(
             marker=marker(), decisions=(decision(),), system_events=(second, first)
+        )
+        self.assertEqual(left.replay_root_id, right.replay_root_id)
+
+
+    def test_decision_input_order_does_not_change_incident_root(self) -> None:
+        first = decision(3001)
+        second = decision(4501)
+        left = self.replay_engine().replay(
+            marker=marker(), decisions=(first, second), system_events=()
+        )
+        right = self.replay_engine().replay(
+            marker=marker(), decisions=(second, first), system_events=()
         )
         self.assertEqual(left.replay_root_id, right.replay_root_id)
 
@@ -172,6 +184,14 @@ class IncidentReplayTests(unittest.TestCase):
                     system_event(1, available_at=3200),
                     replace(system_event(2, available_at=4500), sequence=1),
                 ),
+            )
+
+
+    def test_unsupported_system_event_type_fails_closed(self) -> None:
+        bad = replace(system_event(1, available_at=3200), event_type="UNKNOWN")
+        with self.assertRaises(IncidentReplayError):
+            self.replay_engine().replay(
+                marker=marker(), decisions=(decision(),), system_events=(bad,)
             )
 
     def test_unsupported_system_state_fails_closed(self) -> None:
