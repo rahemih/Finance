@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19F_PAPER_LIVE_DRIFT_METRICS",
+  "task_id": "FIN-P19-WF-001",
+  "phase": "P19",
+  "workstream": "P19-F",
+  "state": "IN_PROGRESS",
+  "dependency": "P19-A..P19-E_CANONICAL_COMPLETE",
+  "paper_execution_owner": "P19-E",
+  "live_observation_owner": "P20-H",
+  "broker_certification_owner": "P20-I",
+  "package": "packages/shadow/execution_drift.py",
+  "policy": "config/shadow/execution-drift-policy.json",
+  "accepted_observation_classes": [
+    "REFERENCE_OBSERVATION",
+    "BROKER_CERTIFICATION_OBSERVATION",
+    "LIVE_EXECUTION_OBSERVATION"
+  ],
+  "canonical_ci_observation_class": "REFERENCE_OBSERVATION",
+  "canonical_ci_claim_scope": "REFERENCE_ONLY",
+  "live_empirical_status": "UNAVAILABLE_PRE_P20_H",
+  "live_drift_validated": false,
+  "g10_authority": false,
+  "production_readiness_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
