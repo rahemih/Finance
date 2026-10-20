@@ -1,0 +1,116 @@
+{
+  "task_id": "FIN-P19-WG-001",
+  "phase": "P19",
+  "workstream": "WG",
+  "objective": "Prove deterministic reproducibility across the complete canonical P19-A through P19-F shadow/replay/digital-twin chain by verifying byte-identical same-run evidence, closed manifests, exact cross-workstream lineage and preserved safety/claim boundaries.",
+  "scope": [
+    "Require exactly P19-A through P19-F in canonical order with no missing or duplicate workstreams",
+    "Require each workstream manifest to be CANONICAL_COMPLETE with lock RELEASED",
+    "Require each same-run evidence A/B pair to be byte-identical",
+    "Bind evidence bytes, canonical manifest, package and policy identities into a deterministic workstream reproducibility record",
+    "Verify cross-workstream same-run evidence lineage P19-C through P19-F",
+    "Verify manifest lineage references point to the exact canonical upstream manifests",
+    "Verify execution/order-routing/broker/Live/Auto authority remains disabled across all workstreams",
+    "Preserve P19-F claim boundary: REFERENCE_ONLY, UNAVAILABLE_PRE_P20_H, live_drift_validated=false",
+    "Emit a deterministic P19-A..P19-F reproducibility certificate and certificate identity",
+    "Run the P19-G audit twice byte-identically in Governance"
+  ],
+  "out_of_scope": [
+    "Changing P19-A..P19-F algorithms",
+    "Creating Live execution evidence",
+    "Promoting reference drift to Live drift",
+    "G10 Shadow Validation Gate decision (P19-H)",
+    "P20 execution/order management",
+    "Broker/exchange routing",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P19-A..P19-F CANONICAL_COMPLETE",
+    "Owner P19 phase authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/shadow/**",
+    "config/shadow/**",
+    "scripts/ci/p19a_evidence.py",
+    "scripts/ci/p19b_evidence.py",
+    "scripts/ci/p19c_evidence.py",
+    "scripts/ci/p19d_evidence.py",
+    "scripts/ci/p19e_evidence.py",
+    "scripts/ci/p19f_evidence.py",
+    "docs/14-shadow/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P19-WG-001.json",
+    "config/shadow/deterministic-reproducibility-policy.json",
+    "packages/shadow/reproducibility.py",
+    "tests/p19/test_reproducibility.py",
+    "scripts/ci/p19g_evidence.py",
+    "docs/14-shadow/P19-G-DETERMINISTIC-REPRODUCIBILITY.md",
+    "docs/14-shadow/p19-g-deterministic-reproducibility.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A4","A6","A7","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Exact A-F workstream set/order is required",
+    "Missing or duplicate workstream fails closed",
+    "Tampered evidence SHA-256 fails closed",
+    "Non-canonical manifest state or active lock fails closed",
+    "Any execution/order-routing/broker authority fails closed",
+    "P20-started or Live/Auto-enabled record fails closed",
+    "Reference-only P19-F boundary is preserved",
+    "Same records produce the same certificate identity",
+    "Cross-workstream evidence lineage is verified in canonical evidence",
+    "P19-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credentials",
+    "No broker/exchange adapters",
+    "No execution/order authority",
+    "No Live drift claim creation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Canonical P19-A..P19-F manifests",
+    "Same-run P19-A..P19-F evidence pairs",
+    "Package/policy content identities",
+    "Deterministic P19-G certificate",
+    "Governance CI",
+    "Post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P19-G reproducibility package/config/tests/evidence/CI/state changes; P19-A..P19-F remain canonical complete and P19-H remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P19-A..P19-F CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic P19-A..P19-F reproducibility certificate implemented",
+    "Strict CI and byte-identical evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P19-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P19-H becomes READY_NOT_STARTED",
+    "P20 remains NOT_STARTED"
+  ]
+}
