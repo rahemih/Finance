@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P19G_DETERMINISTIC_REPRODUCIBILITY",
+  "task_id": "FIN-P19-WG-001",
+  "phase": "P19",
+  "workstream": "P19-G",
+  "state": "IN_PROGRESS",
+  "dependency": "P19-A..P19-F_CANONICAL_COMPLETE",
+  "package": "packages/shadow/reproducibility.py",
+  "policy": "config/shadow/deterministic-reproducibility-policy.json",
+  "required_workstreams": [
+    "P19-A",
+    "P19-B",
+    "P19-C",
+    "P19-D",
+    "P19-E",
+    "P19-F"
+  ],
+  "evidence_pair_match": "BYTE_IDENTICAL",
+  "cross_workstream_lineage_required": true,
+  "package_policy_identity_required": true,
+  "claim_scope": "REFERENCE_REPRODUCIBILITY_ONLY",
+  "live_empirical_status": "UNAVAILABLE_PRE_P20_H",
+  "live_drift_validated": false,
+  "g10_authority": false,
+  "production_readiness_authority": false,
+  "execution_authority": false,
+  "order_routing_authority": false,
+  "broker_exchange_routing": false,
+  "p20_started": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
