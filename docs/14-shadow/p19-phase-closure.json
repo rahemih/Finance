@@ -57,7 +57,7 @@
       "task_id": "FIN-P19-WH-001",
       "state": "CANONICAL_COMPLETE",
       "implementation_pr": 407,
-      "closure_pr": null
+      "closure_pr": 408
     }
   },
   "duplicate_noncanonical_prs": [
