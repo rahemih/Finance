@@ -1,0 +1,116 @@
+{
+  "task_id": "FIN-P19-WF-001",
+  "phase": "P19",
+  "workstream": "WF",
+  "objective": "Implement deterministic Paper / Observed Execution Drift Metrics that compare P19-E modeled execution against governed observed-execution samples while preserving source class, lineage and claim scope; reference CI must never masquerade as live evidence.",
+  "scope": [
+    "Consume content-addressed P19-E Digital Twin execution samples as the paper/model baseline",
+    "Define governed observed-execution source classes: REFERENCE_OBSERVATION, BROKER_CERTIFICATION_OBSERVATION and LIVE_EXECUTION_OBSERVATION",
+    "Bind every observed sample to exactly one paper sample identity",
+    "Measure fill-ratio drift, adverse-slippage drift, fee drift, latency drift and fill-status mismatch",
+    "Aggregate deterministic drift windows with NORMAL/WARN/FAIL severity",
+    "Require one uniform observed source class per window",
+    "Allow live_drift_validated only for genuine LIVE_EXECUTION_OBSERVATION windows meeting minimum sample count and all NORMAL thresholds",
+    "Keep canonical CI evidence REFERENCE_ONLY with live_drift_validated=false",
+    "Declare P20-H as future owner of governed real observed latency/slippage execution measurements",
+    "Generate deterministic P19-F reference evidence without broker/live claims"
+  ],
+  "out_of_scope": [
+    "Broker/exchange adapters or OMS (P20)",
+    "Generation of live execution observations",
+    "P20-H Latency / Slippage Measurement implementation",
+    "P20-I Broker Simulation / Certification Gate",
+    "Deterministic Reproducibility Gate (P19-G)",
+    "Shadow Validation Gate G10 (P19-H)",
+    "Production readiness or capital authority",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P19-A..P19-E CANONICAL_COMPLETE",
+    "Owner P19 authorization GRANTED / CONSUMED"
+  ],
+  "read_paths": [
+    "packages/shadow/**",
+    "quant/backtesting/**",
+    "docs/14-shadow/**",
+    "config/**",
+    "docs/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P19-WF-001.json",
+    "config/shadow/execution-drift-policy.json",
+    "packages/shadow/execution_drift.py",
+    "tests/p19/test_execution_drift.py",
+    "scripts/ci/p19f_evidence.py",
+    "docs/14-shadow/P19-F-PAPER-LIVE-DRIFT-METRICS.md",
+    "docs/14-shadow/p19-f-paper-live-drift-metrics.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/execution/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0","A4","A5","A6","A9","A10"],
+  "plugins": ["GitHub","Linear"],
+  "skills": [],
+  "access": ["REPO_READ","REPO_WRITE_GOVERNED","ACTIONS_READ","LINEAR_READ","LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Same paper/observed samples and policy produce identical pair/window identities",
+    "Observed sample must bind exact paper sample identity",
+    "Asset/side/requested quantity mismatch fails closed",
+    "Fill ratio, slippage, fee and latency drift calculations are deterministic",
+    "Fill-status mismatch is FAIL",
+    "Warn/fail thresholds are applied deterministically",
+    "Mixed observed source classes in one window fail closed",
+    "REFERENCE_OBSERVATION can never produce live_drift_validated=true",
+    "BROKER_CERTIFICATION_OBSERVATION can never produce live_drift_validated=true",
+    "LIVE_EXECUTION_OBSERVATION requires minimum sample count and NORMAL severity before live_drift_validated=true",
+    "No G10/production/execution authority is emitted",
+    "P19-F reference evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credentials",
+    "No broker/exchange adapter imports",
+    "No order/fill submission",
+    "Reference observations cannot impersonate Live",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P19-E canonical Digital Twin evidence",
+    "governed observation-class lineage",
+    "deterministic P19-F reference drift evidence",
+    "Governance CI",
+    "post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P19-F drift package/config/tests/evidence/CI/state changes; P19-A..P19-E remain canonical complete and P19-G remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P19-A..P19-E CANONICAL_COMPLETE",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic execution drift metric engine implemented",
+    "Reference-vs-live claim boundary enforced",
+    "Strict CI and deterministic reference evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P19-WF-001 CANONICAL_COMPLETE",
+    "Live empirical drift remains NOT_CLAIMED until governed P20-H observations exist",
+    "Lock released",
+    "P19-G becomes READY_NOT_STARTED",
+    "P20 remains NOT_STARTED"
+  ]
+}
