@@ -73,6 +73,6 @@ After G10 PASS:
 - Post-merge artifact: `12308085712` / `sha256:4edc3b87e3df1c8538c3116a167808b9ba2e0c900e7b17fb4a664e3f990546ea`.
 - Post-merge Branch Hygiene: `39514989564` / SUCCESS.
 - Lock: RELEASED.
-- Phase-closure PR: pending at this commit.
+- Phase-closure PR: #408.
 
 G10 does not validate Live execution, broker certification, production readiness or profitability. P20 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.
