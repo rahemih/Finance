@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-G — Deterministic Reproducibility / IN_PROGRESS / FIN-P19-WG-001  
+Current Workstream: P19-H — Shadow Validation Gate / READY_NOT_STARTED  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: IN_PROGRESS / P19-A..P19-F CANONICAL_COMPLETE / P19-G ACTIVE / G10_SHADOW_VALIDATED PENDING  
+P19 state: IN_PROGRESS / P19-A..P19-G CANONICAL_COMPLETE / P19-H READY_NOT_STARTED / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P19-WG-001`  
-Active lock: `LOCK-FIN-P19-WG-001-01` / ACTIVE  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7260,5 +7260,35 @@ Boundary:
 P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-G canonical closure — 2026-10-21
+
+P19-G — Deterministic Reproducibility = CANONICAL_COMPLETE.  
+Task = `FIN-P19-WG-001`.  
+Implementation PR #404 = MERGED.  
+Implementation head = `9303e75882845b78c37563a28213e7a5f76a6e07`.  
+PR Governance = `39512481566` / SUCCESS.  
+PR artifact = `12305474156` / `sha256:96f086f83e3969e5036ab75034a98d0892fd43a0c941d0c85ad37c492e4e8b72`.  
+Implementation merge SHA = `1327193911c930dd0d1dfe0b5175e1f5fcdf4753`.  
+Post-merge Governance = `39512748499` / SUCCESS.  
+Post-merge artifact = `12305109931` / `sha256:e379d6c04556ad4f4b117f26ec38255c7b2da27fc23a9909dbc16af58dcb08e7`.  
+Post-merge Branch Hygiene = `39512748468` / SUCCESS.  
+Lock = RELEASED.  
+
+Validated:
+- exact P19-A..P19-F coverage/order;
+- byte-identical same-run evidence pairs;
+- cross-workstream evidence/manifest lineage = VERIFIED;
+- canonical package/policy/manifest identities content-addressed;
+- P19-F claim boundary preserved: REFERENCE_ONLY / UNAVAILABLE_PRE_P20_H / live_drift_validated=false;
+- G10 authority = false;
+- production-readiness/execution/order-routing authority = false.
+
+P19-H — Shadow Validation Gate = READY_NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
