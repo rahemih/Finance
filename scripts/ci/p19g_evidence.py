@@ -63,14 +63,20 @@ def require_false(value: Mapping[str, object], field: str, *, owner: str) -> Non
         raise RuntimeError(f"{owner}.{field} must be false")
 
 
-def verify_safety(value: Mapping[str, object], *, owner: str) -> None:
+def verify_safety(
+    value: Mapping[str, object],
+    *,
+    owner: str,
+    broker_required: bool,
+) -> None:
     for field in (
         "execution_authority",
         "order_routing_authority",
-        "broker_exchange_routing",
         "p20_started",
     ):
         require_false(value, field, owner=owner)
+    if broker_required or "broker_exchange_routing" in value:
+        require_false(value, "broker_exchange_routing", owner=owner)
     if value.get("live_trading") != "DISABLED":
         raise RuntimeError(f"{owner}.live_trading must remain DISABLED")
     if value.get("auto_trading") != "DISABLED":
@@ -99,7 +105,11 @@ def exact_pair(left: Path, right: Path, *, workstream: str) -> dict[str, object]
         raise RuntimeError(f"{workstream} evidence kind mismatch")
     if evidence.get("phase") != "P19" or evidence.get("workstream") != workstream:
         raise RuntimeError(f"{workstream} evidence phase/workstream mismatch")
-    verify_safety(evidence, owner=f"{workstream}.evidence")
+    verify_safety(
+        evidence,
+        owner=f"{workstream}.evidence",
+        broker_required=True,
+    )
     return evidence
 
 
@@ -187,12 +197,22 @@ def main() -> int:
             raise RuntimeError(f"{workstream} manifest is not CANONICAL_COMPLETE")
         if manifest.get("lock") != "RELEASED":
             raise RuntimeError(f"{workstream} manifest lock is not RELEASED")
-        verify_safety(manifest, owner=f"{workstream}.manifest")
+        verify_safety(
+            manifest,
+            owner=f"{workstream}.manifest",
+            broker_required=False,
+        )
 
         package_path = ROOT / text(manifest.get("package"), field=f"{workstream}.package")
         policy_path = ROOT / text(manifest.get("policy"), field=f"{workstream}.policy")
         if not package_path.is_file() or not policy_path.is_file():
             raise RuntimeError(f"{workstream} package/policy path missing")
+        workstream_policy = load(policy_path)
+        verify_safety(
+            workstream_policy,
+            owner=f"{workstream}.policy",
+            broker_required=True,
+        )
 
         manifest_hashes[workstream] = file_sha(manifest_path)
         evidence_hashes[workstream] = file_sha(arg_pairs[workstream][0])
