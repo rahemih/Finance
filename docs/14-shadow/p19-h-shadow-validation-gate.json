@@ -46,7 +46,7 @@
     "post_merge_artifact_sha256": "4edc3b87e3df1c8538c3116a167808b9ba2e0c900e7b17fb4a664e3f990546ea",
     "post_merge_branch_hygiene_run": 39514989564
   },
-  "closure_pr": null,
+  "closure_pr": 408,
   "next_phase": "P20",
   "next_phase_state": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
   "g10_shadow_validated": "PASS"
