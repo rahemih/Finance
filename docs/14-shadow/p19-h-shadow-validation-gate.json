@@ -4,9 +4,9 @@
   "task_id": "FIN-P19-WH-001",
   "phase": "P19",
   "workstream": "P19-H",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "gate_name": "G10_SHADOW_VALIDATED",
-  "gate_state": "PENDING_GOVERNANCE",
+  "gate_state": "PASS",
   "required_workstreams": [
     "P19-A",
     "P19-B",
@@ -31,5 +31,23 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "gate_id": "758d4eb9ceb5bef1575071cfeb49dfb1b0528e42a3877a9beabb989c08a5c91f",
+  "lock": "RELEASED",
+  "implementation": {
+    "pr": 407,
+    "head": "4c9a218bdd6aa1512c51f4ee83f97f9435fa256e",
+    "governance_run": 39514729808,
+    "artifact_id": 12308265017,
+    "artifact_sha256": "bb5923e32c1055c7f52c3b08ecbe377da7374d2ed53464adfa9f8335ecee77c8",
+    "merge_sha": "0724723ac82610e50db3c057abce02f9acd470d4",
+    "post_merge_governance_run": 39514989127,
+    "post_merge_artifact_id": 12308085712,
+    "post_merge_artifact_sha256": "4edc3b87e3df1c8538c3116a167808b9ba2e0c900e7b17fb4a664e3f990546ea",
+    "post_merge_branch_hygiene_run": 39514989564
+  },
+  "closure_pr": 408,
+  "next_phase": "P20",
+  "next_phase_state": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+  "g10_shadow_validated": "PASS"
 }
