@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-H — Shadow Validation Gate / READY_NOT_STARTED  
+Current Workstream: P19-H — Shadow Validation Gate / IN_PROGRESS / FIN-P19-WH-001  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: IN_PROGRESS / P19-A..P19-G CANONICAL_COMPLETE / P19-H READY_NOT_STARTED / G10_SHADOW_VALIDATED PENDING  
+P19 state: IN_PROGRESS / P19-A..P19-G CANONICAL_COMPLETE / P19-H ACTIVE / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P19-WH-001`  
+Active lock: `LOCK-FIN-P19-WH-001-01` / ACTIVE  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7289,6 +7289,27 @@ Validated:
 
 P19-H — Shadow Validation Gate = READY_NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-H activation — 2026-10-21
+
+P19-H — Shadow Validation Gate = IN_PROGRESS.  
+Task = `FIN-P19-WH-001`.  
+Lock = `LOCK-FIN-P19-WH-001-01` / ACTIVE.  
+Dependencies = P19-A..P19-G CANONICAL_COMPLETE.  
+
+Boundary:
+- exact P19-A..P19-G canonical manifest/evidence coverage;
+- P19-G reproducibility certificate required;
+- P19-F/P19-G remain REFERENCE_ONLY / UNAVAILABLE_PRE_P20_H / live_drift_validated=false;
+- G10 may certify SHADOW_REFERENCE_VALIDATION only;
+- Live execution, broker certification and production readiness remain false;
+- P20 automatic activation is forbidden.
+
+G10_SHADOW_VALIDATED = PENDING_GOVERNANCE.  
 P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.

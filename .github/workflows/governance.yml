@@ -1394,6 +1394,15 @@ jobs:
           cmp build/p19g-a.json build/p19g-b.json
           sha256sum build/p19g-a.json
 
+      - name: P19-H deterministic G10 shadow validation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p19h_evidence.py --p19a build/p19a-a.json --p19b build/p19b-a.json --p19c build/p19c-a.json --p19d build/p19d-a.json --p19e build/p19e-a.json --p19f build/p19f-a.json --p19g build/p19g-a.json --output build/p19h-a.json
+          PYTHONPATH=. python scripts/ci/p19h_evidence.py --p19a build/p19a-a.json --p19b build/p19b-a.json --p19c build/p19c-a.json --p19d build/p19d-a.json --p19e build/p19e-a.json --p19f build/p19f-a.json --p19g build/p19g-a.json --output build/p19h-b.json
+          cmp build/p19h-a.json build/p19h-b.json
+          sha256sum build/p19h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1541,6 +1550,7 @@ jobs:
             build/p19e-a.json
             build/p19f-a.json
             build/p19g-a.json
+            build/p19h-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
