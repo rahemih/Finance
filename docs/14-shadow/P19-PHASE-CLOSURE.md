@@ -24,7 +24,7 @@ G10 certifies the deterministic Shadow / Replay / reference-validation chain onl
 | P19-E — Digital Twin Fill / Slippage | FIN-P19-WE-001 | CANONICAL_COMPLETE | #400 | #401 |
 | P19-F — Paper / Live Drift Metrics | FIN-P19-WF-001 | CANONICAL_COMPLETE | #402 | #403 |
 | P19-G — Deterministic Reproducibility | FIN-P19-WG-001 | CANONICAL_COMPLETE | #404 | #406 |
-| P19-H — Shadow Validation Gate / G10 | FIN-P19-WH-001 | CANONICAL_COMPLETE | #407 | pending |
+| P19-H — Shadow Validation Gate / G10 | FIN-P19-WH-001 | CANONICAL_COMPLETE | #407 | #408 |
 
 PR #405 was a duplicate P19-G closure path and was closed without merge. It is noncanonical.
 
