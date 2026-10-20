@@ -2,7 +2,7 @@
 
 Task: `FIN-P19-WF-001`  
 Phase: P19 — Shadow / Replay / Digital Twin  
-State: IN_PROGRESS  
+State: CANONICAL_COMPLETE  
 Dependency: P19-A..P19-E CANONICAL_COMPLETE
 
 ## Objective
@@ -64,3 +64,19 @@ Order-routing authority: false.
 P20: NOT_STARTED.  
 LIVE_TRADING: DISABLED.  
 AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- Implementation PR: #402 / MERGED.
+- Implementation head: `52ac5b03022f836ba72c7de03438f6eb0a962d0d`.
+- PR Governance: `39116562840` / SUCCESS.
+- PR artifact: `12132368096` / `sha256:b2247806ba377da56e16c99d6257ddadd700009b3283e203d6f68c308328c02b`.
+- Merge SHA: `9f8c6107c81750bc89c4ca1fc825199c1c2c05ed`.
+- Post-merge Governance: `39510218132` / SUCCESS.
+- Post-merge artifact: `12304829278` / `sha256:93fa7915adf6399edfc209f07beaa210df1a077a76fbbea2eaaf8fadd74e3693`.
+- Post-merge Branch Hygiene: `39510218040` / SUCCESS.
+- Lock: RELEASED.
+- Next workstream: P19-G / READY_NOT_STARTED.
+
+P19-F completion validates deterministic drift math and source-class governance. It does **not** claim Live empirical validation before the future P20-H observed-execution source exists.
