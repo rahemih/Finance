@@ -1385,6 +1385,15 @@ jobs:
           cmp build/p19f-a.json build/p19f-b.json
           sha256sum build/p19f-a.json
 
+      - name: P19-G cross-workstream reproducibility evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p19g_evidence.py --p19a-a build/p19a-a.json --p19a-b build/p19a-b.json --p19b-a build/p19b-a.json --p19b-b build/p19b-b.json --p19c-a build/p19c-a.json --p19c-b build/p19c-b.json --p19d-a build/p19d-a.json --p19d-b build/p19d-b.json --p19e-a build/p19e-a.json --p19e-b build/p19e-b.json --p19f-a build/p19f-a.json --p19f-b build/p19f-b.json --output build/p19g-a.json
+          PYTHONPATH=. python scripts/ci/p19g_evidence.py --p19a-a build/p19a-a.json --p19a-b build/p19a-b.json --p19b-a build/p19b-a.json --p19b-b build/p19b-b.json --p19c-a build/p19c-a.json --p19c-b build/p19c-b.json --p19d-a build/p19d-a.json --p19d-b build/p19d-b.json --p19e-a build/p19e-a.json --p19e-b build/p19e-b.json --p19f-a build/p19f-a.json --p19f-b build/p19f-b.json --output build/p19g-b.json
+          cmp build/p19g-a.json build/p19g-b.json
+          sha256sum build/p19g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1531,6 +1540,7 @@ jobs:
             build/p19d-a.json
             build/p19e-a.json
             build/p19f-a.json
+            build/p19g-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

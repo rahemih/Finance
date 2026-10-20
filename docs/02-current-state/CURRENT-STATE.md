@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-G — Deterministic Reproducibility / READY_NOT_STARTED  
+Current Workstream: P19-G — Deterministic Reproducibility / IN_PROGRESS / FIN-P19-WG-001  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: IN_PROGRESS / P19-A..P19-F CANONICAL_COMPLETE / P19-G READY_NOT_STARTED / G10_SHADOW_VALIDATED PENDING  
+P19 state: IN_PROGRESS / P19-A..P19-F CANONICAL_COMPLETE / P19-G ACTIVE / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P19-WG-001`  
+Active lock: `LOCK-FIN-P19-WG-001-01` / ACTIVE  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7238,5 +7238,27 @@ P19-G — Deterministic Reproducibility = READY_NOT_STARTED.
 P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-G activation — 2026-10-21
+
+P19-G — Deterministic Reproducibility = IN_PROGRESS.  
+Task = `FIN-P19-WG-001`.  
+Lock = `LOCK-FIN-P19-WG-001-01` / ACTIVE.  
+Dependencies = P19-A..P19-F CANONICAL_COMPLETE.  
+
+Boundary:
+- exact A..F workstream coverage/order;
+- each same-run evidence pair must be byte-identical;
+- cross-workstream evidence and manifest lineage must verify;
+- canonical manifest/package/policy identities are content-addressed;
+- P19-F remains REFERENCE_ONLY / UNAVAILABLE_PRE_P20_H / live_drift_validated=false;
+- P19-G has no G10 or production authority.
+
+P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
