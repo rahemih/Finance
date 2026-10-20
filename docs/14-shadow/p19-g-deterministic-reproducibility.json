@@ -4,7 +4,7 @@
   "task_id": "FIN-P19-WG-001",
   "phase": "P19",
   "workstream": "P19-G",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": "P19-A..P19-F_CANONICAL_COMPLETE",
   "package": "packages/shadow/reproducibility.py",
   "policy": "config/shadow/deterministic-reproducibility-policy.json",
@@ -29,5 +29,21 @@
   "broker_exchange_routing": false,
   "p20_started": false,
   "live_trading": "DISABLED",
-  "auto_trading": "DISABLED"
+  "auto_trading": "DISABLED",
+  "lock": "RELEASED",
+  "implementation": {
+    "pr": 404,
+    "head": "9303e75882845b78c37563a28213e7a5f76a6e07",
+    "governance_run": 39512481566,
+    "artifact_id": 12305474156,
+    "artifact_sha256": "96f086f83e3969e5036ab75034a98d0892fd43a0c941d0c85ad37c492e4e8b72",
+    "merge_sha": "1327193911c930dd0d1dfe0b5175e1f5fcdf4753",
+    "post_merge_governance_run": 39512748499,
+    "post_merge_artifact_id": 12305109931,
+    "post_merge_artifact_sha256": "e379d6c04556ad4f4b117f26ec38255c7b2da27fc23a9909dbc16af58dcb08e7",
+    "post_merge_branch_hygiene_run": 39512748468
+  },
+  "next_workstream": "P19-H",
+  "next_workstream_state": "READY_NOT_STARTED",
+  "g10_shadow_validated": "PENDING"
 }
