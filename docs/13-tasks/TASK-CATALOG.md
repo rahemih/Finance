@@ -270,7 +270,7 @@ This catalog is the canonical index of governed work.
 | FIN-P19-WC-001 | P19 | Decision Replay | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WC-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P19-WD-001 | P19 | Incident Replay | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WD-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P19-WE-001 | P19 | Digital Twin Fill / Slippage Model | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WE-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P19-WF-001 | P19 | Paper / Live Drift Metrics | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P19-WF-001.json` | ACTIVE / LINEAR_CONTINUATION_REGISTER |
+| FIN-P19-WF-001 | P19 | Paper / Live Drift Metrics | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WF-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
