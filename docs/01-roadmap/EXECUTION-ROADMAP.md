@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: FIN-P19-WF-001 — Paper / Live Drift Metrics
-- active lock: LOCK-FIN-P19-WF-001-01 / ACTIVE
+- active governed task: none
+- active lock: none
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -83,7 +83,7 @@ Phase transition:
 - P16 — Pre-Trade Risk Firewall: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS
 - P17 — Backtesting / Strategy Factory: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS
 - P18 — Continuous Demo Learning: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
-- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A..P19-E CANONICAL_COMPLETE / P19-F ACTIVE
+- P19 — Shadow / Replay / Digital Twin: IN_PROGRESS / P19-A..P19-F CANONICAL_COMPLETE / P19-G READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -2735,3 +2735,19 @@ P19-F — Paper / Live Drift Metrics = IN_PROGRESS.
 Task `FIN-P19-WF-001`; lock `LOCK-FIN-P19-WF-001-01` ACTIVE.  
 Current CI is REFERENCE_ONLY and cannot claim Live drift validation; actual observed execution metrics are owned later by P20-H.  
 P19-G..P19-H = NOT_STARTED. G10 pending. P20 NOT_STARTED. Live/Auto disabled.
+
+
+## P19-F canonical closure — 2026-10-21
+
+P19-F — Paper / Live Drift Metrics = CANONICAL_COMPLETE.  
+Implementation PR #402 merged at `9f8c6107c81750bc89c4ca1fc825199c1c2c05ed`.  
+PR Governance `39116562840` = SUCCESS.  
+PR artifact `sha256:b2247806ba377da56e16c99d6257ddadd700009b3283e203d6f68c308328c02b`.  
+Post-merge Governance `39510218132` = SUCCESS.  
+Post-merge artifact `sha256:93fa7915adf6399edfc209f07beaa210df1a077a76fbbea2eaaf8fadd74e3693`.  
+Post-merge Branch Hygiene `39510218040` = SUCCESS.  
+Lock RELEASED.  
+P19-G = READY_NOT_STARTED.  
+P19-H = NOT_STARTED.  
+G10 pending. P20 NOT_STARTED. Live/Auto disabled.  
+Live empirical validation remains unavailable before P20-H.
