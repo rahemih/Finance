@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P19 — Shadow / Replay / Digital Twin / IN_PROGRESS  
-Current Workstream: P19-F — Paper / Live Drift Metrics / IN_PROGRESS / FIN-P19-WF-001  
+Current Workstream: P19-G — Deterministic Reproducibility / READY_NOT_STARTED  
 Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -60,7 +60,7 @@ P15 state: CANONICAL_COMPLETE / P15-A..P15-I CANONICAL_COMPLETE / P15_INDEPENDEN
 P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS  
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
-P19 state: IN_PROGRESS / P19-A..P19-E CANONICAL_COMPLETE / P19-F ACTIVE / G10_SHADOW_VALIDATED PENDING  
+P19 state: IN_PROGRESS / P19-A..P19-F CANONICAL_COMPLETE / P19-G READY_NOT_STARTED / G10_SHADOW_VALIDATED PENDING  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +174,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P19-WF-001`  
-Active lock: `LOCK-FIN-P19-WF-001-01` / ACTIVE  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -7207,5 +7207,36 @@ Boundary:
 P19-G..P19-H = NOT_STARTED.  
 G10_SHADOW_VALIDATED = PENDING.  
 P20 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P19-F canonical closure — 2026-10-21
+
+P19-F — Paper / Live Drift Metrics = CANONICAL_COMPLETE.  
+Task = `FIN-P19-WF-001`.  
+Implementation PR #402 = MERGED.  
+Implementation head = `52ac5b03022f836ba72c7de03438f6eb0a962d0d`.  
+PR Governance = `39116562840` / SUCCESS.  
+PR artifact = `12132368096` / `sha256:b2247806ba377da56e16c99d6257ddadd700009b3283e203d6f68c308328c02b`.  
+Implementation merge SHA = `9f8c6107c81750bc89c4ca1fc825199c1c2c05ed`.  
+Post-merge Governance = `39510218132` / SUCCESS.  
+Post-merge artifact = `12304829278` / `sha256:93fa7915adf6399edfc209f07beaa210df1a077a76fbbea2eaaf8fadd74e3693`.  
+Post-merge Branch Hygiene = `39510218040` / SUCCESS.  
+Lock = RELEASED.  
+
+Validated:
+- deterministic fill-ratio, adverse-slippage, fee, latency and fill-status drift metrics;
+- strict observation classes: REFERENCE_OBSERVATION / BROKER_CERTIFICATION_OBSERVATION / LIVE_EXECUTION_OBSERVATION;
+- one governed observation class per drift window;
+- canonical CI claim scope = REFERENCE_ONLY;
+- live_empirical_status = UNAVAILABLE_PRE_P20_H;
+- live_drift_validated = false;
+- no G10, production-readiness, execution or order-routing authority.
+
+P19-G — Deterministic Reproducibility = READY_NOT_STARTED.  
+P19-H = NOT_STARTED.  
+G10_SHADOW_VALIDATED = PENDING.  
+P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
