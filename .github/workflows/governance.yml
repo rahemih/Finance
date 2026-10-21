@@ -1433,6 +1433,15 @@ jobs:
           cmp build/p20b-a.json build/p20b-b.json
           sha256sum build/p20b-a.json
 
+      - name: P20-C deterministic Forex execution evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p20c_evidence.py --output build/p20c-a.json
+          PYTHONPATH=. python scripts/ci/p20c_evidence.py --output build/p20c-b.json
+          cmp build/p20c-a.json build/p20c-b.json
+          sha256sum build/p20c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1584,6 +1593,7 @@ jobs:
             build/p19-phase-a.json
             build/p20a-a.json
             build/p20b-a.json
+            build/p20c-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
