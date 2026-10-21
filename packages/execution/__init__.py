@@ -28,6 +28,14 @@ from .forex_adapter import (
     ForexSubmitEnvelope,
     ForexSymbolRule,
 )
+from .oms_lifecycle import (
+    OmsLifecycleEngine,
+    OmsLifecycleError,
+    OmsLifecycleEvent,
+    OmsLifecyclePolicy,
+    OmsOrderSpec,
+    OmsStateRecord,
+)
 
 __all__ = [
     "AdapterBinding",
@@ -52,4 +60,10 @@ __all__ = [
     "ForexSandboxEvent",
     "ForexSubmitEnvelope",
     "ForexSymbolRule",
+    "OmsLifecycleEngine",
+    "OmsLifecycleError",
+    "OmsLifecycleEvent",
+    "OmsLifecyclePolicy",
+    "OmsOrderSpec",
+    "OmsStateRecord",
 ]
