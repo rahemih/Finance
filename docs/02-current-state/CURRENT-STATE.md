@@ -188,8 +188,8 @@ Historical data implementation (P06): CANONICAL_COMPLETE / P06-A CANONICAL_COMPL
 Data quality implementation (P07): CANONICAL_COMPLETE / P07-A CANONICAL_COMPLETE / P07-B CANONICAL_COMPLETE / P07-C CANONICAL_COMPLETE / P07-D CANONICAL_COMPLETE / P07-E CANONICAL_COMPLETE / P07-F CANONICAL_COMPLETE / P07-G CANONICAL_COMPLETE / P07-H CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS  
 Technical intelligence implementation (P08): CANONICAL_COMPLETE / P08-A CANONICAL_COMPLETE / P08-B CANONICAL_COMPLETE / P08-C CANONICAL_COMPLETE / P08-D CANONICAL_COMPLETE / P08-E CANONICAL_COMPLETE / P08-F CANONICAL_COMPLETE / P08-G CANONICAL_COMPLETE / P08-H CANONICAL_COMPLETE / P08-I CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS  
 Volume/order-flow/liquidity implementation (P09): CANONICAL_COMPLETE / P09-A..P09-H CANONICAL_COMPLETE
-Demo Trading: NOT_STARTED  
-Shadow Trading: NOT_STARTED  
+Demo / Paper reference trading: CANONICAL_COMPLETE under P18  
+Shadow / Replay reference validation: CANONICAL_COMPLETE under P19 / G10_SHADOW_VALIDATED PASS  
 Live Trading: DISABLED  
 Auto Trading: DISABLED  
 Credentials: NONE  
@@ -197,7 +197,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P09-H — Validation / Performance is CANONICAL_COMPLETE and `LOCK-FIN-P09-WH-001-01` is RELEASED. P09-A..P09-G remain CANONICAL_COMPLETE. P09 is CANONICAL_COMPLETE. P10 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P19 — Shadow / Replay / Digital Twin is CANONICAL_COMPLETE and `G10_SHADOW_VALIDATED = PASS`. All P19 locks are RELEASED and there is no active P19 task or lock. P20 — Execution & Order Management remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED; no P20 task or lock is active. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -924,8 +924,8 @@ P01-G implementation evidence:
 Safety:
 - Production account/provider activation: NOT_AUTHORIZED
 - Accounts/KYC/subscriptions/credentials/funding/orders: NONE
-- Demo Trading: NOT_STARTED
-- Shadow Trading: NOT_STARTED
+- Historical P01-era state: Demo/Paper trading had not yet started.
+- Historical P01-era state: Shadow trading had not yet started.
 - Live Trading: DISABLED
 - Auto Trading: DISABLED
 
@@ -6661,7 +6661,7 @@ Lock = `LOCK-FIN-P18-WA-001-01` / ACTIVE.
 Branch = `feat/FIN-P18-WA-001-demo-paper-trading-engine`.  
 Dependency = P17 CANONICAL_COMPLETE / `G9_QUANT_VALIDATED` PASS.  
 P18-B..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
@@ -6678,7 +6678,7 @@ Implementation merge SHA = `5cfeebcf5d47945b2fb32177dd7986397f6a67a6`.
 Lock = RELEASED.  
 P18-B = READY_NOT_STARTED.  
 P18-C..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
@@ -6692,7 +6692,7 @@ Lock = `LOCK-FIN-P18-WB-001-01` / ACTIVE.
 Branch = `feat/FIN-P18-WB-001-decision-outcome-journal`.  
 Dependency = P18-A CANONICAL_COMPLETE.  
 P18-C..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Dataset curation/training authority = NONE.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
@@ -6710,7 +6710,7 @@ Implementation merge SHA = `c1dd0ae29fca2c01246fc8214b7e005703d31621`.
 Lock = RELEASED.  
 P18-C = READY_NOT_STARTED.  
 P18-D..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Dataset curation/training remains owned by P18-C and is not started.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
@@ -6725,7 +6725,7 @@ Lock = `LOCK-FIN-P18-WC-001-01` / ACTIVE.
 Branch = `feat/FIN-P18-WC-001-training-dataset-curation`.  
 Dependency = P18-B CANONICAL_COMPLETE.  
 P18-D..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Experiment/retraining authority = NONE.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
@@ -6743,7 +6743,7 @@ Implementation merge SHA = `444c051a88be6738e706abd6c11ef5c1416130e0`.
 Lock = RELEASED.  
 P18-D = READY_NOT_STARTED.  
 P18-E..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Experiment/training execution remains unstarted.  
 Automatic live promotion = FORBIDDEN.  
 LIVE_TRADING = DISABLED.  
@@ -6758,7 +6758,7 @@ Lock = `LOCK-FIN-P18-WD-001-01` / ACTIVE.
 Branch = `feat/FIN-P18-WD-001-experiment-tracking`.  
 Dependency = P18-C CANONICAL_COMPLETE.  
 P18-E..P18-I = NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Retraining/promotion authority = NONE.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
@@ -6774,7 +6774,7 @@ Artifact = `sha256:dfd5d6a66f19d983713ae496b48f90a304253a525837e40e2226ba4a27410
 Implementation merge = `29d05dfeea55706c0fbe55ccb8ca5f9e5ecea1b0`.  
 Lock = RELEASED.  
 P18-E = READY_NOT_STARTED.  
-P18-F..P18-I and P19 = NOT_STARTED.  
+Historical checkpoint: P18-F..P18-I and P19 had not yet been started.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
 
 
@@ -6818,7 +6818,7 @@ Lock = `LOCK-FIN-P18-WH-001-01` / ACTIVE.
 Dependency = P18-G CANONICAL_COMPLETE.  
 Demo governance record only; registry mutation = NONE.  
 Every LIVE target = OWNER_LIVE_GATE_REQUIRED.  
-P18-I / P19 = NOT_STARTED.  
+Historical checkpoint: P18-I and P19 had not yet been started.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
 
 
@@ -6832,7 +6832,7 @@ Artifact = `sha256:ccf5538eeb304c5bebf591f9aa77b887b686b23163a69c92cbdbebb96e674
 Implementation merge = `149f50d225cdf5af99fb2eef79fb827124a530cd`.  
 Lock = RELEASED.  
 P18-I = READY_NOT_STARTED.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 Every LIVE target remains OWNER_LIVE_GATE_REQUIRED.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
 
@@ -6846,7 +6846,7 @@ Dependency = P18-H CANONICAL_COMPLETE.
 Deterministic stage order / checkpoint / cadence / stale-data / safe-hold controls.  
 Automated Controlled Retraining = ALLOWED within P18-E boundary.  
 Automatic Live Promotion = FORBIDDEN.  
-P19 = NOT_STARTED.  
+Historical checkpoint: P19 had not yet been started.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
 
 
@@ -6861,7 +6861,7 @@ Implementation merge SHA = `f71a058affd1f00a20dd89e98d883315b9af27ae`.
 Lock = RELEASED.  
 P18-A..P18-I = CANONICAL_COMPLETE.  
 P18 phase closure = PENDING.  
-P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+Historical checkpoint: P19 had not yet been started and still required Owner phase authorization.  
 Complete learning cycle remains CYCLE_COMPLETE_DEMO_ONLY.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
 
@@ -6878,7 +6878,7 @@ Phase closure validation = PASS.
 Learning cycle terminal status = `CYCLE_COMPLETE_DEMO_ONLY`.  
 Automated Controlled Retraining = ALLOWED within governed offline P18 boundary.  
 Automatic Live Promotion = FORBIDDEN.  
-P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+Historical checkpoint: P19 had not yet been started and still required Owner phase authorization.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
 
@@ -6895,12 +6895,12 @@ State: CANONICAL_COMPLETE after governed merge. GitHub #384 is resolved by an au
 
 ## P18 runtime operationalization — FIN-P18-WI-001-R01
 
-State: CANONICAL_COMPLETE after governed merge. GitHub #383 is resolved by a persistent DEMO-only runtime that drives all nine P18 stages, atomically checkpoints every stage, resumes across process/scheduled-run restarts, retries with bounded backoff, emits telemetry/alerts, and SAFE_HOLDs after repeated failure. Governance requires two deterministic 20-cycle soaks. The public scheduled reference runtime runs hourly and advances three cycles while restoring prior cached state. Runtime stage evidence is cycle-specific and grounded in corrected non-fixture public-market reference data plus authoritative P14/P15/P16/P17 lineage. P19 remains NOT_STARTED; Live/Auto remain disabled.
+State: CANONICAL_COMPLETE after governed merge. GitHub #383 is resolved by a persistent DEMO-only runtime that drives all nine P18 stages, atomically checkpoints every stage, resumes across process/scheduled-run restarts, retries with bounded backoff, emits telemetry/alerts, and SAFE_HOLDs after repeated failure. Governance requires two deterministic 20-cycle soaks. The public scheduled reference runtime runs hourly and advances three cycles while restoring prior cached state. Runtime stage evidence is cycle-specific and grounded in corrected non-fixture public-market reference data plus authoritative P14/P15/P16/P17 lineage. At that historical checkpoint, P19 had not yet been started; Live/Auto remain disabled.
 
 
 ## Branch Hygiene post-audit reconciliation — FIN-P18-WI-001-R02
 
-State: CANONICAL_COMPLETE after governed merge. GitHub #233 is resolved without deleting unique historical commits: exact branch-name + SHA archive governance separates intentionally retained historical branches from active/unclassified work. Any archived SHA drift automatically returns the branch to active audit scope. Branch Hygiene audit now also runs on every main push and closes a clean report immediately. P19 remains NOT_STARTED.
+State: CANONICAL_COMPLETE after governed merge. GitHub #233 is resolved without deleting unique historical commits: exact branch-name + SHA archive governance separates intentionally retained historical branches from active/unclassified work. Any archived SHA drift automatically returns the branch to active audit scope. Branch Hygiene audit now also runs on every main push and closes a clean report immediately. At that historical checkpoint, P19 had not yet been started.
 
 
 ## P17/P18 final canonical end-to-end audit closure — FIN-P18-WI-001-R03 — 2026-10-17
@@ -6929,7 +6929,7 @@ Profitability guarantee = NONE.
 Production-scale empirical validation = NOT_CLAIMED.  
 Automatic Live promotion = FORBIDDEN.  
 Broker/exchange routing = DISABLED.  
-P19 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+Historical checkpoint: P19 had not yet been started and still required Owner phase authorization.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
 

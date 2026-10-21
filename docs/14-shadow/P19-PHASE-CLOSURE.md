@@ -26,7 +26,7 @@ G10 certifies the deterministic Shadow / Replay / reference-validation chain onl
 | P19-G — Deterministic Reproducibility | FIN-P19-WG-001 | CANONICAL_COMPLETE | #404 | #406 |
 | P19-H — Shadow Validation Gate / G10 | FIN-P19-WH-001 | CANONICAL_COMPLETE | #407 | #408 |
 
-PR #405 was a duplicate P19-G closure path and was closed without merge. It is noncanonical.
+Noncanonical duplicate/superseded closure paths are explicitly recorded: PR #393 (duplicate P19-A closure), PR #405 (duplicate P19-G closure), and PR #409 (duplicate P19 phase-closure path) were closed without merge and must not override canonical `main`.
 
 ## G10 evidence
 
