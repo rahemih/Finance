@@ -1442,6 +1442,15 @@ jobs:
           cmp build/p20c-a.json build/p20c-b.json
           sha256sum build/p20c-a.json
 
+      - name: P20-D deterministic OMS lifecycle evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p20d_evidence.py --output build/p20d-a.json
+          PYTHONPATH=. python scripts/ci/p20d_evidence.py --output build/p20d-b.json
+          cmp build/p20d-a.json build/p20d-b.json
+          sha256sum build/p20d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1594,6 +1603,7 @@ jobs:
             build/p20a-a.json
             build/p20b-a.json
             build/p20c-a.json
+            build/p20d-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

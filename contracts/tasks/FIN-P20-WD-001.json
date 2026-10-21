@@ -1,0 +1,133 @@
+{
+  "task_id": "FIN-P20-WD-001",
+  "phase": "P20",
+  "workstream": "WD",
+  "objective": "Implement a deterministic, fail-closed Order Management System lifecycle state machine over canonical P20 execution records, with explicit transition and fill-accounting integrity, while granting no idempotency, retry, reconciliation, network, external-order or Live execution authority.",
+  "scope": [
+    "Define canonical OMS order states and lifecycle event taxonomy",
+    "Create deterministic content-addressed order-state records",
+    "Enforce legal state transitions and terminal-state immutability",
+    "Enforce contiguous lifecycle sequence and non-decreasing event time",
+    "Enforce cumulative fill accounting without overfill",
+    "Model cancel and fill race outcomes deterministically",
+    "Preserve market/asset/side/order identity lineage",
+    "Generate byte-identical P20-D lifecycle evidence"
+  ],
+  "out_of_scope": [
+    "Runtime idempotency and duplicate prevention (P20-E)",
+    "Retry, timeout and crash recovery (P20-F)",
+    "Broker/exchange reconciliation (P20-G)",
+    "Execution-quality latency/slippage metrics (P20-H)",
+    "Broker/exchange simulation and G11 (P20-I)",
+    "Position management (P21)",
+    "Production venue selection",
+    "Credentials/account/KYC/funding",
+    "Network calls or external order submission",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A..P20-C CANONICAL_COMPLETE / locks RELEASED",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "G10_SHADOW_VALIDATED PASS",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WD-001.json",
+    "config/execution/oms-lifecycle-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/oms_lifecycle.py",
+    "tests/p20/test_oms_lifecycle.py",
+    "scripts/ci/p20d_evidence.py",
+    "docs/15-execution/P20-D-OMS-LIFECYCLE.md",
+    "docs/15-execution/p20-d-oms-lifecycle.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Canonical lifecycle happy path is deterministic",
+    "Reject and cancel paths are deterministic",
+    "Illegal transitions fail closed",
+    "Terminal states cannot transition",
+    "Sequence gaps or regressions fail closed",
+    "Event time regression fails closed",
+    "Partial/final fill accounting cannot overfill",
+    "Cancel-pending fill race resolves deterministically",
+    "No P20-E/F/G/I or P21 authority is emitted",
+    "P20-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No external order submission",
+    "No retry authority",
+    "No reconciliation authority",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A..P20-C canonical closure evidence",
+    "Deterministic P20-D OMS lifecycle evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-D package/config/tests/evidence/CI/state changes; P20-A..P20-C remain canonical complete and P20-E remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A..P20-C CANONICAL_COMPLETE",
+    "P20-C lock RELEASED",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic OMS lifecycle state machine implemented",
+    "Transition/time/sequence/fill-accounting guards enforced",
+    "No idempotency/retry/reconciliation/network/Live authority introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WD-001 CANONICAL_COMPLETE and lock released",
+    "P20-E becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}

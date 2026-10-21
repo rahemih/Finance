@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20D_OMS_LIFECYCLE_MANIFEST",
+  "task_id": "FIN-P20-WD-001",
+  "phase": "P20",
+  "workstream": "P20-D",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p20_a": "CANONICAL_COMPLETE",
+    "p20_b": "CANONICAL_COMPLETE",
+    "p20_c": "CANONICAL_COMPLETE",
+    "g10_shadow_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/execution/oms_lifecycle.py",
+    "policy": "config/execution/oms-lifecycle-policy.json",
+    "tests": "tests/p20/test_oms_lifecycle.py",
+    "evidence_generator": "scripts/ci/p20d_evidence.py"
+  },
+  "ownership": {
+    "idempotency": "P20-E",
+    "retry": "P20-F",
+    "reconciliation": "P20-G",
+    "execution_quality": "P20-H",
+    "simulation_gate": "P20-I",
+    "position_management": "P21"
+  },
+  "safety": {
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "external_order_submission": false,
+    "retry_authority": false,
+    "reconciliation_authority": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "g11_execution_validated": false,
+    "p21_started": false
+  },
+  "next": "P20-E_NOT_STARTED"
+}
