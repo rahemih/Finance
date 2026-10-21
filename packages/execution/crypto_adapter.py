@@ -8,7 +8,6 @@ from typing import Mapping, cast
 
 from .adapter_contract import (
     AdapterBinding,
-    AdapterContractError,
     AdapterContractPolicy,
     AdapterDescriptor,
     NormalizedOrderIntent,
