@@ -2,8 +2,8 @@
 
 Task: `FIN-P20-WC-001`  
 Phase: P20 — Execution & Order Management  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P20-WC-001-01`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Dependency: P20-A..P20-B CANONICAL_COMPLETE
 
 ## Objective
@@ -38,8 +38,27 @@ The `forex-reference-sandbox` descriptor is a deterministic test boundary only a
 - OMS state authority = false;
 - retry authority = false;
 - reconciliation authority = false;
-- P20-D..P20-I = NOT_STARTED;
+- P20-D = READY_NOT_STARTED;
+- P20-E..P20-I = NOT_STARTED;
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #415 = MERGED;
+- implementation head = `1da1725b68725dcd7a200cd8d702dba61441ec2c`;
+- implementation Governance = `39564909377` / SUCCESS;
+- implementation artifact = `12329247886` / `sha256:d9196a17635707ca6cbe813306b8b28ce796714ac4ed064c68d53983dceb840a`;
+- implementation merge SHA = `20fe8e249c9cabb3266e5f9fc3b663858c5145ee`;
+- post-merge Governance = `39565117584` / SUCCESS;
+- post-merge artifact = `12330070212` / `sha256:3b4cd333cc618740e3d624ebf05ff51dfe518857c28105f722d96e1d933504ec`;
+- post-merge Branch Hygiene = `39565117522` / SUCCESS;
+- lock = RELEASED;
+- P20-D = READY_NOT_STARTED;
+- G11_EXECUTION_VALIDATED = NOT_REACHED;
+- P21 = NOT_STARTED.
+
+P20-C canonical completion grants no production broker selection, credential/network access or Live execution authority.
