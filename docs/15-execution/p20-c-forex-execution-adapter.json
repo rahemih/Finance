@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20C_FOREX_EXECUTION_MANIFEST",
+  "task_id": "FIN-P20-WC-001",
+  "phase": "P20",
+  "workstream": "P20-C",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p20_a": "CANONICAL_COMPLETE",
+    "p20_b": "CANONICAL_COMPLETE",
+    "p19": "CANONICAL_COMPLETE",
+    "g10_shadow_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/execution/forex_adapter.py",
+    "policy": "config/execution/forex-execution-policy.json",
+    "tests": "tests/p20/test_forex_adapter.py",
+    "evidence_generator": "scripts/ci/p20c_evidence.py"
+  },
+  "broker": {
+    "production_selected": false,
+    "reference_descriptor": "forex-reference-sandbox",
+    "environment": "SIMULATED"
+  },
+  "safety": {
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "external_order_submission": false,
+    "oms_state_authority": false,
+    "retry_authority": false,
+    "reconciliation_authority": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "g11_execution_validated": false,
+    "p21_started": false
+  },
+  "next": "P20-D_NOT_STARTED"
+}
