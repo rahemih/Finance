@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P20-WB-001",
+  "phase": "P20",
+  "workstream": "WB",
+  "objective": "Implement a deterministic Crypto execution adapter against the canonical P20-A contract using reference/sandbox request-response normalization only, without selecting a production venue or granting credentials, network access, external order submission, OMS, retry, reconciliation or Live authority.",
+  "scope": [
+    "Define P20-B fail-closed reference/sandbox Crypto execution policy",
+    "Normalize canonical CRYPTO intents into deterministic submit envelopes",
+    "Enforce symbol quantity/price precision and filter constraints",
+    "Build deterministic cancel envelopes where adapter capability allows",
+    "Normalize deterministic sandbox ACK/REJECT/CANCEL_ACK events",
+    "Bind all request/response artifacts to P20-A adapter/binding lineage",
+    "Keep production venue selection unresolved",
+    "Generate byte-identical P20-B evidence"
+  ],
+  "out_of_scope": [
+    "Production venue selection",
+    "Credentials/account/KYC/funding",
+    "Network calls or real external order submission",
+    "Forex execution (P20-C)",
+    "OMS lifecycle (P20-D)",
+    "Runtime idempotency/duplicate prevention (P20-E)",
+    "Retry/timeout/crash recovery (P20-F)",
+    "Reconciliation (P20-G)",
+    "Latency/slippage measurement (P20-H)",
+    "Broker simulation/certification and G11 (P20-I)",
+    "P21 Position Management",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A CANONICAL_COMPLETE / FIN-P20-WA-001 RELEASED",
+    "Canonical P20-A adapter contract policy",
+    "P19 CANONICAL_COMPLETE / G10 PASS",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "Production execution venue remains NOT_SELECTED"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WB-001.json",
+    "config/execution/crypto-execution-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/crypto_adapter.py",
+    "tests/p20/test_crypto_adapter.py",
+    "scripts/ci/p20b_evidence.py",
+    "docs/15-execution/P20-B-CRYPTO-EXECUTION-ADAPTER.md",
+    "docs/15-execution/p20-b-crypto-execution-adapter.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Crypto submit envelope is byte/digest deterministic",
+    "Quantity and price precision/filter rules fail closed",
+    "P20-A binding/intent/descriptor lineage mismatch fails closed",
+    "Cancel envelope requires adapter cancel capability",
+    "Sandbox ACK/REJECT/CANCEL_ACK normalization is deterministic",
+    "Response request/client lineage mismatch fails closed",
+    "Policy forbids production venue selection, credentials, network and external submission",
+    "P20-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No external order submission",
+    "No production venue selection",
+    "No automatic Live promotion",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A canonical closure evidence",
+    "Deterministic P20-B Crypto adapter evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-B package/config/tests/evidence/CI/state changes; P20-A remains canonical complete and P20-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A CANONICAL_COMPLETE",
+    "P20-A lock RELEASED",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic reference/sandbox Crypto adapter implemented",
+    "Precision/filter and P20-A lineage guards enforced",
+    "No production venue/credential/network/real order authority introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WB-001 CANONICAL_COMPLETE and lock released",
+    "P20-C becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}
