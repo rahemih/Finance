@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-D — OMS Lifecycle / FIN-P20-WD-001 / IN_PROGRESS  
+Current Workstream: none — P20-A..P20-D CANONICAL_COMPLETE / P20-E READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-C CANONICAL_COMPLETE / P20-D IN_PROGRESS / P20-E..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-D CANONICAL_COMPLETE / P20-E READY_NOT_STARTED / P20-F..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WD-001`  
-Active lock: `LOCK-FIN-P20-WD-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-C are CANONICAL_COMPLETE. P20-D — OMS Lifecycle is IN_PROGRESS under `FIN-P20-WD-001` / `LOCK-FIN-P20-WD-001-01`. P20-E..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-D owns deterministic internal lifecycle state only; credentials/network/external order submission/idempotency/retry/reconciliation/Live authority remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-D are CANONICAL_COMPLETE with locks RELEASED. P20-E — Idempotency / Duplicate Prevention is READY_NOT_STARTED; P20-F..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Credentials/network/external order submission/retry/reconciliation/Live authority remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7506,3 +7506,26 @@ P20-D boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-D canonical closure — 2026-10-21
+
+P20-D — OMS Lifecycle = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WD-001`.  
+Implementation PR #417 = MERGED.  
+Implementation head = `4195669226c10c76acbe0b80aed67b3ca7fbd2b5`.  
+PR Governance `39566769158` = SUCCESS.  
+PR artifact = `12330745644` / `sha256:212b7fa5ba184db0177d49110bec2ff361969eb5ce76b057f77b3cb51652450a`.  
+Implementation merge SHA = `0e369a7157e365b59b8015541f1b4ac2918e8c12`.  
+Post-merge Governance `39567033484` = SUCCESS.  
+Post-merge artifact = `12330023232` / `sha256:3767eeef245cbdfcf63098b2ad4750f1ff59b4562d1d6158b9623a60beb8f80d`.  
+Post-merge Branch Hygiene `39567033494` = SUCCESS.  
+Lock = RELEASED.  
+P20-E — Idempotency / Duplicate Prevention = READY_NOT_STARTED.  
+P20-F..P20-I = NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-D certifies deterministic internal OMS transition, sequence/time integrity, fill accounting, terminal-state immutability and content-addressed lifecycle lineage only. Runtime idempotency remains owned by P20-E; retry by P20-F; reconciliation by P20-G; execution quality by P20-H; simulation/G11 by P20-I.
