@@ -1,0 +1,133 @@
+{
+  "task_id": "FIN-P20-WC-001",
+  "phase": "P20",
+  "workstream": "WC",
+  "objective": "Implement a deterministic Forex execution adapter against the canonical P20-A contract using reference/sandbox request-response normalization only, without selecting a production broker or granting credentials, network access, external order submission, OMS, retry, reconciliation or Live authority.",
+  "scope": [
+    "Define P20-C fail-closed reference/sandbox Forex execution policy",
+    "Normalize canonical FOREX intents into deterministic submit envelopes",
+    "Enforce symbol quantity-step, minimum-size, price-tick and pip geometry constraints",
+    "Build deterministic cancel envelopes where adapter capability allows",
+    "Normalize deterministic sandbox ACK/REJECT/CANCEL_ACK events",
+    "Bind every request/response artifact to P20-A adapter/binding lineage",
+    "Keep production Forex broker selection unresolved",
+    "Generate byte-identical P20-C evidence"
+  ],
+  "out_of_scope": [
+    "Production Forex broker selection",
+    "Credentials/account/KYC/funding",
+    "Network calls or real external order submission",
+    "Crypto execution (P20-B)",
+    "OMS lifecycle (P20-D)",
+    "Runtime idempotency/duplicate prevention (P20-E)",
+    "Retry/timeout/crash recovery (P20-F)",
+    "Reconciliation (P20-G)",
+    "Execution-quality latency/slippage metrics (P20-H)",
+    "Broker/exchange simulation/certification and G11 (P20-I)",
+    "P21 Position Management",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A CANONICAL_COMPLETE / FIN-P20-WA-001 RELEASED",
+    "P20-B CANONICAL_COMPLETE / FIN-P20-WB-001 RELEASED",
+    "Canonical P20-A adapter contract policy",
+    "P19 CANONICAL_COMPLETE / G10 PASS",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "Production Forex execution broker remains NOT_SELECTED"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WC-001.json",
+    "config/execution/forex-execution-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/forex_adapter.py",
+    "tests/p20/test_forex_adapter.py",
+    "scripts/ci/p20c_evidence.py",
+    "docs/15-execution/P20-C-FOREX-EXECUTION-ADAPTER.md",
+    "docs/15-execution/p20-c-forex-execution-adapter.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Forex submit envelope is byte/digest deterministic",
+    "Quantity step/minimum and price tick/pip rules fail closed",
+    "P20-A binding/intent/descriptor lineage mismatch fails closed",
+    "Cancel envelope requires adapter cancel capability",
+    "Sandbox ACK/REJECT/CANCEL_ACK normalization is deterministic",
+    "Response request/client lineage mismatch fails closed",
+    "Policy forbids production broker selection, credentials, network and external submission",
+    "P20-C evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No external order submission",
+    "No production broker selection",
+    "No automatic Live promotion",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A/P20-B canonical closure evidence",
+    "Deterministic P20-C Forex adapter evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-C package/config/tests/evidence/CI/state changes; P20-A/P20-B remain canonical complete and P20-D remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A..P20-B CANONICAL_COMPLETE",
+    "P20-B lock RELEASED",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic reference/sandbox Forex adapter implemented",
+    "Quantity/price/pip and P20-A lineage guards enforced",
+    "No production broker/credential/network/real order authority introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WC-001 CANONICAL_COMPLETE and lock released",
+    "P20-D becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}
