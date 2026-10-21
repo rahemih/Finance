@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-B — Crypto Execution Adapter / FIN-P20-WB-001 / IN_PROGRESS  
+Current Workstream: none — P20-A..P20-B CANONICAL_COMPLETE / P20-C READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A CANONICAL_COMPLETE / P20-B IN_PROGRESS / P20-C..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-B CANONICAL_COMPLETE / P20-C READY_NOT_STARTED / P20-D..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WB-001`  
-Active lock: `LOCK-FIN-P20-WB-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A — Adapter Contract is CANONICAL_COMPLETE and released. P20-B — Crypto Execution Adapter is IN_PROGRESS under `FIN-P20-WB-001` / `LOCK-FIN-P20-WB-001-01`. P20-C..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-B is reference/sandbox only with production venue NOT_SELECTED, credentials NONE, network DISABLED and external order submission false. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A — Adapter Contract and P20-B — Crypto Execution Adapter are CANONICAL_COMPLETE with locks RELEASED. P20-C — Forex Execution is READY_NOT_STARTED; P20-D..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Production execution venues remain NOT_SELECTED; credentials/account/KYC/funding/network/external order submission remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7410,3 +7410,26 @@ P20-B boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-B canonical closure — 2026-10-21
+
+P20-B — Crypto Execution Adapter = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WB-001`.  
+Implementation PR #413 = MERGED.  
+Implementation head = `cad42ff2ab8b89b446c7b504df27c5998ac55f1a`.  
+PR Governance `39559650943` = SUCCESS.  
+PR artifact = `12327531097` / `sha256:0d60ba4a6ddc93802d38dfdadd398799543322093be4efa932da7fc7e72690a9`.  
+Implementation merge SHA = `87cb26fc92af99f0912bb5dbc33f3ca880c7c269`.  
+Post-merge Governance `39559833645` = SUCCESS.  
+Post-merge artifact = `12326573488` / `sha256:b6610c151534678255d3461c3b230f4c378d7ff77337b077a50eb3ed892c9169`.  
+Post-merge Branch Hygiene `39559833609` = SUCCESS.  
+Lock = RELEASED.  
+P20-C — Forex Execution = READY_NOT_STARTED.  
+P20-D..P20-I = NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-B certifies only deterministic reference/sandbox Crypto request-response normalization, precision/filter enforcement and lineage against P20-A. Production venue selection remains NOT_SELECTED; credentials, account/KYC/funding, network access and external order submission remain absent.
