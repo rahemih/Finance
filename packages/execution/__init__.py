@@ -18,6 +18,16 @@ from .crypto_adapter import (
     CryptoSubmitEnvelope,
     CryptoSymbolRule,
 )
+from .forex_adapter import (
+    ForexAdapterError,
+    ForexAdapterResult,
+    ForexCancelEnvelope,
+    ForexExecutionAdapter,
+    ForexExecutionPolicy,
+    ForexSandboxEvent,
+    ForexSubmitEnvelope,
+    ForexSymbolRule,
+)
 
 __all__ = [
     "AdapterBinding",
@@ -34,4 +44,12 @@ __all__ = [
     "CryptoSandboxEvent",
     "CryptoSubmitEnvelope",
     "CryptoSymbolRule",
+    "ForexAdapterError",
+    "ForexAdapterResult",
+    "ForexCancelEnvelope",
+    "ForexExecutionAdapter",
+    "ForexExecutionPolicy",
+    "ForexSandboxEvent",
+    "ForexSubmitEnvelope",
+    "ForexSymbolRule",
 ]
