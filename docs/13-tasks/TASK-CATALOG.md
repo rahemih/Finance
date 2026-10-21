@@ -274,7 +274,7 @@ This catalog is the canonical index of governed work.
 | FIN-P19-WG-001 | P19 | Deterministic Reproducibility | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WG-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P19-WH-001 | P19 | Shadow Validation Gate / G10 | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P19-WH-001.json` | RELEASED / G10_SHADOW_VALIDATED PASS / LINEAR_CONTINUATION_REGISTER |
 | FIN-P20-WA-001 | P20 | Adapter Contract | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P20-WB-001 | P20 | Crypto Execution Adapter | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P20-WB-001.json` | LOCK-FIN-P20-WB-001-01 / LINEAR_CONTINUATION_REGISTER |
+| FIN-P20-WB-001 | P20 | Crypto Execution Adapter | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
