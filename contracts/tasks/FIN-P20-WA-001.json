@@ -1,0 +1,142 @@
+{
+  "task_id": "FIN-P20-WA-001",
+  "phase": "P20",
+  "workstream": "WA",
+  "objective": "Establish a deterministic, vendor-neutral execution-adapter contract for Crypto and Forex that normalizes order intent and adapter capabilities while preserving mandatory idempotency/reconciliation semantics and granting zero credential, network, external-order or Live execution authority.",
+  "scope": [
+    "Define canonical adapter descriptor and capability contract for Crypto and Forex",
+    "Define normalized BUY/SELL order-intent vocabulary for MARKET/LIMIT/STOP",
+    "Define deterministic adapter contract identity, registry snapshot and binding identity",
+    "Require client_order_id, idempotency-key and reconciliation capabilities",
+    "Fail closed on duplicate adapters, duplicate venue bindings, market mismatch and unsupported capabilities",
+    "Fail closed on incoherent order price geometry",
+    "Permit only SIMULATED and SANDBOX contract environments during P20-A",
+    "Keep credentials/network/external order submission/Live authority disabled",
+    "Generate byte-identical P20-A reference evidence"
+  ],
+  "out_of_scope": [
+    "Crypto execution implementation (P20-B)",
+    "Forex execution implementation (P20-C)",
+    "OMS lifecycle (P20-D)",
+    "Idempotency/duplicate prevention runtime (P20-E)",
+    "Retry/timeout/crash recovery (P20-F)",
+    "Execution reconciliation runtime (P20-G)",
+    "Execution-quality metrics (P20-H)",
+    "Broker/exchange simulation and G11 (P20-I)",
+    "Credential provisioning",
+    "Account/KYC/funding actions",
+    "Real external order submission",
+    "Live/Auto trading",
+    "P21 Position Management"
+  ],
+  "dependencies": [
+    "P19 CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE",
+    "G10_SHADOW_VALIDATED PASS",
+    "P16 G8_PRETRADE_SAFE PASS",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "No active governed task or lock conflict"
+  ],
+  "read_paths": [
+    "packages/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WA-001.json",
+    "config/execution/adapter-contract-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/adapter_contract.py",
+    "tests/p20/__init__.py",
+    "tests/p20/test_adapter_contract.py",
+    "scripts/ci/p20a_evidence.py",
+    "docs/15-execution/P20-A-ADAPTER-CONTRACT.md",
+    "docs/15-execution/p20-a-adapter-contract.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Same descriptor produces identical adapter_contract_id",
+    "LIVE adapter environment is rejected",
+    "Client order ID and idempotency key requirements cannot be disabled",
+    "Reconciliation capability cannot be disabled",
+    "Duplicate adapter and duplicate venue/market/environment bindings fail closed",
+    "Adapter/intent market mismatch fails closed",
+    "Unsupported order type/time-in-force fails closed",
+    "MARKET/LIMIT/STOP price geometry is normalized and validated",
+    "Binding identity is deterministic",
+    "Registry snapshot is deterministic",
+    "No credential/network/external order/Live authority is emitted",
+    "P20-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No external order submission",
+    "No LIVE adapter environment",
+    "No automatic Live promotion",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P19 canonical closure / G10 PASS",
+    "Deterministic P20-A adapter contract evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-A adapter contract package/config/tests/evidence/CI/state changes; P19 remains canonical complete and P20-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P19 CANONICAL_COMPLETE / G10 PASS",
+    "Owner P20 authorization consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic vendor-neutral adapter contract implemented",
+    "Crypto/Forex normalized intent and capability negotiation enforced",
+    "Idempotency/reconciliation contract requirements enforced",
+    "Fail-closed zero-authority boundary enforced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P20-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P20-B becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}
