@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20F_RETRY_RECOVERY_POLICY",
+  "task_id": "FIN-P20-WF-001",
+  "mode": "DETERMINISTIC_FAIL_CLOSED_RETRY_RECOVERY",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "operations": [
+    "ORDER_SUBMIT",
+    "ORDER_CANCEL"
+  ],
+  "retryable_conditions": [
+    "PRE_DISPATCH_TIMEOUT",
+    "PRE_DISPATCH_FAILURE",
+    "PROCESS_CRASH_BEFORE_DISPATCH"
+  ],
+  "safe_hold_conditions": [
+    "DISPATCH_OUTCOME_UNKNOWN",
+    "PROCESS_CRASH_AFTER_DISPATCH"
+  ],
+  "terminal_conditions": [
+    "ACKNOWLEDGED",
+    "REJECTED",
+    "CANCEL_ACKNOWLEDGED"
+  ],
+  "max_attempts": 3,
+  "backoff_ms": [
+    250,
+    1000,
+    4000
+  ],
+  "reconciliation_owner": "P20-G",
+  "execution_quality_owner": "P20-H",
+  "simulation_gate_owner": "P20-I",
+  "position_management_owner": "P21",
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "actual_retry_dispatch": false,
+  "reconciliation_authority": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

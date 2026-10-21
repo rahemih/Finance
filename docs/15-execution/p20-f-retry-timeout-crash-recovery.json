@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20F_RETRY_RECOVERY_MANIFEST",
+  "task_id": "FIN-P20-WF-001",
+  "phase": "P20",
+  "workstream": "P20-F",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p20_a": "CANONICAL_COMPLETE",
+    "p20_b": "CANONICAL_COMPLETE",
+    "p20_c": "CANONICAL_COMPLETE",
+    "p20_d": "CANONICAL_COMPLETE",
+    "p20_e": "CANONICAL_COMPLETE",
+    "g10_shadow_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/execution/retry_recovery.py",
+    "policy": "config/execution/retry-recovery-policy.json",
+    "tests": "tests/p20/test_retry_recovery.py",
+    "evidence_generator": "scripts/ci/p20f_evidence.py"
+  },
+  "ownership": {
+    "reconciliation": "P20-G",
+    "execution_quality": "P20-H",
+    "simulation_gate": "P20-I",
+    "position_management": "P21"
+  },
+  "safety": {
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "actual_retry_dispatch": false,
+    "external_order_submission": false,
+    "reconciliation_authority": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "g11_execution_validated": false,
+    "p21_started": false
+  },
+  "next": "P20-G_NOT_STARTED"
+}

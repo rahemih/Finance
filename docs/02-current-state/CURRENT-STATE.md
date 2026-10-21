@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P20-A..P20-E CANONICAL_COMPLETE / P20-F READY_NOT_STARTED  
+Current Workstream: P20-F — Retry / Timeout / Crash Recovery / FIN-P20-WF-001 / IN_PROGRESS  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-E CANONICAL_COMPLETE / P20-F READY_NOT_STARTED / P20-G..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-E CANONICAL_COMPLETE / P20-F IN_PROGRESS / P20-G..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P20-WF-001`  
+Active lock: `LOCK-FIN-P20-WF-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-E are CANONICAL_COMPLETE with locks RELEASED. P20-F — Retry / Timeout / Crash Recovery is READY_NOT_STARTED; P20-G..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Credentials/network/external order submission/reconciliation/Live authority remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-E are CANONICAL_COMPLETE. P20-F — Retry / Timeout / Crash Recovery is IN_PROGRESS under `FIN-P20-WF-001` / `LOCK-FIN-P20-WF-001-01`. P20-G..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Ambiguous post-dispatch outcomes fail closed to reconciliation-required safe hold; credentials/network/external order submission/reconciliation/Live authority remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7579,3 +7579,28 @@ LIVE_TRADING = DISABLED.
 AUTO_TRADING = DISABLED.
 
 P20-E certifies deterministic idempotency admission, exact replay recognition and conflicting duplicate prevention only. Retry ownership remains P20-F; reconciliation P20-G; execution quality P20-H; simulation/G11 P20-I. It grants no network, external-order or Live execution authority.
+
+
+## P20-F activation — 2026-10-21
+
+P20-A..P20-E = CANONICAL_COMPLETE / locks RELEASED.  
+P20-F — Retry / Timeout / Crash Recovery = IN_PROGRESS.  
+Task = `FIN-P20-WF-001`.  
+Lock = `LOCK-FIN-P20-WF-001-01` / ACTIVE.  
+Branch = `feat/FIN-P20-WF-001-retry-timeout-crash-recovery`.
+
+P20-F boundary:
+- deterministic retry planning and recovery checkpoints only;
+- retries only for definitively PRE_DISPATCH failures/timeouts/crashes;
+- ambiguous POST_DISPATCH outcome or crash = SAFE_HOLD_RECONCILIATION_REQUIRED;
+- exact P20-E idempotency claim/request/client-order/order identity preserved;
+- deterministic retry budget/backoff metadata only; no sleep/network send;
+- credentials/account/KYC/funding = NONE;
+- network mode = DISABLED;
+- actual retry dispatch = false;
+- external order submission = false;
+- reconciliation authority = false;
+- P20-G..P20-I = NOT_STARTED;
+- G11_EXECUTION_VALIDATED = NOT_REACHED;
+- P21 = NOT_STARTED;
+- LIVE_TRADING/AUTO_TRADING = DISABLED.
