@@ -47,30 +47,43 @@ def intent(
     order_type: str = "LIMIT",
     tif: str = "GTC",
 ) -> NormalizedOrderIntent:
-    common = {
-        "intent_id": "intent-001",
-        "asset_id": "BTC-USD" if market == "CRYPTO" else "EUR-USD",
-        "market": market,
-        "side": "BUY",
-        "quantity_scaled": 100,
-        "quantity_scale": 100,
-        "time_in_force": tif,
-    }
+    asset_id = "BTC-USD" if market == "CRYPTO" else "EUR-USD"
     if order_type == "LIMIT":
         return NormalizedOrderIntent(
+            intent_id="intent-001",
+            asset_id=asset_id,
+            market=market,
+            side="BUY",
             order_type="LIMIT",
+            quantity_scaled=100,
+            quantity_scale=100,
+            time_in_force=tif,
             limit_price_scaled=10_000,
             price_scale=100,
-            **common,
         )
     if order_type == "STOP":
         return NormalizedOrderIntent(
+            intent_id="intent-001",
+            asset_id=asset_id,
+            market=market,
+            side="BUY",
             order_type="STOP",
+            quantity_scaled=100,
+            quantity_scale=100,
+            time_in_force=tif,
             stop_price_scaled=9_500,
             price_scale=100,
-            **common,
         )
-    return NormalizedOrderIntent(order_type=order_type, **common)
+    return NormalizedOrderIntent(
+        intent_id="intent-001",
+        asset_id=asset_id,
+        market=market,
+        side="BUY",
+        order_type=order_type,
+        quantity_scaled=100,
+        quantity_scale=100,
+        time_in_force=tif,
+    )
 
 
 
