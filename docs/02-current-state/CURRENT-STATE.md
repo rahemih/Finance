@@ -39,9 +39,9 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-Current Workstream: none — P19 CANONICAL_COMPLETE  
-Previous Workstream: P18 — Continuous Demo Learning / CANONICAL_COMPLETE  
+Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
+Current Workstream: P20-A — Adapter Contract / FIN-P20-WA-001 / IN_PROGRESS  
+Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
 P03 state: CANONICAL_COMPLETE / G3_SECURITY_BASELINE PASS  
@@ -61,6 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
+P20 state: AUTHORIZED / ACTIVE / P20-A IN_PROGRESS / P20-B..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -174,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P20-WA-001`  
+Active lock: `LOCK-FIN-P20-WA-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -197,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P19 — Shadow / Replay / Digital Twin is CANONICAL_COMPLETE and `G10_SHADOW_VALIDATED = PASS`. All P19 locks are RELEASED and there is no active P19 task or lock. P20 — Execution & Order Management remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED; no P20 task or lock is active. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A — Adapter Contract is IN_PROGRESS under `FIN-P20-WA-001` with `LOCK-FIN-P20-WA-001-01`. P20-B..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-A is contract-only with no credentials, network or external order submission. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7339,3 +7340,27 @@ Profitability guarantee = false.
 P20 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+
+## P20-A activation — 2026-10-21
+
+Owner phase authorization for P20 is GRANTED / CONSUMED.  
+P20 — Execution & Order Management = AUTHORIZED / ACTIVE.  
+P20-A — Adapter Contract = IN_PROGRESS.  
+Task = `FIN-P20-WA-001`.  
+Lock = `LOCK-FIN-P20-WA-001-01` / ACTIVE.  
+Branch = `feat/FIN-P20-WA-001-adapter-contract`.
+
+P20-A boundary:
+- deterministic vendor-neutral adapter contract for Crypto and Forex;
+- normalized MARKET/LIMIT/STOP order-intent vocabulary;
+- mandatory client-order identity, idempotency-key and reconciliation capability declarations;
+- SIMULATED/SANDBOX contract environments only;
+- no credentials or account/KYC/funding actions;
+- network mode DISABLED;
+- external order submission false;
+- Live execution authority false;
+- P20-B..P20-I remain NOT_STARTED;
+- G11_EXECUTION_VALIDATED = NOT_REACHED;
+- P21 = NOT_STARTED;
+- LIVE_TRADING and AUTO_TRADING remain DISABLED.
