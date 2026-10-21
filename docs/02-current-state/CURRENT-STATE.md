@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-C — Forex Execution Adapter / FIN-P20-WC-001 / IN_PROGRESS  
+Current Workstream: none — P20-A..P20-C CANONICAL_COMPLETE / P20-D READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-B CANONICAL_COMPLETE / P20-C IN_PROGRESS / P20-D..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-C CANONICAL_COMPLETE / P20-D READY_NOT_STARTED / P20-E..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WC-001`  
-Active lock: `LOCK-FIN-P20-WC-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-B are CANONICAL_COMPLETE. P20-C — Forex Execution Adapter is IN_PROGRESS under `FIN-P20-WC-001` / `LOCK-FIN-P20-WC-001-01`. P20-D..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-C is reference/sandbox only with production broker NOT_SELECTED, credentials NONE, network DISABLED and external order submission false. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-C are CANONICAL_COMPLETE with locks RELEASED. P20-D — OMS Lifecycle is READY_NOT_STARTED; P20-E..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Production execution venues remain NOT_SELECTED; credentials/account/KYC/funding/network/external order submission remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7456,3 +7456,26 @@ P20-C boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-C canonical closure — 2026-10-21
+
+P20-C — Forex Execution Adapter = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WC-001`.  
+Implementation PR #415 = MERGED.  
+Implementation head = `1da1725b68725dcd7a200cd8d702dba61441ec2c`.  
+PR Governance `39564909377` = SUCCESS.  
+PR artifact = `12329247886` / `sha256:d9196a17635707ca6cbe813306b8b28ce796714ac4ed064c68d53983dceb840a`.  
+Implementation merge SHA = `20fe8e249c9cabb3266e5f9fc3b663858c5145ee`.  
+Post-merge Governance `39565117584` = SUCCESS.  
+Post-merge artifact = `12330070212` / `sha256:3b4cd333cc618740e3d624ebf05ff51dfe518857c28105f722d96e1d933504ec`.  
+Post-merge Branch Hygiene `39565117522` = SUCCESS.  
+Lock = RELEASED.  
+P20-D — OMS Lifecycle = READY_NOT_STARTED.  
+P20-E..P20-I = NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-C certifies only deterministic reference/sandbox Forex request-response normalization, fixed-point price/tick/pip geometry, quantity constraints and lineage against P20-A. Production broker selection remains NOT_SELECTED; credentials, account/KYC/funding, network access and external order submission remain absent.
