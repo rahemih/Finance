@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20D_OMS_LIFECYCLE_POLICY",
+  "task_id": "FIN-P20-WD-001",
+  "mode": "DETERMINISTIC_OMS_LIFECYCLE",
+  "states": [
+    "CREATED",
+    "SUBMIT_PENDING",
+    "OPEN",
+    "PARTIALLY_FILLED",
+    "CANCEL_PENDING",
+    "FILLED",
+    "CANCELED",
+    "REJECTED",
+    "EXPIRED"
+  ],
+  "events": [
+    "SUBMIT",
+    "ACK",
+    "REJECT",
+    "PARTIAL_FILL",
+    "FILL",
+    "CANCEL_REQUEST",
+    "CANCEL_ACK",
+    "EXPIRE"
+  ],
+  "idempotency_owner": "P20-E",
+  "retry_owner": "P20-F",
+  "reconciliation_owner": "P20-G",
+  "execution_quality_owner": "P20-H",
+  "simulation_gate_owner": "P20-I",
+  "position_management_owner": "P21",
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
