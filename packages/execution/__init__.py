@@ -36,6 +36,14 @@ from .oms_lifecycle import (
     OmsOrderSpec,
     OmsStateRecord,
 )
+from .idempotency import (
+    IdempotencyClaim,
+    IdempotencyDecision,
+    IdempotencyError,
+    IdempotencyLedger,
+    IdempotencyPolicy,
+    IdempotencyRequest,
+)
 
 __all__ = [
     "AdapterBinding",
@@ -66,4 +74,10 @@ __all__ = [
     "OmsLifecyclePolicy",
     "OmsOrderSpec",
     "OmsStateRecord",
+    "IdempotencyClaim",
+    "IdempotencyDecision",
+    "IdempotencyError",
+    "IdempotencyLedger",
+    "IdempotencyPolicy",
+    "IdempotencyRequest",
 ]

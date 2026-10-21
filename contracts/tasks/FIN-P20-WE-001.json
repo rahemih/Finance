@@ -1,0 +1,135 @@
+{
+  "task_id": "FIN-P20-WE-001",
+  "phase": "P20",
+  "workstream": "WE",
+  "objective": "Implement deterministic fail-closed idempotency and duplicate-prevention admission for P20 execution requests, allowing exact replay of an existing request while rejecting conflicting idempotency-key, client-order, fingerprint and operation/order claims, with no retry, reconciliation, network, external-order or Live authority.",
+  "scope": [
+    "Define canonical ORDER_SUBMIT and ORDER_CANCEL idempotency admission contract",
+    "Require non-empty idempotency_key and client_order_id",
+    "Bind idempotency claims to market/order/operation/request fingerprint",
+    "Allow exact replay of the same canonical claim without creating a new claim",
+    "Reject idempotency-key reuse with conflicting request lineage",
+    "Reject duplicate client_order_id under a different idempotency key within a market",
+    "Reject duplicate request fingerprint under a different idempotency key within market/operation scope",
+    "Reject duplicate operation/order claim under a different idempotency key",
+    "Emit deterministic content-addressed ledger snapshots",
+    "Generate byte-identical P20-E evidence"
+  ],
+  "out_of_scope": [
+    "Retry / timeout / crash recovery (P20-F)",
+    "Reconciliation (P20-G)",
+    "Execution-quality metrics (P20-H)",
+    "Broker/exchange simulation and G11 (P20-I)",
+    "Position management (P21)",
+    "Production venue selection",
+    "Credentials/account/KYC/funding",
+    "Network calls or external order submission",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A..P20-D CANONICAL_COMPLETE / locks RELEASED",
+    "Canonical P20-D OMS lifecycle",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "G10_SHADOW_VALIDATED PASS",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WE-001.json",
+    "config/execution/idempotency-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/idempotency.py",
+    "tests/p20/test_idempotency.py",
+    "scripts/ci/p20e_evidence.py",
+    "docs/15-execution/P20-E-IDEMPOTENCY-DUPLICATE-PREVENTION.md",
+    "docs/15-execution/p20-e-idempotency-duplicate-prevention.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "First canonical request produces ADMIT_NEW deterministically",
+    "Exact replay produces REPLAY_EXISTING with the same claim",
+    "Idempotency-key reuse with conflicting lineage fails closed",
+    "Duplicate client_order_id under another key fails closed",
+    "Duplicate request fingerprint under another key fails closed",
+    "Duplicate operation/order claim under another key fails closed",
+    "Submit and cancel may use distinct canonical claims for the same order",
+    "Snapshot ordering and identities are deterministic",
+    "No retry/reconciliation/network/external-order/Live authority is emitted",
+    "P20-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No external order submission",
+    "No retry authority",
+    "No reconciliation authority",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A..P20-D canonical closure evidence",
+    "Deterministic P20-E idempotency evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-E package/config/tests/evidence/CI/state changes; P20-A..P20-D remain canonical complete and P20-F remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A..P20-D CANONICAL_COMPLETE",
+    "P20-D lock RELEASED",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic idempotency ledger implemented",
+    "Exact replay and conflict/duplicate guards enforced",
+    "No retry/reconciliation/network/Live authority introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WE-001 CANONICAL_COMPLETE and lock released",
+    "P20-F becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}

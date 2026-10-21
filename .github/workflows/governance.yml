@@ -1451,6 +1451,15 @@ jobs:
           cmp build/p20d-a.json build/p20d-b.json
           sha256sum build/p20d-a.json
 
+      - name: P20-E deterministic idempotency evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p20e_evidence.py --output build/p20e-a.json
+          PYTHONPATH=. python scripts/ci/p20e_evidence.py --output build/p20e-b.json
+          cmp build/p20e-a.json build/p20e-b.json
+          sha256sum build/p20e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1604,6 +1613,7 @@ jobs:
             build/p20b-a.json
             build/p20c-a.json
             build/p20d-a.json
+            build/p20e-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
