@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20E_IDEMPOTENCY_POLICY",
+  "task_id": "FIN-P20-WE-001",
+  "mode": "DETERMINISTIC_FAIL_CLOSED_IDEMPOTENCY",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "operations": [
+    "ORDER_SUBMIT",
+    "ORDER_CANCEL"
+  ],
+  "exact_replay": "REPLAY_EXISTING",
+  "conflicting_key_reuse": "REJECT",
+  "duplicate_client_order_id": "REJECT",
+  "duplicate_request_fingerprint": "REJECT",
+  "duplicate_operation_order": "REJECT",
+  "retry_owner": "P20-F",
+  "reconciliation_owner": "P20-G",
+  "execution_quality_owner": "P20-H",
+  "simulation_gate_owner": "P20-I",
+  "position_management_owner": "P21",
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
