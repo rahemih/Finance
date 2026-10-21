@@ -47,22 +47,31 @@ def intent(
     order_type: str = "LIMIT",
     tif: str = "GTC",
 ) -> NormalizedOrderIntent:
-    kwargs: dict[str, object] = {}
+    common = {
+        "intent_id": "intent-001",
+        "asset_id": "BTC-USD" if market == "CRYPTO" else "EUR-USD",
+        "market": market,
+        "side": "BUY",
+        "quantity_scaled": 100,
+        "quantity_scale": 100,
+        "time_in_force": tif,
+    }
     if order_type == "LIMIT":
-        kwargs = {"limit_price_scaled": 10_000, "price_scale": 100}
-    elif order_type == "STOP":
-        kwargs = {"stop_price_scaled": 9_500, "price_scale": 100}
-    return NormalizedOrderIntent(
-        intent_id="intent-001",
-        asset_id="BTC-USD" if market == "CRYPTO" else "EUR-USD",
-        market=market,
-        side="BUY",
-        order_type=order_type,
-        quantity_scaled=100,
-        quantity_scale=100,
-        time_in_force=tif,
-        **kwargs,
-    )
+        return NormalizedOrderIntent(
+            order_type="LIMIT",
+            limit_price_scaled=10_000,
+            price_scale=100,
+            **common,
+        )
+    if order_type == "STOP":
+        return NormalizedOrderIntent(
+            order_type="STOP",
+            stop_price_scaled=9_500,
+            price_scale=100,
+            **common,
+        )
+    return NormalizedOrderIntent(order_type=order_type, **common)
+
 
 
 class AdapterContractTests(unittest.TestCase):
