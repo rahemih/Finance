@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-A — Adapter Contract / FIN-P20-WA-001 / IN_PROGRESS  
+Current Workstream: none — P20-A CANONICAL_COMPLETE / P20-B READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A IN_PROGRESS / P20-B..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A CANONICAL_COMPLETE / P20-B READY_NOT_STARTED / P20-C..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WA-001`  
-Active lock: `LOCK-FIN-P20-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A — Adapter Contract is IN_PROGRESS under `FIN-P20-WA-001` with `LOCK-FIN-P20-WA-001-01`. P20-B..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-A is contract-only with no credentials, network or external order submission. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A — Adapter Contract is CANONICAL_COMPLETE and `LOCK-FIN-P20-WA-001-01` is RELEASED. P20-B — Crypto Execution is READY_NOT_STARTED; P20-C..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. No credentials, network or external order submission are authorized by P20-A. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7364,3 +7364,26 @@ P20-A boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+
+## P20-A canonical closure — 2026-10-21
+
+P20-A — Adapter Contract = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WA-001`.  
+Implementation PR #411 = MERGED.  
+Implementation head = `a09b73bdb70667498e1ddd4bbd7e5215b3b809ec`.  
+PR Governance `39557776142` = SUCCESS.  
+PR artifact = `12326560719` / `sha256:7098b51e93e29ec5cb5110b948cc1d89399f3eef10af8e9bd31059162dedc1c2`.  
+Implementation merge SHA = `fcf7444759a95dc42a59a63affc866c9eaf6dcf3`.  
+Post-merge Governance `39558129871` = SUCCESS.  
+Post-merge artifact = `12326945603` / `sha256:108f3fb1e46329c97595c8f367d64bb21ebda12a1541c468bd1a48849d2d3d83`.  
+Post-merge Branch Hygiene `39558129923` = SUCCESS.  
+Lock = RELEASED.  
+P20-B — Crypto Execution = READY_NOT_STARTED.  
+P20-C..P20-I = NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-A certifies only the deterministic vendor-neutral adapter contract and its fail-closed zero-authority boundary. It does not certify a real venue, account, credential, order route, broker behavior or production readiness.
