@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P20-A..P20-F CANONICAL_COMPLETE / P20-G READY_NOT_STARTED  
+Current Workstream: P20-G — Reconciliation / FIN-P20-WG-001 / IN_PROGRESS  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-F CANONICAL_COMPLETE / P20-G READY_NOT_STARTED / P20-H..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-F CANONICAL_COMPLETE / P20-G IN_PROGRESS / P20-H..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P20-WG-001`  
+Active lock: `LOCK-FIN-P20-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-F are CANONICAL_COMPLETE with locks RELEASED. P20-G — Reconciliation is READY_NOT_STARTED; P20-H..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Ambiguous post-dispatch outcomes remain reconciliation-required; credentials/network/external order submission/Live authority remain absent. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-F are CANONICAL_COMPLETE. P20-G — Reconciliation is IN_PROGRESS under `FIN-P20-WG-001` / `LOCK-FIN-P20-WG-001-01`. P20-H..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Reconciliation uses explicit reference/sandbox observations only; no real venue query, automatic OMS mutation, external order mutation or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7627,3 +7627,27 @@ LIVE_TRADING = DISABLED.
 AUTO_TRADING = DISABLED.
 
 P20-F certifies deterministic retry/timeout/crash-recovery planning only. Definitive pre-dispatch failures may produce `RETRY_SAME_CLAIM`; ambiguous post-dispatch outcomes produce `SAFE_HOLD_RECONCILIATION_REQUIRED`. It grants no network, external-order, reconciliation or Live execution authority.
+
+
+## P20-G activation — 2026-10-21
+
+P20-A..P20-F = CANONICAL_COMPLETE / locks RELEASED.  
+P20-G — Reconciliation = IN_PROGRESS.  
+Task = `FIN-P20-WG-001`.  
+Lock = `LOCK-FIN-P20-WG-001-01` / ACTIVE.  
+Branch = `feat/FIN-P20-WG-001-execution-reconciliation`.
+
+P20-G boundary:
+- exact P20-D OMS + P20-E idempotency + P20-F recovery lineage;
+- explicit reference/sandbox observations only;
+- deterministic MATCHED / VENUE_AHEAD / INTERNAL_AHEAD / FILL_MISMATCH / STATE_CONFLICT / UNRESOLVED_AMBIGUITY verdicts;
+- suggested OMS event may be reported only for an unambiguous one-event transition;
+- automatic OMS mutation = false;
+- real venue query = false;
+- external order mutation = false;
+- credentials/account/KYC/funding = NONE;
+- network mode = DISABLED;
+- P20-H..P20-I = NOT_STARTED;
+- G11_EXECUTION_VALIDATED = NOT_REACHED;
+- P21 = NOT_STARTED;
+- LIVE_TRADING/AUTO_TRADING = DISABLED.
