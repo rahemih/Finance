@@ -44,6 +44,14 @@ from .idempotency import (
     IdempotencyPolicy,
     IdempotencyRequest,
 )
+from .retry_recovery import (
+    RecoveryCheckpoint,
+    RecoverySignal,
+    RetryDecision,
+    RetryRecoveryError,
+    RetryRecoveryPlanner,
+    RetryRecoveryPolicy,
+)
 
 __all__ = [
     "AdapterBinding",
@@ -80,4 +88,10 @@ __all__ = [
     "IdempotencyLedger",
     "IdempotencyPolicy",
     "IdempotencyRequest",
+    "RecoveryCheckpoint",
+    "RecoverySignal",
+    "RetryDecision",
+    "RetryRecoveryError",
+    "RetryRecoveryPlanner",
+    "RetryRecoveryPolicy",
 ]
