@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20B_CRYPTO_EXECUTION_POLICY",
+  "task_id": "FIN-P20-WB-001",
+  "mode": "REFERENCE_SANDBOX_CRYPTO_EXECUTION",
+  "market": "CRYPTO",
+  "venue_selection": "NOT_SELECTED",
+  "allowed_environments": [
+    "SIMULATED",
+    "SANDBOX"
+  ],
+  "transport_mode": "REFERENCE_SANDBOX_ONLY",
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "automatic_live_promotion": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "event_types": [
+    "ACK",
+    "REJECT",
+    "CANCEL_ACK"
+  ]
+}
