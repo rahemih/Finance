@@ -133,6 +133,10 @@ class ForexSymbolRule:
         _positive_int(self.pip_size_scaled, field="pip_size_scaled")
         if self.min_quantity_scaled % self.quantity_step_scaled != 0:
             raise ForexAdapterError("minimum quantity must align to quantity step")
+        if self.price_scale % self.price_tick_scaled != 0:
+            raise ForexAdapterError("price tick must be exactly representable by price scale")
+        if self.price_scale % self.pip_size_scaled != 0:
+            raise ForexAdapterError("pip size must be exactly representable by price scale")
         if self.pip_size_scaled % self.price_tick_scaled != 0:
             raise ForexAdapterError("pip size must align to price tick")
 
