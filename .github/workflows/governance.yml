@@ -1412,6 +1412,18 @@ jobs:
           cmp build/p19-phase-a.json build/p19-phase-b.json
           sha256sum build/p19-phase-a.json
 
+      - name: P20 execution contract tests
+        run: python -m unittest discover -s tests/p20 -p 'test_*.py' -v
+
+      - name: P20-A deterministic adapter contract evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p20a_evidence.py --output build/p20a-a.json
+          PYTHONPATH=. python scripts/ci/p20a_evidence.py --output build/p20a-b.json
+          cmp build/p20a-a.json build/p20a-b.json
+          sha256sum build/p20a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1561,6 +1573,7 @@ jobs:
             build/p19g-a.json
             build/p19h-a.json
             build/p19-phase-a.json
+            build/p20a-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

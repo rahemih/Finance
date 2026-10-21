@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20A_ADAPTER_CONTRACT_MANIFEST",
+  "task_id": "FIN-P20-WA-001",
+  "phase": "P20",
+  "workstream": "P20-A",
+  "state": "IN_PROGRESS",
+  "owner_p20_authorization": "GRANTED_CONSUMED",
+  "dependency": {
+    "p19": "CANONICAL_COMPLETE",
+    "g10_shadow_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/execution/adapter_contract.py",
+    "policy": "config/execution/adapter-contract-policy.json",
+    "tests": "tests/p20/test_adapter_contract.py",
+    "evidence_generator": "scripts/ci/p20a_evidence.py"
+  },
+  "safety": {
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "external_order_submission": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED",
+    "g11_execution_validated": false,
+    "p21_started": false
+  },
+  "next": "P20-B_NOT_STARTED"
+}
