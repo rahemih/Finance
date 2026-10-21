@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20A_EXECUTION_ADAPTER_CONTRACT_POLICY",
+  "task_id": "FIN-P20-WA-001",
+  "mode": "DETERMINISTIC_ADAPTER_CONTRACT",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "environments": [
+    "SIMULATED",
+    "SANDBOX"
+  ],
+  "sides": [
+    "BUY",
+    "SELL"
+  ],
+  "order_types": [
+    "MARKET",
+    "LIMIT",
+    "STOP"
+  ],
+  "time_in_force": [
+    "GTC",
+    "IOC",
+    "FOK",
+    "DAY"
+  ],
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "automatic_live_promotion": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
