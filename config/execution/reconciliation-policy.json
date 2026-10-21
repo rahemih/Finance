@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20G_RECONCILIATION_POLICY",
+  "task_id": "FIN-P20-WG-001",
+  "mode": "DETERMINISTIC_REFERENCE_RECONCILIATION",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "internal_states": [
+    "CREATED",
+    "SUBMIT_PENDING",
+    "OPEN",
+    "PARTIALLY_FILLED",
+    "CANCEL_PENDING",
+    "FILLED",
+    "CANCELED",
+    "REJECTED",
+    "EXPIRED"
+  ],
+  "venue_statuses": [
+    "NOT_FOUND",
+    "OPEN",
+    "PARTIALLY_FILLED",
+    "FILLED",
+    "CANCELED",
+    "REJECTED",
+    "EXPIRED"
+  ],
+  "verdicts": [
+    "MATCHED",
+    "VENUE_AHEAD",
+    "INTERNAL_AHEAD",
+    "FILL_MISMATCH",
+    "STATE_CONFLICT",
+    "UNRESOLVED_AMBIGUITY"
+  ],
+  "source_mode": "EXPLICIT_REFERENCE_SANDBOX_OBSERVATION_ONLY",
+  "real_venue_query": false,
+  "automatic_oms_mutation": false,
+  "external_order_mutation": false,
+  "execution_quality_owner": "P20-H",
+  "simulation_gate_owner": "P20-I",
+  "position_management_owner": "P21",
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
