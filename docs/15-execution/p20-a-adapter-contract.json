@@ -4,7 +4,7 @@
   "task_id": "FIN-P20-WA-001",
   "phase": "P20",
   "workstream": "P20-A",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "owner_p20_authorization": "GRANTED_CONSUMED",
   "dependency": {
     "p19": "CANONICAL_COMPLETE",
@@ -26,5 +26,34 @@
     "g11_execution_validated": false,
     "p21_started": false
   },
-  "next": "P20-B_NOT_STARTED"
+  "next": "P20-B_READY_NOT_STARTED",
+  "closure": {
+    "implementation_pr": 411,
+    "implementation_head": "a09b73bdb70667498e1ddd4bbd7e5215b3b809ec",
+    "implementation_governance": {
+      "run_id": 39557776142,
+      "status": "SUCCESS"
+    },
+    "implementation_artifact": {
+      "id": 12326560719,
+      "sha256": "7098b51e93e29ec5cb5110b948cc1d89399f3eef10af8e9bd31059162dedc1c2"
+    },
+    "merge_sha": "fcf7444759a95dc42a59a63affc866c9eaf6dcf3",
+    "post_merge_governance": {
+      "run_id": 39558129871,
+      "status": "SUCCESS"
+    },
+    "post_merge_artifact": {
+      "id": 12326945603,
+      "sha256": "108f3fb1e46329c97595c8f367d64bb21ebda12a1541c468bd1a48849d2d3d83"
+    },
+    "post_merge_branch_hygiene": {
+      "run_id": 39558129923,
+      "status": "SUCCESS"
+    },
+    "lock": "RELEASED",
+    "g11_execution_validated": false,
+    "p20_b": "READY_NOT_STARTED",
+    "p21": "NOT_STARTED"
+  }
 }
