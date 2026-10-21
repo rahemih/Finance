@@ -41,7 +41,8 @@ def _positive_int(value: object, *, field: str) -> int:
 def _tuple_of_text(value: object, *, field: str) -> tuple[str, ...]:
     if not isinstance(value, list) or not value:
         raise AdapterContractError(f"{field} must be a non-empty list")
-    parsed = tuple(_text(item, field=field) for item in value)
+    items = cast(list[object], value)
+    parsed = tuple(_text(item, field=field) for item in items)
     if len(set(parsed)) != len(parsed):
         raise AdapterContractError(f"{field} cannot contain duplicates")
     return parsed
