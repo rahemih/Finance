@@ -371,8 +371,12 @@ class OmsLifecycleEngine:
             raise OmsLifecycleError("unknown OMS order") from exc
 
     def snapshot(self) -> dict[str, object]:
-        orders = [self._current[key].payload() | {"record_id": self._current[key].record_id} for key in sorted(self._current)]
-        payload = {
+        orders: list[dict[str, object]] = []
+        for key in sorted(self._current):
+            record_payload: dict[str, object] = dict(self._current[key].payload())
+            record_payload["record_id"] = self._current[key].record_id
+            orders.append(record_payload)
+        payload: dict[str, object] = {
             "schema_version": "1.0",
             "kind": "NEXUS_QUANT_P20D_OMS_SNAPSHOT",
             "task_id": "FIN-P20-WD-001",
@@ -390,7 +394,9 @@ class OmsLifecycleEngine:
                 "auto_trading": self._policy.auto_trading,
             },
         }
-        return payload | {"snapshot_id": hashlib.sha256(_canonical_bytes(payload)).hexdigest()}
+        snapshot: dict[str, object] = dict(payload)
+        snapshot["snapshot_id"] = hashlib.sha256(_canonical_bytes(payload)).hexdigest()
+        return snapshot
 
     @staticmethod
     def _next_state(state: str, event_type: str) -> str:
