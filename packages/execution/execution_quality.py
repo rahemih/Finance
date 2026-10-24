@@ -363,7 +363,7 @@ class ExecutionQualityLedger:
         terminal = [m.terminal_latency_ns for m in metrics]
         fill = [m.fill_ratio_ppm for m in metrics]
         slip = [m.adverse_slippage_ppm for m in metrics if m.adverse_slippage_ppm is not None]
-        slip_values = cast(list[int], slip)
+        slip_values = slip
         ack_p95 = _nearest_rank(ack, 95)
         terminal_p95 = _nearest_rank(terminal, 95)
         slippage_p95 = _nearest_rank(slip_values, 95) if slip_values else None
