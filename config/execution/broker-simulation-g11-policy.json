@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20I_BROKER_SIMULATION_G11_POLICY",
+  "task_id": "FIN-P20-WI-001",
+  "mode": "DETERMINISTIC_REFERENCE_BROKER_SIMULATION_GATE",
+  "gate": "G11_EXECUTION_VALIDATED",
+  "gate_scope": "REFERENCE_SIMULATION_EXECUTION_VALIDATION",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "required_scenarios": [
+    "ACK_FILL",
+    "REJECT",
+    "PARTIAL_FILL_CANCEL",
+    "PRE_DISPATCH_TIMEOUT",
+    "POST_DISPATCH_CRASH_AMBIGUITY",
+    "DUPLICATE_REPLAY",
+    "RECONCILIATION_MISMATCH"
+  ],
+  "expected_controls": {
+    "ACK_FILL": "COMPLETE_FILLED",
+    "REJECT": "COMPLETE_REJECTED",
+    "PARTIAL_FILL_CANCEL": "COMPLETE_CANCELED_AFTER_PARTIAL",
+    "PRE_DISPATCH_TIMEOUT": "SAFE_RETRY_ALLOWED",
+    "POST_DISPATCH_CRASH_AMBIGUITY": "SAFE_HOLD_RECONCILIATION_REQUIRED",
+    "DUPLICATE_REPLAY": "REPLAY_EXISTING",
+    "RECONCILIATION_MISMATCH": "FAIL_CLOSED_RECONCILIATION_REQUIRED"
+  },
+  "required_dependency_workstreams": [
+    "P20-A",
+    "P20-B",
+    "P20-C",
+    "P20-D",
+    "P20-E",
+    "P20-F",
+    "P20-G",
+    "P20-H"
+  ],
+  "required_dependency_state": "CANONICAL_COMPLETE",
+  "required_quality_band": "WITHIN_REFERENCE_BUDGET",
+  "source_mode": "DETERMINISTIC_REFERENCE_SIMULATION_ONLY",
+  "production_broker_selection": "NOT_SELECTED",
+  "production_broker_certification": false,
+  "real_venue_query": false,
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "external_order_mutation": false,
+  "automatic_oms_mutation": false,
+  "live_execution_validated": false,
+  "live_execution_authority": false,
+  "automatic_live_promotion": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
