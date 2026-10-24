@@ -73,7 +73,31 @@
       "status": "SUCCESS"
     },
     "lock": "RELEASED",
-    "p20_phase": "CANONICAL_COMPLETE_PENDING_CLOSURE_PR",
-    "p21": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED"
+    "p20_phase": "CANONICAL_COMPLETE",
+    "p21": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "phase_closure_pr": 430,
+    "phase_closure_head": "ab808b549172239e894d14eff4535b8b6e3e442a",
+    "phase_closure_governance": {
+      "run_id": 40099624956,
+      "status": "SUCCESS"
+    },
+    "phase_closure_artifact": {
+      "id": 12562301575,
+      "sha256": "8993b89a4b529083d312b0705a50b1b7fb5d72c5c47134e077e1e60fdbb1ab5d"
+    },
+    "phase_closure_evidence_sha256": "1ca7a09f62b6d6a5b89f7beb2bac8d9638718e3bee76c690860e4bd22ecc1a36",
+    "phase_closure_merge_sha": "ae7282535fd512612129f0ca947c07ad82859ec9",
+    "phase_closure_post_merge_governance": {
+      "run_id": 40099747361,
+      "status": "SUCCESS"
+    },
+    "phase_closure_post_merge_artifact": {
+      "id": 12562416521,
+      "sha256": "837c48dc059e96d14c2d9e081b8b80919888d5caa15bd6ab1208f07906840d89"
+    },
+    "phase_closure_post_merge_branch_hygiene": {
+      "run_id": 40099747756,
+      "status": "SUCCESS"
+    }
   }
 }
