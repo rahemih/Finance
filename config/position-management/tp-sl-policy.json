@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P21B_TP_SL_POLICY",
+  "task_id": "FIN-P21-WB-001",
+  "mode": "DETERMINISTIC_REFERENCE_PROTECTION_PLAN",
+  "required_position_states": [
+    "OPEN",
+    "PARTIALLY_CLOSED"
+  ],
+  "sides": [
+    "LONG",
+    "SHORT"
+  ],
+  "require_take_profit": true,
+  "require_stop_loss": true,
+  "price_domain": "POSITIVE_FIXED_POINT_INTEGER",
+  "long_geometry": "STOP_LT_ENTRY_LT_TARGET",
+  "short_geometry": "TARGET_LT_ENTRY_LT_STOP",
+  "source_mode": "CALLER_SUPPLIED_LEVELS_VALIDATED_AGAINST_CANONICAL_POSITION",
+  "real_venue_query": false,
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "external_order_mutation": false,
+  "automatic_oms_mutation": false,
+  "live_execution_validated": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
