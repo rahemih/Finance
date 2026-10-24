@@ -80,11 +80,19 @@ class TpSlPolicy:
                 raise TpSlError(f"P21-B policy mismatch: {key}")
         states_value=raw.get("required_position_states")
         sides_value=raw.get("sides")
-        if not isinstance(states_value,list) or tuple(states_value)!=("OPEN","PARTIALLY_CLOSED"):
+        if not isinstance(states_value, list):
             raise TpSlError("invalid required_position_states")
-        if not isinstance(sides_value,list) or tuple(sides_value)!=("LONG","SHORT"):
+        if not isinstance(sides_value, list):
             raise TpSlError("invalid sides")
-        return cls(("OPEN","PARTIALLY_CLOSED"),("LONG","SHORT"),"DISABLED","DISABLED")
+        states_raw = cast(list[object], states_value)
+        sides_raw = cast(list[object], sides_value)
+        states = tuple(_text(item, field="required_position_states") for item in states_raw)
+        sides = tuple(_text(item, field="sides") for item in sides_raw)
+        if states != ("OPEN", "PARTIALLY_CLOSED"):
+            raise TpSlError("invalid required_position_states")
+        if sides != ("LONG", "SHORT"):
+            raise TpSlError("invalid sides")
+        return cls(states, sides, "DISABLED", "DISABLED")
 
     @property
     def policy_id(self) -> str:
