@@ -9,6 +9,14 @@ from .canonical_position import (
     PositionStateRecord,
 )
 
+from .tp_sl import (
+    ProtectionPlan,
+    TpSlError,
+    TpSlPlanner,
+    TpSlPolicy,
+    TpSlRequest,
+)
+
 __all__ = [
     "CanonicalPositionEngine",
     "CanonicalPositionError",
@@ -16,4 +24,9 @@ __all__ = [
     "PositionFillEvent",
     "PositionSpec",
     "PositionStateRecord",
+    "ProtectionPlan",
+    "TpSlError",
+    "TpSlPlanner",
+    "TpSlPolicy",
+    "TpSlRequest",
 ]
