@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-G — Reconciliation / FIN-P20-WG-001 / IN_PROGRESS  
+Current Workstream: none — P20-A..P20-G CANONICAL_COMPLETE / P20-H READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-F CANONICAL_COMPLETE / P20-G IN_PROGRESS / P20-H..P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-G CANONICAL_COMPLETE / P20-H READY_NOT_STARTED / P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WG-001`  
-Active lock: `LOCK-FIN-P20-WG-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-F are CANONICAL_COMPLETE. P20-G — Reconciliation is IN_PROGRESS under `FIN-P20-WG-001` / `LOCK-FIN-P20-WG-001-01`. P20-H..P20-I remain NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. Reconciliation uses explicit reference/sandbox observations only; no real venue query, automatic OMS mutation, external order mutation or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-G are CANONICAL_COMPLETE with locks RELEASED. P20-H — Execution-quality metrics is READY_NOT_STARTED; P20-I remains NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-G reconciliation certification is reference/sandbox only and grants no real venue query, automatic OMS mutation, external order mutation or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7651,3 +7651,26 @@ P20-G boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-G canonical closure — 2026-10-21
+
+P20-G — Reconciliation = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WG-001`.  
+Implementation PR #423 = MERGED.  
+Implementation head = `e1267f53c6341329567b164504916000b8b7c5e8`.  
+PR Governance `39574349533` = SUCCESS.  
+PR artifact = `12333651407` / `sha256:ca30e11bfc586bc8b465ba9b87a55d510a91c0ef719a9a84e73b9c7d600293d9`.  
+Implementation merge SHA = `031fe9b95b39a06cdc1f3641cd012d3c10d47cc6`.  
+Post-merge Governance `39574656815` = SUCCESS.  
+Post-merge artifact = `12334086654` / `sha256:aa5867c9efd3cb1e6c6c297b826f880a831a28570b6aa115f3720cb0932350b3`.  
+Post-merge Branch Hygiene `39574656745` = SUCCESS.  
+Lock = RELEASED.  
+P20-H — Execution-quality metrics = READY_NOT_STARTED.  
+P20-I = NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-G certifies deterministic reconciliation against explicit reference/sandbox observations only. It does not certify real broker/exchange reconciliation, execution quality, production readiness or Live execution authority.
