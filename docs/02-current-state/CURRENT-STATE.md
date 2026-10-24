@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: P21-B — TP / SL / FIN-P21-WB-001 / IN_PROGRESS  
+Current Workstream: none — P21-A..P21-B CANONICAL_COMPLETE / P21-C READY_NOT_STARTED  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A CANONICAL_COMPLETE / P21-B IN_PROGRESS / P21-C..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-B CANONICAL_COMPLETE / P21-C READY_NOT_STARTED / P21-D..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -176,8 +176,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P21-WB-001`  
-Active lock: `LOCK-FIN-P21-WB-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A is CANONICAL_COMPLETE. P21-B — TP / SL is IN_PROGRESS under `FIN-P21-WB-001` / `LOCK-FIN-P21-WB-001-01`. P21-C..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-B validates caller-supplied protection levels against exact canonical position state and grants no broker, external-order, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-B are CANONICAL_COMPLETE with locks RELEASED. P21-C — Partial Close is READY_NOT_STARTED; P21-D..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-B certifies deterministic reference TP/SL plan validation only and grants no broker, external-order, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7813,6 +7813,24 @@ Lock = RELEASED.
 
 P21-B = READY_NOT_STARTED.  
 P21-C..P21-H = NOT_STARTED.  
+P22 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P21-B canonical closure — 2026-10-24
+
+P21-B — TP / SL = CANONICAL_COMPLETE.  
+Task = `FIN-P21-WB-001`.  
+Implementation PR #435 = MERGED at `c82b943d0be730a4a270d006ea8164218b52122a`.  
+PR Governance `40103796390` = SUCCESS.  
+Post-merge Governance `40103969571` = SUCCESS.  
+Post-merge Branch Hygiene `40103969496` = SUCCESS.  
+Evidence SHA256 = `3f7b1c74651f53cc7efc0d9ad1b74674c5dc4da703d283298fd153f58a6f55f3`.  
+Lock = RELEASED.
+
+P21-C = READY_NOT_STARTED.  
+P21-D..P21-H = NOT_STARTED.  
 P22 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
