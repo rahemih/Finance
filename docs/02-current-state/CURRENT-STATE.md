@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-H — Execution-quality Metrics / FIN-P20-WH-001 / IN_PROGRESS  
+Current Workstream: none — P20-A..P20-H CANONICAL_COMPLETE / P20-I READY_NOT_STARTED  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-G CANONICAL_COMPLETE / P20-H IN_PROGRESS / P20-I NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-H CANONICAL_COMPLETE / P20-I READY_NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WH-001`  
-Active lock: `LOCK-FIN-P20-WH-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-G are CANONICAL_COMPLETE. P20-H — Execution-quality Metrics is IN_PROGRESS under `FIN-P20-WH-001` / `LOCK-FIN-P20-WH-001-01`; P20-I remains NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-H measures explicit reference/sandbox execution quality only and grants no real-venue query, production execution certification, external-order or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-H are CANONICAL_COMPLETE with locks RELEASED. P20-I — Broker/Exchange Simulation + G11 is READY_NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-H execution-quality certification is reference/sandbox only and does not certify production execution or broker behavior. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7697,3 +7697,25 @@ P20-H boundary:
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-H canonical closure — 2026-10-24
+
+P20-H — Execution-quality Metrics = CANONICAL_COMPLETE.  
+Task = `FIN-P20-WH-001`.  
+Implementation PR #425 = MERGED.  
+Implementation head = `0fde4da1f7b1585c3b64000f087738508d25bb3a`.  
+PR Governance `40083811118` = SUCCESS.  
+PR artifact = `12556745473` / `sha256:a7e383f14b6a5ff309cc88087383cdf3b50fe48549a63f695c3349d730a35522`.  
+Implementation merge SHA = `4d0661f1fcd38df734d5c621ed196ee9f48dcbec`.  
+Post-merge Governance `40083937906` = SUCCESS.  
+Post-merge artifact = `12555933074` / `sha256:f1df5c53ce6510f4e4c45a5535ad2196b7e12308189b7a0a117bb77f597a409b`.  
+Post-merge Branch Hygiene `40083937979` = SUCCESS.  
+Lock = RELEASED.  
+P20-I — Broker/Exchange Simulation + G11 = READY_NOT_STARTED.  
+`G11_EXECUTION_VALIDATED` = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+P20-H certifies deterministic reference/sandbox execution-quality measurement only. It does not certify observed production latency/slippage, broker behavior, production readiness, profitability or Live execution authority.
