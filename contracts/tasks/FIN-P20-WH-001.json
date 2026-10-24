@@ -1,0 +1,135 @@
+{
+  "task_id": "FIN-P20-WH-001",
+  "phase": "P20",
+  "workstream": "WH",
+  "objective": "Implement deterministic fixed-point execution-quality metrics over explicit reference/sandbox execution observations with exact P20-G reconciliation lineage, measuring latency, fill ratio and signed adverse slippage without real-venue queries, production execution certification, external-order authority or Live authority.",
+  "scope": [
+    "Define deterministic reference execution-quality policy for Crypto and Forex",
+    "Accept only P20-G MATCHED reconciliation lineage for quality samples",
+    "Measure ACK, first-fill and terminal latency in integer nanoseconds",
+    "Measure fill ratio in integer parts-per-million",
+    "Measure signed adverse slippage in integer parts-per-million with BUY/SELL direction normalization",
+    "Produce deterministic p50/p95/max and minimum-fill summaries",
+    "Classify reference-only quality bands without promoting to G11",
+    "Deduplicate exact samples and fail closed on duplicate order identity with conflicting samples",
+    "Produce content-addressed sample metrics and summary snapshots",
+    "Generate byte-identical P20-H evidence"
+  ],
+  "out_of_scope": [
+    "Real broker/exchange observations or queries",
+    "Production venue SLA certification",
+    "Credentials/account/KYC/funding",
+    "External order submission or mutation",
+    "Automatic OMS mutation",
+    "Broker/exchange simulation and G11 (P20-I)",
+    "Position management (P21)",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A..P20-G CANONICAL_COMPLETE / locks RELEASED",
+    "P20-G reconciliation canonical closure PR #424 merged and post-merge verified",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WH-001.json",
+    "config/execution/execution-quality-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/execution_quality.py",
+    "tests/p20/test_execution_quality.py",
+    "scripts/ci/p20h_evidence.py",
+    "docs/15-execution/P20-H-EXECUTION-QUALITY-METRICS.md",
+    "docs/15-execution/p20-h-execution-quality-metrics.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Only MATCHED P20-G reconciliation samples are accepted",
+    "ACK/first-fill/terminal latency is deterministic and monotonic",
+    "Fill ratio is deterministic fixed-point PPM",
+    "BUY/SELL signed adverse slippage normalization is deterministic",
+    "Exact duplicate sample is idempotent",
+    "Conflicting duplicate order sample fails closed",
+    "p50/p95/max summary is deterministic",
+    "Reference quality band is deterministic and threshold-bound",
+    "No real-venue query/production certification/network/external-order/Live authority is emitted",
+    "P20-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No real venue query",
+    "No external order mutation/submission",
+    "No production execution certification",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A..P20-G canonical closure evidence",
+    "Deterministic P20-H execution-quality evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-H package/config/tests/evidence/CI/state changes; P20-A..P20-G remain canonical complete and P20-I remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A..P20-G CANONICAL_COMPLETE",
+    "P20-G lock RELEASED",
+    "P20-G closure post-merge Governance/Branch Hygiene PASS",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic reference execution-quality metrics implemented",
+    "Exact P20-G MATCHED lineage enforced",
+    "Latency/fill/slippage fixed-point metrics and deterministic summaries pass",
+    "No real venue/production/Live authority introduced",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WH-001 CANONICAL_COMPLETE and lock released",
+    "P20-I becomes READY_NOT_STARTED",
+    "G11 remains NOT_REACHED",
+    "P21 remains NOT_STARTED"
+  ]
+}
