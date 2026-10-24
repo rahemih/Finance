@@ -1,0 +1,137 @@
+{
+  "task_id": "FIN-P20-WI-001",
+  "phase": "P20",
+  "workstream": "WI",
+  "objective": "Implement deterministic broker/exchange reference simulation and the G11 execution-validation gate across canonical P20-A..P20-H evidence, covering success and failure/recovery scenarios for Crypto and Forex while granting no production broker certification, credentials, real-venue access, external-order authority or Live/Auto authority.",
+  "scope": [
+    "Define deterministic reference broker/exchange simulation policy for Crypto and Forex",
+    "Validate canonical closure state and safety posture of P20-A through P20-H manifests",
+    "Run required ACK/FILL, REJECT, PARTIAL_FILL_CANCEL, PRE_DISPATCH_TIMEOUT, POST_DISPATCH_CRASH_AMBIGUITY, DUPLICATE_REPLAY and RECONCILIATION_MISMATCH scenarios for both markets",
+    "Require deterministic expected control outcome for every scenario",
+    "Require P20-H quality summary to be WITHIN_REFERENCE_BUDGET and reference-only",
+    "Produce deterministic G11 gate identity and evidence",
+    "Fail closed on missing scenarios, failed dependencies, degraded/failed reference quality, conflicting scenario identities or any forbidden authority flag",
+    "Keep G11 scope explicitly limited to REFERENCE_SIMULATION_EXECUTION_VALIDATION"
+  ],
+  "out_of_scope": [
+    "Production broker/exchange selection or certification",
+    "Real broker/exchange observations or API calls",
+    "Credential provisioning",
+    "Account/KYC/funding actions",
+    "External order submission or mutation",
+    "Automatic OMS mutation",
+    "Live execution validation",
+    "Position management (P21)",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-A..P20-H CANONICAL_COMPLETE / locks RELEASED",
+    "P20-H closure PR #426 merged and post-merge verified",
+    "G10_SHADOW_VALIDATED PASS",
+    "Owner P20 phase authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WI-001.json",
+    "config/execution/broker-simulation-g11-policy.json",
+    "packages/execution/__init__.py",
+    "packages/execution/broker_simulation_gate.py",
+    "tests/p20/test_broker_simulation_gate.py",
+    "scripts/ci/p20i_evidence.py",
+    "docs/15-execution/P20-I-BROKER-SIMULATION-G11.md",
+    "docs/15-execution/p20-i-broker-simulation-g11.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Policy remains reference/simulation-only and denies production/Live authority",
+    "All required scenarios execute deterministically for both Crypto and Forex",
+    "Scenario identity conflicts fail closed",
+    "Missing required scenario fails closed",
+    "Any noncanonical P20-A..P20-H dependency fails closed",
+    "Any forbidden dependency safety authority fails closed",
+    "P20-H quality summary must be WITHIN_REFERENCE_BUDGET and reference-only",
+    "G11 gate result is deterministic and content-addressed",
+    "G11 PASS explicitly denies production broker certification and Live execution validation",
+    "P20-I evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No production broker certification",
+    "No Live execution validation or authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20-A..P20-H canonical closure manifests",
+    "Deterministic broker/exchange reference simulation evidence",
+    "Deterministic G11 reference-simulation gate evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P20-I package/config/tests/evidence/CI/state changes; P20-A..P20-H remain canonical complete and G11 returns to NOT_REACHED.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20-A..P20-H CANONICAL_COMPLETE",
+    "P20-H lock RELEASED",
+    "P20-H closure post-merge Governance/Branch Hygiene PASS",
+    "Owner P20 authorization consumed",
+    "No conflicting active lock"
+  ],
+  "definition_of_done": [
+    "Deterministic reference broker/exchange simulation implemented",
+    "Required Crypto/Forex success/failure/recovery scenarios pass",
+    "P20-A..P20-H canonical lineage and safety verified",
+    "Reference execution-quality gate passes",
+    "G11_EXECUTION_VALIDATED PASS in REFERENCE_SIMULATION_EXECUTION_VALIDATION scope",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P20-WI-001 CANONICAL_COMPLETE and lock released",
+    "P20 phase closure documented",
+    "P21 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}

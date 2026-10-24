@@ -68,6 +68,15 @@ from .execution_quality import (
     ExecutionQualityPolicy,
 )
 
+from .broker_simulation_gate import (
+    BrokerSimulationEngine,
+    BrokerSimulationGateError,
+    BrokerSimulationPolicy,
+    G11ExecutionValidationGate,
+    SimulationResult,
+    SimulationScenario,
+)
+
 __all__ = [
     "AdapterBinding",
     "AdapterContractError",
@@ -120,4 +129,10 @@ __all__ = [
     "ExecutionQualityMetric",
     "ExecutionQualityObservation",
     "ExecutionQualityPolicy",
+    "BrokerSimulationEngine",
+    "BrokerSimulationGateError",
+    "BrokerSimulationPolicy",
+    "G11ExecutionValidationGate",
+    "SimulationResult",
+    "SimulationScenario",
 ]
