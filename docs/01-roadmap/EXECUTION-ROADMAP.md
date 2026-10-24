@@ -40,8 +40,8 @@ Canonical completion:
 Phase transition:
 - P07 — Data Quality & Provenance: CANONICAL_COMPLETE / G5_TRUSTED_DATA PASS
 - P08 — Technical Intelligence: CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS
-- active governed task: none
-- active lock: none
+- active governed task: FIN-P21-WB-001 / P21-B TP / SL / IN_PROGRESS
+- active lock: LOCK-FIN-P21-WB-001-01
 - completed workstreams: P07-A / P07-B / P07-C / P07-D / P07-E / P07-F / P07-G / P07-H / P08-A / P08-B / P08-C / P08-D / P08-E / P08-F / P08-G / P08-H / P08-I / P09-A / P09-B / P09-C / P09-D / P09-E / P09-F / P09-G / P09-H = CANONICAL_COMPLETE
 - P08-A — Technical Feature / Indicator Foundation: CANONICAL_COMPLETE
 - P08-B — Trend Family: CANONICAL_COMPLETE
@@ -85,7 +85,7 @@ Phase transition:
 - P18 — Continuous Demo Learning: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
 - P19 — Shadow / Replay / Digital Twin: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
-- P21 — Position Management: AUTHORIZED / ACTIVE / P21-A CANONICAL_COMPLETE / P21-B READY_NOT_STARTED / P21-C..P21-H NOT_STARTED / P22 NOT_STARTED
+- P21 — Position Management: AUTHORIZED / ACTIVE / P21-A CANONICAL_COMPLETE / P21-B IN_PROGRESS / P21-C..P21-H NOT_STARTED / P22 NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
