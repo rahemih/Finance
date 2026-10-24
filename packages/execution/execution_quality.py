@@ -343,10 +343,13 @@ class ExecutionQualityLedger:
         if hard_fail:
             return "REFERENCE_FAIL"
         pct = self._policy.degraded_trigger_percent
+        degraded_fill_threshold = self._policy.min_fill_ratio_ppm + (
+            (PPM - self._policy.min_fill_ratio_ppm) * (100 - pct)
+        ) // 100
         degraded = (
             ack_p95 * 100 >= self._policy.ack_latency_p95_max_ns * pct
             or terminal_p95 * 100 >= self._policy.terminal_latency_p95_max_ns * pct
-            or min_fill * 100 <= self._policy.min_fill_ratio_ppm * (200 - pct)
+            or min_fill <= degraded_fill_threshold
             or (
                 slippage_p95 is not None
                 and self._policy.adverse_slippage_p95_max_ppm > 0

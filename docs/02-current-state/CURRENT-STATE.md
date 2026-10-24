@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P20-A..P20-H CANONICAL_COMPLETE / P20-I READY_NOT_STARTED  
+Current Workstream: P20-H R01 — Quality-band threshold repair / FIN-P20-WH-001-R01 / IN_PROGRESS  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-H CANONICAL_COMPLETE / P20-I READY_NOT_STARTED / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-H CANONICAL_COMPLETE / P20-H-R01 IN_PROGRESS / P20-I BLOCKED_BY_REPAIR / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P20-WH-001-R01`  
+Active lock: `LOCK-FIN-P20-WH-001-R01-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20 — Execution & Order Management is AUTHORIZED / ACTIVE. P20-A..P20-H are CANONICAL_COMPLETE with locks RELEASED. P20-I — Broker/Exchange Simulation + G11 is READY_NOT_STARTED; `G11_EXECUTION_VALIDATED` is NOT_REACHED; P21 remains NOT_STARTED. P20-H execution-quality certification is reference/sandbox only and does not certify production execution or broker behavior. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20-I G11 validation exposed a deterministic P20-H quality-band defect. Repair `FIN-P20-WH-001-R01` is IN_PROGRESS under `LOCK-FIN-P20-WH-001-R01-01`; P20-I is BLOCKED_BY_REPAIR until the repair is merged and post-merge verified. G11 remains NOT_REACHED; P21 remains NOT_STARTED. No hard quality limit or G11 requirement is being relaxed. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7719,3 +7719,14 @@ LIVE_TRADING = DISABLED.
 AUTO_TRADING = DISABLED.
 
 P20-H certifies deterministic reference/sandbox execution-quality measurement only. It does not certify observed production latency/slippage, broker behavior, production readiness, profitability or Live execution authority.
+
+
+## P20-H R01 activation — 2026-10-24
+
+P20-I PR #427 correctly failed closed because P20-H classified a healthy 100% fill sample as DEGRADED_REFERENCE.  
+Repair task = `FIN-P20-WH-001-R01`.  
+Lock = `LOCK-FIN-P20-WH-001-R01-01`.  
+P20-I = BLOCKED_BY_REPAIR.  
+G11_EXECUTION_VALIDATED = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING/AUTO_TRADING = DISABLED.

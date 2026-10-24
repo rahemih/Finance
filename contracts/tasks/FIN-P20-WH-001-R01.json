@@ -1,0 +1,103 @@
+{
+  "task_id": "FIN-P20-WH-001-R01",
+  "phase": "P20",
+  "workstream": "WH-R01",
+  "objective": "Repair the P20-H reference execution-quality degraded-band fill-ratio threshold so a perfect fill ratio can be WITHIN_REFERENCE_BUDGET while preserving the hard-fail threshold and deterministic fail-closed semantics exposed by P20-I G11 validation.",
+  "scope": [
+    "Correct the degraded fill-ratio trigger using remaining headroom between the hard minimum and ideal 1,000,000 PPM",
+    "Add regression coverage for healthy full fill, near-threshold degraded fill, and below-threshold fail",
+    "Preserve hard P20-H thresholds and P20-I G11 requirements"
+  ],
+  "out_of_scope": [
+    "Changing latency/slippage hard thresholds",
+    "Changing G11 requirements",
+    "Production broker/exchange behavior",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P20-H CANONICAL_COMPLETE",
+    "P20-I PR #427 exposed deterministic quality-band defect",
+    "No production/Live authority"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "config/execution/**",
+    "tests/p20/**",
+    "docs/**",
+    "contracts/tasks/**",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P20-WH-001-R01.json",
+    "packages/execution/execution_quality.py",
+    "tests/p20/test_execution_quality.py",
+    "docs/15-execution/P20-H-R01-QUALITY-BAND-FIX.md",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "Perfect fill is WITHIN_REFERENCE_BUDGET",
+    "Near-threshold fill is DEGRADED_REFERENCE",
+    "Below-minimum fill is REFERENCE_FAIL",
+    "P20 execution tests pass",
+    "P20-H evidence remains deterministic"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "Regression test reproducing and resolving P20-I-discovered defect",
+    "Full Governance",
+    "Post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert R01 changes; P20-H returns to prior canonical code and P20-I remains blocked because G11 correctly fails on degraded reference quality.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Defect reproduced by P20-I evidence failure",
+    "P20-H canonical baseline available",
+    "No conflicting repair lock"
+  ],
+  "definition_of_done": [
+    "Quality-band fill trigger corrected",
+    "Boundary regression tests pass",
+    "Governance and post-merge verification pass",
+    "FIN-P20-WH-001-R01 CANONICAL_COMPLETE",
+    "Repair lock released",
+    "P20-I unblocked for rerun",
+    "Live/Auto remain disabled"
+  ]
+}

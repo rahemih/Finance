@@ -150,6 +150,21 @@ class ExecutionQualityTests(unittest.TestCase):
         ledger.add(sample(ack=7_000_000_000, first_fill=7_100_000_000, terminal=7_200_000_000))
         self.assertEqual(ledger.summary()["quality_band"], "REFERENCE_FAIL")
 
+    def test_healthy_full_fill_is_within_reference_budget(self) -> None:
+        ledger = ExecutionQualityLedger(self.policy)
+        ledger.add(sample())
+        self.assertEqual(ledger.summary()["quality_band"], "WITHIN_REFERENCE_BUDGET")
+
+    def test_near_minimum_fill_is_degraded_reference(self) -> None:
+        ledger = ExecutionQualityLedger(self.policy)
+        ledger.add(sample(filled=96_000, ordered=100_000))
+        self.assertEqual(ledger.summary()["quality_band"], "DEGRADED_REFERENCE")
+
+    def test_below_minimum_fill_is_reference_fail(self) -> None:
+        ledger = ExecutionQualityLedger(self.policy)
+        ledger.add(sample(filled=94_900, ordered=100_000))
+        self.assertEqual(ledger.summary()["quality_band"], "REFERENCE_FAIL")
+
     def test_summary_explicitly_denies_production_and_live_authority(self) -> None:
         ledger = ExecutionQualityLedger(self.policy)
         ledger.add(sample())

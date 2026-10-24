@@ -1281,6 +1281,8 @@ BUILD_INPUTS = [
     "scripts/ci/p20h_evidence.py",
     "docs/15-execution/P20-H-EXECUTION-QUALITY-METRICS.md",
     "docs/15-execution/p20-h-execution-quality-metrics.json",
+    "contracts/tasks/FIN-P20-WH-001-R01.json",
+    "docs/15-execution/P20-H-R01-QUALITY-BAND-FIX.md",
     "contracts/tasks/FIN-P13-WA-001.json",
     "config/timing-opportunity/session-calendar-policy.json",
     "packages/timing_opportunity/__init__.py",
