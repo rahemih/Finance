@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P20 — Execution & Order Management / AUTHORIZED / ACTIVE  
-Current Workstream: P20-H R01 — Quality-band threshold repair / FIN-P20-WH-001-R01 / IN_PROGRESS  
+Current Workstream: P20-I — Broker/Exchange Simulation + G11 / FIN-P20-WI-001 / IN_PROGRESS  
 Previous Phase: P19 — Shadow / Replay / Digital Twin / CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -61,7 +61,7 @@ P16 state: CANONICAL_COMPLETE / P16-A..P16-H CANONICAL_COMPLETE / G8_PRETRADE_SA
 P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALIDATED PASS  
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
-P20 state: AUTHORIZED / ACTIVE / P20-A..P20-H CANONICAL_COMPLETE / P20-H-R01 IN_PROGRESS / P20-I BLOCKED_BY_REPAIR / G11_EXECUTION_VALIDATED NOT_REACHED  
+P20 state: AUTHORIZED / ACTIVE / P20-A..P20-H CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / P20-I IN_PROGRESS / G11_EXECUTION_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -175,8 +175,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P20-WH-001-R01`  
-Active lock: `LOCK-FIN-P20-WH-001-R01-01`  
+Active task: `FIN-P20-WI-001`  
+Active lock: `LOCK-FIN-P20-WI-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -198,7 +198,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P20-I G11 validation exposed a deterministic P20-H quality-band defect. Repair `FIN-P20-WH-001-R01` is IN_PROGRESS under `LOCK-FIN-P20-WH-001-R01-01`; P20-I is BLOCKED_BY_REPAIR until the repair is merged and post-merge verified. G11 remains NOT_REACHED; P21 remains NOT_STARTED. No hard quality limit or G11 requirement is being relaxed. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P20-H repair `FIN-P20-WH-001-R01` is CANONICAL_COMPLETE with its lock RELEASED after full merge/post-merge verification. P20-I — Broker/Exchange Simulation + G11 is unblocked and IN_PROGRESS under `FIN-P20-WI-001` / `LOCK-FIN-P20-WI-001-01`. G11 remains NOT_REACHED until P20-I governed validation passes; P21 remains NOT_STARTED. No hard quality limit or G11 requirement was relaxed. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7727,6 +7727,31 @@ P20-I PR #427 correctly failed closed because P20-H classified a healthy 100% fi
 Repair task = `FIN-P20-WH-001-R01`.  
 Lock = `LOCK-FIN-P20-WH-001-R01-01`.  
 P20-I = BLOCKED_BY_REPAIR.  
+G11_EXECUTION_VALIDATED = NOT_REACHED.  
+P21 = NOT_STARTED.  
+LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## P20-H R01 canonical closure — 2026-10-24
+
+Repair task = `FIN-P20-WH-001-R01` / CANONICAL_COMPLETE.  
+Repair PR #428 = MERGED.  
+Repair head = `c1cc83298a1d02ecc71c44b219b37675c2c88862`.  
+PR Governance `40087774732` = SUCCESS.  
+PR artifact = `12557384142` / `sha256:f1134de97e4a92551e780bb73fdc0baacbc687baa1b1290d51440c9c4315ac07`.  
+Merge SHA = `73c83b8a6bf0ab73d1a1dd79a4bd2eaa23a6bebe`.  
+Post-merge Governance `40087893174` = SUCCESS.  
+Post-merge artifact = `12556869865` / `sha256:c24857d9c9b6fecfcdb3b7938ff6b2b979069c6af2d2c9840d3fec55b512a22d`.  
+Post-merge Branch Hygiene `40087893199` = SUCCESS.  
+Repair lock = RELEASED.
+
+Validated semantics:
+- below 950,000 PPM fill ratio remains REFERENCE_FAIL;
+- 950,000..960,000 PPM is DEGRADED_REFERENCE;
+- above 960,000 PPM may be WITHIN_REFERENCE_BUDGET subject to latency/slippage;
+- no hard threshold or G11 requirement was relaxed.
+
+P20-I = IN_PROGRESS / unblocked.  
 G11_EXECUTION_VALIDATED = NOT_REACHED.  
 P21 = NOT_STARTED.  
 LIVE_TRADING/AUTO_TRADING = DISABLED.
