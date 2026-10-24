@@ -1,0 +1,141 @@
+{
+  "task_id": "FIN-P21-WA-001",
+  "phase": "P21",
+  "workstream": "WA",
+  "objective": "Establish deterministic canonical position state for Crypto and Forex from explicit P20 execution evidence, with exact fill lineage, fixed-point exposure accounting, duplicate-fill prevention and zero external-order or Live execution authority.",
+  "scope": [
+    "Define canonical position identity, market, side and strategy/portfolio lineage",
+    "Derive position state only from explicit execution fill evidence",
+    "Support OPEN_FILL, ADD_FILL and REDUCE_FILL state updates",
+    "Support scale-in only before the first reduction",
+    "Represent OPEN, PARTIALLY_CLOSED and CLOSED states deterministically",
+    "Track exact opened/closed/open quantity and entry cost basis",
+    "Require OMS record and reconciliation report lineage for every fill",
+    "Reject duplicate OMS fill lineage, over-close, sequence gaps and time regression",
+    "Generate deterministic position snapshot and byte-identical P21-A evidence",
+    "Keep all order submission, TP/SL, partial-close decisioning and Live authority outside P21-A"
+  ],
+  "out_of_scope": [
+    "TP/SL decisioning (P21-B)",
+    "Partial-close decisioning (P21-C)",
+    "Break-even/trailing/dynamic protection (P21-D)",
+    "Emergency exit (P21-E)",
+    "Broker position reconciliation (P21-F)",
+    "Restart/crash recovery (P21-G)",
+    "Lifecycle validation closure (P21-H)",
+    "External order submission or mutation",
+    "Production broker/exchange access",
+    "Live/Auto trading",
+    "P22 Operations"
+  ],
+  "dependencies": [
+    "P20 CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE",
+    "G11_EXECUTION_VALIDATED PASS",
+    "FIN-P20-WH-001-R01 CANONICAL_COMPLETE / RELEASED",
+    "Owner P21 phase authorization GRANTED / CONSUMED",
+    "No active governed task or lock conflict"
+  ],
+  "read_paths": [
+    "packages/execution/**",
+    "packages/risk/**",
+    "config/**",
+    "docs/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WA-001.json",
+    "config/position-management/canonical-position-state-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/canonical_position.py",
+    "tests/p21/__init__.py",
+    "tests/p21/test_canonical_position.py",
+    "scripts/ci/p21a_evidence.py",
+    "docs/16-position-management/P21-A-CANONICAL-POSITION-STATE.md",
+    "docs/16-position-management/p21-a-canonical-position-state.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Same PositionSpec produces identical position_spec_id",
+    "First fill must be OPEN_FILL with sequence 1",
+    "ADD_FILL is permitted only before any reduction",
+    "REDUCE_FILL cannot exceed open quantity",
+    "Position state transitions OPEN -> PARTIALLY_CLOSED -> CLOSED deterministically",
+    "Sequence numbers must be contiguous and event time cannot regress",
+    "Duplicate OMS record lineage fails closed",
+    "All fill evidence requires OMS and reconciliation SHA256 lineage",
+    "Snapshot ordering and snapshot_id are deterministic",
+    "No external order, reconciliation mutation, broker query or Live authority is emitted",
+    "P21-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS mutation",
+    "No Live execution authority",
+    "LIVE_TRADING and AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P20 canonical closure / G11 PASS",
+    "Deterministic P21-A canonical position evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-A package/config/tests/evidence/CI/state changes; P20 remains canonical complete and P21-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P20 CANONICAL_COMPLETE / G11 PASS",
+    "Owner P21 authorization consumed",
+    "No active governed task or lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic canonical position state implemented",
+    "Execution lineage and duplicate-fill controls enforced",
+    "Fixed-point exposure/cost-basis accounting validated",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged",
+    "Post-merge verification passes",
+    "FIN-P21-WA-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P21-B becomes READY_NOT_STARTED",
+    "P22 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}

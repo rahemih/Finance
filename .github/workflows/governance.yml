@@ -1505,6 +1505,18 @@ jobs:
           cmp build/p20-phase-a.json build/p20-phase-b.json
           sha256sum build/p20-phase-a.json
 
+      - name: P21 position-management contract tests
+        run: python -m unittest discover -s tests/p21 -p 'test_*.py' -v
+
+      - name: P21-A deterministic canonical position evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p21a_evidence.py --output build/p21a-a.json
+          PYTHONPATH=. python scripts/ci/p21a_evidence.py --output build/p21a-b.json
+          cmp build/p21a-a.json build/p21a-b.json
+          sha256sum build/p21a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1664,6 +1676,7 @@ jobs:
             build/p20h-a.json
             build/p20i-a.json
             build/p20-phase-a.json
+            build/p21a-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
