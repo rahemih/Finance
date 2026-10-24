@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20H_EXECUTION_QUALITY_POLICY",
+  "task_id": "FIN-P20-WH-001",
+  "mode": "DETERMINISTIC_REFERENCE_EXECUTION_QUALITY",
+  "markets": [
+    "CRYPTO",
+    "FOREX"
+  ],
+  "source_mode": "EXPLICIT_REFERENCE_SANDBOX_EXECUTION_ONLY",
+  "required_reconciliation_verdict": "MATCHED",
+  "latency_unit": "NS",
+  "ratio_unit": "PPM",
+  "quality_bands": [
+    "WITHIN_REFERENCE_BUDGET",
+    "DEGRADED_REFERENCE",
+    "REFERENCE_FAIL"
+  ],
+  "thresholds": {
+    "ack_latency_p95_max_ns": 5000000000,
+    "terminal_latency_p95_max_ns": 30000000000,
+    "adverse_slippage_p95_max_ppm": 2000,
+    "min_fill_ratio_ppm": 950000,
+    "degraded_trigger_percent": 80
+  },
+  "real_venue_query": false,
+  "production_execution_certification": false,
+  "broker_certification": false,
+  "automatic_oms_mutation": false,
+  "external_order_mutation": false,
+  "external_order_submission": false,
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "live_execution_authority": false,
+  "g11_execution_validated": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
