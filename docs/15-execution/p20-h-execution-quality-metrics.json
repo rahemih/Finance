@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P20H_EXECUTION_QUALITY_MANIFEST",
+  "task_id": "FIN-P20-WH-001",
+  "phase": "P20",
+  "workstream": "P20-H",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p20_a": "CANONICAL_COMPLETE",
+    "p20_b": "CANONICAL_COMPLETE",
+    "p20_c": "CANONICAL_COMPLETE",
+    "p20_d": "CANONICAL_COMPLETE",
+    "p20_e": "CANONICAL_COMPLETE",
+    "p20_f": "CANONICAL_COMPLETE",
+    "p20_g": "CANONICAL_COMPLETE",
+    "g10_shadow_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/execution/execution_quality.py",
+    "policy": "config/execution/execution-quality-policy.json",
+    "tests": "tests/p20/test_execution_quality.py",
+    "evidence_generator": "scripts/ci/p20h_evidence.py"
+  },
+  "ownership": {
+    "simulation_gate": "P20-I",
+    "position_management": "P21"
+  },
+  "safety": {
+    "source_mode": "EXPLICIT_REFERENCE_SANDBOX_EXECUTION_ONLY",
+    "required_reconciliation_verdict": "MATCHED",
+    "reference_only": true,
+    "real_venue_query": false,
+    "production_execution_certification": false,
+    "broker_certification": false,
+    "automatic_oms_mutation": false,
+    "external_order_mutation": false,
+    "external_order_submission": false,
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "live_execution_authority": false,
+    "g11_execution_validated": false,
+    "p20_i_started": false,
+    "p21_started": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "next": "P20-I_NOT_STARTED"
+}
