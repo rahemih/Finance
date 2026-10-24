@@ -2,8 +2,8 @@
 
 Task: `FIN-P20-WG-001`  
 Phase: P20 — Execution & Order Management  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P20-WG-001-01`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Dependency: P20-A..P20-F CANONICAL_COMPLETE
 
 ## Objective
@@ -33,7 +33,27 @@ Every reconciliation is bound to:
 - credentials/account/KYC/funding = NONE;
 - network mode = DISABLED;
 - Live execution authority = false;
-- P20-H..P20-I = NOT_STARTED;
+- P20-H = READY_NOT_STARTED;
+- P20-I = NOT_STARTED;
 - G11_EXECUTION_VALIDATED = NOT_REACHED;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #423 = MERGED;
+- implementation head = `e1267f53c6341329567b164504916000b8b7c5e8`;
+- implementation Governance = `39574349533` / SUCCESS;
+- implementation artifact = `12333651407` / `sha256:ca30e11bfc586bc8b465ba9b87a55d510a91c0ef719a9a84e73b9c7d600293d9`;
+- implementation merge SHA = `031fe9b95b39a06cdc1f3641cd012d3c10d47cc6`;
+- post-merge Governance = `39574656815` / SUCCESS;
+- post-merge artifact = `12334086654` / `sha256:aa5867c9efd3cb1e6c6c297b826f880a831a28570b6aa115f3720cb0932350b3`;
+- post-merge Branch Hygiene = `39574656745` / SUCCESS;
+- lock = RELEASED;
+- P20-H = READY_NOT_STARTED;
+- P20-I = NOT_STARTED;
+- G11_EXECUTION_VALIDATED = NOT_REACHED;
+- P21 = NOT_STARTED.
+
+P20-G canonical completion grants no real-venue query, OMS mutation, external-order mutation, execution-quality certification or Live authority.
