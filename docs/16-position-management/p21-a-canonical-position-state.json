@@ -4,7 +4,7 @@
   "task_id": "FIN-P21-WA-001",
   "phase": "P21",
   "workstream": "P21-A",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": {
     "p20": "CANONICAL_COMPLETE",
     "p20_workstreams": "P20-A..P20-I CANONICAL_COMPLETE",
@@ -45,5 +45,59 @@
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
   },
-  "next": "P21_A_VALIDATION_THEN_P21_B_READY_NOT_STARTED"
+  "next": "P21-B_READY_NOT_STARTED",
+  "closure": {
+    "implementation_pr": 432,
+    "implementation_head": "0c90764e4f754564f142380b46e3d115539eee9d",
+    "implementation_governance": {
+      "run_id": 40101908747,
+      "status": "SUCCESS"
+    },
+    "implementation_artifact": {
+      "id": 12562498846,
+      "sha256": "0240896ed1fe4cf367e03419e4dc14e3d3151640d36a8a9a61d656d38c9090c7"
+    },
+    "evidence_sha256": "f1c821e6c6deaf1f25516a2856cc4e51b43aaa89aa143d87f2c1137efa544754",
+    "snapshot_id": "ad3e0d00faff882ecb5b70c6da633544408b2ddcd059fc535c12e2e7788e37e7",
+    "implementation_merge_sha": "946639c5749c2e4dc00c498628cfba4d77f9d2ee",
+    "implementation_post_merge_governance": {
+      "run_id": 40102104074,
+      "status": "SUCCESS"
+    },
+    "implementation_post_merge_artifact": {
+      "id": 12562693079,
+      "sha256": "33d55c0f059d6be1fd284b25e26729f481b646493d5d5e6404e5e511402f027d"
+    },
+    "implementation_post_merge_branch_hygiene": {
+      "run_id": 40102104134,
+      "status": "SUCCESS"
+    },
+    "reconciliation_pr": 433,
+    "reconciliation_head": "b66ea824ec8b10459f4d79269d9eb3cfa33ba18c",
+    "reconciliation_governance": {
+      "run_id": 40102204861,
+      "status": "SUCCESS"
+    },
+    "reconciliation_artifact": {
+      "id": 12563053358,
+      "sha256": "6cf3a5c82891f646e911f38764d9d9488baebb5773cb5babf40622ab2d420f25"
+    },
+    "reconciliation_merge_sha": "c525e067493a5ccb822010b1d01ad591fc623e1d",
+    "reconciliation_post_merge_governance": {
+      "run_id": 40102364025,
+      "status": "SUCCESS"
+    },
+    "reconciliation_post_merge_artifact": {
+      "id": 12563266789,
+      "sha256": "0530e744fc6d267f4f77c9e9f5b5129fc761ac7bd20525c7133c3ecd3cd6512a"
+    },
+    "reconciliation_post_merge_branch_hygiene": {
+      "run_id": 40102364122,
+      "status": "SUCCESS"
+    },
+    "lock": "RELEASED",
+    "p21_b": "READY_NOT_STARTED",
+    "p21_c_to_h": "NOT_STARTED",
+    "p22": "NOT_STARTED"
+  }
 }
