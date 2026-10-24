@@ -113,9 +113,30 @@ class ExecutionQualityTests(unittest.TestCase):
 
     def test_summary_percentiles_are_deterministic(self) -> None:
         ledger = ExecutionQualityLedger(self.policy)
-        ledger.add(sample(order_id="a", ack=1_100_000_000, terminal=1_300_000_000))
-        ledger.add(sample(order_id="b", ack=1_200_000_000, terminal=1_500_000_000))
-        ledger.add(sample(order_id="c", ack=1_300_000_000, terminal=1_700_000_000))
+        ledger.add(
+            sample(
+                order_id="a",
+                ack=1_100_000_000,
+                first_fill=1_200_000_000,
+                terminal=1_300_000_000,
+            )
+        )
+        ledger.add(
+            sample(
+                order_id="b",
+                ack=1_200_000_000,
+                first_fill=1_300_000_000,
+                terminal=1_500_000_000,
+            )
+        )
+        ledger.add(
+            sample(
+                order_id="c",
+                ack=1_300_000_000,
+                first_fill=1_400_000_000,
+                terminal=1_700_000_000,
+            )
+        )
         first = ledger.summary()
         second = ledger.summary()
         self.assertEqual(first, second)
