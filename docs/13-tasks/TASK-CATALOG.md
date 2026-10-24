@@ -282,7 +282,7 @@ This catalog is the canonical index of governed work.
 | FIN-P20-WG-001 | P20 | Reconciliation | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WG-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P20-WH-001 | P20 | Execution-quality Metrics | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WH-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P20-WH-001-R01 | P20 | P20-H Quality-band Threshold Repair | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WH-001-R01.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P20-WI-001 | P20 | Broker/Exchange Simulation + G11 | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P20-WI-001.json` | LOCK-FIN-P20-WI-001-01 / LINEAR_CONTINUATION_REGISTER |
+| FIN-P20-WI-001 | P20 | Broker/Exchange Simulation + G11 | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P20-WI-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |

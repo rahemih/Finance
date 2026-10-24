@@ -2,8 +2,8 @@
 
 Task: `FIN-P20-WI-001`  
 Phase: P20 — Execution & Order Management  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P20-WI-001-01`  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Dependency: P20-A..P20-H CANONICAL_COMPLETE
 
 ## Objective
@@ -64,3 +64,28 @@ A PASS does **not** mean:
 - automatic Live promotion = false;
 - P21 = NOT_STARTED;
 - LIVE_TRADING/AUTO_TRADING = DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #427 = MERGED;
+- implementation head = `1b7671295677490644da8b19878e57e82428699d`;
+- implementation Governance = `40088637944` / SUCCESS;
+- implementation artifact = `12558048192` / `sha256:ad89d2c43d6a11fd3a6fc24edc47e9fe6de0997fedf5454f6a2e6415f4303c2f`;
+- implementation G11 evidence SHA256 = `46e5ec038f20be4d6faf5d617ab09a1480491dec15a35936cf6af41ea6b1c669`;
+- merge SHA = `038da4cc1b491b8968972f8bdb1c32ced8c82421`;
+- post-merge Governance = `40088788172` / SUCCESS;
+- post-merge artifact = `12557703089` / `sha256:71e03a9c1db0f9507e2058e771e876e827c410f0d91e4ea363604698086075e2`;
+- post-merge G11 evidence SHA256 = `46e5ec038f20be4d6faf5d617ab09a1480491dec15a35936cf6af41ea6b1c669`;
+- post-merge Branch Hygiene = `40088788168` / SUCCESS;
+- G11 = PASS;
+- G11 gate ID = `8f7c529945c86ef64b55107d16c5969814b23e5ba27daaf4258d7cf56f1738ad`;
+- lock = RELEASED.
+
+The first P20-I validation attempt correctly failed closed on the P20-H degraded fill-band defect. That defect was fixed under `FIN-P20-WH-001-R01` / PR #428 and canonically closed by PR #429 before P20-I was rerun. No hard quality threshold or G11 requirement was relaxed.
+
+## Phase boundary after G11
+
+G11 PASS is limited to `REFERENCE_SIMULATION_EXECUTION_VALIDATION`.
+
+It does not certify production broker/exchange behavior or Live execution. P21 remains `NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED`; LIVE_TRADING and AUTO_TRADING remain DISABLED.
