@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: P21-A — Canonical Position State / FIN-P21-WA-001 / IN_PROGRESS  
+Current Workstream: none — P21-A CANONICAL_COMPLETE / P21-B READY_NOT_STARTED  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A IN_PROGRESS / P21-B..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A CANONICAL_COMPLETE / P21-B READY_NOT_STARTED / P21-C..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -176,8 +176,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: `FIN-P21-WA-001`  
-Active lock: `LOCK-FIN-P21-WA-001-01`  
+Active task: none  
+Active lock: none  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A — Canonical Position State is IN_PROGRESS under `FIN-P21-WA-001` / `LOCK-FIN-P21-WA-001-01`. P21-B..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-A derives deterministic reference-only position state from canonical P20 execution evidence and grants no broker, external-order, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A — Canonical Position State is CANONICAL_COMPLETE with its lock RELEASED. P21-B — TP / SL is READY_NOT_STARTED; P21-C..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-A certifies deterministic reference-only canonical position state and grants no broker, external-order, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7790,5 +7790,29 @@ Critical claim boundary:
 - profitability guarantee = false.
 
 P21 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED.  
+LIVE_TRADING = DISABLED.  
+AUTO_TRADING = DISABLED.
+
+
+## P21-A canonical closure — 2026-10-24
+
+P21-A — Canonical Position State = CANONICAL_COMPLETE.  
+Task = `FIN-P21-WA-001`.  
+Implementation PR #432 = MERGED.  
+Implementation merge SHA = `946639c5749c2e4dc00c498628cfba4d77f9d2ee`.  
+PR Governance `40101908747` = SUCCESS.  
+Post-merge Governance `40102104074` = SUCCESS.  
+Post-merge Branch Hygiene `40102104134` = SUCCESS.  
+Reconciliation PR #433 = MERGED at `c525e067493a5ccb822010b1d01ad591fc623e1d`.  
+Reconciliation Governance `40102204861` = SUCCESS.  
+Reconciliation post-merge Governance `40102364025` = SUCCESS.  
+Reconciliation post-merge Branch Hygiene `40102364122` = SUCCESS.  
+Evidence SHA256 = `f1c821e6c6deaf1f25516a2856cc4e51b43aaa89aa143d87f2c1137efa544754`.  
+Snapshot ID = `ad3e0d00faff882ecb5b70c6da633544408b2ddcd059fc535c12e2e7788e37e7`.  
+Lock = RELEASED.
+
+P21-B = READY_NOT_STARTED.  
+P21-C..P21-H = NOT_STARTED.  
+P22 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
