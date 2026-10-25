@@ -41,10 +41,21 @@ from .emergency_exit import (
     EmergencyExitRequest,
 )
 
+from .broker_reconciliation import (
+    BrokerPositionReconciler,
+    BrokerReconciliationError,
+    BrokerReconciliationPolicy,
+    PositionReconciliationReport,
+    ReferenceBrokerPositionObservation,
+)
+
 __all__ = [
     "CanonicalPositionEngine",
     "CanonicalPositionError",
     "CanonicalPositionPolicy",
+    "BrokerPositionReconciler",
+    "BrokerReconciliationError",
+    "BrokerReconciliationPolicy",
     "DynamicExitError",
     "DynamicExitPlanner",
     "DynamicExitPolicy",
@@ -56,9 +67,11 @@ __all__ = [
     "EmergencyExitPolicy",
     "EmergencyExitRequest",
     "PositionFillEvent",
+    "PositionReconciliationReport",
     "PositionSpec",
     "PositionStateRecord",
     "ProtectionPlan",
+    "ReferenceBrokerPositionObservation",
     "PartialCloseError",
     "PartialClosePlan",
     "PartialClosePlanner",

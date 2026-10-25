@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P21-A..P21-E CANONICAL_COMPLETE / P21-F READY_NOT_STARTED  
+Current Workstream: P21-F — Broker Reconciliation / FIN-P21-WF-001 / IN_PROGRESS / LOCK-FIN-P21-WF-001-01  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-E CANONICAL_COMPLETE / P21-F READY_NOT_STARTED / P21-G..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-E CANONICAL_COMPLETE / P21-F IN_PROGRESS / P21-G..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-E are CANONICAL_COMPLETE with locks RELEASED. P21-F — Broker Reconciliation is READY_NOT_STARTED; P21-G..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-E certifies deterministic reference-only emergency reduction/flatten planning with explicit authority separation and unresolved-execution fail-closed behavior. No Risk/Firewall bypass, broker/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-E are CANONICAL_COMPLETE with locks RELEASED. P21-F — Broker Reconciliation is IN_PROGRESS as FIN-P21-WF-001 under LOCK-FIN-P21-WF-001-01; P21-G..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-F performs deterministic position-level reconciliation against caller-supplied normalized reference/sandbox observations with exact fixed-point comparison; mismatches force SAFE_HOLD + NEW_ENTRY_BLOCK and manual governed reconciliation. It grants no auto-repair/flatten, venue query, broker/OMS/P21-A mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7958,3 +7958,23 @@ Evidence:
 
 P21-F = READY_NOT_STARTED. P21-G..P21-H = NOT_STARTED. P22 = NOT_STARTED.  
 LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P21-F activation — 2026-10-25
+
+P21-A..P21-E = CANONICAL_COMPLETE / locks RELEASED.  
+P21-F — Broker Reconciliation = IN_PROGRESS.  
+Task = `FIN-P21-WF-001`.  
+Lock = `LOCK-FIN-P21-WF-001-01` / ACTIVE.  
+Branch = `feat/FIN-P21-WF-001-broker-reconciliation`.
+
+P21-F is position-level reconciliation, not a duplicate of P20-G order reconciliation:
+- explicit normalized reference/sandbox observation only;
+- exact current P21-A `position_record_id` binding;
+- observation cannot predate the current canonical record;
+- identity/asset/market/scales/side/open quantity/average entry are compared exactly;
+- no hidden tolerance: one fixed-point unit is a mismatch;
+- every mismatch forces SAFE_HOLD + NEW_ENTRY_BLOCK + MANUAL_GOVERNED_RECONCILIATION_REQUIRED;
+- no auto-repair, auto-flatten, real venue query, credentials/network, external order mutation, automatic OMS mutation or direct P21-A mutation;
+- P21-G..P21-H and P22 remain NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING remain DISABLED.
