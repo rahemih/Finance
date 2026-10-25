@@ -30,12 +30,6 @@ def _positive_int(value: object, *, field: str) -> int:
     return value
 
 
-def _nonnegative_int(value: object, *, field: str) -> int:
-    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
-        raise BrokerReconciliationError(f"{field} must be a non-negative integer")
-    return value
-
-
 def _sha256_hex(value: object, *, field: str) -> str:
     text = _text(value, field=field).lower()
     if len(text) != 64 or any(ch not in string.hexdigits for ch in text):
