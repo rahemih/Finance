@@ -286,7 +286,7 @@ This catalog is the canonical index of governed work.
 | FIN-P21-WA-001 | P21 | Canonical Position State | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P21-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P21-WB-001 | P21 | TP / SL | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P21-WB-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P21-WC-001 | P21 | Partial Close | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P21-WC-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P21-WD-001 | P21 | Break-even / Trailing / Dynamic Exits | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P21-WD-001.json` | LOCK-FIN-P21-WD-001-01 / LINEAR_CONTINUATION_REGISTER |
+| FIN-P21-WD-001 | P21 | Break-even / Trailing / Dynamic Exits | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P21-WD-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
