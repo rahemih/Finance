@@ -1544,6 +1544,15 @@ jobs:
           cmp build/p21d-a.json build/p21d-b.json
           sha256sum build/p21d-a.json
 
+      - name: P21-E deterministic emergency exit evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p21e_evidence.py --output build/p21e-a.json
+          PYTHONPATH=. python scripts/ci/p21e_evidence.py --output build/p21e-b.json
+          cmp build/p21e-a.json build/p21e-b.json
+          sha256sum build/p21e-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1707,6 +1716,7 @@ jobs:
             build/p21b-a.json
             build/p21c-a.json
             build/p21d-a.json
+            build/p21e-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

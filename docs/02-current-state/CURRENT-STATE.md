@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P21-A..P21-D CANONICAL_COMPLETE / P21-E READY_NOT_STARTED  
+Current Workstream: P21-E — Emergency Exit / FIN-P21-WE-001 / IN_PROGRESS / LOCK-FIN-P21-WE-001-01  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-D CANONICAL_COMPLETE / P21-E READY_NOT_STARTED / P21-F..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-D CANONICAL_COMPLETE / P21-E IN_PROGRESS / P21-F..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-D are CANONICAL_COMPLETE with locks RELEASED. P21-E — Emergency Exit is READY_NOT_STARTED; P21-F..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-D certifies deterministic reference-only monotonic protective-stop ratchets while preserving P21-B take-profit; no venue query, order/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-D are CANONICAL_COMPLETE with locks RELEASED. P21-E — Emergency Exit is IN_PROGRESS as FIN-P21-WE-001 under LOCK-FIN-P21-WE-001-01; P21-F..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-E separates emergency triggers from close authority: full flatten requires explicit Owner authority and unresolved execution exposure requires reconciliation before any exit plan. No Risk/Firewall bypass, broker/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7918,3 +7918,23 @@ Evidence:
 
 P21-E = READY_NOT_STARTED. P21-F..P21-H = NOT_STARTED. P22 = NOT_STARTED.  
 LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P21-E activation — 2026-10-25
+
+P21-A..P21-D = CANONICAL_COMPLETE / locks RELEASED.  
+P21-E — Emergency Exit = IN_PROGRESS.  
+Task = `FIN-P21-WE-001`.  
+Lock = `LOCK-FIN-P21-WE-001-01` / ACTIVE.  
+Branch = `feat/FIN-P21-WE-001-emergency-exit`.
+
+P21-E activates deterministic reference-only emergency reduction/flatten planning:
+- exact current P21-A record binding;
+- P16 trigger evidence alone has no automatic close authority;
+- emergency REDUCE is strictly partial under governed A5/Owner reduce-only authority;
+- emergency FLATTEN must equal full current open quantity and requires `OWNER_EXPLICIT_EMERGENCY_FLATTEN`;
+- provider/execution incident requires resolved reconciliation before a plan is emitted;
+- downstream execution must remain P20 idempotent/reduce-only; blind retry/reroute is forbidden;
+- no broker query, credentials/network, external order mutation, automatic OMS mutation, direct canonical-position mutation or Risk/Firewall bypass;
+- P21-F..P21-H and P22 remain NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING remain DISABLED.

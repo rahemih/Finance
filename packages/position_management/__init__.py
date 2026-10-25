@@ -33,6 +33,14 @@ from .dynamic_exit import (
     DynamicProtectionPlan,
 )
 
+from .emergency_exit import (
+    EmergencyExitError,
+    EmergencyExitPlan,
+    EmergencyExitPlanner,
+    EmergencyExitPolicy,
+    EmergencyExitRequest,
+)
+
 __all__ = [
     "CanonicalPositionEngine",
     "CanonicalPositionError",
@@ -42,6 +50,11 @@ __all__ = [
     "DynamicExitPolicy",
     "DynamicExitRequest",
     "DynamicProtectionPlan",
+    "EmergencyExitError",
+    "EmergencyExitPlan",
+    "EmergencyExitPlanner",
+    "EmergencyExitPolicy",
+    "EmergencyExitRequest",
     "PositionFillEvent",
     "PositionSpec",
     "PositionStateRecord",
