@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P21E_EMERGENCY_EXIT_MANIFEST",
+  "task_id": "FIN-P21-WE-001",
+  "phase": "P21",
+  "workstream": "P21-E",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p21a_to_p21d": "CANONICAL_COMPLETE",
+    "p21a_to_p21d_locks": "RELEASED",
+    "p20": "CANONICAL_COMPLETE",
+    "g11_execution_validated": "PASS",
+    "p16": "CANONICAL_COMPLETE",
+    "g8_pretrade_safe": "PASS"
+  },
+  "implementation": {
+    "module": "packages/position_management/emergency_exit.py",
+    "policy": "config/position-management/emergency-exit-policy.json",
+    "tests": "tests/p21/test_emergency_exit.py",
+    "evidence_generator": "scripts/ci/p21e_evidence.py"
+  },
+  "semantics": {
+    "p16_trigger_auto_close_authority": false,
+    "reduce_authorities": ["A5_GOVERNED_REDUCE_ONLY", "OWNER_EXPLICIT_EMERGENCY_REDUCE"],
+    "flatten_authority": "OWNER_EXPLICIT_EMERGENCY_FLATTEN",
+    "provider_incident_reconciliation": "RESOLVED_NO_CONFLICT_REQUIRED",
+    "reduce_only": true,
+    "blind_reroute_allowed": false,
+    "requires_p20_idempotent_execution": true,
+    "requires_reconciliation_before_retry": true
+  },
+  "safety": {
+    "real_venue_query": false,
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "external_order_submission": false,
+    "external_order_mutation": false,
+    "automatic_oms_mutation": false,
+    "canonical_position_mutation": false,
+    "risk_firewall_bypass_authority": false,
+    "live_execution_validated": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "lock": "LOCK-FIN-P21-WE-001-01",
+  "next": "P21-F_NOT_STARTED"
+}

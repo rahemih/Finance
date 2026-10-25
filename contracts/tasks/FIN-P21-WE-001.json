@@ -1,0 +1,132 @@
+{
+  "task_id": "FIN-P21-WE-001",
+  "phase": "P21",
+  "workstream": "WE",
+  "objective": "Implement deterministic reference-only emergency reduction/flatten planning with explicit authority separation, exact canonical-position binding and reconciliation fail-closed behavior, without bypassing Risk/Firewall/OMS governance or granting Live execution authority.",
+  "scope": [
+    "Bind every emergency request to exact current P21-A position_record_id and position_id",
+    "Require OPEN or PARTIALLY_CLOSED canonical position with positive exposure",
+    "Require caller-supplied governed emergency decision and authority lineage",
+    "Allow EMERGENCY_REDUCE only as a strictly partial reduce-only action",
+    "Allow EMERGENCY_FLATTEN only for exactly the full current open quantity",
+    "Require OWNER_EXPLICIT_EMERGENCY_FLATTEN authority for full flatten",
+    "Permit A5_GOVERNED_REDUCE_ONLY or explicit Owner authority for emergency partial reduction",
+    "Treat P16 health/circuit outputs as trigger evidence only, never automatic close authority",
+    "Require provider/execution incidents to be reconciled before an exit plan can be emitted",
+    "Forbid unresolved UNKNOWN execution status, blind retry and blind cross-broker reroute",
+    "Require downstream P20 idempotent reduce-only execution and reconciliation before retry",
+    "Produce deterministic content-addressed reference emergency-exit plans",
+    "Generate byte-identical P21-E evidence"
+  ],
+  "out_of_scope": [
+    "Automatically deriving an emergency from P16 health/circuit state",
+    "Bypassing independent Risk/Firewall authority",
+    "Choosing a Live venue, broker, order type or execution algorithm",
+    "Blind retry or cross-broker failover",
+    "Broker reconciliation implementation (P21-F)",
+    "Restart/crash recovery (P21-G)",
+    "Position lifecycle validation closure (P21-H)",
+    "Direct mutation of P21-A canonical position state",
+    "Broker/exchange order placement, cancellation or modification",
+    "Automatic OMS mutation",
+    "Live/Auto trading",
+    "P22 Operations"
+  ],
+  "dependencies": [
+    "P21-A..P21-D CANONICAL_COMPLETE / locks RELEASED",
+    "P20 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS",
+    "P16 CANONICAL_COMPLETE / G8_PRETRADE_SAFE PASS",
+    "Owner P21 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/position_management/**",
+    "packages/execution/**",
+    "packages/pretrade_firewall/**",
+    "docs/**",
+    "contracts/tasks/**",
+    "config/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WE-001.json",
+    "config/position-management/emergency-exit-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/emergency_exit.py",
+    "tests/p21/test_emergency_exit.py",
+    "scripts/ci/p21e_evidence.py",
+    "docs/16-position-management/P21-E-EMERGENCY-EXIT.md",
+    "docs/16-position-management/p21-e-emergency-exit.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A1", "A5", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "A5 governed emergency reduction is strictly partial and reduce-only",
+    "Owner explicit emergency flatten equals the full current open quantity",
+    "Non-owner flatten authority fails closed",
+    "Zero, over-close and wrong flatten quantities fail closed",
+    "Provider/execution incident requires RESOLVED_NO_CONFLICT reconciliation",
+    "UNKNOWN or unsupported reconciliation state fails closed",
+    "P16 trigger evidence alone never grants close authority",
+    "Closed or zero-exposure positions fail closed",
+    "Stale position_record_id fails closed",
+    "Emergency plan ID is deterministic",
+    "Plan requires P20 idempotent execution and reconciliation before retry",
+    "No blind reroute, broker query, OMS mutation or Live authority is emitted",
+    "P21-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS mutation",
+    "No direct canonical-position mutation",
+    "No Risk/Firewall bypass authority",
+    "No blind cross-broker reroute",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21-A..P21-D canonical manifests",
+    "P02/P16 authority architecture",
+    "Deterministic P21-E emergency-exit evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-E package/config/tests/evidence/CI/state changes; P21-A through P21-D remain canonical complete and P21-F remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21-A..P21-D CANONICAL_COMPLETE / locks RELEASED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic emergency reduction/flatten planner implemented",
+    "Authority separation, exact position binding and reconciliation fail-closed tests pass",
+    "Emergency flatten is Owner-explicit only",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P21-WE-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P21-F becomes READY_NOT_STARTED",
+    "P22 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
