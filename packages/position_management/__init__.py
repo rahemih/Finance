@@ -25,10 +25,23 @@ from .partial_close import (
     PartialCloseRequest,
 )
 
+from .dynamic_exit import (
+    DynamicExitError,
+    DynamicExitPlanner,
+    DynamicExitPolicy,
+    DynamicExitRequest,
+    DynamicProtectionPlan,
+)
+
 __all__ = [
     "CanonicalPositionEngine",
     "CanonicalPositionError",
     "CanonicalPositionPolicy",
+    "DynamicExitError",
+    "DynamicExitPlanner",
+    "DynamicExitPolicy",
+    "DynamicExitRequest",
+    "DynamicProtectionPlan",
     "PositionFillEvent",
     "PositionSpec",
     "PositionStateRecord",

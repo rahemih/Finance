@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P21-A..P21-C CANONICAL_COMPLETE / P21-D READY_NOT_STARTED  
+Current Workstream: P21-D — Break-even / Trailing / Dynamic Exits / FIN-P21-WD-001 / IN_PROGRESS / LOCK-FIN-P21-WD-001-01  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-C CANONICAL_COMPLETE / P21-D READY_NOT_STARTED / P21-E..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-C CANONICAL_COMPLETE / P21-D IN_PROGRESS / P21-E..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-C are CANONICAL_COMPLETE with locks RELEASED. P21-D — Break-even / Trailing / Dynamic Exits is READY_NOT_STARTED; P21-E..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-C certifies deterministic reference-only strict partial-close planning with exact P21-A state and current P21-B protection binding plus mandatory P21-B replan after a reduction fill. It grants no broker, OMS mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-C are CANONICAL_COMPLETE with locks RELEASED. P21-D — Break-even / Trailing / Dynamic Exits is IN_PROGRESS as FIN-P21-WD-001 under LOCK-FIN-P21-WD-001-01; P21-E..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-D is deterministic reference-only and permits only monotonic stop tightening from caller-supplied reference/stop levels while preserving P21-B take-profit. It grants no venue query, order/OMS mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7876,3 +7876,25 @@ Evidence:
 
 P21-D = READY_NOT_STARTED. P21-E..P21-H = NOT_STARTED. P22 = NOT_STARTED.  
 LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P21-D activation — 2026-10-25
+
+P21-A..P21-C = CANONICAL_COMPLETE / locks RELEASED.  
+P21-D — Break-even / Trailing / Dynamic Exits = IN_PROGRESS.  
+Task = `FIN-P21-WD-001`.  
+Lock = `LOCK-FIN-P21-WD-001-01` / ACTIVE.  
+Branch = `feat/FIN-P21-WD-001-dynamic-exits`.
+
+P21-D activates deterministic reference-only protective-stop ratchets:
+- exact current P21-A record and current P21-B protection binding;
+- caller supplies reference price and requested stop;
+- LONG stop may only move strictly upward; SHORT stop may only move strictly downward;
+- BREAK_EVEN requires exact canonical entry and favorable reference price;
+- TRAILING/DYNAMIC_EXIT may lock profit but no universal distance/percentage/cadence is encoded;
+- requested stop must remain non-triggered relative to caller reference;
+- caller reference must remain before current TP trigger;
+- current P21-B take-profit is preserved exactly;
+- no broker query, credentials/network, external order mutation, automatic OMS mutation or direct canonical-position mutation;
+- P21-E..P21-H and P22 remain NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING remain DISABLED.

@@ -1,0 +1,130 @@
+{
+  "task_id": "FIN-P21-WD-001",
+  "phase": "P21",
+  "workstream": "WD",
+  "objective": "Implement deterministic reference-only break-even, trailing and dynamic protective-stop ratchets bound to exact current P21-A position state and current P21-B protection, without choosing universal trailing distances or mutating broker/OMS/Live state.",
+  "scope": [
+    "Bind every adjustment request to exact current P21-A position_record_id and position_id",
+    "Require OPEN or PARTIALLY_CLOSED canonical position with positive exposure",
+    "Require current P21-B protection bound to the same exact canonical position record",
+    "Accept caller-supplied reference price and requested stop level without venue queries",
+    "Preserve current P21-B take-profit level",
+    "Enforce monotonic protective-stop tightening: LONG stop may only rise; SHORT stop may only fall",
+    "Require BREAK_EVEN stop exactly at canonical average-entry floor and favorable reference price",
+    "Allow TRAILING and DYNAMIC_EXIT to tighten through entry into profit-lock territory",
+    "Require requested stop to remain strictly on the non-triggered side of caller reference price",
+    "Require caller reference price to remain strictly before the current take-profit trigger",
+    "Produce deterministic content-addressed reference protection-adjustment plans",
+    "Generate byte-identical P21-D evidence"
+  ],
+  "out_of_scope": [
+    "Choosing strategy-specific trailing distance, percentage, trigger timing or adjustment cadence",
+    "Changing the current take-profit level",
+    "Partial-close quantity selection or execution",
+    "Emergency exit (P21-E)",
+    "Broker reconciliation (P21-F)",
+    "Restart/crash recovery (P21-G)",
+    "Position lifecycle validation closure (P21-H)",
+    "Direct mutation of P21-A canonical position state",
+    "Broker/exchange order placement, cancellation or modification",
+    "Automatic OMS mutation",
+    "Live/Auto trading",
+    "P22 Operations"
+  ],
+  "dependencies": [
+    "P21-A CANONICAL_COMPLETE / lock RELEASED",
+    "P21-B CANONICAL_COMPLETE / lock RELEASED",
+    "P21-C CANONICAL_COMPLETE / lock RELEASED",
+    "P20 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS",
+    "Owner P21 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/position_management/**",
+    "packages/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    "config/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WD-001.json",
+    "config/position-management/dynamic-exit-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/dynamic_exit.py",
+    "tests/p21/test_dynamic_exit.py",
+    "scripts/ci/p21d_evidence.py",
+    "docs/16-position-management/P21-D-BREAK-EVEN-TRAILING-DYNAMIC-EXITS.md",
+    "docs/16-position-management/p21-d-dynamic-exits.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A1", "A5", "A6", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "LONG and SHORT BREAK_EVEN ratchets pass only at exact canonical entry with favorable reference",
+    "LONG stop cannot move lower or remain unchanged",
+    "SHORT stop cannot move higher or remain unchanged",
+    "TRAILING and DYNAMIC_EXIT may lock profit while preserving non-triggered geometry",
+    "Stop crossing or equaling caller reference price fails closed",
+    "Reference price at or beyond current TP trigger fails closed",
+    "Closed or zero-exposure positions fail closed",
+    "Stale position_record_id request fails closed",
+    "Mismatched or stale P21-B protection plan fails closed",
+    "Current take-profit is preserved exactly",
+    "Plan ID is deterministic",
+    "No venue query, order mutation, OMS mutation or Live authority is emitted",
+    "P21-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS mutation",
+    "No direct canonical-position mutation",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21-A canonical manifest",
+    "P21-B canonical manifest",
+    "P21-C canonical manifest",
+    "Deterministic P21-D dynamic-exit evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-D package/config/tests/evidence/CI/state changes; P21-A through P21-C remain canonical complete and P21-E remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21-A..P21-C CANONICAL_COMPLETE / locks RELEASED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic break-even/trailing/dynamic protective-stop planner implemented",
+    "Monotonic ratchet, exact lineage and non-triggered geometry tests pass",
+    "No universal trailing distance or percentage is encoded",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P21-WD-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P21-E becomes READY_NOT_STARTED",
+    "P22 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
