@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: P21-E — Emergency Exit / FIN-P21-WE-001 / IN_PROGRESS / LOCK-FIN-P21-WE-001-01  
+Current Workstream: none — P21-A..P21-E CANONICAL_COMPLETE / P21-F READY_NOT_STARTED  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-D CANONICAL_COMPLETE / P21-E IN_PROGRESS / P21-F..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-E CANONICAL_COMPLETE / P21-F READY_NOT_STARTED / P21-G..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-D are CANONICAL_COMPLETE with locks RELEASED. P21-E — Emergency Exit is IN_PROGRESS as FIN-P21-WE-001 under LOCK-FIN-P21-WE-001-01; P21-F..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-E separates emergency triggers from close authority: full flatten requires explicit Owner authority and unresolved execution exposure requires reconciliation before any exit plan. No Risk/Firewall bypass, broker/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-E are CANONICAL_COMPLETE with locks RELEASED. P21-F — Broker Reconciliation is READY_NOT_STARTED; P21-G..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-E certifies deterministic reference-only emergency reduction/flatten planning with explicit authority separation and unresolved-execution fail-closed behavior. No Risk/Firewall bypass, broker/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7938,3 +7938,23 @@ P21-E activates deterministic reference-only emergency reduction/flatten plannin
 - no broker query, credentials/network, external order mutation, automatic OMS mutation, direct canonical-position mutation or Risk/Firewall bypass;
 - P21-F..P21-H and P22 remain NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING remain DISABLED.
+
+
+## P21-E canonical closure — 2026-10-25
+
+P21-E — Emergency Exit = CANONICAL_COMPLETE.  
+Task = `FIN-P21-WE-001`.  
+Lock = RELEASED.
+
+Evidence:
+- implementation PR #441 / head `5e9321f401089c036dd71009501ed60ec94335fa`;
+- PR Governance `40195503923` = SUCCESS;
+- PR artifact `12600115657` / `sha256:95dc0ca5904286861cfa812b716f292ccc810ea10e480cf6f849432dc4d9ff89`;
+- deterministic P21-E evidence = `sha256:d1182c8c0b0e8aa976e51cdf9373474d5aafe9c8ae7a7fd0912100cfe838ed0a`;
+- implementation merge = `9523542003c55a8123cf216bcad2a442f1311ca3`;
+- post-merge Governance `40195657602` = SUCCESS;
+- post-merge artifact `12599379738` / `sha256:fdafd3f661638ac1c6a10b9df12e54a13842bca3f8189d223af908d9db722850`;
+- post-merge Branch Hygiene `40195657657` = SUCCESS.
+
+P21-F = READY_NOT_STARTED. P21-G..P21-H = NOT_STARTED. P22 = NOT_STARTED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.

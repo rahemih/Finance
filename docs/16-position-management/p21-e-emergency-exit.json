@@ -4,7 +4,7 @@
   "task_id": "FIN-P21-WE-001",
   "phase": "P21",
   "workstream": "P21-E",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": {
     "p21a_to_p21d": "CANONICAL_COMPLETE",
     "p21a_to_p21d_locks": "RELEASED",
@@ -21,7 +21,10 @@
   },
   "semantics": {
     "p16_trigger_auto_close_authority": false,
-    "reduce_authorities": ["A5_GOVERNED_REDUCE_ONLY", "OWNER_EXPLICIT_EMERGENCY_REDUCE"],
+    "reduce_authorities": [
+      "A5_GOVERNED_REDUCE_ONLY",
+      "OWNER_EXPLICIT_EMERGENCY_REDUCE"
+    ],
     "flatten_authority": "OWNER_EXPLICIT_EMERGENCY_FLATTEN",
     "provider_incident_reconciliation": "RESOLVED_NO_CONFLICT_REQUIRED",
     "reduce_only": true,
@@ -43,6 +46,35 @@
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
   },
-  "lock": "LOCK-FIN-P21-WE-001-01",
-  "next": "P21-F_NOT_STARTED"
+  "next": "P21-F_READY_NOT_STARTED",
+  "closure": {
+    "implementation_pr": 441,
+    "implementation_head": "5e9321f401089c036dd71009501ed60ec94335fa",
+    "implementation_governance": {
+      "run_id": 40195503923,
+      "status": "SUCCESS"
+    },
+    "implementation_artifact": {
+      "id": 12600115657,
+      "sha256": "95dc0ca5904286861cfa812b716f292ccc810ea10e480cf6f849432dc4d9ff89"
+    },
+    "evidence_sha256": "d1182c8c0b0e8aa976e51cdf9373474d5aafe9c8ae7a7fd0912100cfe838ed0a",
+    "implementation_merge_sha": "9523542003c55a8123cf216bcad2a442f1311ca3",
+    "post_merge_governance": {
+      "run_id": 40195657602,
+      "status": "SUCCESS"
+    },
+    "post_merge_artifact": {
+      "id": 12599379738,
+      "sha256": "fdafd3f661638ac1c6a10b9df12e54a13842bca3f8189d223af908d9db722850"
+    },
+    "post_merge_branch_hygiene": {
+      "run_id": 40195657657,
+      "status": "SUCCESS"
+    },
+    "lock": "RELEASED",
+    "p21_f": "READY_NOT_STARTED",
+    "p21_g_to_h": "NOT_STARTED",
+    "p22": "NOT_STARTED"
+  }
 }
