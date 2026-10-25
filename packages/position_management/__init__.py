@@ -17,6 +17,14 @@ from .tp_sl import (
     TpSlRequest,
 )
 
+from .partial_close import (
+    PartialCloseError,
+    PartialClosePlan,
+    PartialClosePlanner,
+    PartialClosePolicy,
+    PartialCloseRequest,
+)
+
 __all__ = [
     "CanonicalPositionEngine",
     "CanonicalPositionError",
@@ -25,6 +33,11 @@ __all__ = [
     "PositionSpec",
     "PositionStateRecord",
     "ProtectionPlan",
+    "PartialCloseError",
+    "PartialClosePlan",
+    "PartialClosePlanner",
+    "PartialClosePolicy",
+    "PartialCloseRequest",
     "TpSlError",
     "TpSlPlanner",
     "TpSlPolicy",
