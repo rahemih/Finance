@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P21D_DYNAMIC_EXIT_MANIFEST",
+  "task_id": "FIN-P21-WD-001",
+  "phase": "P21",
+  "workstream": "P21-D",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p21a": "CANONICAL_COMPLETE",
+    "p21a_lock": "RELEASED",
+    "p21b": "CANONICAL_COMPLETE",
+    "p21b_lock": "RELEASED",
+    "p21c": "CANONICAL_COMPLETE",
+    "p21c_lock": "RELEASED",
+    "p20": "CANONICAL_COMPLETE",
+    "g11_execution_validated": "PASS"
+  },
+  "implementation": {
+    "module": "packages/position_management/dynamic_exit.py",
+    "policy": "config/position-management/dynamic-exit-policy.json",
+    "tests": "tests/p21/test_dynamic_exit.py",
+    "evidence_generator": "scripts/ci/p21d_evidence.py"
+  },
+  "semantics": {
+    "reference_price_source": "CALLER_SUPPLIED_NO_VENUE_QUERY",
+    "stop_source": "CALLER_SUPPLIED_NO_UNIVERSAL_TRAIL_DISTANCE",
+    "stop_ratchet": "MONOTONIC_TIGHTEN_ONLY",
+    "break_even_rule": "STOP_EQUALS_CANONICAL_ENTRY",
+    "take_profit_change": "P21B_TAKE_PROFIT_PRESERVED"
+  },
+  "safety": {
+    "real_venue_query": false,
+    "credential_mode": "NONE",
+    "network_mode": "DISABLED",
+    "external_order_submission": false,
+    "external_order_mutation": false,
+    "automatic_oms_mutation": false,
+    "canonical_position_mutation": false,
+    "live_execution_validated": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "lock": "LOCK-FIN-P21-WD-001-01",
+  "next": "P21-E_NOT_STARTED"
+}
