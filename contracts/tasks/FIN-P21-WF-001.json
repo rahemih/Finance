@@ -1,0 +1,128 @@
+{
+  "task_id": "FIN-P21-WF-001",
+  "phase": "P21",
+  "workstream": "WF",
+  "objective": "Implement deterministic position-level broker/reference reconciliation between the exact current P21-A canonical position and an explicit normalized reference/sandbox broker-position observation, failing safe on every mismatch without duplicating P20-G order reconciliation or mutating broker/OMS/canonical state.",
+  "scope": [
+    "Bind every observation to the exact current P21-A position_record_id",
+    "Accept explicit caller-supplied normalized reference/sandbox broker-position observations only",
+    "Support OPEN, PARTIALLY_CLOSED and CLOSED canonical positions",
+    "Support OPEN and NOT_FOUND external position observations",
+    "Reject observations older than the current canonical position record",
+    "Compare position identity, asset, market, fixed-point scales, side, open quantity and average entry exactly",
+    "Use zero hidden tolerance; one fixed-point unit difference is a mismatch",
+    "Return deterministic MATCHED, MISSING_EXTERNAL_POSITION, EXTERNAL_EXPOSURE_CONFLICT, IDENTITY_MISMATCH, SIDE_MISMATCH, QUANTITY_MISMATCH, ENTRY_PRICE_MISMATCH or MULTIPLE_MISMATCH verdicts",
+    "Require SAFE_HOLD and NEW_ENTRY_BLOCK for every non-MATCHED verdict",
+    "Require MANUAL_GOVERNED_RECONCILIATION_REQUIRED for every non-MATCHED verdict",
+    "Carry current P21-A source OMS/reconciliation lineage into the reconciliation report",
+    "Produce deterministic content-addressed reports and byte-identical P21-F evidence"
+  ],
+  "out_of_scope": [
+    "Repeating P20-G order-level reconciliation",
+    "Querying a real broker/exchange",
+    "Selecting a production broker or venue",
+    "Automatically repairing broker, OMS or P21-A position state",
+    "Automatically flattening or reducing a mismatched position",
+    "Broker-side order placement, cancellation or modification",
+    "Restart/crash recovery (P21-G)",
+    "Position lifecycle validation closure (P21-H)",
+    "Live/Auto trading",
+    "P22 Operations"
+  ],
+  "dependencies": [
+    "P21-A..P21-E CANONICAL_COMPLETE / locks RELEASED",
+    "P20 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS",
+    "P20-G order reconciliation CANONICAL_COMPLETE",
+    "Owner P21 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/position_management/**",
+    "packages/execution/**",
+    "docs/**",
+    "contracts/tasks/**",
+    "config/**",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WF-001.json",
+    "config/position-management/broker-reconciliation-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/broker_reconciliation.py",
+    "tests/p21/test_broker_reconciliation.py",
+    "scripts/ci/p21f_evidence.py",
+    "docs/16-position-management/P21-F-BROKER-RECONCILIATION.md",
+    "docs/16-position-management/p21-f-broker-reconciliation.json",
+    ".github/workflows/governance.yml",
+    "scripts/ci/foundation_ci.py",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A1", "A5", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Matching OPEN reference observation returns MATCHED",
+    "CLOSED canonical position plus NOT_FOUND observation returns MATCHED",
+    "Open canonical position plus NOT_FOUND returns MISSING_EXTERNAL_POSITION",
+    "Closed canonical position plus OPEN observation returns EXTERNAL_EXPOSURE_CONFLICT",
+    "Identity, side, quantity and average-entry mismatches are deterministic and fail safe",
+    "One fixed-point unit quantity or entry difference is a mismatch",
+    "Multiple field differences return MULTIPLE_MISMATCH",
+    "Stale position_record_id fails closed",
+    "Observation timestamp older than current canonical record fails closed",
+    "Every mismatch requires SAFE_HOLD + NEW_ENTRY_BLOCK + manual governed reconciliation",
+    "No auto-repair, auto-flatten, venue query, OMS mutation, canonical mutation or Live authority is emitted",
+    "Report ID is deterministic",
+    "P21-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS mutation",
+    "No direct canonical-position mutation",
+    "No auto-repair or auto-flatten",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21-A..P21-E canonical manifests",
+    "P20-G canonical reconciliation ownership",
+    "Deterministic P21-F position reconciliation evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-F package/config/tests/evidence/CI/state changes; P21-A through P21-E remain canonical complete and P21-G remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21-A..P21-E CANONICAL_COMPLETE / locks RELEASED",
+    "P20-G CANONICAL_COMPLETE",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic position-level broker/reference reconciliation implemented",
+    "Exact lineage/fixed-point and safe-hold mismatch tests pass",
+    "No automatic mutation/repair/flatten authority exists",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P21-WF-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P21-G becomes READY_NOT_STARTED",
+    "P22 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
