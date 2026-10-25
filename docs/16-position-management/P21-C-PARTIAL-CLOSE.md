@@ -2,8 +2,8 @@
 
 Task: `FIN-P21-WC-001`  
 Phase: P21 — Position Management  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P21-WC-001-01` / ACTIVE  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Dependency: P21-A and P21-B CANONICAL_COMPLETE / RELEASED
 
 ## Objective
@@ -32,7 +32,25 @@ Allowed caller-supplied reasons: `PARTIAL_PROFIT`, `DE_RISK`, `HEDGE_REDUCTION`,
 
 No broker/exchange query, credentials, network I/O, external order submission/mutation, automatic OMS mutation, direct P21-A mutation or Live execution authority is introduced.
 
-P21-D..P21-H = NOT_STARTED.  
+## Canonical closure evidence
+
+- implementation PR #437 = MERGED;
+- implementation head = `9195a80864f1df1ffb4a7dacfbd3fd40c0cc567b`;
+- implementation Governance = `40193480084` / SUCCESS;
+- implementation artifact = `12598976483` / `sha256:74bd1b7398bec33836ee06e3bfdd88adf8440311dbb48c035f3e42ec046ed297`;
+- deterministic P21-C evidence SHA256 = `20ea9c8a3138cba6f28f93e32b274ae0f966fcc0ff6886641aa6c7ede279343f`;
+- implementation merge SHA = `bbe748ab65d1071ba2518f8890ea2915fc7416ce`;
+- post-merge Governance = `40193615383` / SUCCESS;
+- post-merge artifact = `12599445840` / `sha256:35b2add4619701b4b1432f2dd3cf098c465aca4e3121ab9f92af0ed0f1e9f8cd`;
+- post-merge Branch Hygiene = `40193615387` / SUCCESS;
+- lock = RELEASED.
+
+## Next workstream boundary
+
+P21-D — Break-even / Trailing / Dynamic Exits = READY_NOT_STARTED.  
+P21-E..P21-H = NOT_STARTED.  
 P22 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+P21-C completion certifies deterministic reference partial-close planning only. It does not select strategy-specific exit size/timing, execute reductions, mutate canonical state, or authorize Live trading.
