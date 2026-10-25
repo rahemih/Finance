@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: P21-D — Break-even / Trailing / Dynamic Exits / FIN-P21-WD-001 / IN_PROGRESS / LOCK-FIN-P21-WD-001-01  
+Current Workstream: none — P21-A..P21-D CANONICAL_COMPLETE / P21-E READY_NOT_STARTED  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-C CANONICAL_COMPLETE / P21-D IN_PROGRESS / P21-E..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-D CANONICAL_COMPLETE / P21-E READY_NOT_STARTED / P21-F..P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-C are CANONICAL_COMPLETE with locks RELEASED. P21-D — Break-even / Trailing / Dynamic Exits is IN_PROGRESS as FIN-P21-WD-001 under LOCK-FIN-P21-WD-001-01; P21-E..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-D is deterministic reference-only and permits only monotonic stop tightening from caller-supplied reference/stop levels while preserving P21-B take-profit. It grants no venue query, order/OMS mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-D are CANONICAL_COMPLETE with locks RELEASED. P21-E — Emergency Exit is READY_NOT_STARTED; P21-F..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-D certifies deterministic reference-only monotonic protective-stop ratchets while preserving P21-B take-profit; no venue query, order/OMS mutation, credential/network or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7898,3 +7898,23 @@ P21-D activates deterministic reference-only protective-stop ratchets:
 - no broker query, credentials/network, external order mutation, automatic OMS mutation or direct canonical-position mutation;
 - P21-E..P21-H and P22 remain NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING remain DISABLED.
+
+
+## P21-D canonical closure — 2026-10-25
+
+P21-D — Break-even / Trailing / Dynamic Exits = CANONICAL_COMPLETE.  
+Task = `FIN-P21-WD-001`.  
+Lock = RELEASED.
+
+Evidence:
+- implementation PR #439 / head `6952710955b22342385a41953d6ae7b51952d24f`;
+- PR Governance `40194460051` = SUCCESS;
+- PR artifact `12599507223` / `sha256:e23e2af534a615e19c6010ce7a939650d81b2f6f2a958b2174a53b0a7deb22e0`;
+- deterministic P21-D evidence = `sha256:a74b8a06083f8a1a0b32d463c154058ad6e1aee473541cfab124eb60cf25d5a1`;
+- implementation merge = `30082d9efd6cd0cd93583ef5eb9201210820a6b9`;
+- post-merge Governance `40194645962` = SUCCESS;
+- post-merge artifact `12598849254` / `sha256:41d8a222b2cb6110502e3bca4325e7ac160999006b92189c12003ed5e580a823`;
+- post-merge Branch Hygiene `40194645954` = SUCCESS.
+
+P21-E = READY_NOT_STARTED. P21-F..P21-H = NOT_STARTED. P22 = NOT_STARTED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.
