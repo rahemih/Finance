@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22E_BACKUP_POLICY",
+  "task_id": "FIN-P22-WE-001",
+  "mode": "DETERMINISTIC_REFERENCE_BACKUP_MANIFEST",
+  "dr_classes": {
+    "DR0": {
+      "description": "EXECUTION_AUTHORITY_STATE",
+      "backup_required": true,
+      "rpo_target_seconds": 60,
+      "provisional_rto_target_seconds": 3600,
+      "off_primary_required": true,
+      "restore_quarantine_required": true,
+      "reconciliation_after_restore_required": true
+    },
+    "DR1": {
+      "description": "CONTROL_SECURITY_STATE",
+      "backup_required": true,
+      "rpo_target_seconds": 900,
+      "provisional_rto_target_seconds": 14400,
+      "off_primary_required": true,
+      "restore_quarantine_required": true,
+      "reconciliation_after_restore_required": false
+    },
+    "DR2": {
+      "description": "MARKET_HISTORICAL_RESEARCH_DATA",
+      "backup_required": true,
+      "rpo_target_seconds": 86400,
+      "provisional_rto_target_seconds": 86400,
+      "off_primary_required": true,
+      "restore_quarantine_required": true,
+      "reconciliation_after_restore_required": false
+    },
+    "DR3": {
+      "description": "REBUILDABLE_DERIVED_STATE",
+      "backup_required": false,
+      "rpo_target_seconds": null,
+      "provisional_rto_target_seconds": 172800,
+      "off_primary_required": false,
+      "restore_quarantine_required": true,
+      "reconciliation_after_restore_required": false
+    }
+  },
+  "rights_statuses": ["ALLOWED", "DERIVED_ONLY", "FORBIDDEN", "UNVERIFIED"],
+  "same_failure_domain_counts_as_dr": false,
+  "versioned_backup_required": true,
+  "content_addressed_integrity_required": true,
+  "restored_data_trusted_before_validation": false,
+  "raw_retention_fail_closed_when_forbidden_or_unverified": true,
+  "rpo_rto_claim_mode": "PROVISIONAL_TARGETS_ONLY_P22F_VALIDATES",
+  "production_storage_vendor": "NOT_SELECTED",
+  "cloud_region_country": "UNSET",
+  "backup_write_authority": false,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "production_mutation": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
