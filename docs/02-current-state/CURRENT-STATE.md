@@ -39,10 +39,10 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P22 — Operations / Diagnostics / Recovery / AUTHORIZED / ACTIVE  
-Current Workstream: P22-J — Operations Validation Gate / IN_PROGRESS  
-Active governed task: FIN-P22-WJ-001  
-Active lock: LOCK-FIN-P22-WJ-001-01 / ACQUIRED  
+Current Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE  
+Current Workstream: P23 — UX / Team / Notifications / NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED  
+Active governed task: none  
+Active lock: none  
 Previous Phase: P21 — Position Management / CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -65,7 +65,7 @@ P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P21 state: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
-P22 state: AUTHORIZED / ACTIVE / P22-A..P22-I CANONICAL_COMPLETE / P22-J IN_PROGRESS / G12_OPERATIONS_VALIDATED NOT_REACHED  
+P22 state: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -202,7 +202,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A..P22-I are CANONICAL_COMPLETE with all upstream locks RELEASED; P22-J — Operations Validation Gate is IN_PROGRESS under FIN-P22-WJ-001 / LOCK-FIN-P22-WJ-001-01 ACQUIRED. G12_OPERATIONS_VALIDATED is NOT_REACHED until P22-J passes. P22 remains reference-operations only and grants no production readiness, credentials/network mutation, external-order authority or Live authority. P23 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P22 — Operations / Diagnostics / Recovery is CANONICAL_COMPLETE. P22-A..P22-J are CANONICAL_COMPLETE with all P22 locks RELEASED. G12_OPERATIONS_VALIDATED = PASS in REFERENCE_OPERATIONS_VALIDATION scope. This gate grants no production readiness, credentials/network mutation, external-order authority or Live authority. P23 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -8346,4 +8346,32 @@ Result:
 - lock = RELEASED;
 - P22-J = READY_NOT_STARTED;
 - G12 = NOT_REACHED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P22-J / G12 canonical closure — 2026-10-26
+
+P22-J — Operations Validation Gate = CANONICAL_COMPLETE.  
+Task = `FIN-P22-WJ-001`.  
+Lock = RELEASED.  
+P22 — Operations / Diagnostics / Recovery = CANONICAL_COMPLETE.  
+`G12_OPERATIONS_VALIDATED = PASS`.
+
+Evidence:
+- implementation PR #468 / final head `41aa35eefc6ae478627b42f6a2e03236b8639726`;
+- implementation Governance `40349054397` = SUCCESS;
+- implementation artifact `12662058208` / `sha256:4e168b1d6b5f0294b4b5a95610dac10b1eaed2dcca4086d60f174af21be433bd`;
+- G12 certificate ID = `ed9805f362d0e52f87117edbe0116f9cd747ab9aad02eea8200bf827d00c678c`;
+- deterministic P22-J evidence SHA256 = `a88838c1bdef9e780c7c975bd1eddfa5c674d3e2c200e54926c0b34bbb6beec5`;
+- implementation merge = `4941e8a3dc80ff24671300fb68600dfbad3e2ff3`;
+- post-merge Governance `40349603815` = SUCCESS;
+- post-merge artifact `12663116857` / `sha256:c1de40f456ec9b00bfe58d7a9d01c3f0cf093c38b78c1ddc969f4d149980c4e2`;
+- post-merge Branch Hygiene `40349603232` = SUCCESS.
+
+Final result:
+- P22-A..P22-J = CANONICAL_COMPLETE;
+- all P22 locks = RELEASED;
+- G12 claim scope = REFERENCE_OPERATIONS_VALIDATION;
+- production readiness = false;
+- P23 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
