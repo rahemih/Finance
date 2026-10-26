@@ -1601,6 +1601,15 @@ jobs:
           cmp build/p22b-a.json build/p22b-b.json
           sha256sum build/p22b-a.json
 
+      - name: P22-C deterministic auto diagnostics evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p22c_evidence.py --output build/p22c-a.json
+          PYTHONPATH=. python scripts/ci/p22c_evidence.py --output build/p22c-b.json
+          cmp build/p22c-a.json build/p22c-b.json
+          sha256sum build/p22c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1770,6 +1779,7 @@ jobs:
             build/p21h-a.json
             build/p22a-a.json
             build/p22b-a.json
+            build/p22c-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
