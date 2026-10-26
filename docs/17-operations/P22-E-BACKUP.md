@@ -2,7 +2,7 @@
 
 Task: `FIN-P22-WE-001`  
 Phase: P22 — Operations / Diagnostics / Recovery  
-Status: IN_PROGRESS
+Status: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -46,4 +46,23 @@ P22-E creates a reference manifest only:
 
 `LIVE_TRADING` and `AUTO_TRADING` remain disabled.
 
-P22-F — Restore Drills remains NOT_STARTED until P22-E is canonically closed.
+P22-E is canonically closed. P22-F — Restore Drills is READY_NOT_STARTED.
+
+
+## Canonical closure evidence
+
+- implementation PR #458 = MERGED;
+- final implementation head = `b1433165d3bde2e1ede9e005ac840e7c6846d18e`;
+- implementation Governance = `40328141320` / SUCCESS;
+- implementation artifact = `12651883331` / `sha256:8d2b1217b1e38516d39c73d4bb0190200ad7dfdded8ac178361c626ad9052e06`;
+- deterministic evidence ID = `35a7e1e21b3e0bef1267fe66ec8b16dbfbd1c14d8128e0ff0e756d8626dbdc93`;
+- deterministic evidence SHA256 = `6142037fba86e36b6e807d87628904f95d77a631d96f5e5f9b94b6d397f45c02`;
+- implementation merge SHA = `67de946a2a525742c843f96d9da963ffd4aa430f`;
+- post-merge Governance = `40328655925` / SUCCESS;
+- post-merge artifact = `12652886256` / `sha256:cc190f6b4304cbe9856a3e367193fc2cadd52b10e120887474208551eecacbed`;
+- post-merge Branch Hygiene = `40328655853` / SUCCESS;
+- lock = RELEASED.
+
+P22-F = READY_NOT_STARTED.  
+G12_OPERATIONS_VALIDATED = NOT_REACHED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.
