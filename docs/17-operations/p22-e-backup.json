@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22E_BACKUP_MANIFEST",
+  "task_id": "FIN-P22-WE-001",
+  "phase": "P22",
+  "workstream": "P22-E",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_p22b_p22c_p22d": "CANONICAL_COMPLETE",
+    "p22a_p22b_p22c_p22d_locks": "RELEASED",
+    "p06g_replay_snapshots": "CANONICAL_COMPLETE",
+    "p06h_retention_rights": "CANONICAL_COMPLETE",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/backup.py",
+    "policy": "config/operations/backup-policy.json",
+    "tests": "tests/p22/test_backup.py",
+    "evidence_generator": "scripts/ci/p22e_evidence.py"
+  },
+  "semantics": {
+    "dr_classes": ["DR0", "DR1", "DR2", "DR3"],
+    "content_addressed": true,
+    "versioned": true,
+    "rights_aware": true,
+    "off_primary_required_for": ["DR0", "DR1", "DR2"],
+    "same_failure_domain_counts_as_dr": false,
+    "dr3": "REBUILD_ONLY",
+    "rpo_rto_claim_mode": "PROVISIONAL_TARGETS_ONLY_P22F_VALIDATES"
+  },
+  "safety": {
+    "real_backup_write": false,
+    "production_storage_vendor": "NOT_SELECTED",
+    "backup_write_authority": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "production_mutation": false,
+    "measured_rpo_rto_validated": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_f": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-E_IMPLEMENTATION_GOVERNANCE"
+}
