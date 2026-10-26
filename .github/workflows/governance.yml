@@ -1637,6 +1637,15 @@ jobs:
           cmp build/p22f-a.json build/p22f-b.json
           sha256sum build/p22f-a.json
 
+      - name: P22-G deterministic disaster recovery evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p22g_evidence.py --output build/p22g-a.json
+          PYTHONPATH=. python scripts/ci/p22g_evidence.py --output build/p22g-b.json
+          cmp build/p22g-a.json build/p22g-b.json
+          sha256sum build/p22g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1810,6 +1819,7 @@ jobs:
             build/p22d-a.json
             build/p22e-a.json
             build/p22f-a.json
+            build/p22g-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

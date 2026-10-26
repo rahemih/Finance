@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22G_DISASTER_RECOVERY_MANIFEST",
+  "task_id": "FIN-P22-WG-001",
+  "phase": "P22",
+  "workstream": "P22-G",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_p22b_p22c_p22d_p22e_p22f": "CANONICAL_COMPLETE",
+    "p22a_p22b_p22c_p22d_p22e_p22f_locks": "RELEASED",
+    "p22e_backup_contract": "CANONICAL_COMPLETE",
+    "p22f_restore_drills": "CANONICAL_COMPLETE",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/disaster_recovery.py",
+    "policy": "config/operations/disaster-recovery-policy.json",
+    "tests": "tests/p22/test_disaster_recovery.py",
+    "evidence_generator": "scripts/ci/p22g_evidence.py"
+  },
+  "semantics": {
+    "eligible_states": ["HALTED", "EMERGENCY"],
+    "trusted_restore_drill_required": true,
+    "owner_recovery_authorization_required": true,
+    "dr0_dr1_dr2_failure_domain_separation_required": true,
+    "dr3_rebuild_semantics_required": true,
+    "claim_scope": "DETERMINISTIC_REFERENCE_DISASTER_RECOVERY"
+  },
+  "safety": {
+    "execution_mode": "REFERENCE_PLAN_ONLY",
+    "real_failover_execution": false,
+    "dns_mutation": false,
+    "network_mutation": false,
+    "storage_mutation": false,
+    "automatic_state_mutation": false,
+    "automatic_recovery_authorization": false,
+    "external_order_authority": false,
+    "credential_mode": "NONE",
+    "production_recovery_certified": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_h": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-G_IMPLEMENTATION_GOVERNANCE"
+}

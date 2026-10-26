@@ -101,3 +101,17 @@ __all__ += [
     "RestoreDrillResult",
     "run_restore_drill",
 ]
+
+from .disaster_recovery import (
+    DisasterRecoveryError,
+    DisasterRecoveryPlan,
+    DisasterRecoveryPolicy,
+    build_disaster_recovery_plan,
+)
+
+__all__ += [
+    "DisasterRecoveryError",
+    "DisasterRecoveryPlan",
+    "DisasterRecoveryPolicy",
+    "build_disaster_recovery_plan",
+]

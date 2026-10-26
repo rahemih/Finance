@@ -1,0 +1,104 @@
+{
+  "task_id": "FIN-P22-WG-001",
+  "phase": "P22",
+  "workstream": "WG",
+  "objective": "Establish a deterministic reference disaster-recovery orchestration contract that consumes canonical P22-E backup manifests and P22-F restore-drill results, requires safe operational state and explicit owner recovery authorization, and produces a content-addressed recovery plan without executing failover, network, storage, DNS, state mutation or trading actions.",
+  "scope": [
+    "Bind disaster-recovery plans to canonical P22-E BackupManifest and P22-F RestoreDrillResult",
+    "Allow recovery planning only from HALTED or EMERGENCY system states",
+    "Require a PASS and trusted P22-F drill for the same backup manifest",
+    "Require integrity/quarantine/reconciliation validation inherited from P22-F",
+    "Require recovery target failure-domain separation for DR0/DR1/DR2",
+    "Require explicit owner recovery authorization before a plan can become REFERENCE_RECOVERY_READY",
+    "Produce deterministic ordered reference recovery steps",
+    "Preserve DR3 rebuild semantics",
+    "Emit deterministic P22-G reference evidence",
+    "Keep P22-H..P22-J NOT_STARTED"
+  ],
+  "out_of_scope": [
+    "Real disaster failover",
+    "DNS, routing, load-balancer or network mutation",
+    "Storage/database restore execution",
+    "Credential or secret access",
+    "Runtime system-state mutation",
+    "Automatic recovery authorization",
+    "Production recovery certification",
+    "External-order mutation",
+    "P23 notifications",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P22-A..P22-F CANONICAL_COMPLETE / locks RELEASED",
+    "P22-E backup contract canonical",
+    "P22-F restore-drill contract canonical",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": ["packages/**", "tests/**", "docs/**", "config/**", "contracts/tasks/**", ".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WG-001.json",
+    "config/operations/disaster-recovery-policy.json",
+    "packages/operations/disaster_recovery.py",
+    "packages/operations/__init__.py",
+    "tests/p22/test_disaster_recovery.py",
+    "scripts/ci/p22g_evidence.py",
+    "docs/17-operations/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md", "secrets/**", "credentials/**"],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 pass",
+    "Only HALTED/EMERGENCY states are eligible for disaster-recovery planning",
+    "Backup/drill lineage mismatch fails closed",
+    "Non-PASS or untrusted restore drill fails closed",
+    "DR0/DR1/DR2 same failure-domain target fails closed",
+    "DR3 retains rebuild semantics",
+    "Owner recovery authorization is required for REFERENCE_RECOVERY_READY",
+    "All plans retain execution_authority=false and production_mutation=false",
+    "P22-G evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No real failover or cutover",
+    "No DNS/network/storage mutation",
+    "No credentials or secrets",
+    "No automatic state mutation",
+    "No automatic recovery authorization",
+    "No external-order authority",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P22-E/P22-F canonical closure state",
+    "P22-G policy/module/tests",
+    "Complete tests/p22 Governance execution",
+    "Deterministic P22-G evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-G disaster-recovery policy/module/tests/evidence/CI/state changes; P22-A..P22-F remain canonical complete and P22-H remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P22-A..P22-F CANONICAL_COMPLETE / locks RELEASED",
+    "Owner P22 authorization already consumed",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P22-G disaster-recovery reference contract passes",
+    "P22-G CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P22-G closure documented",
+    "P22-H becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
