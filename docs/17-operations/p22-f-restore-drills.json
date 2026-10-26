@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22F_RESTORE_DRILL_MANIFEST",
+  "task_id": "FIN-P22-WF-001",
+  "phase": "P22",
+  "workstream": "P22-F",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_p22b_p22c_p22d_p22e": "CANONICAL_COMPLETE",
+    "p22a_p22b_p22c_p22d_p22e_locks": "RELEASED",
+    "p22e_backup_contract": "CANONICAL_COMPLETE",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/restore_drill.py",
+    "policy": "config/operations/restore-drill-policy.json",
+    "tests": "tests/p22/test_restore_drill.py",
+    "evidence_generator": "scripts/ci/p22f_evidence.py"
+  },
+  "semantics": {
+    "dr0_dr1_dr2": "RESTORE_REFERENCE_DRILL",
+    "dr3": "REBUILD_REFERENCE_DRILL",
+    "measurement_clock": "CALLER_SUPPLIED_EPOCH_NS",
+    "rpo_measurement": "INCIDENT_MINUS_RECOVERY_POINT",
+    "rto_measurement": "VALIDATION_COMPLETE_MINUS_INCIDENT",
+    "integrity_required": true,
+    "quarantine_required_when_manifest_requires": true,
+    "reconciliation_required_when_manifest_requires": true,
+    "claim_scope": "DETERMINISTIC_REFERENCE_RESTORE_DRILL"
+  },
+  "safety": {
+    "production_rpo_rto_certified": false,
+    "real_restore_execution": false,
+    "storage_write_authority": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "production_mutation": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_g": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-F_IMPLEMENTATION_GOVERNANCE"
+}
