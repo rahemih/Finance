@@ -1610,6 +1610,15 @@ jobs:
           cmp build/p22c-a.json build/p22c-b.json
           sha256sum build/p22c-a.json
 
+      - name: P22-D deterministic constrained self-healing evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p22d_evidence.py --output build/p22d-a.json
+          PYTHONPATH=. python scripts/ci/p22d_evidence.py --output build/p22d-b.json
+          cmp build/p22d-a.json build/p22d-b.json
+          sha256sum build/p22d-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1780,6 +1789,7 @@ jobs:
             build/p22a-a.json
             build/p22b-a.json
             build/p22c-a.json
+            build/p22d-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
