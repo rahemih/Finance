@@ -41,6 +41,13 @@ from .emergency_exit import (
     EmergencyExitRequest,
 )
 
+from .lifecycle_validation import (
+    PositionLifecycleValidationCertificate,
+    PositionLifecycleValidationError,
+    PositionLifecycleValidationPolicy,
+    certify_position_lifecycle,
+)
+
 from .restart_recovery import (
     PositionRecoveryCheckpoint,
     PositionRestartRecovery,
@@ -80,6 +87,10 @@ __all__ = [
     "PositionStateRecord",
     "ProtectionPlan",
     "ReferenceBrokerPositionObservation",
+    "PositionLifecycleValidationCertificate",
+    "PositionLifecycleValidationError",
+    "PositionLifecycleValidationPolicy",
+    "certify_position_lifecycle",
     "PositionRecoveryCheckpoint",
     "PositionRestartRecovery",
     "RestartRecoveryError",
