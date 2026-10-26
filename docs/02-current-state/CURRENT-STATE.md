@@ -40,9 +40,9 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P22 — Operations / Diagnostics / Recovery / AUTHORIZED / ACTIVE  
-Current Workstream: P22-D — Restricted Self-Healing / READY_NOT_STARTED  
-Active governed task: none  
-Active lock: none  
+Current Workstream: P22-D — Constrained Self-Healing / IN_PROGRESS  
+Active governed task: FIN-P22-WD-001  
+Active lock: LOCK-FIN-P22-WD-001-01 / ACQUIRED  
 Previous Phase: P21 — Position Management / CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
