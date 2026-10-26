@@ -2,8 +2,8 @@
 
 Task: `FIN-P21-WG-001`  
 Phase: P21 — Position Management  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P21-WG-001-01` / ACTIVE  
+State: CANONICAL_COMPLETE  
+Lock: RELEASED  
 Dependency: P21-A through P21-F CANONICAL_COMPLETE / RELEASED
 
 ## Objective
@@ -28,7 +28,24 @@ Any mismatch remains fail-closed:
 
 P21-G produces a deterministic recovery plan only. It performs no real venue query, uses no credentials/network, places or mutates no external order, automatically mutates no OMS or canonical P21-A state, and grants no Live authority.
 
-P21-H = NOT_STARTED.  
+## Canonical closure evidence
+
+- implementation PR #445 = MERGED;
+- implementation head = `7f9f90bee9cebdddd20d87e372f22a5d598a477b`;
+- implementation Governance = `40307905378` / SUCCESS;
+- implementation artifact = `12643463101` / `sha256:c3608f9494c3e6498be965b4785344749d90eafa9686306602dfd5040218e933`;
+- deterministic P21-G evidence SHA256 = `75004d363d9540e342e7f603f8a5c7734b31b89222e4397e5c29e54cd63c1216`;
+- implementation merge SHA = `0e83e9aca4fb84407f403d8727a1dcd2b9df48f2`;
+- post-merge Governance = `40308187311` / SUCCESS;
+- post-merge artifact = `12642289348` / `sha256:a2f03aefbfa8189514da70bb073a73a91a3d9beb4a0f02c0716f057a2886e61a`;
+- post-merge Branch Hygiene = `40308187455` / SUCCESS;
+- lock = RELEASED.
+
+## Next workstream boundary
+
+P21-H — Position Lifecycle Tests = READY_NOT_STARTED.  
 P22 = NOT_STARTED.  
 LIVE_TRADING = DISABLED.  
 AUTO_TRADING = DISABLED.
+
+P21-G completion certifies deterministic restart/crash recovery planning only. It does not query or mutate a real venue, automatically mutate broker/OMS/canonical state, or authorize Live trading.
