@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: none — P21-A..P21-F CANONICAL_COMPLETE / P21-G READY_NOT_STARTED  
+Current Workstream: P21-G — Restart / Crash Recovery / FIN-P21-WG-001 / IN_PROGRESS / LOCK-FIN-P21-WG-001-01  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-F CANONICAL_COMPLETE / P21-G READY_NOT_STARTED / P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-F CANONICAL_COMPLETE / P21-G IN_PROGRESS / P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -176,8 +176,8 @@ Agent Current-State repair:
 
 ## Governance
 
-Active task: none  
-Active lock: none  
+Active task: `FIN-P21-WG-001`  
+Active lock: `LOCK-FIN-P21-WG-001-01`  
 Open critical incidents: none
 
 Superseded/unmerged research branches are non-canonical and must not override `main`. Branch Hygiene intentionally does not delete unmerged branches without exact merged-PR proof.
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-F are CANONICAL_COMPLETE with locks RELEASED. P21-G — Restart Recovery is READY_NOT_STARTED; P21-H remains NOT_STARTED; P22 remains NOT_STARTED. P21-F certifies deterministic position-level reconciliation against caller-supplied normalized reference/sandbox observations with exact fixed-point comparison and fail-closed mismatch handling. It grants no auto-repair/flatten, venue query, broker/OMS/P21-A mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-F are CANONICAL_COMPLETE with locks RELEASED. P21-G — Restart / Crash Recovery is IN_PROGRESS as FIN-P21-WG-001 under LOCK-FIN-P21-WG-001-01; P21-H remains NOT_STARTED; P22 remains NOT_STARTED. P21-G validates content-addressed exact P21-A checkpoints against exact P21-F reconciliation lineage and permits a recoverable plan only for MATCHED reconciliation; every mismatch remains SAFE_HOLD + NEW_ENTRY_BLOCK with manual governed recovery. It grants no automatic broker/OMS/P21-A mutation, auto-repair/flatten, venue query, credentials/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -5041,8 +5041,8 @@ State: CANONICAL_COMPLETE
 Closure base: `9ffabd45f2b2ce78877a5169ecec884188f5923b`  
 Linear milestone: P12 — Market Memory & Knowledge Graph / 100%  
 Workstreams: P12-A..P12-H = CANONICAL_COMPLETE  
-Active task: none  
-Active lock: none  
+Active task: `FIN-P21-WG-001`  
+Active lock: `LOCK-FIN-P21-WG-001-01`  
 Next phase: P13 — Timing & Opportunity / OWNER_PHASE_AUTHORIZATION_REQUIRED
 
 Closure dossier:
@@ -7997,4 +7997,26 @@ Evidence:
 
 P21-G = READY_NOT_STARTED. P21-H = NOT_STARTED. P22 = NOT_STARTED.  
 LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+## P21-G activation — 2026-10-26
+
+P21-G — Restart / Crash Recovery = IN_PROGRESS.  
+Task = `FIN-P21-WG-001`.  
+Lock = `LOCK-FIN-P21-WG-001-01` / ACTIVE.
+
+Ready evidence:
+- P21-A..P21-F = CANONICAL_COMPLETE / locks RELEASED;
+- P20 = CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS;
+- Owner P21 authorization = GRANTED / CONSUMED;
+- active governed lock conflict = NONE before P21-G activation.
+
+Boundary:
+- exact content-addressed canonical-position checkpoint integrity;
+- exact P21-F reconciliation report binding;
+- only MATCHED reconciliation may yield a recoverable plan;
+- any mismatch => SAFE_HOLD + NEW_ENTRY_BLOCK + MANUAL_GOVERNED_RECOVERY_REQUIRED;
+- no automatic broker/OMS/P21-A mutation, auto-repair, auto-flatten, real venue query, credentials/network or external order action;
+- P21-H = NOT_STARTED;
+- P22 = NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
 
