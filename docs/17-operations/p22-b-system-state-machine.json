@@ -4,7 +4,7 @@
   "task_id": "FIN-P22-WB-001",
   "phase": "P22",
   "workstream": "P22-B",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": {
     "p22a": "CANONICAL_COMPLETE",
     "p22a_lock": "RELEASED",
@@ -17,7 +17,14 @@
     "evidence_generator": "scripts/ci/p22b_evidence.py"
   },
   "semantics": {
-    "states": ["NORMAL", "DEGRADED", "SAFE_MODE", "HALTED", "EMERGENCY", "RECOVERY"],
+    "states": [
+      "NORMAL",
+      "DEGRADED",
+      "SAFE_MODE",
+      "HALTED",
+      "EMERGENCY",
+      "RECOVERY"
+    ],
     "deterministic_decision_only": true,
     "restricted_state_auto_deescalation": false,
     "recovery_requires_explicit_authorization": true,
@@ -35,9 +42,34 @@
     "auto_trading": "DISABLED"
   },
   "closure": {
-    "lock": "ACQUIRED",
-    "p22_c": "NOT_STARTED",
+    "implementation_pr": 451,
+    "implementation_head": "532e2bb184d7cbf40972a141bb880b6d5dce83f2",
+    "implementation_governance": {
+      "run_id": 40319384446,
+      "status": "SUCCESS"
+    },
+    "implementation_artifact": {
+      "id": 12648496429,
+      "sha256": "17b97f2cce7e58841f240aa820c2c5d61758defc59ff696c504900a6a8d12a5b"
+    },
+    "evidence_id": "2018e0ca61c25cce51364ebaa0b22fb078b5fba0c8abfbfde2067b2d98478a0c",
+    "evidence_sha256": "0449aa4a942065d384e9e52c76a11633016b2b9ab3ef8b65e0de18e42e5fd93b",
+    "implementation_merge_sha": "248c6a9730e4cc018abb21dfba9d0d76066c755c",
+    "post_merge_governance": {
+      "run_id": 40319656005,
+      "status": "SUCCESS"
+    },
+    "post_merge_artifact": {
+      "id": 12648038510,
+      "sha256": "3bb12efb79a1aeb9010568ef6c57947607dccd960134dc98bde9d66ec9d728a4"
+    },
+    "post_merge_branch_hygiene": {
+      "run_id": 40319656041,
+      "status": "SUCCESS"
+    },
+    "lock": "RELEASED",
+    "p22_c": "READY_NOT_STARTED",
     "g12_operations_validated": "NOT_REACHED"
   },
-  "next": "P22-B_IMPLEMENTATION_GOVERNANCE"
+  "next": "P22-C_READY_NOT_STARTED"
 }
