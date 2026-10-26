@@ -1,0 +1,108 @@
+{
+  "task_id": "FIN-P22-WI-001",
+  "phase": "P22",
+  "workstream": "WI",
+  "objective": "Establish deterministic vendor-neutral operational SLO, capacity and cost monitoring using the canonical P02 capacity/cost envelope and existing P07 quality-SLO principles, without inventing production SLAs or budget values and without granting scaling, cost-shedding, runtime or trading authority.",
+  "scope": [
+    "Evaluate canonical internal latency objectives from the P02 capacity/cost envelope",
+    "Escalate repeated latency misses to architecture review after three explicit consecutive miss windows",
+    "Evaluate current workload against canonical OPERATING and STRESS capacity envelopes",
+    "Trigger capacity review at 70 percent of the OPERATING envelope and critical review at the STRESS boundary",
+    "Evaluate projected monthly cost only against an explicit caller-supplied owner budget",
+    "Apply canonical 70/85/100 percent cost guardrails as recommendations only",
+    "Detect explicit 2x daily cost anomalies when an expected daily baseline is supplied",
+    "Preserve Risk, Firewall, Security, Audit, Reconciliation and Kill Switch workloads from cost-shedding recommendations",
+    "Produce deterministic content-addressed monitoring snapshots and evidence",
+    "Keep P22-J NOT_STARTED until canonical P22-I closure"
+  ],
+  "out_of_scope": [
+    "Selecting or provisioning an observability vendor",
+    "Inventing an owner monthly budget",
+    "Certifying production SLA/SLO performance",
+    "Automatic horizontal scaling",
+    "Automatic workload shedding",
+    "Throttling safety-critical workloads",
+    "Network or infrastructure mutation",
+    "Credential or secret access",
+    "Runtime state mutation",
+    "External-order mutation",
+    "P23 UX/notifications",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P22-A..P22-H CANONICAL_COMPLETE / locks RELEASED",
+    "P02 capacity/cost envelope canonical",
+    "P07-G quality SLO contract canonical",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": ["packages/**", "tests/**", "docs/**", "config/**", "contracts/tasks/**", ".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WI-001.json",
+    "config/operations/slo-capacity-cost-policy.json",
+    "packages/operations/operations_monitoring.py",
+    "packages/operations/__init__.py",
+    "tests/p22/test_operations_monitoring.py",
+    "scripts/ci/p22i_evidence.py",
+    "docs/17-operations/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md", "secrets/**", "credentials/**"],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 pass",
+    "Canonical latency targets exactly match the P02 architecture envelope",
+    "Three consecutive explicit latency miss windows require architecture review",
+    "Capacity review begins at 70 percent of OPERATING and critical review begins at the STRESS boundary",
+    "Cost evaluation requires a caller-supplied monthly budget and never invents one",
+    "70/85/100 percent budget guardrails and 2x daily anomaly detection are deterministic",
+    "Safety-critical workloads are never recommended for cost shedding",
+    "All monitoring outputs retain execution_authority=false",
+    "P22-I evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No automatic scaling or cost shedding",
+    "No safety-workload throttling",
+    "No network or credentials",
+    "No runtime-state mutation",
+    "No external-order authority",
+    "No production SLA certification",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P22-H canonical closure state",
+    "P02 capacity/cost envelope lineage",
+    "P07-G quality-SLO lineage",
+    "P22-I policy/module/tests",
+    "Complete tests/p22 Governance execution",
+    "Deterministic P22-I evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-I policy/module/tests/evidence/CI/state changes; P22-A..P22-H remain canonical complete and P22-J remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P22-A..P22-H CANONICAL_COMPLETE / locks RELEASED",
+    "Owner P22 authorization already consumed",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P22-I SLO/capacity/cost monitoring contract passes",
+    "P22-I CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P22-I closure documented",
+    "P22-J becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
