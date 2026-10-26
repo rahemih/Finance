@@ -134,12 +134,16 @@ def certify_position_lifecycle(
         manifest = manifests[workstream]
         if manifest.get("state") != policy.required_manifest_state:
             raise PositionLifecycleValidationError(f"{workstream} is not CANONICAL_COMPLETE")
-        closure = manifest.get("closure")
-        if not isinstance(closure, Mapping) or closure.get("lock") != policy.required_lock_state:
+        closure_value = manifest.get("closure")
+        if not isinstance(closure_value, Mapping):
+            raise PositionLifecycleValidationError(f"{workstream} closure block missing")
+        closure = cast(Mapping[str, object], closure_value)
+        if closure.get("lock") != policy.required_lock_state:
             raise PositionLifecycleValidationError(f"{workstream} lock is not RELEASED")
-        safety = manifest.get("safety")
-        if not isinstance(safety, Mapping):
+        safety_value = manifest.get("safety")
+        if not isinstance(safety_value, Mapping):
             raise PositionLifecycleValidationError(f"{workstream} safety block missing")
+        safety = cast(Mapping[str, object], safety_value)
         forbidden_false = (
             "real_venue_query",
             "external_order_submission",
