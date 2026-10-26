@@ -55,3 +55,19 @@ __all__ += [
     "DiagnosticsPolicy",
     "diagnose",
 ]
+
+from .self_healing import (
+    HealingDecision,
+    HealingRule,
+    SelfHealingError,
+    SelfHealingPolicy,
+    plan_self_healing,
+)
+
+__all__ += [
+    "HealingDecision",
+    "HealingRule",
+    "SelfHealingError",
+    "SelfHealingPolicy",
+    "plan_self_healing",
+]

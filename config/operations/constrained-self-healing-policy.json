@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22D_CONSTRAINED_SELF_HEALING_POLICY",
+  "task_id": "FIN-P22-WD-001",
+  "mode": "DETERMINISTIC_REFERENCE_CONSTRAINED_SELF_HEALING",
+  "eligible_system_states": ["NORMAL", "DEGRADED"],
+  "allowed_diagnostic_status": ["MATCHED_RULE"],
+  "allowed_severity": ["WARNING"],
+  "blocked_if_operator_review_required": true,
+  "preapproved_actions": {
+    "DATA_FRESHNESS_DEGRADATION": {
+      "action": "RESTART_STATELESS_OBSERVER",
+      "rollback_action": "STOP_REPLACEMENT_OBSERVER",
+      "max_attempts": 1,
+      "cooldown_required": true,
+      "post_action_validation_required": true
+    }
+  },
+  "execution_mode": "REFERENCE_PLAN_ONLY",
+  "execution_authority": false,
+  "external_side_effects": false,
+  "automatic_state_mutation": false,
+  "automatic_risk_policy_relaxation": false,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
