@@ -39,3 +39,19 @@ __all__ += [
     "build_health_snapshot",
     "decide_system_state",
 ]
+
+from .diagnostics import (
+    DiagnosticReport,
+    DiagnosticRule,
+    DiagnosticsError,
+    DiagnosticsPolicy,
+    diagnose,
+)
+
+__all__ += [
+    "DiagnosticReport",
+    "DiagnosticRule",
+    "DiagnosticsError",
+    "DiagnosticsPolicy",
+    "diagnose",
+]

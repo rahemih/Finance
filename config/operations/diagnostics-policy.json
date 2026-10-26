@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22C_DIAGNOSTICS_POLICY",
+  "task_id": "FIN-P22-WC-001",
+  "mode": "DETERMINISTIC_REFERENCE_AUTO_DIAGNOSTICS",
+  "max_symptom_count": 8,
+  "max_symptom_length": 96,
+  "max_evidence_ref_count": 8,
+  "evidence_ref_hex_length": 64,
+  "correlation_id_hex_length": 32,
+  "severity_order": ["INFO", "WARNING", "CRITICAL", "EMERGENCY"],
+  "state_severity_floor": {
+    "NORMAL": "INFO",
+    "DEGRADED": "WARNING",
+    "SAFE_MODE": "CRITICAL",
+    "HALTED": "CRITICAL",
+    "EMERGENCY": "EMERGENCY",
+    "RECOVERY": "WARNING"
+  },
+  "rules": {
+    "DATA_STALE": ["DATA_PIPELINE", "WARNING", "DATA_FRESHNESS_DEGRADATION"],
+    "DATA_GAP": ["DATA_PIPELINE", "CRITICAL", "DATA_GAP_OR_SEQUENCE_BREAK"],
+    "RECONCILIATION_MISMATCH": ["RECONCILIATION", "CRITICAL", "STATE_DIVERGENCE"],
+    "DEPENDENCY_UNAVAILABLE": ["DEPENDENCY", "CRITICAL", "UPSTREAM_UNAVAILABLE"],
+    "RESOURCE_EXHAUSTION": ["CAPACITY", "CRITICAL", "CAPACITY_PRESSURE"],
+    "SECURITY_INTEGRITY_ALERT": ["SECURITY", "EMERGENCY", "SECURITY_INTEGRITY_RISK"]
+  },
+  "unknown_symptom_status": "UNRESOLVED",
+  "unknown_hypothesis": "UNRESOLVED_REQUIRES_OPERATOR_REVIEW",
+  "operator_review_required": true,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "automatic_remediation": false,
+  "automatic_self_healing": false,
+  "automatic_state_mutation": false,
+  "automatic_risk_policy_relaxation": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
