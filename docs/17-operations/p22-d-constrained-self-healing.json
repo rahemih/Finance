@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22D_CONSTRAINED_SELF_HEALING_MANIFEST",
+  "task_id": "FIN-P22-WD-001",
+  "phase": "P22",
+  "workstream": "P22-D",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a": "CANONICAL_COMPLETE",
+    "p22b": "CANONICAL_COMPLETE",
+    "p22c": "CANONICAL_COMPLETE",
+    "p22a_p22b_p22c_locks": "RELEASED",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/self_healing.py",
+    "policy": "config/operations/constrained-self-healing-policy.json",
+    "tests": "tests/p22/test_self_healing.py",
+    "evidence_generator": "scripts/ci/p22d_evidence.py"
+  },
+  "semantics": {
+    "execution_mode": "REFERENCE_PLAN_ONLY",
+    "preapproved_actions_only": true,
+    "eligible_states": ["NORMAL", "DEGRADED"],
+    "eligible_severity": ["WARNING"],
+    "operator_review_diagnostics_eligible": false,
+    "attempt_budget_enforced": true,
+    "cooldown_enforced": true,
+    "rollback_reference_required": true,
+    "post_action_validation_required": true
+  },
+  "safety": {
+    "execution_authority": false,
+    "external_side_effects": false,
+    "automatic_state_mutation": false,
+    "automatic_risk_policy_relaxation": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_e": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-D_IMPLEMENTATION_GOVERNANCE"
+}
