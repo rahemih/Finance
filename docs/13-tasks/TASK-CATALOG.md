@@ -298,7 +298,7 @@ This catalog is the canonical index of governed work.
 | FIN-P22-WD-001 | P22 | Constrained Self-Healing | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WD-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P22-WE-001 | P22 | Backup | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WE-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P22-WF-001 | P22 | Restore Drills | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WF-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
-| FIN-P22-WG-001 | P22 | Disaster Recovery | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P22-WG-001.json` | LOCK-FIN-P22-WG-001-01 / ACQUIRED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P22-WG-001 | P22 | Disaster Recovery | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WG-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
