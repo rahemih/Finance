@@ -4,7 +4,7 @@
   "task_id": "FIN-P22-WE-001",
   "phase": "P22",
   "workstream": "P22-E",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "dependency": {
     "p22a_p22b_p22c_p22d": "CANONICAL_COMPLETE",
     "p22a_p22b_p22c_p22d_locks": "RELEASED",
@@ -19,11 +19,20 @@
     "evidence_generator": "scripts/ci/p22e_evidence.py"
   },
   "semantics": {
-    "dr_classes": ["DR0", "DR1", "DR2", "DR3"],
+    "dr_classes": [
+      "DR0",
+      "DR1",
+      "DR2",
+      "DR3"
+    ],
     "content_addressed": true,
     "versioned": true,
     "rights_aware": true,
-    "off_primary_required_for": ["DR0", "DR1", "DR2"],
+    "off_primary_required_for": [
+      "DR0",
+      "DR1",
+      "DR2"
+    ],
     "same_failure_domain_counts_as_dr": false,
     "dr3": "REBUILD_ONLY",
     "rpo_rto_claim_mode": "PROVISIONAL_TARGETS_ONLY_P22F_VALIDATES"
@@ -41,9 +50,34 @@
     "auto_trading": "DISABLED"
   },
   "closure": {
-    "lock": "ACQUIRED",
-    "p22_f": "NOT_STARTED",
+    "implementation_pr": 458,
+    "implementation_head": "b1433165d3bde2e1ede9e005ac840e7c6846d18e",
+    "implementation_governance": {
+      "run_id": 40328141320,
+      "status": "SUCCESS"
+    },
+    "implementation_artifact": {
+      "id": 12651883331,
+      "sha256": "8d2b1217b1e38516d39c73d4bb0190200ad7dfdded8ac178361c626ad9052e06"
+    },
+    "evidence_id": "35a7e1e21b3e0bef1267fe66ec8b16dbfbd1c14d8128e0ff0e756d8626dbdc93",
+    "evidence_sha256": "6142037fba86e36b6e807d87628904f95d77a631d96f5e5f9b94b6d397f45c02",
+    "implementation_merge_sha": "67de946a2a525742c843f96d9da963ffd4aa430f",
+    "post_merge_governance": {
+      "run_id": 40328655925,
+      "status": "SUCCESS"
+    },
+    "post_merge_artifact": {
+      "id": 12652886256,
+      "sha256": "cc190f6b4304cbe9856a3e367193fc2cadd52b10e120887474208551eecacbed"
+    },
+    "post_merge_branch_hygiene": {
+      "run_id": 40328655853,
+      "status": "SUCCESS"
+    },
+    "lock": "RELEASED",
+    "p22_f": "READY_NOT_STARTED",
     "g12_operations_validated": "NOT_REACHED"
   },
-  "next": "P22-E_IMPLEMENTATION_GOVERNANCE"
+  "next": "P22-F_READY_NOT_STARTED"
 }
