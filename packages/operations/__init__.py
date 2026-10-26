@@ -141,3 +141,23 @@ __all__ += [
     "build_incident_record",
     "build_postmortem",
 ]
+
+from .operations_monitoring import (
+    CapacityObservation,
+    CostObservation,
+    LatencyObservation,
+    OperationsMonitoringError,
+    OperationsMonitoringPolicy,
+    OperationsMonitoringSnapshot,
+    evaluate_operations_monitoring,
+)
+
+__all__ += [
+    "CapacityObservation",
+    "CostObservation",
+    "LatencyObservation",
+    "OperationsMonitoringError",
+    "OperationsMonitoringPolicy",
+    "OperationsMonitoringSnapshot",
+    "evaluate_operations_monitoring",
+]
