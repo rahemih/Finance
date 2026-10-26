@@ -87,3 +87,17 @@ __all__ += [
     "DRClassRule",
     "build_backup_manifest",
 ]
+
+from .restore_drill import (
+    RestoreDrillError,
+    RestoreDrillPolicy,
+    RestoreDrillResult,
+    run_restore_drill,
+)
+
+__all__ += [
+    "RestoreDrillError",
+    "RestoreDrillPolicy",
+    "RestoreDrillResult",
+    "run_restore_drill",
+]
