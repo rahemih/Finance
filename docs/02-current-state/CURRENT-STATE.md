@@ -202,7 +202,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A — Metrics / Logs / Traces is CANONICAL_COMPLETE with lock RELEASED; P22-B — Health / System-State Machine is READY_NOT_STARTED. G12_OPERATIONS_VALIDATED is NOT_REACHED. P22-A validates deterministic reference observability only; no production telemetry vendor, network collector, credentials, system-state mutation, self-healing, risk-policy relaxation, external-order authority or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A..P22-I are CANONICAL_COMPLETE with all upstream locks RELEASED; P22-J — Operations Validation Gate is IN_PROGRESS under FIN-P22-WJ-001 / LOCK-FIN-P22-WJ-001-01 ACQUIRED. G12_OPERATIONS_VALIDATED is NOT_REACHED until P22-J passes. P22 remains reference-operations only and grants no production readiness, credentials/network mutation, external-order authority or Live authority. P23 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
