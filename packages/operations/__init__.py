@@ -71,3 +71,19 @@ __all__ += [
     "SelfHealingPolicy",
     "plan_self_healing",
 ]
+
+from .backup import (
+    BackupError,
+    BackupManifest,
+    BackupPolicy,
+    DRClassRule,
+    build_backup_manifest,
+)
+
+__all__ += [
+    "BackupError",
+    "BackupManifest",
+    "BackupPolicy",
+    "DRClassRule",
+    "build_backup_manifest",
+]
