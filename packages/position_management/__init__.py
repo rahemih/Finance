@@ -41,6 +41,14 @@ from .emergency_exit import (
     EmergencyExitRequest,
 )
 
+from .restart_recovery import (
+    PositionRecoveryCheckpoint,
+    PositionRestartRecovery,
+    RestartRecoveryError,
+    RestartRecoveryPlan,
+    RestartRecoveryPolicy,
+)
+
 from .broker_reconciliation import (
     BrokerPositionReconciler,
     BrokerReconciliationError,
@@ -72,6 +80,11 @@ __all__ = [
     "PositionStateRecord",
     "ProtectionPlan",
     "ReferenceBrokerPositionObservation",
+    "PositionRecoveryCheckpoint",
+    "PositionRestartRecovery",
+    "RestartRecoveryError",
+    "RestartRecoveryPlan",
+    "RestartRecoveryPolicy",
     "PartialCloseError",
     "PartialClosePlan",
     "PartialClosePlanner",
