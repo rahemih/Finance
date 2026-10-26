@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22C_DIAGNOSTICS_MANIFEST",
+  "task_id": "FIN-P22-WC-001",
+  "phase": "P22",
+  "workstream": "P22-C",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a": "CANONICAL_COMPLETE",
+    "p22b": "CANONICAL_COMPLETE",
+    "p22a_p22b_locks": "RELEASED",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/diagnostics.py",
+    "policy": "config/operations/diagnostics-policy.json",
+    "tests": "tests/p22/test_diagnostics.py",
+    "evidence_generator": "scripts/ci/p22c_evidence.py"
+  },
+  "semantics": {
+    "rule_based": true,
+    "root_cause_claim": "HYPOTHESIS_ONLY",
+    "unknown_symptom": "UNRESOLVED_OPERATOR_REVIEW",
+    "system_state_severity_floor": true,
+    "remediation_authority": false
+  },
+  "safety": {
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "automatic_remediation": false,
+    "automatic_self_healing": false,
+    "automatic_state_mutation": false,
+    "automatic_risk_policy_relaxation": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_d": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-C_IMPLEMENTATION_GOVERNANCE"
+}
