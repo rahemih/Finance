@@ -1736,7 +1736,7 @@ jobs:
             build/p21d-a.json
             build/p21e-a.json
             build/p21f-a.json
-build/p21g-a.json
+            build/p21g-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
