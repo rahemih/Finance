@@ -57,6 +57,11 @@ def main() -> int:
     )
     d4 = decide_system_state(policy, previous_state=d3.next_state, snapshot=healthy)
 
+    actual_states = [d1.next_state, d2.next_state, d3.next_state, d4.next_state]
+    expected_states = ["DEGRADED", "SAFE_MODE", "RECOVERY", "NORMAL"]
+    if actual_states != expected_states:
+        raise SystemExit("P22-B evidence sequence mismatch")
+
     payload = {
         "schema_version": "1.0",
         "kind": "NEXUS_QUANT_P22B_SYSTEM_STATE_EVIDENCE",
@@ -70,7 +75,7 @@ def main() -> int:
             {"snapshot": {"snapshot_id": healthy.snapshot_id, **healthy.payload()}, "decision": {"decision_id": d3.decision_id, **d3.payload()}},
             {"snapshot": {"snapshot_id": healthy.snapshot_id, **healthy.payload()}, "decision": {"decision_id": d4.decision_id, **d4.payload()}},
         ],
-        "expected_states": ["DEGRADED", "SAFE_MODE", "RECOVERY", "NORMAL"],
+        "expected_states": expected_states,
         "safety": {
             "network_mode": "DISABLED",
             "credential_mode": "NONE",
@@ -84,9 +89,6 @@ def main() -> int:
         },
         "next": "P22-C_NOT_STARTED",
     }
-    actual = [item["decision"]["next_state"] for item in payload["sequence"]]
-    if actual != payload["expected_states"]:
-        raise SystemExit("P22-B evidence sequence mismatch")
     payload["evidence_id"] = hashlib.sha256(_canonical(payload)).hexdigest()
 
     output = Path(args.output)
