@@ -1558,7 +1558,6 @@ jobs:
         run: |
           set -euo pipefail
           PYTHONPATH=. python scripts/ci/p21f_evidence.py --output build/p21f-a.json
-build/p21g-a.json
           PYTHONPATH=. python scripts/ci/p21f_evidence.py --output build/p21f-b.json
           cmp build/p21f-a.json build/p21f-b.json
           sha256sum build/p21f-a.json
@@ -1737,6 +1736,7 @@ build/p21g-a.json
             build/p21d-a.json
             build/p21e-a.json
             build/p21f-a.json
+build/p21g-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
