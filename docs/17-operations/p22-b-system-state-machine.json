@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22B_SYSTEM_STATE_MANIFEST",
+  "task_id": "FIN-P22-WB-001",
+  "phase": "P22",
+  "workstream": "P22-B",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a": "CANONICAL_COMPLETE",
+    "p22a_lock": "RELEASED",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/system_state.py",
+    "policy": "config/operations/system-state-policy.json",
+    "tests": "tests/p22/test_system_state.py",
+    "evidence_generator": "scripts/ci/p22b_evidence.py"
+  },
+  "semantics": {
+    "states": ["NORMAL", "DEGRADED", "SAFE_MODE", "HALTED", "EMERGENCY", "RECOVERY"],
+    "deterministic_decision_only": true,
+    "restricted_state_auto_deescalation": false,
+    "recovery_requires_explicit_authorization": true,
+    "recovery_is_two_step": true
+  },
+  "safety": {
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "automatic_state_mutation": false,
+    "automatic_diagnostics": false,
+    "automatic_self_healing": false,
+    "automatic_risk_policy_relaxation": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_c": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-B_IMPLEMENTATION_GOVERNANCE"
+}
