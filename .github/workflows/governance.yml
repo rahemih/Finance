@@ -1571,6 +1571,15 @@ jobs:
           cmp build/p21g-a.json build/p21g-b.json
           sha256sum build/p21g-a.json
 
+      - name: P21-H deterministic lifecycle validation evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p21h_evidence.py --output build/p21h-a.json
+          PYTHONPATH=. python scripts/ci/p21h_evidence.py --output build/p21h-b.json
+          cmp build/p21h-a.json build/p21h-b.json
+          sha256sum build/p21h-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1737,6 +1746,7 @@ jobs:
             build/p21e-a.json
             build/p21f-a.json
             build/p21g-a.json
+            build/p21h-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json
