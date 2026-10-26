@@ -2,7 +2,7 @@
 
 Task: `FIN-P22-WG-001`  
 Phase: P22 — Operations / Diagnostics / Recovery  
-Status: IN_PROGRESS
+Status: CANONICAL_COMPLETE
 
 ## Objective
 
@@ -44,4 +44,23 @@ The contract grants no real failover, DNS/routing/load-balancer mutation, storag
 
 `LIVE_TRADING` and `AUTO_TRADING` remain disabled.
 
-P22-H — Incident / Postmortem remains NOT_STARTED until P22-G is canonically closed.
+P22-G is canonically closed. P22-H — Incident / Postmortem is READY_NOT_STARTED.
+
+
+## Canonical closure evidence
+
+- implementation PR #462 = MERGED;
+- final implementation head = `2387d38a49e40fa84ccf14916d13e0cdf0764e5b`;
+- implementation Governance = `40337209836` / SUCCESS;
+- implementation artifact = `12657595775` / `sha256:ad240312b81a648870a5322389393a273573ebde096b3cbfc12af2307f9e3fd5`;
+- deterministic evidence ID = `21b256f7b6df7de54dffab063d6a30fd93d6715a6b45a81a89fa06b2ba40510d`;
+- deterministic evidence SHA256 = `25f63d0aa44cd6ca1a81f8887bc05d015b625946f2c3c33c894363c5da4977e2`;
+- implementation merge SHA = `af7342d4f5ae6a0149891f96267c530863a7a74a`;
+- post-merge Governance = `40337662708` / SUCCESS;
+- post-merge artifact = `12658106190` / `sha256:bbef4333599904b5adb0d49757af9dad6a180114ea3953e0724c3c90dbdf0069`;
+- post-merge Branch Hygiene = `40337662689` / SUCCESS;
+- lock = RELEASED.
+
+P22-H = READY_NOT_STARTED.  
+G12_OPERATIONS_VALIDATED = NOT_REACHED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.
