@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22J_OPERATIONS_VALIDATION_G12_MANIFEST",
+  "task_id": "FIN-P22-WJ-001",
+  "phase": "P22",
+  "workstream": "P22-J",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_through_p22i": "CANONICAL_COMPLETE",
+    "p22a_through_p22i_locks": "RELEASED",
+    "p22i_post_merge_verification": "PASS",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/operations_validation.py",
+    "policy": "config/operations/operations-validation-g12-policy.json",
+    "tests": "tests/p22/test_operations_validation.py + complete tests/p22 suite",
+    "evidence_generator": "scripts/ci/p22j_evidence.py"
+  },
+  "semantics": {
+    "required_workstreams": ["P22-A", "P22-B", "P22-C", "P22-D", "P22-E", "P22-F", "P22-G", "P22-H", "P22-I"],
+    "required_manifest_state": "CANONICAL_COMPLETE",
+    "required_lock_state": "RELEASED",
+    "gate_name": "G12_OPERATIONS_VALIDATED",
+    "gate_claim_scope": "REFERENCE_OPERATIONS_VALIDATION",
+    "automatic_p23_activation": false
+  },
+  "safety": {
+    "production_readiness": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "g12_operations_validated": "NOT_REACHED",
+    "p23": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  },
+  "next": "P22-J_IMPLEMENTATION_GOVERNANCE"
+}
