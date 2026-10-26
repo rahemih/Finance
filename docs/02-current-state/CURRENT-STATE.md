@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P21 — Position Management / AUTHORIZED / ACTIVE  
-Current Workstream: P21-F — Broker Reconciliation / FIN-P21-WF-001 / IN_PROGRESS / LOCK-FIN-P21-WF-001-01  
+Current Workstream: none — P21-A..P21-F CANONICAL_COMPLETE / P21-G READY_NOT_STARTED  
 Previous Phase: P20 — Execution & Order Management / CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -62,7 +62,7 @@ P17 state: CANONICAL_COMPLETE / P17-A..P17-I CANONICAL_COMPLETE / G9_QUANT_VALID
 P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE  
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
-P21 state: AUTHORIZED / ACTIVE / P21-A..P21-E CANONICAL_COMPLETE / P21-F IN_PROGRESS / P21-G..P21-H NOT_STARTED  
+P21 state: AUTHORIZED / ACTIVE / P21-A..P21-F CANONICAL_COMPLETE / P21-G READY_NOT_STARTED / P21-H NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -199,7 +199,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-E are CANONICAL_COMPLETE with locks RELEASED. P21-F — Broker Reconciliation is IN_PROGRESS as FIN-P21-WF-001 under LOCK-FIN-P21-WF-001-01; P21-G..P21-H remain NOT_STARTED; P22 remains NOT_STARTED. P21-F performs deterministic position-level reconciliation against caller-supplied normalized reference/sandbox observations with exact fixed-point comparison; mismatches force SAFE_HOLD + NEW_ENTRY_BLOCK and manual governed reconciliation. It grants no auto-repair/flatten, venue query, broker/OMS/P21-A mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P21 — Position Management is AUTHORIZED / ACTIVE. P21-A..P21-F are CANONICAL_COMPLETE with locks RELEASED. P21-G — Restart Recovery is READY_NOT_STARTED; P21-H remains NOT_STARTED; P22 remains NOT_STARTED. P21-F certifies deterministic position-level reconciliation against caller-supplied normalized reference/sandbox observations with exact fixed-point comparison and fail-closed mismatch handling. It grants no auto-repair/flatten, venue query, broker/OMS/P21-A mutation, credential/network or Live authority. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -7978,3 +7978,23 @@ P21-F is position-level reconciliation, not a duplicate of P20-G order reconcili
 - no auto-repair, auto-flatten, real venue query, credentials/network, external order mutation, automatic OMS mutation or direct P21-A mutation;
 - P21-G..P21-H and P22 remain NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING remain DISABLED.
+
+## P21-F canonical closure — 2026-10-26
+
+P21-F — Broker Reconciliation = CANONICAL_COMPLETE.  
+Task = `FIN-P21-WF-001`.  
+Lock = RELEASED.
+
+Evidence:
+- implementation PR #443 / head `2aabccbbe9788ade15eabc75e9c76c619152200f`;
+- PR Governance `40196553749` = SUCCESS;
+- PR artifact `12600086746` / `sha256:8900dbe2f8a5e4dea4e4f4ba3ac180bfb99cf3f28887307e19da8a0abacaec9d`;
+- deterministic P21-F evidence = `sha256:d031f7b4eca20492004ac8947a1790c00fc07da81389f7bdf1e7e05a2d984b21`;
+- implementation merge = `913e7b1f27b749c9ccc579928d17cdc1133ab049`;
+- post-merge Governance `40196723629` = SUCCESS;
+- post-merge artifact `12600456815` / `sha256:1b7e199e62708a0e3f242bcf1b0eddcf109d46788eeab7a690fee4e44df3e5e0`;
+- post-merge Branch Hygiene `40196723657` = SUCCESS.
+
+P21-G = READY_NOT_STARTED. P21-H = NOT_STARTED. P22 = NOT_STARTED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.
+
