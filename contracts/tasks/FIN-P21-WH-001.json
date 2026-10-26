@@ -1,0 +1,107 @@
+{
+  "task_id": "FIN-P21-WH-001",
+  "phase": "P21",
+  "workstream": "WH",
+  "objective": "Validate the full canonical P21-A..P21-G position-management lifecycle deterministically, require all P21 contract tests, certify exact canonical/released manifest coverage and preserve the reference-only no-Live authority boundary before P21 phase closure.",
+  "scope": [
+    "Require exact P21-A..P21-G canonical manifest coverage/order",
+    "Require every P21-A..P21-G manifest CANONICAL_COMPLETE with lock RELEASED",
+    "Require the complete tests/p21 contract suite in Governance",
+    "Bind every upstream manifest by SHA-256",
+    "Fail closed on missing/noncanonical/unreleased workstream evidence",
+    "Fail closed on network, credential, external-order, OMS mutation or Live authority drift",
+    "Emit deterministic P21_POSITION_LIFECYCLE_VALIDATED_PASS reference certificate",
+    "Keep P22 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ],
+  "out_of_scope": [
+    "P22 operations implementation",
+    "Production readiness",
+    "Real venue observations",
+    "Credential/account/KYC/funding actions",
+    "External order submission or mutation",
+    "Automatic P22 activation",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P21-A..P21-G CANONICAL_COMPLETE / locks RELEASED",
+    "P21-G closure post-merge Governance/Branch Hygiene PASS",
+    "Owner P21 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/position_management/**",
+    "tests/p21/**",
+    "docs/16-position-management/**",
+    "config/position-management/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WH-001.json",
+    "config/position-management/lifecycle-validation-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/lifecycle_validation.py",
+    "tests/p21/test_lifecycle_validation.py",
+    "scripts/ci/p21h_evidence.py",
+    "docs/16-position-management/P21-H-POSITION-LIFECYCLE-VALIDATION.md",
+    "docs/16-position-management/p21-h-position-lifecycle-validation.json",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A5", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p21 contract tests pass",
+    "Exact P21-A..P21-G manifest coverage/order is required",
+    "Any non-CANONICAL_COMPLETE manifest fails closed",
+    "Any non-RELEASED lock fails closed",
+    "Any network, credential, external-order, OMS mutation or Live authority drift fails closed",
+    "P21 lifecycle certificate is deterministic",
+    "P21-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or credentials",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS/canonical-position mutation",
+    "No automatic P22 activation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21-A..P21-G canonical manifests",
+    "Complete tests/p21 Governance execution",
+    "Deterministic P21-H lifecycle certificate",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-H validation/config/tests/evidence/CI/state changes; P21-A..P21-G remain canonical complete and P22 remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21-A..P21-G CANONICAL_COMPLETE / locks RELEASED",
+    "P21-G closure post-merge verification PASS",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P21_POSITION_LIFECYCLE_VALIDATED = PASS",
+    "P21-H CANONICAL_COMPLETE",
+    "P21-A..P21-H all CANONICAL_COMPLETE",
+    "All P21 locks RELEASED",
+    "Strict CI and deterministic evidence pass",
+    "P21 phase closure documented",
+    "P22 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
