@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22I_SLO_CAPACITY_COST_POLICY",
+  "task_id": "FIN-P22-WI-001",
+  "mode": "DETERMINISTIC_REFERENCE_OPERATIONS_MONITORING",
+  "latency_slos_ms": {
+    "L_FAST_DATA": {"p95": 250, "p99": 1000},
+    "L_SIGNAL_STANDARD": {"p95": 2000},
+    "L_RISK_FIREWALL": {"p95": 100, "p99": 250},
+    "L_OMS_DISPATCH": {"p95": 100},
+    "L_UI": {"p95": 2000}
+  },
+  "latency_architecture_review_after_consecutive_miss_windows": 3,
+  "capacity_envelopes": {
+    "OPERATING": {
+      "average_events_per_second": 2000,
+      "peak_events_per_second": 20000,
+      "active_streams": 75,
+      "concurrent_agent_runs": 10
+    },
+    "STRESS": {
+      "average_events_per_second": 10000,
+      "peak_events_per_second": 50000,
+      "active_streams": 200,
+      "concurrent_agent_runs": 25
+    }
+  },
+  "capacity_review_threshold_bps_of_operating": 7000,
+  "cost_guardrails_bps": {
+    "alert_review": 7000,
+    "throttle_discretionary_research_recommended": 8500,
+    "freeze_discretionary_new_research_recommended": 10000
+  },
+  "daily_cost_anomaly_ratio_bps": 20000,
+  "monthly_budget_source": "CALLER_SUPPLIED",
+  "cost_unit": "INTEGER_MICROUNITS_CALLER_CURRENCY",
+  "protected_safety_workloads": [
+    "RISK",
+    "FIREWALL",
+    "SECURITY",
+    "AUDIT",
+    "RECONCILIATION",
+    "KILL_SWITCH"
+  ],
+  "production_sla_certification": false,
+  "automatic_capacity_scaling": false,
+  "automatic_cost_shedding": false,
+  "automatic_safety_workload_throttling": false,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "runtime_state_mutation": false,
+  "external_order_authority": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
