@@ -121,9 +121,10 @@ class OperationsMonitoringPolicy:
             if raw.get(key) != expected_value:
                 raise OperationsMonitoringError(f"P22-I policy mismatch: {key}")
 
-        latency_raw = raw.get("latency_slos_ms")
-        if not isinstance(latency_raw, Mapping):
+        latency_raw_value = raw.get("latency_slos_ms")
+        if not isinstance(latency_raw_value, Mapping):
             raise OperationsMonitoringError("latency_slos_ms must be an object")
+        latency_raw = cast(Mapping[str, object], latency_raw_value)
         expected_latency: dict[str, tuple[int, int | None]] = {
             "L_FAST_DATA": (250, 1000),
             "L_SIGNAL_STANDARD": (2000, None),
@@ -133,11 +134,12 @@ class OperationsMonitoringPolicy:
         }
         latency_slos: dict[str, LatencyRule] = {}
         for slo_id, expected in expected_latency.items():
-            item = latency_raw.get(slo_id)
-            if not isinstance(item, Mapping):
+            item_value = latency_raw.get(slo_id)
+            if not isinstance(item_value, Mapping):
                 raise OperationsMonitoringError(f"missing latency SLO: {slo_id}")
+            item = cast(Mapping[str, object], item_value)
             p95 = _positive_int(item.get("p95"), field=f"{slo_id}.p95")
-            p99_raw = item.get("p99")
+            p99_raw: object = item.get("p99")
             p99 = None if p99_raw is None else _positive_int(p99_raw, field=f"{slo_id}.p99")
             if (p95, p99) != expected:
                 raise OperationsMonitoringError(f"latency SLO mismatch: {slo_id}")
@@ -145,14 +147,16 @@ class OperationsMonitoringPolicy:
         if set(latency_raw.keys()) != set(expected_latency):
             raise OperationsMonitoringError("latency_slos_ms must contain exactly the canonical P02 latency classes")
 
-        capacity_raw = raw.get("capacity_envelopes")
-        if not isinstance(capacity_raw, Mapping):
+        capacity_raw_value = raw.get("capacity_envelopes")
+        if not isinstance(capacity_raw_value, Mapping):
             raise OperationsMonitoringError("capacity_envelopes must be an object")
+        capacity_raw = cast(Mapping[str, object], capacity_raw_value)
 
         def envelope(name: str, expected: tuple[int, int, int, int]) -> CapacityEnvelope:
-            item = capacity_raw.get(name)
-            if not isinstance(item, Mapping):
+            item_value = capacity_raw.get(name)
+            if not isinstance(item_value, Mapping):
                 raise OperationsMonitoringError(f"missing capacity envelope: {name}")
+            item = cast(Mapping[str, object], item_value)
             values = (
                 _positive_int(item.get("average_events_per_second"), field=f"{name}.average_events_per_second"),
                 _positive_int(item.get("peak_events_per_second"), field=f"{name}.peak_events_per_second"),
@@ -525,8 +529,15 @@ def evaluate_operations_monitoring(
         "WARNING": 2,
         "CRITICAL": 3,
     }
-    statuses = tuple(item.status for item in latency) + tuple(item.status for item in capacity) + (cost.status,)
-    highest = max(statuses, key=lambda value: rank[value])
+    statuses: tuple[MonitoringStatus, ...] = (
+        tuple(item.status for item in latency)
+        + tuple(item.status for item in capacity)
+        + (cost.status,)
+    )
+    highest: MonitoringStatus = "HEALTHY"
+    for status in statuses:
+        if rank[status] > rank[highest]:
+            highest = status
     architecture_review_required = any(item.architecture_review_required for item in latency) or any(
         item.architecture_review_required for item in capacity
     )
