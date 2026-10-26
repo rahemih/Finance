@@ -161,3 +161,17 @@ __all__ += [
     "OperationsMonitoringSnapshot",
     "evaluate_operations_monitoring",
 ]
+
+from .operations_validation import (
+    OperationsValidationCertificate,
+    OperationsValidationError,
+    OperationsValidationPolicy,
+    certify_operations_validation,
+)
+
+__all__ += [
+    "OperationsValidationCertificate",
+    "OperationsValidationError",
+    "OperationsValidationPolicy",
+    "certify_operations_validation",
+]
