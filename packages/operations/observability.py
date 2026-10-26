@@ -155,8 +155,6 @@ def _attributes(policy: ObservabilityPolicy, attributes: Mapping[str, object] | 
         raise ObservabilityError("attribute count exceeds bounded-cardinality policy")
     pairs: list[tuple[str, str]] = []
     for key, raw_value in attributes.items():
-        if not isinstance(key, str):
-            raise ObservabilityError("attribute keys must be text")
         normalized_key = key.strip()
         if not normalized_key or len(normalized_key) > policy.max_attribute_key_length:
             raise ObservabilityError("invalid attribute key length")
