@@ -1,0 +1,107 @@
+{
+  "task_id": "FIN-P22-WA-001",
+  "phase": "P22",
+  "workstream": "WA",
+  "objective": "Establish the deterministic reference observability foundation for metrics, structured logs and traces with bounded-cardinality metadata, correlation/trace lineage and fail-closed secret guards, without granting network, vendor, system-state, risk-policy or Live authority.",
+  "scope": [
+    "Define canonical metrics/logs/traces reference records",
+    "Require deterministic content-addressed record identity",
+    "Require explicit correlation identifiers across telemetry",
+    "Support trace/span linkage for structured logs",
+    "Enforce bounded-cardinality allowlisted attributes",
+    "Fail closed on secret-bearing keys and common credential fragments",
+    "Require non-negative epoch-nanosecond timestamps and monotonic trace time",
+    "Emit deterministic P22-A reference evidence",
+    "Keep P22-B..P22-J NOT_STARTED"
+  ],
+  "out_of_scope": [
+    "Telemetry vendor selection or export",
+    "Production network collectors",
+    "Credential or secret provisioning",
+    "P22-B system-state machine",
+    "Automated diagnostics or self-healing",
+    "Risk-policy modification",
+    "P23 UX/notification implementation",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P21 CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE",
+    "P21_POSITION_LIFECYCLE_VALIDATED PASS",
+    "All P21 locks RELEASED",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/**",
+    "tests/**",
+    "docs/**",
+    "config/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WA-001.json",
+    "config/operations/observability-policy.json",
+    "packages/operations/**",
+    "tests/p22/**",
+    "scripts/ci/p22a_evidence.py",
+    "docs/17-operations/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 observability contract tests pass",
+    "Metrics require canonical namespace and finite numeric values",
+    "Logs/traces require deterministic identifiers and correlation lineage",
+    "Unapproved high-cardinality attributes fail closed",
+    "Secret-bearing telemetry fields and common credential fragments fail closed",
+    "Trace time regression fails closed",
+    "P22-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No network or vendor export",
+    "No credentials or secrets",
+    "No automatic system-state mutation",
+    "No automatic risk-policy relaxation",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21 canonical closure state",
+    "P22-A policy and module",
+    "Complete tests/p22 Governance execution",
+    "Deterministic P22-A evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-A observability/config/tests/evidence/CI/state changes; P21 remains canonical complete and P22-B remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21 CANONICAL_COMPLETE / all locks RELEASED",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P22-A observability contract passes",
+    "P22-A CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P22-A closure documented",
+    "P22-B becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
