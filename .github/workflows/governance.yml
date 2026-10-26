@@ -1580,6 +1580,18 @@ jobs:
           cmp build/p21h-a.json build/p21h-b.json
           sha256sum build/p21h-a.json
 
+      - name: P22 operations observability contract tests
+        run: python -m unittest discover -s tests/p22 -p 'test_*.py' -v
+
+      - name: P22-A deterministic metrics logs traces evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p22a_evidence.py --output build/p22a-a.json
+          PYTHONPATH=. python scripts/ci/p22a_evidence.py --output build/p22a-b.json
+          cmp build/p22a-a.json build/p22a-b.json
+          sha256sum build/p22a-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
@@ -1747,6 +1759,7 @@ jobs:
             build/p21f-a.json
             build/p21g-a.json
             build/p21h-a.json
+            build/p22a-a.json
             build/sbom.cdx.json
             build/trivy.json
             build/supply-chain-summary.json

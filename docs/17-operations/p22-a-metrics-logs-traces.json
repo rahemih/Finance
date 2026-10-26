@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22A_OBSERVABILITY_MANIFEST",
+  "task_id": "FIN-P22-WA-001",
+  "phase": "P22",
+  "workstream": "P22-A",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p21": "CANONICAL_COMPLETE",
+    "p21_workstreams": "P21-A..P21-H CANONICAL_COMPLETE",
+    "p21_locks": "RELEASED",
+    "p21_position_lifecycle_validated": "PASS",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/observability.py",
+    "policy": "config/operations/observability-policy.json",
+    "tests": "tests/p22/test_observability.py",
+    "evidence_generator": "scripts/ci/p22a_evidence.py"
+  },
+  "semantics": {
+    "mode": "DETERMINISTIC_REFERENCE_OBSERVABILITY",
+    "metric_namespace": "nexus_quant.",
+    "bounded_cardinality": true,
+    "correlation_lineage_required": true,
+    "secret_material": "FAIL_CLOSED",
+    "vendor_neutral": true
+  },
+  "safety": {
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "vendor_export": false,
+    "automatic_system_state_mutation": false,
+    "automatic_risk_policy_relaxation": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_b": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-A_IMPLEMENTATION_GOVERNANCE"
+}
