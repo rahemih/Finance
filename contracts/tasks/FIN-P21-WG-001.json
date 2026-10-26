@@ -1,0 +1,108 @@
+{
+  "task_id": "FIN-P21-WG-001",
+  "phase": "P21",
+  "workstream": "WG",
+  "objective": "Implement deterministic restart/crash recovery planning from a content-addressed exact P21-A canonical position checkpoint plus an exact P21-F reconciliation report, allowing recovery only after MATCHED reconciliation and failing safe without automatic broker/OMS/canonical mutation.",
+  "scope": [
+    "Represent exact content-addressed recovery checkpoints for canonical P21-A position records",
+    "Recompute checkpoint content hashes and exact position_record_id before any recovery decision",
+    "Bind recovery to an exact P21-F reconciliation report for the same position record",
+    "Allow deterministic recoverable disposition only when P21-F verdict is MATCHED",
+    "Force SAFE_HOLD + NEW_ENTRY_BLOCK + MANUAL_GOVERNED_RECOVERY_REQUIRED for every non-MATCHED reconciliation",
+    "Reject corrupted, stale or cross-position checkpoint/report bindings",
+    "Produce deterministic content-addressed recovery plans and byte-identical P21-G evidence"
+  ],
+  "out_of_scope": [
+    "Real broker/exchange query",
+    "Automatic broker, OMS or canonical-position mutation",
+    "Automatic repair, replay or flattening",
+    "Credential, account, KYC or funding operations",
+    "External order submission/cancellation/modification",
+    "P21-H lifecycle validation",
+    "P22 operations",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P21-A..P21-F CANONICAL_COMPLETE / locks RELEASED",
+    "P20 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS",
+    "Owner P21 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/position_management/**",
+    "docs/**",
+    "contracts/tasks/**",
+    "config/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P21-WG-001.json",
+    "config/position-management/restart-recovery-policy.json",
+    "packages/position_management/__init__.py",
+    "packages/position_management/restart_recovery.py",
+    "tests/p21/test_restart_recovery.py",
+    "scripts/ci/p21g_evidence.py",
+    "docs/16-position-management/P21-G-RESTART-RECOVERY.md",
+    "docs/16-position-management/p21-g-restart-recovery.json",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A5", "A6", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "Matched exact checkpoint plus P21-F MATCHED report is recoverable",
+    "Any P21-F mismatch forces SAFE_HOLD + NEW_ENTRY_BLOCK + manual governed recovery",
+    "Corrupted checkpoint content hash fails closed",
+    "Checkpoint payload must exactly reproduce position_record_id",
+    "Cross-record reconciliation binding fails closed",
+    "Recovery plan is deterministic and byte-identical across two evidence runs",
+    "No automatic position/OMS mutation, venue query, external order or Live authority is emitted"
+  ],
+  "security_tests": [
+    "No credentials",
+    "No network access",
+    "No real venue query",
+    "No external order submission/mutation",
+    "No automatic OMS/canonical-position mutation",
+    "No auto-repair or auto-flatten",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P21-A..P21-F canonical manifests",
+    "Deterministic P21-G restart-recovery evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P21-G package/config/tests/evidence/CI/state changes; P21-A through P21-F remain canonical complete and P21-H remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P21-A..P21-F CANONICAL_COMPLETE / locks RELEASED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "Deterministic restart/crash recovery planning implemented",
+    "Exact checkpoint/reconciliation lineage tests pass",
+    "No automatic mutation/repair/flatten authority exists",
+    "Strict CI and deterministic evidence pass",
+    "Implementation PR merged and post-merge verified",
+    "FIN-P21-WG-001 CANONICAL_COMPLETE",
+    "Lock released",
+    "P21-H becomes READY_NOT_STARTED",
+    "P22 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
