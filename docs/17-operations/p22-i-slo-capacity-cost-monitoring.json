@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22I_SLO_CAPACITY_COST_MANIFEST",
+  "task_id": "FIN-P22-WI-001",
+  "phase": "P22",
+  "workstream": "P22-I",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_through_p22h": "CANONICAL_COMPLETE",
+    "p22a_through_p22h_locks": "RELEASED",
+    "p02_capacity_cost_envelope": "CANONICAL",
+    "p07g_quality_slo": "CANONICAL_COMPLETE",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/operations_monitoring.py",
+    "policy": "config/operations/slo-capacity-cost-policy.json",
+    "tests": "tests/p22/test_operations_monitoring.py",
+    "evidence_generator": "scripts/ci/p22i_evidence.py"
+  },
+  "semantics": {
+    "latency_targets_source": "P02_CAPACITY_COST_ENVELOPE",
+    "capacity_targets_source": "P02_CAPACITY_COST_ENVELOPE",
+    "cost_guardrails_source": "P02_CAPACITY_COST_ENVELOPE",
+    "monthly_budget_source": "CALLER_SUPPLIED",
+    "quality_slo_principles_source": "P07-G",
+    "production_sla_certification": false,
+    "claim_scope": "DETERMINISTIC_REFERENCE_OPERATIONS_MONITORING"
+  },
+  "safety": {
+    "automatic_capacity_scaling": false,
+    "automatic_cost_shedding": false,
+    "automatic_safety_workload_throttling": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "runtime_state_mutation": false,
+    "external_order_authority": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_j": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-I_IMPLEMENTATION_GOVERNANCE"
+}
