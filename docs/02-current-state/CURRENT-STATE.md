@@ -40,9 +40,9 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P22 — Operations / Diagnostics / Recovery / AUTHORIZED / ACTIVE  
-Current Workstream: P22-A — Metrics / Logs / Traces / IN_PROGRESS  
-Active governed task: FIN-P22-WA-001  
-Active lock: LOCK-FIN-P22-WA-001-01 / ACQUIRED  
+Current Workstream: P22-B — Health / System-State Machine / READY_NOT_STARTED  
+Active governed task: none  
+Active lock: none  
 Previous Phase: P21 — Position Management / CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -65,7 +65,7 @@ P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P21 state: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
-P22 state: AUTHORIZED / ACTIVE / P22-A IN_PROGRESS / P22-B..P22-J NOT_STARTED / G12_OPERATIONS_VALIDATED NOT_REACHED  
+P22 state: AUTHORIZED / ACTIVE / P22-A CANONICAL_COMPLETE / P22-B READY_NOT_STARTED / P22-C..P22-J NOT_STARTED / G12_OPERATIONS_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -202,7 +202,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P21 — Position Management is CANONICAL_COMPLETE. P21-A..P21-H are CANONICAL_COMPLETE with all locks RELEASED. P21_POSITION_LIFECYCLE_VALIDATED = PASS in REFERENCE_POSITION_LIFECYCLE_VALIDATION scope. P22 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. No production readiness, automatic P22 activation, real venue access, credential/network access, external-order authority or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A — Metrics / Logs / Traces is CANONICAL_COMPLETE with lock RELEASED; P22-B — Health / System-State Machine is READY_NOT_STARTED. G12_OPERATIONS_VALIDATED is NOT_REACHED. P22-A validates deterministic reference observability only; no production telemetry vendor, network collector, credentials, system-state mutation, self-healing, risk-policy relaxation, external-order authority or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
@@ -8087,3 +8087,29 @@ Phase result:
 - P22 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
 
+
+
+## P22-A canonical closure — 2026-10-26
+
+P22-A — Metrics / Logs / Traces = CANONICAL_COMPLETE.  
+Task = `FIN-P22-WA-001`.  
+Lock = RELEASED.
+
+Evidence:
+- implementation PR #449 / final head `7b864be661c29c952a79df25e927ffd4dbd80d9a`;
+- first Governance `40313500597` = FAILURE at Strict Pyright only; repaired by commit `7b864be661c29c952a79df25e927ffd4dbd80d9a`;
+- implementation Governance `40314259330` = SUCCESS;
+- implementation artifact `12645459627` / `sha256:835d1afef45579ec413cdb2805e99e7cadf1a11d2550e50885709a0bf112a585`;
+- deterministic evidence ID = `096dcefbc6dc4cb227572746547d5834386452235528541e0da45873e0cdd1bf`;
+- deterministic evidence SHA256 = `b22b304d341ee2769063af09ff954f1c2d28330ee1e510b4ab28b99ddfc4bddb`;
+- implementation merge = `add797bcd562fb92b33f9724d98fe155b4d5e10b`;
+- post-merge Governance `40317787961` = SUCCESS;
+- post-merge artifact `12648305067` / `sha256:3d696a294907a8d3d1a0c7f534f494d46efd833511d750a08d36c816133ee99d`;
+- post-merge Branch Hygiene `40317788047` = SUCCESS.
+
+Result:
+- P22-A = CANONICAL_COMPLETE;
+- lock = RELEASED;
+- P22-B = READY_NOT_STARTED;
+- G12 = NOT_REACHED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
