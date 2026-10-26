@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22H_INCIDENT_POSTMORTEM_MANIFEST",
+  "task_id": "FIN-P22-WH-001",
+  "phase": "P22",
+  "workstream": "P22-H",
+  "state": "IN_PROGRESS",
+  "dependency": {
+    "p22a_through_p22g": "CANONICAL_COMPLETE",
+    "p22a_through_p22g_locks": "RELEASED",
+    "p22g_disaster_recovery": "CANONICAL_COMPLETE",
+    "owner_p22_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "module": "packages/operations/incident_postmortem.py",
+    "policy": "config/operations/incident-postmortem-policy.json",
+    "tests": "tests/p22/test_incident_postmortem.py",
+    "evidence_generator": "scripts/ci/p22h_evidence.py"
+  },
+  "semantics": {
+    "deterministic_incident_record": true,
+    "ordered_timeline_required": true,
+    "evidence_lineage_required": true,
+    "postmortem_requires_recovery": true,
+    "corrective_action_verification_required": true,
+    "person_name_fields_allowed": false,
+    "pii_fields_allowed": false
+  },
+  "safety": {
+    "corrective_action_execution_authority": false,
+    "automatic_remediation": false,
+    "network_mode": "DISABLED",
+    "credential_mode": "NONE",
+    "runtime_state_mutation": false,
+    "external_order_authority": false,
+    "live_execution_authority": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "lock": "ACQUIRED",
+    "p22_i": "NOT_STARTED",
+    "g12_operations_validated": "NOT_REACHED"
+  },
+  "next": "P22-H_IMPLEMENTATION_GOVERNANCE"
+}

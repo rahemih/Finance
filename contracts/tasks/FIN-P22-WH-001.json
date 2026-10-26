@@ -1,0 +1,101 @@
+{
+  "task_id": "FIN-P22-WH-001",
+  "phase": "P22",
+  "workstream": "WH",
+  "objective": "Establish deterministic incident and postmortem records with explicit evidence lineage, ordered timeline, impact/severity classification, causal findings, corrective-action registry and closure criteria, without automated remediation, blame attribution, credential access, runtime mutation or Live authority.",
+  "scope": [
+    "Define canonical incident severity and lifecycle states",
+    "Create deterministic incident records from explicit caller-supplied evidence",
+    "Require ordered event timelines with correlation/evidence lineage",
+    "Require impact scope and containment/recovery timestamps where applicable",
+    "Create deterministic postmortem records only for recovered/closed incidents",
+    "Require root-cause statement, contributing factors and evidence references",
+    "Require corrective actions with owner role, priority and verification requirement",
+    "Prevent person-name/PII fields in canonical postmortem schema",
+    "Keep corrective actions advisory/reference-only with no execution authority",
+    "Emit deterministic P22-H reference evidence",
+    "Keep P22-I..P22-J NOT_STARTED"
+  ],
+  "out_of_scope": [
+    "Automatic remediation execution",
+    "Human blame or personnel scoring",
+    "PII/person-name collection",
+    "Network or infrastructure mutation",
+    "Credential or secret access",
+    "Ticketing-system side effects",
+    "P23 notifications",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P22-A..P22-G CANONICAL_COMPLETE / locks RELEASED",
+    "P22-G Disaster Recovery canonical",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": ["packages/**", "tests/**", "docs/**", "config/**", "contracts/tasks/**", ".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WH-001.json",
+    "config/operations/incident-postmortem-policy.json",
+    "packages/operations/incident_postmortem.py",
+    "packages/operations/__init__.py",
+    "tests/p22/test_incident_postmortem.py",
+    "scripts/ci/p22h_evidence.py",
+    "docs/17-operations/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md", "secrets/**", "credentials/**"],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 pass",
+    "Timeline ordering and timestamp invariants fail closed",
+    "Evidence references must be canonical SHA-256 identifiers",
+    "Postmortem cannot close an incident before recovery",
+    "Corrective actions require explicit owner role, priority and verification requirement",
+    "PII/person-name fields are absent from canonical schema",
+    "Corrective actions retain execution_authority=false",
+    "P22-H evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No automated remediation execution",
+    "No network or infrastructure mutation",
+    "No credentials or secrets",
+    "No PII/person-name fields",
+    "No runtime state mutation",
+    "No external-order authority",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P22-G canonical closure state",
+    "P22-H policy/module/tests",
+    "Complete tests/p22 Governance execution",
+    "Deterministic P22-H evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-H incident/postmortem policy/module/tests/evidence/CI/state changes; P22-A..P22-G remain canonical complete and P22-I remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P22-A..P22-G CANONICAL_COMPLETE / locks RELEASED",
+    "Owner P22 authorization already consumed",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P22-H incident/postmortem contract passes",
+    "P22-H CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P22-H closure documented",
+    "P22-I becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
