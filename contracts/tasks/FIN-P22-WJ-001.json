@@ -1,0 +1,113 @@
+{
+  "task_id": "FIN-P22-WJ-001",
+  "phase": "P22",
+  "workstream": "WJ",
+  "objective": "Validate the complete canonical P22-A..P22-I operations lifecycle deterministically and issue G12_OPERATIONS_VALIDATED only in reference-operations scope, with exact manifest coverage, released locks, full P22 contract tests and preserved no-Live authority boundaries before P22 phase closure.",
+  "scope": [
+    "Require exact P22-A..P22-I canonical manifest coverage/order",
+    "Require every P22-A..P22-I manifest CANONICAL_COMPLETE with lock RELEASED",
+    "Require complete tests/p22 contract suite in Governance",
+    "Bind every upstream manifest by SHA-256",
+    "Require upstream implementation/post-merge Governance evidence SUCCESS",
+    "Fail closed on missing/noncanonical/unreleased workstream evidence",
+    "Fail closed on credential/network/external-order/runtime-mutation/Live authority drift",
+    "Emit deterministic G12_OPERATIONS_VALIDATED reference certificate",
+    "Keep P23 NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  ],
+  "out_of_scope": [
+    "P23 UX / Team / Notifications implementation",
+    "Production readiness",
+    "Production broker/exchange certification",
+    "Real venue or infrastructure mutation",
+    "Credential/account/KYC/funding actions",
+    "External order submission or mutation",
+    "Automatic P23 activation",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P22-A..P22-I CANONICAL_COMPLETE / locks RELEASED",
+    "P22-I closure post-merge Governance/Branch Hygiene PASS",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/operations/**",
+    "tests/p22/**",
+    "docs/17-operations/**",
+    "config/operations/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WJ-001.json",
+    "config/operations/operations-validation-g12-policy.json",
+    "packages/operations/operations_validation.py",
+    "packages/operations/__init__.py",
+    "tests/p22/test_operations_validation.py",
+    "scripts/ci/p22j_evidence.py",
+    "docs/17-operations/P22-J-OPERATIONS-VALIDATION-G12.md",
+    "docs/17-operations/p22-j-operations-validation-g12.json",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 contract tests pass",
+    "Exact P22-A..P22-I manifest coverage/order is required",
+    "Any non-CANONICAL_COMPLETE manifest fails closed",
+    "Any non-RELEASED lock fails closed",
+    "Any upstream Governance status other than SUCCESS fails closed",
+    "Any network/credential/external-order/runtime-mutation/Live authority drift fails closed",
+    "G12 certificate is deterministic and content-addressed",
+    "P22-J evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials",
+    "No network mutation",
+    "No production infrastructure mutation",
+    "No external order authority",
+    "No automatic state mutation",
+    "No automatic P23 activation",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P22-A..P22-I canonical manifests",
+    "Complete tests/p22 Governance execution",
+    "Deterministic G12 certificate",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-J validation/config/tests/evidence/CI/state changes; P22-A..P22-I remain canonical complete and G12 returns to NOT_REACHED.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P22-A..P22-I CANONICAL_COMPLETE / locks RELEASED",
+    "P22-I closure post-merge verification PASS",
+    "Owner P22 authorization already consumed",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "G12_OPERATIONS_VALIDATED = PASS",
+    "P22-J CANONICAL_COMPLETE",
+    "P22-A..P22-J all CANONICAL_COMPLETE",
+    "All P22 locks RELEASED",
+    "Strict CI and deterministic evidence pass",
+    "P22 phase closure documented",
+    "P23 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}

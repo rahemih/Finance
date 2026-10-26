@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P22J_OPERATIONS_VALIDATION_G12_POLICY",
+  "task_id": "FIN-P22-WJ-001",
+  "mode": "DETERMINISTIC_REFERENCE_OPERATIONS_VALIDATION",
+  "required_workstreams": ["P22-A", "P22-B", "P22-C", "P22-D", "P22-E", "P22-F", "P22-G", "P22-H", "P22-I"],
+  "required_manifest_state": "CANONICAL_COMPLETE",
+  "required_lock_state": "RELEASED",
+  "required_governance_status": "SUCCESS",
+  "gate_name": "G12_OPERATIONS_VALIDATED",
+  "gate_claim_scope": "REFERENCE_OPERATIONS_VALIDATION",
+  "automatic_p23_activation": false,
+  "production_readiness": false,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "external_order_authority": false,
+  "runtime_state_mutation": false,
+  "live_execution_authority": false,
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}

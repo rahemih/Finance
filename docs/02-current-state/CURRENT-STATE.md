@@ -40,9 +40,9 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P22 — Operations / Diagnostics / Recovery / AUTHORIZED / ACTIVE  
-Current Workstream: P22-J — Operations Validation Gate / READY_NOT_STARTED  
-Active governed task: none  
-Active lock: none  
+Current Workstream: P22-J — Operations Validation Gate / IN_PROGRESS  
+Active governed task: FIN-P22-WJ-001  
+Active lock: LOCK-FIN-P22-WJ-001-01 / ACQUIRED  
 Previous Phase: P21 — Position Management / CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -65,7 +65,7 @@ P18 state: CANONICAL_COMPLETE / P18-A..P18-I CANONICAL_COMPLETE
 P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VALIDATED PASS  
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P21 state: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
-P22 state: AUTHORIZED / ACTIVE / P22-A..P22-I CANONICAL_COMPLETE / P22-J READY_NOT_STARTED / G12_OPERATIONS_VALIDATED NOT_REACHED  
+P22 state: AUTHORIZED / ACTIVE / P22-A..P22-I CANONICAL_COMPLETE / P22-J IN_PROGRESS / G12_OPERATIONS_VALIDATED NOT_REACHED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -202,7 +202,7 @@ Accounts/KYC/funding/orders: NONE
 
 ## Next
 
-P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A — Metrics / Logs / Traces is CANONICAL_COMPLETE with lock RELEASED; P22-B — Health / System-State Machine is READY_NOT_STARTED. G12_OPERATIONS_VALIDATED is NOT_REACHED. P22-A validates deterministic reference observability only; no production telemetry vendor, network collector, credentials, system-state mutation, self-healing, risk-policy relaxation, external-order authority or Live authority is granted. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
+P22 — Operations / Diagnostics / Recovery is AUTHORIZED / ACTIVE. P22-A..P22-I are CANONICAL_COMPLETE with all upstream locks RELEASED; P22-J — Operations Validation Gate is IN_PROGRESS under FIN-P22-WJ-001 / LOCK-FIN-P22-WJ-001-01 ACQUIRED. G12_OPERATIONS_VALIDATED is NOT_REACHED until P22-J passes. P22 remains reference-operations only and grants no production readiness, credentials/network mutation, external-order authority or Live authority. P23 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. AR-1 remains READY_NOT_STARTED. Live/Auto Trading remain DISABLED.
 
 ## P07-H — Trusted Data Gate / G5
 
