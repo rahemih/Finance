@@ -529,11 +529,10 @@ def evaluate_operations_monitoring(
         "WARNING": 2,
         "CRITICAL": 3,
     }
-    statuses: tuple[MonitoringStatus, ...] = (
-        tuple(item.status for item in latency)
-        + tuple(item.status for item in capacity)
-        + (cost.status,)
-    )
+    statuses: list[MonitoringStatus] = []
+    statuses.extend(item.status for item in latency)
+    statuses.extend(item.status for item in capacity)
+    statuses.append(cost.status)
     highest: MonitoringStatus = "HEALTHY"
     for status in statuses:
         if rank[status] > rank[highest]:
