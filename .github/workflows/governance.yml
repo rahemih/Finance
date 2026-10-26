@@ -1558,9 +1558,19 @@ jobs:
         run: |
           set -euo pipefail
           PYTHONPATH=. python scripts/ci/p21f_evidence.py --output build/p21f-a.json
+build/p21g-a.json
           PYTHONPATH=. python scripts/ci/p21f_evidence.py --output build/p21f-b.json
           cmp build/p21f-a.json build/p21f-b.json
           sha256sum build/p21f-a.json
+
+      - name: P21-G deterministic restart recovery evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p21g_evidence.py --output build/p21g-a.json
+          PYTHONPATH=. python scripts/ci/p21g_evidence.py --output build/p21g-b.json
+          cmp build/p21g-a.json build/p21g-b.json
+          sha256sum build/p21g-a.json
 
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
