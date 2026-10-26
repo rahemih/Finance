@@ -293,7 +293,7 @@ def build_incident_record(
         raise IncidentPostmortemError("recovered_at_ns precedes prior lifecycle timestamp")
     if closed is not None and recovered is None:
         raise IncidentPostmortemError("closed incident requires recovered_at_ns")
-    if closed is not None and closed < recovered:
+    if closed is not None and recovered is not None and closed < recovered:
         raise IncidentPostmortemError("closed_at_ns precedes recovered_at_ns")
     if state == "OPEN" and any(v is not None for v in (contained, recovered, closed)):
         raise IncidentPostmortemError("OPEN incident cannot carry later lifecycle timestamps")
