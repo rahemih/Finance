@@ -30,6 +30,18 @@ def _nonnegative_int(value: object, *, field: str) -> int:
     return value
 
 
+def _string_object_dict(value: object, *, field: str) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise OperationsMonitoringError(f"{field} must be an object")
+    raw = cast(dict[object, object], value)
+    result: dict[str, object] = {}
+    for key, item in raw.items():
+        if not isinstance(key, str):
+            raise OperationsMonitoringError(f"{field} keys must be text")
+        result[key] = item
+    return result
+
+
 def _hex_id(value: str, *, field: str, length: int = 64) -> str:
     normalized = value.strip().lower()
     if len(normalized) != length or any(ch not in "0123456789abcdef" for ch in normalized):
@@ -78,9 +90,7 @@ class OperationsMonitoringPolicy:
             raw_value: object = json.loads(path.read_text(encoding="utf-8"))
         except Exception as exc:
             raise OperationsMonitoringError(f"invalid P22-I policy JSON: {exc}") from exc
-        if not isinstance(raw_value, Mapping):
-            raise OperationsMonitoringError("P22-I policy root must be an object")
-        raw = cast(Mapping[str, object], raw_value)
+        raw = _string_object_dict(raw_value, field="P22-I policy root")
 
         expected_static: dict[str, object] = {
             "schema_version": "1.0",
@@ -121,10 +131,7 @@ class OperationsMonitoringPolicy:
             if raw.get(key) != expected_value:
                 raise OperationsMonitoringError(f"P22-I policy mismatch: {key}")
 
-        latency_raw_value = raw.get("latency_slos_ms")
-        if not isinstance(latency_raw_value, Mapping):
-            raise OperationsMonitoringError("latency_slos_ms must be an object")
-        latency_raw = cast(Mapping[str, object], latency_raw_value)
+        latency_raw = _string_object_dict(raw.get("latency_slos_ms"), field="latency_slos_ms")
         expected_latency: dict[str, tuple[int, int | None]] = {
             "L_FAST_DATA": (250, 1000),
             "L_SIGNAL_STANDARD": (2000, None),
@@ -134,10 +141,7 @@ class OperationsMonitoringPolicy:
         }
         latency_slos: dict[str, LatencyRule] = {}
         for slo_id, expected in expected_latency.items():
-            item_value = latency_raw.get(slo_id)
-            if not isinstance(item_value, Mapping):
-                raise OperationsMonitoringError(f"missing latency SLO: {slo_id}")
-            item = cast(Mapping[str, object], item_value)
+            item = _string_object_dict(latency_raw.get(slo_id), field=f"latency_slos_ms.{slo_id}")
             p95 = _positive_int(item.get("p95"), field=f"{slo_id}.p95")
             p99_raw: object = item.get("p99")
             p99 = None if p99_raw is None else _positive_int(p99_raw, field=f"{slo_id}.p99")
@@ -147,16 +151,10 @@ class OperationsMonitoringPolicy:
         if set(latency_raw.keys()) != set(expected_latency):
             raise OperationsMonitoringError("latency_slos_ms must contain exactly the canonical P02 latency classes")
 
-        capacity_raw_value = raw.get("capacity_envelopes")
-        if not isinstance(capacity_raw_value, Mapping):
-            raise OperationsMonitoringError("capacity_envelopes must be an object")
-        capacity_raw = cast(Mapping[str, object], capacity_raw_value)
+        capacity_raw = _string_object_dict(raw.get("capacity_envelopes"), field="capacity_envelopes")
 
         def envelope(name: str, expected: tuple[int, int, int, int]) -> CapacityEnvelope:
-            item_value = capacity_raw.get(name)
-            if not isinstance(item_value, Mapping):
-                raise OperationsMonitoringError(f"missing capacity envelope: {name}")
-            item = cast(Mapping[str, object], item_value)
+            item = _string_object_dict(capacity_raw.get(name), field=f"capacity_envelopes.{name}")
             values = (
                 _positive_int(item.get("average_events_per_second"), field=f"{name}.average_events_per_second"),
                 _positive_int(item.get("peak_events_per_second"), field=f"{name}.peak_events_per_second"),
