@@ -1,0 +1,102 @@
+{
+  "task_id": "FIN-P22-WF-001",
+  "phase": "P22",
+  "workstream": "WF",
+  "objective": "Establish deterministic reference restore drills that validate backup integrity, quarantine, reconciliation requirements and reference RPO/RTO against the canonical P22-E backup targets without performing any real production restore or claiming production recovery performance.",
+  "scope": [
+    "Bind restore drills to canonical P22-E BackupManifest inputs",
+    "Support deterministic RESTORE drills for DR0/DR1/DR2",
+    "Support deterministic REBUILD drills for DR3",
+    "Validate restored or rebuilt content integrity against the canonical source hash",
+    "Require restore quarantine when the P22-E class requires it",
+    "Require successful reconciliation for DR0 before a drill can pass",
+    "Measure reference RPO and reference RTO from explicit drill timestamps",
+    "Compare reference measurements with P22-E provisional architecture targets",
+    "Fail closed on ineligible backup manifests, invalid timing, integrity mismatch or unmet validation requirements",
+    "Emit deterministic P22-F reference evidence",
+    "Keep P22-G..P22-J NOT_STARTED"
+  ],
+  "out_of_scope": [
+    "Real storage restore",
+    "Production database or filesystem mutation",
+    "Cloud/storage provisioning",
+    "Network transfer",
+    "Credential or secret access",
+    "Production RPO/RTO certification",
+    "Disaster failover execution",
+    "P23 notifications",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P22-A..P22-E CANONICAL_COMPLETE / locks RELEASED",
+    "P22-E backup manifest contract canonical",
+    "Owner P22 authorization GRANTED / CONSUMED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": ["packages/**", "tests/**", "docs/**", "config/**", "contracts/tasks/**", ".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P22-WF-001.json",
+    "config/operations/restore-drill-policy.json",
+    "packages/operations/restore_drill.py",
+    "packages/operations/__init__.py",
+    "tests/p22/test_restore_drill.py",
+    "scripts/ci/p22f_evidence.py",
+    "docs/17-operations/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md", "secrets/**", "credentials/**"],
+  "agents": ["A0", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear"],
+  "skills": [],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "All tests/p22 pass",
+    "DR0/DR1/DR2 restore drills validate integrity and explicit timing deterministically",
+    "DR3 uses REBUILD drill semantics and never claims backup restore",
+    "Invalid or blocked backup manifests fail closed",
+    "DR0 requires post-restore reconciliation",
+    "Quarantine requirements cannot be bypassed",
+    "Reference RPO/RTO target comparisons are deterministic",
+    "Reference drill measurements are not labeled production-certified",
+    "P22-F evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No real restore execution",
+    "No network transfer",
+    "No credentials or secrets",
+    "No production mutation",
+    "No production RPO/RTO certification",
+    "No Live execution authority",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P22-E canonical closure state",
+    "P22-F policy/module/tests",
+    "Complete tests/p22 Governance execution",
+    "Deterministic P22-F evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P22-F restore-drill policy/module/tests/evidence/CI/state changes; P22-A..P22-E remain canonical complete and P22-G remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P22-A..P22-E CANONICAL_COMPLETE / locks RELEASED",
+    "Owner P22 authorization already consumed",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P22-F restore-drill contract passes",
+    "P22-F CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P22-F closure documented",
+    "P22-G becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
