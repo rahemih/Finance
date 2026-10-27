@@ -1,0 +1,124 @@
+{
+  "task_id": "FIN-P23-WE-001",
+  "phase": "P23",
+  "workstream": "WE",
+  "objective": "Define deterministic team collaboration records for comments, mentions, assignments and non-authoritative workflow approvals while preserving all Owner, Risk, execution and production governance boundaries.",
+  "scope": [
+    "Define immutable audit-friendly collaboration event records",
+    "Define comment, mention and assignment semantics",
+    "Define team-workflow approval states with explicit non-authoritative scope",
+    "Bind collaboration targets to canonical P23 surfaces and record identifiers",
+    "Require actor, timestamp, target and provenance on every event",
+    "Require deterministic event IDs and ordered history",
+    "Prevent assignment from granting permissions",
+    "Prevent workflow approvals from satisfying Owner, Risk, execution or production gates",
+    "Emit deterministic P23-E evidence"
+  ],
+  "out_of_scope": [
+    "Identity provider integration",
+    "External messaging delivery",
+    "Permission administration",
+    "Owner phase authorization",
+    "Independent Risk veto",
+    "Order/execution approval",
+    "P24 production approval",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P23-A..P23-D CANONICAL_COMPLETE",
+    "P23-D lock RELEASED",
+    "P23-E READY_NOT_STARTED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/**",
+    "tests/**",
+    "docs/**",
+    "config/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P23-WE-001.json",
+    "config/ux/team-collaboration.json",
+    "packages/ux/team_collaboration.py",
+    "tests/p23/test_team_collaboration.py",
+    "scripts/ci/p23e_evidence.py",
+    "docs/18-ux/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "All P23 team-collaboration tests pass",
+    "Event type/order contract is canonical",
+    "Assignments cannot grant permissions",
+    "Approvals remain TEAM_WORKFLOW_ONLY and non-authoritative",
+    "Owner/Risk/execution/P24 gates cannot be represented as satisfied",
+    "Every event requires actor/target/timestamp/provenance",
+    "Event IDs are deterministic",
+    "P23-E evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credential access",
+    "No permission mutation",
+    "No Owner/Risk gate bypass",
+    "No external-order authority",
+    "No runtime mutation/remediation",
+    "No automatic P24 activation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P23-D canonical closure",
+    "P23-E policy/module/tests",
+    "Deterministic P23-E evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P23-E collaboration/config/tests/evidence/CI/state changes; P23-A..P23-D remain canonical complete and P23-F remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P23-A..P23-D CANONICAL_COMPLETE",
+    "P23-D lock RELEASED",
+    "P23-E READY_NOT_STARTED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P23-E contract passes",
+    "P23-E CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P23-E closure documented",
+    "P23-F becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
