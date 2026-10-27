@@ -303,7 +303,7 @@ This catalog is the canonical index of governed work.
 | FIN-P22-WI-001 | P22 | SLO / Capacity / Cost Monitoring | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WI-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P22-WJ-001 | P22 | Operations Validation Gate / G12 | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P22-WJ-001.json` | RELEASED / G12_OPERATIONS_VALIDATED PASS / LINEAR_CONTINUATION_REGISTER |
 
-| FIN-P23-WA-001 | P23 | Information Architecture / User Flows | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P23-WA-001.json` | LOCK-FIN-P23-WA-001-01 / ACQUIRED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P23-WA-001 | P23 | Information Architecture / User Flows | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WA-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |

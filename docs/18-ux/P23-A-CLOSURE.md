@@ -1,0 +1,45 @@
+# P23-A Canonical Closure
+
+Task: `FIN-P23-WA-001`  
+Workstream: P23-A — Information Architecture / User Flows  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P23-WA-001-01` / RELEASED
+
+## Canonical result
+
+P23-A established the deterministic Persian-first information architecture for NEXUS QUANT with exactly eleven governed product surfaces, seven navigation-only workflows, explicit fail-visible critical states, provenance/freshness requirements and a canonical Figma UX-intent source.
+
+## Verification
+
+- P23-A unit/contract tests: 12 / 12 PASS;
+- deterministic evidence executed twice byte-identically;
+- architecture ID: `b41f86261b7427e3b617489908210a5a9284445d526a238a7fec71deabc02299`;
+- evidence ID: `099afc90d6d517b43165b2dc283cccaf06bf9614c22989f967e05cd0199d76b4`;
+- evidence SHA256: `1424e802df343ea65b960dc96c12149e9bb5132c831f7bdc8e454232f2845eff`.
+
+## GitHub evidence
+
+- implementation PR #471 = MERGED;
+- final implementation head = `496268171eeaaf6bb03a2d48a2d834b77456edae`;
+- implementation Governance = `40468620582` / SUCCESS;
+- implementation artifact = `12717303404` / `sha256:fc58cd47ebf6a741822644fb80f69c58406bf9586bfbda610127a4c1e71ac031`;
+- implementation merge = `d0202f7623767db73ddf5c3a59e7c5754c612f89`;
+- post-merge Governance = `40468844757` / SUCCESS;
+- post-merge artifact = `12717523519` / `sha256:0762f921c92bbc342dab77aeb98e99b549f2d5c5175a122c10f978e8d5e73f5c`;
+- post-merge Branch Hygiene = `40468844694` / SUCCESS.
+
+The initial Governance run `40468437944` failed closed because the fail-closed test helper omitted `typing.cast`. Repair commit `496268171eeaaf6bb03a2d48a2d834b77456edae` fixed only that import; no contract or safety invariant was relaxed.
+
+## Figma source
+
+https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=1-2
+
+## Safety
+
+No external-order authority, no runtime mutation/remediation, no credentials, no production/P24 activation. LIVE_TRADING and AUTO_TRADING remain DISABLED.
+
+## Next
+
+P23-B — Design System / RTL / Terminology = READY_NOT_STARTED.  
+P23-C..P23-I = NOT_STARTED.  
+P24 = NOT_STARTED.

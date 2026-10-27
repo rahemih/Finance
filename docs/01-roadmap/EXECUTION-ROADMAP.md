@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A IN_PROGRESS / FIN-P23-WA-001 / LOCK-FIN-P23-WA-001-01 ACQUIRED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -430,8 +430,8 @@ Demo remains permanently enabled as a learning environment after Live exists.
 
 ### P23 — UX / Team / Notifications
 
-1. **P23-A IA and workflows** — IN_PROGRESS / FIN-P23-WA-001 / LOCK-FIN-P23-WA-001-01
-2. **P23-B RTL design system**
+1. **P23-A IA and workflows** — CANONICAL_COMPLETE / FIN-P23-WA-001 / RELEASED
+2. **P23-B RTL design system** — READY_NOT_STARTED
 3. **P23-C Operational screens**
 4. **P23-D Learning Mode and glossary**
 5. **P23-E Team comments/mentions/assignments/approvals**
@@ -2836,3 +2836,16 @@ Safety:
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
 
 P23-B..P23-I remain NOT_STARTED until P23-A canonical closure.
+
+
+### P23-A canonical closure — 2026-10-27
+- FIN-P23-WA-001 = CANONICAL_COMPLETE;
+- LOCK-FIN-P23-WA-001-01 = RELEASED;
+- PR #471 = MERGED at `d0202f7623767db73ddf5c3a59e7c5754c612f89`;
+- replacement Governance `40468620582` = SUCCESS;
+- post-merge Governance `40468844757` = SUCCESS;
+- post-merge Branch Hygiene `40468844694` = SUCCESS;
+- canonical Figma IA source recorded;
+- P23-B = READY_NOT_STARTED;
+- P24 = NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
