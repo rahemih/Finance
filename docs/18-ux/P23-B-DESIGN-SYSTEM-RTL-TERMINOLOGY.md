@@ -1,8 +1,8 @@
 # P23-B — Design System / RTL / Terminology
 
 Task: `FIN-P23-WB-001`  
-Status: IN_PROGRESS  
-Lock: `LOCK-FIN-P23-WB-001-01` / ACQUIRED
+Status: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P23-WB-001-01` / RELEASED
 
 ## Objective
 
@@ -83,3 +83,22 @@ The subscribed Simple Design System library was inspected before creation. Its g
 ## Safety
 
 No external orders, runtime mutation/remediation, credentials, production/P24 activation or Live/Auto trading authority are created by this workstream.
+
+
+## Canonical closure evidence
+
+- implementation PR #473 = MERGED;
+- final implementation head = `fc4cb6480df9099bbdefc44cf34cf31e6c609a6c`;
+- implementation Governance = `40470470634` / SUCCESS;
+- implementation artifact = `12718358235` / `sha256:8edfc5201b38c21d7c3210160305c0efeec07b4045513114f57e25bc7a548a18`;
+- design system ID = `e9926ae77d3484c795c60d24f61b046a08e99fc39eb00fc7c6e0e9d4edc81273`;
+- deterministic evidence ID = `72e469c231014a047631c48243d11210f3a07f6d97214700c19df86a4217a658`;
+- deterministic evidence SHA256 = `44e3e61d148b49e16c4390534f02f8470a7b9ae48fcceca6159d22ce0e2ded3e`;
+- implementation merge SHA = `260cdfaa37c3ed535094d9ee7b4da863a81cb347`;
+- post-merge Governance = `40470724850` / SUCCESS;
+- post-merge artifact = `12718313766` / `sha256:cc7533aba0cd641279b11419e626ff6881cad1ef0995e435348eab00c2ac55ce`;
+- post-merge Branch Hygiene = `40470724880` / SUCCESS.
+
+P23-C = READY_NOT_STARTED.  
+P24 = NOT_STARTED.  
+LIVE_TRADING / AUTO_TRADING = DISABLED.
