@@ -1586,6 +1586,9 @@ jobs:
       - name: P23 UX contract tests
         run: python -m unittest discover -s tests/p23 -p 'test_*.py' -v
 
+      - name: P24 controlled production contract tests
+        run: python -m unittest discover -s tests/p24 -p 'test_*.py' -v
+
       - name: P22-A deterministic metrics logs traces evidence twice
         shell: bash
         run: |
@@ -1756,6 +1759,15 @@ jobs:
           PYTHONPATH=. python scripts/ci/p23i_evidence.py --output build/p23i-b.json
           cmp build/p23i-a.json build/p23i-b.json
           sha256sum build/p23i-a.json
+
+      - name: P24-A deterministic production readiness dossier evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p24a_evidence.py --output build/p24a-a.json
+          PYTHONPATH=. python scripts/ci/p24a_evidence.py --output build/p24a-b.json
+          cmp build/p24a-a.json build/p24a-b.json
+          sha256sum build/p24a-a.json
 
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
