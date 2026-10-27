@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23G_WORKSTREAM_STATE",
+  "phase": "P23",
+  "workstream": "P23-G",
+  "task_id": "FIN-P23-WG-001",
+  "state": "IN_PROGRESS",
+  "lock": "LOCK-FIN-P23-WG-001-01",
+  "lock_state": "ACQUIRED",
+  "dependency": {
+    "p23_a_to_p23_f": "CANONICAL_COMPLETE",
+    "p23_f_lock": "RELEASED"
+  },
+  "implementation": {
+    "policy": "config/ux/accessibility-responsive-performance.json",
+    "module": "packages/ux/accessibility_performance.py",
+    "tests": "tests/p23/test_accessibility_performance.py",
+    "evidence": "scripts/ci/p23g_evidence.py"
+  },
+  "claim_scope": "REFERENCE_FRONTEND_VALIDATION",
+  "next": {
+    "p23_h": "NOT_STARTED",
+    "p23_i": "NOT_STARTED",
+    "p24": "NOT_STARTED"
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
