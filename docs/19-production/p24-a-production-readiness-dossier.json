@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "kind": "NEXUS_QUANT_P24A_READINESS_MANIFEST",
   "task_id": "FIN-P24-WA-001",
   "state": "CANONICAL_COMPLETE",
@@ -16,7 +16,10 @@
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
   },
-  "closure": {
+  "pre_first_live_blocker_count": 9,
+  "first_live_owner_gate_pending": true,
+  "p24_exit_blocker_count": 3,
+  "implementation_baseline": {
     "implementation_pr": 489,
     "implementation_head": "7c48a3ce189e65d380cf11cdb27cb3092e052b1a",
     "implementation_merge": "e7c11a6885eb711a8613a7be91166ff23236c214",
@@ -31,5 +34,12 @@
     "post_merge_artifact_id": 12738154523,
     "post_merge_artifact_sha256": "196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a",
     "post_merge_branch_hygiene_run": 40514857847
+  },
+  "stage_boundary_repair": {
+    "status": "PENDING_CLOSURE_CI",
+    "safety_relaxed": false,
+    "final_dossier_id": null,
+    "final_evidence_id": null,
+    "final_evidence_sha256": null
   }
 }
