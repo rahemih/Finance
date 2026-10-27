@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P24A_PRODUCTION_READINESS_DOSSIER",
+  "task_id": "FIN-P24-WA-001",
+  "phase": "P24",
+  "workstream": "P24-A",
+  "state": "IN_PROGRESS",
+  "lock_state": "ACQUIRED",
+  "claim_scope": "READINESS_ASSESSMENT_ONLY",
+  "phase_authorization": {
+    "p24_phase_start": "GRANTED_CONSUMED",
+    "first_live_activation": "NOT_GRANTED",
+    "grants_g13": false
+  },
+  "canonical_state_path": "docs/02-current-state/CURRENT-STATE.md",
+  "required_upstream_gates": [
+    {
+      "gate": "G0_GOVERNANCE_READY",
+      "marker": "G0_GOVERNANCE_READY: PASS"
+    },
+    {
+      "gate": "G1_PROVIDER_BASELINE",
+      "marker": "G1_PROVIDER_BASELINE: PASS"
+    },
+    {
+      "gate": "G2_ARCHITECTURE_FREEZE",
+      "marker": "G2_ARCHITECTURE_FREEZE PASS"
+    },
+    {
+      "gate": "G3_SECURITY_BASELINE",
+      "marker": "G3_SECURITY_BASELINE PASS"
+    },
+    {
+      "gate": "G4_REALTIME_DATA",
+      "marker": "G4_REALTIME_DATA PASS"
+    },
+    {
+      "gate": "G5_TRUSTED_DATA",
+      "marker": "G5_TRUSTED_DATA PASS"
+    },
+    {
+      "gate": "G6_TECHNICAL_VALIDATED",
+      "marker": "G6_TECHNICAL_VALIDATED PASS"
+    },
+    {
+      "gate": "G7_SIGNAL_VALIDATED",
+      "marker": "G7_SIGNAL_VALIDATED PASS"
+    },
+    {
+      "gate": "G8_PRETRADE_SAFE",
+      "marker": "G8_PRETRADE_SAFE PASS"
+    },
+    {
+      "gate": "G9_QUANT_VALIDATED",
+      "marker": "G9_QUANT_VALIDATED PASS"
+    },
+    {
+      "gate": "G10_SHADOW_VALIDATED",
+      "marker": "G10_SHADOW_VALIDATED PASS"
+    },
+    {
+      "gate": "G11_EXECUTION_VALIDATED",
+      "marker": "G11_EXECUTION_VALIDATED PASS"
+    },
+    {
+      "gate": "G12_OPERATIONS_VALIDATED",
+      "marker": "G12_OPERATIONS_VALIDATED PASS"
+    }
+  ],
+  "p23_requirement": {
+    "marker": "P23 state: CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED / REFERENCE_UX_E2E_VALIDATION PASS",
+    "required": true
+  },
+  "production_prerequisites": [
+    {
+      "id": "OWNER_JURISDICTION_RESOLVED",
+      "marker": "Owner jurisdiction: UNSET_HUMAN_GATE",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_PROVIDER_SELECTED",
+      "marker": "Production provider: NOT_SELECTED",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_VENUE_SELECTED",
+      "marker": "Production broker/exchange: NOT_SELECTED",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_CREDENTIALS_READY",
+      "marker": "Accounts/KYC/credentials/funding/orders: NONE",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_BROKER_CERTIFIED",
+      "marker": "production broker certification = false",
+      "satisfied": false
+    },
+    {
+      "id": "LIVE_EXECUTION_VALIDATED",
+      "marker": "Live execution validated = false",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_READINESS_CERTIFIED",
+      "marker": "production readiness = false",
+      "satisfied": false
+    },
+    {
+      "id": "FIRST_LIVE_OWNER_APPROVAL",
+      "marker": "",
+      "satisfied": false
+    },
+    {
+      "id": "LIVE_KILL_SWITCH_DRILL",
+      "marker": "",
+      "satisfied": false
+    },
+    {
+      "id": "G13_OWNER_LIVE_APPROVAL",
+      "marker": "",
+      "satisfied": false
+    }
+  ],
+  "expected_verdict": "NOT_READY_FOR_LIVE",
+  "next": {
+    "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+    "g13": "NOT_STARTED"
+  },
+  "safety": {
+    "credential_access": false,
+    "network_mutation": false,
+    "permission_mutation": false,
+    "execution_authority_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
