@@ -40,9 +40,9 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P23 — UX / Team / Notifications / AUTHORIZED / ACTIVE  
-Current Workstream: P23-B — Design System / RTL / Terminology / READY_NOT_STARTED  
-Active governed task: none  
-Active lock: none  
+Current Workstream: P23-B — Design System / RTL / Terminology / IN_PROGRESS  
+Active governed task: FIN-P23-WB-001  
+Active lock: LOCK-FIN-P23-WB-001-01 / ACQUIRED  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -66,7 +66,7 @@ P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VAL
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P21 state: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P22 state: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION  
-P23 state: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B READY_NOT_STARTED / P23-C..P23-I NOT_STARTED / P24 NOT_STARTED  
+P23 state: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B IN_PROGRESS / P23-C..P23-I NOT_STARTED / P24 NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -8430,6 +8430,25 @@ P23-A boundary:
 - post-merge Branch Hygiene = `40468844694` / SUCCESS;
 - Figma canonical IA source = https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=1-2;
 - P23-B = READY_NOT_STARTED;
+- P23-C..P23-I = NOT_STARTED;
+- P24 = NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P23-B activation — 2026-10-27
+
+- P23-A = CANONICAL_COMPLETE;
+- P23-A lock = RELEASED;
+- P23-B — Design System / RTL / Terminology = IN_PROGRESS;
+- task = `FIN-P23-WB-001`;
+- lock = `LOCK-FIN-P23-WB-001-01` / ACQUIRED;
+- branch = `feat/FIN-P23-WB-001-rtl-design-system-terminology`;
+- product-owned design-system policy = `config/ux/design-system.json`;
+- validator = `packages/ux/design_system.py`;
+- tests = `tests/p23/test_design_system.py`;
+- deterministic evidence = `scripts/ci/p23b_evidence.py`;
+- Figma canonical source = https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=7-109;
+- Figma representation = `SPLIT_SINGLE_MODE_COLLECTIONS` because this file supports one mode per collection;
 - P23-C..P23-I = NOT_STARTED;
 - P24 = NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
