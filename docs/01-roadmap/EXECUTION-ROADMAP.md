@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-E CANONICAL_COMPLETE / P23-F IN_PROGRESS / FIN-P23-WF-001 / LOCK-FIN-P23-WF-001-01 ACQUIRED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-F CANONICAL_COMPLETE / P23-G READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -435,8 +435,8 @@ Demo remains permanently enabled as a learning environment after Live exists.
 3. **P23-C Operational screens** — CANONICAL_COMPLETE / FIN-P23-WC-001 / RELEASED
 4. **P23-D Learning Mode and glossary** — CANONICAL_COMPLETE / FIN-P23-WD-001 / RELEASED
 5. **P23-E Team comments/mentions/assignments/approvals** — CANONICAL_COMPLETE / FIN-P23-WE-001 / RELEASED
-6. **P23-F Notification engine** — IN_PROGRESS / FIN-P23-WF-001 / LOCK-FIN-P23-WF-001-01
-7. **P23-G Accessibility/responsive/performance**
+6. **P23-F Notification engine** — CANONICAL_COMPLETE / FIN-P23-WF-001 / RELEASED
+7. **P23-G Accessibility/responsive/performance** — READY_NOT_STARTED
 8. **P23-H Dangerous-action/security UX**
 9. **P23-I E2E validation**
 
@@ -3020,3 +3020,21 @@ Scope:
 - external delivery and credentials remain disabled;
 - P23-G..P23-I and P24 remain NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING remain DISABLED.
+
+
+### P23-F canonical closure — 2026-10-27
+- FIN-P23-WF-001 = CANONICAL_COMPLETE;
+- LOCK-FIN-P23-WF-001-01 = RELEASED;
+- PR #481 = MERGED at `792590dccf951bc66d748c35d6b55fb97f99b5de`;
+- implementation Governance `40495030156` = SUCCESS;
+- implementation artifact `12729903114` / `sha256:b41e5c7c9ebe2ea3876742924ecc8e6ccde15965e820ffed421c4826589d37fd`;
+- policy ID = `b73b5647b06e356143fc3a279d93cae62251b47116b904e221d451df068e72d8`;
+- evidence ID = `76361795e7e829d66ea98daecc981a05e0b485edc2c6b3cfb9ae14fbcd1f82b0`;
+- deterministic evidence SHA256 = `cafe0e768a9328c3e9070c1451627a81afbf40839596ba450ecbfe18de23f030`;
+- post-merge Governance `40497061278` = SUCCESS;
+- post-merge artifact `12730757016` / `sha256:f7cf203f111bf9dc0e02e308293b4e7894c6a80679f5781a0b0e4382e28145f0`;
+- post-merge Branch Hygiene `40497061243` = SUCCESS;
+- P23-G = READY_NOT_STARTED;
+- P23-H..P23-I = NOT_STARTED;
+- P24 = NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
