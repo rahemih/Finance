@@ -96,6 +96,10 @@ class ProductionReadinessDossierTests(unittest.TestCase):
         dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
         self.assertIn("LIVE_EXECUTION_VALIDATED", dossier.blocker_ids)
 
+    def test_production_risk_budget_remains_a_blocker(self) -> None:
+        dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
+        self.assertIn("PRODUCTION_RISK_BUDGET_DEFINED", dossier.blocker_ids)
+
     def test_first_live_owner_gate_remains_a_blocker(self) -> None:
         dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
         self.assertIn("FIRST_LIVE_OWNER_APPROVAL", dossier.blocker_ids)
