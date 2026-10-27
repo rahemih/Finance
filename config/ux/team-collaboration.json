@@ -80,5 +80,26 @@
     "p24_state": "NOT_STARTED",
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
+  },
+  "state": "CANONICAL_COMPLETE",
+  "lock_state": "RELEASED",
+  "closure": {
+    "implementation_pr": 479,
+    "implementation_head": "58f36bc5eec3ca2d5379fa626e879b59ff5e4579",
+    "implementation_merge": "3c84b4f9625e3c8f77312775f2827d97970d1f9a",
+    "implementation_governance_run": 40478094605,
+    "implementation_artifact_id": 12721985258,
+    "implementation_artifact_sha256": "59e4fb9f1c6c5fbb54984b70e92f627ad1d10ee3b4a05da0f8b7b575111d2c0a",
+    "policy_id": "2cc2ca6cdcc5c9cde463c463d6e11d423c5884c84757cbcf2e61b9399febb480",
+    "evidence_id": "801cd79ae00d7db3be23273665354e275a9ea9e078ee38392e6b78ca49147dde",
+    "evidence_sha256": "89eb32fe4bb444de59b230724915f8e3ee14728528a209eeb29b72a29158da67",
+    "post_merge_governance_run": 40478386261,
+    "post_merge_artifact_id": 12721284962,
+    "post_merge_artifact_sha256": "9e6bd8b216f0853dbd6baab55c58e1e1b017e0b35059013d07c2ea220c28b6eb",
+    "post_merge_branch_hygiene_run": 40478386216
+  },
+  "next": {
+    "p23_f": "READY_NOT_STARTED",
+    "p24": "NOT_STARTED"
   }
 }
