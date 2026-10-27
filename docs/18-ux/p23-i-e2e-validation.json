@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23I_WORKSTREAM_STATE",
+  "phase": "P23",
+  "workstream": "P23-I",
+  "task_id": "FIN-P23-WI-001",
+  "state": "IN_PROGRESS",
+  "lock": "LOCK-FIN-P23-WI-001-01",
+  "lock_state": "ACQUIRED",
+  "dependency": {
+    "p23_a_to_p23_h": "CANONICAL_COMPLETE",
+    "upstream_locks": "RELEASED"
+  },
+  "implementation": {
+    "policy": "config/ux/p23-e2e-validation.json",
+    "module": "packages/ux/p23_e2e_validation.py",
+    "tests": "tests/p23/test_p23_e2e_validation.py",
+    "evidence": "scripts/ci/p23i_evidence.py"
+  },
+  "claim_scope": "REFERENCE_UX_E2E_VALIDATION",
+  "next": {
+    "p23_phase_closure": "PENDING",
+    "p24": "NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED"
+  },
+  "safety": {
+    "credential_access": false,
+    "permission_mutation": false,
+    "network_mutation": false,
+    "execution_authority_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
