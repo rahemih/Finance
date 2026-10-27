@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P24A_READINESS_MANIFEST",
+  "task_id": "FIN-P24-WA-001",
+  "state": "IN_PROGRESS",
+  "lock_state": "ACQUIRED",
+  "claim_scope": "READINESS_ASSESSMENT_ONLY",
+  "verdict": "NOT_READY_FOR_LIVE",
+  "blocker_count": 10,
+  "next": {
+    "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+    "g13": "NOT_STARTED"
+  },
+  "safety": {
+    "production_activation": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
