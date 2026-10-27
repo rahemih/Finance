@@ -197,7 +197,11 @@
   ],
   "figma": {
     "file_key": "5aVGC189GMrRDokrjBbI5P",
-    "node_id": "PENDING_P23C_SPECIMEN"
+    "node_id": "10:3",
+    "page_id": "10:2",
+    "source_url": "https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=10-3",
+    "visual_check": "SCREENSHOT_CREATED_1600x1480",
+    "readback_limit": "STARTER_PLAN_MCP_CALL_LIMIT_AFTER_SUCCESSFUL_WRITE_AND_SCREENSHOT"
   },
   "safety": {
     "external_order_authority": false,
