@@ -39,10 +39,10 @@ P01-E: `HOS-117 = Done`
 
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
-Current Phase: P23 — UX / Team / Notifications / CANONICAL_COMPLETE  
-Current Workstream: P24 — Controlled Production / NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED  
-Active governed task: none  
-Active lock: none  
+Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
+Current Workstream: P24-A — Production Readiness Dossier / IN_PROGRESS / READINESS_ASSESSMENT_ONLY  
+Active governed task: FIN-P24-WA-001  
+Active lock: LOCK-FIN-P24-WA-001-01 / ACQUIRED  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -66,7 +66,8 @@ P19 state: CANONICAL_COMPLETE / P19-A..P19-H CANONICAL_COMPLETE / G10_SHADOW_VAL
 P20 state: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS  
 P21 state: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / P21_POSITION_LIFECYCLE_VALIDATED PASS  
 P22 state: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION  
-P23 state: CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED / REFERENCE_UX_E2E_VALIDATION PASS / P24 NOT_STARTED_OWNER_PHASE_AUTHORIZATION_REQUIRED  
+P23 state: CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED / REFERENCE_UX_E2E_VALIDATION PASS  
+P24 state: AUTHORIZED / ACTIVE / P24-A IN_PROGRESS / P24-B BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / P24-C..P24-I NOT_STARTED / G13 NOT_STARTED  
 Alpha Research Fast Track: ADDENDUM_CANONICAL / FIN-P08-WJ-001 CANONICAL_COMPLETE / FIN-P08-WJ-002 CANONICAL_COMPLETE / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED / AR-2..AR-5 BLOCKED_BEHIND_AR1_SEQUENCE
 Capital Intelligence & Rotation Architecture: CIRA-001 ADDENDUM_CANONICAL / FIN-P00-WZ-001 CANONICAL_COMPLETE / P12 AUTHORIZATION UNCHANGED
 CIRA staged scaling: FIN-P00-WY-001 + FIN-P00-WY-001-R01 CANONICAL_COMPLETE / HOS-252
@@ -8727,3 +8728,22 @@ P23-A boundary:
 - RUM/production-performance certification = false;
 - P24 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+## P24 activation / P24-A Production Readiness Dossier — 2026-10-27
+
+- Owner authorization to start P24 = GRANTED / CONSUMED;
+- task = `FIN-P24-WA-001`;
+- lock = `LOCK-FIN-P24-WA-001-01` / ACQUIRED;
+- branch = `feat/FIN-P24-WA-001-production-readiness-dossier`;
+- claim scope = `READINESS_ASSESSMENT_ONLY`;
+- P23 = CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED;
+- G0..G12 canonical PASS evidence is required;
+- phase-start authorization is explicitly distinct from first-Live activation;
+- P24-A current readiness verdict = `NOT_READY_FOR_LIVE`;
+- current blockers include unresolved Owner jurisdiction, production provider/venue selection, accounts/KYC/credentials/funding, production broker certification, Live execution validation, production readiness certification, G0–G12 freshness for Live transition, production security posture verification, governed production risk budget, first-Live Owner approval, Live kill-switch drill, and G13;
+- P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
+- P24-C..P24-I = NOT_STARTED;
+- G13_OWNER_LIVE_APPROVAL = NOT_STARTED and cannot be automated;
+- LIVE_TRADING = DISABLED;
+- AUTO_TRADING = DISABLED.

@@ -88,6 +88,7 @@ Phase transition:
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
 - P23 — UX / Team / Notifications: CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED / REFERENCE_UX_E2E_VALIDATION PASS
+- P24 — Controlled Production: AUTHORIZED / ACTIVE / P24-A IN_PROGRESS / FIN-P24-WA-001 / LOCK-FIN-P24-WA-001-01 ACQUIRED / LIVE_TRADING DISABLED / AUTO_TRADING DISABLED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -442,15 +443,15 @@ Demo remains permanently enabled as a learning environment after Live exists.
 
 ### P24 — Controlled Production
 
-1. **P24-A Readiness dossier**
-2. **P24-B Manual Live**
-3. **P24-C Semi-Auto**
-4. **P24-D Micro-Capital**
-5. **P24-E Canary**
-6. **P24-F Controlled Auto**
-7. **P24-G Kill-switch/emergency drills**
-8. **P24-H Continuous production monitoring**
-9. **P24-I G13 Owner approval / production closure**
+1. **P24-A Readiness dossier** — IN_PROGRESS / FIN-P24-WA-001 / LOCK-FIN-P24-WA-001-01 / READINESS_ASSESSMENT_ONLY
+2. **P24-B Manual Live** — BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / separate first-Live Owner Gate required
+3. **P24-C Semi-Auto** — NOT_STARTED
+4. **P24-D Micro-Capital** — NOT_STARTED
+5. **P24-E Canary** — NOT_STARTED
+6. **P24-F Controlled Auto** — NOT_STARTED
+7. **P24-G Kill-switch/emergency drills** — NOT_STARTED
+8. **P24-H Continuous production monitoring** — NOT_STARTED
+9. **P24-I G13 Owner approval / production closure** — NOT_STARTED / G13 cannot be automated
 
 Every escalation in autonomy/capital requires fresh evidence. A later stage does not inherit approval merely because an earlier stage passed.
 
