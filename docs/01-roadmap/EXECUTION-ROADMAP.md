@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-B CANONICAL_COMPLETE / P23-C READY_NOT_STARTED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-B CANONICAL_COMPLETE / P23-C IN_PROGRESS / FIN-P23-WC-001 / LOCK-FIN-P23-WC-001-01 ACQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -432,7 +432,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 
 1. **P23-A IA and workflows** — CANONICAL_COMPLETE / FIN-P23-WA-001 / RELEASED
 2. **P23-B RTL design system** — CANONICAL_COMPLETE / FIN-P23-WB-001 / RELEASED
-3. **P23-C Operational screens** — READY_NOT_STARTED
+3. **P23-C Operational screens** — IN_PROGRESS / FIN-P23-WC-001 / LOCK-FIN-P23-WC-001-01
 4. **P23-D Learning Mode and glossary**
 5. **P23-E Team comments/mentions/assignments/approvals**
 6. **P23-F Notification engine**
@@ -2887,3 +2887,29 @@ P23-C..P23-I and P24 remain NOT_STARTED. LIVE_TRADING / AUTO_TRADING remain DISA
 - P23-D..P23-I = NOT_STARTED;
 - P24 = NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+### P23-C activation — 2026-10-27
+Task: `FIN-P23-WC-001`  
+Lock: `LOCK-FIN-P23-WC-001-01` / ACQUIRED  
+Branch: `feat/FIN-P23-WC-001-operational-screens`
+
+Authorized scope:
+- bind operational screens exactly to all eleven canonical P23-A routes/surfaces;
+- consume the P23-B Persian-first RTL design system without redefining it;
+- require fail-visible LOADING / EMPTY / ERROR / OFFLINE / STALE / DEGRADED states on critical screens;
+- require provenance, freshness and system-state visibility;
+- preserve isolated LTR financial identifiers inside the RTL shell;
+- keep UI authority READ_ONLY_NAVIGATION;
+- reserve Learning Mode, collaboration, notifications, accessibility/performance hardening and dangerous-action behavior for P23-D..P23-H;
+- bind the editable Figma specimen at `file=5aVGC189GMrRDokrjBbI5P / page=10:2 / board=10:3`;
+- emit deterministic P23-C evidence twice.
+
+Safety:
+- no external-order authority;
+- no runtime mutation/remediation;
+- no credentials;
+- no production/P24 activation;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+P23-D..P23-I remain NOT_STARTED. P24 remains NOT_STARTED.

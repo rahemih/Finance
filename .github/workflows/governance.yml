@@ -1694,6 +1694,15 @@ jobs:
           cmp build/p23b-a.json build/p23b-b.json
           sha256sum build/p23b-a.json
 
+      - name: P23-C deterministic operational screens evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p23c_evidence.py --output build/p23c-a.json
+          PYTHONPATH=. python scripts/ci/p23c_evidence.py --output build/p23c-b.json
+          cmp build/p23c-a.json build/p23c-b.json
+          sha256sum build/p23c-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
