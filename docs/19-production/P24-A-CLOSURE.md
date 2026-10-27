@@ -50,7 +50,16 @@ This is a correctness repair, not a safety relaxation.
 
 ## Final closure evidence
 
-Pending successful Governance of PR #490 after the stage-boundary repair. Final repaired IDs and final test count will be written only after the workflow proves them.
+The stage-boundary repair was verified on PR #490:
+
+- Governance `40518987324` = SUCCESS;
+- artifact `12740856181` / `sha256:9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04`;
+- repaired dossier ID = `53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5`;
+- repaired evidence ID = `4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d`;
+- repaired deterministic evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
+- tests/p24 = 24/24 PASS.
+
+A final documentation-only Governance pass after recording these identifiers remains required before merge.
 
 ## Next
 
