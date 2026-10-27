@@ -16,7 +16,11 @@
     "module": "packages/ux/design_system.py",
     "tests": "tests/p23/test_design_system.py",
     "evidence": "scripts/ci/p23b_evidence.py",
-    "figma_canonical_source": "PENDING_LINK"
+    "figma_canonical_source": "https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=7-109",
+    "figma_mode_strategy": "SPLIT_SINGLE_MODE_COLLECTIONS",
+    "figma_mode_limit_per_collection": 1,
+    "figma_collection_count": 5,
+    "figma_variable_count": 101
   },
   "next": {
     "p23_c": "NOT_STARTED",
