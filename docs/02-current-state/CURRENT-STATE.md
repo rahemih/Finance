@@ -40,7 +40,7 @@ P01-E: `HOS-117 = Done`
 P00 — Charter & Governance: CANONICAL_COMPLETE  
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
-Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED  
+Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after PRE_FIRST_LIVE blockers clear  
 Active governed task: none  
 Active lock: none  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
@@ -8741,7 +8741,7 @@ P23-A boundary:
 - G0..G12 canonical PASS evidence is required;
 - phase-start authorization is explicitly distinct from first-Live activation;
 - P24-A current readiness verdict = `NOT_READY_FOR_LIVE`;
-- current blockers include unresolved Owner jurisdiction, production provider/venue selection, accounts/KYC/credentials/funding, production broker certification, Live execution validation, production readiness certification, G0–G12 freshness for Live transition, production security posture verification, governed production risk budget, first-Live Owner approval, Live kill-switch drill, and G13;
+- current unresolved items are stage-classified: 9 PRE_FIRST_LIVE controls, 1 separate FIRST_LIVE_OWNER_GATE, and 3 P24_EXIT items; later LIVE_EXECUTION/P24-G/G13 evidence does not block entry to P24-B;
 - P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
 - P24-C..P24-I = NOT_STARTED;
 - G13_OWNER_LIVE_APPROVAL = NOT_STARTED and cannot be automated;
@@ -8759,18 +8759,20 @@ P23-A boundary:
 - implementation merge = `e7c11a6885eb711a8613a7be91166ff23236c214`;
 - implementation Governance = `40514396519` / SUCCESS;
 - implementation artifact = `12739765146` / `sha256:5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7`;
-- dossier ID = `73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932`;
-- evidence ID = `562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6`;
-- deterministic evidence SHA256 = `ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e`;
-- tests/p24 = 18/18 PASS;
+- baseline dossier ID = `73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932`;
+- baseline evidence ID = `562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6`;
+- baseline deterministic evidence SHA256 = `ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e`;
+- baseline tests/p24 = 18/18 PASS;
 - post-merge Governance = `40514857986` / SUCCESS;
 - post-merge artifact = `12738154523` / `sha256:196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a`;
 - post-merge Branch Hygiene = `40514857847` / SUCCESS / inventory clean;
 - readiness verdict = `NOT_READY_FOR_LIVE`;
-- blocker count = 13;
+- blocker count = 13 = 9 PRE_FIRST_LIVE + 1 FIRST_LIVE_OWNER_GATE + 3 P24_EXIT;
 - P24 phase-start authorization remains consumed but does not grant first-Live authority;
-- P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED;
+- P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES while PRE_FIRST_LIVE blockers remain; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after those blockers clear;
+- LIVE_EXECUTION_VALIDATED, P24-G kill-switch drills and G13 are P24_EXIT requirements and do not circularly block P24-B;
 - P24-C..P24-I = NOT_STARTED;
-- G13_OWNER_LIVE_APPROVAL = NOT_STARTED / cannot be automated;
+- G13_OWNER_LIVE_APPROVAL = NOT_STARTED / P24_EXIT / cannot be automated;
+- final repaired dossier/evidence IDs = PENDING_PR_490_GOVERNANCE;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
