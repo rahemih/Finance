@@ -1,8 +1,8 @@
 # P24-A — Production Readiness Dossier
 
 Task: `FIN-P24-WA-001`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P24-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P24-WA-001-01` / RELEASED  
 Claim scope: `READINESS_ASSESSMENT_ONLY`
 
 ## Purpose
@@ -56,3 +56,21 @@ The first real-capital activation remains a separate Owner Human Gate under `doc
 - G13: NOT_STARTED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #489 = MERGED;
+- final implementation head = `7c48a3ce189e65d380cf11cdb27cb3092e052b1a`;
+- implementation merge = `e7c11a6885eb711a8613a7be91166ff23236c214`;
+- implementation Governance = `40514396519` / SUCCESS;
+- implementation artifact = `12739765146` / `sha256:5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7`;
+- dossier ID = `73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932`;
+- evidence ID = `562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6`;
+- deterministic evidence SHA256 = `ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e`;
+- tests/p24 = 18/18 PASS;
+- post-merge Governance = `40514857986` / SUCCESS;
+- post-merge artifact = `12738154523` / `sha256:196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a`;
+- post-merge Branch Hygiene = `40514857847` / SUCCESS / inventory clean.
+
+P24-A is CANONICAL_COMPLETE. The verdict remains `NOT_READY_FOR_LIVE`; this is a successful readiness assessment, not a Live authorization. P24-B remains blocked behind production prerequisites and a separate first-Live Owner Human Gate.
