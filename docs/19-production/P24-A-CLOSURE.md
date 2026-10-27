@@ -59,7 +59,7 @@ The stage-boundary repair was verified on PR #490:
 - repaired deterministic evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
 - tests/p24 = 24/24 PASS.
 
-A final documentation-only Governance pass after recording these identifiers remains required before merge.
+PR #490 is merge-eligible only if a final documentation-only Governance pass succeeds after these identifiers are recorded.
 
 ## Next
 
