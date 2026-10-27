@@ -26,9 +26,10 @@ Current blockers are intentionally explicit:
 5. Production broker certification is false.
 6. Live execution validation is false.
 7. Production readiness certification is false.
-8. Explicit first-Live Owner approval has not been granted.
-9. Live kill-switch/emergency drill has not been completed.
-10. G13 Owner Live Approval has not been granted.
+8. Production monetary risk budget/ceiling is not yet defined by governed policy.
+9. Explicit first-Live Owner approval has not been granted.
+10. Live kill-switch/emergency drill has not been completed.
+11. G13 Owner Live Approval has not been granted.
 
 ## Important distinction
 
