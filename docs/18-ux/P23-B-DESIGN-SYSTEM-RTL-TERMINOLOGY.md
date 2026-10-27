@@ -67,6 +67,19 @@ P23-B governs variants for:
 
 P23-C may implement these above third-party primitives but may not change their semantic contract silently.
 
+## Canonical Figma source
+
+https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=7-109
+
+The Figma file exposes a plan-level limit of one mode per variable collection. The product contract is unchanged: Light and Dark remain first-class themes in GitHub. Figma represents them with separate product-owned single-mode collections:
+
+- `NQ / Color Light`;
+- `NQ / Color Dark`.
+
+Shared primitives, spacing and radii remain separate single-mode collections. This yields five local collections and 101 local variables. The representation strategy is `SPLIT_SINGLE_MODE_COLLECTIONS`, preserving the same semantic token names and code syntax across both theme collections.
+
+The subscribed Simple Design System library was inspected before creation. Its generic Card assets and token model do not match NEXUS QUANT's exact RTL/financial semantic-state contract, so P23-B uses local product-owned foundations rather than silently inheriting incompatible library semantics.
+
 ## Safety
 
 No external orders, runtime mutation/remediation, credentials, production/P24 activation or Live/Auto trading authority are created by this workstream.
