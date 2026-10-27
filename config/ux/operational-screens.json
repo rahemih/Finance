@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23C_OPERATIONAL_SCREENS",
+  "task_id": "FIN-P23-WC-001",
+  "phase": "P23",
+  "workstream": "P23-C",
+  "upstream": {
+    "information_architecture": "config/ux/information-architecture.json",
+    "design_system": "config/ux/design-system.json"
+  },
+  "authority": "READ_ONLY_NAVIGATION",
+  "reserved_behavior_owners": {
+    "learning_mode": "P23-D",
+    "team_collaboration": "P23-E",
+    "notification_delivery": "P23-F",
+    "accessibility_performance_hardening": "P23-G",
+    "dangerous_action_security_ux": "P23-H"
+  },
+  "screens": [
+    {
+      "id": "dashboard",
+      "route": "/dashboard",
+      "label_fa": "داشبورد",
+      "shell": "monitoring",
+      "critical": true,
+      "sections": [
+        "system_banner",
+        "market_overview",
+        "opportunity_league",
+        "portfolio_risk",
+        "demo_learning_status"
+      ]
+    },
+    {
+      "id": "markets",
+      "route": "/markets",
+      "label_fa": "بازارها",
+      "shell": "monitoring",
+      "critical": true,
+      "sections": [
+        "market_status",
+        "watchlist",
+        "price_context",
+        "liquidity",
+        "provenance"
+      ]
+    },
+    {
+      "id": "opportunities",
+      "route": "/opportunities",
+      "label_fa": "فرصت‌ها",
+      "shell": "analysis",
+      "critical": true,
+      "sections": [
+        "ranking",
+        "evidence_summary",
+        "no_trade_context",
+        "expiry",
+        "provenance"
+      ]
+    },
+    {
+      "id": "trades",
+      "route": "/trades",
+      "label_fa": "معاملات",
+      "shell": "monitoring",
+      "critical": true,
+      "sections": [
+        "trade_journal",
+        "position_link",
+        "execution_quality",
+        "provenance"
+      ]
+    },
+    {
+      "id": "portfolio",
+      "route": "/portfolio",
+      "label_fa": "پرتفوی",
+      "shell": "analysis",
+      "critical": true,
+      "sections": [
+        "exposure",
+        "risk_budget",
+        "drawdown",
+        "correlation",
+        "capital_segmentation"
+      ]
+    },
+    {
+      "id": "demo",
+      "route": "/demo",
+      "label_fa": "دمو",
+      "shell": "monitoring",
+      "critical": true,
+      "sections": [
+        "demo_status",
+        "decision_journal",
+        "learning_cycle_status",
+        "champion_challenger",
+        "drift"
+      ]
+    },
+    {
+      "id": "research",
+      "route": "/research",
+      "label_fa": "پژوهش",
+      "shell": "analysis",
+      "critical": false,
+      "sections": [
+        "research_registry",
+        "experiments",
+        "market_memory",
+        "analogs",
+        "attribution"
+      ]
+    },
+    {
+      "id": "reports",
+      "route": "/reports",
+      "label_fa": "گزارش‌ها",
+      "shell": "analysis",
+      "critical": false,
+      "sections": [
+        "report_index",
+        "evidence_exports",
+        "replay_links",
+        "audit_lineage"
+      ]
+    },
+    {
+      "id": "system",
+      "route": "/system",
+      "label_fa": "سیستم",
+      "shell": "monitoring",
+      "critical": true,
+      "sections": [
+        "system_state",
+        "health",
+        "diagnostics",
+        "slo",
+        "incidents"
+      ]
+    },
+    {
+      "id": "settings",
+      "route": "/settings",
+      "label_fa": "تنظیمات",
+      "shell": "default",
+      "critical": true,
+      "sections": [
+        "environment_context",
+        "permissions_summary",
+        "display_preferences",
+        "safety_status"
+      ]
+    },
+    {
+      "id": "glossary",
+      "route": "/glossary",
+      "label_fa": "واژه‌نامه",
+      "shell": "default",
+      "critical": false,
+      "sections": [
+        "term_index",
+        "canonical_identifiers",
+        "explanation_links"
+      ]
+    }
+  ],
+  "critical_states": [
+    "LOADING",
+    "EMPTY",
+    "ERROR",
+    "OFFLINE",
+    "STALE",
+    "DEGRADED"
+  ],
+  "provenance": {
+    "sensitive_analytics_show_source": true,
+    "sensitive_analytics_show_timestamp": true,
+    "realtime_surfaces_show_freshness": true,
+    "system_state_visible_on_critical_surfaces": true
+  },
+  "directionality": {
+    "shell": "RTL",
+    "financial_islands": "LTR",
+    "bidi_isolation_required": true
+  },
+  "allowed_component_families": [
+    "NexusAppShell",
+    "MetricCard",
+    "RiskBadge",
+    "MarketStatusBadge",
+    "EmptyState",
+    "DegradedState",
+    "StaleDataBanner"
+  ],
+  "figma": {
+    "file_key": "5aVGC189GMrRDokrjBbI5P",
+    "node_id": "PENDING_P23C_SPECIMEN"
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
