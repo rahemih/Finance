@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B READY_NOT_STARTED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B IN_PROGRESS / FIN-P23-WB-001 / LOCK-FIN-P23-WB-001-01 ACQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -431,7 +431,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 ### P23 — UX / Team / Notifications
 
 1. **P23-A IA and workflows** — CANONICAL_COMPLETE / FIN-P23-WA-001 / RELEASED
-2. **P23-B RTL design system** — READY_NOT_STARTED
+2. **P23-B RTL design system** — IN_PROGRESS / FIN-P23-WB-001 / LOCK-FIN-P23-WB-001-01
 3. **P23-C Operational screens**
 4. **P23-D Learning Mode and glossary**
 5. **P23-E Team comments/mentions/assignments/approvals**
@@ -2849,3 +2849,22 @@ P23-B..P23-I remain NOT_STARTED until P23-A canonical closure.
 - P23-B = READY_NOT_STARTED;
 - P24 = NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+### P23-B activation — 2026-10-27
+Task: `FIN-P23-WB-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P23-WB-001-01` / ACQUIRED
+
+Scope:
+- product-owned light/dark semantic tokens;
+- Persian-first RTL shell and LTR financial islands;
+- typography / spacing / radii / density / breakpoint scales;
+- WCAG AA contrast validation;
+- non-color semantic-state cues;
+- canonical financial terminology;
+- Figma design-system source.
+
+Figma mode limitation is represented safely as split single-mode Light/Dark collections without changing the GitHub product contract.
+
+P23-C..P23-I and P24 remain NOT_STARTED. LIVE_TRADING / AUTO_TRADING remain DISABLED.
