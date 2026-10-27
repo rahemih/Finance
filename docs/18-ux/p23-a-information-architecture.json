@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23A_WORKSTREAM_STATE",
+  "phase": "P23",
+  "workstream": "P23-A",
+  "task_id": "FIN-P23-WA-001",
+  "state": "IN_PROGRESS",
+  "lock": "LOCK-FIN-P23-WA-001-01",
+  "lock_state": "ACQUIRED",
+  "dependency": {
+    "p22": "CANONICAL_COMPLETE",
+    "g12_operations_validated": "PASS",
+    "g12_claim_scope": "REFERENCE_OPERATIONS_VALIDATION",
+    "owner_p23_authorization": "GRANTED_CONSUMED"
+  },
+  "implementation": {
+    "policy": "config/ux/information-architecture.json",
+    "module": "packages/ux/information_architecture.py",
+    "tests": "tests/p23/test_information_architecture.py",
+    "evidence": "scripts/ci/p23a_evidence.py",
+    "figma_canonical_source": "PENDING_LINK"
+  },
+  "next": {
+    "p23_b": "NOT_STARTED",
+    "p23_c_to_p23_i": "NOT_STARTED",
+    "p24": "NOT_STARTED"
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "production_activation": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
