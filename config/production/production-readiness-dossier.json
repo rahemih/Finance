@@ -4,8 +4,8 @@
   "task_id": "FIN-P24-WA-001",
   "phase": "P24",
   "workstream": "P24-A",
-  "state": "IN_PROGRESS",
-  "lock_state": "ACQUIRED",
+  "state": "CANONICAL_COMPLETE",
+  "lock_state": "RELEASED",
   "claim_scope": "READINESS_ASSESSMENT_ONLY",
   "phase_authorization": {
     "p24_phase_start": "GRANTED_CONSUMED",
@@ -154,5 +154,21 @@
     "production_activation": false,
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "implementation_pr": 489,
+    "implementation_head": "7c48a3ce189e65d380cf11cdb27cb3092e052b1a",
+    "implementation_merge": "e7c11a6885eb711a8613a7be91166ff23236c214",
+    "implementation_governance_run": 40514396519,
+    "implementation_artifact_id": 12739765146,
+    "implementation_artifact_sha256": "5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7",
+    "dossier_id": "73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932",
+    "evidence_id": "562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6",
+    "evidence_sha256": "ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e",
+    "test_count": 18,
+    "post_merge_governance_run": 40514857986,
+    "post_merge_artifact_id": 12738154523,
+    "post_merge_artifact_sha256": "196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a",
+    "post_merge_branch_hygiene_run": 40514857847
   }
 }
