@@ -8741,7 +8741,7 @@ P23-A boundary:
 - G0..G12 canonical PASS evidence is required;
 - phase-start authorization is explicitly distinct from first-Live activation;
 - P24-A current readiness verdict = `NOT_READY_FOR_LIVE`;
-- current blockers include unresolved Owner jurisdiction, production provider/venue selection, accounts/KYC/credentials/funding, production broker certification, Live execution validation, production readiness certification, first-Live Owner approval, Live kill-switch drill, and G13;
+- current blockers include unresolved Owner jurisdiction, production provider/venue selection, accounts/KYC/credentials/funding, production broker certification, Live execution validation, production readiness certification, governed production risk budget, first-Live Owner approval, Live kill-switch drill, and G13;
 - P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
 - P24-C..P24-I = NOT_STARTED;
 - G13_OWNER_LIVE_APPROVAL = NOT_STARTED and cannot be automated;
