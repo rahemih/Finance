@@ -58,8 +58,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_duplicate_route_fails_closed(self) -> None:
         raw = self._raw()
-        surfaces = raw["surfaces"]
-        self.assertIsInstance(surfaces, list)
+        surfaces = cast(list[dict[str, object]], raw["surfaces"])
         surfaces[1]["route"] = surfaces[0]["route"]
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -69,8 +68,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_dynamic_route_fails_closed(self) -> None:
         raw = self._raw()
-        surfaces = raw["surfaces"]
-        self.assertIsInstance(surfaces, list)
+        surfaces = cast(list[dict[str, object]], raw["surfaces"])
         surfaces[0]["route"] = "/dashboard/:id"
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -80,8 +78,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_surface_order_or_coverage_drift_fails_closed(self) -> None:
         raw = self._raw()
-        surfaces = raw["surfaces"]
-        self.assertIsInstance(surfaces, list)
+        surfaces = cast(list[dict[str, object]], raw["surfaces"])
         surfaces.pop()
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -91,8 +88,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_critical_state_drift_fails_closed(self) -> None:
         raw = self._raw()
-        states = raw["critical_surface_states"]
-        self.assertIsInstance(states, list)
+        states = cast(list[str], raw["critical_surface_states"])
         states.remove("STALE")
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -102,9 +98,9 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_unknown_workflow_surface_fails_closed(self) -> None:
         raw = self._raw()
-        workflows = raw["workflows"]
-        self.assertIsInstance(workflows, list)
-        workflows[0]["surfaces"].append("live-trading")
+        workflows = cast(list[dict[str, object]], raw["workflows"])
+        workflow_surfaces = cast(list[str], workflows[0]["surfaces"])
+        workflow_surfaces.append("live-trading")
         with self.assertRaisesRegex(
             InformationArchitectureError,
             "unknown surfaces",
@@ -113,8 +109,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_workflow_authority_drift_fails_closed(self) -> None:
         raw = self._raw()
-        workflows = raw["workflows"]
-        self.assertIsInstance(workflows, list)
+        workflows = cast(list[dict[str, object]], raw["workflows"])
         workflows[0]["authority"] = "EXECUTE_ORDER"
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -124,8 +119,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_workflow_coverage_drift_fails_closed(self) -> None:
         raw = self._raw()
-        workflows = raw["workflows"]
-        self.assertIsInstance(workflows, list)
+        workflows = cast(list[dict[str, object]], raw["workflows"])
         workflows.pop()
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -135,8 +129,10 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_provenance_requirement_drift_fails_closed(self) -> None:
         raw = self._raw()
-        provenance = raw["provenance_requirements"]
-        self.assertIsInstance(provenance, dict)
+        provenance = cast(
+            dict[str, object],
+            raw["provenance_requirements"],
+        )
         provenance["realtime_surfaces_show_freshness"] = False
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -146,8 +142,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_live_authority_drift_fails_closed(self) -> None:
         raw = self._raw()
-        safety = raw["safety"]
-        self.assertIsInstance(safety, dict)
+        safety = cast(dict[str, object], raw["safety"])
         safety["live_trading"] = "ENABLED"
         with self.assertRaisesRegex(
             InformationArchitectureError,
@@ -157,8 +152,7 @@ class InformationArchitectureTests(unittest.TestCase):
 
     def test_p24_activation_drift_fails_closed(self) -> None:
         raw = self._raw()
-        safety = raw["safety"]
-        self.assertIsInstance(safety, dict)
+        safety = cast(dict[str, object], raw["safety"])
         safety["p24_state"] = "ACTIVE"
         with self.assertRaisesRegex(
             InformationArchitectureError,
