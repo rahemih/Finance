@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23F_NOTIFICATION_ENGINE",
+  "task_id": "FIN-P23-WF-001",
+  "phase": "P23",
+  "workstream": "P23-F",
+  "authority": "NOTIFICATION_ROUTING_ONLY",
+  "upstream": {
+    "alerting_policy": "config/news-sentiment/alerting-narrative-policy.json",
+    "team_collaboration": "config/ux/team-collaboration.json"
+  },
+  "severities": [
+    "INFORMATIONAL",
+    "IMPORTANT",
+    "CRITICAL",
+    "SUPPRESSED"
+  ],
+  "channels": [
+    "IN_APP"
+  ],
+  "quiet_hours": {
+    "timezone_required": true,
+    "defer_severities": [
+      "INFORMATIONAL",
+      "IMPORTANT"
+    ],
+    "bypass_severities": [
+      "CRITICAL"
+    ],
+    "never_deliver_severities": [
+      "SUPPRESSED"
+    ]
+  },
+  "escalation": {
+    "critical_target": "ON_CALL_QUEUE",
+    "grants_owner_authorization": false,
+    "grants_risk_approval": false,
+    "grants_execution_approval": false,
+    "grants_p24_production_approval": false
+  },
+  "identity": {
+    "deterministic_notification_id": true,
+    "deterministic_dedup_key": true,
+    "dedup_window_seconds": 300
+  },
+  "required_fields": [
+    "source_event_id",
+    "severity",
+    "title_fa",
+    "body_fa",
+    "created_at",
+    "provenance_ref"
+  ],
+  "delivery": {
+    "external_delivery_enabled": false,
+    "credential_access": false,
+    "provider": "NOT_SELECTED"
+  },
+  "safety": {
+    "permission_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
