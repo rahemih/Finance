@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23D_LEARNING_MODE_GLOSSARY",
+  "task_id": "FIN-P23-WD-001",
+  "phase": "P23",
+  "workstream": "P23-D",
+  "locale": "fa-IR",
+  "direction": "RTL",
+  "canonical_identifier_direction": "LTR",
+  "learning_mode": {
+    "authority": "EXPLANATION_ONLY",
+    "modes": [
+      "OFF",
+      "GUIDED",
+      "DETAILED"
+    ],
+    "default_mode": "GUIDED",
+    "required_fields": [
+      "concept",
+      "why_visible",
+      "limitations",
+      "source_context"
+    ],
+    "mutates_signal": false,
+    "mutates_probability": false,
+    "personalized_advice": false,
+    "execution_action": false
+  },
+  "glossary": {
+    "route": "/glossary",
+    "entries": [
+      {
+        "id": "dashboard",
+        "canonical": "Dashboard",
+        "fa": "داشبورد",
+        "definition_fa": "نمای کلی وضعیت سیستم، بازار، فرصت‌ها و ریسک بدون ایجاد اختیار اجرایی."
+      },
+      {
+        "id": "market",
+        "canonical": "Market",
+        "fa": "بازار",
+        "definition_fa": "نمای داده‌ها و زمینه بازار برای مشاهده و تحلیل؛ نه دستور معامله."
+      },
+      {
+        "id": "opportunity",
+        "canonical": "Opportunity",
+        "fa": "فرصت",
+        "definition_fa": "نامزد تحلیلی که شواهد و محدودیت‌های آن باید بررسی شود و به‌تنهایی مجوز معامله نیست."
+      },
+      {
+        "id": "trade",
+        "canonical": "Trade",
+        "fa": "معامله",
+        "definition_fa": "رکورد چرخه معامله یا شبیه‌سازی برای مشاهده، پیگیری و تحلیل."
+      },
+      {
+        "id": "portfolio",
+        "canonical": "Portfolio",
+        "fa": "پرتفوی",
+        "definition_fa": "نمای تجمیعی موقعیت‌ها، مواجهه‌ها، بودجه ریسک و وضعیت سرمایه."
+      },
+      {
+        "id": "demo",
+        "canonical": "Demo",
+        "fa": "دمو",
+        "definition_fa": "محیط شبیه‌سازی و یادگیری بدون سرمایه واقعی و بدون اختیار Live."
+      },
+      {
+        "id": "research",
+        "canonical": "Research",
+        "fa": "پژوهش",
+        "definition_fa": "شواهد، آزمایش‌ها و تحلیل‌های نسخه‌بندی‌شده برای ارزیابی فرضیه‌ها."
+      },
+      {
+        "id": "report",
+        "canonical": "Report",
+        "fa": "گزارش",
+        "definition_fa": "خروجی قابل ردیابی از وضعیت، شواهد، بازپخش یا ممیزی."
+      },
+      {
+        "id": "system",
+        "canonical": "System",
+        "fa": "سیستم",
+        "definition_fa": "نمای سلامت، وضعیت، تشخیص‌ها، SLO و رخدادهای عملیاتی."
+      },
+      {
+        "id": "settings",
+        "canonical": "Settings",
+        "fa": "تنظیمات",
+        "definition_fa": "نمای زمینه و ترجیحات مجاز؛ تنظیمات این مرحله اختیار production یا credential ایجاد نمی‌کند."
+      },
+      {
+        "id": "glossary",
+        "canonical": "Glossary",
+        "fa": "واژه‌نامه",
+        "definition_fa": "مرجع واژگان canonical و توضیحات آموزشی محصول."
+      },
+      {
+        "id": "long",
+        "canonical": "LONG",
+        "fa": "خرید (LONG)",
+        "definition_fa": "شناسه جهت LONG در مدل محصول؛ یک برچسب جهت است و فرمان خرید نیست."
+      },
+      {
+        "id": "short",
+        "canonical": "SHORT",
+        "fa": "فروش (SHORT)",
+        "definition_fa": "شناسه جهت SHORT در مدل محصول؛ یک برچسب جهت است و فرمان فروش نیست."
+      },
+      {
+        "id": "wait",
+        "canonical": "WAIT",
+        "fa": "انتظار (WAIT)",
+        "definition_fa": "وضعیتی که نشان می‌دهد اقدام معاملاتی توصیه/مجاز نشده و باید منتظر شواهد یا شرایط بعدی ماند."
+      },
+      {
+        "id": "no_trade",
+        "canonical": "NO_TRADE",
+        "fa": "عدم معامله (NO_TRADE)",
+        "definition_fa": "وضعیتی صریح برای نبود شرایط قابل‌قبول معامله؛ به معنی عدم ایجاد اقدام معاملاتی است."
+      }
+    ]
+  },
+  "provenance": {
+    "source_context_required": true,
+    "limitations_required": true,
+    "canonical_identifier_required": true
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}

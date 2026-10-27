@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P23-WD-001",
+  "phase": "P23",
+  "workstream": "WD",
+  "objective": "Define a deterministic Persian-first Learning Mode and canonical glossary that explain product concepts without creating signals, advice, execution authority or hidden semantic drift.",
+  "scope": [
+    "Define OFF/GUIDED/DETAILED Learning Mode levels",
+    "Bind glossary coverage and order exactly to P23-B canonical terminology",
+    "Provide Persian educational definitions while preserving canonical English identifiers",
+    "Bind glossary navigation to the canonical /glossary P23-C screen",
+    "Require explanations to expose limitations and source context",
+    "Keep Learning Mode explanation-only and non-prescriptive",
+    "Emit deterministic P23-D evidence"
+  ],
+  "out_of_scope": [
+    "Signal generation or probability changes",
+    "Personalized investment advice",
+    "Order placement or execution controls",
+    "Team collaboration",
+    "Notification delivery",
+    "Dangerous-action confirmation",
+    "P24 production activation",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P23-A..P23-C CANONICAL_COMPLETE",
+    "LOCK-FIN-P23-WC-001-01 RELEASED",
+    "P23-D READY_NOT_STARTED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "packages/**",
+    "tests/**",
+    "docs/**",
+    "config/**",
+    "contracts/tasks/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P23-WD-001.json",
+    "config/ux/learning-mode-glossary.json",
+    "packages/ux/learning_mode.py",
+    "tests/p23/test_learning_mode.py",
+    "scripts/ci/p23d_evidence.py",
+    "docs/18-ux/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Strict Pyright passes",
+    "All P23 learning-mode tests pass",
+    "Mode order is OFF/GUIDED/DETAILED",
+    "Glossary IDs/order exactly match P23-B terminology",
+    "Canonical English identifiers and Persian labels cannot drift",
+    "Every glossary item has a Persian educational definition",
+    "Glossary route remains /glossary",
+    "Learning authority remains EXPLANATION_ONLY",
+    "P23-D evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No signal/probability mutation",
+    "No personalized investment advice authority",
+    "No credentials or secrets",
+    "No external-order authority",
+    "No runtime mutation/remediation",
+    "No automatic P24 activation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P23-C canonical closure",
+    "P23-D policy/module/tests",
+    "Deterministic P23-D evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P23-D learning/glossary/config/tests/evidence/CI/state changes; P23-A..P23-C remain canonical complete and P23-E remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P23-A..P23-C CANONICAL_COMPLETE",
+    "P23-C lock RELEASED",
+    "P23-D READY_NOT_STARTED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P23-D contract passes",
+    "P23-D CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P23-D closure documented",
+    "P23-E becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
