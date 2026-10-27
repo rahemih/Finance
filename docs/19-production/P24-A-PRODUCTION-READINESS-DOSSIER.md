@@ -106,4 +106,4 @@ Repaired stage-boundary evidence is now verified on PR #490:
 - repaired deterministic evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
 - repaired tests/p24 = 24/24 PASS.
 
-A final documentation-only CI pass is still required after recording these immutable evidence identifiers before PR #490 may merge.
+PR #490 is merge-eligible only if a final documentation-only Governance pass succeeds after these immutable evidence identifiers are recorded.
