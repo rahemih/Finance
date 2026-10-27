@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23G_ACCESSIBILITY_RESPONSIVE_PERFORMANCE",
+  "task_id": "FIN-P23-WG-001",
+  "phase": "P23",
+  "workstream": "P23-G",
+  "claim_scope": "REFERENCE_FRONTEND_VALIDATION",
+  "upstream": {
+    "design_system": "config/ux/design-system.json",
+    "operational_screens": "config/ux/operational-screens.json",
+    "frontend_baseline": "docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md"
+  },
+  "accessibility": {
+    "standard": "WCAG_2_2_AA",
+    "minimum_normal_text_contrast": 4.5,
+    "minimum_large_text_contrast": 3,
+    "minimum_touch_target_px": 44,
+    "visible_focus_required": true,
+    "reduced_motion_required": true,
+    "color_only_state_forbidden": true,
+    "keyboard_operability_required": true,
+    "semantic_labels_required": true,
+    "critical_table_chart_alternative_required": true
+  },
+  "responsive": {
+    "profiles": [
+      {
+        "id": "mobile",
+        "width_px": 360
+      },
+      {
+        "id": "tablet",
+        "width_px": 768
+      },
+      {
+        "id": "desktop",
+        "width_px": 1024
+      },
+      {
+        "id": "wide",
+        "width_px": 1440
+      }
+    ],
+    "canonical_screen_count": 11,
+    "critical_content_clipping_forbidden": true,
+    "dense_table_horizontal_scroll_explicit": true,
+    "rtl_shell_preserved": true,
+    "ltr_financial_islands_preserved": true
+  },
+  "performance": {
+    "measurement_scope": "REFERENCE_BUDGET_ONLY",
+    "lcp_ms_max": 2500,
+    "inp_ms_max": 200,
+    "cls_max": 0.1,
+    "regression_budget_required": true,
+    "production_certification": false,
+    "real_user_monitoring_certification": false
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
