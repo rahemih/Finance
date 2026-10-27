@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23E_TEAM_COLLABORATION",
+  "task_id": "FIN-P23-WE-001",
+  "phase": "P23",
+  "workstream": "P23-E",
+  "authority": "COLLABORATION_METADATA_ONLY",
+  "event_types": [
+    "COMMENT_CREATED",
+    "MENTION_ADDED",
+    "ASSIGNMENT_SET",
+    "ASSIGNMENT_CLEARED",
+    "WORKFLOW_APPROVAL_REQUESTED",
+    "WORKFLOW_APPROVAL_DECIDED",
+    "WORKFLOW_APPROVAL_WITHDRAWN"
+  ],
+  "approval": {
+    "scope": "TEAM_WORKFLOW_ONLY",
+    "states": [
+      "REQUESTED",
+      "APPROVED",
+      "REJECTED",
+      "WITHDRAWN"
+    ],
+    "grants_owner_authorization": false,
+    "grants_risk_approval": false,
+    "grants_execution_approval": false,
+    "grants_p24_production_approval": false
+  },
+  "assignment": {
+    "grants_permissions": false,
+    "changes_rbac": false,
+    "changes_execution_authority": false
+  },
+  "required_event_fields": [
+    "event_type",
+    "actor_id",
+    "target_kind",
+    "target_id",
+    "occurred_at",
+    "provenance_ref"
+  ],
+  "target_kinds": [
+    "SURFACE",
+    "OPPORTUNITY",
+    "TRADE_RECORD",
+    "PORTFOLIO_VIEW",
+    "DEMO_RECORD",
+    "RESEARCH_RECORD",
+    "REPORT",
+    "INCIDENT",
+    "SETTINGS_CHANGE_REQUEST"
+  ],
+  "canonical_surfaces": [
+    "dashboard",
+    "markets",
+    "opportunities",
+    "trades",
+    "portfolio",
+    "demo",
+    "research",
+    "reports",
+    "system",
+    "settings",
+    "glossary"
+  ],
+  "audit": {
+    "append_only": true,
+    "deterministic_event_id": true,
+    "ordered_history": true,
+    "deletion_mode": "TOMBSTONE_EVENT_ONLY"
+  },
+  "safety": {
+    "credential_access": false,
+    "permission_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
