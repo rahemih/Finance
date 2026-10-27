@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23H_DANGEROUS_ACTION_SECURITY_UX",
+  "task_id": "FIN-P23-WH-001",
+  "phase": "P23",
+  "workstream": "P23-H",
+  "claim_scope": "SECURITY_UX_VALIDATION_ONLY",
+  "upstream": {
+    "p03_security_validation": "docs/05-security/p03-security-validation.json",
+    "frontend_baseline": "docs/03-research/FRONTEND-EXCELLENCE-BASELINE.md"
+  },
+  "dangerous_action_types": [
+    "CREDENTIAL_CHANGE_REQUEST",
+    "PERMISSION_CHANGE_REQUEST",
+    "NETWORK_EXPOSURE_CHANGE_REQUEST",
+    "EXECUTION_AUTHORITY_CHANGE_REQUEST",
+    "LIVE_TRADING_ENABLE_REQUEST",
+    "AUTO_TRADING_ENABLE_REQUEST",
+    "P24_PRODUCTION_PROMOTION_REQUEST",
+    "CONSEQUENTIAL_SETTINGS_CHANGE_REQUEST"
+  ],
+  "confirmation": {
+    "required_fields": [
+      "action_id",
+      "action_type",
+      "target_resource",
+      "environment",
+      "requested_change_digest",
+      "expires_at",
+      "provenance_ref"
+    ],
+    "exact_action_resource_environment_digest_expiry_binding": true,
+    "explicit_confirmation_required": true,
+    "typed_target_confirmation_required": true,
+    "audit_friendly_text_required": true,
+    "server_side_session_validation_required": true,
+    "server_side_authorization_required": true,
+    "client_side_authorization_forbidden": true,
+    "expired_or_revoked_session_behavior": "DENY"
+  },
+  "permission_ux": {
+    "permission_aware_disabled_state_required": true,
+    "denied_action_hidden_as_success_forbidden": true,
+    "network_location_as_authorization_forbidden": true
+  },
+  "security_storage": {
+    "secrets_in_browser_storage": false,
+    "raw_secret_rendering": false,
+    "security_sensitive_state_client_only": false
+  },
+  "approval_boundaries": {
+    "grants_owner_authorization": false,
+    "grants_risk_approval": false,
+    "grants_security_approval": false,
+    "grants_execution_approval": false,
+    "grants_p24_production_approval": false,
+    "a5_risk_veto_bypass": false,
+    "a8_security_veto_bypass": false,
+    "emergency_access_can_enable_live": false
+  },
+  "safety": {
+    "credential_access": false,
+    "permission_mutation": false,
+    "network_mutation": false,
+    "execution_authority_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
