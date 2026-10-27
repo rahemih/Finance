@@ -108,6 +108,11 @@
       "satisfied": false
     },
     {
+      "id": "PRODUCTION_RISK_BUDGET_DEFINED",
+      "marker": "production monetary risk ceiling remains unset and must be provided by governed policy",
+      "satisfied": false
+    },
+    {
       "id": "FIRST_LIVE_OWNER_APPROVAL",
       "marker": "",
       "satisfied": false
