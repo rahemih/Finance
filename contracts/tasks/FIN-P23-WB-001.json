@@ -1,0 +1,97 @@
+{
+  "task_id": "FIN-P23-WB-001",
+  "phase": "P23",
+  "workstream": "WB",
+  "objective": "Define and validate the product-owned Persian-first RTL design system, terminology, semantic-state tokens and directionality rules before operational screen implementation.",
+  "scope": [
+    "Define canonical light and dark theme tokens",
+    "Define spacing, radii, elevation, breakpoint, density and typography scales",
+    "Define semantic state tokens for success, warning, critical, stale, degraded, no-trade, disconnected and pending",
+    "Require non-color semantic cues",
+    "Define Persian-first terminology with canonical English identifiers",
+    "Define RTL shell and LTR financial island policy",
+    "Define product-owned component family/variant registry",
+    "Bind the canonical Figma design-system source",
+    "Emit deterministic P23-B evidence"
+  ],
+  "out_of_scope": [
+    "Operational page implementation",
+    "Authentication implementation",
+    "Team collaboration",
+    "Notification delivery",
+    "Dangerous-action confirmation implementation",
+    "P24 production activation",
+    "Live/Auto trading"
+  ],
+  "dependencies": [
+    "P23-A CANONICAL_COMPLETE",
+    "LOCK-FIN-P23-WA-001-01 RELEASED",
+    "P23-B READY_NOT_STARTED",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": ["packages/**", "tests/**", "docs/**", "config/**", "contracts/tasks/**", ".github/workflows/governance.yml"],
+  "write_paths": [
+    "contracts/tasks/FIN-P23-WB-001.json",
+    "config/ux/design-system.json",
+    "packages/ux/design_system.py",
+    "tests/p23/test_design_system.py",
+    "scripts/ci/p23b_evidence.py",
+    "docs/18-ux/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": ["docs/01-roadmap/MASTER-ROADMAP-v2.0.md", "secrets/**", "credentials/**"],
+  "agents": ["A0", "A1", "A5", "A8", "A9", "A10"],
+  "plugins": ["GitHub", "Linear", "Figma"],
+  "skills": ["figma-use"],
+  "access": ["REPO_READ", "REPO_WRITE_GOVERNED", "ACTIONS_READ", "LINEAR_READ", "LINEAR_WRITE_GOVERNED", "FIGMA_WRITE_GOVERNED"],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright passes",
+    "All P23 design-system contract tests pass",
+    "Light/dark body text contrast is at least WCAG 2.2 AA 4.5:1",
+    "Every semantic state light/dark pair is at least 4.5:1",
+    "Every semantic state has label and icon cues",
+    "Spacing/radii/breakpoint scales are ordered and canonical",
+    "RTL shell and LTR financial island policies are exact",
+    "Terminology preserves canonical financial identifiers",
+    "P23-B evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "No credentials or secrets",
+    "No external-order authority",
+    "No runtime state mutation/remediation authority",
+    "No automatic P24/production activation",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ],
+  "evidence": [
+    "P23-A canonical closure",
+    "P23-B token/terminology policy",
+    "Canonical Figma design-system source",
+    "P23-B tests",
+    "Deterministic P23-B evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear continuation-register reconciliation"
+  ],
+  "rollback": "Revert P23-B design-system/config/tests/evidence/CI/state changes; P23-A remains canonical complete and P23-C remains unstarted.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P23-A CANONICAL_COMPLETE",
+    "P23-A lock RELEASED",
+    "P23-B READY_NOT_STARTED",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "P23-B design-system contract passes",
+    "Canonical Figma design-system source is linked",
+    "P23-B CANONICAL_COMPLETE",
+    "Strict CI and deterministic evidence pass",
+    "P23-B closure documented",
+    "P23-C becomes READY_NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}

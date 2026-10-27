@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23B_DESIGN_SYSTEM",
+  "task_id": "FIN-P23-WB-001",
+  "locale": "fa-IR",
+  "shell_direction": "RTL",
+  "financial_island_direction": "LTR",
+  "fonts": {
+    "persian_ui": "Noto Sans Arabic",
+    "latin_financial": "Noto Sans"
+  },
+  "typography_px": [12, 14, 16, 18, 20, 24, 30, 36],
+  "spacing_px": [4, 8, 12, 16, 24, 32, 48, 64],
+  "radii_px": [4, 8, 12, 16, 999],
+  "elevation_levels": [0, 1, 2, 3],
+  "breakpoints_px": [640, 768, 1024, 1280, 1536],
+  "density_modes": {
+    "monitoring": {"table_row_px": 36, "card_padding_px": 12},
+    "analysis": {"table_row_px": 44, "card_padding_px": 20}
+  },
+  "themes": {
+    "light": {
+      "background": "#F7F8FA",
+      "surface": "#FFFFFF",
+      "text": "#111827",
+      "muted_text": "#4B5563",
+      "border": "#D1D5DB",
+      "focus": "#1D4ED8"
+    },
+    "dark": {
+      "background": "#0B0F14",
+      "surface": "#111827",
+      "text": "#F9FAFB",
+      "muted_text": "#CBD5E1",
+      "border": "#374151",
+      "focus": "#93C5FD"
+    }
+  },
+  "semantic_states": {
+    "success": {
+      "label_fa": "موفق",
+      "icon": "circle-check",
+      "light": {"foreground": "#166534", "background": "#DCFCE7"},
+      "dark": {"foreground": "#F0FDF4", "background": "#14532D"}
+    },
+    "warning": {
+      "label_fa": "هشدار",
+      "icon": "triangle-alert",
+      "light": {"foreground": "#92400E", "background": "#FEF3C7"},
+      "dark": {"foreground": "#FFFBEB", "background": "#78350F"}
+    },
+    "critical": {
+      "label_fa": "بحرانی",
+      "icon": "octagon-alert",
+      "light": {"foreground": "#991B1B", "background": "#FEE2E2"},
+      "dark": {"foreground": "#FEF2F2", "background": "#7F1D1D"}
+    },
+    "stale": {
+      "label_fa": "کهنه",
+      "icon": "clock-alert",
+      "light": {"foreground": "#7C2D12", "background": "#FFEDD5"},
+      "dark": {"foreground": "#FFF7ED", "background": "#7C2D12"}
+    },
+    "degraded": {
+      "label_fa": "کاهش‌یافته",
+      "icon": "activity",
+      "light": {"foreground": "#854D0E", "background": "#FEF9C3"},
+      "dark": {"foreground": "#FEFCE8", "background": "#713F12"}
+    },
+    "no_trade": {
+      "label_fa": "عدم معامله",
+      "icon": "ban",
+      "light": {"foreground": "#334155", "background": "#E2E8F0"},
+      "dark": {"foreground": "#F8FAFC", "background": "#334155"}
+    },
+    "disconnected": {
+      "label_fa": "قطع ارتباط",
+      "icon": "unplug",
+      "light": {"foreground": "#7F1D1D", "background": "#FECACA"},
+      "dark": {"foreground": "#FEF2F2", "background": "#7F1D1D"}
+    },
+    "pending": {
+      "label_fa": "در انتظار",
+      "icon": "loader-circle",
+      "light": {"foreground": "#3730A3", "background": "#E0E7FF"},
+      "dark": {"foreground": "#EEF2FF", "background": "#312E81"}
+    }
+  },
+  "directionality": {
+    "rtl_contexts": ["application_shell", "persian_narrative", "forms", "navigation"],
+    "ltr_islands": ["ticker", "ohlc", "price", "quantity", "percentage", "order_id", "trade_id", "hash", "timestamp_iso", "version", "ip_address"],
+    "ltr_island_isolation_required": true
+  },
+  "digit_policy": {
+    "persian_digits": ["narrative_counters", "localized_calendar_labels"],
+    "latin_digits": ["financial_values", "identifiers", "prices", "quantities", "percentages", "iso_timestamps", "versions"]
+  },
+  "terminology": [
+    {"id":"dashboard","canonical":"Dashboard","fa":"داشبورد"},
+    {"id":"market","canonical":"Market","fa":"بازار"},
+    {"id":"opportunity","canonical":"Opportunity","fa":"فرصت"},
+    {"id":"trade","canonical":"Trade","fa":"معامله"},
+    {"id":"portfolio","canonical":"Portfolio","fa":"پرتفوی"},
+    {"id":"demo","canonical":"Demo","fa":"دمو"},
+    {"id":"research","canonical":"Research","fa":"پژوهش"},
+    {"id":"report","canonical":"Report","fa":"گزارش"},
+    {"id":"system","canonical":"System","fa":"سیستم"},
+    {"id":"settings","canonical":"Settings","fa":"تنظیمات"},
+    {"id":"glossary","canonical":"Glossary","fa":"واژه‌نامه"},
+    {"id":"long","canonical":"LONG","fa":"خرید (LONG)"},
+    {"id":"short","canonical":"SHORT","fa":"فروش (SHORT)"},
+    {"id":"wait","canonical":"WAIT","fa":"انتظار (WAIT)"},
+    {"id":"no_trade","canonical":"NO_TRADE","fa":"عدم معامله (NO_TRADE)"}
+  ],
+  "component_families": {
+    "NexusAppShell": ["default", "monitoring", "analysis"],
+    "MetricCard": ["default", "positive", "negative", "stale"],
+    "RiskBadge": ["success", "warning", "critical", "degraded"],
+    "MarketStatusBadge": ["connected", "stale", "degraded", "disconnected"],
+    "EmptyState": ["default", "filtered"],
+    "DegradedState": ["partial", "provider", "system"],
+    "StaleDataBanner": ["warning", "critical"]
+  },
+  "accessibility": {
+    "minimum_normal_text_contrast": 4.5,
+    "minimum_large_text_contrast": 3.0,
+    "color_only_state_forbidden": true,
+    "visible_focus_required": true,
+    "reduced_motion_required": true,
+    "minimum_touch_target_px": 44
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23B_WORKSTREAM_STATE",
+  "phase": "P23",
+  "workstream": "P23-B",
+  "task_id": "FIN-P23-WB-001",
+  "state": "IN_PROGRESS",
+  "lock": "LOCK-FIN-P23-WB-001-01",
+  "lock_state": "ACQUIRED",
+  "dependency": {
+    "p23_a": "CANONICAL_COMPLETE",
+    "p23_a_lock": "RELEASED"
+  },
+  "implementation": {
+    "policy": "config/ux/design-system.json",
+    "module": "packages/ux/design_system.py",
+    "tests": "tests/p23/test_design_system.py",
+    "evidence": "scripts/ci/p23b_evidence.py",
+    "figma_canonical_source": "https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=7-109",
+    "figma_mode_strategy": "SPLIT_SINGLE_MODE_COLLECTIONS",
+    "figma_mode_limit_per_collection": 1,
+    "figma_collection_count": 5,
+    "figma_variable_count": 101
+  },
+  "next": {
+    "p23_c": "NOT_STARTED",
+    "p23_d_to_p23_i": "NOT_STARTED",
+    "p24": "NOT_STARTED"
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "production_activation": false,
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
