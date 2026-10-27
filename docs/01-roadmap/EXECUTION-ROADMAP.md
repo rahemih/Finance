@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A CANONICAL_COMPLETE / P23-B IN_PROGRESS / FIN-P23-WB-001 / LOCK-FIN-P23-WB-001-01 ACQUIRED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-B CANONICAL_COMPLETE / P23-C READY_NOT_STARTED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -431,8 +431,8 @@ Demo remains permanently enabled as a learning environment after Live exists.
 ### P23 — UX / Team / Notifications
 
 1. **P23-A IA and workflows** — CANONICAL_COMPLETE / FIN-P23-WA-001 / RELEASED
-2. **P23-B RTL design system** — IN_PROGRESS / FIN-P23-WB-001 / LOCK-FIN-P23-WB-001-01
-3. **P23-C Operational screens**
+2. **P23-B RTL design system** — CANONICAL_COMPLETE / FIN-P23-WB-001 / RELEASED
+3. **P23-C Operational screens** — READY_NOT_STARTED
 4. **P23-D Learning Mode and glossary**
 5. **P23-E Team comments/mentions/assignments/approvals**
 6. **P23-F Notification engine**
@@ -2868,3 +2868,22 @@ Scope:
 Figma mode limitation is represented safely as split single-mode Light/Dark collections without changing the GitHub product contract.
 
 P23-C..P23-I and P24 remain NOT_STARTED. LIVE_TRADING / AUTO_TRADING remain DISABLED.
+
+
+### P23-B canonical closure — 2026-10-27
+- FIN-P23-WB-001 = CANONICAL_COMPLETE;
+- LOCK-FIN-P23-WB-001-01 = RELEASED;
+- PR #473 = MERGED at `260cdfaa37c3ed535094d9ee7b4da863a81cb347`;
+- implementation Governance `40470470634` = SUCCESS;
+- implementation artifact `12718358235` / `sha256:8edfc5201b38c21d7c3210160305c0efeec07b4045513114f57e25bc7a548a18`;
+- design system ID = `e9926ae77d3484c795c60d24f61b046a08e99fc39eb00fc7c6e0e9d4edc81273`;
+- evidence ID = `72e469c231014a047631c48243d11210f3a07f6d97214700c19df86a4217a658`;
+- deterministic evidence SHA256 = `44e3e61d148b49e16c4390534f02f8470a7b9ae48fcceca6159d22ce0e2ded3e`;
+- post-merge Governance `40470724850` = SUCCESS;
+- post-merge artifact `12718313766` / `sha256:cc7533aba0cd641279b11419e626ff6881cad1ef0995e435348eab00c2ac55ce`;
+- post-merge Branch Hygiene `40470724880` = SUCCESS;
+- canonical Figma design-system source remains linked;
+- P23-C = READY_NOT_STARTED;
+- P23-D..P23-I = NOT_STARTED;
+- P24 = NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
