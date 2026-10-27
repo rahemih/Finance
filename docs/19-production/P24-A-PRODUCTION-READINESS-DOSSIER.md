@@ -97,4 +97,13 @@ Implementation PR #489 was merged before the stage-boundary audit identified a c
 
 Before canonical closure, the blocker model was audited against the frozen P24 order and G13 Gate Matrix. The original flat list incorrectly made later P24-G/G13/live-execution evidence prerequisites for P24-B, which would create circular progression. The closure PR repairs only lifecycle classification and adds stronger fail-closed evidence requirements. No safety rule is relaxed.
 
-Final repaired dossier/evidence IDs are intentionally **pending closure CI** and must not be asserted until PR #490 Governance passes.
+Repaired stage-boundary evidence is now verified on PR #490:
+
+- Governance = `40518987324` / SUCCESS;
+- artifact = `12740856181` / `sha256:9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04`;
+- repaired dossier ID = `53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5`;
+- repaired evidence ID = `4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d`;
+- repaired deterministic evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
+- repaired tests/p24 = 24/24 PASS.
+
+A final documentation-only CI pass is still required after recording these immutable evidence identifiers before PR #490 may merge.
