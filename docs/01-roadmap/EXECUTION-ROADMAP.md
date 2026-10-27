@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-H CANONICAL_COMPLETE / P23-I READY_NOT_STARTED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-H CANONICAL_COMPLETE / P23-I IN_PROGRESS / FIN-P23-WI-001 / LOCK-FIN-P23-WI-001-01 ACQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -438,7 +438,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 6. **P23-F Notification engine** — CANONICAL_COMPLETE / FIN-P23-WF-001 / RELEASED
 7. **P23-G Accessibility/responsive/performance** — CANONICAL_COMPLETE / FIN-P23-WG-001 / RELEASED
 8. **P23-H Dangerous-action/security UX** — CANONICAL_COMPLETE / FIN-P23-WH-001 / RELEASED
-9. **P23-I E2E validation** — READY_NOT_STARTED
+9. **P23-I E2E validation** — IN_PROGRESS / FIN-P23-WI-001 / LOCK-FIN-P23-WI-001-01
 
 ### P24 — Controlled Production
 
@@ -3109,3 +3109,21 @@ Scope:
 - P23-I = READY_NOT_STARTED;
 - P24 = NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+### P23-I activation — 2026-10-27
+Task: `FIN-P23-WI-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P23-WI-001-01` / ACQUIRED  
+Branch: `feat/FIN-P23-WI-001-e2e-validation`  
+Claim scope: `REFERENCE_UX_E2E_VALIDATION`
+
+Scope:
+- exact ordered P23-A..P23-H manifest validation;
+- all upstream states CANONICAL_COMPLETE and locks RELEASED;
+- implementation/post-merge Governance, artifact and Branch Hygiene lineage required;
+- five deterministic cross-surface reference journeys;
+- authority/safety drift fails closed;
+- browser/production/RUM certification remains false;
+- P24 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- LIVE_TRADING / AUTO_TRADING remain DISABLED.

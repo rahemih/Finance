@@ -311,6 +311,7 @@ This catalog is the canonical index of governed work.
 | FIN-P23-WF-001 | P23 | Notification Engine | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WF-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P23-WG-001 | P23 | Accessibility / Responsive / Performance | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WG-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
 | FIN-P23-WH-001 | P23 | Dangerous-Action / Security UX | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WH-001.json` | RELEASED / LINEAR_CONTINUATION_REGISTER |
+| FIN-P23-WI-001 | P23 | E2E Validation | CRITICAL | IN_PROGRESS | `contracts/tasks/FIN-P23-WI-001.json` | LOCK-FIN-P23-WI-001-01 / ACQUIRED / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |

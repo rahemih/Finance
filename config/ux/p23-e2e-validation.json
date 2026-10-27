@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23I_E2E_VALIDATION",
+  "task_id": "FIN-P23-WI-001",
+  "phase": "P23",
+  "workstream": "P23-I",
+  "claim_scope": "REFERENCE_UX_E2E_VALIDATION",
+  "upstream_manifests": [
+    {
+      "workstream": "P23-A",
+      "task_id": "FIN-P23-WA-001",
+      "path": "docs/18-ux/p23-a-information-architecture.json"
+    },
+    {
+      "workstream": "P23-B",
+      "task_id": "FIN-P23-WB-001",
+      "path": "docs/18-ux/p23-b-design-system.json"
+    },
+    {
+      "workstream": "P23-C",
+      "task_id": "FIN-P23-WC-001",
+      "path": "config/ux/operational-screens.json"
+    },
+    {
+      "workstream": "P23-D",
+      "task_id": "FIN-P23-WD-001",
+      "path": "config/ux/learning-mode-glossary.json"
+    },
+    {
+      "workstream": "P23-E",
+      "task_id": "FIN-P23-WE-001",
+      "path": "config/ux/team-collaboration.json"
+    },
+    {
+      "workstream": "P23-F",
+      "task_id": "FIN-P23-WF-001",
+      "path": "docs/18-ux/p23-f-notification-engine.json"
+    },
+    {
+      "workstream": "P23-G",
+      "task_id": "FIN-P23-WG-001",
+      "path": "docs/18-ux/p23-g-accessibility-responsive-performance.json"
+    },
+    {
+      "workstream": "P23-H",
+      "task_id": "FIN-P23-WH-001",
+      "path": "docs/18-ux/p23-h-dangerous-action-security-ux.json"
+    }
+  ],
+  "canonical_information_architecture": "config/ux/information-architecture.json",
+  "reference_journeys": [
+    {
+      "id": "MARKET_DECISION_REVIEW",
+      "surfaces": [
+        "dashboard",
+        "markets",
+        "opportunities",
+        "reports"
+      ]
+    },
+    {
+      "id": "DEMO_LEARNING_REVIEW",
+      "surfaces": [
+        "dashboard",
+        "demo",
+        "research",
+        "reports"
+      ]
+    },
+    {
+      "id": "OPERATIONS_HEALTH_REVIEW",
+      "surfaces": [
+        "dashboard",
+        "system",
+        "reports"
+      ]
+    },
+    {
+      "id": "EXPLANATION_GLOSSARY_REVIEW",
+      "surfaces": [
+        "opportunities",
+        "glossary",
+        "reports"
+      ]
+    },
+    {
+      "id": "SECURITY_SETTINGS_REVIEW",
+      "surfaces": [
+        "settings",
+        "system",
+        "reports"
+      ]
+    }
+  ],
+  "lineage_requirements": {
+    "implementation_pr_required": true,
+    "implementation_governance_success_required": true,
+    "implementation_artifact_sha256_required": true,
+    "post_merge_governance_success_required": true,
+    "post_merge_artifact_sha256_required": true,
+    "post_merge_branch_hygiene_success_required": true
+  },
+  "certification_boundaries": {
+    "browser_runtime_certification": false,
+    "production_readiness": false,
+    "real_user_monitoring_certification": false,
+    "production_performance_certification": false,
+    "p24_activation": false
+  },
+  "safety": {
+    "credential_access": false,
+    "permission_mutation": false,
+    "network_mutation": false,
+    "execution_authority_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
