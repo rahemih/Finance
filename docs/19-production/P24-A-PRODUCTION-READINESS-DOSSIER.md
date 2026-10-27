@@ -26,10 +26,19 @@ Current blockers are intentionally explicit:
 5. Production broker certification is false.
 6. Live execution validation is false.
 7. Production readiness certification is false.
-8. Production monetary risk budget/ceiling is not yet defined by governed policy.
-9. Explicit first-Live Owner approval has not been granted.
-10. Live kill-switch/emergency drill has not been completed.
-11. G13 Owner Live Approval has not been granted.
+8. G0–G12 freshness has not yet been revalidated for the environment transition to Live.
+9. Production credential/access/security posture has not yet been verified.
+10. Production monetary risk budget/ceiling is not yet defined by governed policy.
+11. Explicit first-Live Owner approval has not been granted.
+12. Live kill-switch/emergency drill has not been completed.
+13. G13 Owner Live Approval has not been granted.
+
+## Canonical staged rollout plan
+
+The governed autonomy/capital sequence remains:
+`Manual Live → Semi-Auto → Micro-Capital → Canary → Controlled Auto`.
+
+Every escalation requires fresh evidence; approval is not inherited from an earlier stage.
 
 ## Important distinction
 
