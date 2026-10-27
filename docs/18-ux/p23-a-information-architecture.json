@@ -18,7 +18,7 @@
     "module": "packages/ux/information_architecture.py",
     "tests": "tests/p23/test_information_architecture.py",
     "evidence": "scripts/ci/p23a_evidence.py",
-    "figma_canonical_source": "PENDING_LINK"
+    "figma_canonical_source": "https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=1-2"
   },
   "next": {
     "p23_b": "NOT_STARTED",
