@@ -108,6 +108,16 @@
       "satisfied": false
     },
     {
+      "id": "UPSTREAM_GATE_FRESHNESS_FOR_LIVE",
+      "marker": "",
+      "satisfied": false
+    },
+    {
+      "id": "PRODUCTION_SECURITY_POSTURE_VERIFIED",
+      "marker": "",
+      "satisfied": false
+    },
+    {
       "id": "PRODUCTION_RISK_BUDGET_DEFINED",
       "marker": "production monetary risk ceiling remains unset and must be provided by governed policy",
       "satisfied": false
