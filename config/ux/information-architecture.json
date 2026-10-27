@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23A_INFORMATION_ARCHITECTURE",
+  "task_id": "FIN-P23-WA-001",
+  "phase": "P23",
+  "workstream": "P23-A",
+  "locale": "fa-IR",
+  "direction": "RTL",
+  "financial_identifier_direction": "LTR",
+  "surfaces": [
+    {"id":"dashboard","route":"/dashboard","label_fa":"داشبورد","critical":true},
+    {"id":"markets","route":"/markets","label_fa":"بازارها","critical":true},
+    {"id":"opportunities","route":"/opportunities","label_fa":"فرصت‌ها","critical":true},
+    {"id":"trades","route":"/trades","label_fa":"معاملات","critical":true},
+    {"id":"portfolio","route":"/portfolio","label_fa":"پرتفوی","critical":true},
+    {"id":"demo","route":"/demo","label_fa":"دمو","critical":true},
+    {"id":"research","route":"/research","label_fa":"پژوهش","critical":false},
+    {"id":"reports","route":"/reports","label_fa":"گزارش‌ها","critical":false},
+    {"id":"system","route":"/system","label_fa":"سیستم","critical":true},
+    {"id":"settings","route":"/settings","label_fa":"تنظیمات","critical":true},
+    {"id":"glossary","route":"/glossary","label_fa":"واژه‌نامه","critical":false}
+  ],
+  "critical_surface_states": ["LOADING","EMPTY","ERROR","OFFLINE","STALE","DEGRADED"],
+  "workflows": [
+    {"id":"monitor_market","surfaces":["dashboard","markets","opportunities"],"authority":"NAVIGATION_ONLY"},
+    {"id":"evaluate_opportunity","surfaces":["opportunities","markets","research","reports"],"authority":"NAVIGATION_ONLY"},
+    {"id":"review_trade_and_portfolio","surfaces":["trades","portfolio","reports"],"authority":"NAVIGATION_ONLY"},
+    {"id":"monitor_demo_learning","surfaces":["demo","reports","research"],"authority":"NAVIGATION_ONLY"},
+    {"id":"investigate_system_state","surfaces":["system","reports"],"authority":"NAVIGATION_ONLY"},
+    {"id":"learn_explanation","surfaces":["dashboard","glossary","research"],"authority":"NAVIGATION_ONLY"},
+    {"id":"review_settings_and_security_context","surfaces":["settings","system"],"authority":"NAVIGATION_ONLY"}
+  ],
+  "provenance_requirements": {
+    "sensitive_analytics_show_source": true,
+    "sensitive_analytics_show_timestamp": true,
+    "realtime_surfaces_show_freshness": true,
+    "system_state_visible_on_critical_surfaces": true
+  },
+  "safety": {
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "credential_access": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}

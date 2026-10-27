@@ -87,6 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A IN_PROGRESS / FIN-P23-WA-001 / LOCK-FIN-P23-WA-001-01 ACQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -429,7 +430,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 
 ### P23 — UX / Team / Notifications
 
-1. **P23-A IA and workflows**
+1. **P23-A IA and workflows** — IN_PROGRESS / FIN-P23-WA-001 / LOCK-FIN-P23-WA-001-01
 2. **P23-B RTL design system**
 3. **P23-C Operational screens**
 4. **P23-D Learning Mode and glossary**
@@ -2800,3 +2801,38 @@ All P19 workstreams A..H are CANONICAL_COMPLETE and all P19 locks are RELEASED.
 G10 scope is SHADOW_REFERENCE_VALIDATION only.  
 Live execution/broker certification/production readiness remain false.  
 P20 remains NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED. Live/Auto disabled.
+
+
+## P23 execution activation — 2026-10-27
+
+Owner phase authorization: GRANTED / CONSUMED.
+
+### P23-A — Information Architecture / User Flows
+Task: `FIN-P23-WA-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P23-WA-001-01` / ACQUIRED  
+Branch: `feat/FIN-P23-WA-001-information-architecture-workflows`
+
+Entry conditions:
+- P22 = CANONICAL_COMPLETE;
+- P22-A..P22-J = CANONICAL_COMPLETE;
+- all P22 locks = RELEASED;
+- G12_OPERATIONS_VALIDATED = PASS / REFERENCE_OPERATIONS_VALIDATION;
+- no conflicting governed lock.
+
+Scope:
+- canonical Dashboard/Markets/Opportunities/Trades/Portfolio/Demo/Research/Reports/System/Settings/Glossary surface registry;
+- deterministic navigation-only user flows;
+- Persian-first RTL IA with LTR financial identifiers;
+- critical fail-visible UX states;
+- source/timestamp/freshness/system-state provenance requirements;
+- canonical Figma UX-intent source.
+
+Safety:
+- no external-order authority;
+- no runtime mutation/remediation;
+- no credentials;
+- no production/P24 activation;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+P23-B..P23-I remain NOT_STARTED until P23-A canonical closure.

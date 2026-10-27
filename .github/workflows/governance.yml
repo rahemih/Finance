@@ -1583,6 +1583,9 @@ jobs:
       - name: P22 operations observability contract tests
         run: python -m unittest discover -s tests/p22 -p 'test_*.py' -v
 
+      - name: P23 information architecture tests
+        run: python -m unittest discover -s tests/p23 -p 'test_*.py' -v
+
       - name: P22-A deterministic metrics logs traces evidence twice
         shell: bash
         run: |
@@ -1672,6 +1675,15 @@ jobs:
           PYTHONPATH=. python scripts/ci/p22j_evidence.py --output build/p22j-b.json
           cmp build/p22j-a.json build/p22j-b.json
           sha256sum build/p22j-a.json
+
+      - name: P23-A deterministic information architecture evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p23a_evidence.py --output build/p23a-a.json
+          PYTHONPATH=. python scripts/ci/p23a_evidence.py --output build/p23a-b.json
+          cmp build/p23a-a.json build/p23a-b.json
+          sha256sum build/p23a-a.json
 
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
