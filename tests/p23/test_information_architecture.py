@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from typing import cast
 
 from packages.ux.information_architecture import (
     EXPECTED_CRITICAL_STATES,
