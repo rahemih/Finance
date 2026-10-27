@@ -4,9 +4,9 @@
   "phase": "P23",
   "workstream": "P23-B",
   "task_id": "FIN-P23-WB-001",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P23-WB-001-01",
-  "lock_state": "ACQUIRED",
+  "lock_state": "RELEASED",
   "dependency": {
     "p23_a": "CANONICAL_COMPLETE",
     "p23_a_lock": "RELEASED"
@@ -23,7 +23,7 @@
     "figma_variable_count": 101
   },
   "next": {
-    "p23_c": "NOT_STARTED",
+    "p23_c": "READY_NOT_STARTED",
     "p23_d_to_p23_i": "NOT_STARTED",
     "p24": "NOT_STARTED"
   },
@@ -33,5 +33,20 @@
     "production_activation": false,
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
+  },
+  "closure": {
+    "implementation_pr": 473,
+    "implementation_head": "fc4cb6480df9099bbdefc44cf34cf31e6c609a6c",
+    "implementation_merge": "260cdfaa37c3ed535094d9ee7b4da863a81cb347",
+    "implementation_governance_run": 40470470634,
+    "implementation_artifact_id": 12718358235,
+    "implementation_artifact_sha256": "8edfc5201b38c21d7c3210160305c0efeec07b4045513114f57e25bc7a548a18",
+    "design_system_id": "e9926ae77d3484c795c60d24f61b046a08e99fc39eb00fc7c6e0e9d4edc81273",
+    "evidence_id": "72e469c231014a047631c48243d11210f3a07f6d97214700c19df86a4217a658",
+    "evidence_sha256": "44e3e61d148b49e16c4390534f02f8470a7b9ae48fcceca6159d22ce0e2ded3e",
+    "post_merge_governance_run": 40470724850,
+    "post_merge_artifact_id": 12718313766,
+    "post_merge_artifact_sha256": "cc7533aba0cd641279b11419e626ff6881cad1ef0995e435348eab00c2ac55ce",
+    "post_merge_branch_hygiene_run": 40470724880
   }
 }
