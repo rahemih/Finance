@@ -87,7 +87,7 @@ Phase transition:
 - P20 — Execution & Order Management: CANONICAL_COMPLETE / P20-A..P20-I CANONICAL_COMPLETE / P20-H-R01 CANONICAL_COMPLETE / G11_EXECUTION_VALIDATED PASS
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
-- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-G CANONICAL_COMPLETE / P23-H READY_NOT_STARTED
+- P23 — UX / Team / Notifications: AUTHORIZED / ACTIVE / P23-A..P23-G CANONICAL_COMPLETE / P23-H IN_PROGRESS / FIN-P23-WH-001 / LOCK-FIN-P23-WH-001-01 ACQUIRED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -437,7 +437,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 5. **P23-E Team comments/mentions/assignments/approvals** — CANONICAL_COMPLETE / FIN-P23-WE-001 / RELEASED
 6. **P23-F Notification engine** — CANONICAL_COMPLETE / FIN-P23-WF-001 / RELEASED
 7. **P23-G Accessibility/responsive/performance** — CANONICAL_COMPLETE / FIN-P23-WG-001 / RELEASED
-8. **P23-H Dangerous-action/security UX** — READY_NOT_STARTED
+8. **P23-H Dangerous-action/security UX** — IN_PROGRESS / FIN-P23-WH-001 / LOCK-FIN-P23-WH-001-01
 9. **P23-I E2E validation**
 
 ### P24 — Controlled Production
@@ -3074,3 +3074,21 @@ Scope:
 - P23-I = NOT_STARTED;
 - P24 = NOT_STARTED;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+### P23-H activation — 2026-10-27
+Task: `FIN-P23-WH-001`  
+State: IN_PROGRESS  
+Lock: `LOCK-FIN-P23-WH-001-01` / ACQUIRED  
+Branch: `feat/FIN-P23-WH-001-dangerous-action-security-ux`  
+Claim scope: `SECURITY_UX_VALIDATION_ONLY`
+
+Scope:
+- exact dangerous-action request taxonomy;
+- confirmation bound to action/resource/environment/digest/expiry;
+- server-side session/authorization required;
+- client-side authorization forbidden;
+- no secrets in browser storage/rendering;
+- A5 Risk and A8 Security vetoes non-bypassable;
+- P23-I and P24 remain NOT_STARTED;
+- LIVE_TRADING / AUTO_TRADING remain DISABLED.
