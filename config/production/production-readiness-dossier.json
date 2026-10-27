@@ -74,66 +74,79 @@
   "production_prerequisites": [
     {
       "id": "OWNER_JURISDICTION_RESOLVED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Owner jurisdiction: UNSET_HUMAN_GATE",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_PROVIDER_SELECTED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Production provider: NOT_SELECTED",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_VENUE_SELECTED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Production broker/exchange: NOT_SELECTED",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_CREDENTIALS_READY",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Accounts/KYC/credentials/funding/orders: NONE",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_BROKER_CERTIFIED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "production broker certification = false",
       "satisfied": false
     },
     {
-      "id": "LIVE_EXECUTION_VALIDATED",
-      "marker": "Live execution validated = false",
-      "satisfied": false
-    },
-    {
-      "id": "PRODUCTION_READINESS_CERTIFIED",
-      "marker": "production readiness = false",
-      "satisfied": false
-    },
-    {
       "id": "UPSTREAM_GATE_FRESHNESS_FOR_LIVE",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_SECURITY_POSTURE_VERIFIED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_RISK_BUDGET_DEFINED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "production monetary risk ceiling remains unset and must be provided by governed policy",
       "satisfied": false
     },
     {
-      "id": "FIRST_LIVE_OWNER_APPROVAL",
+      "id": "PRE_LIVE_KILL_SWITCH_VALIDATED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
-      "id": "LIVE_KILL_SWITCH_DRILL",
+      "id": "FIRST_LIVE_OWNER_APPROVAL",
+      "stage": "FIRST_LIVE_OWNER_GATE",
+      "marker": "",
+      "satisfied": false
+    },
+    {
+      "id": "LIVE_EXECUTION_VALIDATED",
+      "stage": "P24_EXIT",
+      "marker": "Live execution validated = false",
+      "satisfied": false
+    },
+    {
+      "id": "P24_G_KILL_SWITCH_DRILLS_COMPLETE",
+      "stage": "P24_EXIT",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "G13_OWNER_LIVE_APPROVAL",
+      "stage": "P24_EXIT",
       "marker": "",
       "satisfied": false
     }
@@ -155,7 +168,7 @@
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
   },
-  "closure": {
+  "implementation_baseline": {
     "implementation_pr": 489,
     "implementation_head": "7c48a3ce189e65d380cf11cdb27cb3092e052b1a",
     "implementation_merge": "e7c11a6885eb711a8613a7be91166ff23236c214",
@@ -170,5 +183,13 @@
     "post_merge_artifact_id": 12738154523,
     "post_merge_artifact_sha256": "196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a",
     "post_merge_branch_hygiene_run": 40514857847
+  },
+  "stage_boundary_repair": {
+    "status": "PENDING_CLOSURE_CI",
+    "reason": "Removed circular dependency between P24-B Manual Live and later P24-G/G13 evidence.",
+    "pre_first_live_blockers": 9,
+    "first_live_owner_gate_pending": true,
+    "p24_exit_blockers": 3,
+    "safety_relaxed": false
   }
 }
