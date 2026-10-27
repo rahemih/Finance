@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P23F_WORKSTREAM_STATE",
+  "phase": "P23",
+  "workstream": "P23-F",
+  "task_id": "FIN-P23-WF-001",
+  "state": "IN_PROGRESS",
+  "lock": "LOCK-FIN-P23-WF-001-01",
+  "lock_state": "ACQUIRED",
+  "dependency": {
+    "p23_a_to_p23_e": "CANONICAL_COMPLETE",
+    "p23_e_lock": "RELEASED"
+  },
+  "implementation": {
+    "policy": "config/ux/notification-engine.json",
+    "module": "packages/ux/notification_engine.py",
+    "tests": "tests/p23/test_notification_engine.py",
+    "evidence": "scripts/ci/p23f_evidence.py"
+  },
+  "next": {
+    "p23_g": "NOT_STARTED",
+    "p23_h_to_p23_i": "NOT_STARTED",
+    "p24": "NOT_STARTED"
+  },
+  "safety": {
+    "permission_mutation": false,
+    "external_order_authority": false,
+    "runtime_state_mutation": false,
+    "remediation_authority": false,
+    "production_activation": false,
+    "p24_state": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}
