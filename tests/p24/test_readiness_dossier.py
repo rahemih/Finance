@@ -96,6 +96,14 @@ class ProductionReadinessDossierTests(unittest.TestCase):
         dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
         self.assertIn("LIVE_EXECUTION_VALIDATED", dossier.blocker_ids)
 
+    def test_live_gate_freshness_remains_a_blocker(self) -> None:
+        dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
+        self.assertIn("UPSTREAM_GATE_FRESHNESS_FOR_LIVE", dossier.blocker_ids)
+
+    def test_production_security_posture_remains_a_blocker(self) -> None:
+        dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
+        self.assertIn("PRODUCTION_SECURITY_POSTURE_VERIFIED", dossier.blocker_ids)
+
     def test_production_risk_budget_remains_a_blocker(self) -> None:
         dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
         self.assertIn("PRODUCTION_RISK_BUDGET_DEFINED", dossier.blocker_ids)
