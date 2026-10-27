@@ -1730,6 +1730,15 @@ jobs:
           cmp build/p23f-a.json build/p23f-b.json
           sha256sum build/p23f-a.json
 
+      - name: P23-G deterministic accessibility responsive performance evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p23g_evidence.py --output build/p23g-a.json
+          PYTHONPATH=. python scripts/ci/p23g_evidence.py --output build/p23g-b.json
+          cmp build/p23g-a.json build/p23g-b.json
+          sha256sum build/p23g-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
