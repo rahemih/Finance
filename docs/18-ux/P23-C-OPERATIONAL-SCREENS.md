@@ -1,8 +1,8 @@
 # P23-C — Operational Screens
 
 Task: `FIN-P23-WC-001`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P23-WC-001-01` / ACQUIRED
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P23-WC-001-01` / RELEASED
 
 ## Purpose
 
@@ -77,3 +77,20 @@ P23-C may display status or navigation references to these concepts but may not 
 - P24: NOT_STARTED;
 - LIVE_TRADING: DISABLED;
 - AUTO_TRADING: DISABLED.
+
+
+## Canonical closure evidence
+
+- implementation PR #475 = MERGED;
+- implementation head = `d41327c47b431007961f52236956c688a55cbed3`;
+- implementation merge = `8984fcba1dcb082bccb8c65fc872dc0d33852fc6`;
+- Governance `40475247945` = SUCCESS;
+- artifact `12719724869` / `sha256:1a7ec918b022a942ae901891f463fd71562c2264393a5004b15fcbc2613b002d`;
+- operational screens ID = `0bcbd5d619b8978751b3a66a3541ac997a277a8c21c3a2a5c6540e0bbdd7c068`;
+- evidence ID = `6cdf86b0790f93c8dbc52250eadc149a47055930292d2669dba629965acff9ab`;
+- deterministic evidence SHA256 = `3ae9774bc8b0827c81ef8a858fb107ff666e1f1be8809784a82036b4b23c814e`;
+- post-merge Governance `40475574800` = SUCCESS;
+- post-merge artifact `12720886104` / `sha256:c706095a89d2e96592a65c05281dfceb62e9fa0d7444ded5cd07f67aaf02a3f0`;
+- Branch Hygiene `40475574681` = SUCCESS.
+
+P23-D = READY_NOT_STARTED. P24 = NOT_STARTED.
