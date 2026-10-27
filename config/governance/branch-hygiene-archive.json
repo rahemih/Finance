@@ -19,6 +19,7 @@
     {"name":"docs/P18-continuous-demo-learning-phase-closure","sha":"02dcb7a7f236fe76559197fcac2b018c0cae9c2b","reason":"superseded P18 closure branch retained for audit lineage"},
     {"name":"feat/FIN-P18-WE-001-controlled-retraining","sha":"2bf6bcfe0ef2e789423fb48a4ea47401ab7b020f","reason":"closed duplicate P18-E branch with unique commits; preserved rather than force-deleted"},
     {"name":"fix/FIN-P01-WG-001-R01-canonical-close","sha":"c3f904310cca17b98e4e6983c1ffe349f2ae6f89","reason":"historical P01 repair branch with unique commits"},
+    {"name":"fix/FIN-P04-WF-001-R01-branch-hygiene-retirement","sha":"ae10c32ebb1b210b378d3f594096a22d3b1b84c2","reason":"historical P04 branch-hygiene retirement attempt with unique unmerged governance artifacts; preserved for audit lineage and superseded by later canonical branch-hygiene policy"},
     {"name":"research/FIN-P01-WB-001-market-data-providers","sha":"48010b75cf17c74486d7034549003801fc8e87ab","reason":"historical P01 market-data research branch"},
     {"name":"research/FIN-P01-WD-001-compliance-jurisdiction","sha":"699b7d28ff755e4b61726965b7cec066212a63c2","reason":"historical compliance research branch"},
     {"name":"research/FIN-P01-WD-001-compliance-jurisdiction-R01","sha":"23dbb9b5e3ccb8e840942261b72300540eee4017","reason":"historical compliance research repair branch"},
