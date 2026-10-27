@@ -3172,5 +3172,11 @@ Scope:
 - P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES while PRE_FIRST_LIVE blockers remain; after they clear, a separate first-Live Owner Human Gate is required;
 - P24-C..P24-I = NOT_STARTED;
 - G13_OWNER_LIVE_APPROVAL = NOT_STARTED / P24_EXIT / cannot be automated;
-- final repaired dossier/evidence IDs = PENDING_PR_490_GOVERNANCE;
+- repaired PR #490 Governance `40518987324` = SUCCESS;
+- repaired artifact `12740856181` / `sha256:9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04`;
+- repaired dossier ID = `53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5`;
+- repaired evidence ID = `4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d`;
+- repaired evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
+- repaired tests/p24 = 24/24 PASS;
+- final documentation-only closure CI = PENDING;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.
