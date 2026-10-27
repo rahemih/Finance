@@ -75,6 +75,12 @@ P23-A grants no:
 
 `LIVE_TRADING` and `AUTO_TRADING` remain disabled.
 
+## Canonical Figma source
+
+P23 UX file: https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=1-2
+
+The P23-A canvas contains the 11 canonical surfaces, seven navigation-only workflows, fail-visible critical states, provenance requirements and the P23-A safety boundary. It is the governed UX-intent source that precedes P23-B design-system implementation.
+
 ## Dependencies and next step
 
 P22 is CANONICAL_COMPLETE and G12_OPERATIONS_VALIDATED = PASS in REFERENCE_OPERATIONS_VALIDATION scope. Owner P23 authorization is consumed.
