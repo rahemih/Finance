@@ -4,9 +4,9 @@
   "phase": "P23",
   "workstream": "P23-A",
   "task_id": "FIN-P23-WA-001",
-  "state": "IN_PROGRESS",
+  "state": "CANONICAL_COMPLETE",
   "lock": "LOCK-FIN-P23-WA-001-01",
-  "lock_state": "ACQUIRED",
+  "lock_state": "RELEASED",
   "dependency": {
     "p22": "CANONICAL_COMPLETE",
     "g12_operations_validated": "PASS",
@@ -20,8 +20,23 @@
     "evidence": "scripts/ci/p23a_evidence.py",
     "figma_canonical_source": "https://www.figma.com/design/5aVGC189GMrRDokrjBbI5P?node-id=1-2"
   },
+  "closure": {
+    "implementation_pr": 471,
+    "implementation_head": "496268171eeaaf6bb03a2d48a2d834b77456edae",
+    "implementation_merge": "d0202f7623767db73ddf5c3a59e7c5754c612f89",
+    "implementation_governance_run": 40468620582,
+    "implementation_artifact_id": 12717303404,
+    "implementation_artifact_sha256": "fc58cd47ebf6a741822644fb80f69c58406bf9586bfbda610127a4c1e71ac031",
+    "architecture_id": "b41f86261b7427e3b617489908210a5a9284445d526a238a7fec71deabc02299",
+    "evidence_id": "099afc90d6d517b43165b2dc283cccaf06bf9614c22989f967e05cd0199d76b4",
+    "evidence_sha256": "1424e802df343ea65b960dc96c12149e9bb5132c831f7bdc8e454232f2845eff",
+    "post_merge_governance_run": 40468844757,
+    "post_merge_artifact_id": 12717523519,
+    "post_merge_artifact_sha256": "0762f921c92bbc342dab77aeb98e99b549f2d5c5175a122c10f978e8d5e73f5c",
+    "post_merge_branch_hygiene_run": 40468844694
+  },
   "next": {
-    "p23_b": "NOT_STARTED",
+    "p23_b": "READY_NOT_STARTED",
     "p23_c_to_p23_i": "NOT_STARTED",
     "p24": "NOT_STARTED"
   },
