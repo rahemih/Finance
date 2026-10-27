@@ -1,0 +1,125 @@
+{
+  "task_id": "FIN-P24-WA-001",
+  "phase": "P24",
+  "workstream": "WA",
+  "objective": "Build a deterministic fail-closed Production Readiness Dossier that proves upstream gate lineage, inventories unresolved production prerequisites, and returns an explicit readiness verdict without activating Live, Auto, P24-B, or G13.",
+  "scope": [
+    "Verify canonical upstream gate markers G0 through G12",
+    "Verify P23 is CANONICAL_COMPLETE with all P23 locks RELEASED",
+    "Inventory current production prerequisites from canonical state",
+    "Separate P24 phase-start authorization from first-Live authorization",
+    "Produce deterministic blocker set and readiness verdict",
+    "Keep P24-B blocked unless all production prerequisites and explicit first-Live Owner gate are satisfied",
+    "Emit deterministic P24-A evidence"
+  ],
+  "out_of_scope": [
+    "Selecting or accepting a production broker/exchange/provider",
+    "KYC/account opening/funding",
+    "Provisioning or changing production credentials",
+    "Submitting or mutating external orders",
+    "Setting monetary risk or leverage ceilings",
+    "First Live activation",
+    "G13 approval",
+    "Auto Trading activation"
+  ],
+  "dependencies": [
+    "P23 CANONICAL_COMPLETE",
+    "P23-A..P23-I CANONICAL_COMPLETE",
+    "All P23 locks RELEASED",
+    "G0..G12 canonical PASS markers available",
+    "Owner phase authorization for P24 granted",
+    "No conflicting active governed lock"
+  ],
+  "read_paths": [
+    "docs/**",
+    "config/**",
+    "contracts/tasks/**",
+    "packages/**",
+    "tests/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WA-001.json",
+    "config/production/production-readiness-dossier.json",
+    "packages/production/**",
+    "tests/p24/**",
+    "scripts/ci/p24a_evidence.py",
+    "docs/19-production/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Strict Pyright passes",
+    "P24-A readiness dossier tests pass",
+    "G0..G12 gate list/order and PASS markers are exact",
+    "P23 canonical closure marker is present",
+    "P24 phase authorization cannot count as first-Live authorization",
+    "Unresolved jurisdiction/venue/credentials/risk/live-certification prerequisites block readiness",
+    "G13 remains NOT_STARTED",
+    "P24-B remains blocked",
+    "LIVE_TRADING/AUTO_TRADING remain disabled",
+    "P24-A evidence is byte-identical across two runs"
+  ],
+  "security_tests": [
+    "Any attempt to grant credentials/network/external-order authority fails closed",
+    "Any attempt to mark first-Live authorization true without explicit Owner gate fails closed",
+    "Any attempt to mark G13 approved fails closed",
+    "Any missing/stale required gate marker fails closed",
+    "No production activation is permitted by P24-A"
+  ],
+  "evidence": [
+    "Current State gate markers",
+    "GATE-MATRIX G13 requirements",
+    "P23 canonical closure evidence",
+    "P24-A policy/module/tests",
+    "Deterministic P24-A evidence",
+    "Implementation Governance",
+    "Post-merge verification",
+    "Linear reconciliation"
+  ],
+  "rollback": "Revert P24-A dossier/policy/tests/evidence/CI/state changes; P23 remains CANONICAL_COMPLETE and Live/Auto remain DISABLED.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "P23 CANONICAL_COMPLETE",
+    "All P23 locks RELEASED",
+    "P24 Owner phase authorization granted",
+    "No active governed lock conflict"
+  ],
+  "definition_of_done": [
+    "Production Readiness Dossier generated deterministically",
+    "Current blocker set and readiness verdict documented",
+    "P24-A CANONICAL_COMPLETE",
+    "P24-B remains blocked unless first-Live prerequisites are satisfied",
+    "G13 remains NOT_STARTED",
+    "LIVE_TRADING/AUTO_TRADING remain disabled"
+  ]
+}
