@@ -88,7 +88,7 @@ Phase transition:
 - P21 — Position Management: CANONICAL_COMPLETE / P21-A..P21-H CANONICAL_COMPLETE / all locks RELEASED
 - P22 — Operations / Diagnostics / Recovery: CANONICAL_COMPLETE / P22-A..P22-J CANONICAL_COMPLETE / all locks RELEASED / G12_OPERATIONS_VALIDATED PASS / REFERENCE_OPERATIONS_VALIDATION
 - P23 — UX / Team / Notifications: CANONICAL_COMPLETE / P23-A..P23-I CANONICAL_COMPLETE / all locks RELEASED / REFERENCE_UX_E2E_VALIDATION PASS
-- P24 — Controlled Production: AUTHORIZED / ACTIVE / P24-A IN_PROGRESS / FIN-P24-WA-001 / LOCK-FIN-P24-WA-001-01 ACQUIRED / LIVE_TRADING DISABLED / AUTO_TRADING DISABLED
+- P24 — Controlled Production: AUTHORIZED / ACTIVE / P24-A CANONICAL_COMPLETE / P24-B BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / G13 NOT_STARTED / LIVE_TRADING DISABLED / AUTO_TRADING DISABLED
 - Cross-cutting CIRA-001 — Capital Intelligence & Rotation Architecture: CANONICAL_COMPLETE / P12 authorization unchanged
 - CIRA-001 staged entry/exit/adaptive scaling extension: CANONICAL_COMPLETE / FIN-P00-WY-001 + R01
 
@@ -443,7 +443,7 @@ Demo remains permanently enabled as a learning environment after Live exists.
 
 ### P24 — Controlled Production
 
-1. **P24-A Readiness dossier** — IN_PROGRESS / FIN-P24-WA-001 / LOCK-FIN-P24-WA-001-01 / READINESS_ASSESSMENT_ONLY
+1. **P24-A Readiness dossier** — CANONICAL_COMPLETE / FIN-P24-WA-001 / RELEASED / READINESS_ASSESSMENT_ONLY / verdict NOT_READY_FOR_LIVE / 13 blockers
 2. **P24-B Manual Live** — BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES / separate first-Live Owner Gate required
 3. **P24-C Semi-Auto** — NOT_STARTED
 4. **P24-D Micro-Capital** — NOT_STARTED
@@ -3149,4 +3149,34 @@ Scope:
 - production readiness = false;
 - RUM/production-performance certification = false;
 - P24 = NOT_STARTED / OWNER_PHASE_AUTHORIZATION_REQUIRED;
+- LIVE_TRADING / AUTO_TRADING = DISABLED.
+
+
+### P24-A canonical closure — 2026-10-27
+- FIN-P24-WA-001 = CANONICAL_COMPLETE;
+- LOCK-FIN-P24-WA-001-01 = RELEASED;
+- implementation PR #489 = MERGED at `e7c11a6885eb711a8613a7be91166ff23236c214`;
+- final implementation head = `7c48a3ce189e65d380cf11cdb27cb3092e052b1a`;
+- implementation Governance `40514396519` = SUCCESS;
+- implementation artifact `12739765146` / `sha256:5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7`;
+- baseline dossier ID = `73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932`;
+- baseline evidence ID = `562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6`;
+- baseline deterministic evidence SHA256 = `ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e`;
+- baseline tests/p24 = 18/18 PASS;
+- post-merge Governance `40514857986` = SUCCESS;
+- post-merge artifact `12738154523` / `sha256:196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a`;
+- post-merge Branch Hygiene `40514857847` = SUCCESS / inventory clean;
+- readiness verdict = NOT_READY_FOR_LIVE;
+- blocker count = 13 = 9 PRE_FIRST_LIVE + 1 FIRST_LIVE_OWNER_GATE + 3 P24_EXIT;
+- stage-boundary repair removes circular dependency: LIVE_EXECUTION_VALIDATED / P24-G drills / G13 are P24_EXIT requirements and do not block entry to P24-B;
+- P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES while PRE_FIRST_LIVE blockers remain; after they clear, a separate first-Live Owner Human Gate is required;
+- P24-C..P24-I = NOT_STARTED;
+- G13_OWNER_LIVE_APPROVAL = NOT_STARTED / P24_EXIT / cannot be automated;
+- repaired PR #490 Governance `40518987324` = SUCCESS;
+- repaired artifact `12740856181` / `sha256:9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04`;
+- repaired dossier ID = `53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5`;
+- repaired evidence ID = `4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d`;
+- repaired evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
+- repaired tests/p24 = 24/24 PASS;
+- PR #490 merge invariant: final documentation-only closure Governance must PASS after evidence recording;
 - LIVE_TRADING / AUTO_TRADING = DISABLED.

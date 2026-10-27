@@ -4,8 +4,8 @@
   "task_id": "FIN-P24-WA-001",
   "phase": "P24",
   "workstream": "P24-A",
-  "state": "IN_PROGRESS",
-  "lock_state": "ACQUIRED",
+  "state": "CANONICAL_COMPLETE",
+  "lock_state": "RELEASED",
   "claim_scope": "READINESS_ASSESSMENT_ONLY",
   "phase_authorization": {
     "p24_phase_start": "GRANTED_CONSUMED",
@@ -74,66 +74,79 @@
   "production_prerequisites": [
     {
       "id": "OWNER_JURISDICTION_RESOLVED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Owner jurisdiction: UNSET_HUMAN_GATE",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_PROVIDER_SELECTED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Production provider: NOT_SELECTED",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_VENUE_SELECTED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Production broker/exchange: NOT_SELECTED",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_CREDENTIALS_READY",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "Accounts/KYC/credentials/funding/orders: NONE",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_BROKER_CERTIFIED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "production broker certification = false",
       "satisfied": false
     },
     {
-      "id": "LIVE_EXECUTION_VALIDATED",
-      "marker": "Live execution validated = false",
-      "satisfied": false
-    },
-    {
-      "id": "PRODUCTION_READINESS_CERTIFIED",
-      "marker": "production readiness = false",
-      "satisfied": false
-    },
-    {
       "id": "UPSTREAM_GATE_FRESHNESS_FOR_LIVE",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_SECURITY_POSTURE_VERIFIED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "PRODUCTION_RISK_BUDGET_DEFINED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "production monetary risk ceiling remains unset and must be provided by governed policy",
       "satisfied": false
     },
     {
-      "id": "FIRST_LIVE_OWNER_APPROVAL",
+      "id": "PRE_LIVE_KILL_SWITCH_VALIDATED",
+      "stage": "PRE_FIRST_LIVE",
       "marker": "",
       "satisfied": false
     },
     {
-      "id": "LIVE_KILL_SWITCH_DRILL",
+      "id": "FIRST_LIVE_OWNER_APPROVAL",
+      "stage": "FIRST_LIVE_OWNER_GATE",
+      "marker": "",
+      "satisfied": false
+    },
+    {
+      "id": "LIVE_EXECUTION_VALIDATED",
+      "stage": "P24_EXIT",
+      "marker": "Live execution validated = false",
+      "satisfied": false
+    },
+    {
+      "id": "P24_G_KILL_SWITCH_DRILLS_COMPLETE",
+      "stage": "P24_EXIT",
       "marker": "",
       "satisfied": false
     },
     {
       "id": "G13_OWNER_LIVE_APPROVAL",
+      "stage": "P24_EXIT",
       "marker": "",
       "satisfied": false
     }
@@ -154,5 +167,36 @@
     "production_activation": false,
     "live_trading": "DISABLED",
     "auto_trading": "DISABLED"
+  },
+  "implementation_baseline": {
+    "implementation_pr": 489,
+    "implementation_head": "7c48a3ce189e65d380cf11cdb27cb3092e052b1a",
+    "implementation_merge": "e7c11a6885eb711a8613a7be91166ff23236c214",
+    "implementation_governance_run": 40514396519,
+    "implementation_artifact_id": 12739765146,
+    "implementation_artifact_sha256": "5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7",
+    "dossier_id": "73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932",
+    "evidence_id": "562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6",
+    "evidence_sha256": "ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e",
+    "test_count": 18,
+    "post_merge_governance_run": 40514857986,
+    "post_merge_artifact_id": 12738154523,
+    "post_merge_artifact_sha256": "196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a",
+    "post_merge_branch_hygiene_run": 40514857847
+  },
+  "stage_boundary_repair": {
+    "status": "VERIFIED_PR_490",
+    "reason": "Removed circular dependency between P24-B Manual Live and later P24-G/G13 evidence.",
+    "pre_first_live_blockers": 9,
+    "first_live_owner_gate_pending": true,
+    "p24_exit_blockers": 3,
+    "safety_relaxed": false,
+    "governance_run": 40518987324,
+    "artifact_id": 12740856181,
+    "artifact_sha256": "9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04",
+    "final_dossier_id": "53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5",
+    "final_evidence_id": "4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d",
+    "final_evidence_sha256": "48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55",
+    "final_test_count": 24
   }
 }

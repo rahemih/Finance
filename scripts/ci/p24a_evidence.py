@@ -26,7 +26,7 @@ def main() -> int:
 
     dossier = ProductionReadinessDossier.from_root(POLICY, ROOT)
     payload: dict[str, object] = {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "kind": "NEXUS_QUANT_P24A_EVIDENCE",
         "task_id": "FIN-P24-WA-001",
         "status": "PASS",
@@ -36,8 +36,13 @@ def main() -> int:
         "production_prerequisite_count": len(dossier.prerequisites),
         "blocker_count": len(dossier.blocker_ids),
         "blocker_ids": list(dossier.blocker_ids),
+        "pre_first_live_blocker_count": len(dossier.pre_first_live_blocker_ids),
+        "pre_first_live_blocker_ids": list(dossier.pre_first_live_blocker_ids),
+        "first_live_owner_gate_pending": dossier.first_live_owner_gate_pending,
+        "p24_exit_blocker_count": len(dossier.p24_exit_blocker_ids),
+        "p24_exit_blocker_ids": list(dossier.p24_exit_blocker_ids),
         "readiness_verdict": dossier.verdict,
-        "p24_b_state": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+        "p24_b_state": dossier.p24_b_state,
         "g13_state": "NOT_STARTED",
         "first_live_authorization": "NOT_GRANTED",
         "live_trading": "DISABLED",
@@ -52,7 +57,9 @@ def main() -> int:
     print(
         f"P24A_PRODUCTION_READINESS=PASS dossier_id={dossier.dossier_id} "
         f"verdict={dossier.verdict} blockers={len(dossier.blocker_ids)} "
-        f"evidence_id={evidence_id}"
+        f"pre_first_live_blockers={len(dossier.pre_first_live_blocker_ids)} "
+        f"exit_blockers={len(dossier.p24_exit_blocker_ids)} "
+        f"p24_b={dossier.p24_b_state} evidence_id={evidence_id}"
     )
     return 0
 

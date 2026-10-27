@@ -27,21 +27,37 @@ EXPECTED_GATES = (
     "G12_OPERATIONS_VALIDATED",
 )
 
-EXPECTED_PREREQUISITES = (
+PRE_FIRST_LIVE_PREREQUISITES = (
     "OWNER_JURISDICTION_RESOLVED",
     "PRODUCTION_PROVIDER_SELECTED",
     "PRODUCTION_VENUE_SELECTED",
     "PRODUCTION_CREDENTIALS_READY",
     "PRODUCTION_BROKER_CERTIFIED",
-    "LIVE_EXECUTION_VALIDATED",
-    "PRODUCTION_READINESS_CERTIFIED",
     "UPSTREAM_GATE_FRESHNESS_FOR_LIVE",
     "PRODUCTION_SECURITY_POSTURE_VERIFIED",
     "PRODUCTION_RISK_BUDGET_DEFINED",
-    "FIRST_LIVE_OWNER_APPROVAL",
-    "LIVE_KILL_SWITCH_DRILL",
+    "PRE_LIVE_KILL_SWITCH_VALIDATED",
+)
+
+FIRST_LIVE_OWNER_GATE = "FIRST_LIVE_OWNER_APPROVAL"
+
+P24_EXIT_PREREQUISITES = (
+    "LIVE_EXECUTION_VALIDATED",
+    "P24_G_KILL_SWITCH_DRILLS_COMPLETE",
     "G13_OWNER_LIVE_APPROVAL",
 )
+
+EXPECTED_PREREQUISITES = (
+    *PRE_FIRST_LIVE_PREREQUISITES,
+    FIRST_LIVE_OWNER_GATE,
+    *P24_EXIT_PREREQUISITES,
+)
+
+EXPECTED_STAGE_BY_ID = {
+    **{item: "PRE_FIRST_LIVE" for item in PRE_FIRST_LIVE_PREREQUISITES},
+    FIRST_LIVE_OWNER_GATE: "FIRST_LIVE_OWNER_GATE",
+    **{item: "P24_EXIT" for item in P24_EXIT_PREREQUISITES},
+}
 
 
 def _canonical_bytes(value: object) -> bytes:
@@ -79,6 +95,7 @@ def _text(value: object, *, field: str, allow_empty: bool = False) -> str:
 @dataclass(frozen=True, slots=True)
 class ProductionPrerequisite:
     prerequisite_id: str
+    stage: str
     satisfied: bool
     marker: str
 
@@ -89,6 +106,10 @@ class ProductionReadinessDossier:
     prerequisites: tuple[ProductionPrerequisite, ...]
     verdict: str
     blocker_ids: tuple[str, ...]
+    pre_first_live_blocker_ids: tuple[str, ...]
+    first_live_owner_gate_pending: bool
+    p24_exit_blocker_ids: tuple[str, ...]
+    p24_b_state: str
     safety: dict[str, object]
 
     @classmethod
@@ -107,7 +128,6 @@ class ProductionReadinessDossier:
             "workstream": "P24-A",
             "claim_scope": "READINESS_ASSESSMENT_ONLY",
             "canonical_state_path": "docs/02-current-state/CURRENT-STATE.md",
-            "expected_verdict": "NOT_READY_FOR_LIVE",
         }
         for key, expected in expected_static.items():
             if policy.get(key) != expected:
@@ -157,6 +177,9 @@ class ProductionReadinessDossier:
             prerequisite_id = _text(
                 item.get("id"), field=f"production_prerequisites[{index}].id"
             )
+            stage = _text(
+                item.get("stage"), field=f"production_prerequisites[{index}].stage"
+            )
             marker = _text(
                 item.get("marker"),
                 field=f"production_prerequisites[{index}].marker",
@@ -167,14 +190,26 @@ class ProductionReadinessDossier:
                 raise ProductionReadinessError(
                     f"production_prerequisites[{index}].satisfied must be boolean"
                 )
+            expected_stage = EXPECTED_STAGE_BY_ID.get(prerequisite_id)
+            if expected_stage is None or stage != expected_stage:
+                raise ProductionReadinessError(
+                    f"production prerequisite stage drift: {prerequisite_id}"
+                )
+            if satisfied and not marker:
+                raise ProductionReadinessError(
+                    f"satisfied prerequisite requires evidence marker: {prerequisite_id}"
+                )
             if marker and marker not in state_text:
                 raise ProductionReadinessError(
-                    f"canonical blocker marker missing: {prerequisite_id}"
+                    f"canonical prerequisite marker missing: {prerequisite_id}"
                 )
+            if prerequisite_id == "G13_OWNER_LIVE_APPROVAL" and satisfied:
+                raise ProductionReadinessError("G13 cannot be satisfied by P24-A")
             ids.append(prerequisite_id)
             prerequisites.append(
                 ProductionPrerequisite(
                     prerequisite_id=prerequisite_id,
+                    stage=stage,
                     satisfied=satisfied,
                     marker=marker,
                 )
@@ -185,13 +220,37 @@ class ProductionReadinessDossier:
         blocker_ids = tuple(
             item.prerequisite_id for item in prerequisites if not item.satisfied
         )
-        verdict = "READY_FOR_FIRST_LIVE_GATE" if not blocker_ids else "NOT_READY_FOR_LIVE"
+        pre_first_live_blocker_ids = tuple(
+            item.prerequisite_id
+            for item in prerequisites
+            if item.stage == "PRE_FIRST_LIVE" and not item.satisfied
+        )
+        owner_gate = next(
+            item for item in prerequisites if item.prerequisite_id == FIRST_LIVE_OWNER_GATE
+        )
+        first_live_owner_gate_pending = not owner_gate.satisfied
+        p24_exit_blocker_ids = tuple(
+            item.prerequisite_id
+            for item in prerequisites
+            if item.stage == "P24_EXIT" and not item.satisfied
+        )
+
+        if pre_first_live_blocker_ids:
+            verdict = "NOT_READY_FOR_LIVE"
+            p24_b_state = "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES"
+        elif first_live_owner_gate_pending:
+            verdict = "READY_FOR_FIRST_LIVE_OWNER_GATE"
+            p24_b_state = "FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED"
+        else:
+            verdict = "READY_FOR_MANUAL_LIVE"
+            p24_b_state = "READY_FOR_MANUAL_LIVE"
+
         if verdict != policy.get("expected_verdict"):
             raise ProductionReadinessError("readiness verdict drift")
 
         next_state = _object(policy.get("next"), field="next")
         expected_next: dict[str, object] = {
-            "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+            "p24_b": p24_b_state,
             "g13": "NOT_STARTED",
         }
         if next_state != expected_next:
@@ -218,6 +277,10 @@ class ProductionReadinessDossier:
             prerequisites=tuple(prerequisites),
             verdict=verdict,
             blocker_ids=blocker_ids,
+            pre_first_live_blocker_ids=pre_first_live_blocker_ids,
+            first_live_owner_gate_pending=first_live_owner_gate_pending,
+            p24_exit_blocker_ids=p24_exit_blocker_ids,
+            p24_b_state=p24_b_state,
             safety=safety,
         )
 
@@ -231,6 +294,7 @@ class ProductionReadinessDossier:
             "prerequisites": [
                 {
                     "id": item.prerequisite_id,
+                    "stage": item.stage,
                     "satisfied": item.satisfied,
                     "marker": item.marker,
                 }
@@ -238,5 +302,9 @@ class ProductionReadinessDossier:
             ],
             "verdict": self.verdict,
             "blocker_ids": list(self.blocker_ids),
+            "pre_first_live_blocker_ids": list(self.pre_first_live_blocker_ids),
+            "first_live_owner_gate_pending": self.first_live_owner_gate_pending,
+            "p24_exit_blocker_ids": list(self.p24_exit_blocker_ids),
+            "p24_b_state": self.p24_b_state,
             "safety": self.safety,
         }

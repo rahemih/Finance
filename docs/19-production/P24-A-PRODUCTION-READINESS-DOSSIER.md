@@ -1,58 +1,109 @@
 # P24-A — Production Readiness Dossier
 
 Task: `FIN-P24-WA-001`  
-State: IN_PROGRESS  
-Lock: `LOCK-FIN-P24-WA-001-01` / ACQUIRED  
+State: CANONICAL_COMPLETE  
+Lock: `LOCK-FIN-P24-WA-001-01` / RELEASED  
 Claim scope: `READINESS_ASSESSMENT_ONLY`
 
 ## Purpose
 
-P24-A creates the canonical fail-closed dossier required before any first-Live progression. P24 phase-start authorization is recorded as granted/consumed, but it is explicitly distinct from first-Live activation and from G13 Owner approval.
+P24-A creates the fail-closed dossier used to decide whether the project may **request** the separate first-Live Owner Human Gate. P24 phase-start authorization is already granted/consumed, but it does not authorize real-capital trading and does not grant G13.
 
-## Upstream gate lineage
+## Upstream lineage
 
-The dossier requires exact PASS markers for G0 through G12 and the canonical P23 closure marker. Missing or drifted evidence fails closed.
+The dossier requires exact canonical PASS markers for G0 through G12 and the canonical P23 closure marker. Missing or drifted upstream evidence fails closed.
 
-## Current production-readiness verdict
+## Staged readiness model
+
+The frozen roadmap requires:
+
+`Manual Live → Semi-Auto → Micro-Capital → Canary → Controlled Auto → Kill-Switch/Emergency Drills → Continuous Production Monitoring → G13`.
+
+P24-A therefore separates unresolved evidence into three classes so later-stage evidence cannot create a circular prerequisite for P24-B.
+
+### A. PRE_FIRST_LIVE — must be resolved before the first-Live Owner gate can be requested
+
+1. Owner jurisdiction resolved.
+2. Production market-data provider selected/accepted.
+3. Production broker/exchange selected/accepted.
+4. Account/KYC/credential/funding/order path prepared through governed non-secret evidence.
+5. Production broker/exchange certification completed.
+6. G0–G12 freshness revalidated for the Live environment transition.
+7. Production security/access posture verified.
+8. Governed production monetary risk budget/ceiling defined.
+9. Pre-Live kill-switch capability validated without requiring a real-capital P24-G drill.
+
+### B. FIRST_LIVE_OWNER_GATE — separate Human Gate
+
+10. Explicit first-Live Owner approval.
+
+The P24 phase-start authorization does **not** satisfy this gate.
+
+### C. P24_EXIT — later evidence; must not block entry into P24-B
+
+11. Live execution validation — evidence can only be produced after controlled Manual Live begins.
+12. P24-G kill-switch/emergency drills completed.
+13. G13 Owner Live Approval.
+
+These remain unresolved and fail closed for **P24 phase closure**, but are not prerequisites for requesting or entering Manual Live after the pre-first-Live controls and first-Live Owner gate are satisfied.
+
+## Current verdict
 
 `NOT_READY_FOR_LIVE`
 
-Current blockers are intentionally explicit:
+Current classification:
 
-1. Owner jurisdiction is unresolved / Human Gate.
-2. Production market-data provider is not selected.
-3. Production broker/exchange is not selected.
-4. Account/KYC/credentials/funding/order path is absent.
-5. Production broker certification is false.
-6. Live execution validation is false.
-7. Production readiness certification is false.
-8. G0–G12 freshness has not yet been revalidated for the environment transition to Live.
-9. Production credential/access/security posture has not yet been verified.
-10. Production monetary risk budget/ceiling is not yet defined by governed policy.
-11. Explicit first-Live Owner approval has not been granted.
-12. Live kill-switch/emergency drill has not been completed.
-13. G13 Owner Live Approval has not been granted.
+- pre-first-Live blockers: **9**;
+- first-Live Owner gate pending: **yes**;
+- P24-exit blockers: **3**;
+- total unresolved items: **13**;
+- P24-B: `BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES`;
+- G13: `NOT_STARTED`;
+- LIVE_TRADING: `DISABLED`;
+- AUTO_TRADING: `DISABLED`.
 
-## Canonical staged rollout plan
+The current verdict is a successful fail-closed assessment, not an implementation failure.
 
-The governed autonomy/capital sequence remains:
-`Manual Live → Semi-Auto → Micro-Capital → Canary → Controlled Auto`.
+## Safety boundary
 
-Every escalation requires fresh evidence; approval is not inherited from an earlier stage.
+P24-A does not:
+- provision or reveal credentials;
+- mutate network/account/permission state;
+- submit external orders;
+- set monetary risk ceilings on behalf of the Owner;
+- activate real capital;
+- activate Auto Trading;
+- grant first-Live Owner approval;
+- grant G13.
 
-## Important distinction
+## Implementation baseline evidence
 
-The Owner authorization that starts P24 permits governed readiness engineering and evidence work. It does **not** authorize real-capital Live trading.
+Implementation PR #489 was merged before the stage-boundary audit identified a circularity in the flat blocker list. That implementation evidence remains valid as the baseline showing the fail-closed dossier mechanics:
 
-The first real-capital activation remains a separate Owner Human Gate under `docs/00-governance/OWNER-GATES.md`.
+- PR #489 = MERGED;
+- final implementation head = `7c48a3ce189e65d380cf11cdb27cb3092e052b1a`;
+- implementation merge = `e7c11a6885eb711a8613a7be91166ff23236c214`;
+- implementation Governance = `40514396519` / SUCCESS;
+- implementation artifact = `12739765146` / `sha256:5d22ac82de97c622c516780ee044183413c7cf592fc4d7ac47b8cc33f3263ee7`;
+- baseline dossier ID = `73afcb8492175f75acd40b6c7444da0bb34a54abf94aa3d45c5f6fe2a03e8932`;
+- baseline evidence ID = `562c5e5f15d9d66ab1dbcc587d816dd930cbb8c48fceb62918ec65f5c068c7c6`;
+- baseline evidence SHA256 = `ec2883e76c77ea3cdfc9878890f75b3aeb80c503740003ebd0cc10fa537aa76e`;
+- baseline tests/p24 = 18/18 PASS;
+- post-merge Governance = `40514857986` / SUCCESS;
+- post-merge artifact = `12738154523` / `sha256:196a3e71cf63b683fea9c697f130eac69fb91a5957d436b6b302e8c22e71923a`;
+- post-merge Branch Hygiene = `40514857847` / SUCCESS / inventory clean.
 
-## Safety
+## Pre-closure architecture repair
 
-- credentials/network mutation: false;
-- external-order authority: false;
-- runtime/permission/execution authority mutation: false;
-- production activation: false;
-- P24-B: BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
-- G13: NOT_STARTED;
-- LIVE_TRADING: DISABLED;
-- AUTO_TRADING: DISABLED.
+Before canonical closure, the blocker model was audited against the frozen P24 order and G13 Gate Matrix. The original flat list incorrectly made later P24-G/G13/live-execution evidence prerequisites for P24-B, which would create circular progression. The closure PR repairs only lifecycle classification and adds stronger fail-closed evidence requirements. No safety rule is relaxed.
+
+Repaired stage-boundary evidence is now verified on PR #490:
+
+- Governance = `40518987324` / SUCCESS;
+- artifact = `12740856181` / `sha256:9753089cd4784606afde3b2e602fa3f2590172938a9159fe76c8369746043c04`;
+- repaired dossier ID = `53089f35468d3bcf2efb91fa85f913aaadc158af9026cf7247edbd55ce9934a5`;
+- repaired evidence ID = `4330e9b51291359435e9325bcaf24df4c6bed6c2630403b38a16933ac8c8822d`;
+- repaired deterministic evidence SHA256 = `48495e1dceb7eb438a75f4e3368c6c853197c94f643bfc7ea62920b2ad33db55`;
+- repaired tests/p24 = 24/24 PASS.
+
+PR #490 is merge-eligible only if a final documentation-only Governance pass succeeds after these immutable evidence identifiers are recorded.

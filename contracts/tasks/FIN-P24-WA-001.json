@@ -6,10 +6,12 @@
   "scope": [
     "Verify canonical upstream gate markers G0 through G12",
     "Verify P23 is CANONICAL_COMPLETE with all P23 locks RELEASED",
-    "Inventory current production prerequisites from canonical state",
-    "Separate P24 phase-start authorization from first-Live authorization",
-    "Produce deterministic blocker set and readiness verdict",
-    "Keep P24-B blocked unless all production prerequisites and explicit first-Live Owner gate are satisfied",
+    "Inventory production prerequisites by lifecycle stage",
+    "Separate P24 phase-start authorization from first-Live Owner authorization",
+    "Separate pre-first-Live prerequisites from evidence that can only exist after Manual Live",
+    "Produce deterministic blocker sets and readiness verdict",
+    "Keep P24-B blocked while PRE_FIRST_LIVE prerequisites are unresolved; once resolved require the separate first-Live Owner Human Gate",
+    "Keep P24-G completion and G13 as phase-exit requirements rather than prerequisites for P24-B",
     "Emit deterministic P24-A evidence"
   ],
   "out_of_scope": [
@@ -83,17 +85,22 @@
     "G0..G12 gate list/order and PASS markers are exact",
     "P23 canonical closure marker is present",
     "P24 phase authorization cannot count as first-Live authorization",
-    "Unresolved jurisdiction/venue/credentials/risk/live-certification prerequisites block readiness",
+    "PRE_FIRST_LIVE prerequisites fail closed until evidenced",
+    "P24-B cannot become READY_FOR_MANUAL_LIVE until PRE_FIRST_LIVE prerequisites and explicit first-Live Owner gate pass",
+    "LIVE_EXECUTION_VALIDATED cannot block entry to P24-B because its evidence is produced after Manual Live",
+    "P24-G kill-switch drill completion cannot block entry to P24-B",
+    "G13 remains a P24 exit gate and cannot block entry to P24-B",
+    "No circular stage dependency exists between P24-B and later P24/G13 evidence",
     "G13 remains NOT_STARTED",
-    "P24-B remains blocked",
     "LIVE_TRADING/AUTO_TRADING remain disabled",
     "P24-A evidence is byte-identical across two runs"
   ],
   "security_tests": [
     "Any attempt to grant credentials/network/external-order authority fails closed",
-    "Any attempt to mark first-Live authorization true without explicit Owner gate fails closed",
-    "Any attempt to mark G13 approved fails closed",
-    "Any missing/stale required gate marker fails closed",
+    "Any attempt to mark first-Live authorization true without explicit Owner gate evidence fails closed",
+    "Any attempt by P24-A to mark G13 approved fails closed",
+    "Any satisfied prerequisite without a non-empty evidence marker fails closed",
+    "Any missing/stale required upstream gate marker fails closed",
     "No production activation is permitted by P24-A"
   ],
   "evidence": [
@@ -116,9 +123,11 @@
   ],
   "definition_of_done": [
     "Production Readiness Dossier generated deterministically",
+    "Pre-first-Live, Owner-gate and P24-exit blocker classes are explicit and non-circular",
     "Current blocker set and readiness verdict documented",
-    "P24-A CANONICAL_COMPLETE",
-    "P24-B remains blocked unless first-Live prerequisites are satisfied",
+    "P24-A CANONICAL_COMPLETE after closure CI",
+    "P24-B remains blocked while PRE_FIRST_LIVE prerequisites are unresolved and otherwise remains behind separate first-Live Owner Human Gate",
+    "P24-G/G13 requirements do not incorrectly block P24-B",
     "G13 remains NOT_STARTED",
     "LIVE_TRADING/AUTO_TRADING remain disabled"
   ]
