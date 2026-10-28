@@ -169,6 +169,13 @@ class OfflineVenueContractTests(unittest.TestCase):
         self.denied(crypto(live_execution_authority=True))
         self.denied(crypto(permission="TRADE"))
 
+    def test_18_forged_in_memory_policy_identity_rejected(self) -> None:
+        forged = OfflineVenueReference(policy_id="unverified-policy")
+        with self.assertRaises(OfflineVenueError):
+            forged.evaluate(forex())
+        with self.assertRaises(OfflineVenueError):
+            forged.evaluate(crypto())
+
 
 if __name__ == "__main__":
     unittest.main()
