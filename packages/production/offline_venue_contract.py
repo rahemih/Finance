@@ -5,7 +5,7 @@ This module is *not* a production adapter and cannot certify a broker.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 import hashlib
 import json
 from pathlib import Path
@@ -114,6 +114,41 @@ class OfflineVenueReference:
         expected_id = hashlib.sha256(canonical_bytes(EXPECTED_POLICY)).hexdigest()
         if self.policy_id != expected_id:
             raise OfflineVenueError("forged reference-policy identity")
+        textual_values = (
+            order.venue_id,
+            order.market,
+            order.action,
+            order.side,
+            order.client_order_id,
+            order.environment,
+            order.permission,
+            order.credential_mode,
+            order.network_mode,
+        )
+        if any(not isinstance(v, str) for v in textual_values):
+            raise OfflineVenueError("synthetic intent requires typed text values")
+        if (
+            not order.client_order_id
+            or order.client_order_id != order.client_order_id.strip()
+        ):
+            raise OfflineVenueError("invalid client order ID normalization")
+        if order.native_order_id is not None and (
+            not isinstance(order.native_order_id, str)
+            or not order.native_order_id.strip()
+            or order.native_order_id != order.native_order_id.strip()
+        ):
+            raise OfflineVenueError("invalid native order ID")
+        bool_values = (
+            order.known_order,
+            order.feed_fresh,
+            order.idempotency_seen,
+            order.risk_veto,
+            order.leveraged,
+            order.external_order_submission,
+            order.live_execution_authority,
+        )
+        if any(type(v) is not bool for v in bool_values):
+            raise OfflineVenueError("synthetic intent requires typed booleans")
         if VENUE_MARKETS.get(order.venue_id) != order.market:
             raise OfflineVenueError("unapproved venue or market mismatch")
         if order.environment != "SIMULATED":
@@ -170,18 +205,12 @@ class OfflineVenueReference:
             or order.filled_quantity_scaled > 0
         ) and (not order.known_order or not order.native_order_id):
             raise OfflineVenueError("order reconciliation identity missing")
+        # Bind all validated intent fields to the synthetic audit identity. A
+        # different freshness sequence, geometry, reconciliation claim or
+        # zero-authority setting must not share an evidence identity.
         payload: dict[str, object] = {
             "policy_id": self.policy_id,
-            "venue_id": order.venue_id,
-            "market": order.market,
-            "action": order.action,
-            "side": order.side,
-            "client_order_id": order.client_order_id,
-            "quantity_scaled": order.quantity_scaled,
-            "price_scaled": order.price_scaled,
-            "feed_sequence": order.feed_sequence,
-            "native_order_id": order.native_order_id,
-            "filled_quantity_scaled": order.filled_quantity_scaled,
+            "synthetic_intent": asdict(order),
         }
         return OfflineDecision(
             status="VALIDATED_OFFLINE_ONLY",
