@@ -67,7 +67,10 @@ def _mapping(value: object, fields: frozenset[str]) -> dict[str, object]:
     if not isinstance(value, dict):
         raise DemoQuarantineError("object required")
     checked = cast(dict[object, object], value)
-    if set(checked) != fields or any(type(key) is not str for key in checked):
+    if any(type(key) is not str for key in checked):
+        raise DemoQuarantineError("invalid or potentially private field names")
+    key_names: set[str] = {str(key) for key in checked}
+    if key_names != set(fields):
         raise DemoQuarantineError("unknown or missing fields, potentially private data")
     return cast(dict[str, object], value)
 
@@ -75,7 +78,7 @@ def _mapping(value: object, fields: frozenset[str]) -> dict[str, object]:
 def _typed_int(value: object, field: str, *, allow_negative: bool = False) -> int:
     if type(value) is not int:
         raise DemoQuarantineError(f"{field} must be integer")
-    parsed = cast(int, value)
+    parsed = value
     if not allow_negative and parsed < 0:
         raise DemoQuarantineError(f"{field} must be nonnegative")
     return parsed
@@ -84,7 +87,7 @@ def _typed_int(value: object, field: str, *, allow_negative: bool = False) -> in
 def _typed_str(value: object, field: str) -> str:
     if type(value) is not str or not value:
         raise DemoQuarantineError(f"{field} must be text")
-    return cast(str, value)
+    return value
 
 
 class OfflineDemoTelemetry:
@@ -154,7 +157,7 @@ class OfflineDemoTelemetry:
             rejects = _typed_int(sample["rejected_orders_count"], "rejected_orders_count")
             if type(sample["connected"]) is not bool:
                 raise DemoQuarantineError("connected must be Boolean")
-            connected = cast(bool, sample["connected"])
+            connected = sample["connected"]
             if equity <= 0 or balance <= 0 or equity != balance + floating:
                 raise DemoQuarantineError("nonpositive or inconsistent broker equity")
             if trades < previous_trades or rejects < previous_rejects:
@@ -231,8 +234,8 @@ def render_html(report: dict[str, object]) -> str:
         if type(stamp) is not str or type(equity) is not int or type(dd) is not int:
             raise DemoQuarantineError("invalid dashboard types")
         rows.append(
-            f"<tr><td>{escape(cast(str, stamp))}</td>"
-            f"<td>{cast(int, equity)}</td><td>{cast(int, dd)}</td></tr>"
+            f"<tr><td>{escape(stamp)}</td>"
+            f"<td>{equity}</td><td>{dd}</td></tr>"
         )
     heading = "NEXUS QUANT — DEMO TELEMETRY (UNATTESTED)"
     return (
