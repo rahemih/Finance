@@ -1,0 +1,123 @@
+{
+  "task_id": "FIN-P24-WO-001",
+  "phase": "P24",
+  "workstream": "WO",
+  "objective": "Implement a strictly offline deterministic preproduction failure/kill-switch reference drill and non-live report, as supplementary engineering work without starting blocked P24-B..I or claiming G13.",
+  "scope": [
+    "Separate P24 OFFLINE engineering support only; no change to stage authorization",
+    "Reuse canonical P20-I simulated broker reference outcome semantics, not a live broker connector",
+    "Implement deterministic event sequences for quote freshness, disconnect, unknown ACK, replay, loss-veto, mismatched fill and kill scope",
+    "Require monotonic event identities and hash-chained audit evidence",
+    "Produce immutable JSON and escaped HTML dashboard labeled reference-only",
+    "Add independent offline CI test and two byte-identical replays",
+    "Keep PR #492 write paths isolated; review both before any merge"
+  ],
+  "out_of_scope": [
+    "All live and real-account access including MT5, cTrader, Tabdeal privileged API",
+    "Broker-specific demo certification, empirical trading profitability, real strategy tuning",
+    "First Live owner gate, monetary risk ceiling selection, G13",
+    "P24-B..P24-I stage transition or canonical closure",
+    "Changing existing P20 execution code, production readiness dossier or frozen roadmap"
+  ],
+  "dependencies": [
+    "P24-A CANONICAL_COMPLETE with G0-G12 reference baseline",
+    "P20-I reference broker-simulation validated, not live broker-certified",
+    "Main clean and Task Contract scoped; WR #492 active only in disjoint files",
+    "No service credentials, no network and no owner capital"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/15-execution/**",
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    "config/execution/**",
+    "config/production/**",
+    "packages/execution/**",
+    "packages/production/**",
+    "tests/p20/**",
+    "tests/p24/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WO-001.json",
+    "config/production/p24-offline-lab-policy.json",
+    "packages/production/offline_preproduction_lab.py",
+    "tests/p24/test_offline_preproduction_lab.py",
+    "scripts/ci/p24wo_evidence.py",
+    ".github/workflows/p24-offline-lab.yml",
+    "docs/19-production/P24-WO-OFFLINE-LAB.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "packages/execution/**",
+    "contracts/tasks/FIN-P24-WR-001.json",
+    ".github/workflows/governance.yml",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright 0 errors and no warnings",
+    "Offline lab 20+ unit/negative tests",
+    "Refuse credential, network, live, wrong market and external orders",
+    "Monotonic hash chaining, replay collisions and stale quote rejection",
+    "Independent risk veto and kill scope state monotonicity",
+    "Uncertain ACK and mismatch never retry or auto release",
+    "Generate deterministic JSON and escaped HTML dashboard twice byte identical",
+    "Existing P20 and P24 test suites remain unaffected"
+  ],
+  "security_tests": [
+    "Never load external credentials, SDKs or sockets",
+    "No external order dispatch authority or monetary risk budget",
+    "All input schemas strongly typed; bool cannot pass as int",
+    "Reset/ack cannot undo an emergency halt",
+    "A5 veto always binding and safety chain auditable"
+  ],
+  "evidence": [
+    "P24-A baseline state, P20-I canonical policy reference",
+    "Current branch head and Governance CI",
+    "Deterministic lab evidence JSON plus HTML hash",
+    "GitHub #491 and Linear register crosslinks",
+    "Independent A5/A8/A10 review; no self-approval"
+  ],
+  "rollback": "Revert only files in the WO allowlist; no P20 or P24-A or Live state change.",
+  "human_gate": false,
+  "definition_of_ready": [
+    "No shared write path with PR #492 or branch current-state lock",
+    "No secret or network access requested",
+    "P24-B remains blocked while all nine prerequisites unresolved"
+  ],
+  "definition_of_done": [
+    "New standalone isolated workflow PASS",
+    "Strict typecheck and 20+ tests PASS",
+    "Two identical evidence and dashboard files",
+    "Independent A5/A8/A10 reviewer approval for HIGH risk",
+    "Merged and postmerge validated after lock/review coordination",
+    "GitHub and Linear reconciled without false P24 phase closure",
+    "P24-B, G13, Live/Auto unchanged"
+  ]
+}
