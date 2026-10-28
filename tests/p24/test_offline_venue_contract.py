@@ -176,6 +176,14 @@ class OfflineVenueContractTests(unittest.TestCase):
         with self.assertRaises(OfflineVenueError):
             forged.evaluate(crypto())
 
+    def test_19_policy_boolean_as_integer_is_rejected(self) -> None:
+        altered = {**EXPECTED_POLICY, "external_order_submission": 0}
+        with tempfile.TemporaryDirectory() as location:
+            p = Path(location) / "policy.json"
+            p.write_text(json.dumps(altered), encoding="utf-8")
+            with self.assertRaises(OfflineVenueError):
+                OfflineVenueReference.from_path(p)
+
 
 if __name__ == "__main__":
     unittest.main()
