@@ -1,0 +1,34 @@
+# P24-WR — FIBO/cTrader & Tabdeal Synthetic Reference Validation
+
+Task: `FIN-P24-WR-001`  
+Workstream: **P24-WR, supplementary OFFLINE research validation only**  
+State: **IN_PROGRESS on governed PR branch; not canonically complete**  
+Lock: `LOCK-FIN-P24-WR-001-01` / **ACQUIRED for bounded non-live work**  
+Linked tracking: https://github.com/rahemih/Finance/issues/491
+
+## Authority and admission
+Owner selected reference venues for technical research only. Forex FIBO Group cTrader DEMO remains a *reference* (no permitted Demo account access granted or used); Tabdeal Spot is a *mock API-contract reference*. P24-B Manual Live is **BLOCKED**. No production broker/exchange/provider is selected.
+
+The scoped Task Contract is `contracts/tasks/FIN-P24-WR-001.json`; P24-A remains closed, P20 adapter/OMS core remains unchanged and cannot be weakened.
+
+## Implementation boundary
+- Immutable `config/production/offline-venue-reference-policy.json` restricts to exactly two reference venue IDs, `SIMULATED` only, credential `NONE`, network `DISABLED`, external submission false, Live/Auto disabled and no G13.
+- `packages/production/offline_venue_contract.py` validates synthetic intent geometry and denies any foreign venue, LIVE environment, missing/stale sequence, duplicate intent, partial fill without known native ID, invalid cancel, A5 veto, leverage, secret/network exposure or external execution authority.
+- **No real venue SDK, network I/O, local trading terminal, tokens, live API URLs, real-order submission or broker accounts**.
+- `tests/p24/test_offline_venue_contract.py`: 17 named tests, covering independent negative safety cases and deterministic synthetic outputs.
+- `scripts/ci/p24wr_evidence.py`: two byte-identical deterministic evidence replays (required before completion).
+- Reuses existing P20 contract, idempotency/OMS/reconciliation tests as upstream; adds no routing authority.
+
+## Ready/Done
+Fresh guard: `main e1e7ac817ec3d0d9d055ef947f6c5189bf4d7aac`, open PRs 0, active task/lock none **before acquiring WR lock**, P24-A CANONICAL_COMPLETE and all P24-B gates blocked.
+
+Completion requires **green required Governance**, strict Pyright, all P20/P24 regression suites, exactly reproducible offline evidence, A5/A8/A10 independent review, merged PR, post-merge CI and lock release. PR creation alone is **NOT PASS**.
+
+## Explicit stop boundaries
+- `PRE_FIRST_LIVE` unresolved: 9/9; first-Live Owner approval NOT_GRANTED; P24_EXIT 0/3; G13 NOT_STARTED.
+- P24-B remains `BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES`.
+- `LIVE_TRADING` / `AUTO_TRADING` remain `DISABLED`.
+- If real access becomes necessary, stop at the existing required Human/Production prerequisites; never infer Demo consent from research selection.
+
+## Evidence/reconciliation
+GitHub CI/run IDs, stable SHA, PR and Linear tracking must be added **after** verification. This document is a pre-merge task status, not a historical closure claim.
