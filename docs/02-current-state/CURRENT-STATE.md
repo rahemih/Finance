@@ -41,8 +41,8 @@ P00 — Charter & Governance: CANONICAL_COMPLETE
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
 Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after PRE_FIRST_LIVE blockers clear  
-Active governed task: none  
-Active lock: none  
+Active governed task: FIN-P24-WR-001 / SUPPLEMENTARY_NON_LIVE_ONLY  
+Active lock: LOCK-FIN-P24-WR-001-01 / ACQUIRED  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -8782,3 +8782,20 @@ P23-A boundary:
 - PR #490 merge invariant: final documentation-only closure Governance must PASS after evidence recording;
 - LIVE_TRADING = DISABLED;
 - AUTO_TRADING = DISABLED.
+
+
+## P24-WR supplementary OFFLINE venue contract validation — IN_PROGRESS / 2026-10-28
+
+- Task: `FIN-P24-WR-001` / separate restricted research workstream, not P24-B;
+- Lock: `LOCK-FIN-P24-WR-001-01` / ACQUIRED;
+- Branch: `test/FIN-P24-WR-001-offline-venue-contract`;
+- Claim scope: `RESEARCH_SIMULATOR_ONLY`;
+- Owner research-target selection: FIBO/cTrader Forex and Tabdeal Spot / ACCEPTED_FOR_NON_LIVE_REFERENCE_RESEARCH;
+- P24-A remains CANONICAL_COMPLETE with its lock RELEASED;
+- PRE_FIRST_LIVE blockers = 9 / SATISFIED = 0;
+- separate First-Live Owner Gate = NOT_GRANTED; P24_EXIT blockers = 3;
+- P24-B Manual Live = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
+- G13 = NOT_STARTED; LIVE_TRADING / AUTO_TRADING = DISABLED;
+- New adapter reference: synthetic-only, no SDK, no networking, no secrets, no real order;
+- Task state = IN_PROGRESS / tests and CI pending until verified; no production acceptance asserted;
+- GitHub issue reference: https://github.com/rahemih/Finance/issues/491 .
