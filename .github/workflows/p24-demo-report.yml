@@ -1,0 +1,60 @@
+name: P24 Offline Demo Telemetry Quarantine
+
+on:
+  pull_request:
+    paths:
+      - "contracts/tasks/FIN-P24-WP-001.json"
+      - "config/production/p24-demo-report-policy.json"
+      - "packages/production/demo_telemetry_quarantine.py"
+      - "tests/p24/test_demo_telemetry_quarantine.py"
+      - "scripts/ci/p24wp_evidence.py"
+      - ".github/workflows/p24-demo-report.yml"
+      - "docs/19-production/P24-WP-DEMO-REPORT.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p24-wp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline_demo_report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout without credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+
+      - name: P24 demo schema and adversarial privacy tests
+        run: python -m unittest discover -s tests/p24 -p 'test_demo_telemetry_quarantine.py' -v
+
+      - name: Reproduce deterministic demo JSON HTML CSV twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p24wp_evidence.py --json build/p24wp-a/report.json --html build/p24wp-a/dashboard.html --csv build/p24wp-a/observations.csv
+          PYTHONPATH=. python scripts/ci/p24wp_evidence.py --json build/p24wp-b/report.json --html build/p24wp-b/dashboard.html --csv build/p24wp-b/observations.csv
+          cmp build/p24wp-a/report.json build/p24wp-b/report.json
+          cmp build/p24wp-a/dashboard.html build/p24wp-b/dashboard.html
+          cmp build/p24wp-a/observations.csv build/p24wp-b/observations.csv
+          sha256sum build/p24wp-a/report.json build/p24wp-a/dashboard.html build/p24wp-a/observations.csv
+
+      - name: Upload nonprivate synthetic report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: p24-wp-synthetic-demo-report
+          path: |
+            build/p24wp-a/report.json
+            build/p24wp-a/dashboard.html
+            build/p24wp-a/observations.csv
+          if-no-files-found: error
+          retention-days: 7
