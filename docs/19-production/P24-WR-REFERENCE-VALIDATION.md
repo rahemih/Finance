@@ -15,7 +15,7 @@ The scoped Task Contract is `contracts/tasks/FIN-P24-WR-001.json`; P24-A remains
 - Immutable `config/production/offline-venue-reference-policy.json` restricts to exactly two reference venue IDs, `SIMULATED` only, credential `NONE`, network `DISABLED`, external submission false, Live/Auto disabled and no G13.
 - `packages/production/offline_venue_contract.py` validates synthetic intent geometry and denies any foreign venue, LIVE environment, missing/stale sequence, duplicate intent, partial fill without known native ID, invalid cancel, A5 veto, leverage, secret/network exposure or external execution authority.
 - **No real venue SDK, network I/O, local trading terminal, tokens, live API URLs, real-order submission or broker accounts**.
-- `tests/p24/test_offline_venue_contract.py`: 19 named tests, covering independent negative safety cases and deterministic synthetic outputs.
+- `tests/p24/test_offline_venue_contract.py`: 22 named tests, covering independent negative safety cases and deterministic synthetic outputs.
 - `scripts/ci/p24wr_evidence.py`: two byte-identical deterministic evidence replays (required before completion).
 - Reuses existing P20 contract, idempotency/OMS/reconciliation tests as upstream; adds no routing authority.
 
@@ -40,3 +40,7 @@ After the first full green Governance pass, static review found that the public 
 ## Policy JSON value-type integrity hardening — 2026-10-28
 
 Final source audit also identified Python equality treating integer `0` as equal to Boolean `false`. Policy comparisons now use canonical JSON bytes so numeric/Boolean substitution cannot pass policy admission; a nineteenth negative regression test proves rejection. This only strengthens synthetic reference integrity. The previous Governance SUCCESS remains historical; required CI must pass again at the final code head before closure.
+
+## Evidence lineage and adversarial input audit — 2026-10-28
+
+A further review found that the first synthetic decision digest omitted some already validated intent fields (such as prior sequence, tick/step filters and zero-authority flags). The digest now binds the entire validated synthetic dataclass to the immutable policy ID. Runtime checks explicitly reject malformed text, non-Boolean Boolean fields, and non-string reconciliation IDs before canonicalization. Three additional tests (20–22) prove decision-ID differentiation and fail-closed rejection of adversarial dynamically typed inputs. These improvements apply **only** to offline evidence: no real venue, API, account, order, or permissions are introduced. The previous deterministic evidence ID is superseded; record the replacement only after the final-head Governance run succeeds.
