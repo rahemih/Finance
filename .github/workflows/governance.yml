@@ -1769,6 +1769,18 @@ jobs:
           cmp build/p24a-a.json build/p24a-b.json
           sha256sum build/p24a-a.json
 
+      - name: P24-WR synthetic venue-contract tests
+        run: python -m unittest discover -s tests/p24 -p 'test_offline_venue_contract.py' -v
+
+      - name: P24-WR deterministic offline reference evidence twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p24wr_evidence.py --output build/p24wr-a.json
+          PYTHONPATH=. python scripts/ci/p24wr_evidence.py --output build/p24wr-b.json
+          cmp build/p24wr-a.json build/p24wr-b.json
+          sha256sum build/p24wr-a.json
+
       - name: AR-0 deterministic research governance evidence twice
         shell: bash
         run: |
