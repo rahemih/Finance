@@ -185,5 +185,42 @@ class OfflineVenueContractTests(unittest.TestCase):
                 OfflineVenueReference.from_path(p)
 
 
+    def test_20_evidence_identity_binds_all_validated_fields(self) -> None:
+        reference = self.guard.evaluate(forex()).decision_id
+        self.assertNotEqual(
+            reference,
+            self.guard.evaluate(forex(previous_sequence=1)).decision_id,
+        )
+        self.assertNotEqual(
+            reference,
+            self.guard.evaluate(forex(quantity_step_scaled=20_000)).decision_id,
+        )
+        self.assertNotEqual(
+            reference,
+            self.guard.evaluate(forex(price_tick_scaled=10)).decision_id,
+        )
+        self.assertNotEqual(
+            reference,
+            self.guard.evaluate(forex(feed_sequence=43)).decision_id,
+        )
+
+    def test_21_dynamic_text_type_and_identity_fail_closed(self) -> None:
+        self.denied(forex(client_order_id=" fx-whitespace "))
+        self.denied(forex(client_order_id=""))
+        self.denied(forex(client_order_id=None))
+        self.denied(crypto(venue_id=["TABDEAL_SPOT_MOCK_REFERENCE"]))
+        self.denied(crypto(native_order_id=17))
+        self.denied(crypto(native_order_id="  "))
+
+    def test_22_dynamic_bool_type_and_identity_fail_closed(self) -> None:
+        self.denied(forex(known_order=1))
+        self.denied(forex(leveraged=0))
+        self.denied(crypto(risk_veto=0))
+        self.denied(crypto(feed_fresh=1))
+        self.denied(crypto(idempotency_seen=0))
+        self.denied(crypto(external_order_submission=0))
+
+
+
 if __name__ == "__main__":
     unittest.main()
