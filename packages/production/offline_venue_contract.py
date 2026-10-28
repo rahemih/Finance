@@ -111,6 +111,9 @@ class OfflineVenueReference:
         return cls(hashlib.sha256(canonical_bytes(parsed)).hexdigest())
 
     def evaluate(self, order: SyntheticIntent) -> OfflineDecision:
+        expected_id = hashlib.sha256(canonical_bytes(EXPECTED_POLICY)).hexdigest()
+        if self.policy_id != expected_id:
+            raise OfflineVenueError("forged reference-policy identity")
         if VENUE_MARKETS.get(order.venue_id) != order.market:
             raise OfflineVenueError("unapproved venue or market mismatch")
         if order.environment != "SIMULATED":
