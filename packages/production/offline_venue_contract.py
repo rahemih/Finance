@@ -111,8 +111,6 @@ class OfflineVenueReference:
         return cls(hashlib.sha256(canonical_bytes(parsed)).hexdigest())
 
     def evaluate(self, order: SyntheticIntent) -> OfflineDecision:
-        if not isinstance(order, SyntheticIntent):
-            raise OfflineVenueError("synthetic order required")
         if VENUE_MARKETS.get(order.venue_id) != order.market:
             raise OfflineVenueError("unapproved venue or market mismatch")
         if order.environment != "SIMULATED":
