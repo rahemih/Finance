@@ -106,7 +106,7 @@ class OfflineVenueReference:
             parsed: object = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError) as exc:
             raise OfflineVenueError("invalid reference policy") from exc
-        if parsed != EXPECTED_POLICY:
+        if canonical_bytes(parsed) != canonical_bytes(EXPECTED_POLICY):
             raise OfflineVenueError("reference policy drift or authority escalation")
         return cls(hashlib.sha256(canonical_bytes(parsed)).hexdigest())
 
