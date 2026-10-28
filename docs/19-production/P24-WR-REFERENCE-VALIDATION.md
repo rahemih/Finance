@@ -15,7 +15,7 @@ The scoped Task Contract is `contracts/tasks/FIN-P24-WR-001.json`; P24-A remains
 - Immutable `config/production/offline-venue-reference-policy.json` restricts to exactly two reference venue IDs, `SIMULATED` only, credential `NONE`, network `DISABLED`, external submission false, Live/Auto disabled and no G13.
 - `packages/production/offline_venue_contract.py` validates synthetic intent geometry and denies any foreign venue, LIVE environment, missing/stale sequence, duplicate intent, partial fill without known native ID, invalid cancel, A5 veto, leverage, secret/network exposure or external execution authority.
 - **No real venue SDK, network I/O, local trading terminal, tokens, live API URLs, real-order submission or broker accounts**.
-- `tests/p24/test_offline_venue_contract.py`: 18 named tests, covering independent negative safety cases and deterministic synthetic outputs.
+- `tests/p24/test_offline_venue_contract.py`: 19 named tests, covering independent negative safety cases and deterministic synthetic outputs.
 - `scripts/ci/p24wr_evidence.py`: two byte-identical deterministic evidence replays (required before completion).
 - Reuses existing P20 contract, idempotency/OMS/reconciliation tests as upstream; adds no routing authority.
 
@@ -36,3 +36,7 @@ GitHub CI/run IDs, stable SHA, PR and Linear tracking must be added **after** ve
 ## Additional pre-merge policy-lineage hardening — 2026-10-28
 
 After the first full green Governance pass, static review found that the public `OfflineVenueReference` dataclass constructor could be called with an arbitrary policy digest. Although the module had no external authority, this permitted a misleading offline verdict lineage. The `evaluate` boundary now also checks the exact hash of `EXPECTED_POLICY` independently of constructor provenance. An eighteenth negative regression test covers forged policy identity for both reference venues. No credential/network/live capability was introduced; rerun strict CI after this repair before claiming final validation.
+
+## Policy JSON value-type integrity hardening — 2026-10-28
+
+Final source audit also identified Python equality treating integer `0` as equal to Boolean `false`. Policy comparisons now use canonical JSON bytes so numeric/Boolean substitution cannot pass policy admission; a nineteenth negative regression test proves rejection. This only strengthens synthetic reference integrity. The previous Governance SUCCESS remains historical; required CI must pass again at the final code head before closure.
