@@ -122,8 +122,6 @@ class OfflinePreproductionLab:
         return cls(digest(parsed))
 
     def accept(self, event: SyntheticEvent) -> AuditDecision:
-        if not isinstance(event, SyntheticEvent):
-            raise OfflineLabError("typed synthetic event required")
         self._validate(event)
         if event.event_id in self.seen or event.sequence <= self.last_sequence:
             raise OfflineLabError("duplicate/replayed/out-of-order event refused")
