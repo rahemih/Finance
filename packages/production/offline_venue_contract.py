@@ -125,7 +125,7 @@ class OfflineVenueReference:
             order.credential_mode,
             order.network_mode,
         )
-        if any(not isinstance(v, str) for v in textual_values):
+        if any(type(v) is not str for v in textual_values):
             raise OfflineVenueError("synthetic intent requires typed text values")
         if (
             not order.client_order_id
@@ -133,7 +133,7 @@ class OfflineVenueReference:
         ):
             raise OfflineVenueError("invalid client order ID normalization")
         if order.native_order_id is not None and (
-            not isinstance(order.native_order_id, str)
+            type(order.native_order_id) is not str
             or not order.native_order_id.strip()
             or order.native_order_id != order.native_order_id.strip()
         ):
