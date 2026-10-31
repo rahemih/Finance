@@ -1,0 +1,60 @@
+name: P24 Offline Local Reference CSV Import
+
+on:
+  pull_request:
+    paths:
+      - "contracts/tasks/FIN-P24-WS-001.json"
+      - "config/production/p24-local-reference-import-policy.json"
+      - "packages/production/local_reference_import.py"
+      - "tests/p24/test_local_reference_import.py"
+      - "scripts/ci/p24ws_evidence.py"
+      - ".github/workflows/p24-local-reference-import.yml"
+      - "docs/19-production/P24-WS-LOCAL-REFERENCE-IMPORT.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p24-ws-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  local_reference_import:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout with zero persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+
+      - name: Validate CSV licensing quarantine and privacy
+        run: python -m unittest discover -s tests/p24 -p 'test_local_reference_import.py' -v
+
+      - name: Reproduce synthetic JSON CSV and HTML twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p24ws_evidence.py --json build/p24ws-a/report.json --csv build/p24ws-a/quotes.csv --html build/p24ws-a/dashboard.html
+          PYTHONPATH=. python scripts/ci/p24ws_evidence.py --json build/p24ws-b/report.json --csv build/p24ws-b/quotes.csv --html build/p24ws-b/dashboard.html
+          cmp build/p24ws-a/report.json build/p24ws-b/report.json
+          cmp build/p24ws-a/quotes.csv build/p24ws-b/quotes.csv
+          cmp build/p24ws-a/dashboard.html build/p24ws-b/dashboard.html
+          sha256sum build/p24ws-a/report.json build/p24ws-a/quotes.csv build/p24ws-a/dashboard.html
+
+      - name: Upload synthetic nonsecret evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: p24-ws-offline-synthetic-quote-import
+          path: |
+            build/p24ws-a/report.json
+            build/p24ws-a/quotes.csv
+            build/p24ws-a/dashboard.html
+          if-no-files-found: error
+          retention-days: 7

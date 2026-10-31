@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P24-WS-001",
+  "kind": "P24_LOCAL_REFERENCE_CSV_OFFLINE_QUARANTINE",
+  "claim_scope": "FILE_SCHEMA_AND_SYNTHETIC_REFERENCE_ONLY",
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "data_license_status": "UNVERIFIED",
+  "supports_owner_supplied_unattested": true,
+  "accepts_real_source_as_certified": false,
+  "provider_candidates": {
+    "FX_REFERENCE_CANDIDATE": {
+      "market": "FOREX",
+      "pair": "EURUSD",
+      "role": "REFERENCE_ONLY"
+    },
+    "CRYPTO_REFERENCE_CANDIDATE": {
+      "market": "CRYPTO",
+      "pair": "BTCUSDT",
+      "role": "REFERENCE_ONLY"
+    },
+    "USDTIRT_REFERENCE_CANDIDATE": {
+      "market": "CRYPTO",
+      "pair": "USDTIRT",
+      "role": "CONVERSION_REFERENCE_ONLY"
+    }
+  },
+  "csv_columns": [
+    "event_time_ms",
+    "bid",
+    "ask"
+  ],
+  "max_records": 1000,
+  "max_file_bytes": 100000,
+  "max_age_ms": 2000,
+  "required_rights_claim": "UNVERIFIED",
+  "real_market_rights_verified": false,
+  "independent_source_attested": false,
+  "external_order_authority": false,
+  "trading_signal_authority": false,
+  "first_live_owner_approval": "NOT_GRANTED",
+  "pre_first_live_satisfied": 0,
+  "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+  "g13": "NOT_STARTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
