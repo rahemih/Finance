@@ -319,7 +319,7 @@ This catalog is the canonical index of governed work.
 | FIN-P24-WP-001 | P24 | Synthetic Demo Telemetry / Privacy Reports — PR #494 | HIGH | OFFLINE_SYNTHETIC_MERGED / POSTMERGE_CI_VERIFIED / NO_BROKER_ATTESTATION | `contracts/tasks/FIN-P24-WP-001.json` | SUPPLEMENTARY_NONLIVE_ONLY / NO_LIVE_AUTHORITY |
 | FIN-P24-WQ-001 | P24 | Synthetic Multi-Source Reference Comparison — PR #499 | HIGH | OFFLINE_SYNTHETIC_MERGED / POSTMERGE_CI_VERIFIED / NO_LIVE_SOURCE_RIGHTS | `contracts/tasks/FIN-P24-WQ-001.json` | SUPPLEMENTARY_NONLIVE_ONLY / NO_LIVE_AUTHORITY |
 | FIN-P24-WS-001 | P24 | Offline CSV Quote Intake / Source Rights Quarantine — PR #502 | HIGH | OFFLINE_SYNTHETIC_MERGED / POSTMERGE_CI_VERIFIED / UNATTESTED_SOURCES_QUARANTINED | `contracts/tasks/FIN-P24-WS-001.json` | SUPPLEMENTARY_NONLIVE_ONLY / NO_LIVE_AUTHORITY |
-| FIN-P24-WR-001-R01 | P24 | Offline Demo evidence / WR lock reconciliation (docs only) | MEDIUM | DRAFT / OWNER_SPECIFIC_MERGE_GATE_PENDING / NOT_CANONICAL | `contracts/tasks/FIN-P24-WR-001-R01.json` | NO_NEW_LOCK / WR_RELEASE_CONDITIONAL_POSTMERGE / NO_LIVE |
+| FIN-P24-WR-001-R01 | P24 | Offline Demo evidence / WR lock reconciliation (docs only) | MEDIUM | CANONICAL_COMPLETE_ONLY_IF_THIS_REPAIR_OWNER_GATE_MERGE_AND_POSTMERGE_PASS / ELSE_PENDING | `contracts/tasks/FIN-P24-WR-001-R01.json` | NO_NEW_LOCK / WR_RELEASE_CONDITIONAL_POSTMERGE / NO_LIVE |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
