@@ -1,6 +1,6 @@
 # Current State
 
-Last reconciled: 2026-10-27
+Last reconciled: 2026-10-31 (P24 synthetic/offline supplement; Live still blocked)
 
 ## Repository
 
@@ -41,8 +41,8 @@ P00 — Charter & Governance: CANONICAL_COMPLETE
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
 Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after PRE_FIRST_LIVE blockers clear  
-Active governed task: FIN-P24-WR-001 / SUPPLEMENTARY_NON_LIVE_ONLY  
-Active lock: LOCK-FIN-P24-WR-001-01 / ACQUIRED_NONLIVE_REVIEW_PENDING  
+Active governed task: NONE / P24 OFFLINE SUPPLEMENTAL WORKSTREAMS MERGED (not operational DEMO validation)  
+Active lock: LOCK-FIN-P24-WR-001-01 / RELEASED_AFTER_OWNER_GATED_OFFLINE_RECONCILIATION  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -8793,3 +8793,13 @@ P23-A boundary:
 - GitHub Protect main ruleset remains active with `governance` required, 0 mandatory GitHub reviewers, squash only and linear history; *all project-specific Owner Human Gates and mandatory independent security reviews remain enforceable*.
 - #496 contract registration, #497 nonlive foundation and #498 nonoperational Login preview = OPEN/UNMERGED / independently gated. 34-page/212-screenshot owner baseline approvals NOT_GRANTED; Auth BFF and browser acceptance NOT_RUN.
 - P23 original reference closure unchanged. P24-B BLOCKED, G13 NOT_STARTED and LIVE_TRADING/AUTO_TRADING DISABLED. No trading/account/deployment permission from solo-owner policy.
+
+
+## FIN-P24-WR-001-R01 — Postmerge supplemental offline closure (2026-10-31; effective only after gated repair merge)
+
+- Owner-approved synthetic-only P24 workstreams #492 (WR), #493 (WO), #494 (WP), #499 (WQ), #502 (WS) are all merged with their separate protected-main postmerge Governance and Branch Hygiene checks SUCCESS; exact SHAs and URLs are in `docs/19-production/P24-DEMO-OFFLINE-MERGE-CLOSURE.md` and GitHub #508.
+- WR provisional lock `LOCK-FIN-P24-WR-001-01` is proposed as RELEASED for supplementary NONLIVE documentation only, conditional on this reconciliation task's own exact-HEAD+artifact Owner gate, merge and postmerge Governance + Branch Hygiene PASS. Until then `main` remains authoritative for lock status.
+- `FIN-P24-WR-001`, `FIN-P24-WO-001`, `FIN-P24-WP-001`, `FIN-P24-WQ-001`, `FIN-P24-WS-001` are **synthetic/offline reference components only**; never operational Kill Switch, licensed market-data feed or broker-certified Demo execution.
+- Local owner-run parallel MT5 Demo is separate untrusted observational evidence, not imported into public GitHub; crypto +7200s broker Timestamp is UNVERIFIED, FX weekend tick progress absent, controlled reconnect and operational Demo risk/order tests NOT CERTIFIED.
+- P24 overall = AUTHORIZED / ACTIVE, P24-A CANONICAL_COMPLETE (readiness assessment only), P24-B BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES, P24-C..I NOT_STARTED, PRE_FIRST_LIVE 0/9, P24_EXIT 0/3, G13 NOT_STARTED, FIRST_LIVE_OWNER_GATE NOT_GRANTED, LIVE_TRADING / AUTO_TRADING DISABLED. No release of any Live or other task locks.
+- Linear: Finance — NEXUS QUANT existing project commentary is the continuation register because free-tier issue quota blocks new issue creation. See GitHub #508 and separate live tracker #491.
