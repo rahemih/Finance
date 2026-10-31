@@ -81,10 +81,10 @@ def main() -> int:
     h = render_html(output).encode("utf-8")
     writer_buffer = io.StringIO(newline="")
     writer = csv.writer(writer_buffer, lineterminator="\n")
-    writer.writerow(("observed_at_utc", "equity_minor", "drawdown_bps", "quote_age_ms", "connected"))
+    writer.writerow(("observed_at_utc", "equity_minor", "flow_adjusted_equity_minor", "drawdown_bps", "quote_age_ms", "connected"))
     for item in output["observations"]:
         writer.writerow((
-            item["observed_at_utc"], item["equity_minor"], item["drawdown_bps"],
+            item["observed_at_utc"], item["equity_minor"], item["flow_adjusted_equity_minor"], item["drawdown_bps"],
             item["quote_age_ms"], item["connected"],
         ))
     c = writer_buffer.getvalue().encode("utf-8")
