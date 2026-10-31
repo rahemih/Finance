@@ -1,0 +1,105 @@
+{
+  "task_id": "FIN-P24-WS-001",
+  "phase": "P24",
+  "workstream": "WS",
+  "objective": "Prepare a strictly offline and privacy-safe file-import adapter for FX and crypto market quotes that may later be supplied from legally entitled research data; synthetic fixtures for CI and no real provider/API certification.",
+  "scope": [
+    "New standalone license-state-quarantined CSV import layer with no network/credentials and no trading authority",
+    "Read sanitized market reference files only from explicit fixed minimal allowlist and cap size/records",
+    "Time, bid/ask, pair/unit, provider-origin, source-mode and data-provenance checks with deterministic hashes",
+    "Preserve origin/rights as UNVERIFIED and prevent imported user data feeding signals until evidence and license approval",
+    "Generate JSON and static Persian HTML provenance/quality reports from fully synthetic CI fixtures, deterministic double replay",
+    "Independent A5/A8/A10 review and owner Human Gate if required before merge; keep P24 gates unchanged"
+  ],
+  "out_of_scope": [
+    "Real Dukascopy, Binance, TradingView, CoinGecko, Kraken, MT5 or exchange API calls, any geo/IP restriction bypass",
+    "Production provider/venue selection, account creation, OAuth, keys, credentials, trading and real price entitlement claims",
+    "Bypassing P07 source quality or trading policy, changing risk ceilings/Owner Gate or LIVE/AUTO",
+    "Modifying other PRs #492/493/494/499 or WEB-P0 files"
+  ],
+  "dependencies": [
+    "P24-A canonical and all PRE_FIRST_LIVE P24-B blockers unchanged",
+    "Reference only: ADR-0002, P05 instrument contracts, P07 trusted data, P24 WQ parallel mock work",
+    "Previous solo-owner governance RFC #500 merged, but any explicit independent review requirement remains binding"
+  ],
+  "read_paths": [
+    "docs/**",
+    "packages/data_quality/**",
+    "packages/contracts/**",
+    "config/data-quality/**",
+    "contracts/schemas/**",
+    "scripts/ci/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WS-001.json",
+    "config/production/p24-local-reference-import-policy.json",
+    "packages/production/local_reference_import.py",
+    "tests/p24/test_local_reference_import.py",
+    "scripts/ci/p24ws_evidence.py",
+    ".github/workflows/p24-local-reference-import.yml",
+    "docs/19-production/P24-WS-LOCAL-REFERENCE-IMPORT.md"
+  ],
+  "forbidden_paths": [
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/execution/**",
+    "packages/data_quality/**",
+    ".github/workflows/governance.yml",
+    "config/production/production-readiness-dossier.json",
+    "apps/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "At least 25 deterministic input-safety and source-provenance tests",
+    "Reject account secrets/unknown schema, LIVE/prod claims, untrusted sources and CSV escape tricks",
+    "Decimal finite quote, bid/ask, symbol identity, time monotonicity, stale/future and data capacity tests",
+    "Hash canonical input/normalized evidence; replay twice with identical bytes",
+    "Full strict Pyright and GitHub Governance at final head"
+  ],
+  "security_tests": [
+    "Never import network/HTTP/MT5/browser SDK, no credential or secrets",
+    "CSV import is never a legal license attestation",
+    "Research signal authority always false; no real money or broker access",
+    "Do not leak arbitrary CSV content into logs or HTML"
+  ],
+  "evidence": [
+    "Guarded source provenance plus immutable SHA256",
+    "GitHub CI latest head with tests and hashes",
+    "Independent A5/A8/A10 reviewer decision, if required",
+    "Linear + GitHub #491 comment and postmerge reconciliation"
+  ],
+  "rollback": "Revert new WS files only; no external states changed",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Main SHA identified and no overlapping paths with pending P24/WEB PRs",
+    "All external data rights considered unverified; only synthetic CI fixtures"
+  ],
+  "definition_of_done": [
+    "Full test, Pyright, Governance and double replay PASS",
+    "Independent A5/A8/A10 review recorded according to task requirements",
+    "Coordination before merge; postmerge CI/Branch Hygiene, locks and Linear reconciliation",
+    "Production blockers and LIVE/AUTO remain unchanged"
+  ]
+}
