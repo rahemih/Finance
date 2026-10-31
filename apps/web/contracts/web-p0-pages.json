@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "0.1.0-draft",
+  "source": "Google Docs native WEB-P0 registry, sections 2-3; P23 config/ux/information-architecture.json",
+  "sourceDocument": "https://docs.google.com/document/d/19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0/edit",
+  "ownerApprovedBaselineCount": 0,
+  "reportedScreenshotInventoryCount": 212,
+  "screenshotAssetManifestStatus": "NOT_CREATED",
+  "routeStatus": "PROPOSED",
+  "pageCount": 34,
+  "pages": [
+    {
+      "pageId": "001",
+      "workstream": "P0-A",
+      "labelFa": "ورود به حساب",
+      "proposedRoute": "/auth/login",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "002",
+      "workstream": "P0-A",
+      "labelFa": "پذیرش دعوت/ایجاد حساب کنترل‌شده",
+      "proposedRoute": "/auth/enroll",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "006",
+      "workstream": "P0-A",
+      "labelFa": "تأیید دومرحله‌ای",
+      "proposedRoute": "/auth/2fa",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "007",
+      "workstream": "P0-A",
+      "labelFa": "ورود با Passkey",
+      "proposedRoute": "/auth/passkey",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "008",
+      "workstream": "P0-A",
+      "labelFa": "تأیید دستگاه",
+      "proposedRoute": "/auth/device-verification",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "009",
+      "workstream": "P0-A",
+      "labelFa": "نشست‌ها و دستگاه‌های فعال",
+      "proposedRoute": "/settings/security/sessions",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "094",
+      "workstream": "P0-A",
+      "labelFa": "Security Settings",
+      "proposedRoute": "/settings/security",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "101",
+      "workstream": "P0-A",
+      "labelFa": "Users & Roles",
+      "proposedRoute": "/settings/users-roles",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "010",
+      "workstream": "P0-B",
+      "labelFa": "داشبورد",
+      "proposedRoute": "/dashboard",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "079",
+      "workstream": "P0-B",
+      "labelFa": "System Health",
+      "proposedRoute": "/system",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "084",
+      "workstream": "P0-B",
+      "labelFa": "Alerts/Notification Center",
+      "proposedRoute": "/system/alerts",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "011",
+      "workstream": "P0-C",
+      "labelFa": "نمای کلی بازارها",
+      "proposedRoute": "/markets",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "015",
+      "workstream": "P0-C",
+      "labelFa": "Watchlist",
+      "proposedRoute": "/markets/watchlist",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "019",
+      "workstream": "P0-C",
+      "labelFa": "نمای کلی دارایی",
+      "proposedRoute": "/markets/[asset]",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "020",
+      "workstream": "P0-C",
+      "labelFa": "نمودار پیشرفته",
+      "proposedRoute": "/markets/[asset]/chart",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "021",
+      "workstream": "P0-C",
+      "labelFa": "تحلیل تکنیکال",
+      "proposedRoute": "/markets/[asset]/technical",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "022",
+      "workstream": "P0-C",
+      "labelFa": "Order Flow",
+      "proposedRoute": "/markets/[asset]/order-flow",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "023",
+      "workstream": "P0-C",
+      "labelFa": "Liquidity",
+      "proposedRoute": "/markets/[asset]/liquidity",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "024",
+      "workstream": "P0-C",
+      "labelFa": "Fundamental/Macro",
+      "proposedRoute": "/markets/[asset]/macro",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "025",
+      "workstream": "P0-C",
+      "labelFa": "News/Sentiment",
+      "proposedRoute": "/markets/[asset]/news",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "027",
+      "workstream": "P0-C",
+      "labelFa": "AI Analysis/Explainability",
+      "proposedRoute": "/markets/[asset]/analysis",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "028",
+      "workstream": "P0-D",
+      "labelFa": "Opportunity Scanner",
+      "proposedRoute": "/opportunities",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "029",
+      "workstream": "P0-D",
+      "labelFa": "Opportunity Ranking",
+      "proposedRoute": "/opportunities/ranking",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "034",
+      "workstream": "P0-D",
+      "labelFa": "Signal Detail",
+      "proposedRoute": "/signals/[signalId]",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "035",
+      "workstream": "P0-D",
+      "labelFa": "Evidence Breakdown",
+      "proposedRoute": "/signals/[signalId]/evidence",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "037",
+      "workstream": "P0-E",
+      "labelFa": "پوزیشن‌های باز",
+      "proposedRoute": "/trades",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "038",
+      "workstream": "P0-E",
+      "labelFa": "Position Detail",
+      "proposedRoute": "/positions/[positionId]",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "039",
+      "workstream": "P0-E",
+      "labelFa": "سفارش‌های در انتظار",
+      "proposedRoute": "/trades/orders/pending",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "040",
+      "workstream": "P0-E",
+      "labelFa": "تاریخچه معاملات",
+      "proposedRoute": "/trades/history",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "044",
+      "workstream": "P0-E",
+      "labelFa": "Order Detail",
+      "proposedRoute": "/orders/[orderId]",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "046",
+      "workstream": "P0-E",
+      "labelFa": "نمای کلی Portfolio",
+      "proposedRoute": "/portfolio",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "048",
+      "workstream": "P0-E",
+      "labelFa": "Exposure",
+      "proposedRoute": "/portfolio/exposure",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "051",
+      "workstream": "P0-E",
+      "labelFa": "Risk Limits",
+      "proposedRoute": "/portfolio/risk-limits",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    },
+    {
+      "pageId": "053",
+      "workstream": "P0-F",
+      "labelFa": "Demo Center",
+      "proposedRoute": "/demo",
+      "routeApproval": "PROPOSED",
+      "visualBaselineStatus": "REVIEW_REQUIRED",
+      "implementationStatus": "NOT_IMPLEMENTED"
+    }
+  ]
+}
