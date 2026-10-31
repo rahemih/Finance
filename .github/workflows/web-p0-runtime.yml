@@ -63,3 +63,5 @@ jobs:
           curl --silent --head --fail http://127.0.0.1:3100/ | grep -i '^x-frame-options: DENY'
       - name: Supply chain audit (HIGH+ fail closed)
         run: pnpm audit --audit-level high
+      - name: Research exact dependency license metadata (not waiver or approval)
+        run: node apps/web/scripts/collect-npm-license-evidence.mjs
