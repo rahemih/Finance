@@ -49,8 +49,8 @@ def fixture() -> tuple[SyntheticQuote, ...]:
     return tuple(output)
 
 
-def mutate(provider: str, **changes: object) -> tuple[SyntheticQuote, ...]:
-    return tuple(replace(q, **changes) if q.provider == provider else q for q in fixture())
+def mutate(target: str, **changes: object) -> tuple[SyntheticQuote, ...]:
+    return tuple(replace(q, **changes) if q.provider == target else q for q in fixture())
 
 
 class MultiSourceReferenceTests(unittest.TestCase):
