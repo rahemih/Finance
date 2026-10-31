@@ -122,6 +122,13 @@ class OfflinePreproductionLab:
         return cls(digest(parsed))
 
     def accept(self, event: SyntheticEvent) -> AuditDecision:
+        if self.policy_id != digest(EXPECTED_POLICY):
+            raise OfflineLabError("synthetic policy identity forged in memory")
+        if self.decisions and (
+            self.state != self.decisions[-1].state
+            or self.chain != self.decisions[-1].audit_hash
+        ):
+            raise OfflineLabError("synthetic safety state or chain altered in memory")
         self._validate(event)
         if event.event_id in self.seen or event.sequence <= self.last_sequence:
             raise OfflineLabError("duplicate/replayed/out-of-order event refused")
