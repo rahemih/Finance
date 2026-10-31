@@ -10,7 +10,8 @@
     "Require monotonic event identities and hash-chained audit evidence",
     "Produce immutable JSON and escaped HTML dashboard labeled reference-only",
     "Add independent offline CI test and two byte-identical replays",
-    "Keep PR #492 write paths isolated; review both before any merge"
+    "Keep PR #492 write paths isolated; review both before any merge",
+    "Owner solo-review exception is only a second-human-review alternative for synthetic/offline PR #493; FIN-P24-WT-001 / merged #503 (postmerge Governance #41188582071 SUCCESS). If network/auth/order/production scope appears exception INVALID, require independent applicable human security review. Owner must explicitly approve current PR HEAD+foundation CI artifact before merging; no retroactive bulk Human Gate."
   ],
   "out_of_scope": [
     "All live and real-account access including MT5, cTrader, Tabdeal privileged API",
@@ -102,10 +103,11 @@
     "Current branch head and Governance CI",
     "Deterministic lab evidence JSON plus HTML hash",
     "GitHub #491 and Linear register crosslinks",
-    "Independent A5/A8/A10 review; no self-approval"
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Owner-approved PR #503 head 51ae714f4b48a129204f630520c42e87ba8a10fb, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6, postmerge Governance #41188582071 SUCCESS, artifact sha256:7fa7a39a1cb8223021253d028de9a1e5e24594caa978daf6aac2e53bd7c15843"
   ],
   "rollback": "Revert only files in the WO allowlist; no P20 or P24-A or Live state change.",
-  "human_gate": false,
+  "human_gate": true,
   "definition_of_ready": [
     "No shared write path with PR #492 or branch current-state lock",
     "No secret or network access requested",
@@ -115,9 +117,10 @@
     "New standalone isolated workflow PASS",
     "Strict typecheck and 20+ tests PASS",
     "Two identical evidence and dashboard files",
-    "Independent A5/A8/A10 reviewer approval for HIGH risk",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
     "Merged and postmerge validated after lock/review coordination",
     "GitHub and Linear reconciled without false P24 phase closure",
-    "P24-B, G13, Live/Auto unchanged"
+    "P24-B, G13, Live/Auto unchanged",
+    "Owner explicitly approves PR-specific exact HEAD plus latest required Governance manifest SHA256 and scoped CI; safety/security/domain A5/A8/A10 evidence remains mandatory; no Live/Auto promotion"
   ]
 }
