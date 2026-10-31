@@ -27,3 +27,10 @@ test("dashboard, health and alerts cannot fake live facts or allow write control
   assert.equal(reg.imageCount,20);assert.equal(reg.pages.length,3);
   assert.ok(reg.pages.every(p=>p.ownerReferenceDesignApproval===undefined&&p.backendConnection==="NOT_CONNECTED"));
 });
+
+test("critical warning tag does not collapse across desktop and mobile layouts",()=>{
+  const css=read("../src/styles/monitoring-preview.css");
+  assert.match(css,/\.nq-mon-critical \.nq-mon-tag\{flex-shrink:0;white-space:nowrap/);
+  assert.match(css,/@media\(max-width:768px\).*\.nq-mon-critical\{display:grid/);
+  assert.match(css,/\.nq-mon-critical \.nq-mon-tag\{grid-column:1\/-1/);
+});

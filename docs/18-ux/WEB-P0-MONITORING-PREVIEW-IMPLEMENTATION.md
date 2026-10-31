@@ -32,3 +32,7 @@ Backend reads `/api/v1/dashboard/overview`, `/api/v1/ops/health/summary`, `/api/
 ## Unapproved first-run browser capture evidence (planned)
 
 The Draft runtime job now launches the built Next server and preinstalled Google Chrome headless to capture **nine actual source UI images** at 1440, 768 and 360 px for PAGE-010, PAGE-079 and PAGE-084. Each PNG gets SHA256 and a manifest, uploaded as a short-lived GitHub Actions artifact. This is **candidate output** only; the Owner's 212 native Google Doc reference images remain DESIGN_APPROVED, while screenshot equivalence, responsive geometry and browser baseline acceptance remain NOT_RUN until actual comparison. The CI job must finish before anyone claims browser screenshots exist.
+
+## Browser QA checkpoint — first screenshot run 41214435404
+
+Nine PNG viewport captures were created (1440, 768, 360 for three pages), and visual review detected a **real** clipped/compressed critical-warning badge. The subsequent CSS revision applies non-shrinking desktop badges and a distinct full-row mobile badge. The original screenshots are diagnostic evidence only. A new full Build, HTTP and Chrome capture must pass on the updated head; neither the old nor replacement images are declared matched to the Owner's reference baseline.
