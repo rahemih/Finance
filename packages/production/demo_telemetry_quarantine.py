@@ -167,8 +167,14 @@ class OfflineDemoTelemetry:
                 if flow != 0:
                     raise DemoQuarantineError("starting flow must equal zero")
                 initial_balance = balance
-            previous_peak = max(previous_peak, equity)
-            drawdown_bps = (previous_peak - equity) * 10000 // previous_peak
+            # Cumulative external flow is supplied by the data source. Removing
+            # it from equity prevents deposits and withdrawals from being
+            # confused with trading drawdown (still NOT an audited return).
+            adjusted_equity = equity - flow
+            if adjusted_equity <= 0:
+                raise DemoQuarantineError("nonpositive flow-adjusted equity")
+            previous_peak = max(previous_peak, adjusted_equity)
+            drawdown_bps = (previous_peak - adjusted_equity) * 10000 // previous_peak
             max_drawdown_bps = max(max_drawdown_bps, drawdown_bps)
             stale_count += int(age > 1500)
             disconnected_count += int(not connected)
@@ -176,6 +182,7 @@ class OfflineDemoTelemetry:
             rows.append({
                 "observed_at_utc": stamp,
                 "equity_minor": equity,
+                "flow_adjusted_equity_minor": adjusted_equity,
                 "drawdown_bps": drawdown_bps,
                 "quote_age_ms": age,
                 "connected": connected,
@@ -199,6 +206,7 @@ class OfflineDemoTelemetry:
             "external_flow_minor": final_external_flow,
             "net_pnl_minor_adjusted_for_flows": final_equity - initial_balance - final_external_flow,
             "max_drawdown_bps": max_drawdown_bps,
+            "drawdown_basis": "FLOW_ADJUSTED_EQUITY_CUMULATIVE_EXTERNAL_FLOW_UNVERIFIED",
             "stale_quote_observations": stale_count,
             "disconnected_observations": disconnected_count,
             "closed_trades_user_reported": previous_trades,
@@ -231,11 +239,13 @@ def render_html(report: dict[str, object]) -> str:
         stamp = item.get("observed_at_utc")
         equity = item.get("equity_minor")
         dd = item.get("drawdown_bps")
-        if type(stamp) is not str or type(equity) is not int or type(dd) is not int:
+        adjusted = item.get("flow_adjusted_equity_minor")
+        if (type(stamp) is not str or type(equity) is not int
+                or type(adjusted) is not int or type(dd) is not int):
             raise DemoQuarantineError("invalid dashboard types")
         rows.append(
             f"<tr><td>{escape(stamp)}</td>"
-            f"<td>{equity}</td><td>{dd}</td></tr>"
+            f"<td>{equity}</td><td>{adjusted}</td><td>{dd}</td></tr>"
         )
     heading = "NEXUS QUANT — DEMO TELEMETRY (UNATTESTED)"
     return (
@@ -254,8 +264,8 @@ def render_html(report: dict[str, object]) -> str:
         f"Provenance: {escape(str(report.get('source_kind','')))} · "
         f"Unit: {escape(str(report.get('currency_unit','')))}</p>"
         f"<p>Flow-adjusted net P&amp;L: {escape(str(report.get('net_pnl_minor_adjusted_for_flows', '')))} "
-        f"· Maximum drawdown (bps): {escape(str(report.get('max_drawdown_bps', '')))}</p>"
-        "<table><thead><tr><th>Observed UTC</th><th>Equity (minor units)</th><th>Drawdown bps</th>"
+        f"· Flow-adjusted drawdown (bps; cumulative flows unverified): {escape(str(report.get('max_drawdown_bps', '')))}</p>"
+        "<table><thead><tr><th>Observed UTC</th><th>Raw equity</th><th>Flow-adjusted equity</th><th>Drawdown bps</th>"
         "</tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
         f"<p>Report digest: {escape(str(report.get('report_id','')))}</p></body></html>\n"
     )
