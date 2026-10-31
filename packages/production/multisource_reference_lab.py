@@ -160,7 +160,7 @@ class MultiSourceReferenceLab:
         if self.p07_policy.production_data_quality_vendor != "NOT_SELECTED":
             raise ReferenceLabError("unexpected production gate promotion")
 
-    def evaluate(self, quotes: tuple[SyntheticQuote, ...], now_ms: int, *, risk_veto: bool = False) -> dict[str, object]:
+    def evaluate(self, quotes: tuple[object, ...], now_ms: int, *, risk_veto: bool = False) -> dict[str, object]:
         if self.policy_id != digest(EXPECTED_POLICY):
             raise ReferenceLabError("in-memory policy ID mutated")
         if type(now_ms) is not int or now_ms < 1 or type(risk_veto) is not bool:
@@ -168,7 +168,10 @@ class MultiSourceReferenceLab:
         if type(quotes) is not tuple or len(quotes) != len(ROLES):
             raise ReferenceLabError("exact seven synthetic source records required")
         sources: dict[str, SyntheticQuote] = {}
-        for q in quotes:
+        for item in quotes:
+            if not isinstance(item, SyntheticQuote):
+                raise ReferenceLabError("typed synthetic quote required")
+            q = item
             q.validate()
             if q.provider in sources:
                 raise ReferenceLabError("duplicate source or missing independent record")
