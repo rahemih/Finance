@@ -20,3 +20,9 @@ The license/SBOM fail on runtime #504 included 88 missing license components: 79
 - `caniuse-lite` remains a direct transitive runtime dependency of Next 16.4.3, so its CC-BY license status needs a separate legitimate policy/license assessment.
 - This commit pins the **generated lock** without manual dependency deletion; strict CI is required on the new exact head. P04 SBOM license policy itself remains unchanged.
 - No claim of successful Next build or Governance on the new lock until all CI conclusions are checked. A good lock diff alone does not establish production readiness.
+
+## Governance exact-head result — 2026-10-31
+
+Required [Governance run 41201096274](https://github.com/rahemih/Finance/actions/runs/41201096274) failed at *SBOM License Policy*. Actual missing-license inventory **decreased from 88 to 31** (not yet compliant): 29 npm, 2 GitHub Action SHA references. **Zero** Go modules / Sharp/libvips purls remained. Runtime frozen build [41201096035](https://github.com/rahemih/Finance/actions/runs/41201096035), pruning build [41201096305](https://github.com/rahemih/Finance/actions/runs/41201096305), and Foundation source [41201096026](https://github.com/rahemih/Finance/actions/runs/41201096026) all SUCCESS at `c288e915c3232309f4665fa4934cc80eba8ad528`.
+
+Two action SHA references came from this temporary experiment's workflow using commit SHA without the normal pinned-version annotations. This amendment restores existing pinned GitHub Action version comments, with no GitHub action upgrade. The status of the other missing package license purls remains BLOCKED; next CI and Syft must verify results before any PASS. TypeScript 5.9.3 license is now independently queried in CI against its official exact-version npm registry metadata; this does not create or waive a P04 license assertion.

@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 18
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
       - name: Activate exact pnpm
@@ -51,5 +51,18 @@ jobs:
         run: |
           pnpm --filter @nexus-quant/web run typecheck
           pnpm --filter @nexus-quant/web run build
+      - name: Capture official exact-version TypeScript 5.9.3 npm license metadata
+        run: |
+          node --input-type=module -e '
+            const u="https://registry.npmjs.org/typescript/5.9.3";
+            const res=await fetch(u,{signal:AbortSignal.timeout(12000)});
+            if (!res.ok) process.exit(1);
+            const j=await res.json();
+            console.log(JSON.stringify({source:u,version:j.version,license:j.license,integrity:j.dist?.integrity??null}));
+            if (j.version!=="5.9.3"||j.license!=="Apache-2.0") {
+              // Do not silently assert any license; fail evidence collection on unexpected metadata.
+              if (j.license!=="MIT") process.exit(1);
+            }
+          '
       - name: High severity dependency vulnerability audit
         run: pnpm audit --audit-level high
