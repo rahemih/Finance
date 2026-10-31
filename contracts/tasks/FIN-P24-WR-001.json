@@ -9,7 +9,8 @@
     "Validate mock intents, venue/market identity, quantity/tick and idempotency/sequence bounds",
     "Reject unverified leverage, Live, credentials, order routing, unknown venues and risk veto",
     "Add offline unit tests and deterministic evidence to required CI",
-    "Keep production readiness blockers and separate Human Gates unchanged"
+    "Keep production readiness blockers and separate Human Gates unchanged",
+    "Owner solo-review exception is only a second-human-review alternative for synthetic/offline PR #492; FIN-P24-WT-001 / merged #503 (postmerge Governance #41188582071 SUCCESS). If network/auth/order/production scope appears exception INVALID, require independent applicable human security review. Owner must explicitly approve current PR HEAD+foundation CI artifact before merging; no retroactive bulk Human Gate."
   ],
   "out_of_scope": [
     "P24-B Manual Live activation",
@@ -97,10 +98,11 @@
     "Machine-readable task contract",
     "Policy + offline module + deterministic tests",
     "Governance PR CI, artifact hashes and post-merge verification if merged",
-    "Linear status and GitHub issue #491"
+    "Linear status and GitHub issue #491",
+    "Owner-approved PR #503 head 51ae714f4b48a129204f630520c42e87ba8a10fb, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6, postmerge Governance #41188582071 SUCCESS, artifact sha256:7fa7a39a1cb8223021253d028de9a1e5e24594caa978daf6aac2e53bd7c15843"
   ],
   "rollback": "Revert only FIN-P24-WR-001 Task Contract, offline reference policy, module, tests, evidence, CI wiring and tracking text; P24-A and P20 canonical state and all trading flags remain unchanged.",
-  "human_gate": false,
+  "human_gate": true,
   "definition_of_ready": [
     "P24-A is closed and the P24-B Live gate is still blocked",
     "Owner approved research targets only",
@@ -111,8 +113,9 @@
     "Exactly two immutable synthetic reference venues validated",
     "All offline unit and security-negative tests pass",
     "Two identical deterministic offline evidence bytes",
-    "Required Governance passes and independent A5/A8/A10 review recorded",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
     "PR merged and postmerge verified before CANONICAL_COMPLETE, lock released and Linear reconciled",
-    "P24-B remains BLOCKED and all 9 pre-first-Live prerequisites remain unresolved"
+    "P24-B remains BLOCKED and all 9 pre-first-Live prerequisites remain unresolved",
+    "Owner explicitly approves PR-specific exact HEAD plus latest required Governance manifest SHA256 and scoped CI; safety/security/domain A5/A8/A10 evidence remains mandatory; no Live/Auto promotion"
   ]
 }
