@@ -1,0 +1,60 @@
+name: P24 Multisource Reference Lab
+
+on:
+  pull_request:
+    paths:
+      - "contracts/tasks/FIN-P24-WQ-001.json"
+      - "config/production/p24-multisource-reference-policy.json"
+      - "packages/production/multisource_reference_lab.py"
+      - "tests/p24/test_multisource_reference_lab.py"
+      - "scripts/ci/p24wq_evidence.py"
+      - ".github/workflows/p24-multisource-lab.yml"
+      - "docs/19-production/P24-WQ-MULTISOURCE-LAB.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p24-wq-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  multisource_reference_lab:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout no credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup exact Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+
+      - name: WQ synthetic FX and crypto policy tests
+        run: python -m unittest discover -s tests/p24 -p 'test_multisource_reference_lab.py' -v
+
+      - name: Double exact evidence and static Persian dashboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=. python scripts/ci/p24wq_evidence.py --json build/p24wq-a/report.json --csv build/p24wq-a/comparison.csv --html build/p24wq-a/dashboard.html
+          PYTHONPATH=. python scripts/ci/p24wq_evidence.py --json build/p24wq-b/report.json --csv build/p24wq-b/comparison.csv --html build/p24wq-b/dashboard.html
+          cmp build/p24wq-a/report.json build/p24wq-b/report.json
+          cmp build/p24wq-a/comparison.csv build/p24wq-b/comparison.csv
+          cmp build/p24wq-a/dashboard.html build/p24wq-b/dashboard.html
+          sha256sum build/p24wq-a/report.json build/p24wq-a/comparison.csv build/p24wq-a/dashboard.html
+
+      - name: Upload synthetic evidence only
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: p24-wq-synthetic-multisource-evidence
+          path: |
+            build/p24wq-a/report.json
+            build/p24wq-a/comparison.csv
+            build/p24wq-a/dashboard.html
+          if-no-files-found: error
+          retention-days: 7
