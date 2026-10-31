@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P23-WN-001",
+  "phase": "P23",
+  "workstream": "WN",
+  "objective": "Build initial code-first RTL responsive, strictly non-operational WEB-P0 P0-B preview routes PAGE-010 dashboard, PAGE-079 system health and PAGE-084 alerts matching structural requirements of owner-approved Google Doc design references, without fake live figures or any actionable control.",
+  "scope": [
+    "Implement three root read-only Next.js route previews with explicit unknown/offline states, responsive RTL layouts and accessible navigation",
+    "Record owner design-reference approval for all 212 Google Doc inline images under a provenance-bound map, without pretending original bytes SHA or baseline visual tests passed",
+    "Add exact three-page functional-preview registry and tests; keep original 34-page manifest and ownerApprovedBaselineCount unchanged until file SHA and browser regression",
+    "Validate frozen Next.js build, TypeScript, HTTP route statuses/noindex and disabled POST via existing runtime GitHub CI",
+    "Keep No Auth/BFF/data API/trade/providers; route navigation local and safe"
+  ],
+  "out_of_scope": [
+    "Any API server, real auth/session, broker, order/risk action or financial data",
+    "Claim all 212 images have versioned SHA or browser approved comparisons",
+    "Merge before #497/#504 or independent reviewer / Owner Gate",
+    "Prod deployment, live or demo account/credentials, P24-B/G13 progression"
+  ],
+  "dependencies": [
+    "PR #496 mandatory WEB-P0 UI contract already merged",
+    "Unmerged PR #497 foundation and PR #504 pinned runtime, still SBOM/license governed FAIL",
+    "Google Doc 34-page specification and 212 live inlineObject IDs",
+    "Separate security review, visual comparison and per-PR Human Gate before merge"
+  ],
+  "read_paths": [
+    "apps/web/**",
+    "docs/18-ux/**",
+    "config/ux/**",
+    "contracts/tasks/**",
+    "docs/13-tasks/**"
+  ],
+  "write_paths": [
+    "apps/web/src/app/dashboard/page.tsx",
+    "apps/web/src/app/system/page.tsx",
+    "apps/web/src/app/system/alerts/page.tsx",
+    "apps/web/src/components/monitoring/**",
+    "apps/web/src/styles/monitoring-preview.css",
+    "apps/web/src/lib/monitoring-preview-contract.ts",
+    "apps/web/contracts/monitoring-preview-states.json",
+    "apps/web/contracts/visual-reference-approval.json",
+    "apps/web/tests/monitoring-contract.test.mjs",
+    "tests/web_p0/test_monitoring_source.py",
+    ".github/workflows/web-p0-runtime.yml",
+    ".github/workflows/web-p0-monitoring.yml",
+    "docs/18-ux/WEB-P0-MONITORING-PREVIEW-IMPLEMENTATION.md",
+    "contracts/tasks/FIN-P23-WN-001.json",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/supply-chain/**",
+    ".github/workflows/governance.yml",
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "packages/risk/**",
+    "packages/execution/**",
+    "adapters/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Latest-head frozen Next build TypeScript and no-dependency Node/Python source checks",
+    "GET /dashboard /system /system/alerts each 200 with explicit preview/noindex markers",
+    "POST to previews must be rejected, /api/v1/orders remains 404",
+    "No fake data passed as live, no hidden risk/health defaults, no automatic alert-clear controls",
+    "34-page original manifest remains NOT_IMPLEMENTED and baselines ownerApprovedBaselineCount remains zero until SHA/browser acceptance",
+    "212 Google Doc inlineObject IDs captured without duplication, per-page counts correct"
+  ],
+  "security_tests": [
+    "Dashboard risk not presented as NORMAL; unknown current health prominently visible",
+    "No fabricated zero-count alarms or portfolio balances",
+    "No order, risk override, external fetch or browser storage",
+    "Live/Auto false and no client session/BFF",
+    "P04 license fail-closed, independent review remains required"
+  ],
+  "evidence": [
+    "Google Doc revision and inlineObject map",
+    "GitHub workflow latest-head test logs",
+    "P04 Governance may remain failing until independently resolved"
+  ],
+  "rollback": "Close DRAFT stacked PR. Existing source/runtime branches and protected main remain unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner approved design reference images but not visual browser implementation",
+    "Unmerged pinned runtime supports real Next build",
+    "Three PAGE P0-B contracts read from authoritative master document"
+  ],
+  "definition_of_done": [
+    "True Next typecheck/build and HTTP smoke PASS on exact SHA",
+    "Per-page UI tests and no data falsehoods verified",
+    "Independent security and project-specific Owner Gate obtained before future merge",
+    "Visual owner acceptance after each reference has hash and actual browser comparison",
+    "Upstream #497/#504 dependencies merged in correct order before this PR eligible for merge"
+  ]
+}

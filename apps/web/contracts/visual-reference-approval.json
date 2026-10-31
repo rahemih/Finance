@@ -1,0 +1,1771 @@
+{
+  "schemaVersion": 1,
+  "scope": "WEB-P0-34-PAGES-212-REFERENCES",
+  "sourceDocumentId": "19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0",
+  "sourceDocumentRevisionAtMapping": "AHj4eMRipKDjQ9ztdftEZlHkUyBDlCDcnbWCmbGUVu_wu6jv2XEDuLS-0zPwJJb11xtgUT4bwHwsFkfKs6S8BOmUnYs88xq6NekUpLNrMZs",
+  "approvalBasis": "Owner explicitly approved the reference images in this conversation on 2026-10-31; declaration recorded; no signed per-image hash manifest or pixel matching performed.",
+  "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+  "referenceCount": 212,
+  "pageCount": 34,
+  "baselineFileHashStatus": "MISSING_UNTIL_TRUSTED_IMAGE_EXPORT_AND_SHA256",
+  "visualComparisonStatus": "NOT_RUN",
+  "pageOwnerAcceptance": "NOT_PERFORMED",
+  "pages": [
+    {
+      "pageId": "101",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "101-01",
+          "googleDocInlineObjectId": "kix.j273c7n7e78e",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "101-02",
+          "googleDocInlineObjectId": "kix.t50m3ziq4ul0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "101-03",
+          "googleDocInlineObjectId": "kix.ntydcqb7ocef",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "101-04",
+          "googleDocInlineObjectId": "kix.su22id5y9de6",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "101-05",
+          "googleDocInlineObjectId": "kix.51alv1pcd6lh",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "101-06",
+          "googleDocInlineObjectId": "kix.smhj3cu83jfp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "001",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 10,
+      "images": [
+        {
+          "screenshotId": "001-01",
+          "googleDocInlineObjectId": "kix.z2j7aqv9emwt",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-02",
+          "googleDocInlineObjectId": "kix.axc15vlt92iw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-03",
+          "googleDocInlineObjectId": "kix.62lgtvviyswf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-04",
+          "googleDocInlineObjectId": "kix.okawp0ob6rh9",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-05",
+          "googleDocInlineObjectId": "kix.5ratutie1z2f",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-06",
+          "googleDocInlineObjectId": "kix.7i6lwcrq0s77",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-07",
+          "googleDocInlineObjectId": "kix.21jnk6dvk8v0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-08",
+          "googleDocInlineObjectId": "kix.ggxktz3r5cb1",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-09",
+          "googleDocInlineObjectId": "kix.jzvfe99bkrgb",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "001-10",
+          "googleDocInlineObjectId": "kix.obdm19j1rza8",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "002",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "002-01",
+          "googleDocInlineObjectId": "kix.3ynh20ld8vwm",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "002-02",
+          "googleDocInlineObjectId": "kix.kfu18pc7w01j",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "002-03",
+          "googleDocInlineObjectId": "kix.563yvmnqts26",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "002-04",
+          "googleDocInlineObjectId": "kix.10fzfeidfbsw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "002-05",
+          "googleDocInlineObjectId": "kix.ljjo3lbe9c4s",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "002-06",
+          "googleDocInlineObjectId": "kix.daln0kbld4qb",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "006",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "006-01",
+          "googleDocInlineObjectId": "kix.em5quhr3xpow",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-02",
+          "googleDocInlineObjectId": "kix.nm9ao0nlmqqh",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-03",
+          "googleDocInlineObjectId": "kix.7jbwjdrlxjt8",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-04",
+          "googleDocInlineObjectId": "kix.4h8h7ucvwjhi",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-05",
+          "googleDocInlineObjectId": "kix.c6th2wqx242r",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-06",
+          "googleDocInlineObjectId": "kix.9q8mi621sjm3",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "006-07",
+          "googleDocInlineObjectId": "kix.s30vqakbcena",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "007",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "007-01",
+          "googleDocInlineObjectId": "kix.rxs13k6nkrcj",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-02",
+          "googleDocInlineObjectId": "kix.eqdt6cjhawkl",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-03",
+          "googleDocInlineObjectId": "kix.tgohkjfnqq2d",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-04",
+          "googleDocInlineObjectId": "kix.rlvpmm2etlzp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-05",
+          "googleDocInlineObjectId": "kix.xci1zc4v1y0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-06",
+          "googleDocInlineObjectId": "kix.99f4h0p2u80h",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "007-07",
+          "googleDocInlineObjectId": "kix.e6mdgy3i7os5",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "008",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "008-01",
+          "googleDocInlineObjectId": "kix.q99rpfjfs74m",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "008-02",
+          "googleDocInlineObjectId": "kix.p5gxveau7wwg",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "008-03",
+          "googleDocInlineObjectId": "kix.nitekdffnlfk",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "008-04",
+          "googleDocInlineObjectId": "kix.qn09mbyzisb9",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "008-05",
+          "googleDocInlineObjectId": "kix.yq9ch3m296h7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "008-06",
+          "googleDocInlineObjectId": "kix.r5n77uoatmv6",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "009",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "009-01",
+          "googleDocInlineObjectId": "kix.6v19mm9ukkpa",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "009-02",
+          "googleDocInlineObjectId": "kix.wri4bcck5shy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "009-03",
+          "googleDocInlineObjectId": "kix.2z0bk66rw49e",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "009-04",
+          "googleDocInlineObjectId": "kix.l322m697b87j",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "009-05",
+          "googleDocInlineObjectId": "kix.a9qx526qalds",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "094",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "094-01",
+          "googleDocInlineObjectId": "kix.2hv7ojopvaq0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "094-02",
+          "googleDocInlineObjectId": "kix.ug2wy5okt8au",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "094-03",
+          "googleDocInlineObjectId": "kix.fo1dqyn9r0w8",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "094-04",
+          "googleDocInlineObjectId": "kix.se62q02zdgcu",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "094-05",
+          "googleDocInlineObjectId": "kix.9wbl9rxx8z5u",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "010",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "010-01",
+          "googleDocInlineObjectId": "kix.n2mr1lrqksr",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-02",
+          "googleDocInlineObjectId": "kix.2qq12sujsabz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-03",
+          "googleDocInlineObjectId": "kix.abqvtfpjtaqk",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-04",
+          "googleDocInlineObjectId": "kix.a31ooyo1nb75",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-05",
+          "googleDocInlineObjectId": "kix.5cprhtilrmzx",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-06",
+          "googleDocInlineObjectId": "kix.2jhbnm2s7e44",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "010-07",
+          "googleDocInlineObjectId": "kix.jhn6d2200fj2",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "079",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "079-01",
+          "googleDocInlineObjectId": "kix.j0neg1tvr04d",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-02",
+          "googleDocInlineObjectId": "kix.8vkjjb6ap8xy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-03",
+          "googleDocInlineObjectId": "kix.5msspttb90or",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-04",
+          "googleDocInlineObjectId": "kix.lgsx6lkdcgjw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-05",
+          "googleDocInlineObjectId": "kix.qn95q5bkvwgf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-06",
+          "googleDocInlineObjectId": "kix.izuhc6hjlqaw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "079-07",
+          "googleDocInlineObjectId": "kix.qsicv3oswxrw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "084",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "084-01",
+          "googleDocInlineObjectId": "kix.talo8x390xxx",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "084-02",
+          "googleDocInlineObjectId": "kix.mtsbq5qn8m1u",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "084-03",
+          "googleDocInlineObjectId": "kix.5pkzj6jims98",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "084-04",
+          "googleDocInlineObjectId": "kix.os6q5mxia9dr",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "084-05",
+          "googleDocInlineObjectId": "kix.g4of6gvmy5z4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "084-06",
+          "googleDocInlineObjectId": "kix.jfpz22c8kq6p",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "011",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "011-01",
+          "googleDocInlineObjectId": "kix.y1ggmi6wlx4q",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "011-02",
+          "googleDocInlineObjectId": "kix.8llcodqjvs1a",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "011-03",
+          "googleDocInlineObjectId": "kix.i9bgkb7m0qrf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "011-04",
+          "googleDocInlineObjectId": "kix.4zvdmpvs5rq0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "011-05",
+          "googleDocInlineObjectId": "kix.5upk6ojy45v3",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "011-06",
+          "googleDocInlineObjectId": "kix.ud07mv60bzm6",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "015",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "015-01",
+          "googleDocInlineObjectId": "kix.tgxdq3udgejv",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "015-02",
+          "googleDocInlineObjectId": "kix.eev4kkr3zine",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "015-03",
+          "googleDocInlineObjectId": "kix.zokjgh3dl2q",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "015-04",
+          "googleDocInlineObjectId": "kix.5dzhbll3boe",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "015-05",
+          "googleDocInlineObjectId": "kix.d0uvs0hi7ls6",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "019",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "019-01",
+          "googleDocInlineObjectId": "kix.72amx9rnlad4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "019-02",
+          "googleDocInlineObjectId": "kix.w9z9y16cgefe",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "019-03",
+          "googleDocInlineObjectId": "kix.uaimrocwkai3",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "019-04",
+          "googleDocInlineObjectId": "kix.f28rbu70snej",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "019-05",
+          "googleDocInlineObjectId": "kix.z45x53o5f3y4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "019-06",
+          "googleDocInlineObjectId": "kix.dwdkw8t0v4d5",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "020",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "020-01",
+          "googleDocInlineObjectId": "kix.ge5xwlseivzh",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "020-02",
+          "googleDocInlineObjectId": "kix.xni9jwxxsnqm",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "020-03",
+          "googleDocInlineObjectId": "kix.orbmvzacwvkf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "020-04",
+          "googleDocInlineObjectId": "kix.ihyiz7j2wkza",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "020-05",
+          "googleDocInlineObjectId": "kix.3j5ljlk6y2b3",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "020-06",
+          "googleDocInlineObjectId": "kix.62tiquzcq4u",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "021",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "021-01",
+          "googleDocInlineObjectId": "kix.syvh99hlfpor",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "021-02",
+          "googleDocInlineObjectId": "kix.ij1tv0x3rvzp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "021-03",
+          "googleDocInlineObjectId": "kix.lguk19biavfw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "021-04",
+          "googleDocInlineObjectId": "kix.umbn6w9cretj",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "021-05",
+          "googleDocInlineObjectId": "kix.2p81ync97hbc",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "022",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "022-01",
+          "googleDocInlineObjectId": "kix.7d2rjt9hoz9w",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "022-02",
+          "googleDocInlineObjectId": "kix.hcy5kkov1d4k",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "022-03",
+          "googleDocInlineObjectId": "kix.i0yuljuod9e0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "022-04",
+          "googleDocInlineObjectId": "kix.tkn7txms0scp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "022-05",
+          "googleDocInlineObjectId": "kix.49c6eoz4yhgj",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "022-06",
+          "googleDocInlineObjectId": "kix.8643mfd1ryk",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "023",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "023-01",
+          "googleDocInlineObjectId": "kix.7ntz0o48ro0c",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "023-02",
+          "googleDocInlineObjectId": "kix.u70dsro97d9v",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "023-03",
+          "googleDocInlineObjectId": "kix.w4ug85g76yce",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "023-04",
+          "googleDocInlineObjectId": "kix.xog7etg55fvl",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "023-05",
+          "googleDocInlineObjectId": "kix.f7b9wvuply53",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "023-06",
+          "googleDocInlineObjectId": "kix.wg1ti1rnc43",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "024",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "024-01",
+          "googleDocInlineObjectId": "kix.xt67u3vig0ud",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "024-02",
+          "googleDocInlineObjectId": "kix.loc7invmugpf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "024-03",
+          "googleDocInlineObjectId": "kix.70en6tfhweld",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "024-04",
+          "googleDocInlineObjectId": "kix.6fa1xmln2i23",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "024-05",
+          "googleDocInlineObjectId": "kix.8t90any97h81",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "025",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "025-01",
+          "googleDocInlineObjectId": "kix.75ojrj4iremi",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "025-02",
+          "googleDocInlineObjectId": "kix.u8wxv79lfqsp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "025-03",
+          "googleDocInlineObjectId": "kix.pp2xcaihdms4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "025-04",
+          "googleDocInlineObjectId": "kix.rm7dh2d3qorf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "025-05",
+          "googleDocInlineObjectId": "kix.vb2jeqi1sjj4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "027",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "027-01",
+          "googleDocInlineObjectId": "kix.ai8i0pz22na2",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "027-02",
+          "googleDocInlineObjectId": "kix.4k6ms2tzgkr",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "027-03",
+          "googleDocInlineObjectId": "kix.vrdup872vak0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "027-04",
+          "googleDocInlineObjectId": "kix.jjqfyrcl77p2",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "027-05",
+          "googleDocInlineObjectId": "kix.b4b9rdthbzdl",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "027-06",
+          "googleDocInlineObjectId": "kix.yio1fuqyzqd",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "028",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "028-01",
+          "googleDocInlineObjectId": "kix.8df5l4boz35b",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "028-02",
+          "googleDocInlineObjectId": "kix.ur6msl4pg4b4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "028-03",
+          "googleDocInlineObjectId": "kix.bsdufjn43j3b",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "028-04",
+          "googleDocInlineObjectId": "kix.caecjon8ry7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "028-05",
+          "googleDocInlineObjectId": "kix.x57o83uijbbi",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "028-06",
+          "googleDocInlineObjectId": "kix.xbqzze4eokyl",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "029",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "029-01",
+          "googleDocInlineObjectId": "kix.e393x77g0ei",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "029-02",
+          "googleDocInlineObjectId": "kix.u2iofxq3vauz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "029-03",
+          "googleDocInlineObjectId": "kix.m9n65aoqcb8k",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "029-04",
+          "googleDocInlineObjectId": "kix.yem48ys6nz84",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "029-05",
+          "googleDocInlineObjectId": "kix.kspkc3drdkug",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "029-06",
+          "googleDocInlineObjectId": "kix.sf0b9x69c2kn",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "034",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "034-01",
+          "googleDocInlineObjectId": "kix.m5zi9ydih0r9",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-02",
+          "googleDocInlineObjectId": "kix.iwqw6jxryuqx",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-03",
+          "googleDocInlineObjectId": "kix.a56p7y9qk7yo",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-04",
+          "googleDocInlineObjectId": "kix.xukshqhlrh8o",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-05",
+          "googleDocInlineObjectId": "kix.2h6xrfxdfsdq",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-06",
+          "googleDocInlineObjectId": "kix.i87be6z9m0g9",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "034-07",
+          "googleDocInlineObjectId": "kix.kimauh9hkm3f",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "035",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "035-01",
+          "googleDocInlineObjectId": "kix.roggy393rgwa",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "035-02",
+          "googleDocInlineObjectId": "kix.4xew39bmssmz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "035-03",
+          "googleDocInlineObjectId": "kix.d350q1pbvho",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "035-04",
+          "googleDocInlineObjectId": "kix.k55ys3wunzbb",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "035-05",
+          "googleDocInlineObjectId": "kix.6iqdxp1zpa3z",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "035-06",
+          "googleDocInlineObjectId": "kix.6zyemt709pa4",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "037",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "037-01",
+          "googleDocInlineObjectId": "kix.m8zwhyt4zgfh",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-02",
+          "googleDocInlineObjectId": "kix.q70f0c6ywfh1",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-03",
+          "googleDocInlineObjectId": "kix.n8bki5za3l95",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-04",
+          "googleDocInlineObjectId": "kix.rdhfsfjq05az",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-05",
+          "googleDocInlineObjectId": "kix.id5owapobxw7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-06",
+          "googleDocInlineObjectId": "kix.i5hkvpcc0zfu",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "037-07",
+          "googleDocInlineObjectId": "kix.dychqyuqkerm",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "038",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "038-01",
+          "googleDocInlineObjectId": "kix.lunckirxccnq",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "038-02",
+          "googleDocInlineObjectId": "kix.4mzq5vk9v15h",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "038-03",
+          "googleDocInlineObjectId": "kix.n9vv20ed0wq7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "038-04",
+          "googleDocInlineObjectId": "kix.q3120xkge0q0",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "038-05",
+          "googleDocInlineObjectId": "kix.8zujyd91pz4w",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "038-06",
+          "googleDocInlineObjectId": "kix.x6dwl9v1hqah",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "039",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "039-01",
+          "googleDocInlineObjectId": "kix.swfnavgu0a2n",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-02",
+          "googleDocInlineObjectId": "kix.u6w67dc07bw5",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-03",
+          "googleDocInlineObjectId": "kix.g83ozlakmwsp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-04",
+          "googleDocInlineObjectId": "kix.key1xmv0m9aw",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-05",
+          "googleDocInlineObjectId": "kix.jhip548i1bak",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-06",
+          "googleDocInlineObjectId": "kix.z4xlag9q1sys",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "039-07",
+          "googleDocInlineObjectId": "kix.9z05elm1e3zz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "040",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 5,
+      "images": [
+        {
+          "screenshotId": "040-01",
+          "googleDocInlineObjectId": "kix.6hosxptcx93j",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "040-02",
+          "googleDocInlineObjectId": "kix.2q517eofdbkz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "040-03",
+          "googleDocInlineObjectId": "kix.fbts4ut07g5t",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "040-04",
+          "googleDocInlineObjectId": "kix.s7jef1wifp2q",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "040-05",
+          "googleDocInlineObjectId": "kix.c6dyrsyi3a4k",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "044",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "044-01",
+          "googleDocInlineObjectId": "kix.76iz61ql8d7f",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-02",
+          "googleDocInlineObjectId": "kix.462ogwcph7g7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-03",
+          "googleDocInlineObjectId": "kix.x7uc5jqqxjd6",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-04",
+          "googleDocInlineObjectId": "kix.29mlab1j8626",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-05",
+          "googleDocInlineObjectId": "kix.wuzuvw8cu9ai",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-06",
+          "googleDocInlineObjectId": "kix.y8xy9a68dd7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "044-07",
+          "googleDocInlineObjectId": "kix.1eqci1qyrtgk",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "046",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "046-01",
+          "googleDocInlineObjectId": "kix.p0d2v0g69zdv",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-02",
+          "googleDocInlineObjectId": "kix.n2dt0cs2dtfg",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-03",
+          "googleDocInlineObjectId": "kix.vy078rg0jqs7",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-04",
+          "googleDocInlineObjectId": "kix.9vqmxfk0nofl",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-05",
+          "googleDocInlineObjectId": "kix.brc77swkbyog",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-06",
+          "googleDocInlineObjectId": "kix.47bli4clq3wd",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "046-07",
+          "googleDocInlineObjectId": "kix.x7g8w47bynjq",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "048",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "048-01",
+          "googleDocInlineObjectId": "kix.me8kgaxhzrtg",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-02",
+          "googleDocInlineObjectId": "kix.gnn9pwysczoz",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-03",
+          "googleDocInlineObjectId": "kix.l0s7keghvr4p",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-04",
+          "googleDocInlineObjectId": "kix.za1y7vv4p4l2",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-05",
+          "googleDocInlineObjectId": "kix.z6oyverp5vsv",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-06",
+          "googleDocInlineObjectId": "kix.euzfwwtjo71o",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "048-07",
+          "googleDocInlineObjectId": "kix.5fanj2419zy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "051",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 7,
+      "images": [
+        {
+          "screenshotId": "051-01",
+          "googleDocInlineObjectId": "kix.55vvo7oj2wcy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-02",
+          "googleDocInlineObjectId": "kix.yvw14amkbkjy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-03",
+          "googleDocInlineObjectId": "kix.hzsh1ueywlhy",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-04",
+          "googleDocInlineObjectId": "kix.nsf6w4yikmkp",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-05",
+          "googleDocInlineObjectId": "kix.q9kfao8zse9s",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-06",
+          "googleDocInlineObjectId": "kix.v1rk80rrjp7x",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "051-07",
+          "googleDocInlineObjectId": "kix.uhxcc17bvu22",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    },
+    {
+      "pageId": "053",
+      "designReferenceApproval": "OWNER_APPROVED_IN_CONVERSATION",
+      "baselineFreeze": "PENDING_BYTES_AND_SHA256",
+      "referenceCount": 6,
+      "images": [
+        {
+          "screenshotId": "053-01",
+          "googleDocInlineObjectId": "kix.bw0up6hs6psf",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "053-02",
+          "googleDocInlineObjectId": "kix.bzq1xbmvq1wg",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "053-03",
+          "googleDocInlineObjectId": "kix.z80jd6ejhj6a",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "053-04",
+          "googleDocInlineObjectId": "kix.g3815aw5no6r",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "053-05",
+          "googleDocInlineObjectId": "kix.8qdhqvg9d32t",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        },
+        {
+          "screenshotId": "053-06",
+          "googleDocInlineObjectId": "kix.tt31catf3wmr",
+          "sourceAssetSHA256": null,
+          "ownerDesignReferenceApproved": true,
+          "actualBrowserComparison": "NOT_RUN"
+        }
+      ]
+    }
+  ]
+}
