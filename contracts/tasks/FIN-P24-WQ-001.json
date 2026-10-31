@@ -10,7 +10,8 @@
     "Reuse canonical P07 cross_provider.py for aligned same-symbol reference comparison and ADR-0002 contracts; no rewrite of P07",
     "Explicit BTCUSDT × USDTIRT synthetic conversion before comparison to BTCIRT, with no executable arbitrage claim",
     "Deterministic audit JSON, comparison CSV and HTML visual dashboard from synthetic data",
-    "Unit/adversarial tests, independent scoped CI and standard Governance, A5/A8/A10 independent review before merge"
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Owner solo-review exception is only a second-human-review alternative for synthetic/offline PR #499; FIN-P24-WT-001 / merged #503 (postmerge Governance #41188582071 SUCCESS). If network/auth/order/production scope appears exception INVALID, require independent applicable human security review. Owner must explicitly approve current PR HEAD+foundation CI artifact before merging; no retroactive bulk Human Gate."
   ],
   "out_of_scope": [
     "Any real Dukascopy/Binance/TradingView API call, webpage scraping, TradingView alerts to algo, prohibited access circumvention",
@@ -92,18 +93,20 @@
     "Task Contract with review matrix",
     "Actual latest HEAD CI and deterministic output hash",
     "GitHub #491 and Linear P24 Register crosslink",
-    "Independent A5 A8 A10 reviews and squash/postmerge CI prerequisite for canonical completion"
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Owner-approved PR #503 head 51ae714f4b48a129204f630520c42e87ba8a10fb, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6, postmerge Governance #41188582071 SUCCESS, artifact sha256:7fa7a39a1cb8223021253d028de9a1e5e24594caa978daf6aac2e53bd7c15843"
   ],
   "rollback": "Revert only WQ-owned new files and no canonical state mutation",
-  "human_gate": false,
+  "human_gate": true,
   "definition_of_ready": [
     "Independent paths from concurrent PRs, no actual API credentials or paid feed",
     "All 9 pre-first-live prerequisites untouched"
   ],
   "definition_of_done": [
     "Source and test+CI PASS on branch",
-    "Independent A5/A8/A10 review, no blocker",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
     "Approved merge plus postmerge Governance/Branch Hygiene and Linear reconciliation",
-    "Explicit PRE_FIRST_LIVE 0/9 and G13 unchanged"
+    "Explicit PRE_FIRST_LIVE 0/9 and G13 unchanged",
+    "Owner explicitly approves PR-specific exact HEAD plus latest required Governance manifest SHA256 and scoped CI; safety/security/domain A5/A8/A10 evidence remains mandatory; no Live/Auto promotion"
   ]
 }
