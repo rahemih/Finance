@@ -294,5 +294,11 @@ class DemoTelemetryTests(unittest.TestCase):
         self.denied(self.modify(1, "external_flow_minor", True))
 
 
+    def test_46_forged_runtime_policy_id_is_rejected(self) -> None:
+        self.loader.policy_id = "f" * 64
+        with self.assertRaises(DemoQuarantineError):
+            self.loader.evaluate(fixture())
+
+
 if __name__ == "__main__":
     unittest.main()
