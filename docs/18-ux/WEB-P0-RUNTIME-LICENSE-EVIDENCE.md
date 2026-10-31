@@ -30,17 +30,19 @@ Canonical rules: `config/supply-chain/license-policy.json`, `scripts/ci/supply_c
 - `@img/sharp-win32-x64@0.35.5`: `Apache-2.0 AND LGPL-3.0-or-later` — https://registry.npmjs.org/%40img%2Fsharp-win32-x64/0.35.5
 - `caniuse-lite@1.0.30001820`: `CC-BY-4.0` — https://registry.npmjs.org/caniuse-lite/1.0.30001820
 
-## Go sources awaiting verification
+## Go license texts checked against tagged/commit-pinned upstream repositories (evidence, not approval)
 
-- `pkg:golang/github.com/go-json-experiment/json@v0.0.0-20260623181947-01eb4420fa68` — NOT_VERIFIED
-- `pkg:golang/github.com/klauspost/cpuid/v2@v2.2.10` — NOT_VERIFIED
-- `pkg:golang/github.com/mackerelio/go-osstat@v0.2.7` — NOT_VERIFIED
-- `pkg:golang/github.com/microsoft/typescript-go@v0.0.0-20260708042240-2bd066d87f5b%2Bdirty` — NOT_VERIFIED
-- `pkg:golang/github.com/zeebo/xxh3@v1.1.0` — NOT_VERIFIED
-- `pkg:golang/golang.org/x/sync@v0.21.0` — NOT_VERIFIED
-- `pkg:golang/golang.org/x/sys@v0.46.0` — NOT_VERIFIED
-- `pkg:golang/golang.org/x/term@v0.44.0` — NOT_VERIFIED
-- `pkg:golang/golang.org/x/text@v0.38.0` — NOT_VERIFIED
+- `pkg:golang/github.com/go-json-experiment/json@v0.0.0-20260623181947-01eb4420fa68`: upstream LICENSE is `BSD-3-Clause`, source https://raw.githubusercontent.com/go-json-experiment/json/01eb4420fa68/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/github.com/klauspost/cpuid/v2@v2.2.10`: upstream LICENSE is `MIT`, source https://raw.githubusercontent.com/klauspost/cpuid/v2.2.10/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/github.com/mackerelio/go-osstat@v0.2.7`: upstream LICENSE is `Apache-2.0`, source https://raw.githubusercontent.com/mackerelio/go-osstat/v0.2.7/LICENSE.txt; distribution/NOTICE review pending
+- `pkg:golang/github.com/microsoft/typescript-go@v0.0.0-20260708042240-2bd066d87f5b%2Bdirty`: upstream LICENSE is `Apache-2.0`, source https://raw.githubusercontent.com/microsoft/typescript-go/2bd066d87f5b/LICENSE; binary build provenance STILL UNVERIFIED (`+dirty` suffix)
+- `pkg:golang/github.com/zeebo/xxh3@v1.1.0`: upstream LICENSE is `BSD-2-Clause`, source https://raw.githubusercontent.com/zeebo/xxh3/v1.1.0/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/golang.org/x/sync@v0.21.0`: upstream LICENSE is `BSD-3-Clause`, source https://raw.githubusercontent.com/golang/sync/v0.21.0/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/golang.org/x/sys@v0.46.0`: upstream LICENSE is `BSD-3-Clause`, source https://raw.githubusercontent.com/golang/sys/v0.46.0/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/golang.org/x/term@v0.44.0`: upstream LICENSE is `BSD-3-Clause`, source https://raw.githubusercontent.com/golang/term/v0.44.0/LICENSE; distribution/NOTICE review pending
+- `pkg:golang/golang.org/x/text@v0.38.0`: upstream LICENSE is `BSD-3-Clause`, source https://raw.githubusercontent.com/golang/text/v0.38.0/LICENSE; distribution/NOTICE review pending
+
+**Caution:** these are repository-license observations at named refs, **not** a cryptographic match of the source inside the distributed TypeScript binary. Separate independent license/security review and provenance checks remain mandatory.
 
 ## Next allowed remediation (not yet performed)
 

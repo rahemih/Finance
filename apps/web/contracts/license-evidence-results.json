@@ -9,8 +9,8 @@
   "allowedClassCandidateCount": 64,
   "reviewClassCandidateCount": 14,
   "unclassifiedCandidateCount": 1,
-  "golangPendingCount": 9,
-  "approval": "PENDING_INDEPENDENT_LICENSE_SECURITY_REVIEW",
+  "golangPendingCount": 0,
+  "approval": "BLOCKED_SECURITY_AND_LICENSE_REVIEW",
   "registryResults": [
     {
       "purl": "pkg:npm/%40emnapi/runtime@1.11.3",
@@ -734,5 +734,64 @@
     "pkg:golang/golang.org/x/sys@v0.46.0",
     "pkg:golang/golang.org/x/term@v0.44.0",
     "pkg:golang/golang.org/x/text@v0.38.0"
-  ]
+  ],
+  "golangUpstreamLicenseStatus": "NINE_UPSTREAM_LICENSE_TEXTS_READ_IN_GITHUB_UNREVIEWED",
+  "golangLicenses": [
+    {
+      "purl": "pkg:golang/github.com/go-json-experiment/json@v0.0.0-20260623181947-01eb4420fa68",
+      "license": "BSD-3-Clause",
+      "url": "https://raw.githubusercontent.com/go-json-experiment/json/01eb4420fa68/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/github.com/klauspost/cpuid/v2@v2.2.10",
+      "license": "MIT",
+      "url": "https://raw.githubusercontent.com/klauspost/cpuid/v2.2.10/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/github.com/mackerelio/go-osstat@v0.2.7",
+      "license": "Apache-2.0",
+      "url": "https://raw.githubusercontent.com/mackerelio/go-osstat/v0.2.7/LICENSE.txt",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/github.com/microsoft/typescript-go@v0.0.0-20260708042240-2bd066d87f5b%2Bdirty",
+      "license": "Apache-2.0",
+      "url": "https://raw.githubusercontent.com/microsoft/typescript-go/2bd066d87f5b/LICENSE",
+      "binaryProvenance": "UNKNOWN_BINARY_HAS_DIRTY_SUFFIX",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/github.com/zeebo/xxh3@v1.1.0",
+      "license": "BSD-2-Clause",
+      "url": "https://raw.githubusercontent.com/zeebo/xxh3/v1.1.0/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/golang.org/x/sync@v0.21.0",
+      "license": "BSD-3-Clause",
+      "url": "https://raw.githubusercontent.com/golang/sync/v0.21.0/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/golang.org/x/sys@v0.46.0",
+      "license": "BSD-3-Clause",
+      "url": "https://raw.githubusercontent.com/golang/sys/v0.46.0/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/golang.org/x/term@v0.44.0",
+      "license": "BSD-3-Clause",
+      "url": "https://raw.githubusercontent.com/golang/term/v0.44.0/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    },
+    {
+      "purl": "pkg:golang/golang.org/x/text@v0.38.0",
+      "license": "BSD-3-Clause",
+      "url": "https://raw.githubusercontent.com/golang/text/v0.38.0/LICENSE",
+      "reviewStatus": "NEEDS_INDEPENDENT_REVIEW"
+    }
+  ],
+  "golangBinarySourceAttested": false
 }
