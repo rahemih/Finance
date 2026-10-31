@@ -18,3 +18,10 @@ test("fail closed preview is not an authenticated market feed or order interface
  for(const term of ["PREVIEW ONLY","بدون داده زنده","LIVE / AUTO غیرفعال","UNKNOWN","disabled","/markets/watchlist"])assert.ok(source.includes(term),term);
  for(const forbidden of [/fetch\s*\(/,/WebSocket\s*\(/,/localStorage/,/placeOrder/,/submitOrder/])assert.doesNotMatch(source,forbidden);
 });
+
+test("Next16 server proxy rejects unsafe market page methods before render",()=>{
+ const file=root+"src/proxy.ts";
+ assert.ok(existsSync(file));
+ const source=readFileSync(file,"utf8");
+ for(const expected of ['matcher: ["/markets/:path*"]','request.method !== "GET"','request.method !== "HEAD"',"status: 405",'Allow: "GET, HEAD"','"Cache-Control": "no-store"'])assert.ok(source.includes(expected),expected);
+});
