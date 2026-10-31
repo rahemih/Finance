@@ -14,7 +14,7 @@ PR #492 owns existing offline venue contract, `CURRENT-STATE.md`, `TASK-CATALOG.
 ## Actual implementation
 - `config/production/p24-offline-lab-policy.json`: immutable SYNTHETIC-only, network DISABLED, credential NONE, external orders false, market allowlist FOREX/CRYPTO, no monetary Live budget.
 - `packages/production/offline_preproduction_lab.py`: hash-chained events, duplicate/out-of-order ID refusal, tick freshness and gap checks, disconnect, unknown ACK, partial fill mismatch, explicit A5 veto, margin warning, independent kill scope STRATEGY/ASSET/MARKET/BROKER/GLOBAL; stop states latch, RESET_REQUEST cannot silently recover.
-- `tests/p24/test_offline_preproduction_lab.py`: **40 authored unit/negative tests** incl user input type forgery, network/credential/Live denial, policy tampering, XSS escaping and evidence reproducibility.
+- `tests/p24/test_offline_preproduction_lab.py`: **43 authored unit/negative tests** incl user input type forgery, network/credential/Live denial, policy tampering, XSS escaping and evidence reproducibility.
 - `scripts/ci/p24wo_evidence.py`: reuse exact P20-I policy reference identity, simulate **16 reference scenario tapes**, generate canonical report JSON, scenario CSV and static HTML dashboard. Hashes repeat byte-for-byte by design. All report metrics explicitly say **0 real broker demo events**, **real P&L not measured**.
 - `.github/workflows/p24-offline-lab.yml`: isolated CI runs suite and two exact evidence replays and uploads machine-checkable + human-readable artifacts. The existing required Governance workflow still runs on PR and is not modified.
 
@@ -26,7 +26,7 @@ PR #492 owns existing offline venue contract, `CURRENT-STATE.md`, `TASK-CATALOG.
 
 ## Closing checklist (to complete after verified GitHub run)
 - [ ] Branch HEAD and required Governance SHA EXACTLY verified
-- [ ] Strict Pyright zero errors, all 40 offline tests PASS
+- [ ] Strict Pyright zero errors, all 43 offline tests PASS
 - [ ] 16 synthetic scenario tapes replayed; JSON/HTML/CSV byte-identical twice
 - [ ] Independent A5, A8, A10 read-only review recorded with signed conclusion, no impersonation
 - [ ] Merge sequencing with outstanding PR #492 and its lock safe
@@ -37,3 +37,6 @@ PR #492 owns existing offline venue contract, `CURRENT-STATE.md`, `TASK-CATALOG.
 `P24-A = CANONICAL_COMPLETE`; `P24-B = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES`; `P24-C..P24-I = NOT_STARTED`; `PRE_FIRST_LIVE = 0/9`; `FIRST_LIVE_OWNER_GATE = NOT_GRANTED`; `P24_EXIT = 0/3`; `G13 = NOT_STARTED`; `LIVE_TRADING = DISABLED`; `AUTO_TRADING = DISABLED`.
 
 The user may later attach a legitimate Demo MT5 or cTrader account under a separate authorised task; the lab is not an excuse to place actual orders.
+
+## 2026-10-31 in-memory safety integrity review
+A follow-up risk audit found that an external caller could modify the Python test object's public state or policy identity after initial admission. The offline engine now rejects policy-ID forgery and inconsistent last audit-chain/state before accepting the next event. Three added negative tests (41–43) cover forged policy, manual re-arm after emergency stop, and forged audit chain. This is still only a synthetic defense, **not** pre-live production Kill Switch certification.
