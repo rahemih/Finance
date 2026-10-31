@@ -176,8 +176,9 @@ class MultiSourceReferenceTests(unittest.TestCase):
     def test_28_reject_bool_time(self) -> None:
         self.denied(mutate("FIBO_SIM", event_time_ms=True))
 
-    def test_29_reject_future_market_timestamp(self) -> None:
-        self.denied(mutate("FIBO_SIM", event_time_ms=CLOCK + 10, observed_time_ms=CLOCK + 10))
+    def test_29_future_market_timestamp_quarantined(self) -> None:
+        out = self.lab.evaluate(mutate("FIBO_SIM", event_time_ms=CLOCK + 10, observed_time_ms=CLOCK + 10), CLOCK)
+        self.assertIn("STALE_OR_FUTURE_MARKET_REFERENCE", out["issues"])
 
     def test_30_reject_noncanonical_sample(self) -> None:
         self.denied(mutate("FIBO_SIM", sample_id="other-sample"))
