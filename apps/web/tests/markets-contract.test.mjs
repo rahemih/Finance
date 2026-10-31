@@ -25,3 +25,14 @@ test("Next16 server proxy rejects unsafe market page methods before render",()=>
  const source=readFileSync(file,"utf8");
  for(const expected of ['matcher: ["/markets/:path*"]','request.method !== "GET"','request.method !== "HEAD"',"status: 405",'Allow: "GET, HEAD"','"Cache-Control": "no-store"'])assert.ok(source.includes(expected),expected);
 });
+
+test("P0-C market, watchlist and detail structures include approved data headings",()=>{
+ const c=readFileSync(root+"src/components/markets/markets-preview.tsx","utf8");
+ for (const term of ["marketHeaders","watchHeaders","detailTabs","Source: UNCONNECTED","تازگی مظنه","فهرست پیگیری من","تکنیکال","جریان سفارش","نقدشوندگی"])assert.ok(c.includes(term),term);
+ assert.match(readFileSync(root+"src/styles/markets-preview.css","utf8"),/max-width:600px/);
+});
+test("asset detail is fixture only and unknown canonical IDs fail closed",()=>{
+ const c=readFileSync(root+"src/app/markets/[asset]/page.tsx","utf8");
+ assert.match(c,/asset!==\"mock-btcusdt\"/);
+ assert.match(c,/notFound\(\)/);
+});
