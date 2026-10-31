@@ -26,6 +26,7 @@ export function MarketsPreview(){return <Shell id="011" title="نمای کلی �
  <label>گروه بازار<select disabled aria-label="گروه بازار؛ غیرفعال"><option>همه بازارها — نامعلوم</option></select></label>
  <label>وضعیت پوشش<select disabled aria-label="پوشش منبع؛ غیرفعال"><option>نامعلوم / قطع اتصال</option></select></label>
  <Link href="/markets/watchlist" className="nq-mkt-link">مشاهده واچ‌لیست</Link>
+ <Link href="/markets/mock-btcusdt" className="nq-mkt-link">جزئیات دارایی آزمایشی (MOCK)</Link>
 </div>
 <div className="nq-mkt-columns"><Panel title="جدول بازارها"><div className="nq-mkt-table nq-mkt-market-table" role="table" aria-label="ساختار جدول هشت ستونی بازارها؛ بدون داده معتبر"><div role="row">{marketHeaders.map(h=><span role="columnheader" key={h}>{h}</span>)}</div></div><div className="nq-mkt-mobile-label">نمای کارت دارایی‌ها · موبایل · داده نامعلوم</div><Empty text="هیچ قیمت قابل استنادی از منبع مجاز دریافت نشده است. جدول خالی به معنی نبود بازار نیست."/></Panel>
 <Panel title="پوشش، منابع و تازگی"><dl className="nq-mkt-facts"><div><dt>وضعیت جریان</dt><dd>DISCONNECTED</dd></div><div><dt>تازگی مظنه</dt><dd>UNKNOWN</dd></div><div><dt>هماهنگی ارائه‌دهندگان</dt><dd>UNVERIFIED</dd></div><div><dt>پوشش نمادهای فارکس</dt><dd>NOT_MEASURED</dd></div></dl><Empty text="وضعیت منبع، تأخیر و تطبیق بین منابع در دسترس نیست."/><Link href="/system" className="nq-mkt-link">بررسی سلامت سامانه</Link></Panel></div>
