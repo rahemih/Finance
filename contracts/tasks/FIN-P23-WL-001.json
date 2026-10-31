@@ -1,0 +1,114 @@
+{
+  "task_id": "FIN-P23-WL-001",
+  "phase": "P23",
+  "workstream": "WL",
+  "objective": "Prepare reproducible non-live Next.js React TypeScript runtime for WEB-P0 source foundation using pinned patched dependencies, a frozen pnpm lock, a sealed root placeholder, and independent CI build/security evidence. No page/baseline/auth approval or live authority.",
+  "scope": [
+    "Stage exact dependency manifest and reproducible pnpm lock under Node 24.21.0 and pnpm 11.28.4",
+    "Introduce non-operational root build probe page, not a WEB-P0 product page",
+    "Run genuine pnpm install --frozen-lockfile, next build, TypeScript and static/source tests on GitHub Actions",
+    "Verify Next version against current critical security advisories and track license/SBOM audit",
+    "Record runtime ADR/status and explicit owner/independent security gates",
+    "Proven dependency pruning: TypeScript 5.9.3 replaces TS7 native Go, optional Sharp/libvips omitted from lock and install; required Next SWC retained."
+  ],
+  "out_of_scope": [
+    "Building or claiming acceptance for 34 WEB-P0 pages or 212 reference baselines",
+    "Credential submission, Auth BFF, sessions, API, brokers or exchanges",
+    "Production deployment, live account creation, demo account, capital or trading authorization",
+    "Any direct main change, frozen roadmap rewrite or bypass of owner and independent security gates"
+  ],
+  "dependencies": [
+    "PR #496 canonical contract merged",
+    "PR #497 FIN-P23-WJ-001 source foundation (stacked branch dependency)",
+    "Current P23 reference tokens and P03 security constraints",
+    "RUNTIME_PIN / LOCK / build and supply-chain test before merging"
+  ],
+  "read_paths": [
+    "apps/web/**",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "docs/18-ux/**",
+    "config/ux/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "apps/web/package.json",
+    "apps/web/next.config.ts",
+    "apps/web/next-env.d.ts",
+    "apps/web/tsconfig.json",
+    "apps/web/src/app/page.tsx",
+    "apps/web/tests/runtime-contract.test.mjs",
+    "docs/18-ux/WEB-P0-RUNTIME-ADR-002.md",
+    "contracts/tasks/FIN-P23-WL-001.json",
+    "docs/13-tasks/TASK-CATALOG.md",
+    ".github/workflows/web-p0-runtime.yml",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/**",
+    "packages/risk/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "config/environments/live.json"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exact Node 24.21.0 and pnpm 11.28.4 validated in GitHub workflow",
+    "Frozen lockfile install succeeds (no install scripts)",
+    "Real Next build and tsc --noEmit PASS (not source-only)",
+    "All existing WEB-P0 source/static tests PASS",
+    "Browser authority flags stay false, placeholder does not implement Login or product routes",
+    "Supply chain license/SBOM/CVE review status accurate (not prematurely PASS)",
+    "Frozen runtime Build with TS5.9.3 and no Sharp/libvips/TS-go purls (source-only images.unoptimized), on exact new PR head."
+  ],
+  "security_tests": [
+    "No direct providers, credentials, trading or dangerous API routes",
+    "No browser Auth/session or private data exposed",
+    "No WEB-P0 screenshot marked APPROVED or baseline misrepresented",
+    "Next 16.4.3 at or above 16.4.1 security floor from 2026-10-14 advisories",
+    "No production deploy and explicit Human Gate",
+    "Mandatory P04 license policy remains unchanged, unresolved caniuse-lite CC-BY remains blocked, no waiver."
+  ],
+  "evidence": [
+    "GitHub PR exact SHA and workflow logs",
+    "Frozen pnpm lockfile with integrity hashes",
+    "Separate security/owner acceptance record before any merge",
+    "No runtime or visual claims when checks NOT_RUN"
+  ],
+  "rollback": "Close unmerged stacked PR; leave #497, canonical main and any live environment unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner authorized continued non-live source development",
+    "PR #497 staged source foundation exists",
+    "No conflicting source lock on app/web dependency files"
+  ],
+  "definition_of_done": [
+    "Pinned versions and frozen lockfile committed",
+    "GitHub Next build and TypeScript / source CI SUCCESS on exact head",
+    "Security CVE/license evidence documented, unknowns remain BLOCKED",
+    "Independent security and owner gate for this implementation explicitly resolved before merge",
+    "Eventually merged in correct #497 dependency order plus postmerge reconciliation; no LIVE authority"
+  ]
+}
