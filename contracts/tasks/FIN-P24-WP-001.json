@@ -1,0 +1,119 @@
+{
+  "task_id": "FIN-P24-WP-001",
+  "phase": "P24",
+  "workstream": "WP",
+  "objective": "Create a privacy-safe OFFLINE-only DEMO telemetry schema, risk-metric report and static dashboard that refuses credentials and does not infer broker certification, production readiness or trading profitability.",
+  "scope": [
+    "Supplementary non-live engineering; preserve P24 stage order and all nine blockers",
+    "Immutable allowlist of sanitized DEMO and synthetic market snapshots",
+    "Reject credentials, account IDs, KYC, arbitrary extra fields, stale/out-of-order data and account type escalation",
+    "Compute deterministic descriptive demo-series metrics with explicit provenance and uncertainty; no performance certification",
+    "Generate JSON/CSV/static HTML evidence twice byte-identical",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Preserve separate ownership from concurrent P24-WR and P24-WO",
+    "Owner solo-review exception is only a second-human-review alternative for synthetic/offline PR #494; FIN-P24-WT-001 / merged #503 (postmerge Governance #41188582071 SUCCESS). If network/auth/order/production scope appears exception INVALID, require independent applicable human security review. Owner must explicitly approve current PR HEAD+foundation CI artifact before merging; no retroactive bulk Human Gate."
+  ],
+  "out_of_scope": [
+    "User broker sign-in, MT5 login, cTrader OAuth, credential storage, trade execution, real capital",
+    "Claiming sample DEMO profits, selecting a production venue, approving G13",
+    "Changing actual user risk budget, pre-live kill switch or production readiness dossier",
+    "Changing P24-B..I roadmap stage state or P20/P21/P22 canonical engine"
+  ],
+  "dependencies": [
+    "P24-A canonical readiness baseline not ready for Live",
+    "P20 reference execution and P21 portfolio can remain separate",
+    "No shared file path with pending PR #492 or #493",
+    "No real demo account or verified broker telemetry currently available"
+  ],
+  "read_paths": [
+    "docs/**",
+    "contracts/**",
+    "config/**",
+    "packages/**",
+    "tests/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WP-001.json",
+    "config/production/p24-demo-report-policy.json",
+    "packages/production/demo_telemetry_quarantine.py",
+    "tests/p24/test_demo_telemetry_quarantine.py",
+    "scripts/ci/p24wp_evidence.py",
+    ".github/workflows/p24-demo-report.yml",
+    "docs/19-production/P24-WP-DEMO-REPORT.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "packages/execution/**",
+    ".github/workflows/governance.yml",
+    ".github/workflows/p24-offline-lab.yml",
+    "config/production/p24-offline-lab-policy.json",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "20+ deterministic positive/negative tests",
+    "Required strict Pyright zero errors",
+    "Reject account IDs, password, OTP, token and any extra input fields",
+    "Reject Live mode, false DEMO/USER provenance, inconsistent currency/sessions, duplicate timestamps, negative equity and bool-as-int",
+    "Compute max drawdown and net PnL adjusted for flows with integer deterministic arithmetic",
+    "Byte-identical JSON CSV and escaped HTML output twice",
+    "Global Governance and supply-chain policy remain enforced"
+  ],
+  "security_tests": [
+    "No runtime network or credential access",
+    "Prevent PII leakage through unknown fields",
+    "No order placement or execution control",
+    "Never mark a user-exported file as broker-attested",
+    "No real capital limits or first-Live authority"
+  ],
+  "evidence": [
+    "Task Contract and exact schema",
+    "Synthetic fixture, full negative test list and CI IDs",
+    "Reproducible report/dashboard hashes",
+    "GitHub issue #491 and Linear evidence register",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Owner-approved PR #503 head 51ae714f4b48a129204f630520c42e87ba8a10fb, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6, postmerge Governance #41188582071 SUCCESS, artifact sha256:7fa7a39a1cb8223021253d028de9a1e5e24594caa978daf6aac2e53bd7c15843"
+  ],
+  "rollback": "Remove WP files only; prior P24-A, P20-P23, WR and WO unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Disjoint write paths and known clean main SHA",
+    "Production and live flags unchanged",
+    "No claimed broker demo or live session"
+  ],
+  "definition_of_done": [
+    "Isolated CI and required Governance PASS at exact head",
+    "26+ tests and two identical report replays",
+    "Privacy leakage tests PASS",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "Safe merge, postmerge CI, lock/reconcile before CANONICAL_COMPLETE",
+    "P24-B BLOCKED, 0/9 pre-first-Live maintained",
+    "Owner explicitly approves PR-specific exact HEAD plus latest required Governance manifest SHA256 and scoped CI; safety/security/domain A5/A8/A10 evidence remains mandatory; no Live/Auto promotion"
+  ]
+}

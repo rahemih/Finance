@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "kind": "P24_WP_OFFLINE_DEMO_TELEMETRY_POLICY",
+  "task_id": "FIN-P24-WP-001",
+  "claim_scope": "SCHEMA_AND_REFERENCE_METRICS_ONLY",
+  "source_kinds": [
+    "SYNTHETIC_FIXTURE",
+    "USER_SUPPLIED_SANITIZED_DEMO"
+  ],
+  "platforms": [
+    "FIBO_MT5_DEMO",
+    "FIBO_CTRADER_DEMO",
+    "TABDEAL_SPOT_MOCK"
+  ],
+  "currency_units": [
+    "USD_CENTS",
+    "EUR_CENTS",
+    "TOMAN"
+  ],
+  "max_quote_age_ms": 1500,
+  "max_observations": 10000,
+  "source_account_attested": false,
+  "production_broker_certified": false,
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "real_capital_risk_budget": null,
+  "pre_first_live_satisfied": 0,
+  "first_live_owner_approval": "NOT_GRANTED",
+  "p24_b": "BLOCKED",
+  "g13": "NOT_STARTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
