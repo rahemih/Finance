@@ -1,0 +1,101 @@
+{
+  "task_id": "FIN-P23-WM-001",
+  "phase": "P23",
+  "workstream": "WM",
+  "objective": "Test narrowly scoped runtime dependency reduction (TS7 Go-native compiler -> TS5.9 JS compiler; omit optional Sharp/libvips while keeping Next SWC) without weakening any security/compliance gate or enabling real Auth/trading.",
+  "scope": [
+    "Pin TypeScript to 5.9.3 only in experimental stacked WEB-P0 branch",
+    "Configure targeted ignoredOptionalDependencies sharp and @img/sharp* while leaving required Next SWC optional native components intact",
+    "Generate a real pnpm 11 lock via GitHub CI; then commit it without manual lockfile modification",
+    "Run frozen install, real Next build, TypeScript, HTTP tests, source tests, npm high severity audit, full Governance including SBOM/license",
+    "Compare exact SBOM missing-license purls to baseline: 88 missing from original PR #504, and preserve unresolved compliance as BLOCKED",
+    "Do not merge without independent security review and owner Human Gate"
+  ],
+  "out_of_scope": [
+    "Direct main changes, GitHub rule changes, P04 waiver or license reclassification, altering Go/CC-BY evidence",
+    "Insecure fallback to JS compiler without full TypeScript test pass",
+    "React/Next architectural migration, auth/session/service deployment, capital or trading",
+    "Claiming successful compliance if Governance fails"
+  ],
+  "dependencies": [
+    "PR #504 open draft pinned Next 16.4.3 nonlive runtime",
+    "PR #497 source foundation pending",
+    "P04-F existing fail-closed SBOM/license policy",
+    "Separate owner/security review before upstream application"
+  ],
+  "read_paths": [
+    "apps/web/**",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "docs/18-ux/**",
+    "config/supply-chain/**",
+    "contracts/tasks/**",
+    ".github/**"
+  ],
+  "write_paths": [
+    "apps/web/package.json",
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    ".github/workflows/web-p0-dependency-prune.yml",
+    "docs/18-ux/WEB-P0-DEPENDENCY-PRUNE-EXPERIMENT.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P23-WM-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "config/supply-chain/license-policy.json",
+    "config/supply-chain/waivers.json",
+    ".github/workflows/governance.yml",
+    "apps/web/src/lib/auth/**",
+    "secrets/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exact dependency versions and frozen lockfile no drift",
+    "Next build with SWC and sharp absent",
+    "TS typecheck and existing Foundation tests",
+    "HTTP preview root and negative routes; independently verify login stacked branch later",
+    "SBOM/license Gate remains mandatory; compare missing-license inventory",
+    "No P04 allow/review/block/waiver changes"
+  ],
+  "security_tests": [
+    "Fail closed on any runtime regression or SBOM violation",
+    "Do not bypass security checks",
+    "No interactive Auth login or trading granted",
+    "No accidental removal of Next SWC compiler"
+  ],
+  "evidence": [
+    "GitHub Actions preparation log with bounded lockfile content",
+    "Latest PR exact-head Governance and app build checks",
+    "Source-to-license residual evidence and comparison"
+  ],
+  "rollback": "Close standalone experiment unmerged and retain #504 unchanged; no main operation.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Existing #504 source runtime and CI evidence verified"
+  ],
+  "definition_of_done": [
+    "Reproducible committed lockfile and all build/typecheck security tests PASS",
+    "Complete Governance PASS or explicitly record residual BLOCKERS",
+    "Security reviewer examines dependency removal and licensing with formal independent signoff",
+    "Separate owner Human Gate required before merging experiment or applying to #504"
+  ]
+}

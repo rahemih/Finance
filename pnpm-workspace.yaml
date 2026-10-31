@@ -2,3 +2,9 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'adapters/*'
+
+# Experiment for WEB-P0: no image optimizer is used (next.config images.unoptimized=true).
+# Preserve SWC native binary. Do not apply globally until Next build/HTTP and SBOM proven.
+ignoredOptionalDependencies:
+  - sharp
+  - '@img/sharp*'

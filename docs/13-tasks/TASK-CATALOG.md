@@ -326,6 +326,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P23-WL-001 | P23 extension / WEB-P0 distinct | WEB-P0 pinned Next runtime and reproducible build probe (stacked #497) | HIGH | DRAFT / PENDING_LOCK_AND_BUILD | `contracts/tasks/FIN-P23-WL-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
 
+| FIN-P23-WM-001 | P23 extension / WEB-P0 | Experiment: remove unneeded Go TS7 and optional Sharp from WEB-P0 runtime | HIGH | DRAFT / LOCK_PENDING / NO_MERGE | `contracts/tasks/FIN-P23-WM-001.json` | NOT_ACQUIRED / BLOCKED_SECURITY_REVIEW |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

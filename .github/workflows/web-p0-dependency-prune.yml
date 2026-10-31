@@ -1,0 +1,39 @@
+name: WEB-P0 Dependency Pruning Lockfile Experiment (UNMERGED)
+on:
+  pull_request:
+    paths:
+      - 'pnpm-workspace.yaml'
+      - 'apps/web/package.json'
+      - '.github/workflows/web-p0-dependency-prune.yml'
+      - 'contracts/tasks/FIN-P23-WM-001.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generate-lock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .node-version
+      - run: |
+          corepack enable
+          corepack prepare pnpm@11.28.4 --activate
+          test "$(node --version)" = "v24.21.0"
+          test "$(pnpm --version)" = "11.28.4"
+      - name: Generate lockfile without arbitrary install scripts
+        run: pnpm install --lockfile-only --ignore-scripts --no-frozen-lockfile
+      - name: Export generated lockfile (not yet committed)
+        shell: bash
+        run: |
+          echo 'BEGIN_WEB_P0_PRUNED_LOCKFILE'
+          cat pnpm-lock.yaml
+          echo 'END_WEB_P0_PRUNED_LOCKFILE'
+      - name: Assert scoped version and optional excludes
+        run: |
+          node -e "const p=require('./apps/web/package.json');if(p.devDependencies.typescript!=='5.9.3')process.exit(1)"
+          grep -F 'ignoredOptionalDependencies:' pnpm-workspace.yaml
