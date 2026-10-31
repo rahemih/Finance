@@ -322,6 +322,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P00-WX-001-R01 | P00 governance follow-up / WEB-P0 | Reconcile solo-owner RFC postmerge closure evidence | MEDIUM | DRAFT / PENDING_OWNER_MERGE_GATE | `contracts/tasks/FIN-P00-WX-001-R01.json` | NOT_ACQUIRED / MERGE_AUTHORITY_PENDING |
 
+| FIN-P23-WJ-001 | P23 extension / WEB-P0 distinct | Code-first non-live Web foundation — DRAFT_ONLY, PR #496 prerequisite | HIGH | DRAFT_PROPOSED / NOT_CANONICAL | `contracts/tasks/FIN-P23-WJ-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

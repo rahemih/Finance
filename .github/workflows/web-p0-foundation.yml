@@ -1,0 +1,26 @@
+name: WEB-P0 Source Foundation Checks
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/**'
+      - 'tests/web_p0/**'
+      - 'docs/18-ux/WEB-P0-FOUNDATION-ADR-001.md'
+      - '.github/workflows/web-p0-foundation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  source-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate WEB-P0 registry JSON
+        run: python3 -m json.tool apps/web/contracts/web-p0-pages.json >/dev/null
+      - name: Run source-only foundation contract tests
+        run: python3 -m unittest discover -s tests/web_p0 -p 'test_*.py' -v
