@@ -41,5 +41,25 @@ jobs:
         run: pnpm --filter @nexus-quant/web run typecheck
       - name: Real Next.js build (non-operational root sentinel)
         run: pnpm --filter @nexus-quant/web run build
+      - name: HTTP non-operational smoke and denied routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm --dir apps/web exec next start --hostname 127.0.0.1 -p 3100 > "$RUNNER_TEMP/web-next-smoke.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 40); do
+            if curl --silent --fail --max-time 2 http://127.0.0.1:3100/ > "$RUNNER_TEMP/web-root.html"; then ready=1; break; fi
+            sleep 1
+          done
+          if [ "$ready" -ne 1 ]; then cat "$RUNNER_TEMP/web-next-smoke.log"; exit 1; fi
+          grep -F 'پیش‌نمایش WEB-P0 هنوز فعال نیست' "$RUNNER_TEMP/web-root.html"
+          grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$RUNNER_TEMP/web-root.html"
+          for path in /auth/login /dashboard /api/v1/orders; do
+            code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 3 "http://127.0.0.1:3100$path")
+            test "$code" = "404" || { echo "$path must remain 404 (got $code)"; exit 1; }
+          done
+          curl --silent --head --fail http://127.0.0.1:3100/ | grep -i '^x-frame-options: DENY'
       - name: Supply chain audit (HIGH+ fail closed)
         run: pnpm audit --audit-level high

@@ -1,4 +1,9 @@
 /** Build-only root sentinel, intentionally NOT one of the 34 approved WEB-P0 pages. */
+export const metadata = {
+  title: "WEB-P0 — پیش‌نمایش غیرعملیاتی",
+  robots: { index: false, follow: false },
+};
+
 export default function SourceBuildSentinel() {
   return (
     <main aria-label="وضعیت پیش‌نمایش غیرعملیاتی" style={{ maxWidth: "48rem", margin: "3rem auto", padding: "2rem" }}>

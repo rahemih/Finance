@@ -22,3 +22,10 @@ Root `/` is a clearly labeled **build-only sentinel**; it is NOT WEB-P0 PAGE-001
 4. Formal ADR/security review and separate Owner Human Gate remain mandatory; #497 must merge before this stacked PR becomes eligible for merge.
 
 No LIVE_TRADING, AUTO_TRADING, or broker operations; P24-B, G13, A5 risk veto and P16 firewall unchanged.
+
+## Verified checkpoint (2026-10-31, before this follow-up change)
+
+- GitHub next build / TypeScript / frozen install / source checks / high+ audit all SUCCESS on head `0e5e56d79602d73954000efa9c11579ee2299061`, run `41189528333`.
+- Actual pnpm lock generated in isolated GitHub Actions `41189453933`, committed verbatim to the PR by a second governed SHA, and installed with `--frozen-lockfile --ignore-scripts`.
+- Next guard is non-functional `/` only. This follow-up adds noindex, conservative response headers and HTTP smoke tests to ensure `/auth/login`, `/dashboard`, `/api/v1/orders` return 404 until separately approved implementations. Every new head MUST rerun CI; no inherited PASS.
+- No browser Playwright, axe, screen reader, user-approved screenshot baselines, Auth security, session, BFF, or production acceptance yet.
