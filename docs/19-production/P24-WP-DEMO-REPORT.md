@@ -12,7 +12,7 @@ This implementation is **not a broker adapter** and does not connect to MT5 SDK,
 ## Files
 - `config/production/p24-demo-report-policy.json`: exact immutable no-network, no credentials, account-unattested policy.
 - `packages/production/demo_telemetry_quarantine.py`: strict allowlist on input fields, structured trace IDs, DEMO environment pin, explicit source provenance, exact timestamps, equity/balance/open-PnL reconciliation, trade/rejection counter monotonicity, integer money units, dynamic bool/number typing, **flow-adjusted-equity drawdown** and flow-adjusted PnL.
-- `tests/p24/test_demo_telemetry_quarantine.py`: 45 explicit tests for source qualification, unknown fields/secret leakage, timestamp/tick consistency, forged LIVE modes, cash-flow metrics, HTML escaping and no Live upgrade.
+- `tests/p24/test_demo_telemetry_quarantine.py`: 46 explicit tests for source qualification, unknown fields/secret leakage, timestamp/tick consistency, forged LIVE modes, cash-flow metrics, HTML escaping and no Live upgrade.
 - `scripts/ci/p24wp_evidence.py`: self-contained *fictional* fixed 3-snapshot fixture. Writes JSON evidence, CSV observations and escaped static HTML twice.
 - `.github/workflows/p24-demo-report.yml`: independent pinned-action CI + byte-identical report replay. The required Governance workflow continues to gate PR.
 - `contracts/tasks/FIN-P24-WP-001.json`: bounded work and safety/review requirements.
@@ -42,3 +42,6 @@ Separate files from pending WR #492 and WO #493. P24-A dossier, frozen roadmap, 
 `PRE_FIRST_LIVE=0/9`, `P24_B=BLOCKED`, `P24_C..I=NOT_STARTED`, `G13=NOT_STARTED`, `FIRST_LIVE_OWNER_GATE=NOT_GRANTED`, `LIVE_TRADING=DISABLED`, `AUTO_TRADING=DISABLED`.
 
 Reference evidence from fake sample is purely demonstration of the reporting pipeline.
+
+## 2026-10-31 policy-lineage security hardening
+Strict runtime verification now refuses a report evaluator whose in-memory policy ID was replaced after initialization; additional negative test #46. This secures synthetic evidence identity but does not provide broker attestation or Live permission.
