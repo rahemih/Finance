@@ -28,3 +28,7 @@ Backend reads `/api/v1/dashboard/overview`, `/api/v1/ops/health/summary`, `/api/
 1. Review each implemented page at browser widths 1440/768/360 against the owner-approved 7+7+6 references and capture exact image hashes.
 2. Independently review security and resolve P04 compliance without waivers/fake reviewers.
 3. #497 then #504 need individually approved/merged and verified before this stacked PR may retarget main and receive its own explicit SHA+artifact Human Gate.
+
+## Unapproved first-run browser capture evidence (planned)
+
+The Draft runtime job now launches the built Next server and preinstalled Google Chrome headless to capture **nine actual source UI images** at 1440, 768 and 360 px for PAGE-010, PAGE-079 and PAGE-084. Each PNG gets SHA256 and a manifest, uploaded as a short-lived GitHub Actions artifact. This is **candidate output** only; the Owner's 212 native Google Doc reference images remain DESIGN_APPROVED, while screenshot equivalence, responsive geometry and browser baseline acceptance remain NOT_RUN until actual comparison. The CI job must finish before anyone claims browser screenshots exist.

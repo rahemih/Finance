@@ -72,6 +72,53 @@ jobs:
             test "$code" = "404" || { echo "Must remain absent $path: $code"; exit 1; }
           done
           curl --silent --head --fail http://127.0.0.1:3100/ | grep -i '^x-frame-options: DENY'
+      - name: Capture real Chromium viewport screenshots (not approved visual baseline)
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          mkdir -p "$RUNNER_TEMP/monitoring-previews"
+          pnpm --dir apps/web exec next start --hostname 127.0.0.1 -p 3101 > "$RUNNER_TEMP/web-monitoring-chrome.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 30); do
+            if curl --silent --fail --max-time 2 http://127.0.0.1:3101/dashboard >/dev/null; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" -eq 1
+          for record in "010:dashboard" "079:system" "084:system/alerts"; do
+            page_id="${record%%:*}"
+            route="${record#*:}"
+            for width in 1440 768 360; do
+              file="$RUNNER_TEMP/monitoring-previews/${page_id}-${width}-unapproved.png"
+              google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-background-networking --hide-scrollbars --force-device-scale-factor=1 --window-size="$width,960" --virtual-time-budget=1500 --screenshot="$file" "http://127.0.0.1:3101/$route" > "$RUNNER_TEMP/chrome-$page_id-$width.log" 2>&1 || { cat "$RUNNER_TEMP/chrome-$page_id-$width.log"; exit 1; }
+              test -s "$file" || { echo "Missing screenshot: $file"; exit 1; }
+            done
+          done
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, struct
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])/"monitoring-previews"
+          files=sorted(root.glob("*.png"))
+          assert len(files)==9, f"expected nine browser captures, got {len(files)}"
+          info=[]
+          for p in files:
+              b=p.read_bytes()
+              assert b[:8]==b"\x89PNG\r\n\x1a\n", p
+              w,h=struct.unpack(">II", b[16:24])
+              assert w in (360,768,1440), (p.name,w)
+              assert h>=600,(p.name,h)
+              info.append(dict(file=p.name,width=w,height=h,sha256=hashlib.sha256(b).hexdigest(),approval="NOT_VISUALLY_REVIEWED"))
+          (root/"manifest.json").write_text(json.dumps({"run":"WEB-P0 P0-B screenshot evidence; NOT approved reference baseline", "count":len(info),"captures":info},indent=2),encoding="utf-8")
+          print(json.dumps(info,ensure_ascii=False))
+          PY
+      - name: Upload viewport screenshots (evidence only, no owner acceptance)
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4.6.2
+        with:
+          name: web-p0-monitoring-viewport-evidence
+          path: ${{ runner.temp }}/monitoring-previews/
+          if-no-files-found: error
+          retention-days: 14
       - name: WEB-P0 Monitoring P0-B source contracts
         run: |
           node --experimental-strip-types --test apps/web/tests/monitoring-contract.test.mjs
