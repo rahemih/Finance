@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "kind": "P24_WO_OFFLINE_PREPRODUCTION_LAB",
+  "task_id": "FIN-P24-WO-001",
+  "claim_scope": "SYNTHETIC_REHEARSAL_ONLY",
+  "markets": [
+    "FOREX",
+    "CRYPTO"
+  ],
+  "environment": "SIMULATED",
+  "network_mode": "DISABLED",
+  "credential_mode": "NONE",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "allowed_event_kinds": [
+    "TICK",
+    "BROKER_DISCONNECT",
+    "ACK_UNKNOWN",
+    "PARTIAL_FILL_MISMATCH",
+    "RISK_VETO",
+    "KILL_SWITCH",
+    "RESET_REQUEST",
+    "MARGIN_ALERT"
+  ],
+  "kill_scopes": [
+    "STRATEGY",
+    "ASSET",
+    "MARKET",
+    "BROKER",
+    "GLOBAL"
+  ],
+  "max_tick_age_ms": 1500,
+  "max_event_sequence": 100000,
+  "risk_budget_real": null,
+  "production_provider_selected": false,
+  "production_venue_selected": false,
+  "production_broker_certified": false,
+  "pre_live_kill_switch_certified": false,
+  "first_live_owner_approval": "NOT_GRANTED",
+  "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+  "g13": "NOT_STARTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
