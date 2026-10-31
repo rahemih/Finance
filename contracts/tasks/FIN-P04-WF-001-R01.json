@@ -1,0 +1,100 @@
+{
+  "task_id": "FIN-P04-WF-001-R01",
+  "phase": "P04",
+  "workstream": "WF",
+  "objective": "Prepare a reviewed-only proposal adding source-backed, exact-version curated license assertions for WEB-P0's pinned Next runtime without auto-waiving, reclassifying, or allowing LGPL, CC-BY-4.0, or unverifiable TypeScript-go dirty binary.",
+  "scope": [
+    "Register 64 npm and eight Go pinned allow-class source-license observations in existing curated_assertions schema only",
+    "Record authoritative npm exact-version registry URL and tarball digest, plus upstream pinned LICENSE URLs for Go modules",
+    "Keep all license allow, review and block class settings unchanged; forbid any waiver creation",
+    "Confirm unresolved 14 LGPL/composite, 1 CC-BY-4.0 and 1 TypeScript-go dirty-source package remain BLOCKED under existing P04 policy",
+    "Open DRAFT governance PR, require independent supply-chain/security license reviewer and explicit Owner Human Gate before any merge"
+  ],
+  "out_of_scope": [
+    "Changing allow/review/block classifications, source code, web runtime, browser Auth, security workflows or GitHub ruleset",
+    "Auto-granting license exceptions, waivers or merging without independent security review",
+    "Publishing, deploying or enabling trading/Live/Auto/production",
+    "Approving screenshot baselines or Auth/BFF sessions"
+  ],
+  "dependencies": [
+    "FIN-P04-WF-001 original P04 supply chain policy canonical",
+    "FIN-P23-WL-001 draft PR #504 license evidence / exact version registry collection",
+    "Signed Owner and independent license/security review for this explicit P04 policy change",
+    "No active conflicting security policy workstream"
+  ],
+  "read_paths": [
+    "config/supply-chain/**",
+    "scripts/ci/supply_chain_policy.py",
+    "docs/06-engineering/**",
+    "apps/web/contracts/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "config/supply-chain/license-policy.json",
+    "contracts/tasks/FIN-P04-WF-001-R01.json",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/06-engineering/P04-F-WEB-P0-EXACT-LICENSE-ASSERTION-REVIEW.md"
+  ],
+  "forbidden_paths": [
+    "config/supply-chain/waivers.json",
+    ".trivyignore",
+    ".github/workflows/**",
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "apps/**",
+    "packages/**",
+    "adapters/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Latest head Governance Verify SUCCESS on documentation-only proposal",
+    "All 72 assertions exact-version, source-backed and match allow-class licenses only",
+    "No changes to review/block/allow lists, waivers or vulnerability scanner",
+    "Unresolved LGPL/CC-BY-4.0 and dirty TypeScript-go remain deliberately BLOCKED",
+    "License JSON schema and recorded registry identity cross-check"
+  ],
+  "security_tests": [
+    "No bypass or weakening of supply chain policy; compliance remains FAIL-CLOSED",
+    "No unauthorized LICENSE_REVIEW waivers",
+    "No runtime or trading authority",
+    "Independent security/license review mandatory before merging"
+  ],
+  "evidence": [
+    "GitHub #504 npm registry fetch CI run 41189938730",
+    "Registry exact version metadata and integrity results stored at #504",
+    "Nine pinned Go upstream license URLs, one dirty binary intentionally excluded",
+    "Governance check outputs on this proposal and separate source PR"
+  ],
+  "rollback": "Close unmerged proposal; no effects on canonical policy. If later merged and found inaccurate, propose governed P04-F repair reverting specific assertions; no silent changes.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Verified exact-source-license evidence available, no waivers",
+    "All residual review-class and unverified packages explicitly classified BLOCKED"
+  ],
+  "definition_of_done": [
+    "Independent security reviewer validates accuracy and legal source obligations",
+    "Owner approves exact proposed assertion list and PR head+artifact",
+    "GitHub protected-main squash merges with required CI PASS",
+    "Postmerge main Governance, Linear and Task Catalog reconciled",
+    "Any future #504 rerun still fails pending separate LGPL/CC-BY/dirty package review; no false PASS"
+  ]
+}
