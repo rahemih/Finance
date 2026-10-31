@@ -249,5 +249,50 @@ class DemoTelemetryTests(unittest.TestCase):
         self.denied(x)
 
 
+    def test_41_deposit_is_not_mistaken_for_profit_or_drawdown(self) -> None:
+        x = fixture()
+        for i in (1, 2):
+            x["observations"][i]["equity_minor"] = 15000
+            x["observations"][i]["balance_minor"] = 15000
+            x["observations"][i]["open_pnl_minor"] = 0
+            x["observations"][i]["external_flow_minor"] = 5000
+        out = self.loader.evaluate(x)
+        self.assertEqual(out["net_pnl_minor_adjusted_for_flows"], 0)
+        self.assertEqual(out["max_drawdown_bps"], 0)
+        self.assertEqual(out["observations"][-1]["flow_adjusted_equity_minor"], 10000)
+
+    def test_42_withdrawal_is_not_mistaken_for_drawdown(self) -> None:
+        x = fixture()
+        for i in (1, 2):
+            x["observations"][i]["equity_minor"] = 7000
+            x["observations"][i]["balance_minor"] = 7000
+            x["observations"][i]["open_pnl_minor"] = 0
+            x["observations"][i]["external_flow_minor"] = -3000
+        out = self.loader.evaluate(x)
+        self.assertEqual(out["max_drawdown_bps"], 0)
+        self.assertEqual(out["net_pnl_minor_adjusted_for_flows"], 0)
+
+    def test_43_nonpositive_adjusted_equity_rejected(self) -> None:
+        self.denied(self.modify(1, "external_flow_minor", 9000))
+
+    def test_44_flow_is_cumulative_not_per_sample_delta(self) -> None:
+        x = fixture()
+        x["observations"][1].update({
+            "balance_minor": 15000, "equity_minor": 15000,
+            "open_pnl_minor": 0, "external_flow_minor": 5000,
+        })
+        x["observations"][2].update({
+            "balance_minor": 13000, "equity_minor": 13000,
+            "open_pnl_minor": 0, "external_flow_minor": 3000,
+        })
+        out = self.loader.evaluate(x)
+        self.assertEqual(out["max_drawdown_bps"], 0)
+        self.assertEqual(out["net_pnl_minor_adjusted_for_flows"], 0)
+        self.assertEqual(out["drawdown_basis"], "FLOW_ADJUSTED_EQUITY_CUMULATIVE_EXTERNAL_FLOW_UNVERIFIED")
+
+    def test_45_boolean_external_flow_is_rejected(self) -> None:
+        self.denied(self.modify(1, "external_flow_minor", True))
+
+
 if __name__ == "__main__":
     unittest.main()
