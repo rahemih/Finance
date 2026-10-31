@@ -136,7 +136,7 @@ class LocalReferenceImport:
             raise LocalImportError("policy drift or forbidden authority")
         self.policy_id = sha(raw)
 
-    def parse(self, raw: bytes, context: ImportContext, *, now_ms: int) -> dict[str, object]:
+    def parse(self, raw: object, context: object, *, now_ms: int) -> dict[str, object]:
         if self.policy_id != sha(EXPECTED_POLICY):
             raise LocalImportError("runtime reference-policy identity changed")
         if not isinstance(context, ImportContext):
@@ -144,7 +144,9 @@ class LocalReferenceImport:
         context.validate()
         if type(now_ms) is not int or now_ms < 1:
             raise LocalImportError("invalid evaluation clock")
-        if type(raw) is not bytes or len(raw) > 100000 or not raw:
+        if not isinstance(raw, bytes):
+            raise LocalImportError("CSV must be bytes")
+        if len(raw) > 100000 or not raw:
             raise LocalImportError("CSV must be bounded nonempty bytes")
         if b"\x00" in raw:
             raise LocalImportError("binary content not permitted")
