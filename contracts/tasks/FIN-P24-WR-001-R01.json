@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P24-WR-001-R01",
+  "phase": "P24",
+  "workstream": "WR",
+  "objective": "Reconcile fully merged synthetic-only P24 WR/WO/WP/WQ/WS workstreams, release the provisional WR nonlive documentation lock only after Owner-approved merge and postmerge checks, and explicitly keep operational DEMO validation and all Live gates blocked.",
+  "scope": [
+    "Docs-only reconciliation for synthetic/offline P24 tasks #492 #493 #494 #499 #502 with exact verified GitHub merge commits and postmerge CI evidence",
+    "Record one immutable synthetic/offline evidence boundary; distinguish offline components from user-local noncertified Demo tests and Live readiness",
+    "Correct stale FIN-P24-WR-001 status and provisional lock in Current State/Task Catalog only through protected reviewed pull request",
+    "Register WO WP WQ WS workstreams as merged/offline only and include dedicated repair task row",
+    "Preserve all P24-B..I blockers, PRE_FIRST_LIVE 0/9, P24 exit 0/3, G13 NOT_STARTED and Live/Auto DISABLED",
+    "Produce explicit signoff and rollback criteria with separate owner exact-HEAD+Artifact Human Gate before any merge"
+  ],
+  "out_of_scope": [
+    "Any runtime code, security controls, risk budgets, broker or exchange connectivity, Demo/Live order, account login/credential, vendor data license assertion",
+    "Any change to G13, PRE_FIRST_LIVE, P24 readiness dossier, 24-phase frozen roadmap, protected main governance CI or required reviews",
+    "Certifying user-local MT5 Demo audits or making any claim of actual broker demo performance, deployed Kill Switch or independent human review",
+    "Marking full P24 CANONICAL_COMPLETE or P24-B through I started or unblocked",
+    "Editing other open web/auth workstreams or arbitrary Task Catalog entries"
+  ],
+  "dependencies": [
+    "Owner-approved merges: #492 = 0936b7f21e51bc4cf9adfbaee34a4598b641f021, #493 = bcdd851528598e0ff221fadc706cf2b774a51bc5, #494 = 847a29abe9ebef5c10ee1427ea3ffec9e3271981, #499 = 372efea499201b444f9e67fe639db1bdd85942d7, #502 = 4b345ad0ae43ea96f9b9426b681039be823c04cb",
+    "Postmerge Governance and Branch Hygiene success on each respective merge SHA; required evidence stored on GitHub PR and P24 Demo issue #508",
+    "Current State has provisional LOCK-FIN-P24-WR-001-01 ACQUIRED_NONLIVE_REVIEW_PENDING; Task Catalog has outdated OWNER_HUMAN_GATE_PENDING",
+    "Separate Owner approval of THIS repair PR at exact current head and manifest before squash merge"
+  ],
+  "read_paths": [
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    ".github/workflows/**",
+    "docs/00-governance/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WR-001-R01.json",
+    "docs/19-production/P24-DEMO-OFFLINE-MERGE-CLOSURE.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/**",
+    "config/**",
+    "apps/**",
+    "packages/**",
+    "adapters/**",
+    ".github/workflows/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Required full latest-head Governance Verify SUCCESS; no disabled checks",
+    "Verify five merge SHAs, postmerge Governance and Branch Hygiene exact evidence by authoritative GitHub API",
+    "Check write diff only four documentation/contract files; no runtime or workflows changed",
+    "Verify Local Demo operational test gaps explicitly labeled UNVERIFIED, not assigned production authority",
+    "Validate current-state/Catalog consistency and no change to P24-B/Live/Auto/G13",
+    "Crosslink Demo tracker GitHub #508 and existing Finance Linear project discussion despite free issue quota"
+  ],
+  "security_tests": [
+    "A5 independent runtime risk veto and P16 firewall untouched",
+    "A8 security policies and no secrets or account IDs entered into public docs",
+    "A10 evidence exact SHAs and action runs; not independent human reviewer impersonation",
+    "Live/Auto DISABLED and P24-B BLOCKED unchanged",
+    "No uncontrolled WR lock release until reviewed docs merged and postmerge checks pass"
+  ],
+  "evidence": [
+    "PR #492 postmerge Governance #41190689175 and Branch Hygiene #41190689146 SUCCESS",
+    "PR #493 postmerge Governance #41213911061 and Branch Hygiene #41213910896 SUCCESS",
+    "PR #494 postmerge Governance #41214860395 and Branch Hygiene #41214860399 SUCCESS",
+    "PR #499 postmerge Governance #41215139062 and Branch Hygiene #41215138900 SUCCESS",
+    "PR #502 postmerge Governance #41215476877 SUCCESS, artifact sha256:ffa630b3917581ce07b0637f268b85c86181f39b5f4f1804ad157c99194e52ae, Branch Hygiene #41215476909 SUCCESS",
+    "Tracked in GitHub P24-Demo issue #508; Linear existing project discussion due free-tier issue creation quota"
+  ],
+  "rollback": "Leave closure draft unmerged or revert only the four documentation/contract paths. Do not modify frozen roadmap, runtime risk or live authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "All five offline PRs merged with exact postmerge CI success",
+    "Only docs and new task contract proposed, no operational Demo certification",
+    "Current main HEAD readback and existing lock identified",
+    "No collision with active web/auth contracts or forbidden files"
+  ],
+  "definition_of_done": [
+    "Latest-head Governance Verify SUCCESS on this closure PR, with exact manifest SHA256",
+    "Explicit Owner-specific exact-HEAD and artifact Human Gate before controlled squash merge, not implied by prior #502 approval",
+    "Protected main postmerge Governance and Branch Hygiene PASS; re-read Task Catalog and Current State on new main",
+    "Provisional WR documentation lock marked RELEASED and offline-only task rows reconciled after approved merge",
+    "Linear discussion registry updated with actual merge+postmerge evidence; no false separate Linear issue claim",
+    "Operational Demo and full P24 remain open; P24-B Live blocked, PRE_FIRST_LIVE=0/9, G13 not started, Live/Auto disabled"
+  ]
+}
