@@ -36,3 +36,7 @@ The Draft runtime job now launches the built Next server and preinstalled Google
 ## Browser QA checkpoint — first screenshot run 41214435404
 
 Nine PNG viewport captures were created (1440, 768, 360 for three pages), and visual review detected a **real** clipped/compressed critical-warning badge. The subsequent CSS revision applies non-shrinking desktop badges and a distinct full-row mobile badge. The original screenshots are diagnostic evidence only. A new full Build, HTTP and Chrome capture must pass on the updated head; neither the old nor replacement images are declared matched to the Owner's reference baseline.
+
+## Second screenshot QA defect
+
+A second visual review of the corrected 9-image output found that the generic direct-child CSS selector styled *both* the exclamation icon and the adjacent warning Tag as 28x28 circles. Root cause: `.nq-mon-critical>span` instead of `.nq-mon-critical>span:first-child`. Corrected icon-only selector and added regression test. A fresh CI screenshot pass must succeed on this new SHA; previous images are diagnostic, not accepted baselines.

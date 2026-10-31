@@ -34,3 +34,9 @@ test("critical warning tag does not collapse across desktop and mobile layouts",
   assert.match(css,/@media\(max-width:768px\).*\.nq-mon-critical\{display:grid/);
   assert.match(css,/\.nq-mon-critical \.nq-mon-tag\{grid-column:1\/-1/);
 });
+
+test("warning icon-only CSS does not collapse the separate warning text badge",()=>{
+  const css=read("../src/styles/monitoring-preview.css");
+  assert.match(css,/\.nq-mon-critical>span:first-child\{/);
+  assert.doesNotMatch(css,/\.nq-mon-critical>span\{/);
+});
