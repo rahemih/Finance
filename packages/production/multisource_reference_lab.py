@@ -169,8 +169,6 @@ class MultiSourceReferenceLab:
             raise ReferenceLabError("exact seven synthetic source records required")
         sources: dict[str, SyntheticQuote] = {}
         for q in quotes:
-            if not isinstance(q, SyntheticQuote):
-                raise ReferenceLabError("typed quote required")
             q.validate()
             if q.provider in sources:
                 raise ReferenceLabError("duplicate source or missing independent record")
@@ -272,7 +270,10 @@ def render_html(result: dict[str, object]) -> str:
         tds = "".join(f"<td>{escape(str(row.get(key, '')))}</td>" for key in
                       ("pair", "reference_mid", "destination_mid", "drift_bps", "outcome"))
         rows.append(f"<tr>{tds}</tr>")
-    issue_text = ", ".join(str(x) for x in result.get("issues", [])) or "None (synthetic only)"
+    issue_values = result.get("issues")
+    if not isinstance(issue_values, list):
+        raise ReferenceLabError("report issue list required")
+    issue_text = ", ".join(str(x) for x in cast(list[object], issue_values)) or "None (synthetic only)"
     return (
         "<!doctype html><html lang='fa' dir='rtl'><head><meta charset='utf-8'>"
         "<meta name='viewport' content='width=device-width,initial-scale=1'>"
