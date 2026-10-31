@@ -318,7 +318,7 @@ This catalog is the canonical index of governed work.
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
 
-| FIN-P00-WX-001 | P00 governance extension / WEB-P0 | Solo-owner PR Review RFC — PROPOSED ONLY | HIGH | PROPOSED / PENDING_OWNER_HUMAN_GATE | `contracts/tasks/FIN-P00-WX-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
+| FIN-P00-WX-001 | P00 governance extension / WEB-P0 | Solo-owner PR Review RFC — policy text owner-approved, not merged | HIGH | OWNER_POLICY_APPROVED / PENDING_PR_MERGE_HUMAN_GATE | `contracts/tasks/FIN-P00-WX-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
 
 ## Rules
 

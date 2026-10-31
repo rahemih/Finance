@@ -1,6 +1,6 @@
 # RFC: Solo-Owner GitHub Pull-Request Governance for NEXUS QUANT
 
-**Status:** PROPOSED / NOT_EFFECTIVE — Owner decision required  
+**Status:** OWNER_POLICY_APPROVED_IN_CONVERSATION / PENDING_PR_MERGE_AND_POSTMERGE_EVIDENCE — NOT_CANONICAL  
 **Task:** `FIN-P00-WX-001` — new governance addendum only; does **not** reopen closed canonical P00.
 **Owner model:** one human repository owner, with assistant/automation as tools (never a separate GitHub reviewer).  
 **Relevant WEB-P0 PRs:** [#496](https://github.com/rahemih/Finance/pull/496), [#497](https://github.com/rahemih/Finance/pull/497), [#498](https://github.com/rahemih/Finance/pull/498).
@@ -48,6 +48,18 @@ Those three PRs currently say **independent review + Owner Human Gate**. Their e
 > I approve FIN-P00-WX-001 solo-owner governance for non-live, non-sensitive documentation and appropriately bounded implementation PRs, while retaining all required status checks, exact-SHA Owner Human Gates, P03 security reviews, independent A5/P16 vetoes, visual baselines and Live/Auto blocks. I do not approve the merge of any particular PR solely by this policy decision.
 
 Until a real, explicit Owner approval is recorded with the current task/PR version, **STATUS = PROPOSED / NO MERGE AUTHORITY**.
+
+### Owner Policy Decision Record — 2026-10-31 (non-merge authorization)
+
+The human Owner provided the exact affirmative statement in the Finance project ChatGPT conversation:
+
+> قرارداد مدیریت تک‌نفره FIN-P00-WX-001 در PR #500 را با حفظ Human Gate، تست‌های اجباری و کنترل‌های مستقل امنیتی تأیید می‌کنم.
+
+- Decision: **APPROVE SOLO-OWNER POLICY TEXT**, with all existing Human Gates, required tests and independent domain-security/risk controls retained. The owner did **not** authorize arbitrary PR merges, remove any independent review that an upstream sensitive workstream explicitly requires, or grant LIVE/AUTO permission.
+- Decision source: the Owner's ChatGPT conversation message (not a GitHub review, not cryptographically signed, and not an independent second reviewer). GitHub PR and Linear contain a matching record. Do not present it as a GitHub APPROVED review.
+- Approved policy revision when the Owner wrote the message: PR #500 head `ac045816500cebb1f082c629270d738732a90daf`; Governance Run `41186162019` **SUCCESS**; CI artifact `foundation-ci-manifest` SHA-256 `a079f57d20072e38690f33f27999653fe2ba527c8a48bfe9904c11a3ca076f7b`.
+- This subsequent documentation-only amendment records the decision and does not expand the proposed policy. It requires **fresh CI on its new exact head** and an independent, explicit **PR-specific Owner merge Human Gate** before any merge.
+- Effective/canonical status: **PENDING**. GitHub `main`, ruleset 24412077, #496/#497/#498 special gates, P24-B/G13 and LIVE/AUTO remain unchanged.
 
 ## 6. Rollback, audit, escalation
 
