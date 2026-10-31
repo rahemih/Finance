@@ -1,0 +1,100 @@
+{
+  "task_id": "FIN-P00-WX-001",
+  "phase": "P00",
+  "workstream": "WX",
+  "objective": "Draft a formally owner-gated solo-operator governance RFC for non-live NEXUS QUANT repository changes; preserve canonical branch, automated checks, owner gates, independent runtime risk veto and all LIVE/production restrictions.",
+  "scope": [
+    "Document factual GitHub main ruleset snapshot: zero mandatory code-review approvals, required governance check, squash-only merge and linear history",
+    "Propose evidence-attested owner Human Gate distinct from a GitHub approving review",
+    "Classify doc-only non-live vs security-sensitive implementation and production/live tasks",
+    "Propose explicit owner decision before modifying existing #496/#497/#498 independent-review clauses",
+    "Document fail-closed checks, evidence, rollback and postmerge Linear reconciliation",
+    "Prepare DRAFT proposal PR; do not enact by unilateral agent action"
+  ],
+  "out_of_scope": [
+    "Changing GitHub ruleset, direct main edits, merging PRs, issuing owner approval",
+    "Removing required independent A5 risk veto/pretrade firewall/OMS/kill switch",
+    "Waiving Auth/identity security validation, end-to-end tests, visual baselines or G13",
+    "Broker accounts, API keys, demos, real trading, deployment, live or auto promotion",
+    "Retroactive declaration of checks or screenshots PASS"
+  ],
+  "dependencies": [
+    "Canonical docs/00-governance/GOVERNANCE.md, OWNER-GATES.md, AUTOMATION-GOVERNANCE.md",
+    "Protect main ruleset 24412077 read 2026-10-31",
+    "WEB-P0 docs contract PR #496, foundation PR #497 and login PR #498 unmerged",
+    "Explicit owner approval of proposed solo policy before it can become effective"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    ".github/**",
+    "docs/18-ux/**"
+  ],
+  "write_paths": [
+    "docs/00-governance/RFC-SOLO-OWNER-PR-REVIEW-v1.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WX-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    ".github/workflows/**",
+    "config/**",
+    "packages/**",
+    "adapters/**",
+    "apps/web/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Governance Verify on exact proposed PR head",
+    "Verify policy text contains zero-bypass, no-self-approval, explicit owner gate, required CI, risk veto",
+    "Verify PR stays draft until the owner approves the policy",
+    "Review future PRs each with SHA and evidence, no automatic merge"
+  ],
+  "security_tests": [
+    "Cannot substitute an agent review for an independent human review if specifically mandatory",
+    "Cannot enable LIVE/AUTO, accounts, risk increases or privileged auth by solo policy",
+    "Must not modify ruleset/branch protection to remove controls",
+    "Fail-closed on missing evidence, CI fail, unresolved risk or unsigned owner gate"
+  ],
+  "evidence": [
+    "Ruleset 24412077 requiring governance check and 0 GitHub reviews, canonical SHA",
+    "RFC contents and its DRAFT PR; owner decision to be recorded separately",
+    "Post-merge evidence and Linear update only after authorized merge"
+  ],
+  "rollback": "Close RFC draft PR unmerged; retain pre-existing governance and branch protection unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Current repository ruleset verified",
+    "Current owner confirms single-person operating context",
+    "No immediate financial runtime or production change"
+  ],
+  "definition_of_done": [
+    "Owner explicitly accepts precise final policy text, or RFC remains proposed",
+    "Governance Verify passes latest exact SHA",
+    "Merge only after required explicit owner gate and GitHub requirements",
+    "Postmerge evidence and GitHub/Linear reconciliation recorded",
+    "Existing risk veto, security and P24/G13 restrictions intact"
+  ]
+}

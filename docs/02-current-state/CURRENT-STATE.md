@@ -42,7 +42,7 @@ G0_GOVERNANCE_READY: PASS
 Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
 Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after PRE_FIRST_LIVE blockers clear  
 Active governed task: FIN-P24-WR-001 / SUPPLEMENTARY_NON_LIVE_ONLY  
-Active lock: LOCK-FIN-P24-WR-001-01 / ACQUIRED  
+Active lock: LOCK-FIN-P24-WR-001-01 / ACQUIRED_NONLIVE_REVIEW_PENDING  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  
@@ -8784,18 +8784,12 @@ P23-A boundary:
 - AUTO_TRADING = DISABLED.
 
 
-## P24-WR supplementary OFFLINE venue contract validation — IN_PROGRESS / 2026-10-28
+## FIN-P00-WX-001 — Solo-Owner Non-Live Governance Policy (2026-10-31)
 
-- Task: `FIN-P24-WR-001` / separate restricted research workstream, not P24-B;
-- Lock: `LOCK-FIN-P24-WR-001-01` / ACQUIRED;
-- Branch: `test/FIN-P24-WR-001-offline-venue-contract`;
-- Claim scope: `RESEARCH_SIMULATOR_ONLY`;
-- Owner research-target selection: FIBO/cTrader Forex and Tabdeal Spot / ACCEPTED_FOR_NON_LIVE_REFERENCE_RESEARCH;
-- P24-A remains CANONICAL_COMPLETE with its lock RELEASED;
-- PRE_FIRST_LIVE blockers = 9 / SATISFIED = 0;
-- separate First-Live Owner Gate = NOT_GRANTED; P24_EXIT blockers = 3;
-- P24-B Manual Live = BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES;
-- G13 = NOT_STARTED; LIVE_TRADING / AUTO_TRADING = DISABLED;
-- New adapter reference: synthetic-only, no SDK, no networking, no secrets, no real order;
-- Task state = IN_PROGRESS / tests and CI pending until verified; no production acceptance asserted;
-- GitHub issue reference: https://github.com/rahemih/Finance/issues/491 .
+- Owner personally approved policy text and PR #500 exact Head `ed71d8d3f503f6f0e16443ee80d7a6378de843f1` for merge, with Artifact SHA256 `405c4f319c7daf8c5d401225a893a1ce7a8514f634a05804c8dc0a32b48d555e`.
+- PR #500 = MERGED via authorized squash; `main` merge SHA = `a2371b10a2175889882f24931ff4be0dd3597e60`.
+- Premerge Governance [41186435417](https://github.com/rahemih/Finance/actions/runs/41186435417) SUCCESS; Postmerge Governance [41186655318](https://github.com/rahemih/Finance/actions/runs/41186655318) SUCCESS; postmerge Artifact SHA256 `a091f722bb5558d7c1b1ef576550b9796530978cb8dfd43bf2bd632dfe7ad013`; Branch Hygiene [41186655290](https://github.com/rahemih/Finance/actions/runs/41186655290) SUCCESS.
+- FIN-P00-WX-001 policy = CANONICAL (documentation governance only). This reconciliation is staged in repair FIN-P00-WX-001-R01; no claim that the repair PR itself has merged.
+- GitHub Protect main ruleset remains active with `governance` required, 0 mandatory GitHub reviewers, squash only and linear history; *all project-specific Owner Human Gates and mandatory independent security reviews remain enforceable*.
+- #496 contract registration, #497 nonlive foundation and #498 nonoperational Login preview = OPEN/UNMERGED / independently gated. 34-page/212-screenshot owner baseline approvals NOT_GRANTED; Auth BFF and browser acceptance NOT_RUN.
+- P23 original reference closure unchanged. P24-B BLOCKED, G13 NOT_STARTED and LIVE_TRADING/AUTO_TRADING DISABLED. No trading/account/deployment permission from solo-owner policy.

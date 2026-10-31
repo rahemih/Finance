@@ -22,7 +22,7 @@ The scoped Task Contract is `contracts/tasks/FIN-P24-WR-001.json`; P24-A remains
 ## Ready/Done
 Fresh guard: `main e1e7ac817ec3d0d9d055ef947f6c5189bf4d7aac`, open PRs 0, active task/lock none **before acquiring WR lock**, P24-A CANONICAL_COMPLETE and all P24-B gates blocked.
 
-Completion requires **green required Governance**, strict Pyright, all P20/P24 regression suites, exactly reproducible offline evidence, A5/A8/A10 independent review, merged PR, post-merge CI and lock release. PR creation alone is **NOT PASS**.
+Completion requires **green required Governance**, strict Pyright, all P20/P24 regression suites, exactly reproducible offline evidence; under Owner-approved/merged FIN-P24-WT-001 (PR #503), only the second GitHub human review slot is replaced by PR-specific Owner exact-HEAD+CI Artifact Human Gate. Independent A5/P16 runtime veto, A8 security tests, A10 evidence controls stay mandatory. Merge, postmerge CI and lock release remain required. PR creation alone is **NOT PASS**.
 
 ## Explicit stop boundaries
 - `PRE_FIRST_LIVE` unresolved: 9/9; first-Live Owner approval NOT_GRANTED; P24_EXIT 0/3; G13 NOT_STARTED.
@@ -44,3 +44,9 @@ Final source audit also identified Python equality treating integer `0` as equal
 ## Evidence lineage and adversarial input audit — 2026-10-28
 
 A further review found that the first synthetic decision digest omitted some already validated intent fields (such as prior sequence, tick/step filters and zero-authority flags). The digest now binds the entire validated synthetic dataclass to the immutable policy ID. Runtime checks explicitly reject malformed text, non-Boolean Boolean fields, and non-string reconciliation IDs before canonicalization. Three additional tests (20–22) prove decision-ID differentiation and fail-closed rejection of adversarial dynamically typed inputs. These improvements apply **only** to offline evidence: no real venue, API, account, order, or permissions are introduced. The previous deterministic evidence ID is superseded; record the replacement only after the final-head Governance run succeeds.
+
+## 2026-10-31 conflict-safe merge from current main
+- Reconstructed PR branch as two-parent merge of original HEAD `50e130e1d555de4177829a96a1c41540afb350c4` and current main `9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6`, preserving canonical main changes #500/#501/#503.
+- Restored only WR-specific Governance P24 tests and bounded first-page Current State/Task Catalog lock markers on TOP of main, without overwriting historical text.
+- Existing P24-WR policy, test and contract source content retained. Original pre-WR snapshot text is historical, not current authoritative Fresh Guard.
+- Owner-approved PR #503 permits non-live review-substitution only after exact revised-head CI and this PR's separate Human Gate. No approval to merge #492 yet.

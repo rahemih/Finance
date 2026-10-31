@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P24-WT-001",
+  "kind": "P24_SYNTHETIC_SOLO_OWNER_REVIEW_EXCEPTION_PROPOSAL",
+  "status": "PROPOSED_NOT_EFFECTIVE",
+  "effective": false,
+  "authority": "NONE_UNTIL_SEPARATE_EXPLICIT_OWNER_POLICY_HUMAN_GATE_AND_APPROVED_MERGE",
+  "upstream_policy": "FIN-P00-WX-001/PR-500 + FIN-P00-WX-001-R01/PR-501",
+  "purpose": "A narrowly governed *proposed* replacement for a second GitHub human-code reviewer, never a waiver of independent runtime Risk veto/security checks.",
+  "candidates": [
+    {
+      "pr": 492,
+      "task_id": "FIN-P24-WR-001",
+      "reviewed_head": "529f43142befee4ced4a652a2472bd41e509c32d",
+      "scope": "SYNTHETIC_VENUE_REFERENCE_ONLY",
+      "allow_human_reviewer_exception": true,
+      "mandatory_live_review": "NOT_APPLICABLE_TO_THIS_SIMULATOR",
+      "extra_guard": "Shared Current State/Task Catalog/Governance write path; enforce merge coordination and separate lock release"
+    },
+    {
+      "pr": 493,
+      "task_id": "FIN-P24-WO-001",
+      "reviewed_head": "4d1945db6c59aee7cb4d341c022f75d208f96d0f",
+      "scope": "SYNTHETIC_KILL_SWITCH_REHEARSAL_ONLY",
+      "allow_human_reviewer_exception": true,
+      "mandatory_live_review": "NOT_APPLICABLE_TO_THIS_SIMULATOR",
+      "extra_guard": "Synthetic kill test cannot certify production Kill Switch; preserve A5 latch, veto and chain"
+    },
+    {
+      "pr": 494,
+      "task_id": "FIN-P24-WP-001",
+      "reviewed_head": "57672f2df93bc483ecc0df9b9f2b6fca64d8087b",
+      "scope": "OFFLINE_DEMO_FILE_SCHEMA_ONLY",
+      "allow_human_reviewer_exception": true,
+      "mandatory_live_review": "NOT_APPLICABLE_TO_THIS_SIMULATOR",
+      "extra_guard": "Personal financial files/credentials prohibited; flow-adjusted equity metrics remain unattested"
+    },
+    {
+      "pr": 499,
+      "task_id": "FIN-P24-WQ-001",
+      "reviewed_head": "0b31559eef7b3cc2ec2e669fd36a49f10d116144",
+      "scope": "SYNTHETIC_MULTISOURCE_PRICING_ONLY",
+      "allow_human_reviewer_exception": true,
+      "mandatory_live_review": "NOT_APPLICABLE_TO_THIS_SIMULATOR",
+      "extra_guard": "No Binance accounts, TradingView automated data or unlicensed feeds; P07 evidence quarantined"
+    },
+    {
+      "pr": 502,
+      "task_id": "FIN-P24-WS-001",
+      "reviewed_head": "64eb2f14f1a995e417005cc2b43d9d8d5711da53",
+      "scope": "OFFLINE_UNATTESTED_CSV_QUARANTINE_ONLY",
+      "allow_human_reviewer_exception": true,
+      "mandatory_live_review": "NOT_APPLICABLE_TO_THIS_SIMULATOR",
+      "extra_guard": "Imported CSV cannot certify data license, source attestation or trading authority"
+    }
+  ],
+  "review_model": {
+    "external_human_github_reviewer": "PROPOSED_NOT_APPLICABLE_IF_OWNER_ADOPTS_SPECIFIC_EXCEPTION",
+    "A5_independent_runtime_risk_veto": "MANDATORY_UNWAIVABLE",
+    "A8_security_and_provenance_controls": "MANDATORY_UNWAIVABLE",
+    "A10_ci_and_evidence_verification": "MANDATORY_UNWAIVABLE",
+    "tests_and_supply_chain_scan": "MANDATORY_UNWAIVABLE",
+    "human_gate_each_final_pr_sha": "MANDATORY_AND_NOT_YET_GRANTED",
+    "human_gate_policy_adoption": "MANDATORY_AND_NOT_YET_GRANTED",
+    "independent_human_review_if_code_adds_order_network_auth_production": "MANDATORY_NOT_REPLACED",
+    "automated_merge": false,
+    "self_git_review": false,
+    "no_credential_access": true,
+    "only_nonlive_synthetic": true
+  },
+  "approval_conditions": [
+    "Separate specific Owner approval of this FIN-P24-WT-001 policy at exact HEAD/CI evidence before it can be merged",
+    "After policy is merged/postmerge audited, amend each of five existing Task Contracts explicitly to reference this policy and remove ONLY mandatory *second human GitHub reviewer* slot",
+    "Each amended PR must rerun required Governance and scoped CI at final changed HEAD; all risk/security/quality negative tests pass",
+    "Produce per-PR A5/A8/A10 factual evidence checklist with no impersonation or false independent reviewer signatures",
+    "Owner makes explicit PR-specific Human Gate naming PR, current HEAD, CI artifact/digest; no bulk approval inferred",
+    "Before and after merge, check affected paths, Main Fresh Guard, branch protection, locks, full repository Governance, postmerge Branch Hygiene and Linear",
+    "Stop exception if code or dependencies touch live brokers, external orders, credentials, Auth, production risk controls, provider authority or executable Kill Switch"
+  ],
+  "production_state": {
+    "pre_first_live_satisfied": 0,
+    "first_live_owner_approval": "NOT_GRANTED",
+    "p24_b": "BLOCKED",
+    "g13": "NOT_STARTED",
+    "live_trading": "DISABLED",
+    "auto_trading": "DISABLED"
+  }
+}

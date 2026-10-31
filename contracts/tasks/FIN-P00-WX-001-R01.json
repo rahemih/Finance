@@ -1,0 +1,103 @@
+{
+  "task_id": "FIN-P00-WX-001-R01",
+  "phase": "P00",
+  "workstream": "WX",
+  "objective": "Reconcile the already owner-authorized, merged FIN-P00-WX-001 solo-owner governance RFC from PR #500 with canonical Task Catalog, Current State, and human-readable RFC evidence after successful postmerge tests, without changing any policy or GitHub settings.",
+  "scope": [
+    "Correct the stale PENDING_PR_MERGE status for FIN-P00-WX-001 in Task Catalog, after verified merged PR #500 and postmerge Governance/Branch Hygiene success",
+    "Record exact premerge head SHA, owner gate artifact digest, merge SHA and postmerge run IDs/digests in canonical RFC and Current State",
+    "Add separately governed repair task entry and record that all #496/#497/#498 review and specific Owner Gate requirements remain unchanged until individually assessed",
+    "Keep P23/P24 live-gate, A5/P16 and security controls fully preserved",
+    "Open a documentation-only draft PR with required Governance test and separate owner merge gate; no direct main write"
+  ],
+  "out_of_scope": [
+    "GitHub ruleset settings, protected main bypass, branch protection, app/web code, API or Auth changes",
+    "Any policy expansion or relaxation beyond owner-approved PR #500 text",
+    "Broker, exchange, market data services, credentials, deployments or transactions",
+    "Claiming PR #496/#497/#498 merged, verified, or approved",
+    "Live/Auto trading, G13 and P24-B advancement"
+  ],
+  "dependencies": [
+    "FIN-P00-WX-001 was approved and merged as PR #500 at a2371b10a2175889882f24931ff4be0dd3597e60",
+    "Premerge Governance 41186435417 = SUCCESS on ed71d8d3f503f6f0e16443ee80d7a6378de843f1",
+    "Postmerge Governance 41186655318 = SUCCESS and Branch Hygiene 41186655290 = SUCCESS on merge SHA",
+    "Owner approval of separate repair PR exact SHA and required CI before merging repair"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    ".github/**"
+  ],
+  "write_paths": [
+    "docs/00-governance/RFC-SOLO-OWNER-PR-REVIEW-v1.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/FIN-P00-WX-001-R01.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "config/**",
+    "apps/**",
+    "packages/**",
+    "adapters/**",
+    ".github/workflows/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Required latest-head Governance Verify SUCCESS",
+    "Confirm all literal SHA and run/digest evidence IDs by GitHub API",
+    "Verify no code/workflow/ruleset or frozen roadmap files changed",
+    "Verify no rewriting of high-risk A5/P16/Live/Auth governance",
+    "Verify Current State, Task Catalog and RFC all name merged PR #500 consistently"
+  ],
+  "security_tests": [
+    "Preserve LIVE/AUTO disabled",
+    "Preserve P24-B/G13 blocked and independent Risk/PreTrade gates",
+    "No synthetic external GitHub reviewer",
+    "No secret/credential or operational runtime changes"
+  ],
+  "evidence": [
+    "PR #500 original head ed71d8d3f503f6f0e16443ee80d7a6378de843f1 and Owner approval message",
+    "Premerge manifest sha256:405c4f319c7daf8c5d401225a893a1ce7a8514f634a05804c8dc0a32b48d555e",
+    "Merge SHA a2371b10a2175889882f24931ff4be0dd3597e60",
+    "Postmerge run 41186655318 SUCCESS, artifact sha256:a091f722bb5558d7c1b1ef576550b9796530978cb8dfd43bf2bd632dfe7ad013",
+    "Postmerge Branch Hygiene 41186655290 SUCCESS"
+  ],
+  "rollback": "Close unmerged reconciliation draft PR; keep owner-approved solo-owner policy in merged PR #500 unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Authoritative postmerge evidence for PR #500 verified",
+    "No conflicting current main commits/locks",
+    "Changes limited to four documentation and task-control files"
+  ],
+  "definition_of_done": [
+    "Latest-head Governance Verify success for repair PR",
+    "Owner-specific Human Gate granted for repair PR exact head+artifact before merge",
+    "Repair squash-merges to protected main",
+    "Postmerge Governance PASS and register in GitHub/Linear",
+    "Current State/Task Catalog/RFC agree and no staged status falsely claimed"
+  ]
+}

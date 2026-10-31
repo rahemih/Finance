@@ -314,10 +314,14 @@ This catalog is the canonical index of governed work.
 | FIN-P23-WI-001 | P23 | E2E Validation | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WI-001.json` | RELEASED / REFERENCE_UX_E2E_VALIDATION PASS / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P24-WA-001 | P24 | Production Readiness Dossier | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P24-WA-001.json` | RELEASED / READINESS_ASSESSMENT_ONLY / NOT_READY_FOR_LIVE / 13 BLOCKERS / LINEAR_CONTINUATION_REGISTER |
-| FIN-P24-WR-001 | P24 | Supplementary Non-Live Venue Reference Validation | HIGH | IN_PROGRESS | `contracts/tasks/FIN-P24-WR-001.json` | LOCK-FIN-P24-WR-001-01 ACQUIRED / RESEARCH_SIMULATOR_ONLY / P24-B STILL BLOCKED |
+| FIN-P24-WR-001 | P24 | Supplementary Non-Live Venue Reference Validation | HIGH | VALIDATION / OWNER_HUMAN_GATE_PENDING | `contracts/tasks/FIN-P24-WR-001.json` | LOCK-FIN-P24-WR-001-01 ACQUIRED / SYNTHETIC_RESEARCH_ONLY / NOT_LIVE |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |
+
+| FIN-P00-WX-001 | P00 governance extension / WEB-P0 | Solo-owner PR Review RFC — Owner policy + PR #500 merged, postmerge PASS | HIGH | CANONICAL_COMPLETE / PR #500 MERGED / GOVERNANCE_POSTMERGE_PASS | `contracts/tasks/FIN-P00-WX-001.json` | RELEASED / POLICY_ONLY / NO_LIVE_AUTHORITY |
+
+| FIN-P00-WX-001-R01 | P00 governance follow-up / WEB-P0 | Reconcile solo-owner RFC postmerge closure evidence | MEDIUM | DRAFT / PENDING_OWNER_MERGE_GATE | `contracts/tasks/FIN-P00-WX-001-R01.json` | NOT_ACQUIRED / MERGE_AUTHORITY_PENDING |
 
 ## Rules
 

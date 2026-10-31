@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P24-WT-001",
+  "phase": "P24",
+  "workstream": "WT",
+  "objective": "Propose a scope-limited owner-attested solo-review exception for five synthetic-only P24 pull requests without self-review or weakening independent runtime A5 risk veto, A8 security controls, A10 evidence controls or G13.",
+  "scope": [
+    "Review exact scope, commit SHA and CI evidence for P24 PRs #492, #493, #494, #499, #502 and preserve their separate risk/test safety boundaries",
+    "Draft prospective exception to independent GitHub human review for ONLY synthetic non-live bounded code, requiring explicit owner authorization and exact-HEAD gates",
+    "Differentiate independent human code-review approval (waiver requested, not granted) from independently enforced runtime Risk veto/security checks and factual CI evidence (nonwaivable)",
+    "Require first separate owner policy Human Gate for this addendum, then explicit contract amendment and PR-specific Owner Human Gate for every candidate",
+    "Create static machine-readable review matrix and deterministic policy validation tests, including negative cases",
+    "Leave all five PRs OPEN until new addendum and their individually amended contracts are validly adopted"
+  ],
+  "out_of_scope": [
+    "Waive A5 independent executable risk veto, P16 firewall, risk policy, OMS, broker security, security assessment tests or production prerequisites",
+    "Automatically merge or approve any of the five PRs",
+    "Self-approve as independent human, create fake GitHub identities, assign fake reviewers, override owners",
+    "Modify live broker credentials, any P24-B..I order routing or G13",
+    "Modify protected ruleset, governance required checks, production readiness dossier, frozen roadmap",
+    "Retroactively weaken security gates of unrelated Auth/Web P0 PRs"
+  ],
+  "dependencies": [
+    "Merged FIN-P00-WX-001 solo-owner governance RFC (PR #500) and FIN-P00-WX-001-R01 reconciliation (PR #501) as upstream policy",
+    "Current main and branch-head CI+diff readbacks, five Task Contracts still require independent A5/A8/A10 reviewer",
+    "Owner intent to solve review governance in Finance chat is authorization to propose fix, not explicit approval of final addendum text or each merge"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    "config/production/**",
+    "packages/production/**",
+    ".github/workflows/**",
+    "tests/p24/**",
+    "docs/19-production/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WT-001.json",
+    "docs/00-governance/P24-SOLO-OWNER-REVIEW-EXCEPTION-RFC.md",
+    "config/governance/p24-offline-solo-review-proposal.json",
+    "scripts/ci/p24wt_review_policy.py",
+    "tests/p24/test_p24wt_review_policy.py",
+    ".github/workflows/p24-review-policy.yml"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/00-governance/RFC-SOLO-OWNER-PR-REVIEW-v1.md",
+    ".github/workflows/governance.yml",
+    "config/risk/**",
+    "packages/execution/**",
+    "config/production/production-readiness-dossier.json",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exact scope matrix has five and only five named PRs and pre-amendment head SHA",
+    "Negative validation refuses any auto approval, low confidence, network authority, credentials, order execution or missing Owner Human Gate",
+    "Explicit nonwaivable A5, A8, A10 domain checks and pre-first-live zero authority",
+    "Existing GitHub required Governance SUCCESS on exact amendment head",
+    "Deterministic JSON evidence twice byte-identical"
+  ],
+  "security_tests": [
+    "No authorization to trade, no bypass of human gate or independent domain controls",
+    "No account, password, private KYC, token or external network action",
+    "No automatic PR merge or self-issued GitHub APPROVED review",
+    "Fail closed when unexpected file change, head drift, failed CI, unresolved security finding or license entitlement appears"
+  ],
+  "evidence": [
+    "Original five PRs and actual HEAD+CI IDs",
+    "Solo Owner RFC PR #500 and reconciler PR #501",
+    "Proposed matrix, negative tests and run evidence",
+    "Owner's separate policy gate followed by each PR-specific Owner decision record"
+  ],
+  "rollback": "Leave proposed PR unmerged or revert only the new document/policy, without changing any of five original PRs or production authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner requested a formal correction to five outstanding PR reviewer blockers",
+    "Upstream solo-owner policy adopted with explicit no-bypass and no-retroactivity restrictions",
+    "No secret/real broker/live work being authorized"
+  ],
+  "definition_of_done": [
+    "Owner explicitly approves this specific policy text and change class on exact proposal version; user request alone is not approval",
+    "Required Governance and independent machine evidence pass at final head",
+    "Merge policy proposal only after explicit Owner Gate; postmerge SHA and checks recorded",
+    "Only then amend each affected Task Contract in its own PR branch, preserving scope and adding explicit Owner SHA/artifact gate",
+    "Never claim independent human review PASS when absent",
+    "No live authority, P24-B and G13 advancement, or first-Live capital budget"
+  ]
+}
