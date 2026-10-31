@@ -1,18 +1,19 @@
-name: WEB-P0 Dependency Pruning Lockfile Experiment (UNMERGED)
+name: WEB-P0 Dependency Pruning Frozen Verification (UNMERGED)
 on:
   pull_request:
     paths:
       - 'pnpm-workspace.yaml'
-      - 'apps/web/package.json'
+      - 'pnpm-lock.yaml'
+      - 'apps/web/**'
       - '.github/workflows/web-p0-dependency-prune.yml'
       - 'contracts/tasks/FIN-P23-WM-001.json'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  generate-lock:
+  verify-pruned-runtime:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -20,20 +21,35 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version-file: .node-version
-      - run: |
+      - name: Activate exact pnpm
+        run: |
           corepack enable
           corepack prepare pnpm@11.28.4 --activate
           test "$(node --version)" = "v24.21.0"
           test "$(pnpm --version)" = "11.28.4"
-      - name: Generate lockfile without arbitrary install scripts
-        run: pnpm install --lockfile-only --ignore-scripts --no-frozen-lockfile
-      - name: Export generated lockfile (not yet committed)
+      - name: Verify pruned lockfile retains SWC but no sharp and no TS7 Go
+        run: |
+          set -euo pipefail
+          grep -F 'typescript@5.9.3:' pnpm-lock.yaml
+          grep -F '@next/swc-linux-x64-gnu@16.4.3' pnpm-lock.yaml
+          if grep -E 'sharp@0.35.5|libvips|typescript@7.0.2|typescript-go' pnpm-lock.yaml; then
+            echo 'Unapproved native/media compiler dependency still locked'; exit 1
+          fi
+      - name: Verify frozen lock install without lifecycle scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Verify native image optimizer not installed
         shell: bash
         run: |
-          echo 'BEGIN_WEB_P0_PRUNED_LOCKFILE'
-          cat pnpm-lock.yaml
-          echo 'END_WEB_P0_PRUNED_LOCKFILE'
-      - name: Assert scoped version and optional excludes
+          set -euo pipefail
+          test ! -d node_modules/.pnpm/sharp@0.35.5
+          test ! -d node_modules/.pnpm/@img+sharp-libvips-linux-x64@1.3.4
+      - name: Runtime unit and security source contracts
         run: |
-          node -e "const p=require('./apps/web/package.json');if(p.devDependencies.typescript!=='5.9.3')process.exit(1)"
-          grep -F 'ignoredOptionalDependencies:' pnpm-workspace.yaml
+          node --test apps/web/tests/runtime-contract.test.mjs
+          python3 -m unittest discover -s tests/web_p0 -p 'test_*.py' -v
+      - name: TypeScript and Next.js build
+        run: |
+          pnpm --filter @nexus-quant/web run typecheck
+          pnpm --filter @nexus-quant/web run build
+      - name: High severity dependency vulnerability audit
+        run: pnpm audit --audit-level high
