@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "task_id": "FIN-P24-WQ-001",
+  "kind": "P24_WQ_SYNTHETIC_CROSS_VENUE_REFERENCE",
+  "claim_scope": "SYNTHETIC_RESEARCH_ONLY",
+  "network_mode": "DISABLED",
+  "credentials_mode": "NONE",
+  "license_mode": "SYNTHETIC_ONLY",
+  "external_order_authority": false,
+  "production_data_rights_verified": false,
+  "tradingview_mode": "HUMAN_VISUAL_ONLY",
+  "binance_authenticated_access": false,
+  "markets": [
+    "FOREX",
+    "CRYPTO"
+  ],
+  "max_age_ms": 2000,
+  "max_alignment_ms": 500,
+  "fx_max_drift_bps": 20,
+  "crypto_max_drift_bps": 100,
+  "venue_max_drift_bps": 200,
+  "provider_roles": {
+    "DUKASCOPY_SIM": {
+      "market": "FOREX",
+      "pair": "EURUSD",
+      "root": "DUKASCOPY",
+      "role": "REFERENCE"
+    },
+    "FX_INDEPENDENT_SIM": {
+      "market": "FOREX",
+      "pair": "EURUSD",
+      "root": "INDEPENDENT_FX_ORIGIN",
+      "role": "REFERENCE"
+    },
+    "FIBO_SIM": {
+      "market": "FOREX",
+      "pair": "EURUSD",
+      "root": "FIBO",
+      "role": "VENUE_MOCK"
+    },
+    "BINANCE_ARCHIVE_SIM": {
+      "market": "CRYPTO",
+      "pair": "BTCUSDT",
+      "root": "BINANCE",
+      "role": "REFERENCE"
+    },
+    "CRYPTO_INDEPENDENT_SIM": {
+      "market": "CRYPTO",
+      "pair": "BTCUSDT",
+      "root": "INDEPENDENT_CRYPTO_ORIGIN",
+      "role": "REFERENCE"
+    },
+    "USDTIRT_SIM": {
+      "market": "CRYPTO",
+      "pair": "USDTIRT",
+      "root": "INDEPENDENT_FX_CONVERSION",
+      "role": "CONVERSION_MOCK"
+    },
+    "TABDEAL_SPOT_SIM": {
+      "market": "CRYPTO",
+      "pair": "BTCIRT",
+      "root": "TABDEAL",
+      "role": "VENUE_MOCK"
+    }
+  },
+  "p24_b": "BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES",
+  "pre_first_live_satisfied": 0,
+  "g13": "NOT_STARTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED"
+}
