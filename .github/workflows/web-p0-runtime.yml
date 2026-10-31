@@ -1,4 +1,4 @@
-name: WEB-P0 Runtime Lock Preparation (DRAFT)
+name: WEB-P0 Runtime Frozen Build (DRAFT / NOT ACCEPTANCE)
 
 on:
   pull_request:
@@ -13,29 +13,33 @@ permissions:
   contents: read
 
 jobs:
-  prepare-runtime-lock:
+  frozen-build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - name: Setup Node exact
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
-      - name: Prepare exact pnpm
+      - name: Activate exact pnpm
         run: |
           corepack enable
           corepack prepare pnpm@11.28.4 --activate
           test "$(node --version)" = "v24.21.0"
           test "$(pnpm --version)" = "11.28.4"
-      - name: Resolve lockfile without lifecycle scripts (precommit evidence only)
-        run: pnpm install --lockfile-only --ignore-scripts --no-frozen-lockfile
-      - name: Emit deterministic generated lockfile for governed commit
-        shell: bash
-        run: |
-          echo 'BEGIN_WEB_P0_GENERATED_LOCKFILE'
-          cat pnpm-lock.yaml
-          echo 'END_WEB_P0_GENERATED_LOCKFILE'
-      - name: Source-only runtime safety tests
+      - name: Frozen install without lifecycle scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Runtime dependency constraints
         run: node --test apps/web/tests/runtime-contract.test.mjs
+      - name: Existing WEB-P0 source contract tests
+        run: python3 -m unittest discover -s tests/web_p0 -p 'test_*.py' -v
+      - name: TypeScript 7 exact typecheck
+        run: pnpm --filter @nexus-quant/web run typecheck
+      - name: Real Next.js build (non-operational root sentinel)
+        run: pnpm --filter @nexus-quant/web run build
+      - name: Supply chain audit (HIGH+ fail closed)
+        run: pnpm audit --audit-level high
