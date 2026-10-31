@@ -56,11 +56,26 @@ jobs:
           if [ "$ready" -ne 1 ]; then cat "$RUNNER_TEMP/web-next-smoke.log"; exit 1; fi
           grep -F 'پیش‌نمایش WEB-P0 هنوز فعال نیست' "$RUNNER_TEMP/web-root.html"
           grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$RUNNER_TEMP/web-root.html"
-          for path in /auth/login /dashboard /api/v1/orders; do
-            code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 3 "http://127.0.0.1:3100$path")
-            test "$code" = "404" || { echo "$path must remain 404 (got $code)"; exit 1; }
+          # Three read-only source previews, never an API or Auth service.
+          for path in /dashboard /system /system/alerts; do
+            file="$RUNNER_TEMP/preview-$(echo "$path" | tr / -).html"
+            code=$(curl --silent --output "$file" --write-out '%{http_code}' --max-time 5 "http://127.0.0.1:3100$path")
+            test "$code" = "200" || { echo "Expected read-only preview $path: 200 (got $code)"; exit 1; }
+            grep -F 'بدون داده زنده' "$file"
+            grep -F 'PREVIEW ONLY' "$file"
+            grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$file"
+            denied=$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST --max-time 5 "http://127.0.0.1:3100$path")
+            test "$denied" -ge 400 || { echo "POST must be denied $path ($denied)"; exit 1; }
+          done
+          for path in /auth/login /api/v1/orders; do
+            code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 5 "http://127.0.0.1:3100$path")
+            test "$code" = "404" || { echo "Must remain absent $path: $code"; exit 1; }
           done
           curl --silent --head --fail http://127.0.0.1:3100/ | grep -i '^x-frame-options: DENY'
+      - name: WEB-P0 Monitoring P0-B source contracts
+        run: |
+          node --experimental-strip-types --test apps/web/tests/monitoring-contract.test.mjs
+          python3 -m unittest discover -s tests/web_p0 -p test_monitoring_source.py -v
       - name: Supply chain audit (HIGH+ fail closed)
         run: pnpm audit --audit-level high
       - name: Research exact dependency license metadata (not waiver or approval)
