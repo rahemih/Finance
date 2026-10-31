@@ -1,6 +1,6 @@
 # RFC: Solo-Owner GitHub Pull-Request Governance for NEXUS QUANT
 
-**Status:** OWNER_POLICY_APPROVED_IN_CONVERSATION / PENDING_PR_MERGE_AND_POSTMERGE_EVIDENCE — NOT_CANONICAL  
+**Status:** POLICY_ADOPTED / PR_500_MERGED / POSTMERGE_GOVERNANCE_PASS; canonical reconciliation in FIN-P00-WX-001-R01  
 **Task:** `FIN-P00-WX-001` — new governance addendum only; does **not** reopen closed canonical P00.
 **Owner model:** one human repository owner, with assistant/automation as tools (never a separate GitHub reviewer).  
 **Relevant WEB-P0 PRs:** [#496](https://github.com/rahemih/Finance/pull/496), [#497](https://github.com/rahemih/Finance/pull/497), [#498](https://github.com/rahemih/Finance/pull/498).
@@ -66,3 +66,14 @@ The human Owner provided the exact affirmative statement in the Finance project 
 - Fail-closed: incomplete evidence, untrusted reviewer, external security review needed, or unapproved contract conflict = `BLOCKED` and no merge.
 - Rollback proposed policy by closing draft PR; no repository ruleset/settings change required.
 - After final acceptance, catalog/current-state/Linear evidence must cite the actual merged SHA; do not claim canonical policy merely from this draft.
+
+
+## 7. Postmerge Owner Gate and canonical evidence — 2026-10-31
+
+- Owner's separate PR #500 merge Human Gate explicitly named Head `ed71d8d3f503f6f0e16443ee80d7a6378de843f1` and Artifact SHA256 `405c4f319c7daf8c5d401225a893a1ce7a8514f634a05804c8dc0a32b48d555e`.
+- Premerge `governance`: [41186435417](https://github.com/rahemih/Finance/actions/runs/41186435417) **SUCCESS**.
+- GitHub API returned `merged=true` for [PR #500](https://github.com/rahemih/Finance/pull/500) and squash merge `a2371b10a2175889882f24931ff4be0dd3597e60`; `main` was independently read back at that exact SHA.
+- Postmerge `main` Governance: [41186655318](https://github.com/rahemih/Finance/actions/runs/41186655318) **SUCCESS** and evidence artifact `foundation-ci-manifest` digest `sha256:a091f722bb5558d7c1b1ef576550b9796530978cb8dfd43bf2bd632dfe7ad013`.
+- Postmerge Branch Hygiene: [41186655290](https://github.com/rahemih/Finance/actions/runs/41186655290) **SUCCESS**.
+- Scope remains `SOLO_OWNER_NONLIVE` / `POLICY_ONLY`. Existing PRs #496, #497 and #498 remain separately gated and UNMERGED. A5 independent risk veto, P16 firewall, Auth security reviews, owner screenshot baselines, P24-B/G13 and `LIVE_TRADING/AUTO_TRADING=DISABLED` remain unchanged.
+- This section reconciles historical PENDING status, not a new policy authorization. The repair itself is proposed in governed PR `FIN-P00-WX-001-R01` and is not canonical until that PR passes its own Owner gate, merge, and postmerge evidence.
