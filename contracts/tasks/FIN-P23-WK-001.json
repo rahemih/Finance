@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P23-WK-001",
+  "phase": "P23",
+  "workstream": "WK",
+  "objective": "Implement PAGE-001 non-operational login visual source and deterministic state fixtures for WEB-P0, preserving P03/P23 design/security boundaries pending real auth and owner-approved visual baselines.",
+  "scope": [
+    "Implement the /auth/login App Router page in apps/web as a no-credential-collection preview",
+    "Implement RTL/fa-IR responsive layout with P23 design tokens and approved-in-document Persian message keys",
+    "Implement safe state-text mapping and 10 PAGE-001 screenshot fixture metadata IDs bound to Google Docs inline object IDs, no approved baseline assumptions",
+    "Add isolated Node source contract test and Python source security tests, and a standalone GitHub Actions workflow",
+    "Stage as an independent DRAFT pull request; no merge until contractual and Human Gates complete",
+    "Stack the PAGE-001 source preview onto the pinned, unmerged runtime PR #504 for real Next build/HTTP test; this does NOT grant Auth or visual baseline approval."
+  ],
+  "out_of_scope": [
+    "Real login/password submission, auth API, WebAuthn challenge or Session handling",
+    "Selecting or implementing Better Auth or other IdP",
+    "Rendering authenticated data, orders, balances or dashboard",
+    "Third-party browser network calls, storage of secrets or live/deployment access",
+    "Declaring visual/semantic acceptance, 100 percent fidelity or a passed browser visual regression",
+    "Modifying reference screenshots, canonical P23 tokens, root pnpm lockfile or frozen roadmap"
+  ],
+  "dependencies": [
+    "P23-A/P23-B/P23-H canonical authoritative",
+    "PAGE-001 Google Doc 7 tables and section 19 UX/copy are design input",
+    "PR #496 independent review/Owner Human Gate/merge required before implementation can merge",
+    "PR #497 foundation task and layer must be merged with evidence before this PR may merge",
+    "Auth runtime/IdP/BFF ADR not yet approved; form inputs and submit stay disabled",
+    "All images REVIEW_REQUIRED pending baseline freeze; only visual feedback 001-04/001-05 previously noted, no baseline authority"
+  ],
+  "read_paths": [
+    "docs/18-ux/**",
+    "config/ux/**",
+    "contracts/tasks/**",
+    "docs/13-tasks/**",
+    "apps/web/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P23-WK-001.json",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/18-ux/WEB-P0-LOGIN-PAGE-001-IMPLEMENTATION-NOTES.md",
+    "apps/web/src/app/auth/login/**",
+    "apps/web/src/components/auth/**",
+    "apps/web/src/lib/auth/**",
+    "apps/web/contracts/login-visual-scenarios.json",
+    "apps/web/tests/login-contract.test.mjs",
+    "tests/web_p0/test_login_source.py",
+    ".github/workflows/web-p0-login.yml",
+    ".github/workflows/web-p0-runtime.yml"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "config/ux/design-system.json",
+    "adapters/**",
+    "packages/risk/**",
+    "packages/pretrade_firewall/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Google Drive",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Node contract test verifies 10 states and fail-closed login decision",
+    "Python source tests verify disabled form and no client secret/API/storage calls",
+    "RTL, form semantics, 360/768/1024/1440 CSS breakpoint declarations statically checked",
+    "P23 token use and exact Persian copy keys checked",
+    "Browser Build/TypeScript component compile/visual/WCAG/E2E remain NOT_RUN pending packages/ADR/baseline",
+    "With frozen runtime, real Next build and TypeScript must PASS on exact login source branch; GET /auth/login 200 preview-only with disabled fields and zero session authority; POST /auth/login must not return success; /dashboard and /api/v1/orders stay 404."
+  ],
+  "security_tests": [
+    "No password/identifier collection in current runtime preview",
+    "No client/server auth endpoints called",
+    "All login authority denied by default",
+    "No password or secret telemetry, no storage, no real sessions",
+    "No real broker/order/provider access",
+    "Login route preview is always noindex and visibly nonoperational; disabled credentials and no functioning session/BFF API."
+  ],
+  "evidence": [
+    "Exact branch/head/PR and check runs",
+    "PAGE-001 10-image id registry without approved baselines",
+    "Independent security review and owner Human Gate outstanding",
+    "Postmerge evidence only if legitimately merged"
+  ],
+  "rollback": "Close draft PR, do not merge; leave main, P23, P24 and production state unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "User authorizes nonlive development",
+    "P23/GitHub canonical design source identified",
+    "PR #496 and #497 treated as hard merge dependencies; no external access"
+  ],
+  "definition_of_done": [
+    "Independent security, visual review and Owner Human Gate",
+    "PR #496 and #497 merged with postmerge evidence first",
+    "Actual pinned build, TypeScript, visual regression and WCAG checks pass after dependencies/baselines",
+    "No Live/Auto authority, plus postmerge Linear and GitHub reconciliation"
+  ]
+}
