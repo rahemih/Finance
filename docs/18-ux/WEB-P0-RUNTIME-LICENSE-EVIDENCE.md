@@ -53,3 +53,9 @@ Canonical rules: `config/supply-chain/license-policy.json`, `scripts/ci/supply_c
 5. Separate #497 and #504 owner Human Gates, source/security review, #498 authentication baseline approvals and all P24/G13 restrictions stay in force.
 
 This is dependency evidence, not a legal conclusion, signed reviewer approval, or a claim that distribution is authorized.
+
+## Pruned runtime follow-up / measured residual — 2026-10-31
+
+This file's original 88/79/9 inventory documents the historical TypeScript 7 / Sharp runtime, **not the current pruned proposal**. The new pnpm lock excludes all Sharp/libvips optional and TS7 native Go packages while preserving `@next/swc-*`. Verified experimental Syft P04 failure 41201096274 listed **31 missing** (29 npm + two experiment-workflow GitHub action SHAs). License controls remain FAIL CLOSED.
+
+Current proposal [P04 #505](https://github.com/rahemih/Finance/pull/505) was narrowed to **28 needed exact package license assertions**, of which 27 were already sourced in PR #504's original 79 npm registry results and one is new TypeScript@5.9.3 Apache-2.0. `caniuse-lite@1.0.30001820` CC-BY-4.0 remains unresolved, plus any new Syft metadata warnings. Neither #505 nor runtime #504 is merged or independently security-reviewed. Do not grant additional license assertions for removed packages.

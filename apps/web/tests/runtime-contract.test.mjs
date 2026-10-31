@@ -5,6 +5,7 @@ const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8');
 test('exact patched runtime versions and no dependency ranges', () => {
   const p=JSON.parse(read('../package.json'));
   assert.equal(p.dependencies.next,'16.4.3');
+  assert.equal(p.devDependencies.typescript,'5.9.3');
   assert.equal(p.dependencies.react,p.dependencies['react-dom']);
   assert.equal(p.engines.node,'24.21.0');
   for (const version of Object.values({...p.dependencies,...p.devDependencies})) assert.match(version,/^\d+\.\d+\.\d+$/);

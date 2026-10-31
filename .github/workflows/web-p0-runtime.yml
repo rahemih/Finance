@@ -37,7 +37,7 @@ jobs:
         run: node --test apps/web/tests/runtime-contract.test.mjs
       - name: Existing WEB-P0 source contract tests
         run: python3 -m unittest discover -s tests/web_p0 -p 'test_*.py' -v
-      - name: TypeScript 7 exact typecheck
+      - name: Pinned TypeScript exact typecheck
         run: pnpm --filter @nexus-quant/web run typecheck
       - name: Real Next.js build (non-operational root sentinel)
         run: pnpm --filter @nexus-quant/web run build
