@@ -4,7 +4,6 @@
   "workstream": "WQ",
   "risk_level": "HIGH",
   "objective": "Build a deterministic OFFLINE multi-source Forex/Crypto cross-validation lab, no network/credentials/order authority, with independent source-lineage checks, FX and crypto currency conversion, P07 reuse, and static analyst dashboard; scoped to P24 demo-first prep.",
-  "claim_scope": "SYNTHETIC_RESEARCH_ONLY",
   "scope": [
     "Offline synthetic-source Dukascopy FX vs independent FX reference; Binance historical-research-labelled crypto vs independent licensed-source placeholder; venue-local FIBO and Tabdeal quotes only as synthetically tagged targets",
     "Strict entitlement/lineage/timestamp/market-semantic controls with no false independence",
