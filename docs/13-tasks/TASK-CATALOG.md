@@ -324,6 +324,8 @@ This catalog is the canonical index of governed work.
 
 | FIN-P23-WJ-001 | P23 extension / WEB-P0 distinct | Code-first non-live Web foundation — DRAFT_ONLY, PR #496 prerequisite | HIGH | DRAFT_PROPOSED / NOT_CANONICAL | `contracts/tasks/FIN-P23-WJ-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
 
+| FIN-P23-WL-001 | P23 extension / WEB-P0 distinct | WEB-P0 pinned Next runtime and reproducible build probe (stacked #497) | HIGH | DRAFT / PENDING_LOCK_AND_BUILD | `contracts/tasks/FIN-P23-WL-001.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
+
 ## Rules
 
 - New governed work requires a Task ID and machine-readable Task Contract.

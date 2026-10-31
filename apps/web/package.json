@@ -1,0 +1,28 @@
+{
+  "name": "@nexus-quant/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "WEB-P0 non-operational build probe; not a released or authenticated application",
+  "engines": {
+    "node": "24.21.0",
+    "pnpm": "11.28.4"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/runtime-contract.test.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2"
+  }
+}
