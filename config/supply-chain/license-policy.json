@@ -158,104 +158,6 @@
       "scope": "Exact static typecheck GitHub Action used by canonical governance workflow"
     },
     {
-      "identity_prefix": "pkg:npm/%40emnapi/runtime@1.11.3",
-      "exact_version": "1.11.3",
-      "license": "MIT",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40emnapi%2Fruntime/1.11.3 ; dist.integrity sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/colour@1.1.0",
-      "exact_version": "1.1.0",
-      "license": "MIT",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fcolour/1.1.0 ; dist.integrity sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-darwin-arm64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-darwin-arm64/0.35.5 ; dist.integrity sha512-QRUlFQ0WxvdWyqqG/WtI3iupfD5rBzmCHXSdPsY91sAtVtTo7Q4cb6zOccZ3gqEqkr0f1As1ehLqmEpDsRf+lg==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-darwin-x64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-darwin-x64/0.35.5 ; dist.integrity sha512-+BR255RhDlpygUpOc/Jdt1nT6DQ3XG/ERo5wbcdOf5Q320dKtPCKPLR1LJs9VGXRaMa8l1uUa0tkCNOXiAxZUw==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-freebsd-wasm32@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-freebsd-wasm32/0.35.5 ; dist.integrity sha512-Y/z91nEZ4uIBX5X3nfTovjU9lHNKFYbL2lpHCLVNmXQK03VIZvXBBt0KxbPGp2SdGSF+2mQU4e+hQaWOt86iAw==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-arm64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-arm64/0.35.5 ; dist.integrity sha512-LYVx5JTsOM2CBzmxreh+nl64/3H6Xb09iSLknqH47z2T2DFFxDeFLP5y4dJwe6H7uGQlHPyEEtIqyo3DYsRwdQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-arm@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-arm/0.35.5 ; dist.integrity sha512-LEaXK2WdXVK5ykcw0buWyPMsmLLL2vpHLD6yrNSW+JGEL3BZPA4tpKN6iaMc4AxTTAoaX/sU1rOL51lcIz48ZQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-ppc64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-ppc64/0.35.5 ; dist.integrity sha512-QVxAAq8evVRI9ia2vqgwrmWucn5Dfv+JdWzj75pD8omHLPSP7f8p20O8jxzjCcuCEQEOtYOZUmX1hkiZ0kdevA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-riscv64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-riscv64/0.35.5 ; dist.integrity sha512-LtdreXguaavKODPIfzJ4kffx7UNt1omwtK0rch4EBbbSTXPnxWmYSayXdLJw0fJzQ97kHt1gL/yh4tvU+nCyRQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-s390x@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-s390x/0.35.5 ; dist.integrity sha512-UZasTOFiYzotTsGOCu42BfUzP6Tu6Do/947iRm1RsLKvlllxwGcn4RN27LibGWceix4Y+Pmw3jsnTcCQIgWjqA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linux-x64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linux-x64/0.35.5 ; dist.integrity sha512-SxFtLTeJInhAA9Q836kux2vZNeOBQEx658qvbboZScr0wIARym3IcGmW7KpVD5sbVg0Ojy+udFQdayYIZyoNog==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linuxmusl-arm64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linuxmusl-arm64/0.35.5 ; dist.integrity sha512-9HbMclmI1zlNkFRs3z9/eBtDjfD0sGlrX1z6b1qwmiFY5ElDLh4BC0LPBdVp7z1DXFiKlIcznf+ZlsuZzLxQqg==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-linuxmusl-x64@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-linuxmusl-x64/0.35.5 ; dist.integrity sha512-4KOphqB035HrVdqLZfCgMzzERrQkkzOwRhl4OAkRO1YCldbaFjySXMaK534Mo0V+LndnlJk+sbUyLeU0ULyD1A==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40img/sharp-webcontainers-wasm32@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40img%2Fsharp-webcontainers-wasm32/0.35.5 ; dist.integrity sha512-hfhF/FmoQyTUkA0bIKFOtw536BQSeBMe6BF6QyWlrPxT754+TFLaZ7sKKTfvvM0yJgKgaYTwnFCIZ/GuDw5SUA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
       "identity_prefix": "pkg:npm/%40next/env@16.4.3",
       "exact_version": "16.4.3",
       "license": "MIT",
@@ -347,146 +249,6 @@
       "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
     },
     {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-aix-ppc64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-aix-ppc64/7.0.2 ; dist.integrity sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-darwin-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-darwin-arm64/7.0.2 ; dist.integrity sha512-gowzar9MwS/aRWp6f3a4KUqzRjAZjOsmGNCM6LcTgXum+dBfgsBVMN+AgvOCCbguXyick6LJhpBszxMebJ8syA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-darwin-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-darwin-x64/7.0.2 ; dist.integrity sha512-SZ9xZInqApNlNGc9s0W1VSsktYSOe9cFqNOIqmN1Gs8SmkjKZYFt017G4VwPxASInODuAdbTW7sXiFUf893RgA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-freebsd-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-freebsd-arm64/7.0.2 ; dist.integrity sha512-W5NH4y/J0plIIS5b2xvTEkU7JFxyqdMAOgf+Ilhl0vHQXKO5dZoxd+C/jEtq56c4F3wk71RB4BMRQ2XdI+bwYQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-freebsd-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-freebsd-x64/7.0.2 ; dist.integrity sha512-UMGDx5sTpzNw3WiPebH7l90IWfJggEd+egHt/q6p7/Cm3zqoV7VxkGXt+3DxPIw8CcmvAB0j3sVVfbhX+M4Tpw==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-arm64/7.0.2 ; dist.integrity sha512-Qh4eU4/y3yDjnfjjyPYihMj5/ODIlmt+Bzu17OI+fiSRDW57QmU5SiN63exPRNJPKUzcc1INa1NXdrJ+MqHjUQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-arm@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-arm/7.0.2 ; dist.integrity sha512-gffT3xPz9sR7j/YJExkyPntrI0P2EP9XbOyWzth2/Gs0RstK+90RBcO0ncXoXy/beYll1SXw846Nf2zdnEz0QQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-loong64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-loong64/7.0.2 ; dist.integrity sha512-uEHck9i8hoAzXPiYRib1O7miOnz23SxIeVl6F4LXox+qov1K35jHcEW6VHKvZI+pyvl7fZEP4MCU5LYvIq1GuQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-mips64el@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-mips64el/7.0.2 ; dist.integrity sha512-R4KvAMnE43W5Qeqb0Ly56O3mWMWIAgsMyz36DCaycd5nbg/9kzm0liw3JocfRqyJY0KPmzFjbswozXyW0DnIYA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-ppc64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-ppc64/7.0.2 ; dist.integrity sha512-DORx5b3sd/4S7eayxm4FQv+A7CrkUIGRaHiwI8oiHTAI1fAPWhF4J0vAlkC8biAlHSVVwxMQ3tjZ2/DVbnQiiA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-riscv64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-riscv64/7.0.2 ; dist.integrity sha512-wf0jqEDOjrPRnKwYRyyJDRo11KMbvMFrU+q4zqKyChODBzvlkbhNQfKvLxQCcwTpdDaXSHZTVuh0JoCrKCUMHQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-s390x@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-s390x/7.0.2 ; dist.integrity sha512-IkwJc3L7yhytWd/ewjyxNDfOmswCm9GWMJT/ue/dU4aZNbwZeYAetq42VyLmsmSjvoX7z74X6ZaYCtzAr0EuGw==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-linux-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-linux-x64/7.0.2 ; dist.integrity sha512-EYdf2cNg7rgCWJnxCdJ+F3V39O8ihb37eHAu1LK8oAFizgTQbPOK7zHHXbPt8rX24COqODXeI3sIf0fCXG7H/A==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-netbsd-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-netbsd-arm64/7.0.2 ; dist.integrity sha512-+polYF4MF04aPpO5FTkHran9yUQDSXqy5GiSDKpsll5jy3l3+g9QLhpf39T+ePtefhXLOGrLl0QIjkQP6VnelA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-netbsd-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-netbsd-x64/7.0.2 ; dist.integrity sha512-8YIT0EHM/3dq10ZOVF/A7pc/YSMtbcecct4rWtexrnSCHOPcpC2KTLXfTCR6vDpnSiY12heNb1GiN/wu+T/FyA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-openbsd-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-openbsd-arm64/7.0.2 ; dist.integrity sha512-APT8+ClYnuYm1u9+kgGXoMj2VzWzcymwh2gNSQVySHfkRDGOTVkoWLjCmOQSaO+PoqQ57B0flRp9SA+7GnnkzQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-openbsd-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-openbsd-x64/7.0.2 ; dist.integrity sha512-yX7s+Q0Dln0Dt9tEzZsAjXXR/+ytBM7AlglaqyeMPxQszJ1JhlJdZ6jLA+IzldHtflX81em7lDao1xXu+aRRkg==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-sunos-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-sunos-x64/7.0.2 ; dist.integrity sha512-dLJDGaLZ1D4HPQn62u1n8mBDkJREwMsAkCdkwd4Ieqw+x3TUyTsqY0YiBCtE6H6OzzgGk3iuZ3vFWRS+E8/d1g==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-win32-arm64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-win32-arm64/7.0.2 ; dist.integrity sha512-Gyl1Vy6OsWesLzmq+EP0Fb7b4Nid5232AvcA2SFcdYreldpNtYFFofPjnt62y9hQy7VTaZp65ICJjuAQRaVcIQ==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/%40typescript/typescript-win32-x64@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40typescript%2Ftypescript-win32-x64/7.0.2 ; dist.integrity sha512-0BQ3HkAHHlKLSp1qRvf3SUhGpGsDuhB/jgFw75guyqbxJqEaS0Cw/VFO8i2nHglJUzQCRtMMR/IBAKE3ETMC4g==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
       "identity_prefix": "pkg:npm/baseline-browser-mapping@2.11.34",
       "exact_version": "2.11.34",
       "license": "Apache-2.0",
@@ -557,20 +319,6 @@
       "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
     },
     {
-      "identity_prefix": "pkg:npm/semver@7.8.5",
-      "exact_version": "7.8.5",
-      "license": "ISC",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/semver/7.8.5 ; dist.integrity sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
-      "identity_prefix": "pkg:npm/sharp@0.35.5",
-      "exact_version": "0.35.5",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/sharp/0.35.5 ; dist.integrity sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
       "identity_prefix": "pkg:npm/source-map-js@1.2.2",
       "exact_version": "1.2.2",
       "license": "BSD-3-Clause",
@@ -592,13 +340,6 @@
       "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
     },
     {
-      "identity_prefix": "pkg:npm/typescript@7.0.2",
-      "exact_version": "7.0.2",
-      "license": "Apache-2.0",
-      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/typescript/7.0.2 ; dist.integrity sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
-      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
-    },
-    {
       "identity_prefix": "pkg:npm/undici-types@7.24.6",
       "exact_version": "7.24.6",
       "license": "MIT",
@@ -606,60 +347,11 @@
       "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
     },
     {
-      "identity_prefix": "pkg:golang/github.com/go-json-experiment/json@v0.0.0-20260623181947-01eb4420fa68",
-      "exact_version": "v0.0.0-20260623181947-01eb4420fa68",
-      "license": "BSD-3-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/go-json-experiment/json/01eb4420fa68/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/github.com/klauspost/cpuid/v2@v2.2.10",
-      "exact_version": "v2.2.10",
-      "license": "MIT",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/klauspost/cpuid/v2.2.10/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/github.com/mackerelio/go-osstat@v0.2.7",
-      "exact_version": "v0.2.7",
+      "identity_prefix": "pkg:npm/typescript@5.9.3",
+      "exact_version": "5.9.3",
       "license": "Apache-2.0",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/mackerelio/go-osstat/v0.2.7/LICENSE.txt",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/github.com/zeebo/xxh3@v1.1.0",
-      "exact_version": "v1.1.0",
-      "license": "BSD-2-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/zeebo/xxh3/v1.1.0/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/golang.org/x/sync@v0.21.0",
-      "exact_version": "v0.21.0",
-      "license": "BSD-3-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/golang/sync/v0.21.0/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/golang.org/x/sys@v0.46.0",
-      "exact_version": "v0.46.0",
-      "license": "BSD-3-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/golang/sys/v0.46.0/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/golang.org/x/term@v0.44.0",
-      "exact_version": "v0.44.0",
-      "license": "BSD-3-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/golang/term/v0.44.0/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
-    },
-    {
-      "identity_prefix": "pkg:golang/golang.org/x/text@v0.38.0",
-      "exact_version": "v0.38.0",
-      "license": "BSD-3-Clause",
-      "evidence": "Upstream pinned-ref LICENSE text https://raw.githubusercontent.com/golang/text/v0.38.0/LICENSE",
-      "scope": "WEB-P0 TypeScript transitive Go module; pinned upstream license text, binary provenance independent review pending"
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/typescript/5.9.3 ; dist.integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw== ; GitHub Actions job 124537580901 run 41201334936",
+      "scope": "WEB-P0 pruned runtime TS5.9.3 compiler; source license evidence only; independent license security review pending"
     }
   ]
 }

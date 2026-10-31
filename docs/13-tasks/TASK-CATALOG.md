@@ -323,7 +323,7 @@ This catalog is the canonical index of governed work.
 
 | FIN-P00-WX-001-R01 | P00 governance follow-up / WEB-P0 | Reconcile solo-owner RFC postmerge closure evidence | MEDIUM | DRAFT / PENDING_OWNER_MERGE_GATE | `contracts/tasks/FIN-P00-WX-001-R01.json` | NOT_ACQUIRED / MERGE_AUTHORITY_PENDING |
 
-| FIN-P04-WF-001-R01 | P04 | WEB-P0 exact license provenance — 72 proposed curated assertions | HIGH | DRAFT_PROPOSED / INDEPENDENT_LICENSE_REVIEW_REQUIRED | `contracts/tasks/FIN-P04-WF-001-R01.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
+| FIN-P04-WF-001-R01 | P04 | WEB-P0 exact license provenance — 28 pruned-runtime curated assertions | HIGH | DRAFT_PROPOSED / INDEPENDENT_LICENSE_REVIEW_REQUIRED | `contracts/tasks/FIN-P04-WF-001-R01.json` | NOT_ACQUIRED / NO_MERGE_AUTHORITY |
 
 ## Rules
 

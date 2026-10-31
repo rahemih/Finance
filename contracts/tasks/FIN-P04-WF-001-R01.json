@@ -2,9 +2,9 @@
   "task_id": "FIN-P04-WF-001-R01",
   "phase": "P04",
   "workstream": "WF",
-  "objective": "Prepare a reviewed-only proposal adding source-backed, exact-version curated license assertions for WEB-P0's pinned Next runtime without auto-waiving, reclassifying, or allowing LGPL, CC-BY-4.0, or unverifiable TypeScript-go dirty binary.",
+  "objective": "Propose only 28 source-backed exact-version license assertions still needed after successful removal of TypeScript7/Go and Sharp/libvips from WEB-P0. Keep caniuse-lite CC-BY case BLOCKED.",
   "scope": [
-    "Register 64 npm and eight Go pinned allow-class source-license observations in existing curated_assertions schema only",
+    "Register 27 npm and one TypeScript 5.9.3 npm pinned allow-class source-license observations in existing curated_assertions schema only",
     "Record authoritative npm exact-version registry URL and tarball digest, plus upstream pinned LICENSE URLs for Go modules",
     "Keep all license allow, review and block class settings unchanged; forbid any waiver creation",
     "Confirm unresolved 14 LGPL/composite, 1 CC-BY-4.0 and 1 TypeScript-go dirty-source package remain BLOCKED under existing P04 policy",
@@ -67,7 +67,7 @@
   "risk_level": "HIGH",
   "tests": [
     "Latest head Governance Verify SUCCESS on documentation-only proposal",
-    "All 72 assertions exact-version, source-backed and match allow-class licenses only",
+    "All 28 assertions exact-version, source-backed and match allow-class licenses only",
     "No changes to review/block/allow lists, waivers or vulnerability scanner",
     "Unresolved LGPL/CC-BY-4.0 and dirty TypeScript-go remain deliberately BLOCKED",
     "License JSON schema and recorded registry identity cross-check"
@@ -76,13 +76,15 @@
     "No bypass or weakening of supply chain policy; compliance remains FAIL-CLOSED",
     "No unauthorized LICENSE_REVIEW waivers",
     "No runtime or trading authority",
-    "Independent security/license review mandatory before merging"
+    "Independent security/license review mandatory before merging",
+    "No source-license assertions for removed TS7/Go/Sharp/libvips packages; prevent policy overbroad approvals"
   ],
   "evidence": [
     "GitHub #504 npm registry fetch CI run 41189938730",
     "Registry exact version metadata and integrity results stored at #504",
     "Nine pinned Go upstream license URLs, one dirty binary intentionally excluded",
-    "Governance check outputs on this proposal and separate source PR"
+    "Governance check outputs on this proposal and separate source PR",
+    "Pruning experiment PR #506: run 41201096274 reduced SBOM_LICENSE_MISSING from 88 to 31; 27 older allow-class source purls still needed, TS5.9.3 official registry run 41201334936 proved Apache-2.0"
   ],
   "rollback": "Close unmerged proposal; no effects on canonical policy. If later merged and found inaccurate, propose governed P04-F repair reverting specific assertions; no silent changes.",
   "human_gate": true,
