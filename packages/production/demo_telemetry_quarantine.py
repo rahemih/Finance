@@ -101,6 +101,8 @@ class OfflineDemoTelemetry:
         self.policy_id = sha(obj)
 
     def evaluate(self, source: object) -> dict[str, object]:
+        if self.policy_id != sha(EXPECTED_POLICY):
+            raise DemoQuarantineError("offline demo policy identity forged in memory")
         data = _mapping(source, ROOT_KEYS)
         if data["schema_version"] != "1.0" or data["environment"] != "DEMO":
             raise DemoQuarantineError("only DEMO report schema permitted")
