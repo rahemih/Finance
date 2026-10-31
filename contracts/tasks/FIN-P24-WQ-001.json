@@ -1,0 +1,110 @@
+{
+  "task_id": "FIN-P24-WQ-001",
+  "phase": "P24",
+  "workstream": "WQ",
+  "risk_level": "HIGH",
+  "objective": "Build a deterministic OFFLINE multi-source Forex/Crypto cross-validation lab, no network/credentials/order authority, with independent source-lineage checks, FX and crypto currency conversion, P07 reuse, and static analyst dashboard; scoped to P24 demo-first prep.",
+  "claim_scope": "SYNTHETIC_RESEARCH_ONLY",
+  "scope": [
+    "Offline synthetic-source Dukascopy FX vs independent FX reference; Binance historical-research-labelled crypto vs independent licensed-source placeholder; venue-local FIBO and Tabdeal quotes only as synthetically tagged targets",
+    "Strict entitlement/lineage/timestamp/market-semantic controls with no false independence",
+    "Reuse canonical P07 cross_provider.py for aligned same-symbol reference comparison and ADR-0002 contracts; no rewrite of P07",
+    "Explicit BTCUSDT × USDTIRT synthetic conversion before comparison to BTCIRT, with no executable arbitrage claim",
+    "Deterministic audit JSON, comparison CSV and HTML visual dashboard from synthetic data",
+    "Unit/adversarial tests, independent scoped CI and standard Governance, A5/A8/A10 independent review before merge"
+  ],
+  "out_of_scope": [
+    "Any real Dukascopy/Binance/TradingView API call, webpage scraping, TradingView alerts to algo, prohibited access circumvention",
+    "TradingView data or chart content as input; purely human visual tool and optional future open-source Lightweight Charts UI",
+    "Any authenticated exchange/broker, production provider/venue selection, placing even demo orders, backtest performance certification",
+    "Live, Auto, P24-B..I activation or G13; changing existing P20 or WEB-P0 branches"
+  ],
+  "dependencies": [
+    "P24-A CANONICAL_COMPLETE, P24-B BLOCKED; P07-D reference cross-provider engine on main",
+    "P01 licensing and eligibility due diligence independent from technical API capability",
+    "Open PRs #492 #493 #494 and WEB-P0 #496–#498 have no shared write paths with WQ"
+  ],
+  "read_paths": [
+    "packages/contracts/**",
+    "packages/data_quality/**",
+    "config/data-quality/**",
+    "docs/01-roadmap/**",
+    "docs/03-research/**",
+    "docs/04-architecture/**",
+    "config/production/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WQ-001.json",
+    "config/production/p24-multisource-reference-policy.json",
+    "packages/production/multisource_reference_lab.py",
+    "tests/p24/test_multisource_reference_lab.py",
+    "scripts/ci/p24wq_evidence.py",
+    ".github/workflows/p24-multisource-lab.yml",
+    "docs/19-production/P24-WQ-MULTISOURCE-LAB.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "packages/execution/**",
+    "packages/data_quality/**",
+    "packages/contracts/**",
+    ".github/workflows/governance.yml",
+    "apps/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "tests": [
+    "35+ independent unittest negative/positive tests",
+    "Strict Pyright, full Governance and scoped CI green at exact HEAD",
+    "Cross-source lineage duplication, stale quotes, time misalignment, semantic mismatch, BTCUSDT/IRT conversion and risk veto fail-closed",
+    "No rights or real market data claimed; synthetic-only entitlement hard gate",
+    "Two bitwise-identical JSON/CSV/HTML artifacts with SHA256"
+  ],
+  "security_tests": [
+    "No network/auth/token/account/order imports, no real account onboarding",
+    "Explicit simulated_only and source entitlements guard",
+    "All numeric values finite, bid≤ask, root ID canonical, no bool/int spoofing",
+    "Uncertain or insufficient independent evidence must quarantine; no A5 bypass"
+  ],
+  "evidence": [
+    "Task Contract with review matrix",
+    "Actual latest HEAD CI and deterministic output hash",
+    "GitHub #491 and Linear P24 Register crosslink",
+    "Independent A5 A8 A10 reviews and squash/postmerge CI prerequisite for canonical completion"
+  ],
+  "rollback": "Revert only WQ-owned new files and no canonical state mutation",
+  "human_gate": false,
+  "definition_of_ready": [
+    "Independent paths from concurrent PRs, no actual API credentials or paid feed",
+    "All 9 pre-first-live prerequisites untouched"
+  ],
+  "definition_of_done": [
+    "Source and test+CI PASS on branch",
+    "Independent A5/A8/A10 review, no blocker",
+    "Approved merge plus postmerge Governance/Branch Hygiene and Linear reconciliation",
+    "Explicit PRE_FIRST_LIVE 0/9 and G13 unchanged"
+  ]
+}
