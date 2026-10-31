@@ -227,5 +227,23 @@ class OfflinePreproductionTests(unittest.TestCase):
         self.assertEqual(safety["g13"], "NOT_STARTED")
 
 
+    def test_41_forged_runtime_policy_id_is_rejected(self) -> None:
+        self.lab.policy_id = "f" * 64
+        with self.assertRaises(OfflineLabError):
+            self.lab.accept(event())
+
+    def test_42_manual_rearm_of_latched_halt_is_rejected(self) -> None:
+        self.lab.accept(event(kind="KILL_SWITCH", kill_scope="GLOBAL"))
+        self.lab.state = "ACTIVE_SIMULATION_ONLY"
+        with self.assertRaises(OfflineLabError):
+            self.lab.accept(event(event_id="check-2", sequence=2))
+
+    def test_43_forged_audit_chain_is_rejected(self) -> None:
+        self.lab.accept(event(kind="RISK_VETO"))
+        self.lab.chain = "0" * 64
+        with self.assertRaises(OfflineLabError):
+            self.lab.accept(event(event_id="check-2", sequence=2))
+
+
 if __name__ == "__main__":
     unittest.main()
