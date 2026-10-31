@@ -314,6 +314,7 @@ This catalog is the canonical index of governed work.
 | FIN-P23-WI-001 | P23 | E2E Validation | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P23-WI-001.json` | RELEASED / REFERENCE_UX_E2E_VALIDATION PASS / LINEAR_CONTINUATION_REGISTER |
 
 | FIN-P24-WA-001 | P24 | Production Readiness Dossier | CRITICAL | CANONICAL_COMPLETE | `contracts/tasks/FIN-P24-WA-001.json` | RELEASED / READINESS_ASSESSMENT_ONLY / NOT_READY_FOR_LIVE / 13 BLOCKERS / LINEAR_CONTINUATION_REGISTER |
+| FIN-P24-WR-001 | P24 | Supplementary Non-Live Venue Reference Validation | HIGH | VALIDATION / OWNER_HUMAN_GATE_PENDING | `contracts/tasks/FIN-P24-WR-001.json` | LOCK-FIN-P24-WR-001-01 ACQUIRED / SYNTHETIC_RESEARCH_ONLY / NOT_LIVE |
 
 | FIN-P00-WY-001 | P00 | Staged Entry / Exit & Adaptive Scaling Extension | HIGH | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001.json` | RELEASED |
 | FIN-P00-WY-001-R01 | P00 | Staged Scaling Shared-State Reconciliation | MEDIUM | CANONICAL_COMPLETE | `contracts/tasks/FIN-P00-WY-001-R01.json` | RELEASED |

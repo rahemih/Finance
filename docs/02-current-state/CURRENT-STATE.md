@@ -41,8 +41,8 @@ P00 — Charter & Governance: CANONICAL_COMPLETE
 G0_GOVERNANCE_READY: PASS  
 Current Phase: P24 — Controlled Production / AUTHORIZED / ACTIVE  
 Current Workstream: P24-B — Manual Live / BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; FIRST_LIVE_OWNER_HUMAN_GATE_REQUIRED only after PRE_FIRST_LIVE blockers clear  
-Active governed task: none  
-Active lock: none  
+Active governed task: FIN-P24-WR-001 / SUPPLEMENTARY_NON_LIVE_ONLY  
+Active lock: LOCK-FIN-P24-WR-001-01 / ACQUIRED_NONLIVE_REVIEW_PENDING  
 Previous Phase: P22 — Operations / Diagnostics / Recovery / CANONICAL_COMPLETE / G12_OPERATIONS_VALIDATED PASS  
 P01 state: CANONICAL_COMPLETE  
 P02 state: CANONICAL_COMPLETE / G2_ARCHITECTURE_FREEZE PASS  

@@ -1,0 +1,121 @@
+{
+  "task_id": "FIN-P24-WR-001",
+  "phase": "P24",
+  "workstream": "WR",
+  "objective": "Add independent deterministic OFFLINE-only reference venue contract validation for Owner-approved FIBO/cTrader Forex and Tabdeal Spot research candidates without activating blocked P24-B or weakening the P20/P24 safety boundary.",
+  "scope": [
+    "Supplementary P24 research validation outside the blocked P24-B workstream",
+    "Introduce immutable synthetic-only venue policy for cTrader reference Forex and Tabdeal Spot",
+    "Validate mock intents, venue/market identity, quantity/tick and idempotency/sequence bounds",
+    "Reject unverified leverage, Live, credentials, order routing, unknown venues and risk veto",
+    "Add offline unit tests and deterministic evidence to required CI",
+    "Keep production readiness blockers and separate Human Gates unchanged",
+    "Owner solo-review exception is only a second-human-review alternative for synthetic/offline PR #492; FIN-P24-WT-001 / merged #503 (postmerge Governance #41188582071 SUCCESS). If network/auth/order/production scope appears exception INVALID, require independent applicable human security review. Owner must explicitly approve current PR HEAD+foundation CI artifact before merging; no retroactive bulk Human Gate."
+  ],
+  "out_of_scope": [
+    "P24-B Manual Live activation",
+    "Production provider or venue selection",
+    "Accounts, funding, KYC, credential creation or API network traffic",
+    "Real orders, broker demo login, automatic strategy execution",
+    "Risk/leverage ceiling changes, first Live Owner approval or G13",
+    "Editing the frozen Master Roadmap"
+  ],
+  "dependencies": [
+    "P24-A CANONICAL_COMPLETE / LOCK RELEASED",
+    "P20-A..P20-I canonical reference execution controls",
+    "Owner approval of NON-LIVE research selection only",
+    "main clean, no active governed lock, no open PR before work",
+    "P24-B remains BLOCKED until human and production prerequisites"
+  ],
+  "read_paths": [
+    "docs/**",
+    "config/**",
+    "contracts/**",
+    "packages/execution/**",
+    "packages/production/**",
+    "tests/p20/**",
+    "tests/p24/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WR-001.json",
+    "config/production/offline-venue-reference-policy.json",
+    "packages/production/offline_venue_contract.py",
+    "tests/p24/test_offline_venue_contract.py",
+    "scripts/ci/p24wr_evidence.py",
+    "docs/19-production/P24-WR-REFERENCE-VALIDATION.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    ".github/workflows/governance.yml"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "secrets/**",
+    "credentials/**",
+    "config/production/production-readiness-dossier.json",
+    "packages/execution/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Strict Pyright 0 errors",
+    "Run 15+ offline synthetic venue contract tests",
+    "Boundary tests reject any Live, credentials, network or order authority",
+    "Reject unverified leverage/position close when reduceOnly unsupported",
+    "Reject duplicate idempotency, stale/invalid feed sequence, incorrect fill, unknown broker identity, risk veto",
+    "Run deterministic evidence script twice byte-identical",
+    "Existing P20 and P24 test suites and Governance CI remain green"
+  ],
+  "security_tests": [
+    "No credential/env secrets or live endpoints in new config/module",
+    "Every evaluation is pure offline with network_mode DISABLED",
+    "A5 risk veto is never bypassed",
+    "Any policy tampering or venue substitution fails closed",
+    "No read/write of external broker state"
+  ],
+  "evidence": [
+    "Canonical main SHA and fresh guard",
+    "Machine-readable task contract",
+    "Policy + offline module + deterministic tests",
+    "Governance PR CI, artifact hashes and post-merge verification if merged",
+    "Linear status and GitHub issue #491",
+    "Owner-approved PR #503 head 51ae714f4b48a129204f630520c42e87ba8a10fb, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6, postmerge Governance #41188582071 SUCCESS, artifact sha256:7fa7a39a1cb8223021253d028de9a1e5e24594caa978daf6aac2e53bd7c15843"
+  ],
+  "rollback": "Revert only FIN-P24-WR-001 Task Contract, offline reference policy, module, tests, evidence, CI wiring and tracking text; P24-A and P20 canonical state and all trading flags remain unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "P24-A is closed and the P24-B Live gate is still blocked",
+    "Owner approved research targets only",
+    "No active task/lock or open PR",
+    "No access to real credentials, broker accounts, funds or external orders"
+  ],
+  "definition_of_done": [
+    "Exactly two immutable synthetic reference venues validated",
+    "All offline unit and security-negative tests pass",
+    "Two identical deterministic offline evidence bytes",
+    "A5/P16 independent runtime Risk veto, A8 security/negative tests, A10 GitHub-CI evidence verification REQUIRED; second independent GitHub HUMAN reviewer is NOT_APPLICABLE only under Owner-approved/merged FIN-P24-WT-001 (PR #503, merge 9a8d36d8b156c76ab92a7d46c097f4c8a8728fc6) for this exact synthetic-only scope; PR-specific Owner Human Gate with fresh HEAD and artifact REQUIRED, no self-review approval",
+    "PR merged and postmerge verified before CANONICAL_COMPLETE, lock released and Linear reconciled",
+    "P24-B remains BLOCKED and all 9 pre-first-Live prerequisites remain unresolved",
+    "Owner explicitly approves PR-specific exact HEAD plus latest required Governance manifest SHA256 and scoped CI; safety/security/domain A5/A8/A10 evidence remains mandatory; no Live/Auto promotion"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "kind": "NEXUS_QUANT_P24_WR_OFFLINE_VENUE_REFERENCE",
+  "task_id": "FIN-P24-WR-001",
+  "claim_scope": "RESEARCH_SIMULATOR_ONLY",
+  "environment": "SIMULATED",
+  "venues": [
+    {
+      "id": "FIBO_CTRADER_DEMO_REFERENCE",
+      "market": "FOREX",
+      "transport": "OFFLINE_MOCK_ONLY",
+      "supports_leverage": false
+    },
+    {
+      "id": "TABDEAL_SPOT_MOCK_REFERENCE",
+      "market": "CRYPTO",
+      "transport": "OFFLINE_MOCK_ONLY",
+      "supports_leverage": false
+    }
+  ],
+  "credential_mode": "NONE",
+  "network_mode": "DISABLED",
+  "external_order_submission": false,
+  "live_execution_authority": false,
+  "first_live_owner_approval": "NOT_GRANTED",
+  "g13": "NOT_STARTED",
+  "live_trading": "DISABLED",
+  "auto_trading": "DISABLED",
+  "production_provider_selected": false,
+  "production_venue_selected": false
+}
