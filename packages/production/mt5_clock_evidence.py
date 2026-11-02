@@ -5,7 +5,7 @@ Every result is an *unverified observation* and cannot enable live trading.
 """
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 import hashlib
 import json
 import re
@@ -40,7 +40,7 @@ class ClockSample:
 
 
 def parse_probe_line(line: str) -> ClockSample:
-    if not isinstance(line, str) or not line.startswith(PREFIX + "|"):
+    if not line.startswith(PREFIX + "|"):
         raise ClockEvidenceError("missing canonical clock prefix")
     if len(line) > 512 or "\n" in line or "\r" in line or "\t" in line:
         raise ClockEvidenceError("line too long or contains control characters")
