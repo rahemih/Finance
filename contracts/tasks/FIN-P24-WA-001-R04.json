@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P24-WA-001-R04",
+  "phase": "P24",
+  "workstream": "WA",
+  "objective": "Prepare an honest, evidence-linked P24 engineering handoff and owner-requested deferral proposal for non-executable production stages P24-B..I, without claiming phase completion or weakening any human or risk gate.",
+  "scope": [
+    "Inventory P24-A and merged offline/synthetic P24 supplements with independently traceable SHA, full Governance CI and no operational certification",
+    "Cross-reference each exact frozen-roadmap P24-B..I production stage to its still-missing real-world evidence, legal eligibility, dependencies and future reentry authority",
+    "Record Owner intent on 2026-11-02 to defer unready production work, explicitly as a proposal until this specific PR Human Gate and independent policy amendment if any",
+    "Separate engineering baseline handoff from production phase closure: production remains ACTIVE/BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED",
+    "Publish redacted future-reentry checklist for jurisdiction, licensed data, eligible venue, KYC/account, risk budget, operational demo, sandbox order lifecycle, source clock, emergency drills and first-Live Owner approval",
+    "Reconcile precise status with GitHub #491 Live and #508 Demo trackers and Linear P-HOS-2 without closing the blockers",
+    "Use docs-only three-file allowlist and required latest-head Governance; do not merge without independently approved exact Head+Artifact Owner Human Gate"
+  ],
+  "out_of_scope": [
+    "Mark P24 complete or P24-B..I CANONICAL_COMPLETE, G13 PASS, or readiness verdict READY_FOR_MANUAL_LIVE",
+    "Claim that all unresolved high/critical production issues have been fixed or waive mandatory P24 stage gates",
+    "Change or authorize trade account, deposit, actual Demo/Sandbox/Live orders, Auto Trading, KYC, broker/provider or real data usage",
+    "Change P24-A production config, execution adapter, risk budget, security, frozen roadmap, Current State or CI workflow",
+    "Treat Owner's generic request to defer as permission to merge this PR, as first-Live approval or as independent A5/A8/A10 signoff",
+    "Close issues #491/#508 or claim production acceptance from synthetic unit tests",
+    "Defer necessary safety controls as if doing so authorizes funding or switching on live"
+  ],
+  "dependencies": [
+    "Canonical frozen P24 detailed roadmap requires B Manual, C Semi-Auto, D Micro-Capital, E Canary, F Controlled Auto, G emergency drills, H continuous live monitoring, I Owner/G13 closure",
+    "Canonical config/production/production-readiness-dossier.json has exactly 9 PRE_FIRST_LIVE false, 1 first Live Owner false and 3 P24_EXIT false",
+    "Original P24-A readiness dossier is assessment-only, verdict NOT_READY_FOR_LIVE",
+    "GitHub PR #515 merged at d224c1fcf6ff8549fc72a1413fa56d234469b5f6; postmerge Governance 41418619477 and Branch Hygiene 41418619472 SUCCESS",
+    "Owner asked 2026-11-02 to complete what can be completed and postpone remaining blockers and repairs; never interpret this as real-money execution or canonical closure",
+    "Per-PR exact Owner Human Gate before merging this new docs-only package"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/19-production/**",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/**",
+    "config/production/production-readiness-dossier.json",
+    "tests/p24/**",
+    "packages/production/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WA-001-R04.json",
+    "docs/19-production/P24-DEFERRED-PRODUCTION-HANDOFF.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "config/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    ".github/workflows/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exactly three docs-only changed files, no policy, workflow, runtime, code or Current State edits",
+    "Document has all P24-A..I stages with B..I as BLOCKED/NOT_STARTED and reentry dependency and no false transition to PASS",
+    "Document preserves G13 as NOT_STARTED, 9/9 PRE_FIRST_LIVE false, one first-live Owner gate false, three P24_EXIT false",
+    "Existing S0 PR #515 is reported as CI-verified synthetic software only, not real operational broker certification",
+    "Distinctly separate Owner intent to defer future work from formal signed production readiness or phase completion",
+    "Future actual activation requires individually refreshed target-environment evidence and independently authorized gates; no bulk approval or blanket waiver",
+    "Full latest-head required Governance Verify PASS, exact unexpired manifest Artifact SHA256 and separate Owner Human Gate before squash merge",
+    "Postmerge required Governance/Branch Hygiene check on exact merge SHA and GitHub/Linear reconciliation before claiming document canonical"
+  ],
+  "security_tests": [
+    "A5 independent risk veto and pretrade safety unchanged; no blanket deferral can override safety",
+    "A8 security, data rights, legal jurisdiction, credentials, KYC and access controls cannot be bypassed",
+    "A10 evidence includes exact SHA, environment, source, scope, expiry, independent approval and human gate boundaries",
+    "Do not close LIVE #491 or DEMO #508 as operationally validated",
+    "Live and Auto Trading remain DISABLED; no credentials, account identifiers, OS paths, personal identity documents or money values published"
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/pull/515",
+    "https://github.com/rahemih/Finance/actions/runs/41418619477",
+    "https://github.com/rahemih/Finance/actions/runs/41418619472",
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "docs/01-roadmap/TEST-EVIDENCE-MATRIX.md",
+    "config/production/production-readiness-dossier.json",
+    "GitHub Live blocker tracker #491",
+    "GitHub Demo read-only tracker #508"
+  ],
+  "rollback": "Revert only the three governed documentation/catalog/contract changes, keep P24 blocked and no Live/Auto authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner requested deferral/future fixes but did not grant exact PR merge authority",
+    "Canonically blocked production stages cannot falsely be marked finished",
+    "Offline supplements verified as merged; no broker/data rights approvals"
+  ],
+  "definition_of_done": [
+    "Complete 9-stage P24 evidence/status and deferred-follow-up map written",
+    "Clear objective future reentry and hazard preconditions without unsafe waiver",
+    "Latest-head Governance PASS and separate Owner exact-HEAD/Artifact Human Gate",
+    "Protected-main merge, postmerge Governance and Branch Hygiene PASS and GitHub/Linear consistency",
+    "Task status exactly HANDOFF_PLAN_ONLY, and P24 remains ACTIVE/BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED"
+  ]
+}
