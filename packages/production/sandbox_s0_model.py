@@ -61,6 +61,7 @@ class S0Decision:
     fixture_order_state: str
     reason: str
     audit_hash: str
+    state_hash: str
     external_order_authority: bool = False
     real_money_authority: bool = False
 
@@ -77,6 +78,17 @@ class S0Engine:
         self.verified_fills: dict[str, int] = {}
         self.chain = "0" * 64
         self.decisions: list[S0Decision] = []
+
+    def _state_digest(self) -> str:
+        """Authenticate synthetic internal state after each accepted fixture event."""
+        return digest({
+            "mode": self.mode,
+            "order_states": self.order_states,
+            "quantities": self.quantities,
+            "verified_fills": self.verified_fills,
+            "last_sequence": self.last_sequence,
+            "seen": sorted(self.seen),
+        })
 
     @staticmethod
     def _validate(e: S0Event) -> None:
@@ -105,8 +117,11 @@ class S0Engine:
 
     def apply(self, e: S0Event) -> S0Decision:
         self._validate(e)
-        if self.decisions and (self.chain != self.decisions[-1].audit_hash):
-            raise S0Violation("hash chain tampered")
+        if self.decisions and (
+            self.chain != self.decisions[-1].audit_hash
+            or self._state_digest() != self.decisions[-1].state_hash
+        ):
+            raise S0Violation("hash chain or fixture state tampered")
         if e.event_id in self.seen or e.sequence <= self.last_sequence:
             raise S0Violation("replay or out-of-order refused")
         gap = e.sequence != self.last_sequence + 1
@@ -217,11 +232,12 @@ class S0Engine:
             "status": status,
             "external_order_authority": False,
             "real_money_authority": False,
+            "state_hash": self._state_digest(),
         }
         self.chain = digest(payload)
         decision = S0Decision(
             e.event_id, e.kind, self.mode, self.order_states.get(key, "NONE"),
-            reason, self.chain,
+            reason, self.chain, self._state_digest(),
         )
         self.decisions.append(decision)
         return decision
