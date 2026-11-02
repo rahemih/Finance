@@ -61,8 +61,13 @@ jobs:
             file="$RUNNER_TEMP/preview-$(echo "$path" | tr / -).html"
             code=$(curl --silent --output "$file" --write-out '%{http_code}' --max-time 5 "http://127.0.0.1:3100$path")
             test "$code" = "200" || { echo "Expected read-only preview $path: 200 (got $code)"; exit 1; }
-            grep -F 'بدون داده زنده' "$file"
-            grep -F 'PREVIEW ONLY' "$file"
+            if [[ "$path" == /markets* ]]; then
+              grep -F 'MOCK DATA' "$file"
+              grep -F 'v0.8 DESIGN DRAFT' "$file"
+            else
+              grep -F 'بدون داده زنده' "$file"
+              grep -F 'PREVIEW ONLY' "$file"
+            fi
             grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$file"
             denied=$(curl --silent --output /dev/null --write-out '%{http_code}' -X POST --max-time 5 "http://127.0.0.1:3100$path")
             test "$denied" -ge 400 || { echo "POST must be denied $path ($denied)"; exit 1; }
