@@ -44,7 +44,7 @@ return <div className="nqr-frame" data-web-p0-preview="true" data-reference-scre
  </aside>
  <main className="nqr-main">
  <div className="nqr-page-top"><div className="nqr-page-title"><p className="nqr-kicker">{crumb}</p><h1>{title}</h1><p className="nqr-page-subtitle">{subtitle}</p></div>
- <div className="nqr-actions"><button type="button" disabled>{action}</button><Badge>MOCK DATA · NOT LIVE</Badge></div></div>
+ <div className="nqr-actions"><button type="button" disabled>{action}</button><Badge>{id==="019"?"MOCK DATA · NOT LIVE":"MOCK FIXTURE · NOT LIVE"}</Badge></div></div>
  <div className="nqr-green-banner" role="status"><span className="nqr-checked">✓</span><div><strong>{id==="011"?"نمای نمونه بازارها آماده نمایش است":id==="015"?"فهرست پیگیری آزمایشی فعال است":"نمایش اطلاعات آزمایشی دارایی"}</strong><small>تمام قیمت‌ها، نمودارها و وضعیت‌ها صرفاً Fixture نمایشی‌اند؛ سفارش، منبع واقعی یا ریسک ایجاد نمی‌شود.</small></div><Pill tone="gold">MOCK / DESIGN</Pill></div>
  {children}
  <footer className="nqr-content-foot"><span>فقط برای بازبینی UI/UX؛ نمونه‌ها اطلاعات واقعی یا مجوز معامله نیستند.</span><span dir="ltr">NEXUS QUANT　•　v0.8 DESIGN DRAFT</span></footer>
