@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P24-WA-001-R03",
+  "phase": "P24",
+  "workstream": "WA",
+  "objective": "Document candidate-specific broker/client and market-data entitlement acceptance questions plus a broker-sanctioned Sandbox/DEMO certification test plan, without connecting to, trading on or certifying any broker.",
+  "scope": [
+    "Evaluate current first-party LiteFinance and FIBO identity/licensing/account documents for conditional residency scenarios, separate company entities and actual end-user acceptance",
+    "Evaluate non-display and redistribution entitlements for Twelve Data, TradingView and MT5 Demo; define written license attestation required",
+    "Define a deterministic non-executing test matrix covering pricing/UTC provenance, identity, connection loss/recovery, order state machine, rejects, partial fills, unknown ACK, replay/idempotency, cancel replace, reconciliation, independent A5 risk veto, A8 security and emergency halt",
+    "Define three evidence tiers: deterministic isolated simulations; read-only broker DEMO observations; separately approved broker-authorized sandbox order lifecycle",
+    "Require no live/real-money trades, no broker order calls, no network fault injection, no account creation or credentials; positive certification is out of scope",
+    "Document acceptance criteria, negative tests, privacy-safe evidence schemas, signoff and expiration/retest triggers; keep all 9 pre-first-live blockers unsatisfied",
+    "Create separate docs-only PR with full Governance and per-PR Owner exact-head+artifact Human Gate"
+  ],
+  "out_of_scope": [
+    "Opening or trading in a Demo or live account or calling order_send/order_check against any broker",
+    "Real brokerage order placement, deposits, account access, KYC or credentials of any kind",
+    "Granting trading/market data rights, selecting a broker or asserting residence/eligibility from inferred location",
+    "Real disconnection or network fault injection, broker account configuration or automated API access",
+    "Setting or changing money risk budget, production config, A5 veto, A8 policies, G13 or Live/Auto",
+    "Amending frozen roadmap or Current State, or marking operational DEMO/Broker certification PASS from isolated tests"
+  ],
+  "dependencies": [
+    "Prior governed source eligibility research FIN-P24-WA-001-R02 merged PR #513 SHA 575814b4b81edd86dfaa7a43d6f2e95af57be262",
+    "P24-A readiness dossier and nine PRE_FIRST_LIVE conditions all false; P24-B remains BLOCKED",
+    "Official MT5 Python docs and trading check/send distinctions reviewed 2026-11-02",
+    "Independent Owner exact-head/artifact permission before this PR merge; future broker-integrated tests separately authorized"
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    "config/production/production-readiness-dossier.json",
+    "docs/02-current-state/CURRENT-STATE.md"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WA-001-R03.json",
+    "docs/19-production/P24-B-BROKER-SANDBOX-CERTIFICATION-TEST-PLAN.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/02-current-state/**",
+    "docs/01-roadmap/**",
+    ".github/workflows/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Current protected production prerequisites readback remains nine false entries, first-Live Owner approval not granted and Live/Auto disabled",
+    "Exactly three task contract and documentation files changed with no executable changes",
+    "Each candidate vendor legal statement cites live first-party source; unverified legal and licensing conditions remain explicit UNKNOWN",
+    "Sandbox test plan includes simulated and broker-integrated tiers, at least 18 independently named negative/positive scenarios with measurable acceptance and safe failure state",
+    "All broker-integrated order lifecycle tests explicitly require a future independent authorization and actual broker-sanctioned environment; no orders under this docs task",
+    "Both MT5 Demo clocks' raw +7202 seconds remain flagged unverified, automatic UTC normalization denied",
+    "Unknown ACK or disconnect triggers fail-closed, never retry trade entry without external confirmed order-state reconciliation",
+    "Successful MT5 order_check never implies execution or authorization; order_send is never invoked",
+    "No external trading identity, credentials, account numbers or personally identifying legal documents in public evidence"
+  ],
+  "security_tests": [
+    "A5 independent runtime veto is mandatory, not simulated reviewer self-approval",
+    "A8 security and secrets custody never reduced, no account/network/permission mutations",
+    "A10 evidence SHA, source date, redaction, independent signoff and expiry mandatory",
+    "Real-money Live/Auto and G13 remain DISABLED/NOT_STARTED; future staged broker integration requires separate exact owner gate",
+    "TradingView non-display usage and third-party license restrictions cannot be bypassed",
+    "Scenario classification must not infer Owner legal residence"
+  ],
+  "evidence": [
+    "https://www.metatrader5.com/en/terminal/help/startworking/acc_open",
+    "https://www.metatrader5.com/en/terminal/help/startworking/authorization",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5ordercheck_py",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5ordersend_py",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5copyticksfrom_py",
+    "https://www.litefinance.org/company/registered-offices/",
+    "https://www.litefinance.org/company/documents/",
+    "https://www.fibogroup.com/documents/",
+    "https://www.fibogroup.com/about/licences/",
+    "https://www.tradingview.com/policies/",
+    "https://twelvedata.com/terms",
+    "GitHub Live tracker #491 and DEMO tracker #508"
+  ],
+  "rollback": "Revert the three documentation/contract/catalog files only; no changes to production policy, workflow, account, lock or live authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Canonical main last merged #513; no existing R03 task",
+    "No executable broker tests or any real network/account actions in scope",
+    "Official source pointers verified as distinct from current accepted contract"
+  ],
+  "definition_of_done": [
+    "Detailed acceptance/entitlement questions and minimum 18-case test plan recorded",
+    "Strict CI Governance SUCCESS and unexpired manifest SHA256 verified at latest HEAD",
+    "Distinct Owner exact Head/Artifact PR-specific merge gate obtained before merge",
+    "Postmerge Governance and Branch Hygiene PASS and GitHub/Linear evidence mirrored",
+    "All 9 PRE_FIRST_LIVE unsatisfied, P24-B BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED"
+  ]
+}
