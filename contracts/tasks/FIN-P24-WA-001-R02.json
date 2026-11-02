@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P24-WA-001-R02",
+  "phase": "P24",
+  "workstream": "WA",
+  "objective": "Research current first-party public information to construct a non-authoritative shortlist and rejection/verification matrix for jurisdiction, market data rights and provider/broker eligibility without selecting or enabling any production venue or feed.",
+  "scope": [
+    "Record date-stamped official-source excerpts/paraphrases and original URLs for shortlisted market-data and venue candidates",
+    "Separately distinguish broker entity/jurisdiction eligibility, Demo platform evidence, data display rights, automated/non-display analysis rights and redistribution rights",
+    "Use explicitly conditional scenario Iran for eligibility screening without inferring the Owner's actual legal domicile from device IP or earlier conversations",
+    "Flag expressly restricted example platforms as NOT_ELIGIBLE_FOR_IRAN_SCENARIO, and label incomplete evidence NOT_VERIFIED rather than treating silence as approval",
+    "Specify authority, proof of permitted products, account availability, sandbox support, data UTC/timestamp semantics and licensing acceptance required for each candidate",
+    "Reconcile source findings into an existing P24 9-control register without changing the canonical production readiness policy or Live/Auto permissions",
+    "Create independently owner-gated docs-only PR with full CI and separate GitHub/Linear management evidence"
+  ],
+  "out_of_scope": [
+    "Any brokerage/exchange account creation, profile/KYC/document, deposit, credential, login, transaction, order or actual capital",
+    "Claims of legal eligibility on the Owner's behalf, bypass of venue restrictions, fake documents, VPN circumvention or sanctions-avoidance guidance",
+    "Assigning a broker, license or data provider as contractually selected; paying for a service",
+    "Automated retrieval from commercial quote services or Terms-prohibited non-display TradingView feeds",
+    "Modifying runtime, market data connectors, live broker adapter, risk veto, security gates, production/readiness config, frozen roadmap, Current State or GitHub workflow",
+    "Certifying broker Demo timestamp, operational A5 Kill Switch, G13 or pre-first-Live status"
+  ],
+  "dependencies": [
+    "FIN-P24-WA-001-R01 governed nine-control evidence plan MERGED as PR #511 main 25fc550d6069b3d7882085e92315f3b8b2fb2491",
+    "PRE_FIRST_LIVE 0/9, first-Live Owner gate NOT_GRANTED, P24-B BLOCKED, Live/Auto DISABLED",
+    "Source review dated 2026-11-02; official primary-source URLs and ambiguity markers",
+    "Separate Owner exact-HEAD and CI artifact gate for this follow-up docs PR"
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/13-tasks/**",
+    "docs/02-current-state/**",
+    "config/production/production-readiness-dossier.json",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WA-001-R02.json",
+    "docs/19-production/P24-B-PROVIDER-ELIGIBILITY-AND-DATA-RIGHTS-RESEARCH.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "apps/**",
+    "packages/**",
+    "adapters/**",
+    "infra/**",
+    ".github/workflows/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Exactly three allowlisted files changed, including independently versioned task contract and source register",
+    "Each specific third-party claim has an official source URL and scoped verification date; source citations are not license grants",
+    "Market data display and non-display/automated and redistributive use have distinct labels; TradingView marked prohibited non-display without separately contracted rights",
+    "No inference that MetaQuotes-Demo or LiteFinance-MT5-Demo automatically constitutes production provider acceptance",
+    "Restricted scenarios (Kraken/Binance with Iran scenario) excluded from production shortlist, not bypassed",
+    "No absolute residence or selected provider/venue claimed without Owner and independently reviewed client agreement",
+    "All 9 PRE_FIRST_LIVE conditions remain false, P24-B BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED",
+    "Full protected HEAD Governance and independent owner merge gate"
+  ],
+  "security_tests": [
+    "A5 independent veto, P16 Pretrade Firewall unchanged",
+    "A8 privacy and account credential restrictions unchanged; no user secrets or account numbers in docs",
+    "A10 reproducible official-source references with date/time and invalidation triggers",
+    "No signed KYC/contract selected, no provider API access, no production risk ceiling set, no credential/origin misrepresentation",
+    "Future source usage requires independently verified entitlement and allowed automation",
+    "Unauthorized Live/Auto or trade claim must fail closed"
+  ],
+  "evidence": [
+    "GitHub #491 Live blocker tracker, GitHub #508 Demo-only evidence",
+    "https://www.litefinance.org/company/registered-offices/",
+    "https://www.litefinance.org/trading/account-types/islamic-no-swap/",
+    "https://www.fibogroup.com/products/clients/",
+    "https://support.kraken.com/articles/where-is-kraken-licensed-or-regulated",
+    "https://www.binance.com/en/blog/leadership/3197776931892927743",
+    "https://www.tradingview.com/policies/",
+    "https://support.coingecko.com/articles/1043089972-what-are-the-differences-between-commercial-and-custom-licenses",
+    "https://twelvedata.com/terms",
+    "https://www.mql5.com/en/docs/python_metatrader5/mt5copyticksfrom_py"
+  ],
+  "rollback": "Revert only the three non-execution docs/contract/catalog paths; policy and state remain unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Primary sources reviewed; outdated source and legal interpretations explicitly prohibited",
+    "This is public research only; no Owner authorizes broker selection or Live use",
+    "No active governed lock or P24-B task started"
+  ],
+  "definition_of_done": [
+    "Source matrix lists candidates, constraints and open checks with evidence and date; no selected provider",
+    "No preview/pricing/marketing material mistaken for signed rights or eligibility",
+    "Latest-HEAD Governance PASS and artifact digest readback",
+    "Separate explicit Owner exact-head/artifact gate before controlled merge",
+    "Postmerge governance and branch hygiene PASS, PR tracker and Linear consistent",
+    "PRE_FIRST_LIVE remains 0/9 and Live/Auto disabled"
+  ]
+}
