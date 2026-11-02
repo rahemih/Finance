@@ -142,7 +142,7 @@ class SyntheticSandboxS0Tests(unittest.TestCase):
         with self.assertRaises(S0Violation):
             self.step(2, "RECONNECT", server="OTHER-SERVER")
         self.assertEqual(self.step(2, "RECONNECT").simulation_state, "SAFE_MODE")
-        self.assertEqual(self.step(3, "INTENT", units=1).status if hasattr(self.step(3, "TICK"), "status") else BLOCKED, BLOCKED)
+        self.assertEqual(self.step(3, "INTENT", units=1).reason, "LATCHED_STOP_REFUSES_NEW_INTENT")
 
     def test_sc20_hash_chain_tamper_detected(self) -> None:
         self.step(1)
