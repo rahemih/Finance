@@ -92,8 +92,6 @@ class S0Engine:
 
     @staticmethod
     def _validate(e: S0Event) -> None:
-        if not isinstance(e, S0Event):
-            raise S0Violation("only typed S0 events")
         text_fields = (e.event_id, e.kind, e.market, e.server, e.symbol,
                        e.client_key, e.environment, e.network_mode, e.credential_mode)
         if any(type(x) is not str or not x or x.strip() != x for x in text_fields):
