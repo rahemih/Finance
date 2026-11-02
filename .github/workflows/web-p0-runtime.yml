@@ -62,7 +62,7 @@ jobs:
             code=$(curl --silent --output "$file" --write-out '%{http_code}' --max-time 5 "http://127.0.0.1:3100$path")
             test "$code" = "200" || { echo "Expected read-only preview $path: 200 (got $code)"; exit 1; }
             if [[ "$path" == /markets* ]]; then
-              grep -F 'MOCK DATA' "$file"
+              grep -E 'MOCK (DATA|FIXTURE)' "$file"
               grep -F 'v0.8 DESIGN DRAFT' "$file"
             else
               grep -F 'بدون داده زنده' "$file"
@@ -103,8 +103,17 @@ jobs:
             page_id="${record%%:*}"
             route="${record#*:}"
             for width in 1440 768 360; do
+              # Match full-height owner-approved document references for market routes.
+              height=960
+              if [[ "$page_id" == "011" ]]; then
+                case "$width" in 1440) height=1345;; 768) height=2048;; 360) height=2450;; esac
+              elif [[ "$page_id" == "015" ]]; then
+                case "$width" in 1440) height=1166;; 768) height=1676;; 360) height=1600;; esac
+              elif [[ "$page_id" == "019" ]]; then
+                case "$width" in 1440) height=1398;; 768) height=1853;; 360) height=2100;; esac
+              fi
               file="$RUNNER_TEMP/web-p0-previews/${page_id}-${width}-unapproved.png"
-              google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-background-networking --hide-scrollbars --force-device-scale-factor=1 --window-size="$width,960" --virtual-time-budget=1500 --screenshot="$file" "http://127.0.0.1:3101/$route" > "$RUNNER_TEMP/chrome-$page_id-$width.log" 2>&1 || { cat "$RUNNER_TEMP/chrome-$page_id-$width.log"; exit 1; }
+              google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-background-networking --hide-scrollbars --force-device-scale-factor=1 --window-size="$width,$height" --virtual-time-budget=1500 --screenshot="$file" "http://127.0.0.1:3101/$route" > "$RUNNER_TEMP/chrome-$page_id-$width.log" 2>&1 || { cat "$RUNNER_TEMP/chrome-$page_id-$width.log"; exit 1; }
               test -s "$file" || { echo "Missing screenshot: $file"; exit 1; }
             done
           done
