@@ -1,0 +1,119 @@
+{
+  "task_id": "FIN-P24-WP-001-R01",
+  "phase": "P24",
+  "workstream": "WP",
+  "objective": "Provide a read-only, privacy-safe local MT5 native clock comparison probe and a strict deterministic offline evidence parser to investigate the approx +7202s broker timestamp anomaly without certifying live freshness, brokering accounts or sending orders.",
+  "scope": [
+    "Create MQL5 script that only uses SymbolInfoTick, TimeGMT, TimeLocal, TimeGMTOffset, TimeCurrent, TimeTradeServer and local read-only time functions; log three safe samples with no credentials/account/server identifiers or prices",
+    "Create standalone strict pure-Python input parser for the script's fixed schema and signed deltas, preserving raw values without timezone correction and failing closed on missing/unexpected fields, malformed types and inconsistent snapshots",
+    "Add P24 deterministic unit/negative tests, including approx +7202s anomaly, small offset, MQL5 tick_ms-vs-time consistency, duplicate samples, invalid schema, injected account identifiers, order-free source static audit",
+    "Document Windows MT5 native compilation and manual run steps; source cite MetaQuotes MQL5 official time semantics; note independent clock/NTP verification and licensed broker attestation still missing",
+    "Do not alter prior 297 P24 tests, operational broker adapters, readiness state, A5/A8/A10, Live/Auto or canonical P24-C..I statuses",
+    "Create reviewed PR and latest-head full Governance CI evidence; independent Owner exact-head and manifest Human Gate prior to merge; GitHub and Linear checkpoint"
+  ],
+  "out_of_scope": [
+    "No interaction with brokerage order APIs, order_check, order_send, accounts, deposits, KYC or authentication",
+    "No self-execution on user's Windows computer or pretending native script was compiled or operationally run",
+    "No automatic clock/timezone adjustment or broker epoch inference; no claim of data freshness or certified feed",
+    "No forced disconnect, network fault injection, MT5 installation or configuration change",
+    "No production source/venue selection, risk policy change, P24-B unblocking, G13, Live/Auto enablement or waiver",
+    "No file/credential publishing, screenshots or investor/master password collection"
+  ],
+  "dependencies": [
+    "Owner P24 remaining operations deferred but safe S1 read-only diagnostics can be prepared without trading",
+    "PR #516 merged main 9d86b05100f76a44cd4ccfcb72e6539b1e37aa4c with postmerge Governance and Branch Hygiene PASS",
+    "GitHub issue #508 contains +7202s unverified original MT5 observation and is OPEN",
+    "MT5 official docs TimeCurrent, TimeTradeServer, TimeGMT, SymbolInfoTick and MqlTick.time_msc",
+    "Separate exact PR HEAD+manifest Owner Human Gate required; no Local MT5 tests run by CI"
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    "tests/p24/**",
+    "packages/production/**",
+    "config/production/production-readiness-dossier.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WP-001-R01.json",
+    "packages/production/mt5_clock_evidence.py",
+    "tests/p24/test_mt5_clock_evidence.py",
+    "tools/mt5/P24ReadOnlyClockProbe.mq5",
+    "docs/19-production/P24-DEMO-READONLY-CLOCK-FORENSICS.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    ".github/workflows/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Fixed P24_CLOCK_V1 schema accepts exactly ten non-sensitive integer/string fields and rejects extras; no account IDs, names, prices or server identifiers",
+    "Three samples per instrument may be checked for monotonicity; high absolute UTC delta remains UNVERIFIED fail-closed regardless of number",
+    "Raw UTC deltas are reported without applying a two-hour normalization or assuming an NTP result",
+    "MQL5 probe contains no trading functions, account/terminal/server identification, file writes or credential reads",
+    "Latest protected-head Pyright strict and all existing P24 Governance tests pass; native MQL5 compile/run marked NOT_PERFORMED_BY_CI",
+    "Exactly six allowed files changed; no production policy, roadmap, Current State or existing model or workflow modified",
+    "All nine PRE_FIRST_LIVE remain false; first-Live Owner gate not granted; P24-B blocked, G13 not started, Live/Auto disabled",
+    "Separate Owner exact HEAD+Governance Artifact Human Gate before merge and postmerge verification mandatory"
+  ],
+  "security_tests": [
+    "Independently enforced A5 risk veto and pretrade firewall unchanged",
+    "A8 no secret, identity, account number, broker file path, quote prices or personal metadata is emitted",
+    "A10 deterministic hashes, canonical input, spoofing and false-acceptance tests",
+    "Source unverified cannot satisfy operational DEMO clock and timestamp validation, S2 broker certification or production data freshness",
+    "No broker calls or network I/O and no bypass of source license or legal jurisdiction requirements"
+  ],
+  "evidence": [
+    "https://www.mql5.com/en/docs/dateandtime/timecurrent",
+    "https://www.mql5.com/en/docs/dateandtime/timetradeserver",
+    "https://www.mql5.com/en/docs/dateandtime/timegmt",
+    "https://www.mql5.com/en/docs/marketinformation/symbolinfotick",
+    "https://www.mql5.com/en/docs/constants/structures/mqltick",
+    "https://github.com/rahemih/Finance/issues/508",
+    "https://github.com/rahemih/Finance/issues/491"
+  ],
+  "rollback": "Revert only six allowlisted files; keep prior offline software and P24 readiness unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "No already identical probe task exists",
+    "No real MT5 access is available through GitHub CI; runtime verification requires Owner-local evidence",
+    "No order authorization granted"
+  ],
+  "definition_of_done": [
+    "Pure parser unit/negative tests PASS and MQL5 script static read-only audit PASS",
+    "Runbook gives safe owner-local copy/paste and redaction guidance; no false native compile claim",
+    "Latest-head full Governance PASS with artifact digest verified",
+    "Separate exact PR Head+Artifact Owner Human Gate required before merge",
+    "Postmerge PASS and GitHub/Linear evidence reconciliation if Owner later authorizes merge",
+    "P24 remains not complete and all Live/Auto disabled"
+  ]
+}
