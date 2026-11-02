@@ -1,0 +1,113 @@
+{
+  "task_id": "FIN-P24-WA-001-R01",
+  "phase": "P24",
+  "workstream": "WA",
+  "objective": "Prepare an independently auditable, fail-closed remediation/evidence-acquisition register for the nine PRE_FIRST_LIVE prerequisites gating P24-B, without starting Manual Live or changing readiness status.",
+  "scope": [
+    "Compare nine exact PRE_FIRST_LIVE controls against immutable P24-A policy and current canonical GitHub/Linear state",
+    "Register for each control: status, real evidence required, responsible authority, dependency, acceptance and invalidation rules",
+    "Partition safe offline Demo evidence from independently reviewable production readiness certification; retain timestamp ambiguity +7202s and non-certified broker behavior",
+    "Provide small prioritized non-operational tasks to gather redacted evidence; no credentials or user secrets collected",
+    "Link GitHub Demo issue #508, Live gating issue #491, and Linear project continuation register",
+    "Identify separate FIRST_LIVE_OWNER_GATE and three post-entry P24_EXIT blockers without circular dependencies",
+    "Keep P24-B status BLOCKED while any first-live prerequisite or separate Owner gate remains unfulfilled",
+    "Create a docs-only, separately owner-gated PR, requiring full latest-head Governance + postmerge audit"
+  ],
+  "out_of_scope": [
+    "Marking any production prerequisite satisfied without independent, current, target-environment evidence",
+    "Changing P24-B state, P24-A readiness verdict, production policy or any gate/G13, Live/Auto flags or phase authorization",
+    "Broker/exchange selection or contractual acceptance, KYC, production credentials, funding or any transactions",
+    "Producing fake broker certifications, pretending mock Kill Switch / CI is operational validation, setting loss budget for Owner",
+    "Bypassing eligibility, data licenses, security/risk controls, physical connection tests or separate Owner exact-SHA Human Gates",
+    "Changing frozen roadmap, production config, trading/market-data modules, workflow, web/auth code or secrets"
+  ],
+  "dependencies": [
+    "FIN-P24-WA-001 CANONICAL_COMPLETE (readiness assessment only), P24-B remains BLOCKED",
+    "Current policy config/production/production-readiness-dossier.json contains nine false PRE_FIRST_LIVE items",
+    "Latest canonical main PR #510 already merged; offline Demo GitHub issue #508 contains observed dual MT5 tests but no broker certification",
+    "Separate explicit Owner approval of this PR's exact HEAD and CI evidence required before merging"
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "docs/01-roadmap/GATE-MATRIX.md",
+    "config/production/production-readiness-dossier.json",
+    "contracts/tasks/**",
+    "tests/p24/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WA-001-R01.json",
+    "docs/19-production/P24-B-PRE-FIRST-LIVE-UNBLOCK-REGISTER.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "config/**",
+    ".github/workflows/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Latest head full required Governance Verify PASS",
+    "Register has exactly nine unique PRE_FIRST_LIVE IDs matching production-readiness policy, all UNSATISFIED",
+    "Separate FIRST_LIVE_OWNER_GATE + three P24_EXIT controls remain distinct and unsatisfied",
+    "Evidence criteria cannot be converted into PASS by text templates or synthetic tests",
+    "Exactly three allowed files changed, no config/current-state/roadmap/trading workflow modifications",
+    "Windows read-only Demo observations are only non-certifying observations, UTC+7202s remains unverified",
+    "No KYC data, user IDs, account numbers, credentials or private terminal paths are recorded"
+  ],
+  "security_tests": [
+    "A5 independent veto and governed Pre-Trade Firewall have unchanged authority",
+    "A8 security, secrets, access, provider entitlement remain required",
+    "A10 evidence must include exact environment, owner, time, expiry, artifact digest + independent review",
+    "No human reviewer impersonation, scope changes or code execution during documentation planning",
+    "P24-B BLOCKED, G13 NOT_STARTED and Live/Auto DISABLED"
+  ],
+  "evidence": [
+    "main P24-A dossier and policy, GitHub P24 Live issue #491",
+    "GitHub Demo issue #508, merged PRs #492/#493/#494/#499/#502/#510",
+    "Read-only user-local MT5 two-terminal Monday observation and UTC timestamp investigation recorded in #508"
+  ],
+  "rollback": "Close or revert this unmerged docs-only PR; never touch any production policy, gate, credential or Live authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner instruction to work on lifting P24-B blocks is interpreted as authorization to prepare non-operational evidence, NOT permission to start Live",
+    "Source P24-A nine controls are still all unsatisfied; no active pre-B implementation lock is created",
+    "Standalone documentation task, no current-state gate change"
+  ],
+  "definition_of_done": [
+    "All nine blockers have traceable owner/verification/evidence/invalidation plan",
+    "Latest-head Governance PASS and separate PR exact HEAD plus manifest SHA256 Owner Human Gate",
+    "Controlled protected-main squash merge, postmerge Governance/Branch Hygiene PASS, Github #491 / Linear reconciled",
+    "Task labeled PLAN_COMPLETE_ONLY, not PRE_FIRST_LIVE cleared or P24-B unblocked",
+    "Any future Live remains behind 9 independent accepted prerequisites plus separate FIRST_LIVE_OWNER_GATE; G13 unchanged"
+  ]
+}
