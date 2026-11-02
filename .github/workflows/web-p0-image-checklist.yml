@@ -1,0 +1,48 @@
+name: WEB-P0 Image Checklist Integrity (evidence only)
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/contracts/visual-reference-approval.json'
+      - 'apps/web/contracts/web-p0-image-evidence.json'
+      - 'apps/web/docs/WEB-P0-IMAGE-CHECKLIST.md'
+      - 'apps/web/scripts/web-p0-image-checklist.mjs'
+      - '.github/workflows/web-p0-image-checklist.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  image-checklist:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout without stored credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify generator JavaScript syntax
+        run: node --check apps/web/scripts/web-p0-image-checklist.mjs
+      - name: Check canonical 212 image references and 21 browser capture evidence
+        run: node apps/web/scripts/web-p0-image-checklist.mjs --check
+      - name: Ensure no automated owner acceptance or Git blob claim
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          baseline=json.loads(Path("apps/web/contracts/visual-reference-approval.json").read_text())
+          ledger=json.loads(Path("apps/web/contracts/web-p0-image-evidence.json").read_text())
+          refids={x["screenshotId"] for p in baseline["pages"] for x in p["images"]}
+          assert len(refids)==baseline["referenceCount"]==212
+          assert len(baseline["pages"])==baseline["pageCount"]==34
+          screens=ledger["renderedScreenshots"]
+          assert len({s["id"] for s in screens})==len(screens)
+          assert all(s["pageId"] in {p["pageId"] for p in baseline["pages"]} for s in screens)
+          assert all(not s["evidence"]["renderedOwnerApproved"] for s in screens), "Owner acceptance cannot be inferred from reference approval"
+          assert all(not s["evidence"]["imageBinaryCommittedToGit"] for s in screens), "Binary files not currently source-tracked"
+          assert all(not s.get("designScreenshotId") for s in screens), "No unverified 1:1 reference mapping"
+          assert sum(s["pageId"]=="001" for s in screens)==3
+          print(f"WEB_P0_212_REFERENCES=PASS; BROWSER_ARTIFACTS={len(screens)}; EXACT_MAPPINGS=0; OWNER_ACCEPTED=0")
+          PY

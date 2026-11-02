@@ -1,0 +1,86 @@
+name: WEB-P0 PAGE-001 Login Visual Fixture (evidence only)
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/visual-fixtures/page-001-login/**'
+      - '.github/workflows/web-p0-login-visual.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  login-visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout (no persisted credentials)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify exact recorded source and fail-closed preview boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd apps/web/visual-fixtures/page-001-login
+          echo 'cdd9b14a20f444c77ee25b3940b1384441d92ea1e2a3a638f20bd5822bab218e  index.html' | sha256sum -c -
+          python3 - <<'PY'
+          import json,pathlib,re
+          s=pathlib.Path("index.html").read_text(encoding="utf-8")
+          obj=json.loads(pathlib.Path("registration.json").read_text(encoding="utf-8"))
+          assert obj["pageId"]=="001"
+          assert obj["routeExposed"] is False
+          assert obj["source"]["sha256"]=="cdd9b14a20f444c77ee25b3940b1384441d92ea1e2a3a638f20bd5822bab218e"
+          assert "id=\"demo-login\"" in s and "preventDefault()" in s
+          assert s.count("data:image/webp;base64,")>=2
+          for unsafe in ["fetch(", "XMLHttpRequest(", "WebSocket(", "sendBeacon(", "localStorage", "sessionStorage", "document.cookie"]:
+              assert unsafe not in s, "Preview must not connect/store data: "+unsafe
+          assert re.search(r'<meta\s+name="robots"\s+content="noindex,nofollow"', s)
+          print("LOGIN_SOURCE_FIXTURE=PASS (NO REAL AUTH)")
+          PY
+
+      - name: Render real Chromium screenshots in three reference viewports
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v google-chrome
+          mkdir -p "$RUNNER_TEMP/page-001-login"
+          python3 -m http.server 3208 --bind 127.0.0.1 --directory apps/web/visual-fixtures/page-001-login > "$RUNNER_TEMP/login-preview.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 30); do
+            if curl -fsS --max-time 2 http://127.0.0.1:3208/index.html > /dev/null; then ready=1; break; fi
+            sleep 1
+          done
+          test "$ready" -eq 1
+          for record in "Desktop:1672:941" "Tablet:720:1860" "Mobile:360:913"; do
+            IFS=: read -r device width height <<< "$record"
+            file="$RUNNER_TEMP/page-001-login/PAGE-001-${device}-chromium.png"
+            google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-background-networking --hide-scrollbars --force-device-scale-factor=1 --window-size="$width,$height" --virtual-time-budget=1600 --screenshot="$file" http://127.0.0.1:3208/index.html > "$RUNNER_TEMP/chrome-login-$device.log" 2>&1 || { cat "$RUNNER_TEMP/chrome-login-$device.log"; exit 1; }
+            test -s "$file"
+          done
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,struct
+          d=pathlib.Path(os.environ["RUNNER_TEMP"])/"page-001-login"
+          dims={"Desktop":(1672,941),"Tablet":(720,1860),"Mobile":(360,913)}
+          result=[]
+          for device,(w,h) in dims.items():
+              p=d/f"PAGE-001-{device}-chromium.png"; b=p.read_bytes()
+              assert b[:8]==b"\x89PNG\r\n\x1a\n"
+              cw,ch=struct.unpack(">II",b[16:24])
+              assert (cw,ch)==(w,h),f"wrong browser image dimensions: {device} {(cw,ch)}"
+              result.append({"device":device,"width":cw,"height":ch,"sha256":hashlib.sha256(b).hexdigest(),"review":"BROWSER_EVIDENCE_NOT_DOC_PIXEL_CERTIFICATION"})
+          (d/"manifest.json").write_text(json.dumps({"pageId":"001","source":"owner-registered standalone HTML","liveAuth":"DISABLED","captures":result},indent=2),encoding="utf-8")
+          print(json.dumps(result,indent=2))
+          PY
+
+      - name: Upload browser images to GitHub Actions evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4.6.2
+        with:
+          name: nexus-quant-page-001-login-browser-evidence
+          path: ${{ runner.temp }}/page-001-login/
+          if-no-files-found: error
+          retention-days: 14
