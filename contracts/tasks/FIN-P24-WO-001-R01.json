@@ -1,0 +1,117 @@
+{
+  "task_id": "FIN-P24-WO-001-R01",
+  "phase": "P24",
+  "workstream": "WO",
+  "objective": "Implement a strictly offline, broker-disconnected and deterministic S0 synthetic order-state rehearsal covering the SC-01..SC-21 design after #514, reusing the existing WO foundational offline lab rather than altering it, with explicit fail-closed simulation semantics and no production authority.",
+  "scope": [
+    "Create small standalone pure-Python S0 finite-state model with typed synthetic events and hash-chained evidence; import the existing WO deterministic canonical-byte/digest helpers",
+    "Exercise synthetic identity and market routing, quote freshness/time-source validity, licence flag, A5 fixture veto, kill latch, event replay/idempotency, unknown ACK, late ACK, partial fill, cancel/replacement race, disconnect/reconnect, source expiration and audit-tamper detection",
+    "Add negative tests mapping SC-01 through SC-21 of approved #514 plan, plus strict type and no-network/no-credential guarantees",
+    "Add deterministic pure synthetic evidence suite with report hash checked twice; no real market data, MT5 runtime, order_check/order_send, broker SDK or sockets",
+    "Register bounded task contract, documentation and Task Catalog index; run required GitHub Governance tests",
+    "Separate Owner per-PR exact-head+manifest Human Gate required before protected-main merge, postmerge CI and independent GitHub/Linear reconciliation"
+  ],
+  "out_of_scope": [
+    "Changing the original WO baseline simulator, G0-G13 rules, A5 independent risk service, real execution adapter, P24-A policy or production account lifecycle",
+    "Broker-connected integration, any order API or real Demo/Live transaction",
+    "Real capital or broker sandbox certification, real clock attestation, licensed market-data capture, broker selection or client residence attestation",
+    "Any reactivation of a latched stop by local simulation; no real-world risk budget invented",
+    "Changes to user credentials, networks, permissions, production config, frozen roadmap, GitHub governance workflow, secrets",
+    "Claiming 21 S0 test passes imply operational broker approval, demo validation or P24-B unblocked"
+  ],
+  "dependencies": [
+    "P24-WO original 43-test offline lab already merged (PR #493) and must remain unchanged",
+    "P24-WA R03 24-case Sandbox plan merged in PR #514, current main cb7c5aca86ed30769ad0cc855f2a5cfc13740f1a",
+    "PRE_FIRST_LIVE all 9 unsatisfied, P24-B BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED",
+    "No live or connected sandbox authorization: only S0 pure Python permitted"
+  ],
+  "read_paths": [
+    "packages/production/**",
+    "tests/p24/**",
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    "docs/13-tasks/**",
+    "config/production/**",
+    ".github/workflows/governance.yml"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WO-001-R01.json",
+    "packages/production/sandbox_s0_model.py",
+    "tests/p24/test_sandbox_s0_model.py",
+    "docs/19-production/P24-WO-S0-SANDBOX-STATE-MACHINE.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/02-current-state/**",
+    "docs/01-roadmap/**",
+    ".github/workflows/**",
+    "packages/execution/**",
+    "adapters/**",
+    "apps/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "All SC-01..SC-21 are covered by deterministic S0-only fixture tests; SC-22..SC-24 remain explicitly NOT_RUN",
+    "Strict Pyright passes on packages/production, required P24 suite and every current protected-main Governance stage pass",
+    "Existing 43 P24-WO baseline negative tests and original model remain unchanged and pass",
+    "Type forgery, replay and event-sequence gaps reject fail-closed and do not create mutable external authority",
+    "Unknown order ACK, cancellation race, disconnect and risk veto never authorize a new intent even if a later synthetic event arrives",
+    "Audit hash reproducibility twice; no OS clocks or external data, real quote and P&L measurements equal zero",
+    "Readiness parameters immutable: 9 PRE_FIRST_LIVE blockers unsatisfied, P24-B BLOCKED, G13 NOT_STARTED, Live/Auto DISABLED",
+    "Exactly five allowlisted files changed, no request-transport APIs, no network, no broker SDK, no credentials, no CI/workflow modifications",
+    "Owner-specific exact HEAD+Artifact Human Gate and postmerge CI mandatory; no auto-merge"
+  ],
+  "security_tests": [
+    "All snapshot/external order authority flags are hard-coded false and cannot be influenced by a synthetic fixture",
+    "No order_send, order_check, socket, requests, MetaTrader5, trade connector or secrets are called or imported",
+    "Reject unexpected event schema, fake environment, non-disconnected network, bool masquerading as int, wrong identity and expired source",
+    "Independent A5 veto and Kill Switch remain non-overridable and never externally certified by local tests",
+    "A8 credentials remain NONE; A10 hash-chain tampering is detected; no disclosure of private account IDs or user details",
+    "Any ambiguous order outcome stays fail-closed until external audited broker-authorized certification in separately owner-gated S2 workflow"
+  ],
+  "evidence": [
+    "docs/19-production/P24-B-BROKER-SANDBOX-CERTIFICATION-TEST-PLAN.md",
+    "packages/production/offline_preproduction_lab.py",
+    "tests/p24/test_offline_preproduction_lab.py",
+    "GitHub Demo tracker #508 and P24-B Live tracker #491",
+    "PR #514 and latest required Governance postmerge #41412012751"
+  ],
+  "rollback": "Revert only five allowlisted files; original WO lab and production readiness policy unchanged; P24-B remains blocked.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "New separately governed S0-only workstream; no account, broker, orders or credentials",
+    "Original WO model preserved and task ID not previously used",
+    "Owner instruction to continue is not a PR merge approval"
+  ],
+  "definition_of_done": [
+    "S0 implementation and SC-01..SC-21 pure synthetic unit tests reviewed",
+    "Deterministic signed-digest evidence and false-positive guardrails verified",
+    "Required Governance latest head PASS and separate exact-head artifact Owner Human Gate before any merge",
+    "Protected-main postmerge Governance/Branch Hygiene success and GitHub/Linear reconciliation",
+    "No broker/operational Demo certification; PRE_FIRST_LIVE remains 0/9 and Live/Auto disabled"
+  ]
+}
