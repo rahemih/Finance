@@ -224,5 +224,25 @@ class SyntheticSandboxS0Tests(unittest.TestCase):
                 self.assertFalse(decision["real_money_authority"])
 
 
+    def test_32_manual_synthetic_rearm_rejected(self) -> None:
+        self.step(1, "HALT")
+        self.lab.mode = "OBSERVATION"
+        with self.assertRaises(S0Violation):
+            self.step(2, "INTENT", units=1)
+
+    def test_33_synthetic_fill_quantity_tamper_rejected(self) -> None:
+        self.step(1, "INTENT", units=10)
+        self.lab.quantities["fixture-key"] = 100
+        with self.assertRaises(S0Violation):
+            self.step(2, "ACK")
+
+    def test_34_missing_audit_after_synthetic_reconcile_fails_closed(self) -> None:
+        self.step(1, "INTENT", units=10)
+        self.step(2, "ACK_UNKNOWN")
+        self.step(3, "RECONCILE")
+        self.assertEqual(self.step(4, "AUDIT_FAIL").simulation_state, "HALTED")
+        self.assertEqual(self.step(5, "RESET").simulation_state, "HALTED")
+
+
 if __name__ == "__main__":
     unittest.main()
