@@ -1,0 +1,122 @@
+{
+  "task_id": "FIN-P24-WX-001",
+  "phase": "P24",
+  "workstream": "WX",
+  "objective": "Repair required postmerge Governance Trivy scan failure #518 by replacing failing GitHub Release installer with officially published OCI Trivy v0.75.0 image pinned to immutable verified linux/amd64 manifest digest; retain all supply-chain scanning security gates and separate Owner Human Gate.",
+  "scope": [
+    "Pin Docker Hub official aquasec/trivy v0.75.0 linux/amd64 image sha256:9db099105405c648166e6b94155eb32f8da12673cf1f455207f7385cc9a77283 from official Docker Hub metadata",
+    "Replace only Trivy step in Governance workflow; execute container-based Trivy filesystem scan using the SAME vuln,misconfig,secret engines; HIGH,CRITICAL blocking, ignore-unfixed=false, .trivyignore and strict exit-code 1",
+    "Mount source tree read-only and output build/trivy.json on a separate writable mount; container unprivileged, cap-drop ALL, no-new-privileges and read-only root filesystem, tmpfs cache, no Docker socket mount",
+    "Keep Syft CycloneDX SBOM, license/waiver enforcement, Python supply-chain evidence and manifest upload unchanged; fail-closed on pull/network/DB errors and invalid/missing output",
+    "Verify runner's Trivy version exactly 0.75.0, and create local synthetic static tests that reject accidental weakening of configured scanners, severity and OCI digest",
+    "Document independent tests, official digest source, and condition that required postmerge CI must PASS before issue #518 can close",
+    "Owner exact PR HEAD + Governance artifact Human Gate required before merge; preserve all A5/A8/A10, P24-B blocked and Live/Auto disabled"
+  ],
+  "out_of_scope": [
+    "Bypassing or disabling Trivy or reducing severity/scanners, --exit-code 0, ignore-unfixed=true, continue-on-error, floating latest image tags or unverified images",
+    "Changing original Trivy dependency/waiver/license policy or altering runtime production risk/venue code",
+    "Assuming successful scan on the basis of Docker image download, static tests or suite PASS alone",
+    "Closing issue #518, PR #517 postmerge incident or marking P24 complete until actual Trivy scanner scan and JSON plus exact-main complete Governance PASS",
+    "Changing freeze Roadmap, Current State, security authority, broker accounts, trading, user credentials or Live/Auto",
+    "Automatic PR merge without separate specific Owner approval"
+  ],
+  "dependencies": [
+    "Issue #518 records exact-main PR #517 postmerge Governance run 41779026384 failed all 3 attempts in Trivy installer exit 6; no vulnerability scan executed",
+    "Last main bb33ffd8d25c941cd299878a5697a460d1b8df07 and PR #517 merged",
+    "Trivy v0.75.0 immutable amd64 Docker manifest digest from official Docker Hub images page (2026-11-04)",
+    "Trivy official container install document confirms official Docker Hub aquasec/trivy image",
+    "Independent exact-head + manifest Owner Human Gate for new workflow-modifying PR"
+  ],
+  "read_paths": [
+    ".github/workflows/governance.yml",
+    "scripts/ci/supply_chain_policy.py",
+    "scripts/ci/supply_chain_evidence.py",
+    "config/supply-chain/dependency-policy.json",
+    "contracts/tasks/**",
+    "docs/13-tasks/**",
+    "tests/p24/**",
+    "config/production/production-readiness-dossier.json"
+  ],
+  "write_paths": [
+    ".github/workflows/governance.yml",
+    "contracts/tasks/FIN-P24-WX-001.json",
+    "tests/p24/test_trivy_oci_runner.py",
+    "docs/19-production/P24-WX-TRIVY-OCI-CI-REPAIR.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**",
+    "scripts/ci/supply_chain_policy.py",
+    "scripts/ci/supply_chain_evidence.py",
+    ".trivyignore"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "CRITICAL",
+  "tests": [
+    "Full strict Governance CI on latest branch HEAD; no waiver/skip and actual Trivy scanner runs in OCI, produces non-empty valid JSON",
+    "Pinned immutable official DockerHub Trivy v0.75.0 linux/amd64 manifest exactly matches upstream published sha256",
+    "Trivy scan flags exactly preserve vuln,misconfig,secret, HIGH,CRITICAL, exit-code 1, --ignore-unfixed=false and .trivyignore",
+    "CI hard-fails on OCI image pull failure, version mismatch, Trivy failure, missing/invalid build/trivy.json and missing SBOM",
+    "Scanner runs with source read-only, output isolated writable, non-root container, read-only filesystem, cap-drop ALL, no-new-privileges, no docker.sock mounted",
+    "Supply-chain summary and foundation manifest still require build/trivy.json and SBOM and cannot be fabricated or skipped",
+    "Existing 319 P24 tests and all prior P00..P24 CI evidence gates pass with no requirement removed",
+    "Only five scoped files changed, no production policy/risk/trading edits; PRE_FIRST_LIVE nine still false, G13 NOT_STARTED, Live/Auto DISABLED",
+    "Separate per-PR exact HEAD + Governance Artifact Owner Human Gate mandatory before merge; postmerge CI and Branch Hygiene PASS required",
+    "Any inability to pull image or database leaves Governance FAILURE and issue #518 OPEN; no successful scan may be asserted without actual evidence"
+  ],
+  "security_tests": [
+    "A5 independent risk veto untouched, A8 security scan not bypassed, A10 immutable provenance and artifact chain preserved",
+    "No mutable scanner tags, no --ignore-unfixed true, no HIGH/CRITICAL suppression, no scanner exclusion, no secrets or accounts accessed",
+    "No path mounts to Docker host daemon, no host capabilities, no credential secrets, no chmod of repo, root filesystem read only",
+    "Reject unexpected scanner version, empty/malformed JSON, or runner unavailable; fail closed on supply-chain security errors",
+    "Safety of Demo/Live remains unchanged; change is CI remediation only"
+  ],
+  "evidence": [
+    "https://hub.docker.com/layers/aquasec/trivy/0.75.0/images/sha256-9db099105405c648166e6b94155eb32f8da12673cf1f455207f7385cc9a77283",
+    "https://www.trivy.dev/docs/latest/getting-started/installation/",
+    "https://github.com/rahemih/Finance/issues/518",
+    "https://github.com/rahemih/Finance/actions/runs/41779026384",
+    "https://github.com/rahemih/Finance/pull/517"
+  ],
+  "rollback": "Revert exactly these five files under separate governed PR; never revert scan to no-op or unsafe policy; leave postmerge Governance blocked until verified.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Root cause isolated to external Trivy installer path exit 6 without a scanner report, after three identical exact-main attempts",
+    "Official scanner pinned image digest grounded",
+    "No auth changes or trade authority"
+  ],
+  "definition_of_done": [
+    "Actual scanner executes in CI and report JSON validates with original high/critical gates",
+    "Complete required Governance green and unexpired manifest at exact branch HEAD",
+    "Owner-specific exact Head/Artifact Human Gate before merge",
+    "Protected main postmerge Governance and Branch Hygiene PASS and issue #518 closure with independent evidence",
+    "No code path enables P24-B or Live/Auto"
+  ]
+}
