@@ -44,7 +44,7 @@ if argv and argv[0] == "run":
     if mode == "missing":
         sys.exit(0)
     if mode == "malformed":
-        dest.write_text("not json", encoding="utf-8")
+        dest.write_text("not json" * 6, encoding="utf-8")
         sys.exit(0)
     if mode == "fake_high":
         issues = [{"Severity": "HIGH", "VulnerabilityID": "SYNTHETIC-CVE"}]
