@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P24-WY-001",
+  "phase": "P24",
+  "workstream": "WY",
+  "objective": "Non-operational reconciliation of PR #521 security CI merge, superseded #520 and outstanding exact-main postmerge evidence without upgrading Demo/Live readiness.",
+  "scope": [
+    "Record exact authorized PR #521 HEAD and protected-main merge commit and preserve historic PR #517 failed postmerge Trivy event.",
+    "Distinguish premerge CI #41823248100 SUCCESS from exact-main postmerge Governance/Branch Hygiene results which are not independently observed through available PR-filtered connector.",
+    "Record GitHub #518 closed state separately from proof of postmerge acceptance; never equate issue state with security scan success.",
+    "Record alternative PR #520 closed unmerged as superseded and maintain links to operational Demo #508 and Live #491.",
+    "Update only P24 read-only status note and task catalog using scoped edits, without rewriting historical events or upgrading canonical P24 stages.",
+    "Add deterministic status boundary unit tests and leave full Governance and Owner-specific PR merge gate intact."
+  ],
+  "out_of_scope": [
+    "No changes to Trivy, CI workflows, code execution, test gates, scanning scope, licenses or waiver settings.",
+    "No inferred postmerge PASS or retroactive status rewrite for PR #517.",
+    "No production provider/broker selection, quote freshness certification or native MT5 runtime claims.",
+    "No Demo/Live orders or account interaction, no P24-B unblocking, no G13 or Auto Trading activation.",
+    "No changes to frozen roadmap, A5/A8/A10 enforcement, risk limits or system credentials.",
+    "No PR merge without fresh exact-head Governance evidence and separate Owner Human Gate."
+  ],
+  "dependencies": [
+    "PR #521 owner-authorized with HEAD 509a9bb81a908214746ace40e96c2b9f0533d05f, premerge Governance run #41823248100 completed success and artifact ZIP SHA256 3b2b700a8962a47f2a44ba395ded7498262ad29e6140b36cffa706aadeec050e.",
+    "PR #521 protected main squash merge 5ac2a04dad1ce2d5603154bfc5b769da82c0beaa verified; main identical at task branch creation.",
+    "GitHub issue #518 is closed but no direct exact-main postmerge workflow success/artifact was verified using available connector.",
+    "PR #520 closed unmerged as superseded; GitHub Demo #508 and P24 Live #491 remain open.",
+    "P24 policy retains nine unsatisfied PRE_FIRST_LIVE prerequisites, G13 NOT_STARTED, Live/Auto DISABLED."
+  ],
+  "read_paths": [
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    "tests/p24/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WY-001.json",
+    "docs/19-production/P24-WY-SECURITY-POSTMERGE-EVIDENCE-CHECKPOINT.md",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "tests/p24/test_p24_wy_evidence_boundary.py"
+  ],
+  "forbidden_paths": [
+    ".github/workflows/**",
+    "config/**",
+    "docs/01-roadmap/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "P24 immutable readiness dossier still shows all nine PRE_FIRST_LIVE prerequisites false and Live/Auto disabled.",
+    "Current State reports postmerge verification UNVERIFIED, not PASS; PR #517 historical failing run unchanged.",
+    "Current State preserves P24-A assessment complete, P24-B BLOCKED, P24-C..I NOT_STARTED, G13 NOT_STARTED.",
+    "Task catalog reflects #521 merged only, #520 superseded unmerged and WY scoped evidence work.",
+    "All existing required CI, security scanner, Pyright, P24 tests and Branch Hygiene pass on exact PR HEAD; no waivers.",
+    "Separate exact HEAD + unexpired Governance Artifact SHA256 Owner Human Gate is required before merge."
+  ],
+  "security_tests": [
+    "No scan requirement or immutable pin changed; A5 veto, A8 security and A10 evidence controls retained.",
+    "Reject evidence promotion without exact-main postmerge Governance + Branch Hygiene and foundation artifact.",
+    "No credentials, identity, broker connectivity or quote samples in public checkpoint.",
+    "No downgrade of protected P24 trading readiness and no creation of P24-B lock."
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/pull/521",
+    "https://github.com/rahemih/Finance/pull/520",
+    "https://github.com/rahemih/Finance/issues/518",
+    "https://github.com/rahemih/Finance/issues/508",
+    "https://github.com/rahemih/Finance/issues/491",
+    "https://github.com/rahemih/Finance/actions/runs/41823248100"
+  ],
+  "rollback": "Revert only these five scoped documentation/test paths under separate governed PR. Do not alter security scan workflow or claim postmerge green.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Explicit scope limited to documentary evidence checkpoint",
+    "No native MT5 or push-triggered Actions certification accessible to these tools",
+    "No order authorization"
+  ],
+  "definition_of_done": [
+    "Scoped status and check tests pass in latest-head Governance with artifact",
+    "Owner-specific exact-head+artifact approval before merge",
+    "Only after merge, exact-main postmerge Governance+Branch Hygiene verified before canonical task closure",
+    "P24 phase remains ACTIVE/BLOCKED with Live/Auto disabled"
+  ]
+}
