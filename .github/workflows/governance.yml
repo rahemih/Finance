@@ -1823,7 +1823,7 @@ jobs:
           # Official Trivy v0.75.0 linux/amd64 manifest SHA from Docker Hub.
           # Immutable image avoids the failing GitHub Releases asset installer.
           TRIVY_IMAGE='docker.io/aquasec/trivy@sha256:9db099105405c648166e6b94155eb32f8da12673cf1f455207f7385cc9a77283'
-          mkdir -p build
+          mkdir -p build "$RUNNER_TEMP/p24-trivy-cache"
           rm -f build/trivy.json
           docker pull --platform linux/amd64 "$TRIVY_IMAGE"
           TRIVY_VERSION="$(docker run --rm --platform linux/amd64 \
@@ -1841,8 +1841,9 @@ jobs:
             --tmpfs /tmp:rw,nosuid,nodev,size=1g \
             --mount "type=bind,source=$PWD,target=/workspace,readonly" \
             --mount "type=bind,source=$PWD/build,target=/scan-output" \
+            --mount "type=bind,source=$RUNNER_TEMP/p24-trivy-cache,target=/trivy-cache" \
             --workdir /workspace \
-            --env HOME=/tmp --env TRIVY_CACHE_DIR=/tmp/trivy-cache \
+            --env HOME=/tmp --env TRIVY_CACHE_DIR=/trivy-cache \
             "$TRIVY_IMAGE" fs \
             --scanners vuln,misconfig,secret \
             --severity HIGH,CRITICAL \
