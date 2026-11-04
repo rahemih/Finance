@@ -1817,19 +1817,44 @@ jobs:
         run: python scripts/ci/supply_chain_policy.py sbom --sbom build/sbom.cdx.json
 
       - name: Trivy supply-chain scan
-        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          version: v0.75.0
-          format: json
-          output: build/trivy.json
-          exit-code: '1'
-          severity: HIGH,CRITICAL
-          scanners: vuln,misconfig,secret
-          ignore-unfixed: false
-          cache: false
-          trivyignores: .trivyignore
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Official Trivy v0.75.0 linux/amd64 manifest SHA from Docker Hub.
+          # Immutable image avoids the failing GitHub Releases asset installer.
+          TRIVY_IMAGE='docker.io/aquasec/trivy@sha256:9db099105405c648166e6b94155eb32f8da12673cf1f455207f7385cc9a77283'
+          mkdir -p build "$RUNNER_TEMP/p24-trivy-cache"
+          rm -f build/trivy.json
+          docker pull --platform linux/amd64 "$TRIVY_IMAGE"
+          TRIVY_VERSION="$(docker run --rm --platform linux/amd64 \
+            --read-only --network none --cap-drop ALL \
+            --security-opt no-new-privileges \
+            "$TRIVY_IMAGE" --version)"
+          printf '%s\n' "$TRIVY_VERSION"
+          grep -qx 'Version: 0.75.0' <<< "$TRIVY_VERSION"
+
+          # Source is read-only. Only the existing build directory is writable.
+          # No host Docker socket, privileged caps or real trading credentials.
+          docker run --rm --platform linux/amd64 \
+            --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --user "$(id -u):$(id -g)" \
+            --tmpfs /tmp:rw,nosuid,nodev,size=1g \
+            --mount "type=bind,source=$PWD,target=/workspace,readonly" \
+            --mount "type=bind,source=$PWD/build,target=/scan-output" \
+            --mount "type=bind,source=$RUNNER_TEMP/p24-trivy-cache,target=/trivy-cache" \
+            --workdir /workspace \
+            --env HOME=/tmp --env TRIVY_CACHE_DIR=/trivy-cache \
+            "$TRIVY_IMAGE" fs \
+            --scanners vuln,misconfig,secret \
+            --severity HIGH,CRITICAL \
+            --exit-code 1 \
+            --ignore-unfixed=false \
+            --format json \
+            --output /scan-output/trivy.json \
+            --ignorefile .trivyignore \
+            .
+          test -s build/trivy.json
+          python -m json.tool build/trivy.json >/dev/null
 
       - name: Build supply-chain evidence
         run: |
