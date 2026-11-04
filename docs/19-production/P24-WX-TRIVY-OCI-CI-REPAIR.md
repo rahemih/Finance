@@ -23,11 +23,17 @@ To remove *only the failing GitHub Releases installer dependency*, switch to the
 
 The scanner continues to perform a filesystem scan of the same repository directory with all original options: `--scanners vuln,misconfig,secret`, `--severity HIGH,CRITICAL`, `--exit-code 1`, `--ignore-unfixed=false`, `--ignorefile .trivyignore`, `--format json`.
 
-The container has an **immutable pinned manifest**, read-only source checkout and container root filesystem, no Docker socket, no-new-privileges, no capabilities, runs under the GitHub runner's unprivileged UID/GID, mounts only `build` writable at `/scan-output`, and uses temporary cache. Network is available solely because vulnerability DB updates are a required scanner dependency. Any failed image pull, DB fetch, scan command, empty report, invalid JSON, HIGH/CRITICAL vulnerability or required downstream evidence step must fail the job.
+The container has an **immutable pinned manifest**, read-only source checkout and container root filesystem, no Docker socket, no-new-privileges, no capabilities, runs under the GitHub runner's unprivileged UID/GID, mounts only `build` writable at `/scan-output`, and uses an isolated writable runner-temporary database cache, outside the read-only source tree, so the expanded vulnerability database cannot exhaust the small container /tmp tmpfs. Compressed download scratch space remains a restricted tmpfs; the database is stored in `$RUNNER_TEMP/p24-trivy-cache` on the host runner's temporary disk and mounted separately as `/trivy-cache` with no source code or credentials. Network is available solely because vulnerability DB updates are a required scanner dependency. Any failed image pull, DB fetch, scan command, empty report, invalid JSON, HIGH/CRITICAL vulnerability or required downstream evidence step must fail the job.
 
 Existing Syft CycloneDX 1.7 SBOM generation, source-waiver matching, dependency and license policies, `supply_chain_evidence.py`, `foundation_ci.py` and mandatory artifact upload remain unchanged. A scanner run generating a JSON file with high-severity findings must fail the gate, not be accepted as a clean report.
 
 The new `tests/p24/test_trivy_oci_runner.py` contains static negative-policy assertions that refuse mutable tags, scanner narrowing, missing JSON gates and weakened isolation. Unit test success proves only a good workflow **specification**, not that the Trivy scanner actually ran.
+
+## 3A. Evidence from first OCI attempt and second remediation
+
+[PR #521 initial Governance run #41822664721](https://github.com/rahemih/Finance/actions/runs/41822664721) confirmed the **exact OCI Trivy v0.75.0 binary was pulled and executed**. Trivy successfully downloaded 132 MiB compressed DB artifact, then failed *before scanning* because its expanded vulnerability database exhausted the isolated 1 GiB `/tmp` mount (`write /tmp/trivy-cache/db/trivy.db: no space left on device`). This is an environmental resource failure, **not** successful security scanning or a vulnerability finding.
+
+The follow-up change keeps the 1 GiB /tmp tmpfs for scratch files and moves ONLY the Trivy expanded DB cache to the runner-managed `$RUNNER_TEMP` directory, isolated from the source repository via a separate writable bind mount. Image digest, scanner types, HIGH/CRITICAL gate, `exit-code 1`, waiver policy, JSON report, and no-privileges constraints remain unchanged. The new HEAD must pass fresh full CI including an actual scanner report before this PR may be presented for Owner Human Gate.
 
 ## 4. Acceptance matrix and non-waivable Human Gate
 
