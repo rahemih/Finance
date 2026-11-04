@@ -38,6 +38,12 @@ The runner requires valid fresh `build/trivy.json` and invokes `scripts/ci/verif
 
 **CI acceptance must verify:** full strict Typecheck, existing P24 unit tests, *real* Trivy v0.75.0 invocation with complete JSON produced under `build/trivy.json`, independent JSON validation, unchanged supply-chain summary, reproducible clean-source build and unexpired exact HEAD `foundation-ci-manifest`. PR-specific A5/A8/A10 and **separate Owner HEAD + Artifact SHA256 Human Gate** are required before protected merge. Exact-main postmerge Governance and Branch Hygiene success required afterwards, and only then close #518 with a traceable evidence link.
 
+## 3A. Actual Trivy v0.75 Git worktree report compatibility
+
+A real pinned v0.75.0 Trivy OCI container successfully pulled and executed on PR #520 (earlier [Governance #41812867013](https://github.com/rahemih/Finance/actions/runs/41812867013)); it generated a report. The initial independent validator rejected the report's artifact category. Trivy versions since **0.68** automatically label `trivy fs` scans of Git worktrees as `ArtifactType=repository` instead of `filesystem`. This is the **same full-repository filesystem scan**; it is not a weakened target or scanner.
+
+The verifier now accepts exactly `filesystem` or `repository` with schema version 2. For a `repository`, `Metadata.Commit` **must match** trusted `GITHUB_SHA` in addition to the existing JSON and HIGH/CRITICAL checks; absence or mismatch fails closed. The offline test-double suite additionally checks exact Git SHA and deliberate mismatch. No issue #518 closeout is allowed until **the complete real scanner, this corrected verifier, SBOM/license check, and final manifest all succeed at the same latest PR HEAD**.
+
 ## 4. Work boundaries and rollback
 
 Exactly **seven files** may change: this document, HIGH/CRITICAL task contract, `docs/13-tasks/TASK-CATALOG.md`, `.github/workflows/governance.yml` **Trivy step only**, `scripts/ci/run_trivy_oci.sh`, `scripts/ci/verify_trivy_scan.py`, `tests/foundation/test_trivy_oci_contract.py`. No frozen roadmap or production configuration changes; no CVE waivers, no scanner reductions and no live/auto permissions.
