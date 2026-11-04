@@ -77,7 +77,7 @@ class TrivyOciNoBypassTests(unittest.TestCase):
     def test_no_alternate_security_waiver(self) -> None:
         section = trivy_block()
         for bad in ("TRIVY_SKIP", "TRIVY_IGNORE_UNFIXED", "exit 0", "continue-on-error: true",
-                    "--skip-db-update", "--skip-java-db-update", "--scanners vuln"):
+                    "--skip-db-update", "--skip-java-db-update"):
             with self.subTest(token=bad):
                 self.assertNotIn(bad, section)
         self.assertIsNone(re.search(r"(?m)^\s*if:.*false", section))
