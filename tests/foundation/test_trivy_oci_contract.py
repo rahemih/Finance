@@ -56,6 +56,9 @@ if argv and argv[0] == "run":
         result = {"Target": "package.json", "Vulnerabilities": issues}
     report = {"SchemaVersion": 2, "ArtifactType": "filesystem",
               "ArtifactName": "/scan", "Results": [result]}
+    if mode in ("repo_clean", "repo_mismatch"):
+        report["ArtifactType"] = "repository"
+        report["Metadata"] = {"Commit": os.environ["GITHUB_SHA"] if mode == "repo_clean" else "b"*40}
     dest.write_text(json.dumps(report), encoding="utf-8")
     sys.exit(0)
 sys.exit(2)
@@ -86,6 +89,7 @@ class TrivyOCIContractTests(unittest.TestCase):
         env["RUNNER_TEMP"] = str(self.root / "temp")
         env["TEST_DOCKER_MODE"] = mode
         env["TEST_DOCKER_ROOT"] = str(self.root)
+        env["GITHUB_SHA"] = "a" * 40
         return subprocess.run(
             ["bash", str(self.root / "scripts" / "ci" / RUNNER.name)],
             cwd=self.root, env=env, capture_output=True, text=True, check=False, timeout=15,
@@ -142,6 +146,15 @@ class TrivyOCIContractTests(unittest.TestCase):
         p = self.invoke("fake_secret")
         self.assertNotEqual(p.returncode, 0)
         self.assertIn("TRIVY_HIGH_CRITICAL_FINDINGS_BLOCKED", p.stderr)
+
+    def test_git_repository_scan_with_exact_sha_accepted(self) -> None:
+        p = self.invoke("repo_clean")
+        self.assertEqual(p.returncode, 0, p.stderr)
+
+    def test_git_repository_scan_sha_mismatch_refused(self) -> None:
+        p = self.invoke("repo_mismatch")
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn("TRIVY_REPOSITORY_COMMIT_ATTESTATION_MISMATCH", p.stderr)
 
     def test_real_command_fidelity_without_docker_socket(self) -> None:
         self.assertEqual(self.invoke().returncode, 0)
