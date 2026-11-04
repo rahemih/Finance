@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -28,8 +30,22 @@ def check_report(path: Path) -> dict[str, int]:
         raise TrivyReportError("TRIVY_REPORT_NOT_VALID_JSON") from exc
     if not isinstance(obj, dict) or type(obj.get("SchemaVersion")) is not int:
         raise TrivyReportError("TRIVY_SCHEMA_NOT_VERIFIED")
-    if obj["SchemaVersion"] != 2 or obj.get("ArtifactType") != "filesystem":
-        raise TrivyReportError("TRIVY_NOT_FILESYSTEM_SCHEMA_V2")
+    # Trivy >=0.68 uses ArtifactType="repository" automatically when a
+    # git worktree is found under `trivy fs`. This is the same full fs scan.
+    if obj["SchemaVersion"] != 2:
+        raise TrivyReportError("TRIVY_JSON_SCHEMA_V2_REQUIRED")
+    artifact_type = obj.get("ArtifactType")
+    if artifact_type not in ("filesystem", "repository"):
+        raise TrivyReportError("TRIVY_NOT_FILESYSTEM_OR_REPOSITORY_SCAN")
+    if artifact_type == "repository":
+        meta = obj.get("Metadata")
+        commit = meta.get("Commit") if isinstance(meta, dict) else None
+        expected_commit = os.environ.get("GITHUB_SHA", "")
+        if (not isinstance(commit, str)
+                or re.fullmatch(r"[0-9a-f]{40}", commit) is None
+                or not expected_commit
+                or commit != expected_commit):
+            raise TrivyReportError("TRIVY_REPOSITORY_COMMIT_ATTESTATION_MISMATCH")
     if not isinstance(obj.get("ArtifactName"), str) or not obj["ArtifactName"]:
         raise TrivyReportError("TRIVY_ARTIFACT_NAME_MISSING")
     results = obj.get("Results")
