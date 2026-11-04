@@ -1,6 +1,6 @@
 # P24-CI — Recovery plan for mandatory Trivy install failure (#518)
 
-**Task:** `FIN-P24-CI-001-R01` — **CRITICAL / separate A5-A8-A10 and Owner exact-head Human Gate**.  
+**Task:** `FIN-P24-WU-001-R01` — **CRITICAL / separate A5-A8-A10 and Owner exact-head Human Gate**.  
 **Prepared:** 2026-11-04.  
 **Source incident:** [GitHub issue #518](https://github.com/rahemih/Finance/issues/518); [PR #517](https://github.com/rahemih/Finance/pull/517) is already merged at `bb33ffd8d25c941cd299878a5697a460d1b8df07`.
 
