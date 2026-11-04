@@ -54,7 +54,9 @@ class TrivyOciNoBypassTests(unittest.TestCase):
         self.assertIn("--user", section)
         self.assertIn("target=/workspace,readonly", section)
         self.assertIn("target=/scan-output", section)
-        self.assertIn("--env TRIVY_CACHE_DIR=/tmp/trivy-cache", section)
+        self.assertIn("--env TRIVY_CACHE_DIR=/trivy-cache", section)
+        self.assertIn("source=$RUNNER_TEMP/p24-trivy-cache,target=/trivy-cache", section)
+        self.assertIn("mkdir -p build \"$RUNNER_TEMP/p24-trivy-cache\"", section)
         self.assertNotIn("/var/run/docker.sock", section)
         self.assertNotIn("--privileged", section)
 
