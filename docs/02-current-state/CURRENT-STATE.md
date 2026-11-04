@@ -1,6 +1,17 @@
 # Current State
 
-Last reconciled: 2026-10-31 (P24 synthetic/offline supplement; Live still blocked)
+Last reconciled: 2026-11-04 (FIN-P24-WY-001 documentary checkpoint only; no phase or trade authorization)
+
+## P24 security / Demo evidence checkpoint — 2026-11-04 (FIN-P24-WY-001)
+
+- Exact Owner-approved PR #521 HEAD: `509a9bb81a908214746ace40e96c2b9f0533d05f`; **merged protected main**: `5ac2a04dad1ce2d5603154bfc5b769da82c0beaa`.
+- PR #521 **PREMERGE** Governance run `41823248100` recorded SUCCESS, 238 steps, 327 P24 tests, actual pinned Trivy OCI scan, artifact SHA256 `3b2b700a8962a47f2a44ba395ded7498262ad29e6140b36cffa706aadeec050e`. This is **not** POSTMERGE evidence.
+- PR #521 exact-main Governance and Branch Hygiene: **POSTMERGE_UNVERIFIED** in this checkpoint. The available connector returned no push-triggered workflow runs; an empty result is not PASS or FAIL. Verify exact merge SHA and unexpired foundation artifact before any postmerge certification.
+- Issue #518 CLOSED in GitHub but required postmerge evidence acceptance remains **UNVERIFIED** here; historical PR #517 postmerge Governance `41779026384` remains FAILED and must not be relabeled.
+- Alternative remediation PR #520 **CLOSED WITHOUT MERGE / SUPERSEDED** by #521; no duplicate workflow changes. Demo #508 OPEN; Live #491 OPEN.
+- Native MT5 read-only compilation, Forex/Crypto time-origin proof, real reconnect and independently risk-vetoed Demo validation remain **NOT_VERIFIED**. The observed ~7200-second tick UTC offset is never automatically normalized.
+- **P24-A CANONICAL_COMPLETE assessment only; P24-B BLOCKED; P24-C..I NOT_STARTED; PRE_FIRST_LIVE 0/9; G13 NOT_STARTED; LIVE_TRADING DISABLED; AUTO_TRADING DISABLED.** No new A5/A8/A10 exception, provider entitlement, order authority or credential use.
+- This note is documentary and does not supersede frozen Roadmap or authorize any phase promotion. [Evidence checkpoint](../19-production/P24-WY-SECURITY-POSTMERGE-EVIDENCE-CHECKPOINT.md).
 
 ## Repository
 
