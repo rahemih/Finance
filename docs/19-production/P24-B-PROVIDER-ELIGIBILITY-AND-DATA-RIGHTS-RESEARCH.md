@@ -1,5 +1,7 @@
 # P24-B — Public-source eligibility & market-data rights research (2026-11-02)
 
+> **MANDATORY LATER SOURCE CORRECTION — 2026-11-07:** This 2026-11-02 research predates a dedicated official-source recheck of 2026 OFAC notices, FIBO's *actual* Client Acceptance Policy PDF and exact LiteFinance legal entities. **Read [P24-B-ELIGIBILITY-2026-11-OFFICIAL-SOURCE-RECHECK.md](P24-B-ELIGIBILITY-2026-11-OFFICIAL-SOURCE-RECHECK.md) before interpreting any candidate verdict below.** In particular, US OFAC [2026-06-02](https://ofac.treasury.gov/recent-actions/20260602) listed Nobitex/Bitpin/Wallex/Ramzinex and [2026-11-04](https://ofac.treasury.gov/recent-actions/20261104) continued to show designated entities; [FAQ1257](https://ofac.treasury.gov/faqs/1257) outlines cross-border sanctions risk. The relevant FIBO official CAP PDF does not explicitly list Iran among prohibited residence countries but does **not** constitute positive client/product authorization. The dated correction **supersedes only conflicting or incomplete risk interpretation, not the frozen road map, policy or stage gates**. All 9 PRE_FIRST_LIVE flags remain false, P24-B BLOCKED, Live/Auto disabled.
+
 **Task:** `FIN-P24-WA-001-R02`  
 **Status:** `SOURCE_RESEARCH_ONLY / NOT_SELECTED / NOT_ATTESTED`  
 **Upstream:** [governed nine-control evidence register](P24-B-PRE-FIRST-LIVE-UNBLOCK-REGISTER.md), [Live tracker #491](https://github.com/rahemih/Finance/issues/491), [Demo #508](https://github.com/rahemih/Finance/issues/508)  
