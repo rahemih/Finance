@@ -1,0 +1,111 @@
+{
+  "task_id": "FIN-P24-WZ-001",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Refresh P24-B #1 official-source entity/client/product eligibility evidence as of 2026-11-07, including newly verified June and November 2026 OFAC exchange listings and FIBO official client acceptance, without selecting, certifying or connecting any live venue.",
+  "state": "OFFICIAL_SOURCE_RESEARCH_PROPOSED_ONLY",
+  "scope": [
+    "Record dated official OFAC SDN designations and 2026-11-04 update with entity names and practical cross-border implications; do not interpret as a blanket ban on a particular Iranian person's domestic activity.",
+    "Record FIBO Group BVI policy exact prohibited-country wording and its reservations/individual due diligence; check original PDF source and distinguish from actual signed resident acceptance.",
+    "Record LiteFinance Global LLC explicit self-declared regulator 'No' and separate legal entities and swap-free Iran indication without claiming client live eligibility.",
+    "Mark domestic spot/credit offers as not proven international perpetual/delivery futures; do not infer API/data feed licence or Iranian authority from marketing or API documentation.",
+    "Place a clearly dated correction pointer at the top of 2026-11-02 eligibility research so older research is not mistaken for a current risk clearance.",
+    "Add reproducible source URLs, date, acceptance/invalidation triggers, no personal/KYC data, and Task Catalog indexing.",
+    "Require exact-head mandatory Governance, security checks and separate PR-specific Owner Human Gate before protected-main merge."
+  ],
+  "out_of_scope": [
+    "Changing P24-B readiness flags, certifying any production venue, endorsing/sending OFAC-related financial flows, signing a broker, creating account or KYC.",
+    "Trading orders, broker/exchange/API connections, credential collection, deposits or withdrawals.",
+    "Relaxing A5 independent risk veto, A8 security, A10 evidence, G13 or frozen phase order.",
+    "Modifying production config or security controls, frozen roadmap, Current State, CI workflows or adapters.",
+    "Calling sanctions listing equivalent to Iranian domestic illegality, or claiming any service is legally accessible solely from country omission in restricted list.",
+    "Claiming third-party broker self-reported regulatory licence independently verified at regulator register."
+  ],
+  "dependencies": [
+    "P24-A readiness-only complete; P24-B blocked and all nine PRE_FIRST_LIVE false.",
+    "Owner supplied legal residence country, natural person status and declared KYC responsibility privately; do not request documents or repeat questions.",
+    "GitHub #491 and Linear are management/evidence tracking, not approvals.",
+    "Older public-source research dated 2026-11-02 must be augmented with 2026-11-07 official-source material risks."
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/**",
+    "config/production/production-readiness-dossier.json",
+    "docs/01-roadmap/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-001.json",
+    "docs/19-production/P24-B-ELIGIBILITY-2026-11-OFFICIAL-SOURCE-RECHECK.md",
+    "docs/19-production/P24-B-PROVIDER-ELIGIBILITY-AND-DATA-RIGHTS-RESEARCH.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/02-current-state/**",
+    "docs/01-roadmap/**",
+    ".github/**",
+    "packages/**",
+    "tests/**",
+    "infra/**",
+    "apps/**",
+    "adapters/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exactly four allowlisted file modifications; documentation-only (no production state, credential, broker runtime, workflow or frozen roadmap change).",
+    "Source link and publication/retrieval date each critical claim; independent distinction between first-party marketing/claimed licence and regulator-verified status.",
+    "Explicit marked as 0/9 first live false, blocked P24-B, G13 NOT_STARTED, Live/Auto DISABLED and no provider selected.",
+    "No individual addresses, identity records or KYC material; no instructions for sanctions evasion.",
+    "Latest-head full required Governance, security/Trivy, product typecheck, P24 suite and unexpired manifest PASS before separate Owner SHA-bound gate.",
+    "Protected-main merge only after fresh exact-head Owner Human Gate; independent postmerge Governance and Branch Hygiene required."
+  ],
+  "security_tests": [
+    "No automated order or broker API integration and no sanctions circumvention workflow.",
+    "No A5/A8/A10 exception; no identity or user credentials anywhere in change.",
+    "Explicit high risk for OFAC-blocked entity integration and cross-border service/intermediary flows.",
+    "No external authority or license acceptance inferred from documentation."
+  ],
+  "evidence": [
+    "https://ofac.treasury.gov/recent-actions/20260602",
+    "https://ofac.treasury.gov/recent-actions/20261104",
+    "https://ofac.treasury.gov/faqs/1257",
+    "https://www.fibogroup.com/u/document_file/2419/client_acceptance_policy.pdf",
+    "https://www.litefinance.org/company/registered-offices/",
+    "https://www.litefinance.org/trading/account-types/islamic-no-swap/",
+    "https://github.com/rahemih/Finance/issues/491"
+  ],
+  "rollback": "Revert only the four permitted documentary files under separately governed revert. Never alter P24-B readiness or broker order authority.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Only public documentary research; parent P24-A complete, P24-B blocked.",
+    "No actual client-specific legal acceptance, KYC or licensed production provider claimed.",
+    "Owner's general continue instruction is not an exact HEAD+Governance Artifact PR merge authorization."
+  ],
+  "definition_of_done": [
+    "A documented and reproducible 2026-11-07 official-source correction on branch with scope strictly four paths.",
+    "Latest-head full Governance success and independently enforced A5/A8/A10, no new exclusions.",
+    "Separate Owner exact-HEAD+artifact SHA256 approval followed by merge, postmerge CI/Branch Hygiene and GitHub/Linear reconcile, closure only for research task NOT P24-B."
+  ]
+}
