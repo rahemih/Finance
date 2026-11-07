@@ -1,0 +1,118 @@
+{
+  "task_id": "FIN-P24-WV-001",
+  "phase": "P24",
+  "workstream": "WV",
+  "workstream_scope": "P24-C PREPARATION ONLY — formal P24-C remains NOT_STARTED",
+  "objective": "Prepare independently testable offline S0 semi-automatic approval and fail-closed readiness model without starting P24-C, because P24-B Manual Live is blocked.",
+  "state": "S0_PREPARATION_ONLY_NO_STAGE_PROMOTION",
+  "ready_for": "OFFLINE_DESIGN_AND_NEGATIVE_TESTS_ONLY",
+  "dependencies": [
+    "Frozen roadmap P24 sequence: B Manual Live precedes C Semi-Automatic, and every autonomy change needs fresh approval/evidence.",
+    "Official Current State: P24-B BLOCKED_HUMAN_AND_PRODUCTION_PREREQUISITES; P24-C..I NOT_STARTED; G13 NOT_STARTED; Live/Auto DISABLED.",
+    "Production-readiness dossier: all nine PRE_FIRST_LIVE controls false, first Live Owner gate NOT_GRANTED.",
+    "Owner user request to work on P24-C is authority for offline preparation, NOT for execution-stage advancement, orders, or gated PR merge.",
+    "Existing offline S0 sandbox and P16 firewall production sources remain untouched."
+  ],
+  "scope": [
+    "Create isolated deterministic pure-Python offline fixture for proposed semi-auto order-intent eligibility with explicit owner-confirmation binding, expiry, replay rejection, A5 veto, source provenance, security, evidence, kill latch, ACK and reconciliation flags.",
+    "Result always has external_order_authority=false and action=NO_ORDER; even fully positive synthetic fixtures may only return S0_FIXTURE_ELIGIBLE, never LIVE/DEMO_READY.",
+    "Create unittest negative matrix with default-deny, mutated intent, bool/int type-forgery, stale consent, reused consent, unknown ACK, missing A5/A8/A10, stale clocks, missing P24-B, kill switch, source rights and dossier boundary.",
+    "Document stage prerequisites, future operator gates, scoping and test evidence; index in task catalog with P24-C formally NOT_STARTED.",
+    "Run required latest-head Governance and wait for separate Owner exact-head artifact Human Gate before any merge."
+  ],
+  "out_of_scope": [
+    "Starting, unblocking, certifying or completing P24-C, P24-B, G13 or later production stages",
+    "Any actual Demo/Live/order/MT5/broker/API/network connection, order-check/send/cancel or delivery of executable trade authority",
+    "Replacing A5 independent risk veto, A8 security, A10 audit, broker certification, production risk-budget policy or real human authentication",
+    "Forging broker entitlements, timestamp correction, human approvals, market freshness, P24-B evidence or external reviewer identity",
+    "Editing frozen roadmaps, production config, Current State, CI workflows, execution adapters, credentials or security scanner",
+    "Self-merge or treating green synthetic tests as live success"
+  ],
+  "read_paths": [
+    "docs/01-roadmap/**",
+    "docs/02-current-state/CURRENT-STATE.md",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "contracts/tasks/**",
+    "packages/production/**",
+    "tests/p24/**",
+    "docs/19-production/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WV-001.json",
+    "packages/production/semiauto_s0_preflight.py",
+    "tests/p24/test_semiauto_s0_preflight.py",
+    "docs/19-production/P24-C-SEMIAUTO-S0-PREFLIGHT.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    ".github/workflows/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "config/**",
+    "packages/execution/**",
+    "adapters/**",
+    "apps/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A6",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Required GitHub Governance full test suite, pinned real Trivy/SBOM scanner, strict typing and evidence artifact PASS on exact PR HEAD",
+    "Every S0 gate default-deny; boolean type forgery, invalid proposal values, altered/expired/missing owner acknowledgment, replay and unknown ACK reject",
+    "All domain controls A5/A8/A10 and kill-switch cannot be bypassed by positive synthetic consent",
+    "Only S0_FIXTURE_ELIGIBLE when all explicitly synthetic flags pass, but still NO_ORDER/external_order_authority=false and no stage promotion",
+    "Production dossier has exactly nine false PRE_FIRST_LIVE flags, first Live authorization not granted and P24-C NOT_STARTED",
+    "No actual broker, MT5, WebRequest, socket, HTTP, order_send/order_check or credential access",
+    "Exactly five allowlisted files and no frozen roadmap/Current State changes",
+    "Separate exact-head Governance manifest Owner Human Gate required before merge; postmerge mandatory security and Branch Hygiene verification"
+  ],
+  "security_tests": [
+    "A5 veto must block independent of any human prompt/approval",
+    "A8 security is nonwaivable and no secret/network dependency exists",
+    "A10 intent digest/version and synthetic owner acknowledgement are bound; replay/expiration/outstanding unknown-ACK fail-closed",
+    "No instance in model returns external trading authority; explicit zero order capability",
+    "Do not modify live risk/OMS/production broker configuration or risk budgets"
+  ],
+  "evidence": [
+    "docs/01-roadmap/MASTER-ROADMAP-DETAILS.md",
+    "docs/01-roadmap/EXECUTION-ROADMAP.md",
+    "config/production/production-readiness-dossier.json",
+    "https://github.com/rahemih/Finance/issues/508",
+    "https://github.com/rahemih/Finance/issues/491"
+  ],
+  "rollback": "Close proposal unmerged, or revert only five allowlisted files under separately governed PR. Stage P24-C remains NOT_STARTED regardless.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "DoR for true P24-C execution is NOT MET due P24-B blocked; S0 preparatory scope alone allowed",
+    "No external/broker/credential permissions granted",
+    "Dossier and risk gates remain fail-closed"
+  ],
+  "definition_of_done": [
+    "S0 preparatory artifact and negative tests pass at latest PR HEAD",
+    "Unexpired CI foundation manifest and explicit Owner exact HEAD+SHA256 gate before any merge",
+    "Protected-main postmerge Governance and Branch Hygiene required for only the preparation task; cannot claim P24-C completion"
+  ]
+}
