@@ -3,7 +3,6 @@
   "phase": "P24",
   "workstream": "WZ",
   "objective": "Refresh P24-B #1 official-source entity/client/product eligibility evidence as of 2026-11-07, including newly verified June and November 2026 OFAC exchange listings and FIBO official client acceptance, without selecting, certifying or connecting any live venue.",
-  "state": "OFFICIAL_SOURCE_RESEARCH_PROPOSED_ONLY",
   "scope": [
     "Record dated official OFAC SDN designations and 2026-11-04 update with entity names and practical cross-border implications; do not interpret as a blanket ban on a particular Iranian person's domestic activity.",
     "Record FIBO Group BVI policy exact prohibited-country wording and its reservations/individual due diligence; check original PDF source and distinguish from actual signed resident acceptance.",
