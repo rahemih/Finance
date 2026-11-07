@@ -18,7 +18,7 @@
     "Relaxing A5 independent risk veto, A8 security, A10 evidence, G13 or frozen phase order.",
     "Modifying production config or security controls, frozen roadmap, Current State, CI workflows or adapters.",
     "Calling sanctions listing equivalent to Iranian domestic illegality, or claiming any service is legally accessible solely from country omission in restricted list.",
-    "Claiming third-party broker self-reported regulatory licence independently verified at regulator register."
+    "Claiming exact broker-advertised licence NUMBER independently verified from a regulator listing that only proves regulated entity name and categories; BVI FSC independently verifies FIBO entity/category but not its claimed licence number or Iranian client eligibility."
   ],
   "dependencies": [
     "P24-A readiness-only complete; P24-B blocked and all nine PRE_FIRST_LIVE false.",
@@ -93,7 +93,10 @@
     "https://www.fibogroup.com/u/document_file/2419/client_acceptance_policy.pdf",
     "https://www.litefinance.org/company/registered-offices/",
     "https://www.litefinance.org/trading/account-types/islamic-no-swap/",
-    "https://github.com/rahemih/Finance/issues/491"
+    "https://github.com/rahemih/Finance/issues/491",
+    "https://www.bvifsc.vg/regulated-entities/fibo-group-ltd",
+    "https://www.bvifsc.vg/regulated-entities/fibo-group-ltd-1",
+    "https://www.bvifsc.vg/regulated-entities/fibo-group-ltd-0"
   ],
   "rollback": "Revert only the four permitted documentary files under separately governed revert. Never alter P24-B readiness or broker order authority.",
   "human_gate": true,
