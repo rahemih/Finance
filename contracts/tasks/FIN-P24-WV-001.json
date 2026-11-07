@@ -1,0 +1,99 @@
+{
+  "task_id": "FIN-P24-WV-001",
+  "phase": "P24",
+  "workstream": "WV",
+  "objective": "Record the Owner's formal technical, legal and general acceptance of xChief and Toobit as selected venues in FINANCE project documentation, without representing that external licensed provider confirmations or production integration tests have occurred.",
+  "scope": [
+    "Unambiguously record xChief as the approved FX/CFD broker selected by the Owner.",
+    "Unambiguously record Toobit as the approved crypto spot/futures exchange selected by the Owner.",
+    "Interpret Owner's word 'approved' as full Owner signoff of technical, legal and other considerations for their selection, not merely a tentative shortlist.",
+    "Preserve distinct independent documentary verification gates and avoid re-requesting country, account category or identity documents.",
+    "Index this documentary decision and synchronize GitHub Live issue #491 and Linear P-HOS-2 management record."
+  ],
+  "out_of_scope": [
+    "Fabricate independent broker product eligibility letters, licenses, KYC or audits.",
+    "Flip any PRE_FIRST_LIVE satisfied flag without underlying independent validation.",
+    "Grant new real/demo automated order, account opening, payment, data/API credential or network mutation permissions.",
+    "Modify frozen roadmap, readiness config, code, CI, security or A5/A8/A10 veto/evidence rules.",
+    "Treat conversational Owner venue approval as exact SHA-bound Owner authorization to merge this PR."
+  ],
+  "dependencies": [
+    "Owner explicitly approved xChief and Toobit and clarified that 'approved' encompasses technical/legal and all other relevant matters.",
+    "Protected main readiness still has all nine PRE_FIRST_LIVE controls false and P24-B blocked.",
+    "Existing PR #524 official source correction pending separate Owner Human Gate; no implicit merge."
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/**",
+    "config/production/production-readiness-dossier.json"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WV-001.json",
+    "docs/19-production/P24-B-OWNER-APPROVED-VENUES.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/**",
+    "packages/**",
+    "tests/**",
+    "apps/**",
+    "infra/**",
+    "adapters/**",
+    "secrets/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exactly three allowlisted docs-only changed paths; no runtime or trading activation.",
+    "xChief and Toobit unequivocally recorded as Owner fully approved on technical/legal and other dimensions.",
+    "No false claim of external certified entity/product rights or evidence independently witnessed by assistant.",
+    "All nine PRE_FIRST_LIVE flags still false on main, P24-B blocked, Live/Auto disabled.",
+    "Current strict Governance, P24 tests, independent risk/security/evidence gates PASS at exact PR HEAD before approval/merge.",
+    "No personal IDs, credential secrets, account numbers or identity scans."
+  ],
+  "security_tests": [
+    "Keep A5 independent veto, A8 security and A10 evidence requirements unchanged.",
+    "No KYC of user with assistant, no geolocation/KYC bypass, funding, broker keys or orders.",
+    "Do not equate selection approval with live operational technical certification or licensed data entitlement."
+  ],
+  "evidence": [
+    "Owner current explicit clarification: 'زمانی که میگم تایید شد یعنی از همه نظر فنی و حقوقی و..'",
+    "Owner immediately preceding explicit instruction: 'من میگم این دو تا را رسما ثبت کن'",
+    "https://github.com/rahemih/Finance/issues/491",
+    "config/production/production-readiness-dossier.json"
+  ],
+  "rollback": "Governed revert of only these three documentary files without altering production-readiness or live execution.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner selection and intended comprehensive approval meaning are clear; no personal documents needed.",
+    "No claim of independent 3rd-party legal certification merely from Owner statement."
+  ],
+  "definition_of_done": [
+    "Formal Owner technical/legal and general approval of xChief and Toobit recorded in scoped document.",
+    "Task Contract and Task Catalog indexed; GitHub/Linear synchronized.",
+    "Exact-head Governance and artifact accepted; distinct Owner PR Human Gate then protected-main merge and postmerge CI/branch hygiene before canonical document merged.",
+    "Production readiness and independent security/risk/evidence gates unchanged."
+  ]
+}
