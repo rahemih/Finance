@@ -1,0 +1,117 @@
+{
+  "task_id": "FIN-P24-WK-001",
+  "phase": "P24",
+  "workstream": "WK",
+  "objective": "Develop a source-backed, non-operational P24-B PRE_FIRST_LIVE prerequisite #4 credential and account readiness matrix for selected xChief MT5 and Toobit API; preserve Demo-only separation and no customer onboarding, secret intake or production authority.",
+  "scope": [
+    "Use Owner-approved xChief and Toobit selections and source architecture; no repeated venue or residence questions.",
+    "Inventory read-only technical access options: MetaTrader 5 Investor versus Master account permissions, Toobit public data endpoints versus scoped read-only API and advanced-KYC trade/writable scopes.",
+    "Document account identity/privacy handling solely by Owner↔provider, redacted evidence receipt and independent validation of legal account status without collecting personal documents.",
+    "Document credential lifecycle, vault scoped access, per-venue isolation, two-factor owner authentication, trade/write/withdraw-deny, allowlisted egress IP, expiry, rotation, revocation, incident response and outage fail-closed.",
+    "Prepare an explicit non-live access-state table with testable simulated policy checks and future owner-only legitimate onboarding tasks.",
+    "Index the controlled docs-only package and mirror actual status to GitHub checklist #528/#491 and Linear management without modifying protected production readiness."
+  ],
+  "out_of_scope": [
+    "Open xChief/Toobit or third-party accounts; represent a real account as created or KYC as complete.",
+    "Handle, request, upload, store, copy or expose passwords, Investor passwords, secret keys, API keys, authentication codes, government IDs, proof of address, bank accounts, wallet private keys, backup codes or other personal data.",
+    "Create public/private API keys, run login flows, grant read-write, transfer/withdrawal or trade permissions, subscribe to paid feeds, operate Demo/Live orders or move any money.",
+    "Enable Demo, Live or Auto by changing production policy or execution permissions; change KYC and regional rules.",
+    "Change any existing code, infrastructure, provider adapters, workflows, risk veto, A5/A8/A10 approval or policy without a separate governed contract.",
+    "Declare PRODUCTION_CREDENTIALS_READY.satisfied=true from documentation, provider marketing or tests performed without real authorised target environment."
+  ],
+  "dependencies": [
+    "Owner declares prerequisites 1–3 PASS as decisions; xChief broker and Toobit crypto venue are fixed Owner selections, not runtime certified.",
+    "Protected main config/production/production-readiness-dossier.json shows PRE_FIRST_LIVE 0/9; #4 marker 'Accounts/KYC/credentials/funding/orders: NONE'; G13 NOT_STARTED; Live/Auto disabled.",
+    "GitHub issue #528 tracks nine readiness controls, #491 tracks Live, #508 Demo; #527 branch hygiene unresolved; #526 source architecture merged and postmerge Governance PASS.",
+    "Owner has expressly chosen to avoid formal live account opening for now and to retain separate Demo research until a future legitimate Owner-only onboarding decision.",
+    "Separate exact PR HEAD+manifest SHA256 Owner Human Gate and postmerge Governance plus Branch Hygiene required for all documentation updates."
+  ],
+  "read_paths": [
+    "config/production/production-readiness-dossier.json",
+    "docs/19-production/**",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "contracts/tasks/**",
+    "docs/01-roadmap/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WK-001.json",
+    "docs/19-production/P24-B-PREREQ-04-ACCOUNT-CREDENTIALS-READINESS.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/**",
+    "apps/**",
+    "packages/**",
+    "adapters/**",
+    "infra/**",
+    "tests/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Exactly three allowlisted doc/contract/catalog paths; no runtime, production, credential, network or order action.",
+    "Document explicitly distinguishes Owner selection status (3/9 Owner PASS) from canonical PRE_FIRST_LIVE 0/9 independently qualified.",
+    "xChief Investor access is strictly read-only vs MT5 Master full trade authority; neither is claimed already created for xChief, and previous different-broker Demo observations are not upgraded.",
+    "Toobit read-only vs trade/withdraw permissions and advanced KYC remain separated; public market endpoints do not necessarily require a key, account monitoring does; never create a key in this task.",
+    "Only future Owner↔provider KYC; system stores redacted boolean/attestation and integrity references, no credential or identity material.",
+    "Pass tests only when per-venue access matrix rejects TRADE/WITHDRAW permissions by default, quarantines unknown/stale/expired or anomalous access, and has a tested revoke path in legally authorized target environment.",
+    "Toobit public FAQs disclose API expiration and IP allowlisting; handle differing Toobit support-page expiration wording conservatively as change-controlled documentation, not invented duration.",
+    "Latest HEAD GitHub Governance including strict Task Contract, P24 suite, typecheck, Trivy and SBOM PASS before separately authorised merge; postmerge Governance and Branch Hygiene must be checked.",
+    "P24-B remains BLOCKED, all PRE_FIRST_LIVE false, G13 NOT_STARTED, Live/Auto DISABLED."
+  ],
+  "security_tests": [
+    "A5 veto remains independent and deny-by-default on missing credentials/right, stale identity or uncertain account permissions.",
+    "A8 least privilege, segregation of duty, Vault-backed secrets management, restricted egress, 2FA for user and key rotation requirements are specified and subject to independent review.",
+    "A10 redacted evidence does not include account IDs, email/phone, bank references, government IDs or actual provider secrets; evidence content is not fabricated.",
+    "Duplicate/replay, accidental promotion from read-only to write, leaked-key revocation, IP drift and breached authentication lockout simulated in acceptance criteria only, no live tests claimed.",
+    "Human Gate authorises docs only, never opening trading accounts, depositing, withdrawals or orders."
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/issues/528",
+    "https://github.com/rahemih/Finance/issues/491",
+    "https://github.com/rahemih/Finance/issues/508",
+    "https://www.metatrader5.com/en/mobile-trading/iphone/help/settings_accounts/account_connect",
+    "https://www.metatrader5.com/en/terminal/help/start_advanced/otp",
+    "https://www.toobit.com/en-US/support/api-faq",
+    "https://www.toobit.com/en-US/support/toobit-api-key-creation-guide",
+    "https://api-docs.toobit.com/api/introduction.html",
+    "https://www.toobit.com/en-US/support/toobit-withdrawal-address-allowlist-guide",
+    "https://www2.xchief.com/about/aml/",
+    "https://www.xchief.com/about/privacy/"
+  ],
+  "rollback": "Governed revert of these three documentation/task files only, leaving canonical production state and risk/security controls unchanged.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Existing Owner selections and Demo/Live boundary are known; no need to ask for identification or trading-account details.",
+    "Current main PRE_FIRST_LIVE #4 evidence absent, no network credentials or data ingest in scope."
+  ],
+  "definition_of_done": [
+    "Official prerequisite-4 matrix and owner-account/private-proof boundaries documented and indexed, with current PASS distinctions honest.",
+    "Latest-head full Governance with artifact unexpired and a PR-specific exact-HEAD+SHA256 Owner Human Gate before any merge.",
+    "After separately approved merge, postmerge exact-main Governance+Branch Hygiene and GitHub/Linear consistency checks.",
+    "Never claim production credential readiness unless a later independent target-environment evidence package lawfully demonstrates all mandated controls."
+  ]
+}
