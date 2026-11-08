@@ -1,0 +1,114 @@
+{
+  "task_id": "FIN-P24-WU-001",
+  "phase": "P24",
+  "workstream": "WU",
+  "objective": "Record the Owner-approved xChief MT5 + Toobit API primary market data architecture with separately licensed reference feeds and independently verifiable production data-rights/quality acceptance criteria; documentation/evidence only.",
+  "scope": [
+    "Record Owner final decision: xChief MT5 FX/CFD, Toobit REST/WebSocket crypto spot/futures as primaries; independent licensed references mandatory for anomaly cross-checks.",
+    "Evidence-score Twelve Data for FX and commodities, CoinAPI for crypto venue/asset reference and CoinGecko for aggregate crypto context only against actual first-party published terms, with no premature licence claims.",
+    "Design source entitlement/evidence template for machine/non-display analytics, risk veto, 10 internal users, permitted retention, redistribution, AI training, jurisdiction and counterparties.",
+    "Document test plan covering UTC clock, quote type and symbol mapping, bid/ask/mid, CFD vs spot basis, spot vs perpetual, session calendars, stale/conflict/failover, circuit breaker and cost/SLO.",
+    "Create task catalog entry and GitHub/Linear checkpoint, preserving mandatory independent A5/A8/A10 and PR-specific Owner Gate."
+  ],
+  "out_of_scope": [
+    "Set PRODUCTION_PROVIDER_SELECTED or other readiness flags satisfied from an Owner architecture decision or public web documents.",
+    "Represent any paid/Free API plan as already contracted or licensed, or assume commercial rights for specific FX commodities and crypto derivatives.",
+    "Create real provider accounts, run KYC, collect credentials/API keys, pay for licences, poll market feeds or initiate Demo/Live trading orders.",
+    "Modify xChief/Toobit runtime connectors, security settings, data pipeline, telemetry production, pretrade controls, CI workflows, or any P24 live activation policy.",
+    "Derive sanctions-jurisdiction eligibility solely from a public API being reachable; bypass any location, data-use or auth restrictions.",
+    "Remove A5 veto, A8 security validation, A10 evidence or the distinct Owner human PR merge gate."
+  ],
+  "dependencies": [
+    "Owner-approved xChief FX/CFD and Toobit crypto venue choice recorded in GitHub #491 and Linear project, formal docs PR #525 remains open.",
+    "Owner-approved dual-source architecture explicitly recorded in GitHub #491 and Linear P-HOS-2 2026-11-07.",
+    "Exactly nine PRE_FIRST_LIVE flags in protected main remain false, P24-B blocked, G13 not started and Live/Auto disabled.",
+    "Public-source preliminary rights research FIN-P24-WA-001-R02 as read from main; no independently executed licensing."
+  ],
+  "read_paths": [
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "config/production/production-readiness-dossier.json",
+    "docs/01-roadmap/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WU-001.json",
+    "docs/19-production/P24-B-OWNER-APPROVED-DUAL-SOURCE-DATA-PLAN.md",
+    "docs/13-tasks/TASK-CATALOG.md"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/**",
+    "packages/**",
+    "apps/**",
+    "tests/**",
+    "adapters/**",
+    "infra/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "Only the three specified documentation, task-contract and catalog paths changed.",
+    "Explicit Owner-approved primary feeds plus independent licensing-based references; no proposed vs approved architecture ambiguity.",
+    "Vendor-source first-party evidence dated/linked, distinguishing published policy, allowable plan use, executed written licence and target environment validation.",
+    "Reference feed does not accidentally compare non-equivalent CFD, spot/perpetual products or venue prices to a fabricated universal threshold.",
+    "9 PRE_FIRST_LIVE controls on main remain false; no false P24-B release or Live/Auto authorization.",
+    "Governance latest-head schema, strict typecheck, P24 suite, SBOM and nonwaived Trivy security pass before a distinct exact PR HEAD+SHA256 Owner Human Gate.",
+    "Source-bound QA plan requires fresh UTC, gap/out-of-order/quote-type, volume, spread, market-session, permission expiry, error/failover and A5 veto."
+  ],
+  "security_tests": [
+    "No geographic/KYC bypass, market quote acquisition without licence, active API keys, broker account activation or orders.",
+    "Fail closed upon missing legal entitlement, source timestamp ambiguity, stale/contradictory quotes, invalid symbol mapping or API error.",
+    "A5 independent risk veto, A8 security and A10 provenance intact; no waiver of production readiness requirements.",
+    "Do not expose user address, KYC, credentials, account numbers or data redistribution in public repo."
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/issues/491",
+    "https://www.xchief.com/platforms/metatrader5/",
+    "https://www.mql5.com/en/docs/python_metatrader5",
+    "https://api-docs.toobit.com/api/spot-market-data",
+    "https://api-docs.toobit.com/api/usdt-m-market-data",
+    "https://api-docs.toobit.com/api/spot-websocket-market-data",
+    "https://api-docs.toobit.com/api/basic-information.html",
+    "https://www.toobit.com/en-US/support/terms-of-service",
+    "https://twelvedata.com/terms",
+    "https://support.twelvedata.com/en/articles/5332349-commercial-and-personal-usage",
+    "https://www.coinapi.io/usage-policy",
+    "https://support.coingecko.com/articles/1043089972-what-are-the-differences-between-commercial-and-custom-licenses"
+  ],
+  "rollback": "Revert only these three docs/contract/index changes via separately governed approval; never change any production venue/data control as a side effect.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner architecture decision is explicit and already registered; no user preference survey needed.",
+    "Public first-party source evidence available; no claim of independently executed commercial licence.",
+    "No live activation, signed service, production compliance, identity or credential work in this task."
+  ],
+  "definition_of_done": [
+    "Formal 2026-11-07 Owner data architecture decision and rights/quality matrix documented in proposed PR and indexed.",
+    "Latest-head mandatory Governance pass with unexpired foundation-ci-manifest SHA256; explicit exact-HEAD Owner Human Gate required before main merge.",
+    "Postmerge main Governance and Branch Hygiene checks plus GitHub/Linear reconciliation only if a separate Owner PR merge approval is given.",
+    "Production data source gate remains UNSATISFIED until licensed accounts and environment-bound independently reviewed A5/A8/A10 tests exist."
+  ]
+}
