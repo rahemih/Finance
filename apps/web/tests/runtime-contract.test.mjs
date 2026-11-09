@@ -18,3 +18,14 @@ test('root sentinel cannot submit, login, or claim a visual baseline', () => {
   assert.equal(manifest.ownerApprovedBaselineCount,0);
   assert.ok(manifest.pages.every(p=>p.implementationStatus==='NOT_IMPLEMENTED' && p.visualBaselineStatus==='REVIEW_REQUIRED'));
 });
+
+test('pinned caniuse CC-BY dependency has a review-only source notice without license waiver', () => {
+  const lock=read('../../../pnpm-lock.yaml');
+  const notice=read('../THIRD_PARTY_NOTICES.md');
+  assert.match(lock, /caniuse-lite@1\.0\.30001820/);
+  assert.match(notice, /caniuse-lite@1\.0\.30001820/);
+  assert.match(notice, /https:\/\/caniuse\.com/);
+  assert.match(notice, /https:\/\/creativecommons\.org\/licenses\/by\/4\.0\/legalcode/);
+  assert.match(notice, /REVIEW_REQUIRED/);
+  assert.match(notice, /BLOCKED_PENDING_INDEPENDENT_LICENSE_REVIEW/);
+});
