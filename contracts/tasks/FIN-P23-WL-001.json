@@ -9,7 +9,8 @@
     "Run genuine pnpm install --frozen-lockfile, next build, TypeScript and static/source tests on GitHub Actions",
     "Verify Next version against current critical security advisories and track license/SBOM audit",
     "Record runtime ADR/status and explicit owner/independent security gates",
-    "Proven dependency pruning: TypeScript 5.9.3 replaces TS7 native Go, optional Sharp/libvips omitted from lock and install; required Next SWC retained."
+    "Proven dependency pruning: TypeScript 5.9.3 replaces TS7 native Go, optional Sharp/libvips omitted from lock and install; required Next SWC retained.",
+    "Stage source-only caniuse-lite@1.0.30001820 CC-BY attribution record for independent license review, with no policy waiver or approval"
   ],
   "out_of_scope": [
     "Building or claiming acceptance for 34 WEB-P0 pages or 212 reference baselines",
@@ -44,7 +45,8 @@
     "docs/13-tasks/TASK-CATALOG.md",
     ".github/workflows/web-p0-runtime.yml",
     "pnpm-lock.yaml",
-    "pnpm-workspace.yaml"
+    "pnpm-workspace.yaml",
+    "apps/web/THIRD_PARTY_NOTICES.md"
   ],
   "forbidden_paths": [
     "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
@@ -81,7 +83,8 @@
     "All existing WEB-P0 source/static tests PASS",
     "Browser authority flags stay false, placeholder does not implement Login or product routes",
     "Supply chain license/SBOM/CVE review status accurate (not prematurely PASS)",
-    "Frozen runtime Build with TS5.9.3 and no Sharp/libvips/TS-go purls (source-only images.unoptimized), on exact new PR head."
+    "Frozen runtime Build with TS5.9.3 and no Sharp/libvips/TS-go purls (source-only images.unoptimized), on exact new PR head.",
+    "Source-only notice identifies pinned CC-BY version, author/source/license link and non-approved review status"
   ],
   "security_tests": [
     "No direct providers, credentials, trading or dangerous API routes",
@@ -89,7 +92,8 @@
     "No WEB-P0 screenshot marked APPROVED or baseline misrepresented",
     "Next 16.4.3 at or above 16.4.1 security floor from 2026-10-14 advisories",
     "No production deploy and explicit Human Gate",
-    "Mandatory P04 license policy remains unchanged, unresolved caniuse-lite CC-BY remains blocked, no waiver."
+    "Mandatory P04 license policy remains unchanged, unresolved caniuse-lite CC-BY remains blocked, no waiver.",
+    "Attribution record does not reclassify CC-BY into allowed P04 licenses or authorize distribution"
   ],
   "evidence": [
     "GitHub PR exact SHA and workflow logs",
