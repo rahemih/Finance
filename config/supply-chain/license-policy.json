@@ -156,6 +156,202 @@
       "license": "MIT",
       "evidence": "jakebailey/pyright-action v3.0.2 LICENSE and tag commit 8ec14b5cfe41f26e5f41686a31eb6012758217ef",
       "scope": "Exact static typecheck GitHub Action used by canonical governance workflow"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/env@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fenv/16.4.3 ; dist.integrity sha512-a7tz1QCcWWkwC/rPJcPMJk/UNRu9CFhDd3OHYE5hddbJrs8BqRTalxI6GlKCWEGzRLHN+S/B7a4PAHCtm25aBQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-darwin-arm64@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-darwin-arm64/16.4.3 ; dist.integrity sha512-4yq5EXBt+VDtAZwTyfijaFp5D2C5oz3Ikw5a2kiX2K9nw72vrZX2q5UuAlkPtUMO1tQz6JTKpaKWjS7OOefTDQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-darwin-x64@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-darwin-x64/16.4.3 ; dist.integrity sha512-1Rvkn/LUhnEF8WxnRkOrqGhbwXui1bkWFxONKIbN+r7C+9KHDSZ+iUoj4CzymVMWUyZIyx9szcb9+kbKhD500A==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-linux-arm64-gnu@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-linux-arm64-gnu/16.4.3 ; dist.integrity sha512-dCKpXErGg3abUM6t5JTJV/ottVBTStJB5lRJTbgdUdQaQ+jNHiK56Hsc0YAEg/rinSh42hYG3HWiYmEMdilnxg==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-linux-arm64-musl@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-linux-arm64-musl/16.4.3 ; dist.integrity sha512-WwYbhWkhYBvBtib1K4W0kL8MW2snBD2A5b3SN4vPpqalZbZs5+bQ1yzAdepVoOqrFfEW3dmREy4Zs1MrWcrFbw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-linux-x64-gnu@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-linux-x64-gnu/16.4.3 ; dist.integrity sha512-QymWvfUwDEC5/lpJOsxX5VAbyoR2D13+2Jsjz4be7gT4LPqEgdpkeLIR/HFfCLgKzoMhpJbp6I/JnogyNZHcaA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-linux-x64-musl@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-linux-x64-musl/16.4.3 ; dist.integrity sha512-Vmjd9D7DpA4Vv3cUlr82QWgJD/BQZmns801vtC5VWHg6jCIA4a5vMKpQnfrM2pyCrp2eV0ENdUg4PlN3bAc2Yw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-win32-arm64-msvc@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-win32-arm64-msvc/16.4.3 ; dist.integrity sha512-lG1pPdPLk7gTyGb00n5JIMLdBJgjb+UEhSdZvFbhUMg0DyC6z4B7RnpSKF9VCd4imkLObVbXOFA0kFCpw7yFow==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40next/swc-win32-x64-msvc@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40next%2Fswc-win32-x64-msvc/16.4.3 ; dist.integrity sha512-NmQC9RkJdnPXRaMxtkCzobB3teVjqF33oSOnwDfi+XYGWWYpt+xlGK3mtktSKLbdjwaWbJu2OkkMiRFGUUncKg==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40swc/helpers@0.5.23",
+      "exact_version": "0.5.23",
+      "license": "Apache-2.0",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40swc%2Fhelpers/0.5.23 ; dist.integrity sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40types/node@24.19.2",
+      "exact_version": "24.19.2",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40types%2Fnode/24.19.2 ; dist.integrity sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40types/react-dom@19.3.0",
+      "exact_version": "19.3.0",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40types%2Freact-dom/19.3.0 ; dist.integrity sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/%40types/react@19.3.0",
+      "exact_version": "19.3.0",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/%40types%2Freact/19.3.0 ; dist.integrity sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/baseline-browser-mapping@2.11.34",
+      "exact_version": "2.11.34",
+      "license": "Apache-2.0",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/baseline-browser-mapping/2.11.34 ; dist.integrity sha512-Aqr8mA1kIvyJ3UY5YAY7ib8LSo1DmDMbMnVqGPtsKW1LxaFQFwn9Eb3yvq2fUKJsRvaXjnAV7R5osqETapzNiA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/client-only@0.0.1",
+      "exact_version": "0.0.1",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/client-only/0.0.1 ; dist.integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/csstype@3.2.3",
+      "exact_version": "3.2.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/csstype/3.2.3 ; dist.integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/nanoid@3.3.20",
+      "exact_version": "3.3.20",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/nanoid/3.3.20 ; dist.integrity sha512-uKdg2G3GNCKQn9byYOpxbGqrT2fGO5KRt5J/8b3pok8rT6qxGWF6hxMyJiEYtAf+FVyYuD9hRaDqX5uPFYJ4ZQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/next@16.4.3",
+      "exact_version": "16.4.3",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/next/16.4.3 ; dist.integrity sha512-OqxKTGi9u80FydydsMNYNjnuje9Au+kvHlt2GZ//ftdpDHm1dxKqAaENoOOTX5wKzn+9vaKUNIfZeyZUuLhCnA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/picocolors@1.1.1",
+      "exact_version": "1.1.1",
+      "license": "ISC",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/picocolors/1.1.1 ; dist.integrity sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/postcss@8.5.23",
+      "exact_version": "8.5.23",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/postcss/8.5.23 ; dist.integrity sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/react-dom@19.3.1",
+      "exact_version": "19.3.1",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/react-dom/19.3.1 ; dist.integrity sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/react@19.3.1",
+      "exact_version": "19.3.1",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/react/19.3.1 ; dist.integrity sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/scheduler@0.28.0",
+      "exact_version": "0.28.0",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/scheduler/0.28.0 ; dist.integrity sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/source-map-js@1.2.2",
+      "exact_version": "1.2.2",
+      "license": "BSD-3-Clause",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/source-map-js/1.2.2 ; dist.integrity sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/styled-jsx@5.1.6",
+      "exact_version": "5.1.6",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/styled-jsx/5.1.6 ; dist.integrity sha512-qSVyDTeMotdvQYoHWLNGwRFJHC+i+ZvdBRYosOFgC+Wg1vx4frN2/RG/NA7SYqqvKNLf39P2LSRA2pu6n0XYZA==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/tslib@2.8.1",
+      "exact_version": "2.8.1",
+      "license": "0BSD",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/tslib/2.8.1 ; dist.integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/undici-types@7.24.6",
+      "exact_version": "7.24.6",
+      "license": "MIT",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/undici-types/7.24.6 ; dist.integrity sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==",
+      "scope": "WEB-P0 pinned runtime dependency; isolated in PR #504; independent license reviewer approval pending"
+    },
+    {
+      "identity_prefix": "pkg:npm/typescript@5.9.3",
+      "exact_version": "5.9.3",
+      "license": "Apache-2.0",
+      "evidence": "Official npm registry exact-version metadata https://registry.npmjs.org/typescript/5.9.3 ; dist.integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw== ; GitHub Actions job 124537580901 run 41201334936",
+      "scope": "WEB-P0 pruned runtime TS5.9.3 compiler; source license evidence only; independent license security review pending"
     }
   ]
 }
