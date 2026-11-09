@@ -1,0 +1,110 @@
+{
+  "task_id": "FIN-P23-WJ-001",
+  "phase": "P23",
+  "workstream": "WJ",
+  "objective": "Start the separate WEB-P0 non-live code-first frontend foundation without reopening or changing the canonical P23 reference acceptance, and with PR #496 as an explicit pre-merge dependency.",
+  "scope": [
+    "Register a governed WEB-P0 foundation extension distinct from P23 reference validation",
+    "Add apps/web source-only Next App Router layout and canonical P23 token bridge",
+    "Register all 34 WEB-P0 page IDs and proposed routes without implementing visual pages",
+    "Add security-deny-by-default constants, LTR financial islands, unit/static contract tests and isolated CI",
+    "Open one small draft PR; no deployment or baseline promotion"
+  ],
+  "out_of_scope": [
+    "Package dependency freeze, Next/React version pin and browser build before ADR and lockfile",
+    "Any claimed completed page or owner-approved screenshot baseline",
+    "Real BFF/provider/API implementation and authentication",
+    "Changes to frozen master roadmap or canonical P23 conclusion",
+    "Live/Auto trading, broker connections, external orders, production credentials",
+    "Merge without PR #496 review and Owner Human Gate"
+  ],
+  "dependencies": [
+    "P23 reference UX canonical, P23-B tokens authoritative",
+    "Owner grants non-live WEB-P0 development only on 2026-10-31",
+    "PR #496 independent review, Owner Human Gate and canonical merge required before this implementation PR can merge",
+    "No conflicting active lock; any uncertainty is fail-closed",
+    "WEB-P0 page routes remain PROPOSED pending web route ADR"
+  ],
+  "read_paths": [
+    "config/ux/**",
+    "docs/18-ux/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "contracts/tasks/**",
+    "apps/**",
+    "packages/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P23-WJ-001.json",
+    "docs/13-tasks/TASK-CATALOG.md",
+    "docs/18-ux/WEB-P0-FOUNDATION-ADR-001.md",
+    "apps/web/**",
+    "tests/web_p0/**",
+    ".github/workflows/web-p0-foundation.yml"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/MASTER-ROADMAP-v2.0.md",
+    "adapters/**",
+    "packages/risk/**",
+    "packages/pretrade_firewall/**",
+    "packages/execution/**",
+    "secrets/**",
+    "credentials/**",
+    "config/environments/live.json"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Google Drive",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "ACTIONS_READ",
+    "LINEAR_READ",
+    "LINEAR_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "34 unique WEB-P0 page IDs and routes reconcile with Google Docs",
+    "11 P23 root surfaces exist in the route registry or canonical root list",
+    "All 34 screenshots states remain REVIEW_REQUIRED at page level",
+    "Non-live flags are statically disabled and no direct browser provider or BFF proxy is implemented",
+    "Canonical P23 token values mapped by exact equality",
+    "Next.js/React/TS Build Lint Typecheck and Visual Regression remain NOT_RUN until pinned dependencies, owner baselines and suitable environment"
+  ],
+  "security_tests": [
+    "No credentials, tokens, provider SDK imports or browser-to-broker calls",
+    "No Live/Auto/OMS authority or approval despite screenshot completion",
+    "No unreviewed baseline promoted to approved"
+  ],
+  "evidence": [
+    "Draft PR and exact head SHA",
+    "Scaffold static unittest output",
+    "GitHub CI run on that SHA",
+    "PR #496 dependency + Human Gate state",
+    "Postmerge evidence only if genuinely merged"
+  ],
+  "rollback": "Close draft PR, delete unmerged task-scoped branch only on explicit instruction; no effect on main, P23, P24, live systems.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Owner explicit non-live code-foundation authorization; PR #496 unresolved dependency retained",
+    "Task registered with strict boundaries on draft branch"
+  ],
+  "definition_of_done": [
+    "Independent review and Human Gate for PR #496 and this PR",
+    "Canonical TypeScript/Next dependencies fixed in dedicated next checkpoint with reproducible lock and ADR",
+    "All relevant tests PASS before eventual merge",
+    "Postmerge verification and GitHub/Linear reconciliation; no Live/Auto authority"
+  ]
+}
