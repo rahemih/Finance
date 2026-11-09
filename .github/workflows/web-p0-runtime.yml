@@ -1,0 +1,67 @@
+name: WEB-P0 Runtime Frozen Build (DRAFT / NOT ACCEPTANCE)
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/web-p0-runtime.yml'
+      - 'contracts/tasks/FIN-P23-WL-001.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Node exact
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Activate exact pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.28.4 --activate
+          test "$(node --version)" = "v24.21.0"
+          test "$(pnpm --version)" = "11.28.4"
+      - name: Frozen install without lifecycle scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Runtime dependency constraints
+        run: node --test apps/web/tests/runtime-contract.test.mjs
+      - name: Existing WEB-P0 source contract tests
+        run: python3 -m unittest discover -s tests/web_p0 -p 'test_*.py' -v
+      - name: Pinned TypeScript exact typecheck
+        run: pnpm --filter @nexus-quant/web run typecheck
+      - name: Real Next.js build (non-operational root sentinel)
+        run: pnpm --filter @nexus-quant/web run build
+      - name: HTTP non-operational smoke and denied routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          pnpm --dir apps/web exec next start --hostname 127.0.0.1 -p 3100 > "$RUNNER_TEMP/web-next-smoke.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=0
+          for i in $(seq 1 40); do
+            if curl --silent --fail --max-time 2 http://127.0.0.1:3100/ > "$RUNNER_TEMP/web-root.html"; then ready=1; break; fi
+            sleep 1
+          done
+          if [ "$ready" -ne 1 ]; then cat "$RUNNER_TEMP/web-next-smoke.log"; exit 1; fi
+          grep -F 'پیش‌نمایش WEB-P0 هنوز فعال نیست' "$RUNNER_TEMP/web-root.html"
+          grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$RUNNER_TEMP/web-root.html"
+          for path in /auth/login /dashboard /api/v1/orders; do
+            code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 3 "http://127.0.0.1:3100$path")
+            test "$code" = "404" || { echo "$path must remain 404 (got $code)"; exit 1; }
+          done
+          curl --silent --head --fail http://127.0.0.1:3100/ | grep -i '^x-frame-options: DENY'
+      - name: Supply chain audit (HIGH+ fail closed)
+        run: pnpm audit --audit-level high
+      - name: Research exact dependency license metadata (not waiver or approval)
+        run: node apps/web/scripts/collect-npm-license-evidence.mjs
