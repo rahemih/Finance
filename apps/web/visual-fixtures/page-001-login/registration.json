@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "pageId": "001",
+  "pageName": "ورود به حساب کاربری",
+  "routeStatus": "OFFLINE_ONLY_NONOPERATIONAL",
+  "routeTarget": "/auth/login",
+  "routeExposed": false,
+  "source": {
+    "path": "apps/web/visual-fixtures/page-001-login/index.html",
+    "kind": "exact self-contained standalone HTML",
+    "sha256": "cdd9b14a20f444c77ee25b3940b1384441d92ea1e2a3a638f20bd5822bab218e",
+    "embeddedAssets": "two reference-derived WEBP artworks via data URI; no external image fetch"
+  },
+  "visualAuthority": {
+    "document": "NEXUS QUANT — Web Runtime — MASTER WORKING DRAFT v0.8 — Reconciled",
+    "documentUrl": "https://docs.google.com/document/d/19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0/edit",
+    "ownerApproved": "REFERENCE_IMAGES_ONLY",
+    "implementationRegistration": "OWNER_AUTHORIZED_2026-11-02",
+    "pixelComparison": "NOT_CI_CERTIFIED"
+  },
+  "screenshots": [
+    {
+      "screen": "desktop",
+      "width": 1672,
+      "height": 941,
+      "localFile": "NEXUS_QUANT_LOGIN_Desktop_Actual.png",
+      "localSha256": "4fd3273bb30ab17d51e23414189f35a9f8df0a681a4f53cfec0805a08586c30c",
+      "referenceSha256": "576427c0f5f6ce706201c8894c9dd5921db2029cc6eb8ad675289615d64b4780"
+    },
+    {
+      "screen": "tablet",
+      "width": 720,
+      "height": 1860,
+      "localFile": "NEXUS_QUANT_LOGIN_Tablet_Actual.png",
+      "localSha256": "958b80307841bb5bc1eecd3ce1ebdf0ed80a235985e3c926e05e94431cf8ff37",
+      "referenceSha256": "1b7775ce1ea3b7d2d58628746c1285ab263d19ee96d15c282f784cad09b4c3ed"
+    },
+    {
+      "screen": "mobile",
+      "width": 360,
+      "height": 913,
+      "localFile": "NEXUS_QUANT_LOGIN_Mobile_Actual.png",
+      "localSha256": "f2b30fd3c697d23a4b7f188396f7e602ad6f80c972f19c6b86afb8a86d940659",
+      "referenceSha256": "a0e47553c4d5eb342e4536efdd4d02f021837a975d2fa3c1d73a14483e550d74"
+    }
+  ],
+  "governance": {
+    "tradeLive": false,
+    "authLive": false,
+    "backendCalls": false,
+    "credentialsStored": false,
+    "humanGateRequiredForMerge": true,
+    "independentSecurityReviewRequired": true,
+    "upstreamPR": 509,
+    "notes": "Current local screenshots and reference SHA values are registered as metadata only; original PNG bytes are not claimed as source-tracked until binary upload is verified. CI uploads new browser screenshots as GitHub Actions artifacts."
+  }
+}
