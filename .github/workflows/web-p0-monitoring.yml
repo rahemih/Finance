@@ -1,0 +1,31 @@
+name: WEB-P0 P0-B Monitoring Source Checks
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/src/app/dashboard/**'
+      - 'apps/web/src/app/system/**'
+      - 'apps/web/src/components/monitoring/**'
+      - 'apps/web/src/styles/monitoring-preview.css'
+      - 'apps/web/src/lib/monitoring-preview-contract.ts'
+      - 'apps/web/contracts/monitoring-preview-states.json'
+      - 'apps/web/contracts/visual-reference-approval.json'
+      - 'apps/web/tests/monitoring-contract.test.mjs'
+      - 'tests/web_p0/test_monitoring_source.py'
+      - '.github/workflows/web-p0-monitoring.yml'
+permissions: { contents: read }
+jobs:
+  monitoring-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with: {node-version-file: .node-version}
+      - name: Exact Node check
+        run: test "$(node --version)" = "v$(cat .node-version)"
+      - name: P0-B Node source checks
+        run: node --experimental-strip-types --test apps/web/tests/monitoring-contract.test.mjs
+      - name: P0-B Python state/route checks
+        run: python3 -m unittest discover -s tests/web_p0 -p test_monitoring_source.py -v

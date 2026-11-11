@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "status": "SOURCE_PREVIEW_NO_BACKEND_NO_OWNER_UI_ACCEPTANCE",
+  "pageCount": 3,
+  "imageCount": 20,
+  "sourceDocumentId": "19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0",
+  "ownerReferenceDesignApproval": "OWNER_APPROVED_IN_CONVERSATION",
+  "visualBaselineStatus": "PENDING_BYTES_SHA_AND_BROWSER_COMPARISON",
+  "pages": [
+    {
+      "pageId": "010",
+      "route": "/dashboard",
+      "nameFa": "داشبورد",
+      "group": "P0-B",
+      "referenceCount": 7,
+      "readApi": "/api/v1/dashboard/overview",
+      "sourceStatus": "READ_ONLY_PREVIEW",
+      "backendConnection": "NOT_CONNECTED",
+      "visualComparison": "NOT_RUN",
+      "runtimeAuth": "DISABLED",
+      "riskAuthority": false,
+      "tradingAuthority": false
+    },
+    {
+      "pageId": "079",
+      "route": "/system",
+      "nameFa": "سلامت سامانه",
+      "group": "P0-B",
+      "referenceCount": 7,
+      "readApi": "/api/v1/ops/health/summary",
+      "sourceStatus": "READ_ONLY_PREVIEW",
+      "backendConnection": "NOT_CONNECTED",
+      "visualComparison": "NOT_RUN",
+      "runtimeAuth": "DISABLED",
+      "riskAuthority": false,
+      "tradingAuthority": false
+    },
+    {
+      "pageId": "084",
+      "route": "/system/alerts",
+      "nameFa": "مرکز هشدارها",
+      "group": "P0-B",
+      "referenceCount": 6,
+      "readApi": "/api/v1/notifications/in-app",
+      "sourceStatus": "READ_ONLY_PREVIEW",
+      "backendConnection": "NOT_CONNECTED",
+      "visualComparison": "NOT_RUN",
+      "runtimeAuth": "DISABLED",
+      "riskAuthority": false,
+      "tradingAuthority": false
+    }
+  ]
+}
