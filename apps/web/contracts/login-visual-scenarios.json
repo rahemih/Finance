@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "0.1.0-preview-not-baseline",
+  "pageId": "001",
+  "proposedRoute": "/auth/login",
+  "sourceDocument": "https://docs.google.com/document/d/19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0/edit",
+  "visualFidelityContract": "VF-001..VF-010",
+  "ownerBaselineApproved": false,
+  "visualRegressionResult": "NOT_RUN",
+  "assetChecksumStatus": "UNAVAILABLE_NOT_VERIFIED",
+  "scenarios": [
+    {
+      "screenshotId": "001-01",
+      "state": "DEFAULT",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.z2j7aqv9emwt",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-02",
+      "state": "DEFAULT",
+      "viewportWidthPx": 768,
+      "sourceInlineObjectId": "kix.axc15vlt92iw",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-03",
+      "state": "DEFAULT",
+      "viewportWidthPx": 360,
+      "sourceInlineObjectId": "kix.62lgtvviyswf",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-04",
+      "state": "AUTHENTICATING",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.okawp0ob6rh9",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "ACCEPTED_AS_DESIGN_PREVIEW_ONLY",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-05",
+      "state": "INVALID_CREDENTIALS",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.5ratutie1z2f",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "ACCEPTED_AS_DESIGN_PREVIEW_ONLY",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-06",
+      "state": "RATE_LIMITED",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.7i6lwcrq0s77",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-07",
+      "state": "ACCOUNT_RESTRICTED",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.21jnk6dvk8v0",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-08",
+      "state": "SESSION_EXPIRED",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.ggxktz3r5cb1",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-09",
+      "state": "OFFLINE",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.jzvfe99bkrgb",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    },
+    {
+      "screenshotId": "001-10",
+      "state": "SERVICE_UNAVAILABLE",
+      "viewportWidthPx": 1440,
+      "sourceInlineObjectId": "kix.obdm19j1rza8",
+      "source": "Google Docs native image inline object",
+      "ownerReviewStatus": "REVIEW_REQUIRED",
+      "previousVisualFeedback": "NOT_FINAL_APPROVED",
+      "baselineSHA256": null,
+      "baselineFile": null,
+      "visualTest": "NOT_RUN"
+    }
+  ]
+}

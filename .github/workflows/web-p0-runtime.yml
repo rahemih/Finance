@@ -56,7 +56,17 @@ jobs:
           if [ "$ready" -ne 1 ]; then cat "$RUNNER_TEMP/web-next-smoke.log"; exit 1; fi
           grep -F 'پیش‌نمایش WEB-P0 هنوز فعال نیست' "$RUNNER_TEMP/web-root.html"
           grep -Ei 'name="robots" content="noindex[, ]+nofollow"' "$RUNNER_TEMP/web-root.html"
-          for path in /auth/login /dashboard /api/v1/orders; do
+          # PAGE-001 is an explicitly disabled preview on this stacked, unmerged login branch.
+          status=$(curl --silent --output "$RUNNER_TEMP/web-login.html" --write-out '%{http_code}' --max-time 5 http://127.0.0.1:3100/auth/login)
+          test "$status" = "200" || { echo "Expected safe login preview HTTP 200; got $status"; exit 1; }
+          grep -F 'پیش‌نمایش غیرعملیاتی است' "$RUNNER_TEMP/web-login.html"
+          grep -F 'ورود به حساب کاربری' "$RUNNER_TEMP/web-login.html"
+          grep -Eq 'name="robots" content="noindex[, ]+nofollow"' "$RUNNER_TEMP/web-login.html"
+          grep -Eq 'disabled=""|disabled=' "$RUNNER_TEMP/web-login.html"
+          # A browser-visible preview must never become an accepting server-side login endpoint.
+          post=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 5 -X POST http://127.0.0.1:3100/auth/login)
+          test "$post" -ge 400 || { echo "Login POST must be denied; got $post"; exit 1; }
+          for path in /dashboard /api/v1/orders; do
             code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 3 "http://127.0.0.1:3100$path")
             test "$code" = "404" || { echo "$path must remain 404 (got $code)"; exit 1; }
           done

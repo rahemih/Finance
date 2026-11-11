@@ -1,0 +1,44 @@
+name: WEB-P0 Login Source Checks
+
+on:
+  pull_request:
+    paths:
+      - 'apps/web/src/app/auth/login/**'
+      - 'apps/web/src/components/auth/**'
+      - 'apps/web/src/lib/auth/**'
+      - 'apps/web/contracts/login-visual-scenarios.json'
+      - 'apps/web/tests/login-contract.test.mjs'
+      - 'tests/web_p0/test_login_source.py'
+      - '.github/workflows/web-p0-login.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  login-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup exact Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Check Node toolchain version
+        run: test "$(node --version)" = "v$(cat .node-version)"
+      - name: JSON syntax
+        run: python3 -m json.tool apps/web/contracts/login-visual-scenarios.json >/dev/null
+      - name: Python preliminary source contracts
+        run: python3 -m unittest discover -s tests/web_p0 -p 'test_login_source.py' -v
+      - name: Node TypeScript-stripped pure login contract tests
+        run: node --experimental-strip-types --test apps/web/tests/login-contract.test.mjs
+      - name: Run build-aware login contract tests
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.28.4 --activate
+          pnpm install --frozen-lockfile --ignore-scripts
+          pnpm --filter @nexus-quant/web run typecheck
+          pnpm --filter @nexus-quant/web run build
