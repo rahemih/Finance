@@ -5,6 +5,7 @@ on:
       - 'scripts/automation/mission_control_server.py'
       - 'apps/agent-mission-control/**'
       - 'tests/automation/test_mission_control_server.py'
+      - 'tests/automation/test_mission_font_contract.py'
       - 'render.mission-control.yaml'
       - 'Dockerfile.mission-control'
       - '.github/workflows/p24-mission-control.yml'
@@ -29,4 +30,5 @@ jobs:
         run: |
           python -m py_compile scripts/automation/mission_control_server.py scripts/automation/agent_trace.py
           python -m unittest discover -s tests/automation -p test_mission_control_server.py -v
+          python -m unittest discover -s tests/automation -p test_mission_font_contract.py -v
           ! grep -R --include='*.py' 'ENABLE_LIVE' scripts/automation/mission_control_server.py
