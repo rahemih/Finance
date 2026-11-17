@@ -198,11 +198,11 @@ class Handler(BaseHTTPRequestHandler):
     def send(self, code, data):
         body = json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode()
         self.send_response(code)
-        self.headers("application/json; charset=utf-8", len(body))
+        self._out_headers("application/json; charset=utf-8", len(body))
         self.end_headers()
         self.wfile.write(body)
 
-    def headers(self, typ, size=None):
+    def _out_headers(self, typ, size=None):
         self.send_header("Content-Type", typ)
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
@@ -237,7 +237,7 @@ class Handler(BaseHTTPRequestHandler):
             typ = ("text/html; charset=utf-8" if target.suffix == ".html" else
                    "text/css; charset=utf-8" if target.suffix == ".css" else
                    "application/javascript; charset=utf-8")
-            self.send_response(200); self.headers(typ, len(data)); self.end_headers()
+            self.send_response(200); self._out_headers(typ, len(data)); self.end_headers()
             self.wfile.write(data)
             return
         if path == "/api/health":
@@ -270,7 +270,7 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(503, {"error": "too_many_viewers"})
             self.app.subscribers.add(q)
         self.send_response(200)
-        self.headers("text/event-stream; charset=utf-8")
+        self._out_headers("text/event-stream; charset=utf-8")
         self.send_header("X-Accel-Buffering", "no")
         self.end_headers()
         try:
@@ -319,7 +319,7 @@ class Handler(BaseHTTPRequestHandler):
             signature = hmac.new(self.app.session_secret.encode(), expiry.encode(), hashlib.sha256).hexdigest()
             body = b'{"authenticated":true}'
             self.send_response(200)
-            self.headers("application/json; charset=utf-8", len(body))
+            self._out_headers("application/json; charset=utf-8", len(body))
             self.send_header("Set-Cookie", f"nq_view={expiry}.{signature}; HttpOnly; SameSite=Strict; Secure; Path=/")
             self.end_headers()
             self.wfile.write(body)
