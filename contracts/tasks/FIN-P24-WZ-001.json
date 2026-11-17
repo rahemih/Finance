@@ -1,0 +1,103 @@
+{
+  "task_id": "FIN-P24-WZ-001",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Add a scheduled fail-closed read-only GitHub evidence watcher and document bounded A0 autonomous non-live engineering coordination without changing trading state or frozen roadmap.",
+  "scope": [
+    "Introduce deterministic GitHub metadata monitoring four times hourly after protected merge.",
+    "Validate exact-main commit and exact-SHA Governance CI; mark missing evidence NOT_VERIFIED.",
+    "Provide negative tests, report SHA256 digest and short-lived Actions evidence artifact.",
+    "Document bounded hourly ChatGPT engineer coordinator separately from deterministic GitHub watcher."
+  ],
+  "out_of_scope": [
+    "No LLM runtime installation, dependency changes, unrestricted agents or unsupervised code merges.",
+    "No GitHub mutations or Linear writes from read-only scheduled watcher.",
+    "No broker/exchange connection, trading, credentials, live/auto enablement or financial exposure.",
+    "No roadmap mutation, risk/security waiver, P24-B promotion or G13 certification."
+  ],
+  "dependencies": [
+    "FIN-P02-WF-001",
+    "FIN-P01-WO-001",
+    "FIN-P24-WY-001",
+    "ADR-0011"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "docs/19-production/**",
+    "contracts/tasks/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-001.json",
+    "docs/09-agents/automation/FIN-P24-WZ-001.md",
+    "scripts/automation/finance_watch.py",
+    "tests/automation/test_finance_watch.py",
+    ".github/workflows/finance-agent-watch.yml"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "packages/**",
+    "apps/**",
+    "adapters/**",
+    "infra/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "docs/13-tasks/**",
+    "secrets/**",
+    "credentials/**"
+  ],
+  "agents": [
+    "A0",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Run python -m unittest discover -s tests/automation -p test_finance_watch.py -v.",
+    "Run all existing exact-head Governance checks before gated merge.",
+    "Prove GitHub watch workflow permissions are read only.",
+    "Verify scheduled artifacts only on main after merge."
+  ],
+  "security_tests": [
+    "Reject malformed, saturated, missing and stale evidence; fail closed.",
+    "Fail to certify final completion even when exact-main CI succeeds.",
+    "No credentials or account data in watcher output."
+  ],
+  "evidence": [
+    "docs/04-architecture/ADR/ADR-0011-governed-agent-runtime.md",
+    "docs/09-agents/AGENT-REGISTRY.md",
+    "docs/00-governance/AUTOMATION-GOVERNANCE.md",
+    "https://github.com/rahemih/Finance/issues/531"
+  ],
+  "rollback": "Revert only five task-scoped files through authorized PR; disable schedule by reverting workflow.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Canonical A0-A10 contracts and ADR-0011 preserved.",
+    "No trading or critical permissions expansion.",
+    "No known conflicting WZ task; PR branch from main."
+  ],
+  "definition_of_done": [
+    "Code, workflow, contract, docs and tests included in PR.",
+    "Exact-head required CI and exact evidence plus Human Gate before protected merge.",
+    "Exact-main postmerge checks and first scheduled artifact independently verified.",
+    "GitHub and Linear reconciliation recorded (if Linear limits permit).",
+    "No trading or full-project completion asserted."
+  ]
+}
