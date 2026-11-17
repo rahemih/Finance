@@ -1,0 +1,20 @@
+# Zero-cost preview ONLY: sleeps after inactivity; SQLite is ephemeral.
+# Not equivalent to the always-on durable paid render.mission-control.yaml.
+services:
+  - type: web
+    name: nq-agent-mission-preview
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile.mission-control
+    healthCheckPath: /api/health
+    autoDeployTrigger: off
+    envVars:
+      - key: NQ_VIEW_PASSWORD
+        generateValue: true
+      - key: NQ_SESSION_SECRET
+        generateValue: true
+      - key: NQ_INGEST_TOKEN
+        generateValue: true
+      - key: NQ_GITHUB_POLL_SECONDS
+        value: "300"
