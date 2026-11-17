@@ -115,7 +115,7 @@ class State:
         self.view_password = os.getenv("NQ_VIEW_PASSWORD", "")
         self.session_secret = os.getenv("NQ_SESSION_SECRET", "")
         self.ingest_token = os.getenv("NQ_INGEST_TOKEN", "")
-        self.public_origin = os.getenv("NQ_PUBLIC_ORIGIN", "")
+        self.public_origin = os.getenv("NQ_PUBLIC_ORIGIN", "") or os.getenv("RENDER_EXTERNAL_URL", "")
         self.github_token = os.getenv("NQ_GITHUB_TOKEN", "")
         self.github_interval = max(60, int(os.getenv("NQ_GITHUB_POLL_SECONDS", "300")))
         self.github = {"status": "WAITING", "verified_at": None, "runs": [],
