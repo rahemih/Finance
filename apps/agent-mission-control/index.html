@@ -11,6 +11,7 @@
 <script src="app.js" defer></script>
 <script src="trace-ui.js" defer></script>
 <script src="live.js" defer></script>
+<script src="font-control.js" defer></script>
 </head>
 <body>
 <section class="auth-gate" id="auth-gate" hidden aria-label="ورود امن به اتاق فرمان">
@@ -46,7 +47,12 @@
  </aside>
  <main class="main-content" id="overview">
   <header class="topbar"><div class="breadcrumb"><span>Finance</span><span class="slash">/</span><strong>Agent Control Center</strong></div><div class="header-right"><div class="top-clock" id="clock" aria-label="ساعت محلی"></div><span class="user-pill">NQ <span class="user-avatar">A0</span></span></div></header>
-  <div class="inner">
+  <div class="font-setup" aria-label="تنظیم فونت">
+ <button type="button" id="font-upload-button" class="font-setup-button" title="انتخاب فونت ایرانی خودتان بدون ارسال به سرور">Aa · انتخاب فونت Iranian Sans</button>
+ <input type="file" id="font-upload-input" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2" hidden aria-label="انتخاب فونت ارسالی شما" />
+ <span id="font-status" role="status">در حال بررسی فونت محلی…</span>
+ </div>
+ <div class="inner">
    <section class="hero">
     <div><p class="eyebrow"><span class="eyebrow-dot"></span> MISSION CONTROL · FINANCE</p><h1>اتاق فرمان <span>ایجنت‌ها</span></h1><p class="hero-desc">رصد اجرای واقعی، تست‌ها، تغییر کد، خطاها و مسیر رفع مشکل در یک نمای واحد</p></div>
     <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
