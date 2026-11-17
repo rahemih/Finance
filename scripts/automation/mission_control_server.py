@@ -18,6 +18,7 @@ import secrets
 import sqlite3
 import threading
 import time
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 import agent_trace as trace
@@ -228,7 +229,9 @@ class Handler(BaseHTTPRequestHandler):
         return False
 
     def do_GET(self):
-        path = self.path
+        # Separate path from browser-added query strings (e.g. ?utm_source=chatgpt.com).
+        # The existing asset allowlist and API auth checks still apply to the path.
+        path = urlsplit(self.path).path
         if path in ASSETS:
             target = WEB / ASSETS[path]
             try: data = target.read_bytes()
