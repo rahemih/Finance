@@ -2,9 +2,9 @@
 // NEXUS QUANT Mission Control — public GitHub evidence only.
 // No credentials, order API, process control, or assumed agent execution.
 const REPO = 'rahemih/Finance';
-const API = `https://api.github.com/repos/${REPO}`;
+const API = '/api/github';
 const WEB = `https://github.com/${REPO}`;
-const REFRESH_MS = 300_000; // Conservative unauthenticated public GitHub API budget.
+// The same-origin SSE stream is the automatic refresh mechanism.
 const AGENTS = [
  ['A0','هماهنگ‌کننده مرکزی','مدیریت وظایف و مسیر کار'],
  ['A1','معماری و مهندسی','طراحی سیستم و کدنویسی'],
@@ -51,8 +51,8 @@ const SNAPSHOT = Object.freeze({
  ]
 });
 const state = {
- runs:SNAPSHOT.runs, prs:SNAPSHOT.prs, issues:SNAPSHOT.issues,
- source:'snapshot', lastVerified:null, error:null,
+ runs:[], prs:[], issues:[],
+ source:'waiting', lastVerified:null, error:null,
  selectedRun:null, selectedPR:null, currentFilter:'all', jobs:[], loadedJobsFor:null,
  latestRequest:0, isLoading:false, jobRequest:0, filesRequest:0
 };
@@ -81,36 +81,31 @@ function renderIssues(){const failures=state.runs.filter(x=>jobStatus(x)==='fail
  const issues=state.issues.slice(0,16).map(i=>`<article class="issue-item"><div class="issue-title"><a href="${issueUrl(i.number)}" target="_blank" rel="noopener noreferrer">${escapeHtml(i.title)}</a></div><div class="issue-sub"><span class="tiny-tag warn">OPEN ISSUE</span><span class="ltr">#${escapeHtml(i.number)}</span><span>${escapeHtml(formatDate(i.updated_at))}</span></div></article>`);
  $('issue-list').innerHTML=[...failures,...issues].join('')||'<div class="empty-state">باگ یا Issue باز ثبت‌شده‌ای دیده نشد.</div>';}
 function renderSource(){let text,led;
- if(state.source==='live'){text=`داده GitHub دریافت شد · ${formatDate(state.lastVerified)}`;led='good';$('freshness').textContent=`● اتصال واقعی · آخرین واکشی ${formatDate(state.lastVerified)}`;$('truth-text').textContent='اطلاعات Workflowها، PRها و Issueها از GitHub عمومی خوانده شده‌اند. وضعیت A0 تا A10 تا زمان اتصال تله‌متری اجرای مستقل، ناشناخته است. این صفحه فقط مشاهده می‌کند، نه کدنویسی یا معامله.';}
- else{text='آخرین نمونه تاریخ‌دار · ارتباط زنده برقرار نیست';led='amber';$('freshness').textContent=`◌ نمای داده تاریخی ${formatDate(SNAPSHOT.captured_at)}`;$('truth-text').textContent='اخطار: اکنون داده‌های تاریخ‌دار ۱۷ نوامبر ۲۰۲۶ نمایش داده می‌شوند و وضعیت فعلی را ثابت نمی‌کنند. برای مشاهده واقعی، اتصال به api.github.com لازم است. هیچ ایجنتی بدون تله‌متری «فعال» فرض نمی‌شود.';}
+ if(state.source==='live'){text=`داده GitHub دریافت شد · ${formatDate(state.lastVerified)}`;led='good';$('freshness').textContent=`● اتصال واقعی · آخرین واکشی ${formatDate(state.lastVerified)}`;$('truth-text').textContent='اطلاعات Workflowها، PRها و Issueها از API سرور واکشی شده‌اند. وضعیت A0 تا A10 تا زمان اتصال تله‌متری اجرای مستقل، ناشناخته است. این صفحه فقط مشاهده می‌کند، نه کدنویسی یا معامله.';}
+ else{text='اتصال API در انتظار داده یا قطع شده';led='amber';$('freshness').textContent='◌ اتصال دوباره خودکار';$('truth-text').textContent='داده زنده در دسترس یا تأیید نشده است؛ فعالیت فرضی نمایش داده نمی‌شود و اتصال خودکار دوباره برقرار خواهد شد.';}
  $('github-source').textContent=text;$('github-led').className='source-led '+led;
  if(state.error){$('freshness').title=state.error;$('truth-banner').style.borderColor='#77464a';}else{$('truth-banner').style.borderColor='';$('freshness').title='';}
- $('footer-meta').textContent=state.source==='live'?'داده GitHub تأییدشده · بدون دسترسی نوشتن · واکشی هر ۵ دقیقه':'حالت داده تاریخی · بدون تأیید وضعیت لحظه‌ای';}
+ $('footer-meta').textContent=state.source==='live'?'API و GitHub متصل · جریان زنده SSE':'در انتظار اتصال امن · بدون گزارش فعالیت فرضی';}
 function render(){renderStats();renderSource();renderRuns();renderPRs();renderIssues()}
-async function api(path){const ctrl=new AbortController();const timeout=setTimeout(()=>ctrl.abort(),13000);try{
- const response=await fetch(`${API}${path}`,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},signal:ctrl.signal,cache:'no-store'});
- if(!response.ok){const remain=response.headers.get('x-ratelimit-remaining');const msg=response.status===403||response.status===429?'سهمیه GitHub یا دسترسی API محدود شده':`پاسخ GitHub: ${response.status}`;throw new Error(remain==='0'?'سهمیه عمومی GitHub API به پایان رسیده':msg)}
- return response.json();
- }finally{clearTimeout(timeout)} }
-function mustList(val,label){if(!Array.isArray(val))throw new Error(`فرمت ${label} معتبر نیست`);return val}
-async function refresh({initial=false}={}){if(state.isLoading)return;state.isLoading=true;const button=$('refresh-btn');button.disabled=true;button.textContent='◌ در حال بررسی…';const request=++state.latestRequest;
- try{const [runs,prs,issues]=await Promise.all([
- api('/actions/runs?per_page=25'),api('/pulls?state=open&per_page=50'),api('/issues?state=open&per_page=50')
- ]);
- if(request!==state.latestRequest)return;
- const r=mustList(runs.workflow_runs,'Workflow');const p=mustList(prs,'Pull Requests');const i=mustList(issues,'Issues');
- if(r.length===25||p.length===50||i.length===50)throw new Error('فهرست به سقف یک صفحه رسیده؛ شمارش کامل قابل تأیید نیست');
- state.runs=r;state.prs=p;state.issues=i.filter(x=>!x.pull_request);state.source='live';state.lastVerified=new Date().toISOString();state.error=null;
- render();if(state.selectedRun && state.runs.some(x=>x.id===state.selectedRun))void selectRun(state.selectedRun,{noRender:true});
- }catch(err){state.error=(err&&err.message)||'خطای دریافت داده';if(!initial){$('truth-text').textContent=`اتصال با خطا مواجه شد: ${state.error}. داده‌ها تازه نیستند و نباید برای تصمیم‌گیری به‌عنوان وضعیت فعلی استفاده شوند.`;state.source='snapshot';state.runs=SNAPSHOT.runs;state.prs=SNAPSHOT.prs;state.issues=SNAPSHOT.issues;state.selectedRun=null;state.jobs=[];render();}else{render()}}
- finally{state.isLoading=false;button.disabled=false;button.innerHTML='<span>⟳</span> دریافت آخرین وضعیت';}}
+async function api(path){
+ const ctrl=new AbortController(),tid=setTimeout(()=>ctrl.abort(),14000);
+ try {const r=await fetch(API+path,{signal:ctrl.signal,cache:'no-store'});
+  if(!r.ok)throw new Error('API '+r.status);const payload=await r.json();
+  return path.endsWith('/files')?payload.files:payload;
+ }finally{clearTimeout(tid)}
+}
+function mustList(v,label){if(!Array.isArray(v))throw new Error('Invalid '+label);return v}
+async function refresh(){const r=await fetch('/api/state',{cache:'no-store'});
+ if(!r.ok)throw new Error('API '+r.status);
+ if(window.nexusApplySnapshot)await window.nexusApplySnapshot(await r.json());
+}
 async function selectRun(id,{noRender=false}={}){if(!validId(id))return;state.selectedRun=id;const run=state.runs.find(r=>r.id===id);if(!run)return;
  if(!noRender)renderRuns();$('inspector-subtitle').textContent=run.name||'گزارش اجرا';$('inspector-link').href=runUrl(id);$('inspector-context').textContent=`GitHub Actions #${id}`;
  const isHistorical=state.source!=='live';
  $('inspector').innerHTML=`<div class="inspector-title">${escapeHtml(run.name||'Workflow')}</div><div class="inspector-details">run #${escapeHtml(id)} · ${escapeHtml(jobStatus(run))} · ${escapeHtml(hash(run.head_sha))} · ${escapeHtml(formatDate(run.created_at))}</div><div class="empty-state">${isHistorical?'گزارش مرحله‌های این اجرای تاریخی بدون اتصال شبکه قابل واکشی نیست.':'در حال واکشی مراحل و تست‌های واقعی…'}</div>`;
  if(isHistorical)return;
  const current=++state.jobRequest;
- try{const result=await api(`/actions/runs/${id}/jobs?per_page=100`);if(current!==state.jobRequest||state.selectedRun!==id)return;
+ try{const result=await api(`/actions/runs/${id}/jobs`);if(current!==state.jobRequest||state.selectedRun!==id)return;
  if(!Array.isArray(result.jobs))throw new Error('فهرست Job معتبر نیست');if(result.jobs.length>=100)throw new Error('Jobهای این اجرا بیش از یک صفحه است');state.jobs=result.jobs;state.loadedJobsFor=id;
  const rendered=state.jobs.map(job=>{const stages=Array.isArray(job.steps)?job.steps:[];
  return `<div class="inspector-title" style="margin-top:14px">${escapeHtml(job.name||'Job')} <span class="run-state ${jobStatus(job)}">${stateLabel(jobStatus(job))}</span></div>${stages.map(step=>{const s=jobStatus(step);return `<div class="step"><span class="step-symbol ${s}">${statusSymbol(s)}</span><div class="step-details"><div class="step-name">${escapeHtml(step.name||'مرحله بدون نام')}</div><div class="step-info">${escapeHtml(s)} · ${escapeHtml(formatDate(step.started_at))}</div></div></div>`}).join('')||'<div class="muted">برای این Job اطلاعات قدم‌ها گزارش نشده است.</div>'}`;
@@ -121,11 +116,11 @@ async function selectRun(id,{noRender=false}={}){if(!validId(id))return;state.se
 async function selectPR(id){if(!validId(id))return;state.selectedPR=id;const panel=$('file-panel');panel.innerHTML=`<div class="file-loading">در حال بررسی فایل‌های PR #${id}…</div>`;
  if(state.source!=='live'){panel.innerHTML=`<div class="muted">در حالت داده تاریخی، نام فایل‌ها بارگیری نمی‌شوند. <a href="${prUrl(id)}/files" target="_blank" rel="noopener noreferrer">مشاهده تغییرات در GitHub ↗</a></div>`;return;}
  const current=++state.filesRequest;
- try{const files=mustList(await api(`/pulls/${id}/files?per_page=100`),'Files');if(current!==state.filesRequest||state.selectedPR!==id)return;if(files.length>=100)throw new Error('فهرست فایل‌ها بیش از یک صفحه است');
+ try{const files=mustList(await api(`/pulls/${id}/files`),'Files');if(current!==state.filesRequest||state.selectedPR!==id)return;if(files.length>=100)throw new Error('فهرست فایل‌ها بیش از یک صفحه است');
  panel.innerHTML=`<div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><strong>فایل‌های تغییریافته در PR #${id}</strong><a href="${prUrl(id)}/files" target="_blank" rel="noopener noreferrer">دیدن کد و Diff ↗</a></div>${files.slice(0,20).map(f=>`<div class="file-entry"><span class="file-status ${escapeHtml(f.status==='added'?'added':f.status==='removed'?'removed':'')}">${escapeHtml(f.status||'modified')}</span><span>${escapeHtml(f.filename||'نامشخص')}</span><span class="muted">+${Number(f.additions)||0}/-${Number(f.deletions)||0}</span></div>`).join('')}${files.length>20?`<div>و ${files.length-20} فایل دیگر در GitHub…</div>`:''}`;
  }catch(err){panel.innerHTML=`<div class="error-text">دریافت فایل‌ها ناموفق بود: ${escapeHtml(err.message||'خطای نامعلوم')}</div><a href="${prUrl(id)}/files" target="_blank" rel="noopener noreferrer">باز کردن PR در GitHub ↗</a>`;}
 }
-function bind(){ $('refresh-btn').addEventListener('click',()=>refresh());$('run-tabs').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{state.currentFilter=btn.dataset.filter;$('run-tabs').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));renderRuns()}));
+function bind(){ $('refresh-btn').addEventListener('click',()=>{void refresh().catch(err=>{state.error=String(err);renderSource();});});$('run-tabs').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{state.currentFilter=btn.dataset.filter;$('run-tabs').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b===btn));renderRuns()}));
  document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav-link').forEach(x=>x.classList.toggle('active',a===x))}));}
-function start(){clock();setInterval(clock,30000);renderAgents();render();bind();void refresh({initial:true});setInterval(()=>{if(document.visibilityState==='visible')void refresh()},REFRESH_MS)}
+function start(){clock();setInterval(clock,30000);renderAgents();render();bind();}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
