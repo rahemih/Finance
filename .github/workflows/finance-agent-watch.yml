@@ -1,0 +1,52 @@
+name: Finance Agent Read-Only Watch
+
+on:
+  pull_request:
+    paths:
+      - scripts/automation/finance_watch.py
+      - tests/automation/test_finance_watch.py
+      - contracts/tasks/FIN-P24-WZ-001.json
+      - docs/09-agents/automation/FIN-P24-WZ-001.md
+      - .github/workflows/finance-agent-watch.yml
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  issues: read
+  pull-requests: read
+
+concurrency:
+  group: finance-agent-watch-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  read_only_watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Test fail-closed watcher offline
+        run: python -m unittest discover -s tests/automation -p 'test_finance_watch.py' -v
+      - name: Gather bounded current GitHub evidence
+        if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/automation/finance_watch.py --output build/finance-agent-watch/report.json
+      - name: Upload read-only evidence
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: finance-agent-watch-${{ github.run_id }}
+          path: build/finance-agent-watch/report.json
+          if-no-files-found: error
+          retention-days: 7
