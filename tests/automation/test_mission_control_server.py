@@ -94,6 +94,39 @@ class HttpTests(unittest.TestCase):
             self.assertEqual(state["github"]["status"],"WAITING")
             self.assertEqual(state["trace"]["events"],[])
 
+    def test_homepage_with_external_tracking_query(self):
+        # A ChatGPT link can add ?utm_source=chatgpt.com; the homepage must remain public.
+        url = "http://127.0.0.1:%d/?utm_source=chatgpt.com" % self.srv.server_port
+        with urlopen(url, timeout=4) as response:
+            self.assertEqual(response.status, 200)
+            self.assertIn("text/html", response.headers.get("Content-Type", ""))
+            self.assertIn(b"<!doctype html>", response.read(256).lower())
+
+    def test_allowlisted_assets_with_queries(self):
+        base = "http://127.0.0.1:%d" % self.srv.server_port
+        for path, expected in (
+            ("/index.html?utm_source=chatgpt.com", "text/html"),
+            ("/styles.css?v=2", "text/css"),
+            ("/font-control.js?v=2", "application/javascript"),
+        ):
+            with self.subTest(path=path), urlopen(base + path, timeout=4) as response:
+                self.assertEqual(response.status, 200)
+                self.assertIn(expected, response.headers.get("Content-Type", ""))
+
+    def test_api_auth_not_bypassed_with_query(self):
+        # Path normalization must not accidentally authorize private APIs.
+        self.srv.app.view_password = "protected-in-test"
+        url = "http://127.0.0.1:%d/api/state?utm_source=chatgpt.com" % self.srv.server_port
+        with self.assertRaises(HTTPError) as err:
+            urlopen(url, timeout=4)
+        self.assertEqual(err.exception.code, 401)
+
+    def test_unknown_route_with_query_remains_not_found(self):
+        url = "http://127.0.0.1:%d/not-an-asset?utm_source=chatgpt.com" % self.srv.server_port
+        with self.assertRaises(HTTPError) as err:
+            urlopen(url, timeout=4)
+        self.assertEqual(err.exception.code, 404)
+
     def test_unlisted_path_rejected(self):
         with self.assertRaises(HTTPError) as err:
             urlopen("http://127.0.0.1:%d/scripts/automation/agent_trace.py"%self.srv.server_port,timeout=4)
