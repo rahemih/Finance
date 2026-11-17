@@ -1,0 +1,105 @@
+{
+  "task_id": "FIN-P24-WZ-002",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Add safe agent event telemetry and a Persian viewer that separates public GitHub CI events from imported self-reported non-live agent traces.",
+  "scope": [
+    "Introduce a bounded, standard-library append-only hash-chain agent event recorder with cross-process locking.",
+    "Implement strict event schema and negative tests for tampering, secrets, path traversal and financial mode.",
+    "Add a standalone RTL dark read-only browser viewer of public GitHub actions and manually imported, independently verified event-chain data.",
+    "Implement scoped CI tests; do not claim autonomous agent runtime is running."
+  ],
+  "out_of_scope": [
+    "No live or automatic trading, deposits, withdrawals, broker/exchange API or real account access.",
+    "No automatic credential processing or external trading commands.",
+    "No unbounded specialist spawning, governance bypass or model runtime installation.",
+    "No production deployment, paid infrastructure, secret-bearing telemetry uploads or fabricated agent activity.",
+    "No changes to P04/F license gates, A5/A8 vetoes, frozen roadmap or existing Human Gates."
+  ],
+  "dependencies": [
+    "FIN-P02-WF-001",
+    "FIN-P01-WO-001",
+    "FIN-P24-WZ-001 (governed watcher PR #532; conceptual, not a code dependency)"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/09-agents/**",
+    "config/ux/design-system.json",
+    "docs/01-roadmap/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-002.json",
+    "docs/09-agents/automation/FIN-P24-WZ-002.md",
+    "scripts/automation/agent_trace.py",
+    "tests/automation/test_agent_trace.py",
+    "tests/automation/test_trace_browser.js",
+    "apps/agent-mission-control/index.html",
+    "apps/agent-mission-control/app.js",
+    "apps/agent-mission-control/styles.css",
+    "apps/agent-mission-control/trace-ui.js",
+    ".github/workflows/p24-agent-telemetry.yml"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "adapters/**",
+    "packages/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "secrets/**",
+    "credentials/**",
+    "apps/web/**"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED",
+    "CI_READ",
+    "LINEAR_READ"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "python -m unittest discover -s tests/automation -p test_agent_trace.py -v",
+    "node tests/automation/test_trace_browser.js",
+    "node --check apps/agent-mission-control/app.js",
+    "node --check apps/agent-mission-control/trace-ui.js",
+    "GitHub exact-head Governance Verify on this branch"
+  ],
+  "security_tests": [
+    "Reject Live mode and unsupported trading actions.",
+    "Reject attempts to record tokens/credentials or sensitive paths.",
+    "Detect changed or missing chain entries.",
+    "Reject fabricated agent event state without imported verified trace.",
+    "Never authenticate agent identity based solely on JSON or local hash chain."
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/pull/532",
+    "docs/04-architecture/ADR/ADR-0011-governed-agent-runtime.md",
+    "docs/09-agents/AGENT-REGISTRY.md"
+  ],
+  "rollback": "Revert only the ten new WZ-002 scoped files by a governed PR; no trading state affected.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "No financial activation; only public read-only CI and offline trace import.",
+    "Exact WZ-002 task isolation from WZ-001 and existing WEB-P0."
+  ],
+  "definition_of_done": [
+    "All scoped files in a reviewable PR.",
+    "Exact-head tests/CI and independent review complete.",
+    "Required owner-specific merge gate, protected merge and postmerge evidence verified.",
+    "GitHub and Linear workstream checkpoint synchronized; no full-project-complete claim."
+  ]
+}
