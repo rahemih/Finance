@@ -31,7 +31,7 @@
       $('control-next-link').href='https://github.com/rahemih/Finance';
       $('control-next-link').textContent='مشاهده مخزن Finance';
     }
-    let message='با Start، یک بررسی واقعی فقط‌خواندنی آغاز می‌شود؛ توسعه خودکار کد نیازمند اتصال Runner است.';
+    let message='با این دکمه فقط بررسی واقعی GitHub آغاز می‌شود. ایجنت ChatGPT هر ساعت مستقلاً کدنویسی و تست را با ابزارهای متصل انجام می‌دهد؛ شروع فوری آن از این سایت ممکن نیست.';
     if(status==='RUNNING')message='در حال بررسی آخرین main، PRها، Issueها و شواهد CI — گزارش مراحل در دفتر رویدادها نمایش داده می‌شود.';
     if(status==='RETRYING')message='یک خطای موقت رخ داده است. سرویس با سقف سه تلاش، بدون ایجاد تغییر در مخزن، دوباره بررسی می‌کند.';
     if(status==='AUDIT_COMPLETE')message='نقطه ادامه و موانع شناسایی شدند. این اجرای بررسی، کدنویسی یا رفع باگ مستقل انجام نمی‌دهد.';
@@ -41,7 +41,7 @@
     const btn=$('control-start');
     btn.disabled=busy||inFlight;
     btn.setAttribute('aria-busy',String(busy||inFlight));
-    btn.textContent=busy?'در حال بررسی…':'▶ شروع بررسی و ادامه پروژه';
+    btn.textContent=busy?'در حال بررسی…':'▶ بررسی فوری وضعیت پروژه';
   }
   window.nexusControlApply=show;
   async function send(){
