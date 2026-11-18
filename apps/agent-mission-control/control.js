@@ -63,7 +63,7 @@
     }finally{
       inFlight=false;
       try{const r=await fetch('/api/control',{cache:'no-store'});if(r.ok)show(await r.json())}catch{}
-      button.disabled=false;
+      button.disabled=['RUNNING','RETRYING'].includes((await (await fetch('/api/control',{cache:'no-store'})).json()).status);
     }
   }
   function init(){
