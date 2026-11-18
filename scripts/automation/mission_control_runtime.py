@@ -95,9 +95,18 @@ class ResumeAudit:
         try:
             return self.github_get(path)
         except HTTPError as exc:
-            # Avoid burning the API quota on a retry when GitHub says forbidden.
-            if exc.code in (401, 403, 404, 422):
-                raise AuditError("GitHub permission, authentication or rate limit blocked audit") from exc
+            # Do not retry rejected requests. Distinguish a confirmed rate
+            # limit from a 403 whose cause cannot be reliably established.
+            headers = exc.headers
+            remaining = headers.get("X-RateLimit-Remaining") if headers else None
+            if exc.code == 429 or (exc.code == 403 and remaining == "0"):
+                raise AuditError("GitHub anonymous hourly read rate limit exhausted") from exc
+            if exc.code == 401:
+                raise AuditError("GitHub authentication denied; audit cannot verify data") from exc
+            if exc.code == 403:
+                raise AuditError("GitHub permission or rate limit blocked audit (cause unverified)") from exc
+            if exc.code in (404, 422):
+                raise AuditError("Required GitHub evidence endpoint was rejected") from exc
             raise
         except (URLError, TimeoutError, OSError, HTTPException):
             raise
