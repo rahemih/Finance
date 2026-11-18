@@ -101,7 +101,7 @@ class EndToEndSimulation(unittest.TestCase):
                 publish=ov.publish_check(proposal_file,report_file,verified_file,head=sha)
                 ov.apply_proposal(proposal_file,report_file,head=sha)
             self.assertEqual(publish["review"],"NOT_VERIFIED")
-            status=call_command(root,["git","status","--short"])
+            status=call_command(root,["git","status","--short","--untracked-files=all"])
             self.assertIn("scripts/dev/common.py",status)
             self.assertIn("tests/foundation/test_dev_common.py",status)
             self.assertNotIn("credentials",status)
