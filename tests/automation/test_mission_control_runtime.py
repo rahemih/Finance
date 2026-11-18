@@ -83,8 +83,8 @@ class ResumeAuditTests(unittest.TestCase):
             "issues": [{"number": 530, "title": "P04-F SBOM license blocker"}],
             "prs": [{"number": 535, "title": "Mission Control API"}]
         }
-        audit=ResumeAudit(forbidden_extra,lambda *args:self.events.append(args),
-                          lambda *args:self.published.append(args),
+        audit=ResumeAudit(forbidden_extra,lambda *args:None,
+                          lambda *args:None,
                           inventory_snapshot=lambda:dict(cache),delay=lambda _:None)
         code,_=audit.start()
         done=finish(audit)
@@ -106,8 +106,8 @@ class ResumeAuditTests(unittest.TestCase):
         def fresh_source(path):
             calls.append(path)
             return github_fixture(path)
-        audit=ResumeAudit(fresh_source,lambda *args:self.events.append(args),
-                          lambda *args:self.published.append(args),
+        audit=ResumeAudit(fresh_source,lambda *args:None,
+                          lambda *args:None,
                           inventory_snapshot=lambda:dict(bad_cache),delay=lambda _:None)
         audit.start()
         done=finish(audit)
