@@ -99,7 +99,7 @@ jobs:
           import json, os
           from pathlib import Path
           report = json.loads(Path('build/finance-coder/report.json').read_text())
-          ready = report.get('status') == 'READY_FOR_PR_REVIEW' and report.get('tests_pass') is True
+          ready = report.get('status') == 'CANDIDATE_UNTESTED' and report.get('tests_pass') is False
           if ready and not Path('build/finance-coder/change.patch').is_file():
               raise SystemExit('Patch evidence missing')
           with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
@@ -116,9 +116,71 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
-  publish:
+  validate:
     needs: generate
     if: needs.generate.outputs.ready == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      ready: ${{ steps.verified.outputs.ready }}
+    steps:
+      - name: Checkout canonical source without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Set exact Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Download untrusted candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/finance-coder
+          gh run download "${GITHUB_RUN_ID}" --repo rahemih/Finance \
+            --name "fin-p24-wz-005-${GITHUB_RUN_ID}" --dir build/finance-coder
+      - name: Validate model patch without executing it
+        run: |
+          python scripts/automation/coder_publish_guard.py \
+            --report build/finance-coder/report.json \
+            --patch build/finance-coder/change.patch \
+            --main-sha "${GITHUB_SHA}" --pretest
+      - name: Run model-written tests WITHOUT Copilot token or publish permission
+        run: |
+          python -m unittest discover -s tests/foundation -p 'test_*.py' -v
+      - name: Mark patch independently tested
+        id: verified
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path=Path('build/finance-coder/report.json')
+          result=json.loads(path.read_text(encoding='utf-8'))
+          if result.get('status') != 'CANDIDATE_UNTESTED' or result.get('tests_pass') is not False:
+              raise SystemExit('Candidate not in untested state')
+          result['status']='READY_FOR_PR_REVIEW'
+          result['tests_pass']=True
+          result['test_environment']='SEPARATE_CREDENTIAL_FREE_ACTIONS_JOB'
+          path.write_text(json.dumps(result,sort_keys=True,indent=2)+'\n',encoding='utf-8')
+          PY
+          echo 'ready=true' >> "${GITHUB_OUTPUT}"
+      - name: Upload verified patch and independent test evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fin-p24-wz-005-verified-${{ github.run_id }}
+          path: |
+            build/finance-coder/report.json
+            build/finance-coder/change.patch
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: validate
+    if: needs.validate.outputs.ready == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -141,7 +203,7 @@ jobs:
         run: |
           mkdir -p build/finance-coder
           gh run download "${GITHUB_RUN_ID}" --repo "rahemih/Finance" \
-            --name "fin-p24-wz-005-${GITHUB_RUN_ID}" --dir build/finance-coder
+            --name "fin-p24-wz-005-verified-${GITHUB_RUN_ID}" --dir build/finance-coder
       - name: Reconcile original main and deduplicate
         id: dedup
         env:
