@@ -6,6 +6,7 @@ on:
       - 'scripts/automation/openai_coder.py'
       - 'scripts/automation/openai_verify.py'
       - 'tests/automation/test_openai_coder.py'
+      - 'tests/automation/test_openai_runner_e2e.py'
       - 'docs/09-agents/automation/tasks/FIN-P24-WZ-008.json'
       - '.github/workflows/finance-openai-builder.yml'
       - '.github/workflows/finance-openai-builder-contract.yml'
@@ -37,6 +38,7 @@ jobs:
           python -m json.tool docs/09-agents/automation/tasks/FIN-P24-WZ-008.json >/dev/null
       - name: Run all strict offline negative/operational tests
         run: python -m unittest discover -s tests/automation -p 'test_openai_coder.py' -v
+          python -m unittest discover -s tests/automation -p 'test_openai_runner_e2e.py' -v
       - name: Verify hard-separated model/test/publisher workflows
         run: |
           python - <<'PY'
