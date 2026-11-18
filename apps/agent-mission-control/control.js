@@ -10,10 +10,12 @@
     BLOCKED:'متوقف در مانع معتبر'
   };
   let inFlight=false;
+  let lastStatus='IDLE';
   const allowUrl=value=>typeof value==='string'&&/^https:\/\/github\.com\/rahemih\/Finance(?:\/|$)/.test(value);
   function show(control){
     if(!control||control.mode!=='READ_ONLY_RESUME_AUDIT')return;
     const status=control.status||'IDLE', busy=['RUNNING','RETRYING'].includes(status);
+    lastStatus=status;
     $('control-status').textContent=phases[status]||'نامعلوم';
     $('control-status').dataset.level=busy?'running':status==='BLOCKED'?'blocked':status==='AUDIT_COMPLETE'?'complete':'idle';
     $('control-run').textContent=control.run_id||'—';
@@ -63,7 +65,7 @@
     }finally{
       inFlight=false;
       try{const r=await fetch('/api/control',{cache:'no-store'});if(r.ok)show(await r.json())}catch{}
-      button.disabled=['RUNNING','RETRYING'].includes((await (await fetch('/api/control',{cache:'no-store'})).json()).status);
+      button.disabled=['RUNNING','RETRYING'].includes(lastStatus);
     }
   }
   function init(){
