@@ -1,0 +1,32 @@
+{
+  "schema": "nq.autocode.task.v1",
+  "task_id": "FIN-P24-WZ-008",
+  "repo": "rahemih/Finance",
+  "mode": "DEMO_ONLY",
+  "objective": "Harden scripts/dev/common.py: subprocess failures must not leak command arguments or credentials via ToolingError messages; keep diagnostics actionable but secret-safe. Add deterministic tests covering failing capture/live invocations and missing executables, preserving all existing behavior.",
+  "allowed_paths": [
+    "scripts/dev/common.py",
+    "tests/foundation/test_dev_common.py"
+  ],
+  "read_paths": [
+    "scripts/dev/common.py",
+    "tests/foundation/test_harness.py"
+  ],
+  "test_command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/foundation",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "max_output_bytes_per_file": 20000,
+  "max_attempts": 2,
+  "merge_policy": "DRAFT_PR_ONLY",
+  "auth_policy": "OPENAI_API_KEY_PRODUCER_ONLY",
+  "independent_review": "A5_A8_A10_AND_OWNER_GATES_REQUIRED",
+  "no_live_trading": true
+}
