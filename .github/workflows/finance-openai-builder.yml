@@ -1,0 +1,221 @@
+name: Finance Direct OpenAI Governed Builder
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '26 3 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: finance-direct-openai-builder-main
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      proceed: ${{ steps.scope.outputs.proceed }}
+    steps:
+      - name: Check for another open PR on the same task
+        id: scope
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from urllib.request import Request, urlopen
+          url = ('https://api.github.com/search/issues?q=repo%3Arahemih%2FFinance'
+                 '+is%3Apr+is%3Aopen+FIN-P24-WZ-008+in%3Atitle&per_page=100')
+          req = Request(url, headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],
+                     'Accept':'application/vnd.github+json','User-Agent':'nq-openai-builder'})
+          with urlopen(req, timeout=20) as response:
+              payload=json.load(response)
+          if type(payload.get('total_count')) is not int:
+              raise SystemExit('Unverified GitHub inventory')
+          proceed=payload['total_count']==0
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as fh:
+              fh.write('proceed='+str(proceed).lower()+'\n')
+          print('CODER_PREFLIGHT=' + ('READY' if proceed else 'DUPLICATE_TASK_BLOCKED'))
+          PY
+
+  propose:
+    needs: preflight
+    if: needs.preflight.outputs.proceed == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    outputs:
+      candidate: ${{ steps.status.outputs.candidate }}
+    steps:
+      - name: Checkout trusted main without persistent GitHub credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Setup pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Validate trusted script and limits
+        run: |
+          python -m py_compile scripts/automation/openai_coder.py scripts/automation/openai_verify.py
+          python -m unittest discover -s tests/automation -p 'test_openai_coder.py' -v
+      - name: Generate fixed-scope code proposal using OpenAI Responses API
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          NQ_OPENAI_MODEL: ${{ vars.NQ_OPENAI_MODEL || 'gpt-6-astra' }}
+        run: |
+          python scripts/automation/openai_coder.py \
+            --proposal build/finance-agent/proposal.json \
+            --report build/finance-agent/generation.json
+      - name: Determine whether an actual model proposal exists
+        id: status
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          result=json.loads(Path('build/finance-agent/generation.json').read_text())
+          ready=result['status']=='CANDIDATE_UNTESTED' and Path('build/finance-agent/proposal.json').is_file()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as file:
+              file.write('candidate='+str(ready).lower()+'\n')
+          print('OPENAI_CANDIDATE=' + str(ready).lower())
+          PY
+      - name: Save bounded evidence (not full model prompt)
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: nq-direct-candidate-${{ github.run_id }}
+          path: build/finance-agent/
+          retention-days: 7
+          if-no-files-found: error
+
+  validate:
+    needs: propose
+    if: needs.propose.outputs.candidate == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      verified: ${{ steps.success.outputs.verified }}
+    steps:
+      - name: Checkout trusted main without persisted credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Setup pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Download exact run candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/finance-agent
+          gh run download "${GITHUB_RUN_ID}" --repo rahemih/Finance \
+            --name "nq-direct-candidate-${GITHUB_RUN_ID}" --dir build/finance-agent
+      - name: Validate model files without running them
+        run: |
+          python scripts/automation/openai_verify.py apply \
+            --proposal build/finance-agent/proposal.json \
+            --candidate build/finance-agent/generation.json --sha "${GITHUB_SHA}"
+      - name: Execute generated tests without ANY model key or GitHub write token
+        run: python -m unittest discover -s tests/foundation -p 'test_*.py' -v
+      - name: Record only actual independent passing tests
+        id: success
+        run: |
+          python scripts/automation/openai_verify.py finalize \
+            --proposal build/finance-agent/proposal.json \
+            --candidate build/finance-agent/generation.json \
+            --verified build/finance-agent/verified.json --sha "${GITHUB_SHA}"
+          echo 'verified=true' >> "${GITHUB_OUTPUT}"
+      - name: Preserve approved test evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: nq-direct-verified-${{ github.run_id }}
+          path: build/finance-agent/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: validate
+    if: needs.validate.outputs.verified == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Checkout original code with no stored credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Setup pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Download verified artifact from this exact run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/finance-agent
+          gh run download "${GITHUB_RUN_ID}" --repo rahemih/Finance \
+            --name "nq-direct-verified-${GITHUB_RUN_ID}" --dir build/finance-agent
+      - name: Check branch SHA and prevent duplicate pull requests
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          test "$(git rev-parse origin/main)" = "${GITHUB_SHA}"
+          count="$(gh pr list --repo rahemih/Finance --state open \
+            --search 'FIN-P24-WZ-008 in:title' --json number --jq length)"
+          if [ "${count}" -gt 0 ]; then
+            echo "skip=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "skip=false" >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Revalidate signed SHA256 evidence and apply without executing model code
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          python scripts/automation/openai_verify.py publish \
+            --proposal build/finance-agent/proposal.json \
+            --candidate build/finance-agent/generation.json \
+            --verified build/finance-agent/verified.json --sha "${GITHUB_SHA}"
+      - name: Publish draft-only PR (never merge)
+        if: steps.check.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          name="fix/FIN-P24-WZ-008-openai-${GITHUB_RUN_ID}"
+          git checkout -b "${name}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- scripts/dev/common.py tests/foundation/test_dev_common.py
+          git diff --cached --check
+          git commit -m 'fix(FIN-P24-WZ-008): OpenAI-proposed secret-safe developer tooling'
+          gh auth setup-git
+          git push -u origin "${name}"
+          cat > /tmp/nq-openai-pr.md <<EOF
+          OpenAI Responses API proposed this **DRAFT-only** change under fixed FIN-P24-WZ-008 scope.
+          Authentic source: https://github.com/rahemih/Finance/actions/runs/${GITHUB_RUN_ID}
+          Exact main base: ${GITHUB_SHA}.
+          Independent credential-free test job PASSED. Provider token was absent from test/publish jobs.
+          Still requires exact-head Governance, independent A5/A8/A10, Owner Human Gate and postmerge verification.
+          NO Live/Auto trading, no autopublish to main, no Copilot.
+          EOF
+          gh pr create --repo rahemih/Finance --base main --head "${name}" --draft \
+            --title 'fix(FIN-P24-WZ-008): direct OpenAI generated regression' \
+            --body-file /tmp/nq-openai-pr.md
+          gh workflow run governance.yml --repo rahemih/Finance --ref "${name}"
