@@ -161,7 +161,7 @@ def invoke_model(text: str) -> tuple[bool, str]:
     cmd = [cli, "-p", text, "-s", "--no-ask-user", "--no-auto-update",
            "--available-tools=edit,view,grep,glob",
            "--allow-tool=read,write(scripts/dev/doctor.py),write(tests/foundation/test_dev_doctor.py)",
-           "--deny-tool=shell", "--deny-tool=url", "--model=gpt-5.3-codex"]
+           "--deny-tool=shell", "--deny-tool=url", "--model=auto"]
     env = os.environ.copy()
     for key in list(env):
         if (key.startswith(("NQ_TRACE_", "NQ_PR_")) or key in
