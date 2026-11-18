@@ -2,7 +2,7 @@
 
 **Current state: ENGINEERING PROPOSAL / PR REVIEW — NOT RUNNING AS AN AUTONOMOUS CODER.**
 
-This package turns the fixed Mission Control audit roadmap into a real *candidate* code-writing engine. The workflow uses GitHub Copilot CLI to edit a temporary checkout, run bounded foundation tests, construct a verifiable patch and open a **draft-only** PR in an independently privileged job. It never routes orders, alters Live/Auto trading permissions, or impersonates A5/A8/A10 independent reviewers.
+This package turns the fixed Mission Control audit roadmap into a real *candidate* code-writing engine. The workflow uses GitHub Copilot CLI to edit a temporary checkout, run baseline foundation tests and construct an **untested** verifiable patch and open a **draft-only** PR in an independently privileged job. It never routes orders, alters Live/Auto trading permissions, or impersonates A5/A8/A10 independent reviewers.
 
 ## Source of truth and task selection
 
@@ -35,14 +35,14 @@ A secret value must never be pasted into PRs, documentation, public dashboard, I
 - Triggers: schedule UTC 43 */6 * * *; owner manual workflow_dispatch.
 - Runs only from main; serialized concurrency, bounded 24-minute build job + 10-minute publisher.
 - Preflight: inspect open PRs, avoid duplicate tasks, fail if incomplete pagination.
-- Model phase: run deterministic baseline unit tests, invoke pinned Copilot CLI up to two times, forbid shell/network tools, validate changed paths, generate <=32KiB patch and SHA256 evidence.
-- Publisher: separate job with temporary Actions token; **never executes AI-authored code**, validates exact main SHA, diffs, hashes, altered paths, size and scope, creates a draft-only PR, dispatches Governance Verify on that PR branch.
+- Model phase: run trusted baseline tests before any edits, invoke pinned Copilot CLI up to two times, forbid shell/network tools, validate changed paths, generate <=32KiB patch and SHA256 evidence. **Never execute AI-modified Python in this token-bearing job.**
+- Validation: a separate **credential-free, read-only Actions job** checks the untrusted patch before applying, executes the Python foundation suite with no Copilot secret and marks tests as verified only after an actual pass.\n- Publisher: a third separate job with temporary Actions token; **never executes AI-authored code**, revalidates exact main SHA, hashes, altered paths, size, tested evidence and scope, creates a draft-only PR, dispatches Governance Verify on that PR branch.
 - A PR created using GITHUB_TOKEN may not trigger pull_request CI. The dispatch is explicit, but full exact-PR-head and independent gate evidence must still be verified. Never declare canonical complete based merely on that dispatch.
 - A separate non-AI PR test workflow finance-coder-contract.yml validates code contracts with no inference credentials.
 
 ## Evidence / output
 
-- GitHub Actions logs, task ID, main SHA, model iteration count, tests status, patch SHA256, changed-file list, run summary in build/finance-coder/report.json, seven-day artifact.
+- GitHub Actions logs, task ID, main SHA, model iteration count, separate credential-free test job, tests status, patch SHA256, changed-file list, run summary in build/finance-coder/report.json and seven-day validated artifact.
 - Optional bounded Runner -> Mission Control /api/events POST with private NQ_TRACE_TOKEN; SSE forwards authenticated-source events without certifying separate A5/A8/A10 identities.
 - Full errors, raw model response and secret-bearing contents are deliberately **not** copied into public events.
 
@@ -50,7 +50,7 @@ A secret value must never be pasted into PRs, documentation, public dashboard, I
 
 - Fatal missing entitlement, unrecognized model, permission/API rate limit, or unsafe change => BLOCKED, not "fixed".
 - Runtime failures and test failures have a **finite** retry budget. Repeated runs detect an open task PR and stop instead of duplicating changes.
-- No automatic merge or CI gate bypass; independent A5/A8/A10 and owner review stay mandatory.
+- No automatic merge or CI gate bypass; independent A5/A8/A10 and owner review stay mandatory. Failed independent validation is terminal for that run; automatic model retry after a failing isolated test is deliberately disabled until a durable, budgeted remediation loop is reviewed.
 - Additional coding tasks must be added one-by-one through an explicit allowlisted, reviewed Task Contract. **A single task cannot complete the entire P00–P24 roadmap.**
 - Preview Render Free is not a 24/7 persistent engine; all code generation runs on GitHub Actions after workflows are merged and provider credentials have been separately provisioned.
 - Budget: up to four scheduled attempts per day, 2 model calls each, model and Actions quotas external. No paid subscription or unlimited budget is silently authorized.
@@ -65,3 +65,7 @@ Run real Copilot inference successfully, produce a scoped patch and actual *draf
 - GitHub Docs: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli-in-actions
 - GitHub Docs: https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/run-cli-programmatically
 - GitHub Docs: https://github.github.com/gh-aw/reference/safe-outputs/
+
+## 2026-11-18 security correction: isolation of untrusted tests
+
+Generated code is untrusted. The initial model+test design risked running newly edited Python while `COPILOT_GITHUB_TOKEN` existed in the process environment. The corrected workflow intentionally produces `CANDIDATE_UNTESTED` in the model job; a separate read-only `validate` job (no inference token) checks patch integrity and runs the tests, then writes a `READY_FOR_PR_REVIEW` artifact. The independent publisher accepts only that verified artifact. An isolated test failure never returns an apparent success or triggers an unbounded model loop. Actual production acceptance awaits successful exact-head workflow checks and genuine Copilot inference evidence.
