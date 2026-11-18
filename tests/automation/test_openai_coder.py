@@ -61,7 +61,7 @@ class GenerateTests(unittest.TestCase):
             state = oc.generate(Path(temp) / "candidate.json",
                                 call=lambda *args: self.fail("must not invoke model"))
         self.assertEqual(state["status"], "BLOCKED")
-        self.assertEqual(state["reason"], "MISSING_CONFIG_OR_UNVERIFIED_TASK")
+        self.assertEqual(state["reason"], "OPENAI_API_KEY_NOT_CONFIGURED")
         self.assertFalse(state["live_enabled"])
 
     def test_successful_mock_model_records_only_candidate(self):
