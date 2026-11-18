@@ -44,8 +44,10 @@ def collect() -> dict:
     try:
         require_repo_root()
         checks["repository"] = {"ok": True, "value": str(ROOT)}
-    except ToolingError as exc:
-        checks["repository"] = {"ok": False, "value": str(exc)}
+    except ToolingError:
+        # Repository checks can contain local paths, subprocess output or secrets.
+        # Expose only a fixed diagnostic marker, never the raw exception text.
+        checks["repository"] = {"ok": False, "value": "REPOSITORY_CHECK_FAILED"}
 
     actual_python = python_version()
     checks["python"] = {
