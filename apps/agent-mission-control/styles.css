@@ -19,3 +19,25 @@
 .font-setup-button:hover,.font-setup-button:focus-visible{background:#35527a}
 #font-status{color:#a6bfdc;font-size:10px;line-height:1.6}
 @media(max-width:720px){.font-setup{padding:7px 12px;gap:6px}.font-setup-button{font-size:10px}#font-status{font-size:9px}}
+
+/* Real, bounded operations: no mock tasks or fake agent animations. */
+.button-start{background:linear-gradient(125deg,#11695c,#188771);border:1px solid #42ba9a;box-shadow:0 4px 14px #0d5c4b33}
+.button-start:hover{background:#178b73}.button-start:disabled{opacity:.6}
+.control-panel{padding:19px 23px;margin:0 0 18px;border-color:#2a5d5c;background:linear-gradient(135deg,#12232f,#111827 60%)}
+.control-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:15px}
+.control-head h2{font-size:16px;margin:6px 0 3px;font-weight:750}
+.control-head p{color:#abbfd0;margin:0;font-size:11px}
+#control-status{border:1px solid #5b6c85;border-radius:20px;color:#bed4e7;font-size:11px;white-space:nowrap;padding:5px 12px}
+#control-status[data-level=running]{border-color:#258e88;color:#71ddc6}
+#control-status[data-level=blocked]{border-color:#b86552;color:#fdad9b}
+#control-status[data-level=complete]{border-color:#37a177;color:#8bf3b9}
+.control-details{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:10px 0;border-block:1px solid #2d3c4b;font-size:11px;color:#b6c6d8}
+.control-details code{display:block;color:#a2dcf0;direction:ltr;text-align:right;font-size:11px}
+.control-details strong{font-weight:650;color:#dbe9ef}
+.control-message{color:#b4c9d5;font-size:11px;line-height:1.9;margin:10px 0 3px}
+.control-next{border:1px solid #315e71;border-radius:8px;background:#152d3d;padding:8px 12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px}
+.control-next[hidden]{display:none}
+.control-next a{color:#91d9ec;text-decoration:underline;overflow-wrap:anywhere}
+.control-gates{font-size:10px;color:#9cb0c1;margin-top:6px}
+@media(max-width:1000px){.control-details{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-actions{flex-wrap:wrap}}
+@media(max-width:720px){.control-head{flex-direction:column;gap:8px}.control-panel{padding:14px}.control-details{grid-template-columns:1fr 1fr}.control-next{align-items:flex-start;flex-direction:column}.button-start{width:100%}}
