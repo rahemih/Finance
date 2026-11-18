@@ -194,7 +194,12 @@ class ResumeAudit:
                    "governance")
 
     def _run(self):
-        self._emit("A0", "TASK_STARTED", "Started bounded read-only Finance resume inspection", "backlog")
+        try:
+            self._emit("A0", "TASK_STARTED", "Started bounded read-only Finance resume inspection", "backlog")
+        except AuditError:
+            self._progress(status="BLOCKED", error="Event journal unavailable",
+                           blockers=["EVENT_JOURNAL_UNAVAILABLE"], finished_at=utc_now())
+            return
         for attempt in range(1, MAX_RETRIES + 1):
             self._progress(status="RUNNING" if attempt == 1 else "RETRYING", attempt=attempt)
             try:
