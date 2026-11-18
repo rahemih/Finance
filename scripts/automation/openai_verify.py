@@ -15,7 +15,10 @@ import re
 import subprocess
 import sys
 
-from openai_coder import ALLOWED, MAX_FILE_SIZE, MANIFEST, ROOT, TASK_ID, digest, manifest
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.automation.openai_coder import ALLOWED, MAX_FILE_SIZE, TASK_ID, digest, manifest
 
 SHA_RE = re.compile(r"^[a-f0-9]{40}$")
 HEX_RE = re.compile(r"^[a-f0-9]{64}$")
