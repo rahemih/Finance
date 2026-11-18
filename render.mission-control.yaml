@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: nq-agent-mission-control
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile.mission-control
+    healthCheckPath: /api/health
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: NQ_PUBLIC_ORIGIN
+        sync: false
+      - key: NQ_INGEST_TOKEN
+        generateValue: true
+      - key: NQ_GITHUB_POLL_SECONDS
+        value: "1800"

@@ -1,0 +1,40 @@
+name: P24 Mission Control API Verification
+on:
+  pull_request:
+    paths:
+      - 'scripts/automation/mission_control_server.py'
+      - 'scripts/automation/mission_control_runtime.py'
+      - 'apps/agent-mission-control/**'
+      - 'tests/automation/test_mission_control_server.py'
+      - 'tests/automation/test_mission_control_runtime.py'
+      - 'tests/automation/test_mission_control_start_http.py'
+      - 'tests/automation/test_mission_font_contract.py'
+      - 'render.mission-control.yaml'
+      - 'Dockerfile.mission-control'
+      - '.github/workflows/p24-mission-control.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: nq-mission-api-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  api_contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Syntax and security contract
+        run: |
+          python -m py_compile scripts/automation/mission_control_server.py scripts/automation/mission_control_runtime.py scripts/automation/agent_trace.py
+          python -m unittest discover -s tests/automation -p 'test_mission_control_*.py' -v
+          node --check apps/agent-mission-control/control.js
+          node --check apps/agent-mission-control/app.js
+          node tests/automation/test_mission_live_metrics.js
+          python -m unittest discover -s tests/automation -p test_mission_font_contract.py -v
+          ! grep -R --include='*.py' 'ENABLE_LIVE' scripts/automation/mission_control_server.py

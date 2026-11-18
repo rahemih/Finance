@@ -1,0 +1,103 @@
+{
+  "task_id": "FIN-P24-WZ-004",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Add a bounded, truthful Start/resume audit to the existing Demo-only Mission Control, with current GitHub evidence, finite retries, resumable next-task selection, audit events over SSE and no public mutation.",
+  "scope": [
+    "Public Start button enqueues one bounded read-only assessment using a fixed GitHub repository and endpoint allowlist.",
+    "Audit main SHA, open PRs/issues and exact-main Governance CI, choose the nearest verified open work candidate.",
+    "Show real progress, errors, retry counters, tasks and blockers through existing SSE and journal.",
+    "Apply Origin, fixed-payload, cooldown, concurrency, idempotency and fail-closed limits to the Start endpoint.",
+    "Test and deploy a free preview; do not claim perpetual running or automatic code fixes."
+  ],
+  "out_of_scope": [
+    "Public code execution, remote shell, self-approval, unrestricted agent spawning, unsupervised repo mutation.",
+    "Live/Auto orders, margin changes, broker connections, KYC or asset transfers.",
+    "Unbounded retries or unsupervised spending, key issuance, G13 certification.",
+    "Pretending a read-only audit is an autonomous AI coding runner."
+  ],
+  "dependencies": [
+    "FIN-P24-WZ-002",
+    "FIN-P24-WZ-003",
+    "ADR-0011"
+  ],
+  "read_paths": [
+    "docs/00-governance/**",
+    "docs/02-current-state/**",
+    "docs/09-agents/**",
+    "scripts/automation/**",
+    "apps/agent-mission-control/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-004.json",
+    "docs/09-agents/automation/FIN-P24-WZ-004.md",
+    "scripts/automation/mission_control_runtime.py",
+    "scripts/automation/mission_control_server.py",
+    "apps/agent-mission-control/index.html",
+    "apps/agent-mission-control/control.js",
+    "apps/agent-mission-control/live.js",
+    "apps/agent-mission-control/styles.css",
+    "Dockerfile.mission-control",
+    "tests/automation/test_mission_control_runtime.py",
+    "tests/automation/test_mission_control_start_http.py",
+    ".github/workflows/p24-mission-control.yml"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "packages/**",
+    "infra/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "credentials/**",
+    "secrets/**"
+  ],
+  "agents": [
+    "A0",
+    "A9"
+  ],
+  "plugins": [
+    "GitHub",
+    "Render",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "READONLY_API",
+    "CI_READ",
+    "PREVIEW_DEPLOY_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "MEDIUM",
+  "tests": [
+    "Unittest suite test_mission_control_runtime.py passes.",
+    "Unittest suite test_mission_control_start_http.py passes.",
+    "Existing Mission Control API and agent trace suites pass.",
+    "Latest exact-head Governance Verify passes.",
+    "Post-deploy public Start, SSE, /api/control and token-protected POST /api/events are verified."
+  ],
+  "security_tests": [
+    "Reject cross-origin start, unknown payloads and open mutation/commands.",
+    "Finite 3 transient retries, no retries on 401/403, single active worker and 300-second cooldown.",
+    "No GitHub writes, no PydanticAI runtime claims, no broker access, no public secrets or code.",
+    "Fail closed on missing SHA, unverified CI and saturated lists."
+  ],
+  "evidence": [
+    "https://github.com/rahemih/Finance/pull/535",
+    "docs/09-agents/automation/FIN-P24-WZ-004.md"
+  ],
+  "rollback": "Revert scoped additions in a fresh governed PR, roll back Render preview if validation fails.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Existing WZ-003 preview and SSE are operational.",
+    "No mutation rights added to public dashboard.",
+    "Prior contracts and GitHub-Linear canonical identity preserved."
+  ],
+  "definition_of_done": [
+    "Fixed read-only Start endpoint, truthful UI and SSE working.",
+    "Exact-head CI pass; Owner and independent gates obeyed before protected merge.",
+    "Free preview is verified without financial authority.",
+    "No claim that automated bug fixes or fully independent multi-agent coding is enabled."
+  ]
+}

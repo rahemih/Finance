@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="dark" />
 <meta name="description" content="NEXUS QUANT Mission Control — live GitHub evidence and governed multi-agent observability" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://api.github.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'" />
 <title>NEXUS QUANT — اتاق فرمان ایجنت‌ها</title>
 <link rel="stylesheet" href="styles.css" />
 <script src="app.js" defer></script>
 <script src="trace-ui.js" defer></script>
+<script src="live.js" defer></script>
+<script src="control.js" defer></script>
+<script src="font-control.js" defer></script>
 </head>
 <body>
+
 <div class="app-shell">
  <aside class="sidebar" aria-label="ناوبری اتاق فرمان">
   <div class="brand"><span class="brand-symbol">N<span class="brand-trace">/</span>Q</span><span><strong>NEXUS QUANT</strong><small>AGENT MISSION CONTROL</small></span></div>
@@ -28,20 +32,46 @@
   <div class="side-separator"></div>
   <div class="side-label">وضعیت ابزارها</div>
   <div class="source-line"><span class="source-icon">G</span><span>GitHub Actions<small id="github-source">در انتظار دریافت</small></span><span class="source-led" id="github-led"></span></div>
-  <div class="source-line"><span class="source-icon">A</span><span>Agent Runtime<small>بدون جریان رویداد مستقیم</small></span><span class="source-led amber"></span></div>
+  <div class="source-line"><span class="source-icon">A</span><span>Agent Runtime<small id="runtime-status-text">منتظر جریان SSE</small></span><span class="source-led amber" id="runtime-led"></span></div>
   <div class="source-line"><span class="source-icon">L</span><span>Linear<small>اتصال مستقیم هنوز برقرار نیست</small></span><span class="source-led amber"></span></div>
   <div class="sidebar-bottom"><span class="shield-icon">◈</span><div><strong>حالت مشاهده امن</strong><small>فقط خواندنی · بدون معامله</small></div></div>
  </aside>
  <main class="main-content" id="overview">
   <header class="topbar"><div class="breadcrumb"><span>Finance</span><span class="slash">/</span><strong>Agent Control Center</strong></div><div class="header-right"><div class="top-clock" id="clock" aria-label="ساعت محلی"></div><span class="user-pill">NQ <span class="user-avatar">A0</span></span></div></header>
-  <div class="inner">
+  <div class="font-setup" aria-label="تنظیم فونت">
+ <button type="button" id="font-upload-button" class="font-setup-button" title="انتخاب فونت ایرانی خودتان بدون ارسال به سرور">Aa · انتخاب فونت Iranian Sans</button>
+ <input type="file" id="font-upload-input" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf,font/woff,font/woff2" hidden aria-label="انتخاب فونت ارسالی شما" />
+ <span id="font-status" role="status">در حال بررسی فونت محلی…</span>
+ </div>
+ <div class="inner">
    <section class="hero">
     <div><p class="eyebrow"><span class="eyebrow-dot"></span> MISSION CONTROL · FINANCE</p><h1>اتاق فرمان <span>ایجنت‌ها</span></h1><p class="hero-desc">رصد اجرای واقعی، تست‌ها، تغییر کد، خطاها و مسیر رفع مشکل در یک نمای واحد</p></div>
-    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
+    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-start" id="control-start" type="button"><span>▶</span> بررسی فوری وضعیت پروژه</button><a class="button button-primary" href="https://github.com/rahemih/Finance/issues/531" target="_blank" rel="noopener noreferrer" title="گزارش‌های واقعی ایجنت ساعتی در GitHub؛ مشاهده سابقه Commit، PR، تست و موانع">◉ گزارش ایجنت ساعتی ChatGPT</a><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
    </section>
-   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">در این نسخه، رویدادهای GitHub واقعی هستند. وضعیت هر ایجنت تا اتصال تله‌متری مستقل به‌صورت «مشاهده‌نشده» نمایش داده می‌شود؛ نمایش تایپ لحظه‌ای یا رفع باگ بدون داده معتبر ممکن نیست.</span></div>
+   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">وضعیت GitHub و تست‌ها خودکار نمایش داده می‌شود؛ ادامه کدنویسی ChatGPT ساعتی است و بدون کلید مدل یا Copilot انجام می‌شود. فعالیت ایجنتی بدون شواهد واقعی نمایش داده نمی‌شود.</span></div>
+  <section class="panel control-panel" id="control-panel" aria-label="شروع و پیگیری ادامه پروژه">
+     <div class="control-head">
+       <div><p class="panel-kicker">PROJECT RESUME · EVIDENCE-BASED</p>
+         <h2>بررسی آخرین نقطه پروژه — بدون مدل پولی</h2>
+         <p>بررسی واقعی GitHub، تست‌ها و موانع از این دکمه آغاز می‌شود. کدنویسی مستقیم ChatGPT در ایجنت ساعتی جداگانه پیش می‌رود؛ این دکمه آن را فوراً اجرا نمی‌کند.</p>
+       </div>
+       <strong id="control-status" aria-live="polite">هنوز شروع نشده</strong>
+     </div>
+     <div class="control-details">
+       <div>شناسه اجرا <code id="control-run" dir="ltr">—</code></div>
+       <div>مرحله <strong id="control-phase">در انتظار شروع</strong></div>
+       <div>تلاش <span id="control-attempt" dir="ltr">—</span></div>
+       <div>آخرین SHA <code id="control-main" dir="ltr">—</code></div>
+     </div>
+     <p class="control-message" id="control-message" role="status">این دکمه فقط وضعیت GitHub را بررسی می‌کند؛ ایجنت ChatGPT در زمان‌بندی ساعتی جداگانه کار می‌کند و از این دکمه فوراً فعال نمی‌شود.</p>
+     <div class="control-next" id="control-next" hidden>
+       <span>نزدیک‌ترین کارِ قابل بررسی</span>
+       <a id="control-next-link" target="_blank" rel="noopener noreferrer" href="https://github.com/rahemih/Finance">مشاهده در GitHub</a>
+     </div>
+     <div class="control-gates" id="control-gates">کنترل مالی: Demo Only · هیچ معامله یا تغییر مجوزی از این دکمه انجام نمی‌شود.</div>
+   </section>
    <section class="stats" aria-label="شاخص‌های پروژه">
-    <article class="stat-card"><div class="stat-head"><span>فرآیندهای در حال اجرا</span><span class="stat-icon purple">◉</span></div><div class="stat-value" id="stat-active">—</div><div class="stat-foot"><span class="mini-dot lavender"></span>Workflow و Job واقعی</div></article>
+    <article class="stat-card"><div class="stat-head"><span>Workflowهای GitHub در حال اجرا</span><span class="stat-icon purple">◉</span></div><div class="stat-value" id="stat-active">—</div><div class="stat-foot"><span class="mini-dot lavender"></span>فقط اجراهای GitHub؛ نه ایجنت ساعتی ChatGPT</div></article>
     <article class="stat-card"><div class="stat-head"><span>تست یا اجرای ناموفق</span><span class="stat-icon red">⚠</span></div><div class="stat-value" id="stat-failed">—</div><div class="stat-foot"><span class="mini-dot tomato"></span>در آخرین Workflowها</div></article>
     <article class="stat-card"><div class="stat-head"><span>Pull Request باز</span><span class="stat-icon blue">⤴</span></div><div class="stat-value" id="stat-prs">—</div><div class="stat-foot"><span class="mini-dot cyan"></span>تغییرات در انتظار بررسی</div></article>
     <article class="stat-card"><div class="stat-head"><span>Issue باز</span><span class="stat-icon amber">◫</span></div><div class="stat-value" id="stat-issues">—</div><div class="stat-foot"><span class="mini-dot gold"></span>کارها و موانع باز</div></article>
@@ -59,19 +89,19 @@
     </section>
    </div>
    <section class="panel trace-panel" id="agent-trace">
-    <div class="panel-head"><div><div class="panel-kicker">AGENT TELEMETRY · LOCAL EVIDENCE</div><h2>ریزفعالیت ثبت‌شده هر ایجنت</h2><p>شروع کدنویسی، فایل‌های تغییرکرده، اجرای تست، خطا و رفع باگ؛ فقط با رویداد واقعی</p></div><span class="outline-tag amber-outline">SELF-REPORTED · NOT AUTHENTICATED</span></div>
-    <div class="trace-controls"><label class="trace-import">ورود فایل گزارش JSON<input id="trace-file" type="file" accept=".json,application/json" aria-label="فایل گزارش رویدادها" /></label><label>نمایش ایجنت <select id="trace-filter" aria-label="فیلتر ایجنت"><option value="all">همه</option><option value="A0">A0</option><option value="A1">A1</option><option value="A2">A2</option><option value="A3">A3</option><option value="A4">A4</option><option value="A5">A5</option><option value="A6">A6</option><option value="A7">A7</option><option value="A8">A8</option><option value="A9">A9</option><option value="A10">A10</option></select></label><div class="trace-total">رویدادها <strong id="trace-count">0</strong></div></div>
+    <div class="panel-head"><div><div class="panel-kicker">AGENT TELEMETRY · SECURE SSE</div><h2>ریزفعالیت ثبت‌شده هر ایجنت</h2><p>شروع کدنویسی، فایل‌های تغییرکرده، اجرای تست، خطا و رفع باگ؛ فقط با رویداد واقعی</p></div><span class="outline-tag amber-outline">RUNNER TOKEN · AGENT ID UNVERIFIED</span></div>
+    <div class="trace-controls"><label class="trace-import" style="display:none">ورود فایل گزارش JSON<input id="trace-file" type="file" accept=".json,application/json" aria-label="فایل گزارش رویدادها" /></label><label>نمایش ایجنت <select id="trace-filter" aria-label="فیلتر ایجنت"><option value="all">همه</option><option value="A0">A0</option><option value="A1">A1</option><option value="A2">A2</option><option value="A3">A3</option><option value="A4">A4</option><option value="A5">A5</option><option value="A6">A6</option><option value="A7">A7</option><option value="A8">A8</option><option value="A9">A9</option><option value="A10">A10</option></select></label><div class="trace-total">رویدادها <strong id="trace-count">0</strong></div></div>
     <div class="trace-truth" id="trace-status" role="status">هنوز تله‌متری متصل نیست.</div><p class="trace-error" id="trace-error" role="alert"></p>
     <div class="trace-list" id="trace-list" aria-live="polite"></div>
-    <div class="panel-foot"><span>یکپارچگی هش به‌تنهایی احراز هویت ایجنت یا اثبات اجرای واقعی نیست؛ در حالت واردکردن فایل، نمایش زنده نیست.</span></div>
+    <div class="panel-foot"><span>SSE خودکار است؛ کنترل هش فقط یکپارچگی را تأیید می‌کند، نه هویت مستقل هر ایجنت.</span></div>
    </section>
-   <section class="panel agents-panel" id="agents"><div class="panel-head"><div><div class="panel-kicker">AGENT DIRECTORY · A0–A10</div><h2>نظارت بر ایجنت‌ها</h2><p>تفکیک نقش هر ایجنت و میزان مشاهده‌پذیری واقعی آن</p></div><span class="outline-tag amber-outline">رویدادهای داخلی از طریق فایل قابل ورودند</span></div><div class="agents-grid" id="agent-grid"></div><div class="panel-foot"><span>صرف تعریف یک ایجنت در پروژه به معنی اجرای فعلی آن نیست.</span><a href="https://github.com/rahemih/Finance/blob/main/docs/09-agents/AGENT-REGISTRY.md" target="_blank" rel="noopener noreferrer">قرارداد ایجنت‌ها ↗</a></div></section>
+   <section class="panel agents-panel" id="agents"><div class="panel-head"><div><div class="panel-kicker">AGENT DIRECTORY · A0–A10</div><h2>نظارت بر ایجنت‌ها</h2><p>تفکیک نقش هر ایجنت و میزان مشاهده‌پذیری واقعی آن</p></div><span class="outline-tag amber-outline">اتصال SSE · فقط شواهد ثبت‌شده</span></div><div class="agents-grid" id="agent-grid"></div><div class="panel-foot"><span>صرف تعریف یک ایجنت در پروژه به معنی اجرای فعلی آن نیست.</span><a href="https://github.com/rahemih/Finance/blob/main/docs/09-agents/AGENT-REGISTRY.md" target="_blank" rel="noopener noreferrer">قرارداد ایجنت‌ها ↗</a></div></section>
    <div class="lower-grid">
     <section class="panel" id="pr-work"><div class="panel-head"><div><div class="panel-kicker">CODE ACTIVITY</div><h2>کدنویسی و تغییر فایل‌ها</h2><p>PRها، Commitها و فایل‌های دست‌خورده با لینک مستقیم</p></div><span class="outline-tag">GITHUB</span></div><div id="pr-list" class="pr-list"><div class="empty-state">در حال دریافت PRها…</div></div><div id="file-panel" class="file-panel"><span>برای مشاهده فایل‌های تغییریافته، روی یک PR بزنید.</span></div></section>
     <section class="panel" id="alerts"><div class="panel-head"><div><div class="panel-kicker">ISSUES & BLOCKERS</div><h2>خطاها، باگ‌ها و موانع</h2><p>Issueهای باز و شکست‌های ثبت‌شده در CI</p></div><span class="outline-tag amber-outline">ACTION REQUIRED</span></div><div id="issue-list" class="issue-list"><div class="empty-state">در حال بررسی Issueها…</div></div><div class="panel-foot"><span>رفع خطا تنها با PR، تست و شواهد قابل تأیید است.</span><a href="https://github.com/rahemih/Finance/issues" target="_blank" rel="noopener noreferrer">همه Issueها ↗</a></div></section>
    </div>
-   <section class="connector-panel"><div><div class="panel-kicker">NEXT INTEGRATION · AUTHENTICATED LIVE STREAM</div><h2>گام بعدی: اتصال مستقیم ایجنت‌ها به جریان امن رویدادها</h2><p>ثبت و بررسی رویدادهای محلی فراهم شد. برای نمایش لحظه‌ای و اثبات هویت فرستنده لازم است Runner واقعی به سرویس احرازشده با ذخیره ماندگار رویدادها و پخش زنده متصل شود. این نسخه فقط جریان آفلاین واردشده را نشان می‌دهد و ادعای اجرای دائم ندارد.</p></div><div class="event-pills"><span>START</span><span>CODE_CHANGED</span><span>TEST_RUNNING</span><span class="error-pill">ERROR</span><span>FIX_APPLIED</span><span>REVIEW</span><span>DONE</span></div></section>
-   <footer class="footer"><span>NEXUS QUANT · GOVERNED OBSERVABILITY</span><span id="footer-meta">داده‌ها فقط‌خواندنی · بدون اختیار معامله · بروزرسانی خودکار هر ۵ دقیقه</span></footer>
+   <section class="connector-panel"><div><div class="panel-kicker">CONNECTED PIPELINE · LIVE SSE</div><h2>جریان رویدادهای واقعی و بدون نیاز به Refresh</h2><p>مرورگر از طریق SSE به API متصل می‌شود. رویدادهای Runner پس از احراز توکن و ثبت در پایگاه داده به‌طور خودکار نمایش داده می‌شوند. تا ارسال رویداد از Runner واقعی، هیچ فعالیتی به ایجنت‌ها نسبت داده نمی‌شود.</p></div><div class="event-pills"><span>START</span><span>CODE_CHANGED</span><span>TEST_RUNNING</span><span class="error-pill">ERROR</span><span>FIX_APPLIED</span><span>REVIEW</span><span>DONE</span></div></section>
+   <footer class="footer"><span>NEXUS QUANT · GOVERNED OBSERVABILITY</span><span id="footer-meta">داده‌ها فقط‌خواندنی · بدون اختیار معامله · بSSE بدون Refresh</span></footer>
   </div>
  </main>
 </div>
