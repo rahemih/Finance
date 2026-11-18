@@ -150,9 +150,28 @@ class State:
         while True:
             delay = self.github_interval
             try:
+                branch = self.gh("/branches/main")
+                sha = branch.get("commit", {}).get("sha") if isinstance(branch, dict) else None
+                if not isinstance(sha, str) or not re.fullmatch(r"[0-9a-f]{40}", sha):
+                    raise ValueError("Canonical main SHA unavailable")
                 runs = self.gh("/actions/runs?per_page=25")["workflow_runs"]
                 prs = self.gh("/pulls?state=open&per_page=50")
                 issues = self.gh("/issues?state=open&per_page=50")
+                main_runs = self.gh(f"/actions/runs?branch=main&head_sha={sha}&per_page=50")
+                main_runs = main_runs.get("workflow_runs") if isinstance(main_runs, dict) else None
+                if not isinstance(main_runs, list) or not all(isinstance(item, dict) for item in main_runs):
+                    raise ValueError("Exact-main CI evidence unavailable")
+                candidates = [item for item in main_runs
+                              if item.get("name") == "Governance Verify"
+                              and item.get("head_sha") == sha]
+                candidates.sort(key=lambda item: str(item.get("created_at") or ""), reverse=True)
+                latest = candidates[0] if candidates else None
+                main_ci = (
+                    "PASS_EXACT_MAIN" if latest and latest.get("status") == "completed"
+                    and latest.get("conclusion") == "success" else
+                    "FAIL_EXACT_MAIN" if latest and latest.get("status") == "completed"
+                    and latest.get("conclusion") == "failure" else "NOT_VERIFIED"
+                )
                 if not all(isinstance(x, list) for x in [runs, prs, issues]):
                     raise ValueError("Malformed API response")
                 # Workflow dashboard intentionally shows the newest 25 runs,
@@ -171,8 +190,9 @@ class State:
                 issues = [{key: item.get(key) for key in (
                     "number", "title", "updated_at"
                 )} for item in issues if "pull_request" not in item]
-                fresh = {"status": "LIVE", "verified_at": now(), "runs": runs,
-                         "prs": prs, "issues": issues,
+                fresh = {"status": "LIVE", "verified_at": now(),
+                         "main_sha": sha, "governance_ci": main_ci,
+                         "runs": runs, "prs": prs, "issues": issues,
                          "error": None}
             except HTTPError as exc:
                 # Anonymous GitHub calls share the egress IP quota on free hosting.
