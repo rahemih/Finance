@@ -234,27 +234,23 @@ def execute(report_path: Path, patch_path: Path, task_path: Path) -> dict:
                     break
                 feedback = "The previous model attempt failed before test verification."
                 continue
-            emit_event("A9", "TEST_STARTED", "Post-edit foundation unit tests started",
-                       "tests/foundation/test_harness.py")
-            ok, feedback = run_tests(task)
-            report["tests_pass"] = ok
-            emit_event("A9", "TEST_PASSED" if ok else "TEST_FAILED",
-                       "Post-edit foundation tests passed" if ok else
-                       "Post-edit foundation tests failed; bounded retry pending",
-                       "tests/foundation/test_harness.py")
-            if ok:
-                size, digest = produce_patch(task, patch_path)
-                report["changed_files"] = sorted(changed_paths())
-                if size:
-                    report["patch_sha256"] = digest
-                    report["patch_bytes"] = size
-                    report["status"] = "READY_FOR_PR_REVIEW"
-                    report["reason"] = "Tests passed; patch requires independent gates"
-                else:
-                    report["status"] = "NO_CHANGE"
-                    report["reason"] = "No reproducible safe change produced"
-                break
-            report["reason"] = "FOUNDATION_TESTS_NOT_GREEN"
+            # Never execute model-written Python in the credential-bearing job.
+            # The independent validate job has no COPILOT_GITHUB_TOKEN and
+            # performs tests before the publisher receives any write authority.
+            size, digest = produce_patch(task, patch_path)
+            report["changed_files"] = sorted(changed_paths())
+            if size:
+                report["patch_sha256"] = digest
+                report["patch_bytes"] = size
+                report["status"] = "CANDIDATE_UNTESTED"
+                report["tests_pass"] = False
+                report["reason"] = "Isolated post-edit tests required in credential-free job"
+                emit_event("A9", "HANDOFF", "Patch ready for credential-free tests",
+                           "tests/foundation/test_harness.py")
+            else:
+                report["status"] = "NO_CHANGE"
+                report["reason"] = "No reproducible safe change produced"
+            break
         if report["status"] == "BLOCKED":
             emit_event("A8", "BLOCKED", "Coding halted by missing authority or test evidence",
                        "scripts/dev/doctor.py")
@@ -278,7 +274,7 @@ def main() -> int:
     ap.add_argument("--patch", type=Path, default=ROOT/"build/finance-coder/change.patch")
     args = ap.parse_args()
     out = execute(args.report, args.patch, args.task)
-    return 0 if out["status"] in ("READY_FOR_PR_REVIEW", "NO_CHANGE", "BLOCKED") else 2
+    return 0 if out["status"] in ("CANDIDATE_UNTESTED", "NO_CHANGE", "BLOCKED") else 2
 
 if __name__ == "__main__":
     raise SystemExit(main())
