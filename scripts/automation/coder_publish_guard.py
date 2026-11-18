@@ -23,12 +23,12 @@ HEX = re.compile(r"^[0-9a-f]{64}$")
 class PublishError(Exception):
     pass
 
-def verify(report: dict, patch: bytes, main_sha: str, allowed: list[str]) -> list[str]:
+def verify(report: dict, patch: bytes, main_sha: str, allowed: list[str], *, pretest: bool = False) -> list[str]:
     if (not isinstance(report, dict) or
             report.get("schema_version") != "fin.coder.run.v1" or
             report.get("task_id") != "FIN-P24-WZ-005" or
-            report.get("status") != "READY_FOR_PR_REVIEW" or
-            report.get("tests_pass") is not True or
+            report.get("status") != ("CANDIDATE_UNTESTED" if pretest else "READY_FOR_PR_REVIEW") or
+            report.get("tests_pass") is not (False if pretest else True) or
             report.get("financial_mode") != "DEMO_ONLY" or
             report.get("live_enabled") is not False or
             report.get("merged") is not False or
@@ -67,11 +67,11 @@ def verify(report: dict, patch: bytes, main_sha: str, allowed: list[str]) -> lis
         raise PublishError("Patch path list does not match evidence")
     return names
 
-def execute(report_path: Path, patch_path: Path, main_sha: str) -> list[str]:
+def execute(report_path: Path, patch_path: Path, main_sha: str, *, pretest: bool = False) -> list[str]:
     task = read_task()
     report = json.loads(report_path.read_text(encoding="utf-8"))
     patch = patch_path.read_bytes()
-    paths = verify(report, patch, main_sha, task["allowed_files"])
+    paths = verify(report, patch, main_sha, task["allowed_files"], pretest=pretest)
     # Never run any generated code in this privileged publisher process.
     check = subprocess.run(["git", "apply", "--check", "--whitespace=error", "-"],
                            cwd=ROOT, input=patch, capture_output=True)
@@ -104,9 +104,10 @@ def main() -> int:
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--patch", type=Path, required=True)
     parser.add_argument("--main-sha", required=True)
+    parser.add_argument("--pretest", action="store_true", help="Validate untested model patch in credential-free job only")
     args = parser.parse_args()
     try:
-        paths = execute(args.report, args.patch, args.main_sha)
+        paths = execute(args.report, args.patch, args.main_sha, pretest=args.pretest)
         print("PUBLISH_GUARD=PASS allowed_files=" + str(len(paths)))
         return 0
     except (PublishError, OSError, json.JSONDecodeError, ValueError) as exc:
