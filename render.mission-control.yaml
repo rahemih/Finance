@@ -10,10 +10,6 @@ services:
     envVars:
       - key: NQ_PUBLIC_ORIGIN
         sync: false
-      - key: NQ_VIEW_PASSWORD
-        sync: false
-      - key: NQ_SESSION_SECRET
-        generateValue: true
       - key: NQ_INGEST_TOKEN
         generateValue: true
       - key: NQ_GITHUB_POLL_SECONDS
