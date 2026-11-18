@@ -4,11 +4,9 @@ on:
     paths:
       - 'scripts/automation/mission_control_server.py'
       - 'scripts/automation/mission_control_runtime.py'
-      - 'scripts/automation/mission_control_launcher.py'
       - 'apps/agent-mission-control/**'
       - 'tests/automation/test_mission_control_server.py'
       - 'tests/automation/test_mission_control_runtime.py'
-      - 'tests/automation/test_mission_launcher.py'
       - 'tests/automation/test_mission_control_start_http.py'
       - 'tests/automation/test_mission_font_contract.py'
       - 'render.mission-control.yaml'
@@ -33,10 +31,8 @@ jobs:
           python-version: '3.13'
       - name: Syntax and security contract
         run: |
-          python -m py_compile scripts/automation/mission_control_server.py scripts/automation/mission_control_runtime.py scripts/automation/mission_control_launcher.py scripts/automation/agent_trace.py
+          python -m py_compile scripts/automation/mission_control_server.py scripts/automation/mission_control_runtime.py scripts/automation/agent_trace.py
           python -m unittest discover -s tests/automation -p 'test_mission_control_*.py' -v
           node --check apps/agent-mission-control/control.js
-          node --check apps/agent-mission-control/launch.js
-          python -m unittest discover -s tests/automation -p 'test_mission_launcher.py' -v
           python -m unittest discover -s tests/automation -p test_mission_font_contract.py -v
           ! grep -R --include='*.py' 'ENABLE_LIVE' scripts/automation/mission_control_server.py
