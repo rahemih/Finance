@@ -37,7 +37,8 @@ jobs:
           python -m py_compile scripts/automation/openai_coder.py scripts/automation/openai_verify.py
           python -m json.tool docs/09-agents/automation/tasks/FIN-P24-WZ-008.json >/dev/null
       - name: Run all strict offline negative/operational tests
-        run: python -m unittest discover -s tests/automation -p 'test_openai_coder.py' -v
+        run: |
+          python -m unittest discover -s tests/automation -p 'test_openai_coder.py' -v
           python -m unittest discover -s tests/automation -p 'test_openai_runner_e2e.py' -v
       - name: Verify hard-separated model/test/publisher workflows
         run: |
