@@ -3,7 +3,6 @@
 (() => {
  let stream=null;
  const $=id=>document.getElementById(id);
- const gate=$('auth-gate');
  function status(s){if($('trace-status'))$('trace-status').textContent=s}
  async function apply(value){
   if(!value||value.schema_version!=='nq.mission.v3')throw new Error('Invalid API snapshot');
@@ -25,7 +24,6 @@
  window.nexusApplySnapshot=apply;
  async function resync(){
   const r=await fetch('/api/state',{cache:'no-store'});
-  if(r.status===401){if(gate)gate.hidden=false;return}
   if(!r.ok)throw new Error('API '+r.status);
   await apply(await r.json());
  }
@@ -52,28 +50,11 @@
  async function probe(){
   try{
    const r=await fetch('/api/state',{cache:'no-store'});
-   if(r.status===401){if(gate)gate.hidden=false;return}
    if(!r.ok)throw new Error('API '+r.status);
-   if(gate)gate.hidden=true;
    await apply(await r.json());
    live();
   }catch{status('API در دسترس نیست؛ اتصال به‌طور خودکار مجدداً بررسی می‌شود.');setTimeout(probe,6500)}
  }
- function bindLogin(){
-  const form=$('auth-form');if(!form)return;
-  form.addEventListener('submit',async e=>{
-   e.preventDefault();
-   const pass=$('viewer-password').value;const error=$('auth-error');
-   try{
-    const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},
-                                     body:JSON.stringify({password:pass}),cache:'no-store'});
-    if(!r.ok)throw new Error('رمز اشتباه است یا محدودیت تلاش برقرار شده');
-    $('viewer-password').value='';
-    if(gate)gate.hidden=true;
-    live();
-   }catch(err){if(error)error.textContent=String(err.message||err)}
-  });
- }
- const start=()=>{bindLogin();void probe()};
+ const start=()=>{void probe()};
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
