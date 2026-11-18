@@ -29,7 +29,7 @@ API = "https://api.github.com/repos/rahemih/Finance"
 RUN_PATH = re.compile(r"^/api/github/actions/runs/([0-9]{1,16})/jobs$")
 PR_PATH = re.compile(r"^/api/github/pulls/([0-9]{1,12})/files$")
 ASSETS = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js",
-          "/trace-ui.js": "trace-ui.js", "/live.js": "live.js", "/font-control.js": "font-control.js", "/styles.css": "styles.css"}
+          "/trace-ui.js": "trace-ui.js", "/live.js": "live.js", "/font-control.js": "font-control.js", "/control.js": "control.js", "/styles.css": "styles.css"}
 SOURCE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]{5,95}$")
 
 
