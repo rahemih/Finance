@@ -57,6 +57,15 @@ class TaskContractTests(unittest.TestCase):
             self.assertEqual(g.invoke_model("safe prompt"),
                              (False, "COPILOT_AUTH_OR_BINARY_MISSING"))
 
+    def test_copilot_restricts_writes_at_tool_permission_layer(self):
+        import inspect
+        src = inspect.getsource(g.invoke_model)
+        self.assertIn("write(scripts/dev/doctor.py)", src)
+        self.assertIn("write(tests/foundation/test_dev_doctor.py)", src)
+        self.assertIn("--available-tools=edit,view,grep,glob", src)
+        self.assertIn("--deny-tool=shell", src)
+        self.assertNotIn("--allow-all-tools", src)
+
     def test_prompt_bounds_and_no_shell_instructions(self):
         value = g.prompt(g.read_task(), "FAILED", 1)
         self.assertIn("FIN-P24-WZ-005", value)
