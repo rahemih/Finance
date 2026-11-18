@@ -1,0 +1,189 @@
+name: Finance Governed Coding Runner
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 */6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: finance-governed-coder-main
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      proceed: ${{ steps.candidate.outputs.proceed }}
+    steps:
+      - name: Check for duplicate task PR without write access
+        id: candidate
+        env:
+          GH_READ_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from urllib.request import Request, urlopen
+          path = 'https://api.github.com/repos/rahemih/Finance/pulls?state=open&per_page=100'
+          req = Request(path, headers={
+              'Authorization': 'Bearer ' + os.environ['GH_READ_TOKEN'],
+              'Accept': 'application/vnd.github+json',
+              'User-Agent': 'nq-governed-coder/1.0'})
+          with urlopen(req, timeout=20) as response:
+              prs = json.load(response)
+          if not isinstance(prs, list) or len(prs) >= 100:
+              raise SystemExit('PR inventory incomplete; fail closed')
+          existing = any('FIN-P24-WZ-005' in str(pr.get('title','')) for pr in prs)
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write('proceed=' + str(not existing).lower() + '\n')
+          print('CODER_PREFLIGHT=' + ('SKIP_EXISTING_PR' if existing else 'READY'))
+          PY
+
+  generate:
+    needs: preflight
+    if: needs.preflight.outputs.proceed == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    permissions:
+      contents: read
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - name: Checkout trusted main without write credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Set exact Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Set Node for pinned Copilot
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Check policy and test contracts without model
+        run: |
+          python -m py_compile scripts/automation/governed_coder.py scripts/automation/coder_publish_guard.py
+          python -m unittest discover -s tests/automation -p 'test_*coder*.py' -v
+      - name: Install explicitly pinned Copilot CLI without credentials
+        run: |
+          npm install -g @github/copilot@1.0.112
+          copilot --version
+      - name: Run two-attempt governed code and test cycle
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+          NQ_TRACE_TOKEN: ${{ secrets.NQ_TRACE_TOKEN }}
+          NQ_TRACE_ENDPOINT: https://nq-agent-mission-preview-zeqg.onrender.com
+        run: |
+          python scripts/automation/governed_coder.py \
+            --task docs/09-agents/automation/tasks/FIN-P24-WZ-005.json \
+            --report build/finance-coder/report.json \
+            --patch build/finance-coder/change.patch
+      - name: Mark verified patch for separately privileged publication
+        id: check
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path('build/finance-coder/report.json').read_text())
+          ready = report.get('status') == 'READY_FOR_PR_REVIEW' and report.get('tests_pass') is True
+          if ready and not Path('build/finance-coder/change.patch').is_file():
+              raise SystemExit('Patch evidence missing')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write('ready=' + str(ready).lower() + '\n')
+          print('CODER_READY_FOR_PUBLISH=' + str(ready).lower())
+          PY
+      - name: Preserve sanitized evidence and optional scoped patch
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fin-p24-wz-005-${{ github.run_id }}
+          path: |
+            build/finance-coder/report.json
+            build/finance-coder/change.patch
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: generate
+    if: needs.generate.outputs.ready == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Checkout immutable workflow head
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Set exact Python for static validation only
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Retrieve artifacts from this exact workflow run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p build/finance-coder
+          gh run download "${GITHUB_RUN_ID}" --repo "rahemih/Finance" \
+            --name "fin-p24-wz-005-${GITHUB_RUN_ID}" --dir build/finance-coder
+      - name: Reconcile original main and deduplicate
+        id: dedup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          test "$(git rev-parse origin/main)" = "${GITHUB_SHA}"
+          EXISTING="$(gh pr list --repo rahemih/Finance --state open --search 'FIN-P24-WZ-005 in:title' --json number --jq 'length')"
+          if [ "${EXISTING}" -gt 0 ]; then
+            echo 'skip=true' >> "${GITHUB_OUTPUT}"
+            echo 'PUBLISH=SKIP_DUPLICATE'
+          else
+            echo 'skip=false' >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Validate and apply AI artifact (never execute candidate code)
+        if: steps.dedup.outputs.skip != 'true'
+        run: |
+          python scripts/automation/coder_publish_guard.py \
+            --report build/finance-coder/report.json \
+            --patch build/finance-coder/change.patch \
+            --main-sha "${GITHUB_SHA}"
+      - name: Open a protected draft pull request with no automatic merge
+        if: steps.dedup.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BRANCH="fix/FIN-P24-WZ-005-auto-regression-${GITHUB_RUN_ID}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git checkout -b "${BRANCH}"
+          git add -- scripts/dev/doctor.py tests/foundation/test_dev_doctor.py
+          git diff --cached --check
+          git commit -m 'test(FIN-P24-WZ-005): bounded AI doctor regression hardening'
+          gh auth setup-git
+          git push --set-upstream origin "${BRANCH}"
+          cat > /tmp/nq-coder-pr.md <<EOF
+          Automated, **Draft-only** bounded code proposal for FIN-P24-WZ-005.
+
+          Evidence workflow: https://github.com/rahemih/Finance/actions/runs/${GITHUB_RUN_ID}
+          Base main: ${GITHUB_SHA}
+
+          The generating job had no GitHub write token. It permitted at most two model-edit/test attempts and the independent publisher only accepted an allowlisted, SHA256-verified patch. The exact-head GitHub Actions governance checks, independent A5/A8/A10 review and Owner Human Gate must still be verified. This is **not** independent agent approval or project completion. No Demo/Live orders.
+
+          NOTE: PRs opened using GITHUB_TOKEN do not normally trigger pull_request Actions automatically; the workflow dispatches Governance explicitly below. A separate exact-HEAD evidence/approval check remains required before protected merge.
+          EOF
+          gh pr create --repo rahemih/Finance --base main --head "${BRANCH}" \
+            --draft --title "test(FIN-P24-WZ-005): bounded doctor regression hardening" \
+            --body-file /tmp/nq-coder-pr.md
+          gh workflow run governance.yml --repo rahemih/Finance --ref "${BRANCH}"
+          echo "FINANCE_CODER_PR_CREATED=1 branch=${BRANCH}"
