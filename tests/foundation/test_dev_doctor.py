@@ -38,6 +38,32 @@ class VersionOutputTests(unittest.TestCase):
                              "git version 2.45.1\nOther info")
 
 
+class RepositoryPrivacyTests(unittest.TestCase):
+    def test_repository_root_failure_does_not_expose_sensitive_exception(self) -> None:
+        # An invalid repo-root check must fail closed without leaking raw paths,
+        # command output or credentials in JSON/text diagnostics.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".node-version").write_text(doctor.EXPECTED["node"], encoding="utf-8")
+            (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({
+                "engines": {"node": doctor.EXPECTED["node"]},
+                "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
+            }), encoding="utf-8")
+            with patch.object(doctor, "ROOT", root), \
+                 patch.object(doctor, "require_repo_root",
+                              side_effect=ToolingError("TOKEN_SECRET_DO_NOT_PRINT /private/path")), \
+                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \
+                 patch.object(doctor, "check_command", return_value=False):
+                report = doctor.collect()
+        self.assertFalse(report["ok"])
+        self.assertEqual(report["checks"]["repository"],
+                         {"ok": False, "value": "REPOSITORY_CHECK_FAILED"})
+        self.assertNotIn("TOKEN_SECRET_DO_NOT_PRINT", json.dumps(report))
+        self.assertNotIn("/private/path", json.dumps(report))
+        self.assertIn("package:pnpm", report["checks"])
+
+
 class FullReportTests(unittest.TestCase):
     def test_failed_git_does_not_hide_other_dependency_results(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
