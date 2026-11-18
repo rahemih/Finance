@@ -14,7 +14,6 @@ import hmac
 import json
 import os
 import re
-import secrets
 import sqlite3
 import threading
 import time
@@ -113,8 +112,6 @@ class State:
     def __init__(self):
         self.lock = threading.RLock()
         self.journal = Journal(os.getenv("NQ_DATA_PATH", "/tmp/nq-events.sqlite3"))
-        self.view_password = os.getenv("NQ_VIEW_PASSWORD", "")
-        self.session_secret = os.getenv("NQ_SESSION_SECRET", "")
         self.ingest_token = os.getenv("NQ_INGEST_TOKEN", "")
         self.public_origin = os.getenv("NQ_PUBLIC_ORIGIN", "") or os.getenv("RENDER_EXTERNAL_URL", "")
         self.github_token = os.getenv("NQ_GITHUB_TOKEN", "")
@@ -122,13 +119,10 @@ class State:
         self.github = {"status": "WAITING", "verified_at": None, "runs": [],
                        "prs": [], "issues": [], "error": "No successful GitHub fetch"}
         self.subscribers = set()
-        self.attempts = {}
         host = os.getenv("NQ_HOST", "127.0.0.1")
         self.host = host
-        if host not in ("127.0.0.1", "localhost", "::1"):
-            if not (self.public_origin.startswith("https://") and
-                    len(self.view_password) >= 20 and len(self.session_secret) >= 32):
-                raise RuntimeError("Remote mode requires HTTPS public origin, viewer secret and HMAC secret")
+        if host not in ("127.0.0.1", "localhost", "::1") and not self.public_origin.startswith("https://"):
+            raise RuntimeError("Remote mode requires HTTPS public origin")
         if self.ingest_token and len(self.ingest_token) < 32:
             raise RuntimeError("Ingest token too short")
         threading.Thread(target=self._poll_loop, daemon=True).start()
@@ -151,8 +145,19 @@ class State:
                     raise ValueError("Malformed API response")
                 if len(runs) == 25 or len(prs) == 50 or len(issues) == 50:
                     raise ValueError("Pagination limit")
+                # Public view: only expose GitHub fields required by the monitor.
+                # Never forward arbitrary API fields (identities, permissions, tokens).
+                runs = [{key: item.get(key) for key in (
+                    "id", "name", "event", "status", "conclusion", "head_sha", "created_at"
+                )} for item in runs]
+                prs = [{key: item.get(key) for key in (
+                    "number", "title", "draft", "updated_at"
+                )} for item in prs]
+                issues = [{key: item.get(key) for key in (
+                    "number", "title", "updated_at"
+                )} for item in issues if "pull_request" not in item]
                 fresh = {"status": "LIVE", "verified_at": now(), "runs": runs,
-                         "prs": prs, "issues": [x for x in issues if "pull_request" not in x],
+                         "prs": prs, "issues": issues,
                          "error": None}
             except (Exception,):
                 with self.lock:
@@ -213,24 +218,9 @@ class Handler(BaseHTTPRequestHandler):
         if size is not None:
             self.send_header("Content-Length", str(size))
 
-    def allowed(self):
-        if not self.app.view_password and self.app.host in ("127.0.0.1", "::1", "localhost"):
-            return True
-        for pair in self.headers.get("Cookie", "").split(";"):
-            if pair.strip().startswith("nq_view="):
-                try:
-                    expiry, signature = pair.strip().split("=", 1)[1].split(".", 1)
-                    if not expiry.isdigit() or not (time.time() < int(expiry) < time.time() + 29000):
-                        return False
-                    expected = hmac.new(self.app.session_secret.encode(), expiry.encode(), hashlib.sha256).hexdigest()
-                    return hmac.compare_digest(expected, signature)
-                except (ValueError, IndexError):
-                    return False
-        return False
-
     def do_GET(self):
         # Separate path from browser-added query strings (e.g. ?utm_source=chatgpt.com).
-        # The existing asset allowlist and API auth checks still apply to the path.
+        # Only allowlisted, read-only GET paths are public; ingestion still requires the runner token.
         path = urlsplit(self.path).path
         if path in ASSETS:
             target = WEB / ASSETS[path]
@@ -245,8 +235,6 @@ class Handler(BaseHTTPRequestHandler):
             return
         if path == "/api/health":
             return self.send(200, {"status": "UP", "mode": "DEMO_ONLY"})
-        if not self.allowed():
-            return self.send(401, {"error": "login_required"})
         if path == "/api/state":
             return self.send(200, self.app.snapshot())
         if path == "/api/stream":
@@ -262,7 +250,24 @@ class Handler(BaseHTTPRequestHandler):
     def proxy(self, path, files=False):
         try:
             data = self.app.gh(path)
-            return self.send(200, {"files": data} if files else data)
+            if files:
+                if not isinstance(data, list) or len(data) >= 100:
+                    return self.send(502, {"error": "incomplete_files"})
+                safe_files = [{key: item.get(key) for key in (
+                    "filename", "status", "additions", "deletions"
+                )} for item in data if isinstance(item, dict)]
+                return self.send(200, {"files": safe_files})
+            jobs = data.get("jobs") if isinstance(data, dict) else None
+            if not isinstance(jobs, list) or len(jobs) >= 100:
+                return self.send(502, {"error": "incomplete_jobs"})
+            safe_jobs = [{
+                "id": item.get("id"), "name": item.get("name"),
+                "status": item.get("status"), "conclusion": item.get("conclusion"),
+                "steps": [{
+                    key: step.get(key) for key in ("name", "status", "conclusion", "started_at")
+                } for step in item.get("steps", []) if isinstance(step, dict)]
+            } for item in jobs if isinstance(item, dict)]
+            return self.send(200, {"jobs": safe_jobs})
         except Exception:
             return self.send(502, {"error": "github_unavailable"})
 
@@ -299,34 +304,6 @@ class Handler(BaseHTTPRequestHandler):
         except ValueError: size = -1
         if not 0 < size <= 2048:
             return self.send(413, {"error": "invalid_size"})
-        if self.path == "/api/login":
-            ip = self.client_address[0]
-            with self.app.lock:
-                times = [t for t in self.app.attempts.get(ip, [])
-                         if time.monotonic() - t < 300]
-                if len(times) >= 5:
-                    return self.send(429, {"error": "too_many_attempts"})
-                self.app.attempts[ip] = times
-            try:
-                obj = json.loads(self.rfile.read(size))
-                valid = (isinstance(obj, dict) and set(obj) == {"password"}
-                         and isinstance(obj["password"], str)
-                         and self.app.view_password
-                         and hmac.compare_digest(obj["password"], self.app.view_password))
-            except (ValueError, TypeError, UnicodeError):
-                valid = False
-            if not valid:
-                with self.app.lock: self.app.attempts[ip].append(time.monotonic())
-                return self.send(401, {"error": "incorrect_password"})
-            expiry = str(int(time.time() + 28800))
-            signature = hmac.new(self.app.session_secret.encode(), expiry.encode(), hashlib.sha256).hexdigest()
-            body = b'{"authenticated":true}'
-            self.send_response(200)
-            self._out_headers("application/json; charset=utf-8", len(body))
-            self.send_header("Set-Cookie", f"nq_view={expiry}.{signature}; HttpOnly; SameSite=Strict; Secure; Path=/")
-            self.end_headers()
-            self.wfile.write(body)
-            return
         if self.path != "/api/events":
             return self.send(404, {"error": "not_found"})
         token = self.app.ingest_token
