@@ -67,6 +67,15 @@ class JournalTests(unittest.TestCase):
         with self.assertRaises(trace.TraceError):
             self.j.validate()
 
+class PollingTests(unittest.TestCase):
+    def test_recent_workflow_page_is_a_valid_bounded_window(self):
+        from mission_control_server import State
+        import inspect
+        source = inspect.getsource(State._poll_loop)
+        self.assertNotIn("len(runs) == 25", source)
+        self.assertIn("len(prs) == 50 or len(issues) == 50", source)
+
+
 class HttpTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory()
