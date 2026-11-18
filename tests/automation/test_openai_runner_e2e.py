@@ -48,10 +48,11 @@ class EndToEndSimulation(unittest.TestCase):
             source=root/"scripts/dev/common.py"
             source.parent.mkdir(parents=True)
             source.write_text("def run_capture(command):\n    raise ValueError('raw secret')\n",encoding="utf-8")
+            (root/".gitignore").write_text("build/\n__pycache__/\n*.pyc\n",encoding="utf-8")
             call_command(root,["git","init","-q"])
             call_command(root,["git","config","user.name","Test Actor"])
             call_command(root,["git","config","user.email","test@example.invalid"])
-            call_command(root,["git","add","scripts/dev/common.py"])
+            call_command(root,["git","add","scripts/dev/common.py",".gitignore"])
             call_command(root,["git","commit","-qm","fixture initial"])
             sha=call_command(root,["git","rev-parse","HEAD"]).strip()
             proposal_file=root/"build/proposal.json"
