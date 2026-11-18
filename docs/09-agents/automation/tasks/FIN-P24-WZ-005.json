@@ -1,0 +1,21 @@
+{
+  "schema_version": "fin.coder.task.v1",
+  "task_id": "FIN-P24-WZ-005",
+  "mode": "DEMO_ONLY",
+  "category": "FOUNDATION_REGRESSION_HARDENING",
+  "objective": "Improve deterministic tests of scripts/dev/doctor.py for failure handling and fix any reproducible bug discovered, without altering security gates or reducing validations.",
+  "allowed_files": [
+    "scripts/dev/doctor.py",
+    "tests/foundation/test_dev_doctor.py"
+  ],
+  "test_profile": "foundation_unit",
+  "max_attempts": 2,
+  "pr_title": "test(FIN-P24-WZ-005): bounded doctor regression hardening",
+  "block_if_open_pr_contains": "FIN-P24-WZ-005",
+  "acceptance": [
+    "Add meaningful regression coverage for an invalid or missing developer-tool precondition.",
+    "Keep existing CI checks and fail-closed behavior unchanged.",
+    "All foundation unittest tests pass under Python 3.14.",
+    "All changes limited to the two explicitly allowed paths."
+  ]
+}
