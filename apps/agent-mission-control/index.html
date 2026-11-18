@@ -12,7 +12,6 @@
 <script src="trace-ui.js" defer></script>
 <script src="live.js" defer></script>
 <script src="control.js" defer></script>
-<script src="launch.js" defer></script>
 <script src="font-control.js" defer></script>
 </head>
 <body>
@@ -47,31 +46,14 @@
  <div class="inner">
    <section class="hero">
     <div><p class="eyebrow"><span class="eyebrow-dot"></span> MISSION CONTROL · FINANCE</p><h1>اتاق فرمان <span>ایجنت‌ها</span></h1><p class="hero-desc">رصد اجرای واقعی، تست‌ها، تغییر کد، خطاها و مسیر رفع مشکل در یک نمای واحد</p></div>
-    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-start" id="control-start" type="button"><span>▶</span> شروع بررسی و ادامه پروژه</button><a class="button button-primary" href="https://github.com/rahemih/Finance/pull/538" target="_blank" rel="noopener noreferrer" title="مشاهده تغییرات کدنویسی مستقیم ChatGPT در GitHub؛ ادغام پس از کنترل‌های پروژه">◉ کدنویسی مستقیم ChatGPT · PR #538</a><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
+    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-start" id="control-start" type="button"><span>▶</span> بررسی فوری وضعیت پروژه</button><a class="button button-primary" href="https://github.com/rahemih/Finance/pull/538" target="_blank" rel="noopener noreferrer" title="مشاهده تغییرات کدنویسی مستقیم ChatGPT در GitHub؛ ادغام پس از کنترل‌های پروژه">◉ کدنویسی مستقیم ChatGPT · PR #538</a><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
    </section>
-   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">API وضعیت GitHub را خودکار دریافت می‌کند. تا ارسال رویداد واقعی از Runner، وضعیت هر ایجنت نامعلوم است و فعالیت ساختگی نمایش داده نمی‌شود.</span></div>
-   <section class="panel operator-panel" id="operator-panel" aria-label="راه‌اندازی امن کدنویس واقعی">
-    <div class="operator-title">
-      <div><p class="panel-kicker">OPENAI BUILDER · OWNER CONTROL</p>
-        <h2>اجرای واقعی کدنویس — فقط برای مالک</h2>
-        <p>این قسمت مستقل از دکمه بررسی پروژه است. برای جلوگیری از سوءاستفاده عمومی، فقط پس از احراز هویت مالک می‌تواند یک وظیفه محدود GitHub Actions را آغاز کند.</p>
-      </div>
-      <span id="operator-status" aria-live="polite">در حال بررسی پیش‌نیازها…</span>
-    </div>
-    <div class="operator-actions">
-      <label for="owner-start-token">توکن خصوصی راه‌اندازی مالک</label>
-      <input id="owner-start-token" type="password" autocomplete="off" spellcheck="false" placeholder="فقط در مرورگر خود وارد کنید؛ در سرور ذخیره نمی‌شود" />
-      <button type="button" class="button button-start" id="operator-launch">▶ شروع کدنویسی واقعی</button>
-      <a class="button button-primary" target="_blank" rel="noopener noreferrer" href="https://github.com/rahemih/Finance/actions/workflows/finance-openai-builder.yml">اجرای امن در GitHub</a>
-    </div>
-    <p id="operator-message" role="status">برای استفاده، Workflow باید در main ادغام و کلیدهای خصوصی راه‌اندازی در Render و OpenAI در GitHub Secrets پیکربندی شده باشند.</p>
-    <p class="control-gates">بدون معاملات Live · بدون ادغام خودکار · هر اجرا فقط یک وظیفه از پیش تأییدشده دارد · نتیجه واقعی در GitHub Actions نمایش داده می‌شود.</p>
-  </section>
+   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">وضعیت GitHub و تست‌ها خودکار نمایش داده می‌شود؛ ادامه کدنویسی ChatGPT ساعتی است و بدون کلید مدل یا Copilot انجام می‌شود. فعالیت ایجنتی بدون شواهد واقعی نمایش داده نمی‌شود.</span></div>
   <section class="panel control-panel" id="control-panel" aria-label="شروع و پیگیری ادامه پروژه">
      <div class="control-head">
        <div><p class="panel-kicker">PROJECT RESUME · EVIDENCE-BASED</p>
-         <h2>از آخرین نقطه معتبر پروژه شروع کن</h2>
-         <p>بررسی عملی GitHub، مسیر تست، PRها و موانع؛ خطاهای موقت تا سه تلاش مجدد بررسی می‌شوند.</p>
+         <h2>بررسی آخرین نقطه پروژه — بدون مدل پولی</h2>
+         <p>بررسی واقعی GitHub، تست‌ها و موانع از این دکمه آغاز می‌شود. کدنویسی مستقیم ChatGPT در ایجنت ساعتی جداگانه پیش می‌رود؛ این دکمه آن را فوراً اجرا نمی‌کند.</p>
        </div>
        <strong id="control-status" aria-live="polite">هنوز شروع نشده</strong>
      </div>
