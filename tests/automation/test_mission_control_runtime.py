@@ -1,5 +1,6 @@
 """Bounded operator Start/resume tests; no broker, network or repository mutations."""
 import sys
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import time
 import unittest
@@ -70,6 +71,60 @@ class ResumeAuditTests(unittest.TestCase):
         self.assertEqual(len(paths),4)
         self.assertTrue(all(x.startswith(("/branches/", "/issues?", "/pulls?", "/actions/")) for x in paths))
         self.assertTrue(all(name=="control" for name, _ in self.published))
+
+    def test_fresh_polled_sha_inventory_and_governance_avoids_all_extra_github_requests(self):
+        calls = []
+        def forbidden_extra(path):
+            calls.append(path)
+            raise AssertionError("Cached audit must not make duplicate GitHub requests")
+        cache = {
+            "status": "LIVE", "verified_at": datetime.now(timezone.utc).isoformat(),
+            "main_sha": SHA, "governance_ci": "PASS_EXACT_MAIN",
+            "issues": [{"number": 530, "title": "P04-F SBOM license blocker"}],
+            "prs": [{"number": 535, "title": "Mission Control API"}]
+        }
+        audit=ResumeAudit(forbidden_extra,lambda *args:self.events.append(args),
+                          lambda *args:self.published.append(args),
+                          inventory_snapshot=lambda:dict(cache),delay=lambda _:None)
+        code,_=audit.start()
+        done=finish(audit)
+        self.assertEqual(code,202)
+        self.assertEqual(calls,[])
+        self.assertEqual(done["status"],"AUDIT_COMPLETE")
+        self.assertEqual(done["main_sha"],SHA)
+        self.assertEqual(done["governance_ci"],"PASS_EXACT_MAIN")
+        self.assertEqual(done["next_task"]["number"],530)
+
+    def test_stale_or_unverified_snapshot_never_claims_a_governance_pass(self):
+        bad_cache={
+            "status":"LIVE",
+            "verified_at": (datetime.now(timezone.utc)-timedelta(hours=3)).isoformat(),
+            "main_sha": SHA, "governance_ci":"PASS_EXACT_MAIN",
+            "issues":[], "prs":[]
+        }
+        calls=[]
+        def fresh_source(path):
+            calls.append(path)
+            return github_fixture(path)
+        audit=ResumeAudit(fresh_source,lambda *args:self.events.append(args),
+                          lambda *args:self.published.append(args),
+                          inventory_snapshot=lambda:dict(bad_cache),delay=lambda _:None)
+        audit.start()
+        done=finish(audit)
+        self.assertEqual(done["status"],"AUDIT_COMPLETE")
+        self.assertEqual(len(calls),4)
+        self.assertEqual(done["open_prs"],1)
+
+    def test_cache_without_exact_ci_or_sha_is_discarded(self):
+        snapshot={"status":"LIVE","verified_at":datetime.now(timezone.utc).isoformat(),
+                  "main_sha":"not-a-sha","governance_ci":"PASS_EXACT_MAIN",
+                  "issues":[],"prs":[]}
+        a=self.new()
+        a.inventory_snapshot=lambda:snapshot
+        self.assertIsNone(a._inventory())
+        snapshot["main_sha"]=SHA
+        snapshot["governance_ci"]="success"
+        self.assertIsNone(a._inventory())
 
     def test_second_start_during_cooldown_is_rate_limited(self):
         audit=self.new()
