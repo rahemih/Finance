@@ -232,8 +232,19 @@ def generate(path: Path, call=responses_call) -> dict:
             except RunnerError as exc:
                 last = str(exc)
         report["reason"] = last
-    except (RunnerError, OSError, ValueError, subprocess.SubprocessError):
-        report["reason"] = "MISSING_CONFIG_OR_UNVERIFIED_TASK"
+    except RunnerError as exc:
+        # Only controlled error codes are public; never include HTTP body or token.
+        message = str(exc)
+        report["reason"] = message if message in (
+            "OPENAI_API_KEY_NOT_CONFIGURED", "MODEL_NOT_ALLOWED",
+            "Invalid task objective", "Task schema unavailable",
+            "Unauthorized task or mode", "Wrong repository",
+            "Task file allowlist drift", "Unbounded retry budget",
+            "Trading constraint removed", "Publisher authority escalation",
+            "Credential isolation disabled", "Expected source missing"
+        ) else "UNVERIFIED_PROVIDER_OR_TASK"
+    except (OSError, ValueError, subprocess.SubprocessError):
+        report["reason"] = "UNVERIFIED_PROVIDER_OR_TASK"
     return report
 
 
