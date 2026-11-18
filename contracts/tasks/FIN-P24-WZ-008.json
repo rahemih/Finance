@@ -1,0 +1,112 @@
+{
+  "task_id": "FIN-P24-WZ-008",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Build a separately authenticated OpenAI Responses API autonomous coding stage with credential-isolated generated tests and draft-only GitHub publication.",
+  "scope": [
+    "Fixed code writing task FIN-P24-WZ-008 with exact 2-file allowlist.",
+    "Use OpenAI Responses API (not GitHub Copilot) and strict structured output; at most two inference attempts.",
+    "Run potentially untrusted model-created tests in a separate GitHub Actions job with no OpenAI key or GitHub write permissions.",
+    "Publish only independently verified artifact as a DRAFT GitHub PR after exact SHA/freshness/deduplication gates.",
+    "Provide offline operational/security tests and explicit BLOCKED status when API key missing."
+  ],
+  "out_of_scope": [
+    "Public unauthenticated dashboard initiating paid or mutating model jobs.",
+    "Persistent live real-money auto-trading, broker/exchange operations or account funding.",
+    "Unbounded autonomous file changes, instant completion of all P00–P24 tasks, bypassing A5/A8/A10/Human gates.",
+    "Commit model-written code directly to protected main."
+  ],
+  "dependencies": [
+    "FIN-P24-WZ-001",
+    "FIN-P24-WZ-002",
+    "FIN-P24-WZ-003",
+    "FIN-P24-WZ-004",
+    "ADR-0011"
+  ],
+  "read_paths": [
+    "docs/09-agents/**",
+    "scripts/dev/common.py",
+    "tests/foundation/**",
+    "contracts/tasks/**",
+    ".github/workflows/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-008.json",
+    "docs/09-agents/automation/FIN-P24-WZ-008.md",
+    "docs/09-agents/automation/tasks/FIN-P24-WZ-008.json",
+    "scripts/automation/openai_coder.py",
+    "scripts/automation/openai_verify.py",
+    "tests/automation/test_openai_coder.py",
+    ".github/workflows/finance-openai-builder.yml",
+    ".github/workflows/finance-openai-builder-contract.yml"
+  ],
+  "forbidden_paths": [
+    "apps/**",
+    "infra/**",
+    "config/**",
+    "credentials/**",
+    "secrets/**",
+    "packages/**",
+    "adapters/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    ".github/workflows/governance.yml"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A5",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "OpenAI_Platform",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "BRANCH_WRITE_SCOPED",
+    "CI_READ",
+    "ACTIONS_WORKFLOW_DISPATCH",
+    "DRAFT_PR_CREATE_ONLY"
+  ],
+  "secrets": [
+    "OPENAI_API_KEY (must be provided privately by owner only as an Actions Secret)"
+  ],
+  "risk_level": "HIGH",
+  "tests": [
+    "python -m unittest discover -s tests/automation -p test_openai_coder.py -v",
+    "Exact-head CI Governance Verify and OpenAI Builder Contract Tests",
+    "External real API inference from main only after independent approval and key provision",
+    "Credential-free generated test run and exact-sha protected draft PR proof"
+  ],
+  "security_tests": [
+    "Validate paths/digests/allowed code size and reject arbitrary model output.",
+    "No generated code executes in environment with OpenAI key.",
+    "No model-selected workflow/secret/financial files.",
+    "At most 2 model attempts per run, daily scheduled with dedupe guard.",
+    "Only Draft PR; no unverified A5/A8/A10 approval or automatic merge."
+  ],
+  "evidence": [
+    "docs/09-agents/automation/FIN-P24-WZ-008.md",
+    "https://github.com/rahemih/Finance/issues/531"
+  ],
+  "rollback": "Revert scoped task files via a separately authorized PR, then disable GitHub Action schedule.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Existing governance and independent vetoes stay intact.",
+    "Public Dashboard remains read-only without owner authorization.",
+    "API budget and billing remain owner-controlled, no paid resources created without separate approval."
+  ],
+  "definition_of_done": [
+    "All contract tests and exact-head Governance succeed.",
+    "Successful real OpenAI API run, not merely mock response.",
+    "Generated changes compiled/tested in tokenless validator.",
+    "One verified generated draft PR linked to original Actions run, with independent gate evidence.",
+    "No actual live trading or autonomous merge.",
+    "GitHub/Linear parity recorded."
+  ]
+}
