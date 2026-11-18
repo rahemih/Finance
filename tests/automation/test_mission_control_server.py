@@ -6,7 +6,7 @@ import sys
 import tempfile
 import threading
 from urllib.error import HTTPError
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -113,13 +113,63 @@ class HttpTests(unittest.TestCase):
                 self.assertEqual(response.status, 200)
                 self.assertIn(expected, response.headers.get("Content-Type", ""))
 
-    def test_api_auth_not_bypassed_with_query(self):
-        # Path normalization must not accidentally authorize private APIs.
-        self.srv.app.view_password = "protected-in-test"
+    def test_read_only_state_is_public_even_with_tracking_query(self):
         url = "http://127.0.0.1:%d/api/state?utm_source=chatgpt.com" % self.srv.server_port
+        with urlopen(url, timeout=4) as response:
+            self.assertEqual(response.status, 200)
+            state = json.load(response)
+            self.assertEqual(state["github"]["status"], "WAITING")
+            self.assertEqual(state["trace"]["events"], [])
+
+    def test_sse_stream_is_public(self):
+        url = "http://127.0.0.1:%d/api/stream" % self.srv.server_port
+        with urlopen(url, timeout=4) as response:
+            self.assertEqual(response.status, 200)
+            self.assertEqual(response.headers["Content-Type"], "text/event-stream; charset=utf-8")
+            self.assertEqual(response.readline().strip(), b"event: snapshot")
+
+    def test_login_endpoint_removed(self):
+        request = Request(
+            "http://127.0.0.1:%d/api/login" % self.srv.server_port,
+            data=b'{"password":"sample"}',
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
         with self.assertRaises(HTTPError) as err:
-            urlopen(url, timeout=4)
+            urlopen(request, timeout=4)
+        self.assertEqual(err.exception.code, 404)
+
+    def test_event_ingestion_not_public_without_runner_token(self):
+        self.srv.app.ingest_token = "a" * 48
+        request = Request(
+            "http://127.0.0.1:%d/api/events" % self.srv.server_port,
+            data=json.dumps(EVENT).encode(),
+            headers={"Content-Type": "application/json", "Idempotency-Key": "secure-run-123"},
+            method="POST",
+        )
+        with self.assertRaises(HTTPError) as err:
+            urlopen(request, timeout=4)
         self.assertEqual(err.exception.code, 401)
+        self.assertEqual(self.j.validate(), [])
+
+    def test_public_proxy_strips_unknown_github_fields(self):
+        self.srv.app.gh = lambda path: (
+            {"jobs": [{"id": 3, "name": "test", "status": "completed", "conclusion": "success",
+                       "secret_field": "should-not-leak",
+                       "steps": [{"name": "run", "status": "completed", "conclusion": "success",
+                                  "started_at": "2026-01-01T00:00:00Z", "hidden": "no"}]}]}
+            if "/jobs?" in path else
+            [{"filename": "README.md", "status": "modified", "additions": 1, "deletions": 0,
+              "hidden": "should-not-leak"}]
+        )
+        base = "http://127.0.0.1:%d" % self.srv.server_port
+        with urlopen(base + "/api/github/actions/runs/123/jobs", timeout=4) as response:
+            data = json.load(response)
+            self.assertNotIn("secret_field", data["jobs"][0])
+            self.assertNotIn("hidden", data["jobs"][0]["steps"][0])
+        with urlopen(base + "/api/github/pulls/123/files", timeout=4) as response:
+            data = json.load(response)
+            self.assertNotIn("hidden", data["files"][0])
 
     def test_unknown_route_with_query_remains_not_found(self):
         url = "http://127.0.0.1:%d/not-an-asset?utm_source=chatgpt.com" % self.srv.server_port
