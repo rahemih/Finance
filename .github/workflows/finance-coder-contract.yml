@@ -1,0 +1,56 @@
+name: Finance Coding Runner Contract Tests
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/automation/governed_coder.py'
+      - 'scripts/automation/coder_publish_guard.py'
+      - 'tests/automation/test_*coder*.py'
+      - 'docs/09-agents/automation/tasks/FIN-P24-WZ-005.json'
+      - 'contracts/tasks/FIN-P24-WZ-005.json'
+      - '.github/workflows/finance-autonomous-coder.yml'
+      - '.github/workflows/finance-coder-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: finance-coder-contract-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code_and_security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - name: Checkout untrusted PR without persistent credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set fixed Python version
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.14.8'
+      - name: Syntax, task contract and negative unit tests (no model invoked)
+        run: |
+          python -m py_compile scripts/automation/governed_coder.py scripts/automation/coder_publish_guard.py
+          python -m json.tool contracts/tasks/FIN-P24-WZ-005.json >/dev/null
+          python -m json.tool docs/09-agents/automation/tasks/FIN-P24-WZ-005.json >/dev/null
+          python -m unittest discover -s tests/automation -p 'test_*coder*.py' -v
+      - name: No live execution or ambiguous publishing flag
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          runner=Path('.github/workflows/finance-autonomous-coder.yml').read_text()
+          assert "on:\n  workflow_dispatch:" in runner
+          assert "permissions:\n  contents: read" in runner
+          assert "COPILOT_GITHUB_TOKEN" in runner
+          assert "pull-requests: write" in runner
+          assert "gh pr create" in runner and "--draft" in runner
+          assert "gh pr merge" not in runner
+          assert "auto-merge" not in runner
+          assert "--allow-all-tools" not in runner
+          assert "live_trading" not in runner
+          print("FIN_CODER_GOVERNANCE=PASS")
+          PY
