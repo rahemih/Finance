@@ -65,6 +65,7 @@ class TaskContractTests(unittest.TestCase):
         self.assertIn("--available-tools=edit,view,grep,glob", src)
         self.assertIn("--deny-tool=shell", src)
         self.assertNotIn("--allow-all-tools", src)
+        self.assertIn("--model=auto", src)
 
     def test_prompt_bounds_and_no_shell_instructions(self):
         value = g.prompt(g.read_task(), "FAILED", 1)
