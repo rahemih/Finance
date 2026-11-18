@@ -21,6 +21,7 @@ from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 import agent_trace as trace
+from mission_control_runtime import ResumeAudit
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = ROOT / "apps" / "agent-mission-control"
@@ -119,6 +120,9 @@ class State:
         self.github = {"status": "WAITING", "verified_at": None, "runs": [],
                        "prs": [], "issues": [], "error": "No successful GitHub fetch"}
         self.subscribers = set()
+        self.audit_event_lock = threading.Lock()
+        self.audit_event_seq = 0
+        self.audit = ResumeAudit(self.gh, self._audit_emit, self.publish)
         host = os.getenv("NQ_HOST", "127.0.0.1")
         self.host = host
         if host not in ("127.0.0.1", "localhost", "::1") and not self.public_origin.startswith("https://"):
@@ -183,11 +187,24 @@ class State:
                     try: q.put_nowait(("resync", "{}"))
                     except Full: pass
 
+    def _audit_emit(self, agent_id, task_id, run_id, event_type, message, target):
+        # One source event per actual step; no API/runner impersonation.
+        with self.audit_event_lock:
+            self.audit_event_seq += 1
+            key = f"{run_id}-{self.audit_event_seq}"
+        event, is_new = self.journal.append({
+            "agent_id": agent_id, "task_id": task_id, "run_id": run_id,
+            "event_type": event_type, "message": message, "target": target,
+        }, key)
+        if is_new:
+            self.publish("trace", event)
+
     def snapshot(self):
         with self.lock:
             gh = json.loads(json.dumps(self.github))
         return {"schema_version": "nq.mission.v3", "server_time": now(),
                 "github": gh, "trace": self.journal.export(),
+                "control": self.audit.snapshot(),
                 "api": {"connected": True, "stream": "SSE",
                         "ingestion_enabled": bool(self.ingest_token),
                         "live_trading": "DISABLED", "auto_trading": "DISABLED",
@@ -240,6 +257,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, {"status": "UP", "mode": "DEMO_ONLY"})
         if path == "/api/state":
             return self.send(200, self.app.snapshot())
+        if path == "/api/control":
+            return self.send(200, self.app.audit.snapshot())
         if path == "/api/stream":
             return self._stream()
         match = RUN_PATH.fullmatch(path)
@@ -307,6 +326,26 @@ class Handler(BaseHTTPRequestHandler):
         except ValueError: size = -1
         if not 0 < size <= 2048:
             return self.send(413, {"error": "invalid_size"})
+        if self.path == "/api/start":
+            # Public control is intentionally limited to one read-only, bounded
+            # fixed-target audit, never code execution or external mutations.
+            if size > 128:
+                return self.send(413, {"error": "invalid_size"})
+            origin = self.headers.get("Origin")
+            if self.app.public_origin and origin != self.app.public_origin:
+                return self.send(403, {"error": "origin_rejected"})
+            if self.headers.get("Sec-Fetch-Site", "same-origin") != "same-origin":
+                return self.send(403, {"error": "cross_site_rejected"})
+            if self.headers.get("Content-Type", "").split(";")[0].strip().lower() != "application/json":
+                return self.send(415, {"error": "json_only"})
+            try:
+                value = json.loads(self.rfile.read(size))
+                if value != {"action": "resume_audit"}:
+                    return self.send(422, {"error": "invalid_action"})
+            except (UnicodeError, ValueError, TypeError):
+                return self.send(422, {"error": "invalid_action"})
+            code, report = self.app.audit.start()
+            return self.send(code, report)
         if self.path != "/api/events":
             return self.send(404, {"error": "not_found"})
         token = self.app.ingest_token
