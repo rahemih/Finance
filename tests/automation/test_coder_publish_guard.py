@@ -35,6 +35,22 @@ class PublisherGateTests(unittest.TestCase):
     def test_safe_diff_can_be_inspected_without_executing(self):
         self.assertEqual(verify(evidence(), PATCH, SHA, [FILE]), [FILE])
 
+    def test_untested_candidate_only_passes_pretest_gate(self):
+        e = evidence()
+        e["status"] = "CANDIDATE_UNTESTED"
+        e["tests_pass"] = False
+        self.assertEqual(verify(e, PATCH, SHA, [FILE], pretest=True), [FILE])
+        with self.assertRaises(PublishError):
+            verify(e, PATCH, SHA, [FILE])
+
+    def test_untested_candidate_not_accepted_for_publisher(self):
+        e = evidence()
+        e["tests_pass"] = False
+        with self.assertRaises(PublishError):
+            verify(e, PATCH, SHA, [FILE])
+        with self.assertRaises(PublishError):
+            verify(e, PATCH, SHA, [FILE], pretest=True)
+
     def test_no_unreviewed_tests_are_executed_here(self):
         # Publisher imports no generated test module or other code.
         import inspect
