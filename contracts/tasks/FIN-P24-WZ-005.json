@@ -1,0 +1,114 @@
+{
+  "task_id": "FIN-P24-WZ-005",
+  "phase": "P24",
+  "workstream": "WZ",
+  "objective": "Bootstrap a bounded Copilot coding runner on GitHub Actions that proposes genuine small Python corrections with deterministic tests and independent non-executing PR publication, without changing financial/trading state.",
+  "scope": [
+    "Run governed fixed task FIN-P24-WZ-005 on an isolated temporary GitHub Actions checkout on a fixed schedule or owner dispatch.",
+    "Use pinned GitHub Copilot CLI with separately provisioned Copilot Requests token and only read/write file tools, no shell or GitHub write token.",
+    "Bound model edit/test retries to 2 and source/test paths to scripts/dev/doctor.py and tests/foundation/test_dev_doctor.py.",
+    "After passing tests, create SHA256 report and <=32KiB diff; privileged downstream job verifies scope, exact main SHA and evidence before draft PR.",
+    "Publish unit tests and CI artifacts, optionally stream Demo-only progress events to authenticated Mission Control telemetry.",
+    "Leave PR protected and unfinished until actual exact-head governance, independent reviews and Owner gate."
+  ],
+  "out_of_scope": [
+    "Unlimited self-modifying agents, arbitrary jobs, spontaneous production permission changes, unattended merge to main.",
+    "Live/Auto trading, external account operations, API secret disclosure, equity transfer, margin/leverage manipulation.",
+    "Model control of protected GitHub Actions workflow, repository credentials or CI rules.",
+    "False claims that task code generation succeeds without a Copilot authorization token, that all Finance phases are complete, or that demo/provider blockers are resolved."
+  ],
+  "dependencies": [
+    "FIN-P01-WO-001",
+    "FIN-P24-WZ-001",
+    "FIN-P24-WZ-002",
+    "FIN-P24-WZ-003",
+    "FIN-P24-WZ-004"
+  ],
+  "read_paths": [
+    "scripts/dev/doctor.py",
+    "tests/foundation/**",
+    "docs/00-governance/**",
+    "docs/09-agents/**",
+    "contracts/tasks/**"
+  ],
+  "write_paths": [
+    "contracts/tasks/FIN-P24-WZ-005.json",
+    "docs/09-agents/automation/tasks/FIN-P24-WZ-005.json",
+    "docs/09-agents/automation/FIN-P24-WZ-005.md",
+    "scripts/automation/governed_coder.py",
+    "scripts/automation/coder_publish_guard.py",
+    "tests/automation/test_governed_coder.py",
+    "tests/automation/test_coder_publish_guard.py",
+    ".github/workflows/finance-autonomous-coder.yml",
+    ".github/workflows/finance-coder-contract.yml"
+  ],
+  "forbidden_paths": [
+    "config/**",
+    "infra/**",
+    "packages/**",
+    "adapters/**",
+    "apps/**",
+    "docs/01-roadmap/**",
+    "docs/02-current-state/**",
+    "secrets/**",
+    "credentials/**",
+    "*.lock",
+    "pyproject.toml",
+    ".github/workflows/governance.yml"
+  ],
+  "agents": [
+    "A0",
+    "A1",
+    "A8",
+    "A9",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Render",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "BRANCH_SCOPED_CODE_EDIT",
+    "ACTIONS_READ",
+    "PR_CREATE_GOVERNED"
+  ],
+  "secrets": [
+    "COPILOT_GITHUB_TOKEN (GitHub Actions Copilot Requests, separate from bot repository write token)",
+    "NQ_TRACE_TOKEN (optional, private Demo-only progress telemetry)"
+  ],
+  "risk_level": "HIGH",
+  "tests": [
+    "Python 3.14 compile and unittest discover -s tests/automation -p 'test_*coder*.py'.",
+    "Validate scope enforcement, patch checksum/hash, unsupported mode rejection, no model token fail-closed.",
+    "Verify exact-head PR Governance Verify success and coding-runner contract job success.",
+    "Before canonical task closure, run a true successful model edit/test cycle, draft PR creation and exact-head post-publication CI with no review bypass."
+  ],
+  "security_tests": [
+    "AI model job has contents:read and no GITHUB_TOKEN/other repo write privilege available in the model subprocess.",
+    "Publish job receives write privileges only after report and patch guard, never executes generated code.",
+    "Enforce path, file size, patch size, no binary, no deletion, no sensitive files or changes to CI/workflows.",
+    "No automatic merge, no financial orders, no branch protection changes.",
+    "At most two model retries, one open PR per task, six-hour schedule, no escalation on bad evidence."
+  ],
+  "evidence": [
+    "docs/09-agents/automation/FIN-P24-WZ-005.md",
+    "https://github.com/rahemih/Finance/issues/531"
+  ],
+  "rollback": "Disable workflow via fresh scoped PR or revert WZ-005 automation files after independent review.",
+  "human_gate": true,
+  "definition_of_ready": [
+    "Canonical governance contracts and independent A5/A8/A10 remain intact.",
+    "Copilot CLI provider/version reviewed and limited to ephemeral Actions; no new production runtime packages.",
+    "Owner has not delegated credentials to public browser; model authorization supplied only via private Actions secret."
+  ],
+  "definition_of_done": [
+    "Code, workflow, contract, tests and documentation on reviewable PR.",
+    "Exact-head repository Governance, downstream contract/test job success.",
+    "Actual Copilot inference credentials validated and narrow edit succeeded with test evidence.",
+    "Real draft PR from independent guarded publisher validated; post-merge evidence collected if Owner approves.",
+    "GitHub-Linear parity updated and no Live/Auto or G13 promotion."
+  ]
+}
