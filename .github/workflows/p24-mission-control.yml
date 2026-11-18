@@ -33,5 +33,6 @@ jobs:
         run: |
           python -m py_compile scripts/automation/mission_control_server.py scripts/automation/mission_control_runtime.py scripts/automation/agent_trace.py
           python -m unittest discover -s tests/automation -p 'test_mission_control_*.py' -v
+          node --check apps/agent-mission-control/control.js
           python -m unittest discover -s tests/automation -p test_mission_font_contract.py -v
           ! grep -R --include='*.py' 'ENABLE_LIVE' scripts/automation/mission_control_server.py
