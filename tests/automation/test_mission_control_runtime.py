@@ -147,6 +147,31 @@ class ResumeAuditTests(unittest.TestCase):
         self.assertEqual(len(calls),1)
         self.assertIn("rate limit",done["error"])
 
+    def test_confirmed_rate_limit_is_reported_precisely_and_never_retried(self):
+        calls=[]
+        def exhausted(path):
+            calls.append(path)
+            raise HTTPError(url="https://api.github.com", code=403,
+                            msg="API rate limit exceeded",
+                            hdrs={"X-RateLimit-Remaining":"0"}, fp=None)
+        audit=self.new(exhausted)
+        audit.start()
+        outcome=finish(audit)
+        self.assertEqual(outcome["status"],"BLOCKED")
+        self.assertIn("hourly read rate limit exhausted",outcome["error"])
+        self.assertEqual(len(calls),1)
+
+    def test_invalid_authentication_is_not_credited_as_a_rate_limit(self):
+        def unauthorized(path):
+            raise HTTPError(url="https://api.github.com", code=401,
+                            msg="bad credentials", hdrs={}, fp=None)
+        audit=self.new(unauthorized)
+        audit.start()
+        outcome=finish(audit)
+        self.assertEqual(outcome["status"],"BLOCKED")
+        self.assertIn("authentication denied",outcome["error"])
+        self.assertNotIn("rate limit",outcome["error"])
+
     def test_infrastructure_errors_retry_at_most_three_times(self):
         count=[]
         def outage(path):
