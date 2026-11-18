@@ -31,11 +31,36 @@ class VersionOutputTests(unittest.TestCase):
              patch.object(doctor, "run_capture", return_value="\n \n"):
             self.assertEqual(doctor.read_version_output("pnpm", ["pnpm", "--version"]), "EMPTY_OUTPUT")
 
-    def test_multiline_output_is_handled(self) -> None:
+    def test_multiline_output_is_sanitized(self) -> None:
         with patch.object(doctor, "check_command", return_value=True), \
-             patch.object(doctor, "run_capture", return_value="git version 2.45.1\nOther info"):
+             patch.object(doctor, "run_capture", return_value="git version 2.45.1\nSECRET_DO_NOT_LOG"):
             self.assertEqual(doctor.read_version_output("git", ["git", "--version"]),
-                             "git version 2.45.1\nOther info")
+                             "UNEXPECTED_OUTPUT")
+
+    def test_malicious_stdout_is_not_reflected(self) -> None:
+        for tool, stdout in (
+            ("node", "v24.21.0 TOKEN_SECRET"),
+            ("pnpm", "11.28.4\\x1b[31m"),
+            ("uv", "uv 0.12.23\n/private/credential"),
+            ("git", "git version 2.45.1\rPRIVATE"),
+        ):
+            with self.subTest(tool=tool), \
+                 patch.object(doctor, "check_command", return_value=True), \
+                 patch.object(doctor, "run_capture", return_value=stdout):
+                self.assertEqual(doctor.read_version_output(tool, [tool, "--version"]),
+                                 "UNEXPECTED_OUTPUT")
+
+    def test_valid_versions_remain_usable(self) -> None:
+        for tool, stdout in (
+            ("node", "v24.21.0"),
+            ("pnpm", "11.28.4"),
+            ("uv", "uv 0.12.23"),
+            ("git", "git version 2.45.1"),
+        ):
+            with self.subTest(tool=tool), \
+                 patch.object(doctor, "check_command", return_value=True), \
+                 patch.object(doctor, "run_capture", return_value=stdout):
+                self.assertEqual(doctor.read_version_output(tool, [tool, "--version"]), stdout)
 
 
 class RepositoryPrivacyTests(unittest.TestCase):
