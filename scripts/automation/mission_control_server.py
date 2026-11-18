@@ -143,8 +143,11 @@ class State:
                 issues = self.gh("/issues?state=open&per_page=50")
                 if not all(isinstance(x, list) for x in [runs, prs, issues]):
                     raise ValueError("Malformed API response")
-                if len(runs) == 25 or len(prs) == 50 or len(issues) == 50:
-                    raise ValueError("Pagination limit")
+                # Workflow dashboard intentionally shows the newest 25 runs,
+                # not the complete lifetime history; a full first page is valid.
+                # PR/issue inventories still fail closed if they hit their page cap.
+                if len(prs) == 50 or len(issues) == 50:
+                    raise ValueError("PR/issue pagination limit")
                 # Public view: only expose GitHub fields required by the monitor.
                 # Never forward arbitrary API fields (identities, permissions, tokens).
                 runs = [{key: item.get(key) for key in (
