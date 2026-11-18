@@ -22,6 +22,7 @@ from urllib.request import Request, urlopen
 
 import agent_trace as trace
 from mission_control_runtime import ResumeAudit
+from mission_control_launcher import Launcher
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = ROOT / "apps" / "agent-mission-control"
@@ -123,6 +124,9 @@ class State:
         self.audit_event_lock = threading.Lock()
         self.audit_event_seq = 0
         self.audit = ResumeAudit(self.gh, self._audit_emit, self.publish)
+        self.launcher = Launcher(origin=self.public_origin,
+                                 owner_token=os.getenv('NQ_OWNER_START_TOKEN', ''),
+                                 dispatch_token=os.getenv('NQ_GITHUB_DISPATCH_TOKEN', ''))
         host = os.getenv("NQ_HOST", "127.0.0.1")
         self.host = host
         if host not in ("127.0.0.1", "localhost", "::1") and not self.public_origin.startswith("https://"):
@@ -205,6 +209,7 @@ class State:
         return {"schema_version": "nq.mission.v3", "server_time": now(),
                 "github": gh, "trace": self.journal.export(),
                 "control": self.audit.snapshot(),
+                "launcher": self.launcher.state(),
                 "api": {"connected": True, "stream": "SSE",
                         "ingestion_enabled": bool(self.ingest_token),
                         "live_trading": "DISABLED", "auto_trading": "DISABLED",
@@ -214,7 +219,7 @@ class State:
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
     def log_message(self, format, *args):
-        if not self.path.startswith("/api/events"):
+        if not self.path.startswith(("/api/events", "/api/launch")):
             super().log_message(format, *args)
 
     @property
@@ -259,6 +264,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, self.app.snapshot())
         if path == "/api/control":
             return self.send(200, self.app.audit.snapshot())
+        if path == "/api/launcher":
+            return self.send(200, self.app.launcher.state())
         if path == "/api/stream":
             return self._stream()
         match = RUN_PATH.fullmatch(path)
@@ -346,6 +353,23 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send(422, {"error": "invalid_action"})
             code, report = self.app.audit.start()
             return self.send(code, report)
+        if self.path == "/api/launch":
+            if size > 128:
+                return self.send(413, {"error": "invalid_size"})
+            if self.headers.get("Content-Type", "").split(";")[0].strip().lower() != "application/json":
+                return self.send(415, {"error": "json_only"})
+            try:
+                payload = json.loads(self.rfile.read(size))
+            except (UnicodeError, ValueError, TypeError):
+                return self.send(422, {"error": "invalid_json"})
+            code, output = self.app.launcher.launch(
+                authorization=self.headers.get("Authorization", ""),
+                origin=self.headers.get("Origin", ""),
+                fetch_site=self.headers.get("Sec-Fetch-Site", ""),
+                payload=payload)
+            if code == 202:
+                self.app.publish("launch", self.app.launcher.state())
+            return self.send(code, output)
         if self.path != "/api/events":
             return self.send(404, {"error": "not_found"})
         token = self.app.ingest_token
