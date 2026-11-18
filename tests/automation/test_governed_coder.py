@@ -107,24 +107,40 @@ class RunTests(unittest.TestCase):
                  patch.object(g, "produce_patch", return_value=(120,"f"*64)), \
                  patch.object(g, "emit_event"):
                 state = g.execute(report, patch_path, g.TASK_PATH)
-            self.assertEqual(state["status"], "READY_FOR_PR_REVIEW")
-            self.assertTrue(state["tests_pass"])
+            self.assertEqual(state["status"], "CANDIDATE_UNTESTED")
+            self.assertFalse(state["tests_pass"])
             self.assertEqual(state["independent_review"], "NOT_VERIFIED")
             self.assertEqual(state["patch_sha256"], "f"*64)
 
-    def test_failing_tests_bounded_two_attempts(self):
+    def test_model_failure_is_bounded_two_attempts(self):
         with tempfile.TemporaryDirectory() as t:
             report = Path(t) / "report.json"
             with patch.object(g, "git", return_value="c"*40), \
                  patch.object(g, "changed_paths", return_value=set()), \
                  patch.object(g, "validate_paths"), \
-                 patch.object(g, "run_tests", return_value=(False, "broken")), \
-                 patch.object(g, "invoke_model", return_value=(True,"COPILOT_DONE")), \
+                 patch.object(g, "run_tests", return_value=(True, "ok")) as test_run, \
+                 patch.object(g, "invoke_model", return_value=(False,"COPILOT_NONZERO_EXIT")) as model_run, \
                  patch.object(g, "emit_event"):
                 state = g.execute(report, Path(t)/"p.patch", g.TASK_PATH)
             self.assertEqual(state["status"], "BLOCKED")
             self.assertEqual(state["iterations"], 2)
-            self.assertEqual(state["reason"], "FOUNDATION_TESTS_NOT_GREEN")
+            self.assertEqual(model_run.call_count, 2)
+            self.assertEqual(test_run.call_count, 1)
+
+    def test_untrusted_generated_code_never_runs_in_model_job(self):
+        with tempfile.TemporaryDirectory() as t:
+            with patch.object(g, "git", return_value="e"*40), \
+                 patch.object(g, "changed_paths", return_value=set()), \
+                 patch.object(g, "validate_paths"), \
+                 patch.object(g, "run_tests", return_value=(True, "safe baseline")) as test_run, \
+                 patch.object(g, "invoke_model", return_value=(True,"COPILOT_DONE")), \
+                 patch.object(g, "produce_patch", return_value=(200,"a"*64)), \
+                 patch.object(g, "emit_event"):
+                state = g.execute(Path(t)/"report.json", Path(t)/"diff.patch", g.TASK_PATH)
+            self.assertEqual(state["status"], "CANDIDATE_UNTESTED")
+            self.assertFalse(state["tests_pass"])
+            self.assertEqual(test_run.call_count, 1)
+            self.assertEqual(state["independent_review"], "NOT_VERIFIED")
 
     def test_unauthorized_path_prevents_publication(self):
         with tempfile.TemporaryDirectory() as t:
