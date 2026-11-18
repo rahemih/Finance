@@ -67,7 +67,7 @@ class Launcher:
             return 422, {"status": "INVALID_FIXED_ACTION"}
         with self.lock:
             clock = time.monotonic()
-            if clock - self.last_started < self.cooldown:
+            if self.last_started and clock - self.last_started < self.cooldown:
                 return 429, {"status": "COOLDOWN", "retry_after_seconds":
                              max(1, int(self.cooldown - (clock - self.last_started)))}
             self.last_started = clock
