@@ -3,8 +3,11 @@ on:
   pull_request:
     paths:
       - 'scripts/automation/mission_control_server.py'
+      - 'scripts/automation/mission_control_runtime.py'
       - 'apps/agent-mission-control/**'
       - 'tests/automation/test_mission_control_server.py'
+      - 'tests/automation/test_mission_control_runtime.py'
+      - 'tests/automation/test_mission_control_start_http.py'
       - 'tests/automation/test_mission_font_contract.py'
       - 'render.mission-control.yaml'
       - 'Dockerfile.mission-control'
@@ -28,7 +31,7 @@ jobs:
           python-version: '3.13'
       - name: Syntax and security contract
         run: |
-          python -m py_compile scripts/automation/mission_control_server.py scripts/automation/agent_trace.py
-          python -m unittest discover -s tests/automation -p test_mission_control_server.py -v
+          python -m py_compile scripts/automation/mission_control_server.py scripts/automation/mission_control_runtime.py scripts/automation/agent_trace.py
+          python -m unittest discover -s tests/automation -p 'test_mission_control_*.py' -v
           python -m unittest discover -s tests/automation -p test_mission_font_contract.py -v
           ! grep -R --include='*.py' 'ENABLE_LIVE' scripts/automation/mission_control_server.py
