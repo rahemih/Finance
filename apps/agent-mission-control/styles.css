@@ -41,3 +41,19 @@
 .control-gates{font-size:10px;color:#9cb0c1;margin-top:6px}
 @media(max-width:1000px){.control-details{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-actions{flex-wrap:wrap}}
 @media(max-width:720px){.control-head{flex-direction:column;gap:8px}.control-panel{padding:14px}.control-details{grid-template-columns:1fr 1fr}.control-next{align-items:flex-start;flex-direction:column}.button-start{width:100%}}
+
+/* Owner-only mutation, public read-only visibility. No secrets are rendered. */
+.operator-panel{padding:18px 22px;margin:0 0 16px;border:1px solid #345a75;
+ background:linear-gradient(120deg,#172b3d,#122131 60%);border-radius:14px}
+.operator-title{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.operator-title h2{font-size:15px;margin:6px 0;font-weight:750}
+.operator-title p{margin:3px 0 10px;color:#b2c6d6;font-size:11px;line-height:1.7}
+#operator-status{border:1px solid #315c6c;color:#addde0;border-radius:14px;padding:6px 10px;
+ font-size:11px;min-width:165px;text-align:center}
+.operator-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:11px 0}
+.operator-actions label{font-size:11px;color:#bdd0e3}
+#owner-start-token{background:#0c1a29;border:1px solid #42617c;border-radius:8px;max-width:310px;
+ width:100%;min-height:34px;color:#e4f0f5;padding:6px 10px;direction:ltr}
+#operator-message{font-size:11px;color:#c2d6e1;line-height:1.8;margin:4px 0 7px}
+@media(max-width:720px){.operator-panel{padding:13px}.operator-title{flex-direction:column}
+ #owner-start-token{max-width:100%}.operator-actions{flex-direction:column;align-items:stretch}}
