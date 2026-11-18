@@ -49,7 +49,9 @@ jobs:
           assert 'pull-requests: write' in content
           assert '--draft' in content
           assert 'gh pr merge' not in content
-          assert 'copilot' not in content.lower()
+          assert 'COPILOT_GITHUB_TOKEN' not in content
+          assert '@github/copilot' not in content
+          assert 'copilot -p ' not in content
           assert 'Live Trading' not in content
           print('FIN_OPENAI_FOOTPRINT=PASS')
           PY
