@@ -12,6 +12,7 @@
    state.source=gh.status==='LIVE'?'live':'waiting';
    state.lastVerified=gh.verified_at;state.error=gh.error||null;render();
   }
+  if(value.control&&window.nexusControlApply)window.nexusControlApply(value.control);
   if(value.trace&&window.nexusAgentTrace){
    try{
     await window.nexusAgentTrace.loadServer(value.trace);
@@ -41,6 +42,7 @@
    state.lastVerified=gh.verified_at;render();
   }catch{state.source='waiting';renderSource()}});
   stream.addEventListener('trace',()=>{void resync().catch(()=>status('در حال بازیابی شواهد پس از دریافت رویداد'))});
+  stream.addEventListener('control',event=>{try{window.nexusControlApply?.(JSON.parse(event.data))}catch{status('رویداد کنترل نامعتبر است')}});
   stream.addEventListener('resync',()=>{void resync().catch(()=>status('جریان رویداد نیازمند همگام‌سازی مجدد است'))});
   stream.onerror=()=>{
    state.source='waiting';state.error='SSE connection lost';renderSource();
