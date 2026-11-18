@@ -18,6 +18,7 @@ import sqlite3
 import threading
 import time
 from urllib.parse import urlsplit
+from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 import agent_trace as trace
@@ -116,13 +117,14 @@ class State:
         self.ingest_token = os.getenv("NQ_INGEST_TOKEN", "")
         self.public_origin = os.getenv("NQ_PUBLIC_ORIGIN", "") or os.getenv("RENDER_EXTERNAL_URL", "")
         self.github_token = os.getenv("NQ_GITHUB_TOKEN", "")
-        self.github_interval = max(60, int(os.getenv("NQ_GITHUB_POLL_SECONDS", "300")))
+        self.github_interval = max(900, int(os.getenv("NQ_GITHUB_POLL_SECONDS", "1800")))
         self.github = {"status": "WAITING", "verified_at": None, "runs": [],
                        "prs": [], "issues": [], "error": "No successful GitHub fetch"}
         self.subscribers = set()
         self.audit_event_lock = threading.Lock()
         self.audit_event_seq = 0
-        self.audit = ResumeAudit(self.gh, self._audit_emit, self.publish)
+        self.audit = ResumeAudit(self.gh, self._audit_emit, self.publish,
+                                 inventory_snapshot=self._inventory_snapshot)
         host = os.getenv("NQ_HOST", "127.0.0.1")
         self.host = host
         if host not in ("127.0.0.1", "localhost", "::1") and not self.public_origin.startswith("https://"):
@@ -130,6 +132,11 @@ class State:
         if self.ingest_token and len(self.ingest_token) < 32:
             raise RuntimeError("Ingest token too short")
         threading.Thread(target=self._poll_loop, daemon=True).start()
+
+    def _inventory_snapshot(self):
+        # Only share a successfully verified snapshot, never mutable live references.
+        with self.lock:
+            return json.loads(json.dumps(self.github))
 
     def gh(self, path):
         headers = {"Accept": "application/vnd.github+json", "User-Agent": "NQ-Mission-Control/3.0",
@@ -141,6 +148,7 @@ class State:
 
     def _poll_loop(self):
         while True:
+            delay = self.github_interval
             try:
                 runs = self.gh("/actions/runs?per_page=25")["workflow_runs"]
                 prs = self.gh("/pulls?state=open&per_page=50")
@@ -166,14 +174,34 @@ class State:
                 fresh = {"status": "LIVE", "verified_at": now(), "runs": runs,
                          "prs": prs, "issues": issues,
                          "error": None}
-            except (Exception,):
+            except HTTPError as exc:
+                # Anonymous GitHub calls share the egress IP quota on free hosting.
+                # Never retry aggressively on HTTP 403/429; honor any reset hint.
+                headers = exc.headers
+                remaining = headers.get("X-RateLimit-Remaining") if headers else None
+                if exc.code == 429 or (exc.code == 403 and remaining == "0"):
+                    reset = headers.get("X-RateLimit-Reset") if headers else None
+                    try:
+                        reset_wait = max(60, min(7200, int(reset) - int(time.time()) + 15))
+                    except (TypeError, ValueError):
+                        reset_wait = 3600
+                    delay = max(delay, reset_wait)
+                    detail = "GitHub anonymous API quota exhausted; latest cached data may be stale"
+                elif exc.code in (401, 403):
+                    delay = max(delay, 1800)
+                    detail = "GitHub read access denied; authentication or permissions unverified"
+                else:
+                    detail = "GitHub unavailable; last successful data may be stale"
+                with self.lock:
+                    fresh = {**self.github, "status": "DEGRADED", "error": detail}
+            except Exception:
                 with self.lock:
                     fresh = {**self.github, "status": "DEGRADED",
                              "error": "GitHub unavailable; last successful data may be stale"}
             with self.lock:
                 self.github = fresh
             self.publish("github", fresh)
-            time.sleep(self.github_interval)
+            time.sleep(delay)
 
     def publish(self, name, value):
         packet = (name, json.dumps(value, ensure_ascii=False, separators=(",", ":")))
