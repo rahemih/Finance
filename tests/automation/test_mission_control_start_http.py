@@ -107,6 +107,17 @@ class StartHttpTests(unittest.TestCase):
         self.assertEqual(err.exception.code,403)
         self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
 
+    def test_remote_origin_prefix_spoof_is_rejected(self):
+        # A hostile hostname containing the trusted origin as a prefix must
+        # not satisfy the exact-origin check or start an audit.
+        self.app.public_origin="https://nq.example.com"
+        req=self.request({"action":"resume_audit"},origin="https://nq.example.com.evil.example")
+        req.add_header("Sec-Fetch-Site","same-origin")
+        with self.assertRaises(HTTPError) as err:
+            urlopen(req,timeout=4)
+        self.assertEqual(err.exception.code,403)
+        self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
+
     def test_remote_state_requires_https_public_origin(self):
         # A remotely bound server must never start with an absent or insecure
         # public origin, otherwise the Start Origin check could be disabled.
