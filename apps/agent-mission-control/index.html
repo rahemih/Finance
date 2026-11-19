@@ -46,14 +46,14 @@
  <div class="inner">
    <section class="hero">
     <div><p class="eyebrow"><span class="eyebrow-dot"></span> MISSION CONTROL · FINANCE</p><h1>اتاق فرمان <span>ایجنت‌ها</span></h1><p class="hero-desc">رصد اجرای واقعی، تست‌ها، تغییر کد، خطاها و مسیر رفع مشکل در یک نمای واحد</p></div>
-    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-start" id="control-start" type="button"><span>▶</span> شروع بررسی و ادامه پروژه</button><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
+    <div class="hero-actions"><div class="freshness" id="freshness" role="status">● در حال دریافت داده‌های GitHub</div><button class="button button-start" id="control-start" type="button"><span>▶</span> بررسی فوری وضعیت پروژه</button><a class="button button-primary" href="https://github.com/rahemih/Finance/issues/531" target="_blank" rel="noopener noreferrer" title="گزارش‌های واقعی ایجنت ساعتی در GitHub؛ مشاهده سابقه Commit، PR، تست و موانع">◉ گزارش ایجنت ساعتی ChatGPT</a><button class="button button-primary" id="refresh-btn" type="button"><span>⟳</span> دریافت آخرین وضعیت</button></div>
    </section>
-   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">API وضعیت GitHub را خودکار دریافت می‌کند. تا ارسال رویداد واقعی از Runner، وضعیت هر ایجنت نامعلوم است و فعالیت ساختگی نمایش داده نمی‌شود.</span></div>
-   <section class="panel control-panel" id="control-panel" aria-label="شروع و پیگیری ادامه پروژه">
+   <div class="truth-banner" id="truth-banner" role="status"><span class="info-mark">i</span><span id="truth-text">وضعیت GitHub و تست‌ها خودکار نمایش داده می‌شود؛ ادامه کدنویسی ChatGPT ساعتی است و بدون کلید مدل یا Copilot انجام می‌شود. فعالیت ایجنتی بدون شواهد واقعی نمایش داده نمی‌شود.</span></div>
+  <section class="panel control-panel" id="control-panel" aria-label="شروع و پیگیری ادامه پروژه">
      <div class="control-head">
        <div><p class="panel-kicker">PROJECT RESUME · EVIDENCE-BASED</p>
-         <h2>از آخرین نقطه معتبر پروژه شروع کن</h2>
-         <p>بررسی عملی GitHub، مسیر تست، PRها و موانع؛ خطاهای موقت تا سه تلاش مجدد بررسی می‌شوند.</p>
+         <h2>بررسی آخرین نقطه پروژه — بدون مدل پولی</h2>
+         <p>بررسی واقعی GitHub، تست‌ها و موانع از این دکمه آغاز می‌شود. کدنویسی مستقیم ChatGPT در ایجنت ساعتی جداگانه پیش می‌رود؛ این دکمه آن را فوراً اجرا نمی‌کند.</p>
        </div>
        <strong id="control-status" aria-live="polite">هنوز شروع نشده</strong>
      </div>
@@ -63,7 +63,7 @@
        <div>تلاش <span id="control-attempt" dir="ltr">—</span></div>
        <div>آخرین SHA <code id="control-main" dir="ltr">—</code></div>
      </div>
-     <p class="control-message" id="control-message" role="status">با Start، یک بررسی واقعیِ محدود و فقط‌خواندنی آغاز می‌شود. اجرای خودکار تغییر کد هنوز به Runner مجاز نیاز دارد.</p>
+     <p class="control-message" id="control-message" role="status">این دکمه فقط وضعیت GitHub را بررسی می‌کند؛ ایجنت ChatGPT در زمان‌بندی ساعتی جداگانه کار می‌کند و از این دکمه فوراً فعال نمی‌شود.</p>
      <div class="control-next" id="control-next" hidden>
        <span>نزدیک‌ترین کارِ قابل بررسی</span>
        <a id="control-next-link" target="_blank" rel="noopener noreferrer" href="https://github.com/rahemih/Finance">مشاهده در GitHub</a>
@@ -71,7 +71,7 @@
      <div class="control-gates" id="control-gates">کنترل مالی: Demo Only · هیچ معامله یا تغییر مجوزی از این دکمه انجام نمی‌شود.</div>
    </section>
    <section class="stats" aria-label="شاخص‌های پروژه">
-    <article class="stat-card"><div class="stat-head"><span>فرآیندهای در حال اجرا</span><span class="stat-icon purple">◉</span></div><div class="stat-value" id="stat-active">—</div><div class="stat-foot"><span class="mini-dot lavender"></span>Workflow و Job واقعی</div></article>
+    <article class="stat-card"><div class="stat-head"><span>Workflowهای GitHub در حال اجرا</span><span class="stat-icon purple">◉</span></div><div class="stat-value" id="stat-active">—</div><div class="stat-foot"><span class="mini-dot lavender"></span>فقط اجراهای GitHub؛ نه ایجنت ساعتی ChatGPT</div></article>
     <article class="stat-card"><div class="stat-head"><span>تست یا اجرای ناموفق</span><span class="stat-icon red">⚠</span></div><div class="stat-value" id="stat-failed">—</div><div class="stat-foot"><span class="mini-dot tomato"></span>در آخرین Workflowها</div></article>
     <article class="stat-card"><div class="stat-head"><span>Pull Request باز</span><span class="stat-icon blue">⤴</span></div><div class="stat-value" id="stat-prs">—</div><div class="stat-foot"><span class="mini-dot cyan"></span>تغییرات در انتظار بررسی</div></article>
     <article class="stat-card"><div class="stat-head"><span>Issue باز</span><span class="stat-icon amber">◫</span></div><div class="stat-value" id="stat-issues">—</div><div class="stat-foot"><span class="mini-dot gold"></span>کارها و موانع باز</div></article>

@@ -137,6 +137,29 @@ class HttpTests(unittest.TestCase):
             self.assertEqual(response.headers["Content-Type"], "text/event-stream; charset=utf-8")
             self.assertEqual(response.readline().strip(), b"event: snapshot")
 
+    def test_paid_model_launch_is_not_exposed(self):
+        base = "http://127.0.0.1:%d" % self.srv.server_port
+        with self.assertRaises(HTTPError) as get_error:
+            urlopen(base + "/api/launcher", timeout=4)
+        self.assertEqual(get_error.exception.code, 404)
+        for path in ("/api/launch", "/api/model/run"):
+            with self.subTest(path=path):
+                request = Request(base + path, method="POST",
+                                  data=b'{"action":"run_fixed_governed_task"}',
+                                  headers={"Content-Type":"application/json"})
+                with self.assertRaises(HTTPError) as err:
+                    urlopen(request, timeout=4)
+                self.assertEqual(err.exception.code, 404)
+
+    def test_public_home_describes_accurate_free_mode(self):
+        base = "http://127.0.0.1:%d" % self.srv.server_port
+        with urlopen(base + "/", timeout=4) as response:
+            html = response.read().decode("utf-8")
+        self.assertIn("بررسی فوری وضعیت پروژه", html)
+        self.assertNotIn('id="operator-launch"', html)
+        self.assertNotIn('src="launch.js"', html)
+        self.assertNotIn("OPENAI BUILDER", html)
+
     def test_login_endpoint_removed(self):
         request = Request(
             "http://127.0.0.1:%d/api/login" % self.srv.server_port,

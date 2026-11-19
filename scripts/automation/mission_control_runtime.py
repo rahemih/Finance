@@ -29,12 +29,17 @@ class AuditError(Exception):
 
 class ResumeAudit:
     """One in-process bounded public read-only run; no remote mutations."""
-    def __init__(self, github_get, event_emit, publish, *, cooldown=COOLDOWN_SECONDS, delay=None):
+    def __init__(self, github_get, event_emit, publish, *, cooldown=COOLDOWN_SECONDS, delay=None,
+                 inventory_snapshot=None, cache_age_seconds=1800):
         self.github_get = github_get
         self.event_emit = event_emit
         self.publish = publish
         self.cooldown = cooldown
         self.delay = delay or time.sleep
+        # Reuse a recently fetched server-owned GitHub snapshot when available.
+        # The audit still checks canonical main SHA and exact-main CI live.
+        self.inventory_snapshot = inventory_snapshot
+        self.cache_age_seconds = cache_age_seconds
         self.lock = Lock()
         self.last_start = 0.0
         self.state = {
@@ -90,9 +95,18 @@ class ResumeAudit:
         try:
             return self.github_get(path)
         except HTTPError as exc:
-            # Avoid burning the API quota on a retry when GitHub says forbidden.
-            if exc.code in (401, 403, 404, 422):
-                raise AuditError("GitHub permission, authentication or rate limit blocked audit") from exc
+            # Do not retry rejected requests. Distinguish a confirmed rate
+            # limit from a 403 whose cause cannot be reliably established.
+            headers = exc.headers
+            remaining = headers.get("X-RateLimit-Remaining") if headers else None
+            if exc.code == 429 or (exc.code == 403 and remaining == "0"):
+                raise AuditError("GitHub anonymous hourly read rate limit exhausted") from exc
+            if exc.code == 401:
+                raise AuditError("GitHub authentication denied; audit cannot verify data") from exc
+            if exc.code == 403:
+                raise AuditError("GitHub permission or rate limit blocked audit (cause unverified)") from exc
+            if exc.code in (404, 422):
+                raise AuditError("Required GitHub evidence endpoint was rejected") from exc
             raise
         except (URLError, TimeoutError, OSError, HTTPException):
             raise
@@ -106,6 +120,43 @@ class ResumeAudit:
         if not all(isinstance(item, dict) for item in value):
             raise AuditError("Malformed GitHub " + kind + " listing")
         return value
+
+    def _inventory(self):
+        """Prefer fresh authenticated server-poll results over repeat anonymous API calls.
+
+        Return None if the source is stale, partial, malformed or saturated.
+        Never use a cached record to claim an exact main SHA or Governance pass.
+        """
+        if self.inventory_snapshot is None:
+            return None
+        try:
+            record = self.inventory_snapshot()
+            if not isinstance(record, dict) or record.get("status") != "LIVE":
+                return None
+            stamp = record.get("verified_at")
+            if not isinstance(stamp, str):
+                return None
+            parsed = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+            if parsed.tzinfo is None:
+                return None
+            age = (datetime.now(timezone.utc) - parsed).total_seconds()
+            if not 0 <= age <= self.cache_age_seconds:
+                return None
+            issues = self._list(record.get("issues"), "issues")
+            prs = self._list(record.get("prs"), "PRs")
+            if len(prs) >= 50 or len(issues) >= 50:
+                return None
+            sha = record.get("main_sha")
+            ci = record.get("governance_ci")
+            if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
+                return None
+            if ci not in ("PASS_EXACT_MAIN", "FAIL_EXACT_MAIN", "NOT_VERIFIED"):
+                return None
+            # These are the allowlisted server-poll fields; CI and SHA were
+            # verified from the exact main branch in that same poll cycle.
+            return sha, issues, prs, ci
+        except (ValueError, TypeError, KeyError, AttributeError, AuditError):
+            return None
 
     @staticmethod
     def _next_task(issues, prs):
@@ -149,31 +200,37 @@ class ResumeAudit:
 
     def _inspect(self):
         self._emit("A0", "TOOL_STARTED", "Retrieving canonical main branch", "main")
-        branch = self._get("/branches/main")
-        sha = branch.get("commit", {}).get("sha") if isinstance(branch, dict) else None
-        if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
-            raise AuditError("Main branch SHA not verified")
+        cached = self._inventory()
+        if cached is None:
+            branch = self._get("/branches/main")
+            sha = branch.get("commit", {}).get("sha") if isinstance(branch, dict) else None
+            if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
+                raise AuditError("Main branch SHA not verified")
+        else:
+            sha, issues, prs, conclusion = cached
         self._progress(main_sha=sha)
         self._emit("A9", "TEST_PASSED", "Main SHA verified against GitHub", "main")
         self._emit("A0", "TOOL_STARTED", "Reading open issues and pull requests", "backlog")
-        issues_raw = self._list(self._get("/issues?state=open&per_page=100"), "issues")
-        prs = self._list(self._get("/pulls?state=open&per_page=100"), "PRs")
-        issues = [item for item in issues_raw if "pull_request" not in item]
+        if cached is None:
+            issues_raw = self._list(self._get("/issues?state=open&per_page=100"), "issues")
+            prs = self._list(self._get("/pulls?state=open&per_page=100"), "PRs")
+            issues = [item for item in issues_raw if "pull_request" not in item]
         self._progress(open_issues=len(issues), open_prs=len(prs))
         self._emit("A9", "TEST_PASSED", "Current open work inventory retrieved", "backlog")
         self._emit("A0", "TEST_STARTED", "Checking exact-main governance CI", "governance")
-        runs = self._get(f"/actions/runs?branch=main&head_sha={sha}&per_page=50")
-        workflow_runs = runs.get("workflow_runs") if isinstance(runs, dict) else None
-        if not isinstance(workflow_runs, list) or not all(isinstance(r, dict) for r in workflow_runs):
-            raise AuditError("Governance CI evidence unavailable")
-        ci = [r for r in workflow_runs if r.get("name") == "Governance Verify" and r.get("head_sha") == sha]
-        ci.sort(key=lambda r: str(r.get("created_at") or ""), reverse=True)
-        latest = ci[0] if ci else None
-        conclusion = (
-            "PASS_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "success"
-            else "FAIL_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "failure"
-            else "NOT_VERIFIED"
-        )
+        if cached is None:
+            runs = self._get(f"/actions/runs?branch=main&head_sha={sha}&per_page=50")
+            workflow_runs = runs.get("workflow_runs") if isinstance(runs, dict) else None
+            if not isinstance(workflow_runs, list) or not all(isinstance(r, dict) for r in workflow_runs):
+                raise AuditError("Governance CI evidence unavailable")
+            ci = [r for r in workflow_runs if r.get("name") == "Governance Verify" and r.get("head_sha") == sha]
+            ci.sort(key=lambda r: str(r.get("created_at") or ""), reverse=True)
+            latest = ci[0] if ci else None
+            conclusion = (
+                "PASS_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "success"
+                else "FAIL_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "failure"
+                else "NOT_VERIFIED"
+            )
         self._progress(governance_ci=conclusion)
         self._emit("A9", "TEST_PASSED" if conclusion == "PASS_EXACT_MAIN" else "BLOCKED",
                    "Exact-main CI verified" if conclusion == "PASS_EXACT_MAIN" else "Exact-main CI not confirmed",

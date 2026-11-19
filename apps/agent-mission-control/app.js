@@ -65,10 +65,21 @@ const issueUrl = n=>`${WEB}/issues/${validId(n) || 0}`;
 const hash = s=>/^[0-9a-f]{40}$/.test(String(s||''))?String(s).slice(0,9):'—';
 function formatDate(d){try{if(!d)return '—';const date=new Date(d);if(Number.isNaN(date.getTime()))return '—';return new Intl.DateTimeFormat('fa-IR',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(date)}catch{return '—'}}
 function clock(){ $('clock').textContent=new Intl.DateTimeFormat('fa-IR',{hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()); }
-function jobStatus(run){if(run.status!=='completed')return 'active';if(run.conclusion==='success')return 'success';if(['failure','timed_out','startup_failure','action_required'].includes(run.conclusion))return 'failure';return 'other'}
+function jobStatus(run){if(['queued','requested','waiting','pending','in_progress'].includes(run.status))return 'active';if(run.status!=='completed')return 'other';if(run.conclusion==='success')return 'success';if(['failure','timed_out','startup_failure','action_required'].includes(run.conclusion))return 'failure';return 'other'}
 function stateLabel(s){return ({active:'در حال اجرا',success:'موفق',failure:'ناموفق',other:'متوقف/نامعلوم'})[s]}
 function statusSymbol(s){return ({active:'◉',success:'✓',failure:'!',other:'—'})[s]}
-function renderStats(){const active=state.runs.filter(r=>jobStatus(r)==='active').length;const failed=state.runs.filter(r=>jobStatus(r)==='failure').length;$('stat-active').textContent=String(active);$('stat-failed').textContent=String(failed);$('stat-prs').textContent=String(state.prs.length);$('stat-issues').textContent=String(state.issues.length)}
+function renderStats(){
+ const ids=['stat-active','stat-failed','stat-prs','stat-issues'];
+ // A disconnected/degraded GitHub connection cannot prove a real zero.
+ // Never report cached historical counts as the current live state.
+ if(state.source!=='live'){ids.forEach(id=>$(id).textContent='—');return}
+ const active=state.runs.filter(r=>jobStatus(r)==='active').length;
+ const failed=state.runs.filter(r=>jobStatus(r)==='failure').length;
+ $('stat-active').textContent=String(active);
+ $('stat-failed').textContent=String(failed);
+ $('stat-prs').textContent=String(state.prs.length);
+ $('stat-issues').textContent=String(state.issues.length)
+}
 function renderAgents(){ $('agent-grid').innerHTML=AGENTS.map(([id,name,description])=>{ const info=window.nexusAgentTrace?.lastForAgent(id);const label=info?.label||'فعالیت مستقل تأیید نشده';return `<article class="agent-card" aria-label="${escapeHtml(id)} ${escapeHtml(name)} — ${escapeHtml(label)}"><span class="agent-meta">${escapeHtml(id)}</span><div class="agent-head"><span class="agent-id">${escapeHtml(id)}</span><span><span class="agent-name">${escapeHtml(name)}</span><span class="agent-sub">${escapeHtml(description)}</span></span></div><div class="agent-foot"><span class="agent-status-dot"></span><span>${escapeHtml(label)}</span></div></article>`}).join('') }
 function renderRuns(){let runs=state.runs;if(state.currentFilter==='active')runs=runs.filter(x=>jobStatus(x)==='active');if(state.currentFilter==='failed')runs=runs.filter(x=>jobStatus(x)==='failure');$('run-list').innerHTML=runs.length?runs.map(run=>{
  const s=jobStatus(run);const selected=state.selectedRun===run.id;

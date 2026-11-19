@@ -2,7 +2,7 @@ services:
   - type: web
     name: nq-agent-mission-control
     runtime: docker
-    plan: starter
+    plan: free
     region: frankfurt
     dockerfilePath: ./Dockerfile.mission-control
     healthCheckPath: /api/health
@@ -13,8 +13,4 @@ services:
       - key: NQ_INGEST_TOKEN
         generateValue: true
       - key: NQ_GITHUB_POLL_SECONDS
-        value: "300"
-    disk:
-      name: mission-event-journal
-      mountPath: /data
-      sizeGB: 1
+        value: "1800"
