@@ -1,5 +1,6 @@
 """HTTP acceptance tests for read-only Start and protected event ingestion."""
 import json
+from unittest.mock import patch
 from pathlib import Path
 import sys
 import threading
@@ -12,7 +13,7 @@ from urllib.request import Request, urlopen
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/"scripts"/"automation"))
 from mission_control_runtime import ResumeAudit
-from mission_control_server import Server, Journal
+from mission_control_server import Server, Journal, State
 
 SHA="b"*40
 
@@ -105,6 +106,21 @@ class StartHttpTests(unittest.TestCase):
             urlopen(req,timeout=4)
         self.assertEqual(err.exception.code,403)
         self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
+
+    def test_remote_state_requires_https_public_origin(self):
+        # A remotely bound server must never start with an absent or insecure
+        # public origin, otherwise the Start Origin check could be disabled.
+        with tempfile.TemporaryDirectory() as tmp:
+            env = {
+                "NQ_HOST": "0.0.0.0",
+                "NQ_PUBLIC_ORIGIN": "",
+                "RENDER_EXTERNAL_URL": "",
+                "NQ_DATA_PATH": str(Path(tmp) / "journal.db"),
+                "NQ_INGEST_TOKEN": "",
+            }
+            with patch.dict("os.environ", env):
+                with self.assertRaisesRegex(RuntimeError, "Remote mode requires HTTPS public origin"):
+                    State()
 
     def test_public_start_does_not_authorize_event_ingestion(self):
         req=Request(self.base+"/api/events",
