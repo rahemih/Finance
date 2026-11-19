@@ -58,8 +58,8 @@ class VersionOutputTests(unittest.TestCase):
             ("uv 0.12.23 (x86_64-unknown-linux-gnu)\\nTOKEN", "UNEXPECTED_OUTPUT"),
             ("uv 0.12.23 (../../private)", "UNEXPECTED_OUTPUT"),
         ):
-            with self.subTest(stdout=stdout), \\
-                 patch.object(doctor, "check_command", return_value=True), \\
+            with self.subTest(stdout=stdout), \
+                 patch.object(doctor, "check_command", return_value=True), \
                  patch.object(doctor, "run_capture", return_value=stdout):
                 self.assertEqual(doctor.read_version_output("uv", ["uv", "--version"]), expected)
 
