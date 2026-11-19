@@ -122,10 +122,10 @@ class ResumeAudit:
         return value
 
     def _inventory(self):
-        """Prefer fresh authenticated server-poll results over repeat anonymous API calls.
+        """Reuse only a recent, complete server-owned open-work inventory.
 
-        Return None if the source is stale, partial, malformed or saturated.
-        Never use a cached record to claim an exact main SHA or Governance pass.
+        Canonical main SHA and Governance Verify are fetched live for every
+        audit; a cached poll must never stand in for either exact-head check.
         """
         if self.inventory_snapshot is None:
             return None
@@ -146,15 +146,9 @@ class ResumeAudit:
             prs = self._list(record.get("prs"), "PRs")
             if len(prs) >= 50 or len(issues) >= 50:
                 return None
-            sha = record.get("main_sha")
-            ci = record.get("governance_ci")
-            if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
-                return None
-            if ci not in ("PASS_EXACT_MAIN", "FAIL_EXACT_MAIN", "NOT_VERIFIED"):
-                return None
-            # These are the allowlisted server-poll fields; CI and SHA were
-            # verified from the exact main branch in that same poll cycle.
-            return sha, issues, prs, ci
+            # Cache only the bounded open-work inventory. The exact main SHA
+            # and Governance Verify result are deliberately never trusted here.
+            return issues, prs
         except (ValueError, TypeError, KeyError, AttributeError, AuditError):
             return None
 
@@ -200,37 +194,38 @@ class ResumeAudit:
 
     def _inspect(self):
         self._emit("A0", "TOOL_STARTED", "Retrieving canonical main branch", "main")
-        cached = self._inventory()
-        if cached is None:
-            branch = self._get("/branches/main")
-            sha = branch.get("commit", {}).get("sha") if isinstance(branch, dict) else None
-            if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
-                raise AuditError("Main branch SHA not verified")
-        else:
-            sha, issues, prs, conclusion = cached
+        cached_inventory = self._inventory()
+        # Always read main live. A recent server poll may supply only the
+        # bounded issue/PR inventory; it cannot certify the current SHA.
+        branch = self._get("/branches/main")
+        sha = branch.get("commit", {}).get("sha") if isinstance(branch, dict) else None
+        if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
+            raise AuditError("Main branch SHA not verified")
         self._progress(main_sha=sha)
         self._emit("A9", "TEST_PASSED", "Main SHA verified against GitHub", "main")
         self._emit("A0", "TOOL_STARTED", "Reading open issues and pull requests", "backlog")
-        if cached is None:
+        if cached_inventory is None:
             issues_raw = self._list(self._get("/issues?state=open&per_page=100"), "issues")
             prs = self._list(self._get("/pulls?state=open&per_page=100"), "PRs")
             issues = [item for item in issues_raw if "pull_request" not in item]
+        else:
+            issues, prs = cached_inventory
         self._progress(open_issues=len(issues), open_prs=len(prs))
         self._emit("A9", "TEST_PASSED", "Current open work inventory retrieved", "backlog")
         self._emit("A0", "TEST_STARTED", "Checking exact-main governance CI", "governance")
-        if cached is None:
-            runs = self._get(f"/actions/runs?branch=main&head_sha={sha}&per_page=50")
-            workflow_runs = runs.get("workflow_runs") if isinstance(runs, dict) else None
-            if not isinstance(workflow_runs, list) or not all(isinstance(r, dict) for r in workflow_runs):
-                raise AuditError("Governance CI evidence unavailable")
-            ci = [r for r in workflow_runs if r.get("name") == "Governance Verify" and r.get("head_sha") == sha]
-            ci.sort(key=lambda r: str(r.get("created_at") or ""), reverse=True)
-            latest = ci[0] if ci else None
-            conclusion = (
-                "PASS_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "success"
-                else "FAIL_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "failure"
-                else "NOT_VERIFIED"
-            )
+        # The CI query is bound to the freshly fetched main SHA on every run.
+        runs = self._get(f"/actions/runs?branch=main&head_sha={sha}&per_page=50")
+        workflow_runs = runs.get("workflow_runs") if isinstance(runs, dict) else None
+        if not isinstance(workflow_runs, list) or not all(isinstance(r, dict) for r in workflow_runs):
+            raise AuditError("Governance CI evidence unavailable")
+        ci = [r for r in workflow_runs if r.get("name") == "Governance Verify" and r.get("head_sha") == sha]
+        ci.sort(key=lambda r: str(r.get("created_at") or ""), reverse=True)
+        latest = ci[0] if ci else None
+        conclusion = (
+            "PASS_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "success"
+            else "FAIL_EXACT_MAIN" if latest and latest.get("status") == "completed" and latest.get("conclusion") == "failure"
+            else "NOT_VERIFIED"
+        )
         self._progress(governance_ci=conclusion)
         self._emit("A9", "TEST_PASSED" if conclusion == "PASS_EXACT_MAIN" else "BLOCKED",
                    "Exact-main CI verified" if conclusion == "PASS_EXACT_MAIN" else "Exact-main CI not confirmed",

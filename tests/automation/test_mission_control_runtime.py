@@ -72,28 +72,45 @@ class ResumeAuditTests(unittest.TestCase):
         self.assertTrue(all(x.startswith(("/branches/", "/issues?", "/pulls?", "/actions/")) for x in paths))
         self.assertTrue(all(name=="control" for name, _ in self.published))
 
-    def test_fresh_polled_sha_inventory_and_governance_avoids_all_extra_github_requests(self):
+    def test_fresh_polled_inventory_still_verifies_main_sha_and_governance_live(self):
+        live_sha = "b" * 40
         calls = []
-        def forbidden_extra(path):
+        def fresh_evidence(path):
             calls.append(path)
-            raise AssertionError("Cached audit must not make duplicate GitHub requests")
+            if path == "/branches/main":
+                return {"commit": {"sha": live_sha}}
+            if path == f"/actions/runs?branch=main&head_sha={live_sha}&per_page=50":
+                return {"workflow_runs": [{
+                    "name": "Governance Verify", "status": "completed",
+                    "conclusion": "failure", "head_sha": live_sha,
+                    "created_at": "2026-11-19T09:00:00Z"
+                }]}
+            raise AssertionError("Unexpected live evidence request: " + path)
+
+        # Deliberately stale SHA/CI values must not override live exact-main evidence.
         cache = {
             "status": "LIVE", "verified_at": datetime.now(timezone.utc).isoformat(),
-            "main_sha": SHA, "governance_ci": "PASS_EXACT_MAIN",
+            "main_sha": "c" * 40, "governance_ci": "PASS_EXACT_MAIN",
             "issues": [{"number": 530, "title": "P04-F SBOM license blocker"}],
             "prs": [{"number": 535, "title": "Mission Control API"}]
         }
-        audit=ResumeAudit(forbidden_extra,lambda *args:None,
-                          lambda *args:None,
-                          inventory_snapshot=lambda:dict(cache),delay=lambda _:None)
-        code,_=audit.start()
-        done=finish(audit)
-        self.assertEqual(code,202)
-        self.assertEqual(calls,[])
-        self.assertEqual(done["status"],"AUDIT_COMPLETE")
-        self.assertEqual(done["main_sha"],SHA)
-        self.assertEqual(done["governance_ci"],"PASS_EXACT_MAIN")
-        self.assertEqual(done["next_task"]["number"],530)
+        audit = ResumeAudit(
+            fresh_evidence, lambda *args: None, lambda *args: None,
+            inventory_snapshot=lambda: dict(cache), delay=lambda _: None
+        )
+        code, _ = audit.start()
+        done = finish(audit)
+        self.assertEqual(code, 202)
+        self.assertEqual(calls, [
+            "/branches/main",
+            f"/actions/runs?branch=main&head_sha={live_sha}&per_page=50"
+        ])
+        self.assertEqual(done["status"], "AUDIT_COMPLETE")
+        self.assertEqual(done["main_sha"], live_sha)
+        self.assertEqual(done["governance_ci"], "FAIL_EXACT_MAIN")
+        self.assertEqual(done["open_issues"], 1)
+        self.assertEqual(done["open_prs"], 1)
+        self.assertEqual(done["next_task"]["number"], 530)
 
     def test_stale_or_unverified_snapshot_never_claims_a_governance_pass(self):
         bad_cache={
@@ -115,16 +132,16 @@ class ResumeAuditTests(unittest.TestCase):
         self.assertEqual(len(calls),4)
         self.assertEqual(done["open_prs"],1)
 
-    def test_cache_without_exact_ci_or_sha_is_discarded(self):
-        snapshot={"status":"LIVE","verified_at":datetime.now(timezone.utc).isoformat(),
-                  "main_sha":"not-a-sha","governance_ci":"PASS_EXACT_MAIN",
-                  "issues":[],"prs":[]}
-        a=self.new()
-        a.inventory_snapshot=lambda:snapshot
-        self.assertIsNone(a._inventory())
-        snapshot["main_sha"]=SHA
-        snapshot["governance_ci"]="success"
-        self.assertIsNone(a._inventory())
+    def test_inventory_cache_does_not_require_cached_sha_or_governance_ci(self):
+        snapshot = {
+            "status": "LIVE",
+            "verified_at": datetime.now(timezone.utc).isoformat(),
+            "issues": [{"number": 530, "title": "P04-F SBOM license blocker"}],
+            "prs": [{"number": 535, "title": "Mission Control API"}]
+        }
+        audit = self.new()
+        audit.inventory_snapshot = lambda: snapshot
+        self.assertEqual(audit._inventory(), (snapshot["issues"], snapshot["prs"]))
 
     def test_second_start_during_cooldown_is_rate_limited(self):
         audit=self.new()
