@@ -87,6 +87,25 @@ class StartHttpTests(unittest.TestCase):
         self.assertEqual(err.exception.code,403)
         self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
 
+    def test_remote_same_origin_start_is_accepted(self):
+        # A legitimate browser request from the configured HTTPS origin must work.
+        self.app.public_origin="https://nq.example.com"
+        req=self.request({"action":"resume_audit"},origin="https://nq.example.com")
+        req.add_header("Sec-Fetch-Site","same-origin")
+        with urlopen(req,timeout=4) as res:
+            self.assertEqual(res.status,202)
+            self.assertFalse(json.load(res)["writes_enabled"])
+
+    def test_remote_same_origin_rejects_cross_site_metadata(self):
+        # A matching Origin alone cannot override contradictory browser metadata.
+        self.app.public_origin="https://nq.example.com"
+        req=self.request({"action":"resume_audit"},origin="https://nq.example.com")
+        req.add_header("Sec-Fetch-Site","cross-site")
+        with self.assertRaises(HTTPError) as err:
+            urlopen(req,timeout=4)
+        self.assertEqual(err.exception.code,403)
+        self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
+
     def test_public_start_does_not_authorize_event_ingestion(self):
         req=Request(self.base+"/api/events",
             data=json.dumps({"agent_id":"A1"}).encode(),
