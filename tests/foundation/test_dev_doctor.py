@@ -50,6 +50,19 @@ class VersionOutputTests(unittest.TestCase):
                 self.assertEqual(doctor.read_version_output(tool, [tool, "--version"]),
                                  "UNEXPECTED_OUTPUT")
 
+    def test_uv_platform_suffix_is_accepted_without_leaking_extra_output(self) -> None:
+        for stdout, expected in (
+            ("uv 0.12.23 (x86_64-unknown-linux-gnu)", "uv 0.12.23 (x86_64-unknown-linux-gnu)"),
+            ("uv 0.12.23 (aarch64-apple-darwin)", "uv 0.12.23 (aarch64-apple-darwin)"),
+            ("uv 0.12.23 (x86_64-unknown-linux-gnu) SECRET", "UNEXPECTED_OUTPUT"),
+            ("uv 0.12.23 (x86_64-unknown-linux-gnu)\\nTOKEN", "UNEXPECTED_OUTPUT"),
+            ("uv 0.12.23 (../../private)", "UNEXPECTED_OUTPUT"),
+        ):
+            with self.subTest(stdout=stdout), \\
+                 patch.object(doctor, "check_command", return_value=True), \\
+                 patch.object(doctor, "run_capture", return_value=stdout):
+                self.assertEqual(doctor.read_version_output("uv", ["uv", "--version"]), expected)
+
     def test_valid_versions_remain_usable(self) -> None:
         for tool, stdout in (
             ("node", "v24.21.0"),

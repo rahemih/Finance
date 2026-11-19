@@ -42,7 +42,7 @@ def read_version_output(name: str, command: list[str]) -> str:
             "git": r"git version [0-9]+\.[0-9]+(?:\.[0-9]+)?(?:\.[A-Za-z0-9._-]+)?",
             "node": r"v[0-9]+\.[0-9]+\.[0-9]+",
             "pnpm": r"[0-9]+\.[0-9]+\.[0-9]+",
-            "uv": r"uv [0-9]+\.[0-9]+\.[0-9]+(?:\+[A-Za-z0-9._-]+)?",
+            "uv": r"uv [0-9]+\.[0-9]+\.[0-9]+(?:\+[A-Za-z0-9._-]+)?(?: \([A-Za-z0-9_-]+\))?",
         }
         pattern = patterns.get(name)
         if pattern is None or re.fullmatch(pattern, raw) is None:
