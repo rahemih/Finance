@@ -71,6 +71,22 @@ class StartHttpTests(unittest.TestCase):
         self.assertEqual(err.exception.code,403)
         self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
 
+    def test_remote_mode_rejects_missing_origin(self):
+        # A public Start is an audit request, never a cross-site command.
+        self.app.public_origin="https://nq.example.com"
+        with self.assertRaises(HTTPError) as err:
+            urlopen(self.request({"action":"resume_audit"}),timeout=4)
+        self.assertEqual(err.exception.code,403)
+        self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
+
+    def test_cross_site_fetch_metadata_is_rejected(self):
+        req=self.request({"action":"resume_audit"})
+        req.add_header("Sec-Fetch-Site","cross-site")
+        with self.assertRaises(HTTPError) as err:
+            urlopen(req,timeout=4)
+        self.assertEqual(err.exception.code,403)
+        self.assertEqual(self.app.audit.snapshot()["status"],"IDLE")
+
     def test_public_start_does_not_authorize_event_ingestion(self):
         req=Request(self.base+"/api/events",
             data=json.dumps({"agent_id":"A1"}).encode(),
