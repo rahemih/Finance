@@ -48,7 +48,8 @@ def read_version_output(name: str, command: list[str]) -> str:
         if pattern is None or re.fullmatch(pattern, raw) is None:
             return "UNEXPECTED_OUTPUT"
         return raw
-    except ToolingError:
+    except (ToolingError, OSError):
+        # Executables may disappear or become unreadable after PATH lookup.
         # Never expose subprocess stderr, command arguments, or credentials.
         return "EXECUTION_FAILED"
 
