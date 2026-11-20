@@ -108,8 +108,16 @@ def collect() -> dict:
         actual = path.read_text(encoding="utf-8").strip() if path.is_file() else "NOT_FOUND"
         checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual if actual == expected or actual == "NOT_FOUND" else "UNEXPECTED_CONTENT"}
 
-    package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
-    package_node = package.get("engines", {}).get("node")
+    # Malformed or unreadable manifests are ordinary failed checks, not crashes.
+    # Never echo parser errors or manifest contents: they may contain secrets.
+    try:
+        package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+        if not isinstance(package, dict):
+            package = {}
+    except (OSError, UnicodeError, ValueError):
+        package = {}
+    engines = package.get("engines")
+    package_node = engines.get("node") if isinstance(engines, dict) else None
     package_pnpm = package.get("packageManager")
     checks["package:node"] = {
         "ok": package_node == EXPECTED["node"],
