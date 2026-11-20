@@ -113,6 +113,26 @@ class PythonVersionPrivacyTests(unittest.TestCase):
             self.assertNotIn("TOKEN_SECRET", json.dumps(report))
 
 
+    def test_python_version_unicode_decode_failure_is_sanitized(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".node-version").write_text(doctor.EXPECTED["node"], encoding="utf-8")
+            (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({
+                "engines": {"node": doctor.EXPECTED["node"]},
+                "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
+            }), encoding="utf-8")
+            decode_error = UnicodeDecodeError("utf-8", b"\\xff", 0, 1, "TOKEN_SECRET")
+            with patch.object(doctor, "ROOT", root), \\
+                 patch.object(doctor, "require_repo_root"), \\
+                 patch.object(doctor, "python_version", side_effect=decode_error), \\
+                 patch.object(doctor, "check_command", return_value=False):
+                report = doctor.collect()
+            self.assertFalse(report["ok"])
+            self.assertEqual(report["checks"]["python"]["actual"], "EXECUTION_FAILED")
+            self.assertNotIn("TOKEN_SECRET", json.dumps(report))
+
+
 class RepositoryPrivacyTests(unittest.TestCase):
     def test_repository_root_failure_does_not_expose_sensitive_exception(self) -> None:
         # An invalid repo-root check must fail closed without leaking raw paths,
