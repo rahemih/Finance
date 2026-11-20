@@ -18,3 +18,10 @@ test('root sentinel cannot submit, login, or claim a visual baseline', () => {
   assert.equal(manifest.ownerApprovedBaselineCount,0);
   assert.ok(manifest.pages.every(p=>p.implementationStatus==='NOT_IMPLEMENTED' && p.visualBaselineStatus==='REVIEW_REQUIRED'));
 });
+
+test('WEB-P0 preview does not route unavailable portfolio or demo sidebar items to dashboard', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.match(source, /n\.label==="پرتفوی و ریسک"\|\|n\.label==="مرکز دمو"/);
+  assert.match(source, /aria-disabled="true" title="این بخش در پیش‌نمایش در دسترس نیست"/);
+  assert.match(source, /ناموجود<\/span>/);
+});
