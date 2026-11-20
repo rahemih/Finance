@@ -19,7 +19,7 @@ const watch=[quotes[0],quotes[1],quotes[2],quotes[4]];
 const nav=[
  {label:"داشبورد",href:"/dashboard",icon:"▤"},
  {label:"بازار و تحلیل",href:"/markets",icon:"◇"},
- {label:"فرصت‌ها و سیگنال‌ها",href:"/markets/watchlist",icon:"♧"},
+ {label:"فهرست پیگیری",href:"/markets/watchlist",icon:"♧"},
  {label:"پرتفوی و ریسک",href:"/dashboard",icon:"◇"},
  {label:"مرکز دمو",href:"/dashboard",icon:"▣"},
  {label:"سلامت سامانه",href:"/system",icon:"⚑"},
