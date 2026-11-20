@@ -63,7 +63,7 @@ function PriceTable({items,isWatch=false}:{items:readonly typeof quotes[number][
  <td>{isWatch?<QuoteStatus status={q.status}/>:<span dir="ltr">{q.time}</span>}</td>
  <td>{isWatch?<span dir="ltr">{q.time}</span>:<QuoteStatus status={q.status}/>}</td>
  {!isWatch&&<td>{q.source}</td>}
- <td><Link href="/markets/mock-btcusdt" className="nqr-mini-action">جزئیات</Link></td></tr>)}
+ <td>{q.symbol==="BTC/USD"?<Link href="/markets/mock-btcusdt" className="nqr-mini-action">جزئیات</Link>:<span aria-label={"جزئیات "+q.symbol+" در پیش‌نمایش موجود نیست"} className="nqr-mini-action" aria-disabled="true">ناموجود</span>}</td></tr>)}
  </tbody></table></div>
  <div className="nqr-mobile-quotes">{items.map(q=><article className="nqr-quote-card" key={q.symbol}><div className="nqr-quote-head"><div><strong dir="ltr">{isWatch?"★ ":""}{q.symbol}</strong><p>{q.venue} · {q.source}</p></div><div className="nqr-quote-num"><b dir="ltr">{q.price}</b><small>MOCK · {q.time}</small></div></div><div className="nqr-quote-foot"><QuoteStatus status={q.status}/><span dir="ltr">{q.change}</span></div></article>)}</div>
  </>}
