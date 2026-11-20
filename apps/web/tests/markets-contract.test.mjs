@@ -90,3 +90,10 @@ test("market fresh fixture KPI matches actual synthetic quote rows",()=>{
  assert.ok(displayedKpi,"synthetic freshness KPI must be present");
  assert.equal(Number(displayedKpi[1]),freshRows,"do not display an inconsistent synthetic freshness count");
 });
+
+test("watchlist fixture never claims verified prices or an active service",()=>{
+ const source=readFileSync(root+"src/components/markets/markets-reference-preview.tsx","utf8");
+ assert.match(source,/فهرست پیگیری آزمایشی آماده نمایش است/);
+ assert.match(source,/\["قیمت‌های ساختگی نمونه","4","Not verified"\]/);
+ assert.doesNotMatch(source,/قیمت‌های معتبر نمونه|فهرست پیگیری آزمایشی فعال است/);
+});
