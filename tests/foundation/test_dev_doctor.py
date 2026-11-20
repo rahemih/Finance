@@ -103,6 +103,25 @@ class RepositoryPrivacyTests(unittest.TestCase):
 
 
 class FullReportTests(unittest.TestCase):
+    def test_manifest_secrets_are_redacted(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".node-version").write_text("TOKEN_SECRET_NODE", encoding="utf-8")
+            (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({
+                "engines": {"node": "TOKEN_SECRET_ENGINE"},
+                "packageManager": "TOKEN_SECRET_PACKAGE",
+            }), encoding="utf-8")
+            with patch.object(doctor, "ROOT", root), \
+                 patch.object(doctor, "require_repo_root"), \
+                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \
+                 patch.object(doctor, "check_command", return_value=False):
+                report = doctor.collect()
+        output = json.dumps(report)
+        self.assertNotIn("TOKEN_SECRET", output)
+        for name in ("file:.node-version", "package:node", "package:pnpm"):
+            self.assertEqual(report["checks"][name]["actual"], "UNEXPECTED_CONTENT")
+
     def test_failed_git_does_not_hide_other_dependency_results(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
