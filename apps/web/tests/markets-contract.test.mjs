@@ -64,3 +64,10 @@ test("reference styling includes brand header, fixed right sidebar and mobile tr
  assert.match(style,/@media\(max-width:650px\)/);
  assert.doesNotMatch(source,/fetch\s*\(|new WebSocket\s*\(|placeOrder\s*\(/);
 });
+
+test("only the supported BTC fixture links to asset details; other symbols fail closed",()=>{
+ const source=readFileSync(root+"src/components/markets/markets-reference-preview.tsx","utf8");
+ assert.match(source,/q\.symbol==="BTC\/USD"\?<Link href="\/markets\/mock-btcusdt"/);
+ assert.match(source,/aria-disabled="true"/);
+ assert.match(source,/جزئیات .* در پیش‌نمایش موجود نیست/);
+});
