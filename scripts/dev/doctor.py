@@ -25,7 +25,12 @@ EXPECTED = {
 
 
 def check_command(name: str) -> bool:
-    return shutil.which(name) is not None
+    # PATH resolution itself can fail (invalid environment or inaccessible path).
+    # Treat this as an unavailable tool without exposing local path details.
+    try:
+        return shutil.which(name) is not None
+    except (OSError, ValueError):
+        return False
 
 
 def read_version_output(name: str, command: list[str]) -> str:
