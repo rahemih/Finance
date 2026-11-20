@@ -142,6 +142,23 @@ class FullReportTests(unittest.TestCase):
         for name in ("file:.node-version", "package:node", "package:pnpm"):
             self.assertEqual(report["checks"][name]["actual"], "UNEXPECTED_CONTENT")
 
+    def test_malformed_package_manifest_fails_closed_without_leaking(self) -> None:
+        for manifest in ("{TOKEN_SECRET_BAD_JSON", "[]", '{"engines": "TOKEN_SECRET_ENGINE"}'):
+            with self.subTest(manifest=manifest), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                (root / ".node-version").write_text(doctor.EXPECTED["node"], encoding="utf-8")
+                (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+                (root / "package.json").write_text(manifest, encoding="utf-8")
+                with patch.object(doctor, "ROOT", root), \
+                     patch.object(doctor, "require_repo_root"), \
+                     patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \
+                     patch.object(doctor, "check_command", return_value=False):
+                    report = doctor.collect()
+                self.assertFalse(report["ok"])
+                self.assertEqual(report["checks"]["package:node"]["actual"], "UNEXPECTED_CONTENT")
+                self.assertEqual(report["checks"]["package:pnpm"]["actual"], "UNEXPECTED_CONTENT")
+                self.assertNotIn("TOKEN_SECRET", json.dumps(report))
+
     def test_failed_git_does_not_hide_other_dependency_results(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
