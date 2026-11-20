@@ -122,10 +122,10 @@ class PythonVersionPrivacyTests(unittest.TestCase):
                 "engines": {"node": doctor.EXPECTED["node"]},
                 "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
             }), encoding="utf-8")
-            decode_error = UnicodeDecodeError("utf-8", b"\\xff", 0, 1, "TOKEN_SECRET")
-            with patch.object(doctor, "ROOT", root), \\
-                 patch.object(doctor, "require_repo_root"), \\
-                 patch.object(doctor, "python_version", side_effect=decode_error), \\
+            decode_error = UnicodeDecodeError("utf-8", b"\xff", 0, 1, "TOKEN_SECRET")
+            with patch.object(doctor, "ROOT", root), \
+                 patch.object(doctor, "require_repo_root"), \
+                 patch.object(doctor, "python_version", side_effect=decode_error), \
                  patch.object(doctor, "check_command", return_value=False):
                 report = doctor.collect()
             self.assertFalse(report["ok"])
