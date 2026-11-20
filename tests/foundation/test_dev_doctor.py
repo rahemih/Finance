@@ -13,6 +13,15 @@ from scripts.dev.common import ToolingError
 
 
 class VersionOutputTests(unittest.TestCase):
+    def test_path_lookup_errors_fail_closed_without_leaking(self) -> None:
+        for error in (OSError("TOKEN_SECRET_PATH"), ValueError("TOKEN_SECRET_PATH")):
+            with self.subTest(error=type(error).__name__), \
+                 patch.object(doctor.shutil, "which", side_effect=error), \
+                 patch.object(doctor, "run_capture") as capture:
+                self.assertFalse(doctor.check_command("node"))
+                self.assertEqual(doctor.read_version_output("node", ["node", "--version"]), "NOT_FOUND")
+                capture.assert_not_called()
+
     def test_missing_command_does_not_execute(self) -> None:
         with patch.object(doctor, "check_command", return_value=False), \
              patch.object(doctor, "run_capture") as capture:
