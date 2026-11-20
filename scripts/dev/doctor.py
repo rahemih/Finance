@@ -58,7 +58,8 @@ def collect() -> dict:
 
     try:
         require_repo_root()
-        checks["repository"] = {"ok": True, "value": str(ROOT)}
+        # A successful root check must not disclose local usernames or paths.
+        checks["repository"] = {"ok": True, "value": "REPOSITORY_ROOT_OK"}
     except ToolingError:
         # Repository checks can contain local paths, subprocess output or secrets.
         # Expose only a fixed diagnostic marker, never the raw exception text.
