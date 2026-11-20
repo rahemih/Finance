@@ -42,6 +42,6 @@ test('WEB-P0 static header does not advertise an operational search landmark', (
 
 test('WEB-P0 sidebar names the watchlist route without claiming an operational signals page', () => {
   const source=read('../src/components/markets/markets-reference-preview.tsx');
-  assert.match(source, /label:"فهرست پیگیری",href:"\\/markets\\/watchlist"/);
-  assert.doesNotMatch(source, /label:"فرصت‌ها و سیگنال‌ها",href:"\\/markets\\/watchlist"/);
+  assert.ok(source.includes('label:"فهرست پیگیری",href:"/markets/watchlist"'));
+  assert.ok(!source.includes('label:"فرصت‌ها و سیگنال‌ها",href:"/markets/watchlist"'));
 });
