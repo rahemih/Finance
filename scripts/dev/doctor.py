@@ -105,7 +105,11 @@ def collect() -> dict:
     }
     for relative, expected in canonical.items():
         path = ROOT / relative
-        actual = path.read_text(encoding="utf-8").strip() if path.is_file() else "NOT_FOUND"
+        try:
+            actual = path.read_text(encoding="utf-8").strip() if path.is_file() else "NOT_FOUND"
+        except (OSError, UnicodeError):
+            # Permission errors and invalid encoding must not abort the full report.
+            actual = "UNREADABLE_CONTENT"
         checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual if actual == expected or actual == "NOT_FOUND" else "UNEXPECTED_CONTENT"}
 
     # Malformed or unreadable manifests are ordinary failed checks, not crashes.
