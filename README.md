@@ -2,7 +2,7 @@
 
 Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
 
-> Status: P08 — Technical Intelligence CANONICAL_COMPLETE / G6_TECHNICAL_VALIDATED PASS / P09 — Volume / Order Flow / Liquidity CANONICAL_COMPLETE / P10 — Fundamental / Macro / Event Intelligence CANONICAL_COMPLETE / P11 — News & Sentiment ACTIVE / P11-A CANONICAL_COMPLETE / P11-B READY_NOT_STARTED / AR-FT ADDENDUM CANONICAL / AR-0 CANONICAL_COMPLETE / AR-1 READY_NOT_STARTED
+> Project status: consult [`CURRENT-STATE.md`](docs/02-current-state/CURRENT-STATE.md), the frozen [`MASTER-ROADMAP-v2.0.md`](docs/01-roadmap/MASTER-ROADMAP-v2.0.md), and current GitHub CI/PR evidence. Historical phase labels in older documents are not proof of present completion. WEB-P0 and P24-B acceptance remain separately gated; see [license review #530](https://github.com/rahemih/Finance/issues/530) and [P24-B evidence #528](https://github.com/rahemih/Finance/issues/528).
 > Canonical branch: `main`  
 > Live trading: **DISABLED**  
 > Auto trading: **DISABLED**
