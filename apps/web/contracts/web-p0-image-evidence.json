@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 1,
+  "scope": "WEB-P0",
+  "sourceOfDesignReferences": "apps/web/contracts/visual-reference-approval.json",
+  "authority": "Approved images in the original Google Docs, not new mockups",
+  "description": "Each row is a separately evidenced actual Chromium output, NOT a one-to-one implementation of a numbered Google Docs screenshot.",
+  "rules": {
+    "created": "Screenshot has dimensions and content SHA256 from verified GitHub Action output",
+    "shownInChat": "shownInConversation attested only when exact screenshot was actually displayed",
+    "registeredInGitHub": "GitHub Actions artifact ID and passing run plus SHA256",
+    "binaryTrackedInGit": "Only true after exact PNG blob path and checksum verified in repository history",
+    "acceptedVisual": "Owner separately accepts the implemented screenshot against the approved Google Doc image; never inferred from reference approval",
+    "merged": "Requires Human Gate and governance; draft PR is not merged"
+  },
+  "renderedScreenshots": [
+    {
+      "id": "PREVIEW-010-1440",
+      "pageId": "010",
+      "variant": "1440px",
+      "pngFilename": "010-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "37a63e8afba763373a9cb2bcc674ddefe3b9f5a2f52aada25a2547a085eb355b",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-010-360",
+      "pageId": "010",
+      "variant": "360px",
+      "pngFilename": "010-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 960
+      },
+      "sha256": "8c70f6b0f8e584d9b928e83fa478909b05f0c8632d466a1a3de5d5c6987314f4",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-010-768",
+      "pageId": "010",
+      "variant": "768px",
+      "pngFilename": "010-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 960
+      },
+      "sha256": "19514f6d1577fe4b91d7911dafd82002d0a984af139f6af0cf8f712499d1a6f8",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-011-1440",
+      "pageId": "011",
+      "variant": "1440px",
+      "pngFilename": "011-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 1345
+      },
+      "sha256": "0ce5a582a4e3b042baadd4f8b90be28cebf40995da97fee9519f645caebecfd9",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-011-360",
+      "pageId": "011",
+      "variant": "360px",
+      "pngFilename": "011-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 2450
+      },
+      "sha256": "fdd05128214e1dcc35122160949304258bdf47cceb69240d05415ab27a791ff9",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-011-768",
+      "pageId": "011",
+      "variant": "768px",
+      "pngFilename": "011-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 2048
+      },
+      "sha256": "68ada71912db97fd72d6f220debbe37aceb1fc1afd0fe2a06d7b020f62307f69",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-015-1440",
+      "pageId": "015",
+      "variant": "1440px",
+      "pngFilename": "015-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 1166
+      },
+      "sha256": "ea8ceb98b5e4644ad849f62e9686f41cf8c7dcd62a9dc75b81863d3ed0e3094d",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-015-360",
+      "pageId": "015",
+      "variant": "360px",
+      "pngFilename": "015-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 1600
+      },
+      "sha256": "b60addabbd657f573491f0917b90d2ba7f3e1d959b5da0855c1fbaed6bed19ec",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-015-768",
+      "pageId": "015",
+      "variant": "768px",
+      "pngFilename": "015-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 1676
+      },
+      "sha256": "7e38326e811549846ea770665add165c7b1a8d986ef4b4885fa2beb63fcfb4ec",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-019-1440",
+      "pageId": "019",
+      "variant": "1440px",
+      "pngFilename": "019-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 1398
+      },
+      "sha256": "8074c7f267c6b33bf8b287a95f7edcde63af71b6281a23f2c618ec3b08166986",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-019-360",
+      "pageId": "019",
+      "variant": "360px",
+      "pngFilename": "019-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 2100
+      },
+      "sha256": "1bbd3321e9e45243699d70a22aadf67799ae9a024b78327641a670e4b2e3cd03",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-019-768",
+      "pageId": "019",
+      "variant": "768px",
+      "pngFilename": "019-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 1853
+      },
+      "sha256": "a35d4faad2bbf6c24e74b4b1eaddb84e335240e3dfea3b69b4d1f854ed817f16",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-079-1440",
+      "pageId": "079",
+      "variant": "1440px",
+      "pngFilename": "079-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "43a8e04c74676e3944b48b30645ca5e68915f4a5b46d1f5e53e99e3aa8dd24cd",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-079-360",
+      "pageId": "079",
+      "variant": "360px",
+      "pngFilename": "079-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 960
+      },
+      "sha256": "0fd090cb7ea998211c7c55c21800762be647daa009a587f67f08f228285d8569",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-079-768",
+      "pageId": "079",
+      "variant": "768px",
+      "pngFilename": "079-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 960
+      },
+      "sha256": "0b389c747a4e0f49aa9a70ad1d14bd4847d849b6ca5c4bf64e6e59b82af21240",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-084-1440",
+      "pageId": "084",
+      "variant": "1440px",
+      "pngFilename": "084-1440-unapproved.png",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      },
+      "sha256": "38fae317ba592ef83f2ad53765b21f5338ff342fb6dfdfa519cd8941f7704c38",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-084-360",
+      "pageId": "084",
+      "variant": "360px",
+      "pngFilename": "084-360-unapproved.png",
+      "dimensions": {
+        "width": 360,
+        "height": 960
+      },
+      "sha256": "db2148a628d3e9b273d5cf4d62f133e823496e24a5680c986361331db2cd90c0",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-084-768",
+      "pageId": "084",
+      "variant": "768px",
+      "pngFilename": "084-768-unapproved.png",
+      "dimensions": {
+        "width": 768,
+        "height": 960
+      },
+      "sha256": "2f537937234664f77aa34d1f80a97a738f5bffa3e993bf83749022a60ab0b14f",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41401739568,
+        "artifactId": 13121372976,
+        "sourcePr": 509,
+        "sourceCommit": "5d855f6e38ea40e404798041ee17b1965890fec9",
+        "shownInConversation": false,
+        "shownInConversationNote": "No verified presentation of this exact artifact in conversation",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "PRELIMINARY_NOT_APPROVED; Not an exact mapping to a Google Doc screenshot ID"
+    },
+    {
+      "id": "PREVIEW-001-DESKTOP",
+      "pageId": "001",
+      "variant": "Desktop",
+      "pngFilename": "PAGE-001-Desktop-chromium.png",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "sha256": "ddbed55d559dce690da278047f6feb8d651b53e1a1c097c3f76ec1d35ad79887",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41405748521,
+        "artifactId": 13123057399,
+        "sourcePr": 512,
+        "sourceCommit": "0005813a29f55841760fdda8cf75fa7d00971013",
+        "shownInConversation": true,
+        "shownInConversationNote": "PAGE-001 CI PNG shown in assistant final reply of prior project turn",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "Source HTML is tracked; screenshot PNG is registered as Actions artifact, not as Git blob; preview is not live authentication."
+    },
+    {
+      "id": "PREVIEW-001-TABLET",
+      "pageId": "001",
+      "variant": "Tablet",
+      "pngFilename": "PAGE-001-Tablet-chromium.png",
+      "dimensions": {
+        "width": 720,
+        "height": 1860
+      },
+      "sha256": "a6056d5cf7f71bb58fb3d2e8eba85fc3ad46168624b34d84ac3098ed29b9c8cb",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41405748521,
+        "artifactId": 13123057399,
+        "sourcePr": 512,
+        "sourceCommit": "0005813a29f55841760fdda8cf75fa7d00971013",
+        "shownInConversation": true,
+        "shownInConversationNote": "PAGE-001 CI PNG shown in assistant final reply of prior project turn",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "Source HTML is tracked; screenshot PNG is registered as Actions artifact, not as Git blob; preview is not live authentication."
+    },
+    {
+      "id": "PREVIEW-001-MOBILE",
+      "pageId": "001",
+      "variant": "Mobile",
+      "pngFilename": "PAGE-001-Mobile-chromium.png",
+      "dimensions": {
+        "width": 360,
+        "height": 913
+      },
+      "sha256": "06b0a6bfdd6fa51cb9e4b0dd391a19d8e93069ff24eca7f7e2d0d7ee9f20782d",
+      "source": "CHROMIUM_BROWSER",
+      "evidence": {
+        "actionsRunId": 41405748521,
+        "artifactId": 13123057399,
+        "sourcePr": 512,
+        "sourceCommit": "0005813a29f55841760fdda8cf75fa7d00971013",
+        "shownInConversation": true,
+        "shownInConversationNote": "PAGE-001 CI PNG shown in assistant final reply of prior project turn",
+        "imageBinaryCommittedToGit": false,
+        "renderedOwnerApproved": false
+      },
+      "remarks": "Source HTML is tracked; screenshot PNG is registered as Actions artifact, not as Git blob; preview is not live authentication."
+    }
+  ]
+}
