@@ -110,7 +110,7 @@ def collect() -> dict:
         except (OSError, UnicodeError):
             # Permission errors and invalid encoding must not abort the full report.
             actual = "UNREADABLE_CONTENT"
-        checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual if actual == expected or actual == "NOT_FOUND" else "UNEXPECTED_CONTENT"}
+        checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual if actual in (expected, "NOT_FOUND", "UNREADABLE_CONTENT") else "UNEXPECTED_CONTENT"}
 
     # Malformed or unreadable manifests are ordinary failed checks, not crashes.
     # Never echo parser errors or manifest contents: they may contain secrets.
