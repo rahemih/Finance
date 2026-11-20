@@ -278,5 +278,21 @@ class FullReportTests(unittest.TestCase):
             self.assertEqual(report["checks"][name]["actual"], "EMPTY_OUTPUT")
 
 
+    def test_undecodable_executable_output_is_redacted(self) -> None:
+        # A subprocess decoding failure must not abort diagnostics or expose data.
+        with patch.object(doctor, "check_command", return_value=True), \
+             patch.object(doctor, "run_capture",
+                          side_effect=UnicodeDecodeError("utf-8", b"\\xff", 0, 1, "TOKEN_SECRET")):
+            for name, command in (
+                ("git", ["git", "--version"]),
+                ("node", ["node", "--version"]),
+                ("pnpm", ["pnpm", "--version"]),
+                ("uv", ["uv", "--version"]),
+            ):
+                with self.subTest(name=name):
+                    self.assertEqual(doctor.read_version_output(name, command),
+                                     "EXECUTION_FAILED")
+
+
 if __name__ == "__main__":
     unittest.main()
