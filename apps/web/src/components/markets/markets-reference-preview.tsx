@@ -34,7 +34,7 @@ function Frame({id,title,crumb,subtitle,action,children}:{id:"011"|"015"|"019";t
 return <div className="nqr-frame" data-web-p0-preview="true" data-reference-screenshot={"PAGE-"+id} dir="rtl">
 <header className="nqr-topbar">
  <div className="nqr-top-actions"><Pill>حساب نمایشی</Pill><Pill tone="gold">DEMO · MOCK</Pill><Pill>فارسی</Pill></div>
- <div className="nqr-top-search" role="search">⌕　جست‌وجو در سامانه</div>
+ <div className="nqr-top-search" aria-label="جست‌وجوی سامانه در این پیش‌نمایش غیرفعال است">⌕　جست‌وجو در سامانه · ناموجود</div>
  <div className="nqr-brand" dir="ltr"><strong><em>N</em> NEXUS QUANT</strong><small>Intelligent Trading Platform</small></div>
 </header>
 <div className="nqr-body">
