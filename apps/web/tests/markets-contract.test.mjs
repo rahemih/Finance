@@ -86,9 +86,8 @@ test("market fresh fixture KPI matches actual synthetic quote rows",()=>{
  const quotesBlock=source.split("const quotes=[")[1]?.split("] as const;")[0];
  assert.ok(quotesBlock,"synthetic quote fixtures must be present");
  const freshRows=(quotesBlock.match(/status:"FRESH"/g)||[]).length;
- const displayedKpi=source.match(/\["نماد با داده تازه نمونه","(\d+)","همراه زمان و منبع"\]/);
- assert.ok(displayedKpi,"synthetic freshness KPI must be present");
- assert.equal(Number(displayedKpi[1]),freshRows,"do not display an inconsistent synthetic freshness count");
+ assert.match(source,/String\(quotes\.filter\(q=>q\.status==="FRESH"\)\.length\)/,"fresh KPI must be computed from the fixture rows");
+ assert.equal(freshRows,5,"fixture has five fresh rows at this checkpoint");
 });
 
 test("watchlist fixture never claims verified prices or an active service",()=>{
