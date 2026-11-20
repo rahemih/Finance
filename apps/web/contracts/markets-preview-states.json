@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "scope": "WEB-P0-P0-C",
+  "status": "SOURCE_PREVIEW_ONLY",
+  "backendConnection": "NOT_CONNECTED",
+  "liveTrading": "DISABLED",
+  "pages": [
+    {
+      "id": "011",
+      "route": "/markets",
+      "states": [
+        "UNKNOWN",
+        "STALE",
+        "OFFLINE",
+        "DEGRADED"
+      ]
+    },
+    {
+      "id": "015",
+      "route": "/markets/watchlist",
+      "states": [
+        "NOT_LOADED",
+        "EMPTY",
+        "STALE",
+        "FORBIDDEN"
+      ]
+    },
+    {
+      "id": "019",
+      "route": "/markets/[asset]",
+      "states": [
+        "UNRESOLVED_ASSET",
+        "UNKNOWN",
+        "STALE",
+        "OFFLINE"
+      ]
+    }
+  ],
+  "visualBaseline": "NOT_RUN",
+  "ownerRuntimeAcceptance": "PENDING"
+}

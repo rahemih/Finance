@@ -18,3 +18,30 @@ test('root sentinel cannot submit, login, or claim a visual baseline', () => {
   assert.equal(manifest.ownerApprovedBaselineCount,0);
   assert.ok(manifest.pages.every(p=>p.implementationStatus==='NOT_IMPLEMENTED' && p.visualBaselineStatus==='REVIEW_REQUIRED'));
 });
+
+test('WEB-P0 preview does not route unavailable portfolio or demo sidebar items to dashboard', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.match(source, /n\.label==="پرتفوی و ریسک"\|\|n\.label==="مرکز دمو"/);
+  assert.match(source, /aria-disabled="true" title="این بخش در پیش‌نمایش در دسترس نیست"/);
+  assert.match(source, /ناموجود<\/span>/);
+});
+
+test('WEB-P0 preview does not misroute user access management to system health', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.doesNotMatch(source, /href="\/system"><span>♧<\/span>کاربران و دسترسی‌ها/);
+  assert.match(source, /aria-disabled="true" title="مدیریت کاربران در پیش‌نمایش در دسترس نیست"/);
+  assert.match(source, /کاربران و دسترسی‌ها · ناموجود/);
+});
+
+test('WEB-P0 static header does not advertise an operational search landmark', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.doesNotMatch(source, /className="nqr-top-search" role="search"/);
+  assert.match(source, /className="nqr-top-search" aria-label="جست‌وجوی سامانه در این پیش‌نمایش غیرفعال است"/);
+  assert.match(source, /جست‌وجو در سامانه · ناموجود/);
+});
+
+test('WEB-P0 sidebar names the watchlist route without claiming an operational signals page', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.ok(source.includes('label:"فهرست پیگیری",href:"/markets/watchlist"'));
+  assert.ok(!source.includes('label:"فرصت‌ها و سیگنال‌ها",href:"/markets/watchlist"'));
+});

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "authority": "OWNER_APPROVED_GOOGLE_DOC_IMAGES_ONLY",
+  "sourceDocument": {
+    "id": "19trhKWaIB9YUqc3h7sgrovKwRiJKFUM_RSjmj6NDPQ0",
+    "title": "NEXUS QUANT — Web Runtime — MASTER WORKING DRAFT v0.8 — Reconciled",
+    "revisionChecked": "AHj4eMSLK78OPVsWiIBajbrtkU9ZgoiXAmTMMWGUuOWJoP8xRRemKalNkMLLPgNrkUWRfZljWKium1nNzg9hyhJJxuQ-Ak4VLP6ve9_C_Og"
+  },
+  "inheritance": "Exact owner-reviewed visual appearance from embedded Google Doc images: RTL, typography, colors, shell, spacing, cards, tables, chart, badge, responsive states. New screenshots are evidence only, never design authorities.",
+  "pages": [
+    {
+      "id": "011",
+      "route": "/markets",
+      "refs": [
+        {
+          "id": "011-01",
+          "inlineObject": "kix.y1ggmi6wlx4q",
+          "pdfPage": 110,
+          "extractedWidth": 1440,
+          "extractedHeight": 1345,
+          "pdfExtractedImageSha256": "a5c45cdcef871de8a8990bee694dddef9dbc8d270a0dbbe396a2d69ecdfbde04"
+        },
+        {
+          "id": "011-02",
+          "inlineObject": "kix.8llcodqjvs1a",
+          "pdfPage": 112
+        },
+        {
+          "id": "011-03",
+          "inlineObject": "kix.i9bgkb7m0qrf",
+          "pdfPage": 114
+        }
+      ]
+    },
+    {
+      "id": "015",
+      "route": "/markets/watchlist",
+      "refs": [
+        {
+          "id": "015-01",
+          "inlineObject": "kix.tgxdq3udgejv",
+          "pdfPage": 119,
+          "extractedWidth": 1440,
+          "extractedHeight": 1166,
+          "pdfExtractedImageSha256": "7d3d5d6be74f6bf711daace03d22d0442da999e09c90b34071395791caaabc8a"
+        },
+        {
+          "id": "015-02",
+          "inlineObject": "kix.eev4kkr3zine",
+          "pdfPage": 120
+        },
+        {
+          "id": "015-03",
+          "inlineObject": "kix.zokjgh3dl2q",
+          "pdfPage": 121
+        }
+      ]
+    },
+    {
+      "id": "019",
+      "route": "/markets/[asset]",
+      "refs": [
+        {
+          "id": "019-01",
+          "inlineObject": "kix.72amx9rnlad4",
+          "pdfPage": 125,
+          "extractedWidth": 1440,
+          "extractedHeight": 1398,
+          "pdfExtractedImageSha256": "8769af0095f6f0cb67dfbbdb0846adfea634a909b7b90d007804c23b39f12f24"
+        },
+        {
+          "id": "019-02",
+          "inlineObject": "kix.w9z9y16cgefe",
+          "pdfPage": 126
+        },
+        {
+          "id": "019-03",
+          "inlineObject": "kix.uaimrocwkai3",
+          "pdfPage": 127
+        }
+      ]
+    }
+  ],
+  "constraints": {
+    "colors": "Derive from approved images and P23 tokens; no independent restyling",
+    "font": "P23 Noto Sans Arabic / Noto Sans for financial LTR islands",
+    "fixture": "SYNTHETIC MOCK ONLY",
+    "liveAuto": "DISABLED",
+    "renderedUiOwnerAcceptance": "NOT_YET_PROVIDED",
+    "pixelVerified": "NOT_RUN",
+    "pdfExtractedHashDisclaimer": "Hash belongs to bytes extracted from exported Google Docs PDF; NOT attested as original inline image SHA256",
+    "noMergeWithoutHumanGate": true
+  }
+}
