@@ -105,18 +105,20 @@ def collect() -> dict:
     for relative, expected in canonical.items():
         path = ROOT / relative
         actual = path.read_text(encoding="utf-8").strip() if path.is_file() else "NOT_FOUND"
-        checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual}
+        checks[f"file:{relative}"] = {"ok": actual == expected, "expected": expected, "actual": actual if actual == expected or actual == "NOT_FOUND" else "UNEXPECTED_CONTENT"}
 
     package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
+    package_node = package.get("engines", {}).get("node")
+    package_pnpm = package.get("packageManager")
     checks["package:node"] = {
-        "ok": package.get("engines", {}).get("node") == EXPECTED["node"],
+        "ok": package_node == EXPECTED["node"],
         "expected": EXPECTED["node"],
-        "actual": package.get("engines", {}).get("node"),
+        "actual": package_node if package_node == EXPECTED["node"] else "UNEXPECTED_CONTENT",
     }
     checks["package:pnpm"] = {
-        "ok": package.get("packageManager") == f"pnpm@{EXPECTED['pnpm']}",
+        "ok": package_pnpm == f"pnpm@{EXPECTED['pnpm']}",
         "expected": f"pnpm@{EXPECTED['pnpm']}",
-        "actual": package.get("packageManager"),
+        "actual": package_pnpm if package_pnpm == f"pnpm@{EXPECTED['pnpm']}" else "UNEXPECTED_CONTENT",
     }
 
     ok = all(bool(item.get("ok")) for item in checks.values())
