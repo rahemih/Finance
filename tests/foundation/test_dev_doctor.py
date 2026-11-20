@@ -86,6 +86,24 @@ class VersionOutputTests(unittest.TestCase):
                 self.assertEqual(doctor.read_version_output(tool, [tool, "--version"]), stdout)
 
 
+class PythonVersionPrivacyTests(unittest.TestCase):
+    def test_python_version_output_cannot_leak_secrets(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for filename, version in ((".node-version", doctor.EXPECTED["node"]), (".python-version", doctor.EXPECTED["python"])):
+                (root / filename).write_text(version, encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({"engines": {"node": doctor.EXPECTED["node"]}, "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"]}), encoding="utf-8")
+            for python_value in ("3.14.8 TOKEN_SECRET", "TOKEN_SECRET\\n3.14.8", None):
+                with self.subTest(python_value=python_value), patch.object(doctor, "ROOT", root), patch.object(doctor, "require_repo_root"), patch.object(doctor, "python_version", return_value=python_value), patch.object(doctor, "check_command", return_value=False):
+                    report = doctor.collect()
+                self.assertEqual(report["checks"]["python"]["actual"], "UNEXPECTED_OUTPUT")
+                self.assertNotIn("TOKEN_SECRET", json.dumps(report))
+            with patch.object(doctor, "ROOT", root), patch.object(doctor, "require_repo_root"), patch.object(doctor, "python_version", side_effect=ToolingError("TOKEN_SECRET")), patch.object(doctor, "check_command", return_value=False):
+                report = doctor.collect()
+            self.assertEqual(report["checks"]["python"]["actual"], "EXECUTION_FAILED")
+            self.assertNotIn("TOKEN_SECRET", json.dumps(report))
+
+
 class RepositoryPrivacyTests(unittest.TestCase):
     def test_repository_root_failure_does_not_expose_sensitive_exception(self) -> None:
         # An invalid repo-root check must fail closed without leaking raw paths,
