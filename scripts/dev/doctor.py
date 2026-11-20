@@ -76,7 +76,8 @@ def collect() -> dict:
     try:
         python_raw = python_version()
         actual_python = python_raw if isinstance(python_raw, str) and re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", python_raw) else "UNEXPECTED_OUTPUT"
-    except (ToolingError, OSError):
+    except (ToolingError, OSError, UnicodeError):
+        # Version probing can fail while decoding subprocess output.
         actual_python = "EXECUTION_FAILED"
     checks["python"] = {
         "ok": actual_python == EXPECTED["python"],
