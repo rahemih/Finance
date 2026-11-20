@@ -102,6 +102,26 @@ class RepositoryPrivacyTests(unittest.TestCase):
         self.assertIn("package:pnpm", report["checks"])
 
 
+    def test_successful_repository_root_does_not_disclose_local_path(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="TOKEN_SECRET_REPO_") as directory:
+            root = Path(directory)
+            (root / ".node-version").write_text(doctor.EXPECTED["node"], encoding="utf-8")
+            (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({
+                "engines": {"node": doctor.EXPECTED["node"]},
+                "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
+            }), encoding="utf-8")
+            with patch.object(doctor, "ROOT", root), \\
+                 patch.object(doctor, "require_repo_root"), \\
+                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \\
+                 patch.object(doctor, "check_command", return_value=False):
+                report = doctor.collect()
+            self.assertEqual(report["checks"]["repository"],
+                             {"ok": True, "value": "REPOSITORY_ROOT_OK"})
+            self.assertNotIn(str(root), json.dumps(report))
+            self.assertNotIn("TOKEN_SECRET_REPO_", json.dumps(report))
+
+
 class FullReportTests(unittest.TestCase):
     def test_manifest_secrets_are_redacted(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
