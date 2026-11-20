@@ -25,3 +25,10 @@ test('WEB-P0 preview does not route unavailable portfolio or demo sidebar items 
   assert.match(source, /aria-disabled="true" title="این بخش در پیش‌نمایش در دسترس نیست"/);
   assert.match(source, /ناموجود<\/span>/);
 });
+
+test('WEB-P0 preview does not misroute user access management to system health', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.doesNotMatch(source, /href="\/system"><span>♧<\/span>کاربران و دسترسی‌ها/);
+  assert.match(source, /aria-disabled="true" title="مدیریت کاربران در پیش‌نمایش در دسترس نیست"/);
+  assert.match(source, /کاربران و دسترسی‌ها · ناموجود/);
+});
