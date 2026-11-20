@@ -39,7 +39,7 @@ return <div className="nqr-frame" data-web-p0-preview="true" data-reference-scre
 </header>
 <div className="nqr-body">
  <aside className="nqr-sidebar" aria-label="ناوبری اصلی پروژه"><small>پایش و تصمیم‌یار</small>
- {nav.slice(0,7).map(n=><Link className={n.label==="بازار و تحلیل"?"nqr-side-link nqr-side-active":"nqr-side-link"} key={n.label} href={n.href}><span>{n.icon}</span>{n.label}</Link>)}
+ {nav.slice(0,7).map(n=>n.label==="پرتفوی و ریسک"||n.label==="مرکز دمو"?<span className="nqr-side-link" key={n.label} aria-disabled="true" title="این بخش در پیش‌نمایش در دسترس نیست"><span>{n.icon}</span>{n.label} · ناموجود</span>:<Link className={n.label==="بازار و تحلیل"?"nqr-side-link nqr-side-active":"nqr-side-link"} key={n.label} href={n.href}><span>{n.icon}</span>{n.label}</Link>)}
  <small>امنیت و کنترل</small><Link className="nqr-side-link" href="/system"><span>♧</span>کاربران و دسترسی‌ها</Link>
  </aside>
  <main className="nqr-main">
