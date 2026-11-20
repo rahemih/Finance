@@ -159,6 +159,33 @@ class FullReportTests(unittest.TestCase):
                 self.assertEqual(report["checks"]["package:pnpm"]["actual"], "UNEXPECTED_CONTENT")
                 self.assertNotIn("TOKEN_SECRET", json.dumps(report))
 
+    def test_unreadable_runtime_pin_fails_closed_without_aborting(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / ".node-version").write_text(doctor.EXPECTED["node"], encoding="utf-8")
+            (root / ".python-version").write_text(doctor.EXPECTED["python"], encoding="utf-8")
+            (root / "package.json").write_text(json.dumps({
+                "engines": {"node": doctor.EXPECTED["node"]},
+                "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
+            }), encoding="utf-8")
+            original_read_text = Path.read_text
+
+            def read_with_failure(path: Path, *args: object, **kwargs: object) -> str:
+                if path.name == ".node-version":
+                    raise PermissionError("TOKEN_SECRET_PRIVATE_PATH")
+                return original_read_text(path, *args, **kwargs)
+
+            with patch.object(doctor, "ROOT", root), \
+                 patch.object(doctor, "require_repo_root"), \
+                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \
+                 patch.object(doctor, "check_command", return_value=False), \
+                 patch.object(Path, "read_text", read_with_failure):
+                report = doctor.collect()
+        self.assertFalse(report["ok"])
+        self.assertEqual(report["checks"]["file:.node-version"]["actual"], "UNREADABLE_CONTENT")
+        self.assertIn("package:pnpm", report["checks"])
+        self.assertNotIn("TOKEN_SECRET", json.dumps(report))
+
     def test_failed_git_does_not_hide_other_dependency_results(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
