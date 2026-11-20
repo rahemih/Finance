@@ -26,6 +26,16 @@ class VersionOutputTests(unittest.TestCase):
         self.assertEqual(value, "EXECUTION_FAILED")
         self.assertNotIn("SECRET_DO_NOT_LOG", value)
 
+    def test_os_error_after_path_lookup_is_sanitized(self) -> None:
+        # The executable may disappear between shutil.which and execution.
+        for error in (FileNotFoundError("TOKEN_SECRET_PATH"), PermissionError("TOKEN_SECRET_PATH")):
+            with self.subTest(error=type(error).__name__), \
+                 patch.object(doctor, "check_command", return_value=True), \
+                 patch.object(doctor, "run_capture", side_effect=error):
+                value = doctor.read_version_output("node", ["node", "--version"])
+                self.assertEqual(value, "EXECUTION_FAILED")
+                self.assertNotIn("TOKEN_SECRET_PATH", value)
+
     def test_empty_command_output_is_safe(self) -> None:
         with patch.object(doctor, "check_command", return_value=True), \
              patch.object(doctor, "run_capture", return_value="\n \n"):
