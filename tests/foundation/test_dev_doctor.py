@@ -111,9 +111,9 @@ class RepositoryPrivacyTests(unittest.TestCase):
                 "engines": {"node": doctor.EXPECTED["node"]},
                 "packageManager": "pnpm@" + doctor.EXPECTED["pnpm"],
             }), encoding="utf-8")
-            with patch.object(doctor, "ROOT", root), \\
-                 patch.object(doctor, "require_repo_root"), \\
-                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \\
+            with patch.object(doctor, "ROOT", root), \
+                 patch.object(doctor, "require_repo_root"), \
+                 patch.object(doctor, "python_version", return_value=doctor.EXPECTED["python"]), \
                  patch.object(doctor, "check_command", return_value=False):
                 report = doctor.collect()
             self.assertEqual(report["checks"]["repository"],
