@@ -71,3 +71,12 @@ test("only the supported BTC fixture links to asset details; other symbols fail 
  assert.match(source,/aria-disabled="true"/);
  assert.match(source,/جزئیات .* در پیش‌نمایش موجود نیست/);
 });
+
+test("mobile quote cards expose only the supported BTC detail route",()=>{
+ const source=readFileSync(root+"src/components/markets/markets-reference-preview.tsx","utf8");
+ const mobile=source.split('<div className="nqr-mobile-quotes">')[1]?.split("</div>\n </>}")[0];
+ assert.ok(mobile,"mobile quote cards must exist");
+ assert.match(mobile,/q\.symbol==="BTC\/USD"\?<Link href="\/markets\/mock-btcusdt"/);
+ assert.match(mobile,/aria-disabled="true"/);
+ assert.match(mobile,/جزئیات .* در پیش‌نمایش موجود نیست/);
+});
