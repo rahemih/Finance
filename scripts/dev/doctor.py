@@ -66,7 +66,13 @@ def collect() -> dict:
         # Expose only a fixed diagnostic marker, never the raw exception text.
         checks["repository"] = {"ok": False, "value": "REPOSITORY_CHECK_FAILED"}
 
-    actual_python = python_version()
+    # Python version helpers may return arbitrary local output on failure.
+    # Report only a strictly recognized version, never raw diagnostic text.
+    try:
+        python_raw = python_version()
+        actual_python = python_raw if isinstance(python_raw, str) and re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", python_raw) else "UNEXPECTED_OUTPUT"
+    except (ToolingError, OSError):
+        actual_python = "EXECUTION_FAILED"
     checks["python"] = {
         "ok": actual_python == EXPECTED["python"],
         "expected": EXPECTED["python"],
