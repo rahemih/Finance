@@ -32,3 +32,10 @@ test('WEB-P0 preview does not misroute user access management to system health',
   assert.match(source, /aria-disabled="true" title="مدیریت کاربران در پیش‌نمایش در دسترس نیست"/);
   assert.match(source, /کاربران و دسترسی‌ها · ناموجود/);
 });
+
+test('WEB-P0 static header does not advertise an operational search landmark', () => {
+  const source=read('../src/components/markets/markets-reference-preview.tsx');
+  assert.doesNotMatch(source, /className="nqr-top-search" role="search"/);
+  assert.match(source, /className="nqr-top-search" aria-label="جست‌وجوی سامانه در این پیش‌نمایش غیرفعال است"/);
+  assert.match(source, /جست‌وجو در سامانه · ناموجود/);
+});
