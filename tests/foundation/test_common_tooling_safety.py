@@ -34,6 +34,17 @@ class CommonToolingSafetyTests(unittest.TestCase):
                 common.run_live(["tool", "--check"])
         self.assertNotIn(secret, str(caught.exception))
 
+    def test_live_success_uses_repository_root_and_check(self) -> None:
+        with patch.object(common.subprocess, "run") as runner:
+            common.run_live(["git", "status"])
+        runner.assert_called_once_with(["git", "status"], cwd=common.ROOT, check=True)
+
+    def test_live_missing_binary_fails_closed(self) -> None:
+        with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
+            with self.assertRaises(common.ToolingError) as caught:
+                common.run_live(["nonexistent-tool"])
+        self.assertIn("command failed", str(caught.exception))
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
