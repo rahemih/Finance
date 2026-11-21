@@ -30,6 +30,10 @@ No live or automatic trading is authorized until the roadmap's explicit producti
 
 Demo and simulation evidence is not authorization to place orders. Any Demo order activity requires its own explicit governing approval; documentation, CI success, or a dashboard Start audit cannot grant it. Independent A5/A8/A10 veto, exact-head Owner/Human Gate, and protected-branch checks remain binding.
 
+## Mission Control and engineering execution
+
+Mission Control and GitHub Actions provide observable audit/test evidence, not an on-demand ChatGPT execution endpoint. A public **Start** action does not immediately launch an autonomous engineering run, prove that A0–A10 workers are active, or grant an approval. Engineering progress must be substantiated by actual commits, workflow runs, review identities and GitHub–Linear records. Scheduled ChatGPT work is separate from the dashboard and subject to its own schedule and tool availability.
+
 ## Repository
 
 Canonical repository: `rahemih/Finance`
