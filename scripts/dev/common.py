@@ -25,16 +25,18 @@ def run_capture(command: Sequence[str]) -> str:
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
         )
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ToolingError(f"command failed: {' '.join(command)}") from exc
+    except (OSError, subprocess.CalledProcessError):
+        # Do not expose command arguments or subprocess output via exception chaining.
+        raise ToolingError("command failed") from None
     return result.stdout.strip()
 
 
 def run_live(command: Sequence[str]) -> None:
     try:
         subprocess.run(list(command), cwd=ROOT, check=True)
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ToolingError(f"command failed: {' '.join(command)}") from exc
+    except (OSError, subprocess.CalledProcessError):
+        # Do not expose command arguments or subprocess output via exception chaining.
+        raise ToolingError("command failed") from None
 
 
 def require_repo_root() -> None:
