@@ -28,6 +28,8 @@ Never commit API keys, broker credentials, exchange secrets, private keys, passw
 
 No live or automatic trading is authorized until the roadmap's explicit production gates are satisfied.
 
+Demo and simulation evidence is not authorization to place orders. Any Demo order activity requires its own explicit governing approval; documentation, CI success, or a dashboard Start audit cannot grant it. Independent A5/A8/A10 veto, exact-head Owner/Human Gate, and protected-branch checks remain binding.
+
 ## Repository
 
 Canonical repository: `rahemih/Finance`
