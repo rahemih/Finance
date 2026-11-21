@@ -1,6 +1,6 @@
 # Finance — NEXUS QUANT
 
-Private, governance-first market intelligence and controlled trading platform for **Crypto + Forex**.
+Public source repository for a governance-first market intelligence and controlled trading platform for **Crypto + Forex**. Credentials, private account data and trading authorization are never part of the public repository.
 
 > Project status: consult [`CURRENT-STATE.md`](docs/02-current-state/CURRENT-STATE.md), the frozen [`MASTER-ROADMAP-v2.0.md`](docs/01-roadmap/MASTER-ROADMAP-v2.0.md), and current GitHub CI/PR evidence. `CURRENT-STATE.md` currently identifies its last reconciliation as **2026-11-04**; it is a historical checkpoint, not proof that later PRs, reviews, CI or gates passed. WEB-P0 and P24-B acceptance remain separately gated; see [license review #530](https://github.com/rahemih/Finance/issues/530), [builder evidence #531](https://github.com/rahemih/Finance/issues/531), and [P24-B evidence #528](https://github.com/rahemih/Finance/issues/528).
 > Canonical branch: `main`  
