@@ -1,0 +1,24 @@
+name: Common Tooling Safety Regression
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/dev/common.py'
+      - 'tests/foundation/test_common_tooling_safety.py'
+      - '.github/workflows/common-tooling-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  common-tooling-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout exact PR commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Run isolated standard-library regressions
+        run: python3 -m unittest discover -s tests/foundation -p 'test_common_tooling_safety.py' -v
