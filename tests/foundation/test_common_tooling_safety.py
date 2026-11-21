@@ -63,6 +63,28 @@ class CommonToolingSafetyTests(unittest.TestCase):
             else:
                 self.fail("expected ToolingError")
 
+    def test_capture_oserror_traceback_does_not_disclose_secret(self) -> None:
+        secret = "SENSITIVE_OSERROR_MARKER"
+        with patch.object(common.subprocess, "run", side_effect=OSError(secret)):
+            try:
+                common.run_capture(["missing-tool", "--token", secret])
+            except common.ToolingError as exc:
+                self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
+
+    def test_live_oserror_traceback_does_not_disclose_secret(self) -> None:
+        secret = "SENSITIVE_LIVE_OSERROR_MARKER"
+        with patch.object(common.subprocess, "run", side_effect=OSError(secret)):
+            try:
+                common.run_live(["missing-tool", "--token", secret])
+            except common.ToolingError as exc:
+                self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
+
     def test_live_success_uses_repository_root_and_check(self) -> None:
         with patch.object(common.subprocess, "run") as runner:
             common.run_live(["git", "status"])
