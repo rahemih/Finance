@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import subprocess
+import traceback
 import unittest
 from unittest.mock import patch
 
@@ -33,6 +34,34 @@ class CommonToolingSafetyTests(unittest.TestCase):
             with self.assertRaises(common.ToolingError) as caught:
                 common.run_live(["tool", "--check"])
         self.assertNotIn(secret, str(caught.exception))
+
+    def test_capture_traceback_redacts_secret_arguments_and_output(self) -> None:
+        secret = "SENSITIVE_ARGUMENT_AND_OUTPUT_MARKER"
+        command = ["tool", "--token", secret]
+        failure = subprocess.CalledProcessError(1, command, output=secret, stderr=secret)
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            try:
+                common.run_capture(command)
+            except common.ToolingError as exc:
+                rendered = "".join(traceback.format_exception(exc))
+                self.assertNotIn(secret, rendered)
+                self.assertNotIn("--token", rendered)
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
+
+    def test_live_traceback_redacts_secret_arguments(self) -> None:
+        secret = "SENSITIVE_LIVE_ARGUMENT_MARKER"
+        command = ["tool", "--token", secret]
+        failure = subprocess.CalledProcessError(1, command)
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            try:
+                common.run_live(command)
+            except common.ToolingError as exc:
+                self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
 
     def test_live_success_uses_repository_root_and_check(self) -> None:
         with patch.object(common.subprocess, "run") as runner:
