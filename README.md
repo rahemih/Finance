@@ -11,7 +11,7 @@ Public source repository for a governance-first market intelligence and controll
 
 Accuracy → Safety → Reliability → Quality → Speed → Simplicity → Automation.
 
-The project is built around trusted market data, explainable analysis, independent risk controls, continuous demo learning, reproducible evidence, and controlled progression from research to live execution.
+The project is built around trusted market data, explainable analysis, independent risk controls, evidence-gated demo evaluation, reproducible evidence, and controlled progression from research toward any separately authorized production readiness. This description is an architecture goal, not a claim of running agents, validated Demo execution, or Live readiness.
 
 ## Canonical sources
 
