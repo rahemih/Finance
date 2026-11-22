@@ -120,6 +120,22 @@ class CommonToolingSafetyTests(unittest.TestCase):
                 common.run_live(["nonexistent-tool"])
         self.assertIn("command failed", str(caught.exception))
 
+    def test_empty_argv_fails_closed(self) -> None:
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run", side_effect=IndexError("empty argv")):
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                        runner([])
+                self.assertIsNone(caught.exception.__cause__)
+
+    def test_invalid_argv_fails_closed(self) -> None:
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run", side_effect=ValueError("sensitive invalid argv")):
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                        runner(["tool"])
+                self.assertIsNone(caught.exception.__cause__)
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
