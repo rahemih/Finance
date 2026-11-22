@@ -136,6 +136,32 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner(["tool"])
                 self.assertIsNone(caught.exception.__cause__)
 
+    def test_capture_decode_failure_redacts_secret(self) -> None:
+        secret = "SENSITIVE_DECODE_MARKER"
+        failure = UnicodeDecodeError("utf-8", secret.encode(), 0, 1, secret)
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            try:
+                common.run_capture(["tool", "--token", secret])
+            except common.ToolingError as exc:
+                self.assertEqual(str(exc), "command failed")
+                self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
+
+    def test_live_decode_failure_redacts_secret(self) -> None:
+        secret = "SENSITIVE_LIVE_DECODE_MARKER"
+        failure = UnicodeDecodeError("utf-8", secret.encode(), 0, 1, secret)
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            try:
+                common.run_live(["tool", "--token", secret])
+            except common.ToolingError as exc:
+                self.assertEqual(str(exc), "command failed")
+                self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                self.assertTrue(exc.__suppress_context__)
+            else:
+                self.fail("expected ToolingError")
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
