@@ -18,6 +18,30 @@ class CommonToolingSafetyTests(unittest.TestCase):
             self.assertEqual(runner.call_args.kwargs["cwd"], common.ROOT)
             self.assertTrue(runner.call_args.kwargs["check"])
 
+    def test_capture_uses_argv_not_shell_and_merges_stderr(self) -> None:
+        completed = subprocess.CompletedProcess(["tool", "--version"], 0, stdout="ok\\n")
+        with patch.object(common.subprocess, "run", return_value=completed) as runner:
+            self.assertEqual(common.run_capture(["tool", "--version"]), "ok")
+        runner.assert_called_once_with(
+            ["tool", "--version"],
+            cwd=common.ROOT,
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+
+    def test_capture_nonzero_exit_fails_closed_without_command_in_error(self) -> None:
+        secret = "SENSITIVE_NONZERO_ARG_MARKER"
+        command = ["tool", "--token", secret]
+        failure = subprocess.CalledProcessError(127, command, output=secret)
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            with self.assertRaises(common.ToolingError) as caught:
+                common.run_capture(command)
+        self.assertEqual(str(caught.exception), "command failed")
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertNotIn(secret, repr(caught.exception.args))
+
     def test_capture_failure_does_not_echo_secret_output(self) -> None:
         secret = "SENSITIVE_TEST_MARKER_DO_NOT_LOG"
         failure = subprocess.CalledProcessError(1, ["tool", "--check"], output=secret, stderr=secret)
