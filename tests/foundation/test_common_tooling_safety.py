@@ -19,7 +19,7 @@ class CommonToolingSafetyTests(unittest.TestCase):
             self.assertTrue(runner.call_args.kwargs["check"])
 
     def test_capture_uses_argv_not_shell_and_merges_stderr(self) -> None:
-        completed = subprocess.CompletedProcess(["tool", "--version"], 0, stdout="ok\\n")
+        completed = subprocess.CompletedProcess(["tool", "--version"], 0, stdout="ok\n")
         with patch.object(common.subprocess, "run", return_value=completed) as runner:
             self.assertEqual(common.run_capture(["tool", "--version"]), "ok")
         runner.assert_called_once_with(
