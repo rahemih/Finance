@@ -25,7 +25,7 @@ def run_capture(command: Sequence[str]) -> str:
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
         )
-    except (OSError, subprocess.CalledProcessError):
+    except (OSError, ValueError, IndexError, subprocess.CalledProcessError):
         # Do not expose command arguments or subprocess output via exception chaining.
         raise ToolingError("command failed") from None
     return result.stdout.strip()
@@ -34,7 +34,7 @@ def run_capture(command: Sequence[str]) -> str:
 def run_live(command: Sequence[str]) -> None:
     try:
         subprocess.run(list(command), cwd=ROOT, check=True)
-    except (OSError, subprocess.CalledProcessError):
+    except (OSError, ValueError, IndexError, subprocess.CalledProcessError):
         # Do not expose command arguments or subprocess output via exception chaining.
         raise ToolingError("command failed") from None
 
