@@ -275,6 +275,26 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         self.fail("expected ToolingError")
                 process.assert_not_called()
 
+    def test_custom_iterator_exception_fails_closed_without_spawning(self) -> None:
+        secret = "SENSITIVE_CUSTOM_ITERATOR_MARKER"
+
+        class HostileArgv:
+            def __iter__(self):
+                raise LookupError(secret)
+
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as process:
+                    try:
+                        runner(HostileArgv())
+                    except common.ToolingError as exc:
+                        self.assertEqual(str(exc), "command failed")
+                        self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                        self.assertTrue(exc.__suppress_context__)
+                    else:
+                        self.fail("expected ToolingError")
+                process.assert_not_called()
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
