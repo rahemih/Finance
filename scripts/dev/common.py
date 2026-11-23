@@ -15,12 +15,24 @@ class ToolingError(RuntimeError):
     pass
 
 
-def run_capture(command: Sequence[str]) -> str:
+def _validated_argv(command: Sequence[str]) -> list[str]:
+    """Reject malformed argv before a subprocess can run or stringify secrets."""
     if isinstance(command, (str, bytes)) or not command:
         raise ToolingError("command failed")
     try:
+        argv = list(command)
+    except (TypeError, ValueError, UnicodeError):
+        raise ToolingError("command failed") from None
+    if not argv or any(not isinstance(arg, str) or "\\x00" in arg for arg in argv):
+        raise ToolingError("command failed")
+    return argv
+
+
+def run_capture(command: Sequence[str]) -> str:
+    argv = _validated_argv(command)
+    try:
         result = subprocess.run(
-            list(command),
+            argv,
             cwd=ROOT,
             check=True,
             text=True,
@@ -39,10 +51,9 @@ def run_live(command: Sequence[str]) -> None:
     Child output may appear in CI logs. Exception sanitization protects
     traceback text only, not bytes already written by the child process.
     """
-    if isinstance(command, (str, bytes)) or not command:
-        raise ToolingError("command failed")
+    argv = _validated_argv(command)
     try:
-        subprocess.run(list(command), cwd=ROOT, check=True)
+        subprocess.run(argv, cwd=ROOT, check=True)
     except (OSError, TypeError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
         # Do not expose command arguments or subprocess output via exception chaining.
         raise ToolingError("command failed") from None
