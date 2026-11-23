@@ -114,6 +114,13 @@ class CommonToolingSafetyTests(unittest.TestCase):
             common.run_live(["git", "status"])
         runner.assert_called_once_with(["git", "status"], cwd=common.ROOT, check=True)
 
+    def test_live_output_is_inherited_not_redacted(self) -> None:
+        with patch.object(common.subprocess, "run") as runner:
+            common.run_live(["safe-tool", "--version"])
+        self.assertNotIn("stdout", runner.call_args.kwargs)
+        self.assertNotIn("stderr", runner.call_args.kwargs)
+        self.assertIn("NOT redacted", common.run_live.__doc__)
+
     def test_live_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError) as caught:
