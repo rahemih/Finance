@@ -17,7 +17,7 @@ class ToolingError(RuntimeError):
 
 def _validated_argv(command: Sequence[str]) -> list[str]:
     """Reject malformed argv before a subprocess can run or stringify secrets."""
-    if isinstance(command, (str, bytes)) or not command:
+    if isinstance(command, (str, bytes)):
         raise ToolingError("command failed")
     try:
         argv = list(command)
