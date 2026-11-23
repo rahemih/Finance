@@ -219,6 +219,26 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner(item for item in ("tool", None))
                 subprocess_runner.assert_not_called()
 
+    def test_generator_materialization_failure_redacts_exception_and_never_spawns(self) -> None:
+        secret = "SENSITIVE_ITERATOR_FAILURE_MARKER"
+
+        def broken_argv():
+            yield "tool"
+            raise RuntimeError(secret)
+
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as subprocess_runner:
+                    try:
+                        runner(broken_argv())
+                    except common.ToolingError as exc:
+                        self.assertEqual(str(exc), "command failed")
+                        self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                        self.assertTrue(exc.__suppress_context__)
+                    else:
+                        self.fail("expected ToolingError")
+                subprocess_runner.assert_not_called()
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
