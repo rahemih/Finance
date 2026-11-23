@@ -203,7 +203,7 @@ class CommonToolingSafetyTests(unittest.TestCase):
 
     def test_malformed_argv_elements_never_start_process(self) -> None:
         # Reject non-string elements and embedded NUL before invoking subprocess.
-        for command in (["tool", None], ["tool", b"arg"], ["tool", "bad\\x00arg"]):
+        for command in (["tool", None], ["tool", b"arg"], ["tool", "bad\x00arg"]):
             for runner in (common.run_capture, common.run_live):
                 with self.subTest(command=repr(command), runner=runner.__name__):
                     with patch.object(common.subprocess, "run") as subprocess_runner:
