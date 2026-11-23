@@ -201,6 +201,24 @@ class CommonToolingSafetyTests(unittest.TestCase):
             else:
                 self.fail("expected ToolingError")
 
+    def test_malformed_argv_elements_never_start_process(self) -> None:
+        # Reject non-string elements and embedded NUL before invoking subprocess.
+        for command in (["tool", None], ["tool", b"arg"], ["tool", "bad\\x00arg"]):
+            for runner in (common.run_capture, common.run_live):
+                with self.subTest(command=repr(command), runner=runner.__name__):
+                    with patch.object(common.subprocess, "run") as subprocess_runner:
+                        with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                            runner(command)
+                    subprocess_runner.assert_not_called()
+
+    def test_generator_argv_is_materialized_and_validated(self) -> None:
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as subprocess_runner:
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                        runner(item for item in ("tool", None))
+                subprocess_runner.assert_not_called()
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
