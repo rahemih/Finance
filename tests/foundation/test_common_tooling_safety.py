@@ -135,6 +135,14 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner([])
                 self.assertIsNone(caught.exception.__cause__)
 
+    def test_empty_argv_never_invokes_subprocess(self) -> None:
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as subprocess_runner:
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                        runner([])
+                subprocess_runner.assert_not_called()
+
     def test_invalid_argv_fails_closed(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
