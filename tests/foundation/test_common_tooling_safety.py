@@ -135,6 +135,16 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner([])
                 self.assertIsNone(caught.exception.__cause__)
 
+    def test_scalar_string_or_bytes_command_never_invokes_subprocess(self) -> None:
+        # Scalar str/bytes are not argv even though str implements Sequence.
+        for command in ("git --version", b"git --version"):
+            for runner in (common.run_capture, common.run_live):
+                with self.subTest(command=type(command).__name__, runner=runner.__name__):
+                    with patch.object(common.subprocess, "run") as subprocess_runner:
+                        with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                            runner(command)
+                    subprocess_runner.assert_not_called()
+
     def test_empty_argv_never_invokes_subprocess(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
