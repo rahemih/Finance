@@ -23,7 +23,7 @@ def _validated_argv(command: Sequence[str]) -> list[str]:
         argv = list(command)
     except (TypeError, ValueError, UnicodeError):
         raise ToolingError("command failed") from None
-    if not argv or any(not isinstance(arg, str) or "\\x00" in arg for arg in argv):
+    if not argv or any(not isinstance(arg, str) or "\x00" in arg for arg in argv):
         raise ToolingError("command failed")
     return argv
 
