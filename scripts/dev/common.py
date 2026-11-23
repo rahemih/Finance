@@ -21,8 +21,9 @@ def _validated_argv(command: Sequence[str]) -> list[str]:
         raise ToolingError("command failed")
     try:
         argv = list(command)
-    except (TypeError, ValueError, OverflowError, UnicodeError, RuntimeError):
-        # Iterators may fail while materializing; suppress their exception text.
+    except Exception:
+        # User-defined iterators/length hints can raise arbitrary exceptions;
+        # suppress their text and never spawn a child process.
         raise ToolingError("command failed") from None
     if not argv or any(not isinstance(arg, str) or "\x00" in arg for arg in argv):
         raise ToolingError("command failed")
