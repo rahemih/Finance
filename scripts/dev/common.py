@@ -32,6 +32,11 @@ def run_capture(command: Sequence[str]) -> str:
 
 
 def run_live(command: Sequence[str]) -> None:
+    """Run trusted commands with inherited stdout/stderr (NOT redacted).
+
+    Child output may appear in CI logs. Exception sanitization protects
+    traceback text only, not bytes already written by the child process.
+    """
     try:
         subprocess.run(list(command), cwd=ROOT, check=True)
     except (OSError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
