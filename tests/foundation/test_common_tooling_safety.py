@@ -143,6 +143,20 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner([])
                 subprocess_runner.assert_not_called()
 
+    def test_typeerror_from_invalid_argv_is_sanitized(self) -> None:
+        secret = "SENSITIVE_TYPEERROR_MARKER"
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run", side_effect=TypeError(secret)):
+                    try:
+                        runner(["tool", "--token", secret])
+                    except common.ToolingError as exc:
+                        self.assertEqual(str(exc), "command failed")
+                        self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                        self.assertTrue(exc.__suppress_context__)
+                    else:
+                        self.fail("expected ToolingError")
+
     def test_invalid_argv_fails_closed(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
