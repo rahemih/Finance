@@ -256,6 +256,25 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         self.fail("expected ToolingError")
                 subprocess_runner.assert_not_called()
 
+    def test_iterator_overflow_fails_closed_without_spawning(self) -> None:
+        secret = "SENSITIVE_OVERFLOW_MARKER"
+
+        class OverflowingArgv:
+            def __iter__(self):
+                raise OverflowError(secret)
+
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as process:
+                    try:
+                        runner(OverflowingArgv())
+                    except common.ToolingError as exc:
+                        self.assertEqual(str(exc), "command failed")
+                        self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                    else:
+                        self.fail("expected ToolingError")
+                process.assert_not_called()
+
     def test_missing_binary_fails_closed(self) -> None:
         with patch.object(common.subprocess, "run", side_effect=FileNotFoundError("missing")):
             with self.assertRaises(common.ToolingError):
