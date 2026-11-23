@@ -211,6 +211,23 @@ class CommonToolingSafetyTests(unittest.TestCase):
                             runner(command)
                     subprocess_runner.assert_not_called()
 
+    def test_hostile_truthiness_is_not_evaluated_before_materialization(self) -> None:
+        secret = "SENSITIVE_BOOL_FAILURE_MARKER"
+
+        class HostileTruthiness:
+            def __bool__(self):
+                raise RuntimeError(secret)
+
+            def __iter__(self):
+                return iter(["tool", "--version"])
+
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                completed = subprocess.CompletedProcess(["tool", "--version"], 0, stdout="ok")
+                with patch.object(common.subprocess, "run", return_value=completed) as subprocess_runner:
+                    runner(HostileTruthiness())
+                subprocess_runner.assert_called_once()
+
     def test_generator_argv_is_materialized_and_validated(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
