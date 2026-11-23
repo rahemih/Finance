@@ -16,6 +16,8 @@ class ToolingError(RuntimeError):
 
 
 def run_capture(command: Sequence[str]) -> str:
+    if not command:
+        raise ToolingError("command failed")
     try:
         result = subprocess.run(
             list(command),
@@ -37,6 +39,8 @@ def run_live(command: Sequence[str]) -> None:
     Child output may appear in CI logs. Exception sanitization protects
     traceback text only, not bytes already written by the child process.
     """
+    if not command:
+        raise ToolingError("command failed")
     try:
         subprocess.run(list(command), cwd=ROOT, check=True)
     except (OSError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
