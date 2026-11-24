@@ -37,6 +37,23 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         self.assertIn("detected version withheld from logs", output)
         self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
 
+    def test_python_mismatch_does_not_echo_untrusted_version(self):
+        marker = "SYNTHETIC_SECRET_PYTHON_VERSION"
+        output = io.StringIO()
+        with (
+            patch.object(bootstrap, "require_repo_root"),
+            patch.object(bootstrap, "python_version", return_value=marker),
+            patch("sys.argv", ["bootstrap.py"]),
+            contextlib.redirect_stdout(output),
+        ):
+            self.assertEqual(bootstrap.main(), 1)
+        rendered = output.getvalue()
+        self.assertNotIn(marker, rendered)
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", rendered)
+        self.assertIn("Python ", rendered)
+        self.assertIn("detected version withheld from logs", rendered)
+        self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", rendered)
+
     def test_node_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_NODE_VERSION"
         self._assert_safe_mismatch({"node": marker}, marker, "Node")
