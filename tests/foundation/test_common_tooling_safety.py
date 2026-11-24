@@ -154,6 +154,15 @@ class CommonToolingSafetyTests(unittest.TestCase):
                         runner(["", "--version"])
                 process.assert_not_called()
 
+    def test_whitespace_only_executable_never_invokes_subprocess(self) -> None:
+        for executable in (" ", "\\t", "\\n", " \\t "):
+            for runner in (common.run_capture, common.run_live):
+                with self.subTest(executable=repr(executable), runner=runner.__name__):
+                    with patch.object(common.subprocess, "run") as process:
+                        with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                            runner([executable, "--version"])
+                    process.assert_not_called()
+
     def test_empty_argv_never_invokes_subprocess(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
