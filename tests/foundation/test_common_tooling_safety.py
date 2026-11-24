@@ -258,6 +258,30 @@ class CommonToolingSafetyTests(unittest.TestCase):
                     runner(HostileTruthiness())
                 subprocess_runner.assert_called_once()
 
+    def test_hostile_string_subclass_never_invokes_process(self) -> None:
+        secret = "SENSITIVE_STR_SUBCLASS_MARKER"
+
+        class HostileString(str):
+            def strip(self, *args, **kwargs):
+                raise RuntimeError(secret)
+
+            def __str__(self):
+                raise RuntimeError(secret)
+
+        for command in ([HostileString("tool"), "--version"], ["tool", HostileString("--version")]):
+            for runner in (common.run_capture, common.run_live):
+                with self.subTest(runner=runner.__name__):
+                    with patch.object(common.subprocess, "run") as process:
+                        try:
+                            runner(command)
+                        except common.ToolingError as exc:
+                            self.assertEqual(str(exc), "command failed")
+                            self.assertNotIn(secret, "".join(traceback.format_exception(exc)))
+                            self.assertTrue(exc.__suppress_context__)
+                        else:
+                            self.fail("expected ToolingError")
+                    process.assert_not_called()
+
     def test_generator_argv_is_materialized_and_validated(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
