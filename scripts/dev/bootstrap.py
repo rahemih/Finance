@@ -43,14 +43,14 @@ def main() -> int:
 
         node = run_capture(["node", "--version"]).lstrip("v")
         if node != EXPECTED_NODE:
-            raise ToolingError(f"Node {EXPECTED_NODE} required; actual={node}")
+            raise ToolingError(f"Node {EXPECTED_NODE} required; detected version withheld from logs")
 
         run_live(["corepack", "enable"])
         run_live(["corepack", "prepare", f"pnpm@{EXPECTED_PNPM}", "--activate"])
 
         pnpm = run_capture(["pnpm", "--version"]).splitlines()[0].strip()
         if pnpm != EXPECTED_PNPM:
-            raise ToolingError(f"pnpm {EXPECTED_PNPM} required after Corepack activation; actual={pnpm}")
+            raise ToolingError(f"pnpm {EXPECTED_PNPM} required after Corepack activation; detected version withheld from logs")
 
         run_live(["pnpm", "install", "--frozen-lockfile", "--ignore-scripts"])
 
@@ -60,7 +60,7 @@ def main() -> int:
         uv = parts[1] if len(parts) >= 2 else uv_line
         if uv != EXPECTED_UV:
             raise ToolingError(
-                f"uv {EXPECTED_UV} required; actual={uv}. "
+                f"uv {EXPECTED_UV} required; detected version withheld from logs. "
                 "Install/activate the exact approved uv version explicitly, then rerun bootstrap."
             )
 
