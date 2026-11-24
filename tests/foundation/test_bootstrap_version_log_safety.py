@@ -13,8 +13,10 @@ from scripts.dev import bootstrap
 class BootstrapVersionLogSafetyTests(unittest.TestCase):
     def _run_with_version(self, versions: dict[str, str]) -> str:
         output = io.StringIO()
+
         def capture(argv):
             return versions.get(argv[0], "24.21.0")
+
         with (
             patch.object(bootstrap, "require_repo_root"),
             patch.object(bootstrap, "python_version", return_value=bootstrap.EXPECTED_PYTHON),
@@ -27,19 +29,31 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
             self.assertEqual(bootstrap.main(), 1)
         return output.getvalue()
 
+    def _assert_safe_mismatch(self, versions: dict[str, str], marker: str, tool: str) -> None:
+        output = self._run_with_version(versions)
+        self.assertNotIn(marker, output)
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn(f"{tool} ", output)
+        self.assertIn("detected version withheld from logs", output)
+        self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
+
     def test_node_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_NODE_VERSION"
-        self.assertNotIn(marker, self._run_with_version({"node": marker}))
+        self._assert_safe_mismatch({"node": marker}, marker, "Node")
 
     def test_pnpm_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_PNPM_VERSION"
-        self.assertNotIn(marker, self._run_with_version({"node": "v24.21.0", "pnpm": marker}))
+        self._assert_safe_mismatch(
+            {"node": "v24.21.0", "pnpm": marker}, marker, "pnpm"
+        )
 
     def test_uv_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_UV_VERSION"
-        self.assertNotIn(marker, self._run_with_version({
-            "node": "v24.21.0", "pnpm": "11.28.4", "uv": "uv " + marker
-        }))
+        self._assert_safe_mismatch(
+            {"node": "v24.21.0", "pnpm": "11.28.4", "uv": "uv " + marker},
+            marker,
+            "uv",
+        )
 
 
 if __name__ == "__main__":
