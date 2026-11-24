@@ -145,6 +145,15 @@ class CommonToolingSafetyTests(unittest.TestCase):
                             runner(command)
                     subprocess_runner.assert_not_called()
 
+    def test_empty_executable_never_invokes_subprocess(self) -> None:
+        # Empty argv[0] must fail before any child process is started.
+        for runner in (common.run_capture, common.run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch.object(common.subprocess, "run") as process:
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$"):
+                        runner(["", "--version"])
+                process.assert_not_called()
+
     def test_empty_argv_never_invokes_subprocess(self) -> None:
         for runner in (common.run_capture, common.run_live):
             with self.subTest(runner=runner.__name__):
