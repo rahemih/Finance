@@ -35,7 +35,7 @@ def main() -> int:
         require_repo_root()
 
         if python_version() != EXPECTED_PYTHON:
-            raise ToolingError(f"Python {EXPECTED_PYTHON} required; actual={python_version()}")
+            raise ToolingError(f"Python {EXPECTED_PYTHON} required; detected version withheld from logs")
 
         require_executable("git")
         require_executable("node")
