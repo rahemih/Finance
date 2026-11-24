@@ -47,8 +47,9 @@ def run_capture(command: Sequence[str]) -> str:
         raise ToolingError("command failed") from None
     # A successful captured command must provide text, not a missing/binary payload.
     # Fail closed rather than surfacing an unsanitized AttributeError/TypeError.
-    if not isinstance(result.stdout, str):
-        raise ToolingError("command failed")
+    if type(result.stdout) is not str:
+        # A str subclass may override strip() and execute arbitrary code.
+        raise ToolingError("command failed") from None
     return result.stdout.strip()
 
 
