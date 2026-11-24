@@ -25,7 +25,7 @@ def _validated_argv(command: Sequence[str]) -> list[str]:
         # User-defined iterators/length hints can raise arbitrary exceptions;
         # suppress their text and never spawn a child process.
         raise ToolingError("command failed") from None
-    if not argv or not isinstance(argv[0], str) or not argv[0] or any(not isinstance(arg, str) or "\x00" in arg for arg in argv):
+    if not argv or not isinstance(argv[0], str) or not argv[0].strip() or any(not isinstance(arg, str) or "\x00" in arg for arg in argv):
         raise ToolingError("command failed")
     return argv
 
