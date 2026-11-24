@@ -44,6 +44,10 @@ def run_capture(command: Sequence[str]) -> str:
     except (OSError, TypeError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
         # Do not expose command arguments or subprocess output via exception chaining.
         raise ToolingError("command failed") from None
+    # A successful captured command must provide text, not a missing/binary payload.
+    # Fail closed rather than surfacing an unsanitized AttributeError/TypeError.
+    if not isinstance(result.stdout, str):
+        raise ToolingError("command failed")
     return result.stdout.strip()
 
 
