@@ -155,7 +155,7 @@ class CommonToolingSafetyTests(unittest.TestCase):
                 process.assert_not_called()
 
     def test_whitespace_only_executable_never_invokes_subprocess(self) -> None:
-        for executable in (" ", "\\t", "\\n", " \\t "):
+        for executable in (" ", "\t", "\n", " \t "):
             for runner in (common.run_capture, common.run_live):
                 with self.subTest(executable=repr(executable), runner=runner.__name__):
                     with patch.object(common.subprocess, "run") as process:
