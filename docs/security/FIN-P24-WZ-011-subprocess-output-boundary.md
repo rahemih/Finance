@@ -26,7 +26,9 @@ The following are the direct `run_live` calls in the inspected `scripts/dev/` Py
 
 **Risk disposition:** No call site above has been independently verified safe for every success/failure output path. Do not infer that `--ignore-scripts` prevents package-manager diagnostics from containing sensitive registry information. Keep this as an open security review item, rather than changing streaming behavior without an approved compatibility and redaction contract.
 
-**Next bounded test:** exercise a synthetic child process locally with non-secret markers on stdout and stderr, both zero and nonzero exit codes, while capturing the *parent's* stdout/stderr at the process boundary. Assert the markers appear under the current `run_live` contract; do not print them into public CI logs. Any future redaction design requires a separate change, explicit size/encoding limits and independent review.
+**Bounded regression now present (2026-11-25, inspected at `fde67700e69458dcc4ad3bc7fe0c7f344be640bd`):** `tests/foundation/test_common_tooling_output_boundary.py` uses synthetic stdout/stderr markers and zero/nonzero child exit codes to assert the existing inherited-output contract. The test was inspected in GitHub, **not executed locally in this checkpoint**. Exact-head Governance Verify [#45490556378](https://github.com/rahemih/Finance/actions/runs/45490556378) reported success on that inspected HEAD; this does not certify every mandatory check, redact CI logs, or provide independent security approval. A subsequent code change requires fresh exact-head CI.
+
+**Next bounded security work:** independently classify real `run_live` call-site outputs and inspect actual CI log exposure using synthetic non-secret markers before proposing any capture/redaction change. Preserve streaming behavior until its compatibility and redaction contract is approved.
 
 ## Review and test checklist (pending independent A5/A8/A10 review)
 
