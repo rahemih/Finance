@@ -26,7 +26,8 @@ def _validated_argv(command: Sequence[str]) -> list[str]:
         # suppress their text and never spawn a child process.
         raise ToolingError("command failed") from None
     if not argv or any(type(arg) is not str or "\x00" in arg for arg in argv) or not argv[0].strip():
-        raise ToolingError("command failed")
+        # Suppress implicit exception context even when validation is called directly.
+        raise ToolingError("command failed") from None
     return argv
 
 
