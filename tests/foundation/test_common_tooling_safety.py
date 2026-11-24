@@ -18,6 +18,17 @@ class CommonToolingSafetyTests(unittest.TestCase):
             self.assertEqual(runner.call_args.kwargs["cwd"], common.ROOT)
             self.assertTrue(runner.call_args.kwargs["check"])
 
+    def test_capture_success_without_text_fails_closed(self) -> None:
+        # Defensive boundary: a missing/binary payload must not escape as a
+        # raw AttributeError or TypeError from the wrapper.
+        for payload in (None, b"SENSITIVE_BINARY_OUTPUT_MARKER"):
+            with self.subTest(payload_type=type(payload).__name__):
+                completed = subprocess.CompletedProcess(["tool"], 0, stdout=payload)
+                with patch.object(common.subprocess, "run", return_value=completed):
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                        common.run_capture(["tool"])
+                self.assertIsNone(caught.exception.__cause__)
+
     def test_capture_uses_argv_not_shell_and_merges_stderr(self) -> None:
         completed = subprocess.CompletedProcess(["tool", "--version"], 0, stdout="ok\n")
         with patch.object(common.subprocess, "run", return_value=completed) as runner:
