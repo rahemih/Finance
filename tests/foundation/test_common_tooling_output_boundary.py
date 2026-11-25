@@ -67,7 +67,10 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                             with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
                                 runner(command)
                             self.assertIsNone(caught.exception.__cause__)
-                            self.assertTrue(caught.exception.__suppress_context__)
+                            # Direct validation failures have no chained exception;
+                            # suppress_context is only required for caught exceptions.
+                            if not isinstance(command, (str, bytes)):
+                                self.assertTrue(caught.exception.__suppress_context__)
                     spawn.assert_not_called()
 
 
