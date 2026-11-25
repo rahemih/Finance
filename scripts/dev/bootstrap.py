@@ -49,7 +49,7 @@ def main() -> int:
         run_live(["corepack", "prepare", f"pnpm@{EXPECTED_PNPM}", "--activate"])
 
         pnpm_lines = run_capture(["pnpm", "--version"]).splitlines()
-        pnpm = pnpm_lines[0].strip() if pnpm_lines else ""
+        pnpm = pnpm_lines[0].strip() if len(pnpm_lines) == 1 else ""
         if pnpm != EXPECTED_PNPM:
             raise ToolingError(f"pnpm {EXPECTED_PNPM} required after Corepack activation; detected version withheld from logs")
 
@@ -57,7 +57,7 @@ def main() -> int:
 
         require_executable("uv")
         uv_lines = run_capture(["uv", "--version"]).splitlines()
-        uv_line = uv_lines[0].strip() if uv_lines else ""
+        uv_line = uv_lines[0].strip() if len(uv_lines) == 1 else ""
         parts = uv_line.split()
         uv = parts[1] if len(parts) == 2 and parts[0] == "uv" else ""
         if uv != EXPECTED_UV:
