@@ -5,6 +5,9 @@ from __future__ import annotations
 import subprocess
 import sys
 import unittest
+from unittest.mock import patch
+
+from scripts.dev.common import ToolingError, run_live
 
 
 _CHILD = """
@@ -43,6 +46,25 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                 self.assertNotIn("Traceback (most recent call last)", result.stderr)
                 self.assertNotIn("CalledProcessError", result.stderr)
                 self.assertNotIn("subprocess.run(", result.stderr)
+
+    def test_invalid_argv_never_spawns_child(self) -> None:
+        class CustomStr(str):
+            pass
+
+        invalid_commands = (
+            "echo unsafe",
+            b"echo unsafe",
+            [],
+            [CustomStr("echo"), "unsafe"],
+            ["echo", "bad\\x00argument"],
+            ["   ", "unsafe"],
+        )
+        with patch("scripts.dev.common.subprocess.run") as spawn:
+            for command in invalid_commands:
+                with self.subTest(command_type=type(command).__name__):
+                    with self.assertRaisesRegex(ToolingError, "^command failed$"):
+                        run_live(command)
+            spawn.assert_not_called()
 
 
 if __name__ == "__main__":
