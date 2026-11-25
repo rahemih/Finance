@@ -84,6 +84,17 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         self.assertIn("uv ", output)
         self.assertNotIn("Traceback", output)
 
+    def test_malformed_uv_banner_fails_closed(self):
+        for banner in ("other 0.12.23", "uv 0.12.23 extra", "0.12.23"):
+            with self.subTest(banner=banner):
+                output = self._run_with_version(
+                    {"node": "v24.21.0", "pnpm": "11.28.4", "uv": banner}
+                )
+                self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+                self.assertIn("uv ", output)
+                self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
+                self.assertNotIn("Traceback", output)
+
     def test_uv_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_UV_VERSION"
         self._assert_safe_mismatch(
