@@ -98,8 +98,8 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
     def test_multiline_tool_version_banners_fail_closed(self):
         marker = "SYNTHETIC_EXTRA_BANNER_MARKER"
         cases = (
-            ({"node": "v24.21.0", "pnpm": "11.28.4\\n" + marker}, "pnpm"),
-            ({"node": "v24.21.0", "pnpm": "11.28.4", "uv": "uv 0.12.23\\n" + marker}, "uv"),
+            ({"node": "v24.21.0", "pnpm": "11.28.4\n" + marker}, "pnpm"),
+            ({"node": "v24.21.0", "pnpm": "11.28.4", "uv": "uv 0.12.23\n" + marker}, "uv"),
         )
         for versions, tool in cases:
             with self.subTest(tool=tool):
