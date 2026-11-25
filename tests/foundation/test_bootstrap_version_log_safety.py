@@ -73,6 +73,23 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         self.assertNotIn("Traceback", output)
         self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
 
+    def test_invalid_node_version_never_runs_install_commands(self):
+        marker = "SYNTHETIC_INVALID_NODE_VERSION"
+        output = io.StringIO()
+        with (
+            patch.object(bootstrap, "require_repo_root"),
+            patch.object(bootstrap, "python_version", return_value=bootstrap.EXPECTED_PYTHON),
+            patch.object(bootstrap, "require_executable"),
+            patch.object(bootstrap, "run_capture", return_value=marker),
+            patch.object(bootstrap, "run_live") as live,
+            patch("sys.argv", ["bootstrap.py"]),
+            contextlib.redirect_stdout(output),
+        ):
+            self.assertEqual(bootstrap.main(), 1)
+            live.assert_not_called()
+        self.assertNotIn(marker, output.getvalue())
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output.getvalue())
+
     def test_pnpm_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_PNPM_VERSION"
         self._assert_safe_mismatch(
