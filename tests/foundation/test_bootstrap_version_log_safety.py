@@ -58,6 +58,12 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         marker = "SYNTHETIC_SECRET_NODE_VERSION"
         self._assert_safe_mismatch({"node": marker}, marker, "Node")
 
+    def test_repeated_node_version_prefix_is_rejected(self):
+        output = self._run_with_version({"node": "vv24.21.0"})
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn("Node ", output)
+        self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
+
     def test_pnpm_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_PNPM_VERSION"
         self._assert_safe_mismatch(
