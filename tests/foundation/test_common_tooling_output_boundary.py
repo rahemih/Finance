@@ -81,6 +81,21 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                     self.assertTrue(caught.exception.__suppress_context__)
                     spawn.assert_not_called()
 
+    def test_partial_iteration_failure_never_spawns_child(self) -> None:
+        class PartialIterator:
+            def __iter__(self):
+                yield "tool"
+                raise RuntimeError("SENSITIVE_PARTIAL_ITERATION_MARKER")
+
+        for runner in (run_capture, run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch("scripts.dev.common.subprocess.run") as spawn:
+                    with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
+                        runner(PartialIterator())
+                    self.assertIsNone(caught.exception.__cause__)
+                    self.assertTrue(caught.exception.__suppress_context__)
+                    spawn.assert_not_called()
+
     def test_length_hint_failure_never_spawns_child(self) -> None:
         class HostileLengthHint:
             def __iter__(self):
