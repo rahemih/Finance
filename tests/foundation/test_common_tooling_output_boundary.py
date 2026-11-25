@@ -7,7 +7,7 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from scripts.dev.common import ToolingError, run_live
+from scripts.dev.common import ToolingError, run_capture, run_live
 
 
 _CHILD = """
@@ -66,6 +66,23 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                         run_live(command)
             spawn.assert_not_called()
 
+
+    def test_length_hint_failure_never_spawns_child(self) -> None:
+        class HostileLengthHint:
+            def __iter__(self):
+                return iter(["tool", "--version"])
+
+            def __len__(self):
+                raise RuntimeError("SENSITIVE_LENGTH_HINT_MARKER")
+
+        for runner in (run_capture, run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch("scripts.dev.common.subprocess.run") as spawn:
+                    with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
+                        runner(HostileLengthHint())
+                    self.assertIsNone(caught.exception.__cause__)
+                    self.assertTrue(caught.exception.__suppress_context__)
+                    spawn.assert_not_called()
 
 if __name__ == "__main__":
     unittest.main()
