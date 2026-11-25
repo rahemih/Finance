@@ -56,7 +56,7 @@ class LiveOutputBoundaryTests(unittest.TestCase):
             b"echo unsafe",
             [],
             [CustomStr("echo"), "unsafe"],
-            ["echo", "bad\\x00argument"],
+            ["echo", "bad" + chr(0) + "argument"],
             ["   ", "unsafe"],
         )
         with patch("scripts.dev.common.subprocess.run") as spawn:
