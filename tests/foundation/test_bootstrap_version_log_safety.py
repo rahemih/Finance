@@ -64,6 +64,15 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         self.assertIn("Node ", output)
         self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
 
+    def test_multiline_node_version_banner_fails_closed(self):
+        marker = "SYNTHETIC_NODE_EXTRA_BANNER_MARKER"
+        output = self._run_with_version({"node": "v24.21.0\n" + marker})
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn("Node ", output)
+        self.assertNotIn(marker, output)
+        self.assertNotIn("Traceback", output)
+        self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
+
     def test_pnpm_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_PNPM_VERSION"
         self._assert_safe_mismatch(
