@@ -59,7 +59,7 @@ def main() -> int:
         uv_lines = run_capture(["uv", "--version"]).splitlines()
         uv_line = uv_lines[0].strip() if uv_lines else ""
         parts = uv_line.split()
-        uv = parts[1] if len(parts) >= 2 else uv_line
+        uv = parts[1] if len(parts) == 2 and parts[0] == "uv" else ""
         if uv != EXPECTED_UV:
             raise ToolingError(
                 f"uv {EXPECTED_UV} required; detected version withheld from logs. "
