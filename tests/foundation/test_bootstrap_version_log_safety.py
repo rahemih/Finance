@@ -64,6 +64,20 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
             {"node": "v24.21.0", "pnpm": marker}, marker, "pnpm"
         )
 
+    def test_empty_pnpm_version_fails_without_traceback(self):
+        output = self._run_with_version({"node": "v24.21.0", "pnpm": ""})
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn("pnpm ", output)
+        self.assertNotIn("Traceback", output)
+
+    def test_empty_uv_version_fails_without_traceback(self):
+        output = self._run_with_version(
+            {"node": "v24.21.0", "pnpm": "11.28.4", "uv": ""}
+        )
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn("uv ", output)
+        self.assertNotIn("Traceback", output)
+
     def test_uv_mismatch_does_not_echo_untrusted_version(self):
         marker = "SYNTHETIC_SECRET_UV_VERSION"
         self._assert_safe_mismatch(
