@@ -20,6 +20,16 @@ class CapturedStdoutTypeTests(unittest.TestCase):
         self.assertIsNone(caught.exception.__cause__)
         self.assertTrue(caught.exception.__suppress_context__)
 
+    def test_missing_or_binary_stdout_fails_closed(self):
+        for stdout in (None, b"UNSAFE_BINARY_OUTPUT_MARKER"):
+            with self.subTest(stdout_type=type(stdout).__name__):
+                result = subprocess.CompletedProcess(["tool"], 0, stdout=stdout)
+                with patch.object(common.subprocess, "run", return_value=result):
+                    with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                        common.run_capture(["tool"])
+                self.assertIsNone(caught.exception.__cause__)
+                self.assertTrue(caught.exception.__suppress_context__)
+
     def test_plain_str_still_strips(self):
         result = subprocess.CompletedProcess(["tool"], 0, stdout=" ok \n")
         with patch.object(common.subprocess, "run", return_value=result):
