@@ -30,6 +30,9 @@ The following are the direct `run_live` calls in the inspected `scripts/dev/` Py
 
 **Next bounded security work:** independently classify real `run_live` call-site outputs and inspect actual CI log exposure using synthetic non-secret markers before proposing any capture/redaction change. Preserve streaming behavior until its compatibility and redaction contract is approved.
 
+
+**Exact-head CI follow-up (2026-11-25):** Governance Verify [#45532946410](https://github.com/rahemih/Finance/actions/runs/45532946410) completed successfully for commit `e6d29c44f0e56ccc06677c575f3f995a79040f62` (verified through commit-associated workflow runs). This is one workflow result only: no claim of full required-check coverage, independent A5/A8/A10 review, license disposition, or Human Gate. The new assertions check wrapper-generated stderr text; they do **not** prove child stdout/stderr is sanitized. Any later commit invalidates exact-head CI evidence until new runs complete.
+
 ## Review and test checklist (pending independent A5/A8/A10 review)
 
 1. Inventory every `run_live` call site and classify stdout/stderr for normal and failure paths, including third-party CLI diagnostics.
