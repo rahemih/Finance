@@ -41,7 +41,7 @@ def main() -> int:
         require_executable("node")
         require_executable("corepack")
 
-        node = run_capture(["node", "--version"]).lstrip("v")
+        node = run_capture(["node", "--version"]).removeprefix("v")
         if node != EXPECTED_NODE:
             raise ToolingError(f"Node {EXPECTED_NODE} required; detected version withheld from logs")
 
