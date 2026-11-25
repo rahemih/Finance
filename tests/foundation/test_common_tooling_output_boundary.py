@@ -59,12 +59,16 @@ class LiveOutputBoundaryTests(unittest.TestCase):
             ["echo", "bad" + chr(0) + "argument"],
             ["   ", "unsafe"],
         )
-        with patch("scripts.dev.common.subprocess.run") as spawn:
-            for command in invalid_commands:
-                with self.subTest(command_type=type(command).__name__):
-                    with self.assertRaisesRegex(ToolingError, "^command failed$"):
-                        run_live(command)
-            spawn.assert_not_called()
+        for runner in (run_capture, run_live):
+            with self.subTest(runner=runner.__name__):
+                with patch("scripts.dev.common.subprocess.run") as spawn:
+                    for command in invalid_commands:
+                        with self.subTest(command_type=type(command).__name__):
+                            with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
+                                runner(command)
+                            self.assertIsNone(caught.exception.__cause__)
+                            self.assertTrue(caught.exception.__suppress_context__)
+                    spawn.assert_not_called()
 
 
     def test_iterator_failure_never_spawns_child(self) -> None:
