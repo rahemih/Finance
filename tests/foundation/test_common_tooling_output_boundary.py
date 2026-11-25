@@ -38,6 +38,11 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                     "WRAPPER_ERROR:command failed" in result.stderr,
                     exit_code != 0,
                 )
+                # Sanitized wrapper errors must not append traceback details
+                # or expose the child command; inherited child output remains visible.
+                self.assertNotIn("Traceback (most recent call last)", result.stderr)
+                self.assertNotIn("CalledProcessError", result.stderr)
+                self.assertNotIn("subprocess.run(", result.stderr)
 
 
 if __name__ == "__main__":
