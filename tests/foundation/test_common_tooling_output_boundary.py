@@ -47,6 +47,27 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                 self.assertNotIn("CalledProcessError", result.stderr)
                 self.assertNotIn("subprocess.run(", result.stderr)
 
+    def test_capture_success_returns_sensitive_output_without_printing(self) -> None:
+        """Captured output remains caller-sensitive and is not emitted by the wrapper."""
+        import contextlib
+        import io
+
+        marker = "SYNTHETIC_CAPTURE_ONLY_MARKER"
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+        with patch(
+            "scripts.dev.common.subprocess.run",
+            return_value=subprocess.CompletedProcess(["tool"], 0, stdout=marker + "\n"),
+        ) as spawn:
+            with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                captured = run_capture(["tool"])
+        self.assertEqual(captured, marker)
+        self.assertEqual(stdout.getvalue(), "")
+        self.assertEqual(stderr.getvalue(), "")
+        spawn.assert_called_once()
+        self.assertEqual(spawn.call_args.kwargs["stderr"], subprocess.STDOUT)
+        self.assertEqual(spawn.call_args.kwargs["stdout"], subprocess.PIPE)
+
     def test_invalid_argv_never_spawns_child(self) -> None:
         class CustomStr(str):
             pass
