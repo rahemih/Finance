@@ -67,6 +67,10 @@ class LiveOutputBoundaryTests(unittest.TestCase):
         spawn.assert_called_once()
         self.assertEqual(spawn.call_args.kwargs["stderr"], subprocess.STDOUT)
         self.assertEqual(spawn.call_args.kwargs["stdout"], subprocess.PIPE)
+        # Capturing must not silently enable a shell, override credentials, or
+        # supply hidden stdin to the child process.
+        for forbidden in ("shell", "env", "input", "stdin", "capture_output"):
+            self.assertNotIn(forbidden, spawn.call_args.kwargs)
 
     def test_live_success_preserves_inherited_stream_configuration(self) -> None:
         """Do not silently change live subprocess output into captured output."""
