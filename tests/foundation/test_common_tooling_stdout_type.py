@@ -30,6 +30,19 @@ class CapturedStdoutTypeTests(unittest.TestCase):
                 self.assertIsNone(caught.exception.__cause__)
                 self.assertTrue(caught.exception.__suppress_context__)
 
+    def test_failed_capture_does_not_expose_child_output(self):
+        marker = "SYNTHETIC_CAPTURE_FAILURE_MARKER"
+        failure = subprocess.CalledProcessError(
+            7, ["tool", "--synthetic"], output=marker
+        )
+        with patch.object(common.subprocess, "run", side_effect=failure):
+            with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                common.run_capture(["tool", "--synthetic"])
+        self.assertNotIn(marker, str(caught.exception))
+        self.assertNotIn("--synthetic", str(caught.exception))
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertTrue(caught.exception.__suppress_context__)
+
     def test_plain_str_still_strips(self):
         result = subprocess.CompletedProcess(["tool"], 0, stdout=" ok \n")
         with patch.object(common.subprocess, "run", return_value=result):
