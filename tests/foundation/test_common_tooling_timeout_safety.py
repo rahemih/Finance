@@ -16,9 +16,10 @@ class SubprocessTimeoutRedactionTests(unittest.TestCase):
         for wrapper in (common.run_capture, common.run_live):
             with self.subTest(wrapper=wrapper.__name__):
                 failure = subprocess.TimeoutExpired(command, 1, output=marker.encode(), stderr=marker.encode())
-                with patch.object(common.subprocess, "run", side_effect=failure):
+                with patch.object(common.subprocess, "run", side_effect=failure) as spawn:
                     with self.assertRaises(common.ToolingError) as caught:
                         wrapper(command)
+                    spawn.assert_called_once()
                 error = caught.exception
                 self.assertEqual(str(error), "command failed")
                 self.assertIsNone(error.__cause__)
