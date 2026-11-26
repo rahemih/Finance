@@ -24,13 +24,13 @@ EXPECTED = {
 }
 
 
-_VERSION = re.compile(r"[0-9]+(?:\\.[0-9]+){2}")
-_GIT_VERSION = re.compile(r"git version ([0-9]+(?:\\.[0-9]+){2})(?:\\.[0-9]+)?")
-_UV_VERSION = re.compile(r"uv ([0-9]+(?:\\.[0-9]+){2})(?:\\.[0-9]+)?")
+_VERSION = re.compile(r"[0-9]+(?:\.[0-9]+){2}")
+_GIT_VERSION = re.compile(r"git version ([0-9]+(?:\.[0-9]+){2})(?:\.[0-9]+)?")
+_UV_VERSION = re.compile(r"uv ([0-9]+(?:\.[0-9]+){2})(?:\.[0-9]+)?")
 
 def safe_version_output(tool: str, output: str) -> str:
     """Return a strictly validated version or a fixed non-sensitive sentinel."""
-    if not isinstance(output, str) or len(output) > 128 or "\\n" in output or "\\r" in output:
+    if not isinstance(output, str) or len(output) > 128 or "\n" in output or "\r" in output:
         return "INVALID_OUTPUT"
     output = output.strip()
     if tool == "git":
