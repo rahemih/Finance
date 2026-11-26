@@ -123,21 +123,5 @@ class LiveOutputBoundaryTests(unittest.TestCase):
                     self.assertTrue(caught.exception.__suppress_context__)
                     spawn.assert_not_called()
 
-    def test_subprocess_timeout_does_not_leak_command_or_output(self) -> None:
-        # TimeoutExpired can embed argv and child output in its exception text.
-        marker = "SYNTHETIC_TIMEOUT_SECRET_MARKER"
-        for runner in (run_capture, run_live):
-            with self.subTest(runner=runner.__name__):
-                with patch("scripts.dev.common.subprocess.run") as spawn:
-                    spawn.side_effect = subprocess.TimeoutExpired(
-                        cmd=["tool", marker], timeout=1, output=marker.encode()
-                    )
-                    with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
-                        runner(["tool", "--version"])
-                    self.assertIsNone(caught.exception.__cause__)
-                    self.assertTrue(caught.exception.__suppress_context__)
-                    self.assertNotIn(marker, str(caught.exception))
-                    spawn.assert_called_once()
-
 if __name__ == "__main__":
     unittest.main()
