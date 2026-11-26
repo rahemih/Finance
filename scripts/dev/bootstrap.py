@@ -41,7 +41,8 @@ def main() -> int:
         require_executable("node")
         require_executable("corepack")
 
-        node = run_capture(["node", "--version"]).removeprefix("v")
+        node_banner = run_capture(["node", "--version"])
+        node = node_banner[1:] if node_banner.startswith("v") else ""
         if node != EXPECTED_NODE:
             raise ToolingError(f"Node {EXPECTED_NODE} required; detected version withheld from logs")
 
