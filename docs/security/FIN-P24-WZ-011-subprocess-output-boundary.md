@@ -41,3 +41,9 @@ The following are the direct `run_live` calls in the inspected `scripts/dev/` Py
 4. Re-run all mandatory checks on the exact final HEAD, obtain independent A5/A8/A10 reviews and exact-head Owner Gate, and respect protected-branch merge policy. This document is evidence of a known boundary, not remediation or authorization.
 
 Live/Auto trading, financial transfers, and unapproved Demo orders remain disabled. No paid model endpoints or hosted agents are required.
+
+## CI evidence collection protocol (non-secret fixtures only)
+
+For a reviewable security decision, run the existing synthetic-marker test `python -m unittest tests.foundation.test_common_tooling_output_boundary` on the exact PR HEAD, then inspect the **actual** associated GitHub Actions job log (not merely the job conclusion). Record the run ID, job ID, commit SHA and whether `OUT_BOUNDARY_MARKER` / `ERR_BOUNDARY_MARKER` appear in the emitted job log. Do not inject credentials or real secrets to test masking. The test intentionally demonstrates that inherited child output is **not redacted**; a passing test is evidence of the current exposure boundary, **not** a security approval.
+
+Before changing `run_live`, independent reviewers must approve how streaming, output-size limits, encoding failures, nonzero exits, masking and cancellation will behave. If job logs are unavailable, record the result as **not verified**, never as safe. Preserve A5/A8/A10 veto and exact-HEAD Human Gate.
