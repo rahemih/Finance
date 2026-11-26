@@ -82,6 +82,9 @@ class LiveOutputBoundaryTests(unittest.TestCase):
         self.assertNotIn("stderr", kwargs)
         self.assertNotIn("capture_output", kwargs)
         self.assertNotIn("shell", kwargs)
+        # Preserve the caller environment; no hidden credential injection.
+        self.assertNotIn("env", kwargs)
+        self.assertFalse(kwargs.get("capture_output", False))
 
     def test_invalid_argv_never_spawns_child(self) -> None:
         class CustomStr(str):
