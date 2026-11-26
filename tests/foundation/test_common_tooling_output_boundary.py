@@ -104,6 +104,20 @@ class LiveOutputBoundaryTests(unittest.TestCase):
         self.assertTrue(caught.exception.__suppress_context__)
         spawn.assert_called_once()
 
+    def test_capture_spawn_failure_sanitizes_os_error(self) -> None:
+        """Captured commands must not leak synthetic OS error paths or retry."""
+        marker = "SYNTHETIC_CAPTURE_PRIVATE_PATH_MARKER"
+        with patch(
+            "scripts.dev.common.subprocess.run",
+            side_effect=PermissionError(marker),
+        ) as spawn:
+            with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
+                run_capture([marker])
+        self.assertNotIn(marker, str(caught.exception))
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertTrue(caught.exception.__suppress_context__)
+        spawn.assert_called_once()
+
     def test_invalid_argv_never_spawns_child(self) -> None:
         class CustomStr(str):
             pass
