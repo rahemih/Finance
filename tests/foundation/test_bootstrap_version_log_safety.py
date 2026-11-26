@@ -64,6 +64,12 @@ class BootstrapVersionLogSafetyTests(unittest.TestCase):
         self.assertIn("Node ", output)
         self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
 
+    def test_node_version_without_required_v_prefix_fails_closed(self):
+        output = self._run_with_version({"node": "24.21.0"})
+        self.assertIn("DEVELOPER_BOOTSTRAP=FAIL", output)
+        self.assertIn("Node ", output)
+        self.assertNotIn("DEVELOPER_BOOTSTRAP=PASS", output)
+
     def test_multiline_node_version_banner_fails_closed(self):
         marker = "SYNTHETIC_NODE_EXTRA_BANNER_MARKER"
         output = self._run_with_version({"node": "v24.21.0\n" + marker})
