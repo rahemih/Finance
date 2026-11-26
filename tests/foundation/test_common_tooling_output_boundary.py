@@ -68,6 +68,21 @@ class LiveOutputBoundaryTests(unittest.TestCase):
         self.assertEqual(spawn.call_args.kwargs["stderr"], subprocess.STDOUT)
         self.assertEqual(spawn.call_args.kwargs["stdout"], subprocess.PIPE)
 
+    def test_live_success_preserves_inherited_stream_configuration(self) -> None:
+        """Do not silently change live subprocess output into captured output."""
+        with patch(
+            "scripts.dev.common.subprocess.run",
+            return_value=subprocess.CompletedProcess(["tool"], 0),
+        ) as spawn:
+            self.assertIsNone(run_live(["tool", "--version"]))
+        spawn.assert_called_once()
+        kwargs = spawn.call_args.kwargs
+        self.assertTrue(kwargs["check"])
+        self.assertNotIn("stdout", kwargs)
+        self.assertNotIn("stderr", kwargs)
+        self.assertNotIn("capture_output", kwargs)
+        self.assertNotIn("shell", kwargs)
+
     def test_invalid_argv_never_spawns_child(self) -> None:
         class CustomStr(str):
             pass
