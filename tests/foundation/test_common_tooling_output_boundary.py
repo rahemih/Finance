@@ -90,6 +90,20 @@ class LiveOutputBoundaryTests(unittest.TestCase):
         self.assertNotIn("env", kwargs)
         self.assertFalse(kwargs.get("capture_output", False))
 
+    def test_live_spawn_failure_does_not_expose_sensitive_filename(self) -> None:
+        """OS errors can include argv paths; sanitize without retrying the child."""
+        marker = "SYNTHETIC_PRIVATE_PATH_MARKER"
+        with patch(
+            "scripts.dev.common.subprocess.run",
+            side_effect=FileNotFoundError(marker),
+        ) as spawn:
+            with self.assertRaisesRegex(ToolingError, "^command failed$") as caught:
+                run_live([marker])
+        self.assertNotIn(marker, str(caught.exception))
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertTrue(caught.exception.__suppress_context__)
+        spawn.assert_called_once()
+
     def test_invalid_argv_never_spawns_child(self) -> None:
         class CustomStr(str):
             pass
