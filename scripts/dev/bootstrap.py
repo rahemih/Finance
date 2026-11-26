@@ -35,32 +35,35 @@ def main() -> int:
         require_repo_root()
 
         if python_version() != EXPECTED_PYTHON:
-            raise ToolingError(f"Python {EXPECTED_PYTHON} required; actual={python_version()}")
+            raise ToolingError(f"Python {EXPECTED_PYTHON} required; detected version withheld from logs")
 
         require_executable("git")
         require_executable("node")
         require_executable("corepack")
 
-        node = run_capture(["node", "--version"]).lstrip("v")
+        node_banner = run_capture(["node", "--version"])
+        node = node_banner[1:] if node_banner.startswith("v") else ""
         if node != EXPECTED_NODE:
-            raise ToolingError(f"Node {EXPECTED_NODE} required; actual={node}")
+            raise ToolingError(f"Node {EXPECTED_NODE} required; detected version withheld from logs")
 
         run_live(["corepack", "enable"])
         run_live(["corepack", "prepare", f"pnpm@{EXPECTED_PNPM}", "--activate"])
 
-        pnpm = run_capture(["pnpm", "--version"]).splitlines()[0].strip()
+        pnpm_lines = run_capture(["pnpm", "--version"]).splitlines()
+        pnpm = pnpm_lines[0].strip() if len(pnpm_lines) == 1 else ""
         if pnpm != EXPECTED_PNPM:
-            raise ToolingError(f"pnpm {EXPECTED_PNPM} required after Corepack activation; actual={pnpm}")
+            raise ToolingError(f"pnpm {EXPECTED_PNPM} required after Corepack activation; detected version withheld from logs")
 
         run_live(["pnpm", "install", "--frozen-lockfile", "--ignore-scripts"])
 
         require_executable("uv")
-        uv_line = run_capture(["uv", "--version"]).splitlines()[0].strip()
+        uv_lines = run_capture(["uv", "--version"]).splitlines()
+        uv_line = uv_lines[0].strip() if len(uv_lines) == 1 else ""
         parts = uv_line.split()
-        uv = parts[1] if len(parts) >= 2 else uv_line
+        uv = parts[1] if len(parts) == 2 and parts[0] == "uv" else ""
         if uv != EXPECTED_UV:
             raise ToolingError(
-                f"uv {EXPECTED_UV} required; actual={uv}. "
+                f"uv {EXPECTED_UV} required; detected version withheld from logs. "
                 "Install/activate the exact approved uv version explicitly, then rerun bootstrap."
             )
 

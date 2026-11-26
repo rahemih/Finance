@@ -15,26 +15,56 @@ class ToolingError(RuntimeError):
     pass
 
 
+def _validated_argv(command: Sequence[str]) -> list[str]:
+    """Reject malformed argv before a subprocess can run or stringify secrets."""
+    if isinstance(command, (str, bytes)):
+        raise ToolingError("command failed")
+    try:
+        argv = list(command)
+    except Exception:
+        # User-defined iterators/length hints can raise arbitrary exceptions;
+        # suppress their text and never spawn a child process.
+        raise ToolingError("command failed") from None
+    if not argv or any(type(arg) is not str or "\x00" in arg for arg in argv) or not argv[0].strip():
+        # Suppress implicit exception context even when validation is called directly.
+        raise ToolingError("command failed") from None
+    return argv
+
+
 def run_capture(command: Sequence[str]) -> str:
+    argv = _validated_argv(command)
     try:
         result = subprocess.run(
-            list(command),
+            argv,
             cwd=ROOT,
             check=True,
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
         )
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ToolingError(f"command failed: {' '.join(command)}") from exc
+    except (OSError, TypeError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
+        # Do not expose command arguments or subprocess output via exception chaining.
+        raise ToolingError("command failed") from None
+    # A successful captured command must provide text, not a missing/binary payload.
+    # Fail closed rather than surfacing an unsanitized AttributeError/TypeError.
+    if type(result.stdout) is not str:
+        # A str subclass may override strip() and execute arbitrary code.
+        raise ToolingError("command failed") from None
     return result.stdout.strip()
 
 
 def run_live(command: Sequence[str]) -> None:
+    """Run trusted commands with inherited stdout/stderr (NOT redacted).
+
+    Child output may appear in CI logs. Exception sanitization protects
+    traceback text only, not bytes already written by the child process.
+    """
+    argv = _validated_argv(command)
     try:
-        subprocess.run(list(command), cwd=ROOT, check=True)
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ToolingError(f"command failed: {' '.join(command)}") from exc
+        subprocess.run(argv, cwd=ROOT, check=True)
+    except (OSError, TypeError, ValueError, IndexError, UnicodeError, subprocess.SubprocessError):
+        # Do not expose command arguments or subprocess output via exception chaining.
+        raise ToolingError("command failed") from None
 
 
 def require_repo_root() -> None:

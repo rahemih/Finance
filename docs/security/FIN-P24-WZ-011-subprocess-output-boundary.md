@@ -1,0 +1,57 @@
+# FIN-P24-WZ-011 — subprocess output security boundary
+
+Status: **review-required / not a release approval**. Applies only to developer tooling in `scripts/dev/common.py`; does not change trading permissions or frozen roadmap.
+
+## Two distinct contracts
+
+- `run_capture(argv)` captures stdout and stderr into memory and returns captured text on success. Callers must treat the returned text as **potentially sensitive** and must not print it or include it in public logs without a separately reviewed redaction policy. Its sanitized `ToolingError` on failure is not proof that a caller safely handles successful output.
+- `run_live(argv)` deliberately **inherits** stdout and stderr. Child processes can print secrets directly into GitHub Actions logs before the wrapper raises a sanitized error. The wrapper **does not redact child output**. Use `run_live` only with commands whose entire output has been reviewed as safe for the target log audience; never pass tokens or credentials to an unreviewed child that may echo them.
+- Neither wrapper uses a shell; both validate argv before spawning. Do not infer that this prevents leakage by an invoked executable.
+
+
+## Call-site inventory (source inspection, 2026-11-24)
+
+The following are the direct `run_live` calls in the inspected `scripts/dev/` Python entry points on PR HEAD `bb774c08d5617c5c7c90564379f74f42a7bdbf15`. This is **not** a repository-wide dynamic call graph or proof of safe log output.
+
+| Caller | Child command | Output boundary / review action |
+| --- | --- | --- |
+| `bootstrap.py` | `corepack enable`; `corepack prepare pnpm@11.28.4 --activate` | Inherited package-manager diagnostics; review failure-path output and environment before use with credentials |
+| `bootstrap.py` | `pnpm install --frozen-lockfile --ignore-scripts` | Inherited dependency-install output, including registry errors; review auth-bearing registry configuration and logs |
+| `bootstrap.py` | `uv sync --locked --no-install-project` | Inherited dependency resolution/install diagnostics; review private index URLs and credential handling |
+| `bootstrap.py` | `doctor.py --ci`; `local_gate.py fast`; optional `install_hooks.py [--force]` | Inherited nested tooling output; inspect nested commands, including all failure paths |
+| `local_gate.py` | `doctor.py --ci`; `pnpm install --frozen-lockfile --ignore-scripts`; `uv sync --locked --no-install-project` (full mode) | Same inherited diagnostic exposure as bootstrap |
+| `local_gate.py` | Governance, foundation CI lint/typecheck/unit/contract/security/promotion, config contract, unittest suites, supply-chain manifest, developer-tooling contract (fast mode) | Inherited test/check output; test failures can echo fixture data, environment or external CLI diagnostics |
+
+`doctor.py` uses `run_capture` for version probes, not `run_live`; it subsequently prints collected version results. `install_hooks.py` invokes `subprocess.run` directly for Git hook-path discovery and is **outside** the `run_live` wrapper's guarantees. These observations do not certify either caller as safe.
+
+**Risk disposition:** No call site above has been independently verified safe for every success/failure output path. Do not infer that `--ignore-scripts` prevents package-manager diagnostics from containing sensitive registry information. Keep this as an open security review item, rather than changing streaming behavior without an approved compatibility and redaction contract.
+
+**Bounded regression now present (2026-11-25, inspected at `fde67700e69458dcc4ad3bc7fe0c7f344be640bd`):** `tests/foundation/test_common_tooling_output_boundary.py` uses synthetic stdout/stderr markers and zero/nonzero child exit codes to assert the existing inherited-output contract. The test was inspected in GitHub, **not executed locally in this checkpoint**. Exact-head Governance Verify [#45490556378](https://github.com/rahemih/Finance/actions/runs/45490556378) reported success on that inspected HEAD; this does not certify every mandatory check, redact CI logs, or provide independent security approval. A subsequent code change requires fresh exact-head CI.
+
+**Next bounded security work:** independently classify real `run_live` call-site outputs and inspect actual CI log exposure using synthetic non-secret markers before proposing any capture/redaction change. Preserve streaming behavior until its compatibility and redaction contract is approved.
+
+
+**Exact-head CI follow-up (2026-11-25):** Governance Verify [#45532946410](https://github.com/rahemih/Finance/actions/runs/45532946410) completed successfully for commit `e6d29c44f0e56ccc06677c575f3f995a79040f62` (verified through commit-associated workflow runs). This is one workflow result only: no claim of full required-check coverage, independent A5/A8/A10 review, license disposition, or Human Gate. The new assertions check wrapper-generated stderr text; they do **not** prove child stdout/stderr is sanitized. Any later commit invalidates exact-head CI evidence until new runs complete.
+
+## Review and test checklist (pending independent A5/A8/A10 review)
+
+1. Inventory every `run_live` call site and classify stdout/stderr for normal and failure paths, including third-party CLI diagnostics.
+2. For any potentially sensitive output, avoid `run_live`; use a dedicated capture-and-redact implementation with a separately specified maximum output size, encoding, exit-code behavior, and tested redaction policy. Do **not** silently switch `run_live` to capture: existing callers may rely on streaming logs.
+3. Regression-test the chosen implementation with a local synthetic child process emitting secret markers to both stdout and stderr and exiting nonzero; inspect **actual captured CI log bytes**, not just Python exception strings.
+4. Re-run all mandatory checks on the exact final HEAD, obtain independent A5/A8/A10 reviews and exact-head Owner Gate, and respect protected-branch merge policy. This document is evidence of a known boundary, not remediation or authorization.
+
+Live/Auto trading, financial transfers, and unapproved Demo orders remain disabled. No paid model endpoints or hosted agents are required.
+
+## CI evidence collection protocol (non-secret fixtures only)
+
+For a reviewable security decision, run the existing synthetic-marker test `python -m unittest tests.foundation.test_common_tooling_output_boundary` on the exact PR HEAD, then inspect the **actual** associated GitHub Actions job log (not merely the job conclusion). Record the run ID, job ID, commit SHA and whether `OUT_BOUNDARY_MARKER` / `ERR_BOUNDARY_MARKER` appear in the emitted job log. Do not inject credentials or real secrets to test masking. The test intentionally demonstrates that inherited child output is **not redacted**; a passing test is evidence of the current exposure boundary, **not** a security approval.
+
+Before changing `run_live`, independent reviewers must approve how streaming, output-size limits, encoding failures, nonzero exits, masking and cancellation will behave. If job logs are unavailable, record the result as **not verified**, never as safe. Preserve A5/A8/A10 veto and exact-HEAD Human Gate.
+
+
+## Observed CI log boundary — 2026-11-26 (non-secret evidence)
+
+- On PR #546 HEAD `0534d36ff1ba207f91457301e4eef4c06273a305`, [Governance Verify run 45742074677](https://github.com/rahemih/Finance/actions/runs/45742074677), job `139649239666` (`governance`) completed **success**. The job log was fetched and inspected as text (794,367 characters returned by the connector).
+- The fetched log contained the test module name `test_common_tooling_output_boundary`, but **neither** `OUT_BOUNDARY_MARKER` **nor** `ERR_BOUNDARY_MARKER` appeared in the job log. This is expected for the current test design: the test itself uses `subprocess.run(..., capture_output=True)` and asserts on captured strings rather than emitting them to the job's own streams.
+- **Important limitation:** marker absence in this job log is **not evidence of redaction or safe `run_live` output**. The test proves inherited child output is visible to a parent that captures it; it does not directly exercise an uncaptured synthetic child emitting markers into a CI log. A separately reviewed, non-secret, explicitly log-emitting CI fixture is required to prove the latter. Do not print real credentials or treat a successful Governance job as full mandatory-check coverage.
+- This is an observation, not an A5/A8/A10 sign-off, Owner Gate, license disposition or permission to merge. Any new commit requires new exact-HEAD CI evidence.
