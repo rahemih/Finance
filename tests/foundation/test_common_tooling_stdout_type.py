@@ -43,6 +43,21 @@ class CapturedStdoutTypeTests(unittest.TestCase):
         self.assertIsNone(caught.exception.__cause__)
         self.assertTrue(caught.exception.__suppress_context__)
 
+    def test_timeout_capture_does_not_expose_child_output(self):
+        """TimeoutExpired can carry captured output and command arguments."""
+        marker = "SYNTHETIC_TIMEOUT_OUTPUT_MARKER"
+        failure = subprocess.TimeoutExpired(
+            ["tool", "--synthetic-timeout"], 1, output=marker,
+            stderr="SYNTHETIC_TIMEOUT_STDERR_MARKER",
+        )
+        with patch.object(common.subprocess, "run", side_effect=failure) as spawn:
+            with self.assertRaisesRegex(common.ToolingError, "^command failed$") as caught:
+                common.run_capture(["tool", "--synthetic-timeout"])
+        spawn.assert_called_once()
+        self.assertEqual(str(caught.exception), "command failed")
+        self.assertIsNone(caught.exception.__cause__)
+        self.assertTrue(caught.exception.__suppress_context__)
+
     def test_plain_str_still_strips(self):
         result = subprocess.CompletedProcess(["tool"], 0, stdout=" ok \n")
         with patch.object(common.subprocess, "run", return_value=result):
