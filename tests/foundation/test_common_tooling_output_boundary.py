@@ -56,6 +56,9 @@ class LiveOutputBoundaryTests(unittest.TestCase):
             b"echo unsafe",
             [],
             [CustomStr("echo"), "unsafe"],
+            ["echo", CustomStr("unsafe")],
+            ["echo", b"SYNTHETIC_ARG_MARKER"],
+            ["echo", 123],
             ["echo", "bad" + chr(0) + "argument"],
             ["   ", "unsafe"],
         )
