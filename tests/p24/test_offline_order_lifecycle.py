@@ -41,6 +41,17 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
         with self.assertRaises(LifecycleError):
             order.reconcile("trace", 4)
 
+    def test_contradictory_full_fill_cancel_is_atomic(self):
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        order.reconcile("trace", 3)
+        with self.assertRaises(LifecycleError):
+            order.reconcile("trace", 10, canceled=True)
+        self.assertEqual(order.filled_units, 3)
+        self.assertEqual(order.state, State.PARTIAL)
+        order.reconcile("trace", 10)
+        self.assertEqual(order.state, State.FILLED)
+
     def test_boolean_fill_and_invalid_units_rejected(self):
         with self.assertRaises(LifecycleError):
             OfflineOrder("trace", True)
