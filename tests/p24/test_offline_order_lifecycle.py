@@ -146,5 +146,22 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
         order.reconcile("trace", 4)
         self.assertEqual((order.state, order.filled_units), (State.PARTIAL, 4))
 
+    def test_cancel_before_ack_is_terminal_for_both_venues_and_sides(self):
+        """Cancellation observed before ACK must block late ACK and all retries."""
+        for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
+            for side in (Side.BUY, Side.SELL):
+                with self.subTest(venue=venue, side=side):
+                    order = OfflineOrder(venue + side.value, 10, side=side)
+                    order.submit_unknown()
+                    order.reconcile(order.client_id, 0, canceled=True)
+                    self.assertEqual((order.state, order.filled_units), (State.CANCELED, 0))
+                    self.assertFalse(order.may_submit_again)
+                    with self.assertRaises(LifecycleError):
+                        order.acknowledge(order.client_id)
+                    with self.assertRaises(LifecycleError):
+                        order.submit_unknown()
+                    order.reconcile(order.client_id, 0, canceled=True)
+                    self.assertEqual((order.state, order.filled_units), (State.CANCELED, 0))
+
 if __name__ == "__main__":
     unittest.main()
