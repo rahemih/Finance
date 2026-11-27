@@ -105,6 +105,19 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaises(DxFeedAdapterError):
                     adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_object_stringification_cannot_forge_numeric_quote(self) -> None:
+        """Q03: only primitive numeric/string wire values are valid prices."""
+        class ForgedPrice:
+            def __str__(self) -> str:
+                return "1.17642"
+
+        for field in ("bidPrice", "askPrice"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedPrice()
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_crossed_quotes_are_rejected_without_normalization(self) -> None:
         """Q03: inverted bid/ask must fail closed for direct and wrapped feeds."""
         for bid, ask in (("1.20", "1.19"), ("2", "1")):
