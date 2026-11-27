@@ -45,7 +45,7 @@ class OfflineOrder:
         self.state = State.SENT_UNKNOWN
 
     def acknowledge(self, client_id: str) -> None:
-        if client_id != self.client_id or self.state not in (State.SENT_UNKNOWN, State.ACKED, State.PARTIAL):
+        if type(client_id) is not str or client_id != self.client_id or self.state not in (State.SENT_UNKNOWN, State.ACKED, State.PARTIAL):
             raise LifecycleError("unexpected acknowledgement")
         # A delayed ACK must never erase an already reconciled partial fill.
         if self.state is not State.PARTIAL:
@@ -54,7 +54,7 @@ class OfflineOrder:
     def reconcile(self, client_id: str, cumulative_filled: int, canceled: bool = False) -> None:
         if type(canceled) is not bool:
             raise LifecycleError("invalid cancel flag")
-        if client_id != self.client_id or self.state == State.NEW:
+        if type(client_id) is not str or client_id != self.client_id or self.state == State.NEW:
             raise LifecycleError("unrecognized order")
         if type(cumulative_filled) is not int or not self.filled_units <= cumulative_filled <= self.requested_units:
             raise LifecycleError("invalid or regressed fill")
