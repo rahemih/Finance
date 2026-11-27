@@ -97,7 +97,7 @@ def _price(value: object, *, field: str) -> Decimal:
 def _optional_size(value: object, *, field: str) -> Decimal | None:
     if value is None:
         return None
-    if isinstance(value, bool):
+    if type(value) not in (str, int, float, Decimal):
         raise DxFeedAdapterError(f"{field} must be numeric or NaN")
     try:
         number = Decimal(str(value))
