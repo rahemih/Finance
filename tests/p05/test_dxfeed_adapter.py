@@ -118,6 +118,19 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric"):
                     adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_object_stringification_cannot_forge_quote_size(self) -> None:
+        """Q03: size fields reject custom objects even when __str__ looks numeric."""
+        class ForgedSize:
+            def __str__(self) -> str:
+                return "2.5"
+
+        for field in ("bidSize", "askSize"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedSize()
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric or NaN"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_crossed_quotes_are_rejected_without_normalization(self) -> None:
         """Q03: inverted bid/ask must fail closed for direct and wrapped feeds."""
         for bid, ask in (("1.20", "1.19"), ("2", "1")):
