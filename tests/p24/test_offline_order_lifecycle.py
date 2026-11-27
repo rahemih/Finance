@@ -1,0 +1,54 @@
+"""D02 synthetic-only lifecycle tests for both venue labels; no SDK/network calls."""
+import unittest
+
+from packages.production.offline_order_lifecycle import LifecycleError, OfflineOrder, State
+
+
+class OfflineOrderLifecycleTests(unittest.TestCase):
+    def test_both_venue_labels_have_no_execution_authority(self):
+        for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
+            with self.subTest(venue=venue):
+                order = OfflineOrder(venue + "-trace", 10)
+                order.submit_unknown()
+                self.assertFalse(order.may_submit_again)
+                order.acknowledge(order.client_id)
+                order.reconcile(order.client_id, 4)
+                self.assertEqual(order.state, State.PARTIAL)
+                order.reconcile(order.client_id, 10)
+                self.assertEqual(order.state, State.FILLED)
+
+    def test_unknown_ack_does_not_allow_retry(self):
+        order = OfflineOrder("trace", 2)
+        order.submit_unknown()
+        with self.assertRaises(LifecycleError):
+            order.submit_unknown()
+
+    def test_wrong_id_and_regressed_fill_fail_closed(self):
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        with self.assertRaises(LifecycleError):
+            order.acknowledge("other")
+        order.reconcile("trace", 5)
+        with self.assertRaises(LifecycleError):
+            order.reconcile("trace", 4)
+
+    def test_cancel_and_terminal_replay(self):
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        order.reconcile("trace", 3, canceled=True)
+        self.assertEqual(order.state, State.CANCELED)
+        order.reconcile("trace", 3, canceled=True)
+        with self.assertRaises(LifecycleError):
+            order.reconcile("trace", 4)
+
+    def test_boolean_fill_and_invalid_units_rejected(self):
+        with self.assertRaises(LifecycleError):
+            OfflineOrder("trace", True)
+        order = OfflineOrder("trace", 2)
+        order.submit_unknown()
+        with self.assertRaises(LifecycleError):
+            order.reconcile("trace", True)
+
+
+if __name__ == "__main__":
+    unittest.main()
