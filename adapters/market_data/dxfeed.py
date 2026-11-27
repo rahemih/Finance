@@ -183,6 +183,10 @@ class DxFeedForexQuoteAdapter:
             size_semantics=QuoteSizeSemantics.PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME,
         )
 
+        # Crossed quotes cannot enter the canonical market-data path.
+        if payload.bid_price > payload.ask_price:
+            raise DxFeedAdapterError("crossed quote: bid exceeds ask")
+
         return ProviderQuoteEnvelope(
             kind=MarketEventKind.QUOTE,
             instrument=ProviderInstrument(
