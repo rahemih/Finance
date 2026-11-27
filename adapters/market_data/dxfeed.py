@@ -83,7 +83,7 @@ def _require_int(value: object, *, field: str, allow_zero: bool = True) -> int:
 
 
 def _price(value: object, *, field: str) -> Decimal:
-    if isinstance(value, bool):
+    if type(value) not in (str, int, float, Decimal):
         raise DxFeedAdapterError(f"{field} must be numeric")
     try:
         number = Decimal(str(value))
