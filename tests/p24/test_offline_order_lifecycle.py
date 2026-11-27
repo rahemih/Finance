@@ -38,6 +38,19 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                         order.acknowledge(order.client_id)
                     self.assertEqual((order.state, order.filled_units), (State.FILLED, 10))
 
+    def test_zero_fill_reconciliation_does_not_forge_ack(self):
+        """A zero-fill snapshot cannot resolve an unknown submission."""
+        for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
+            for side in (Side.BUY, Side.SELL):
+                with self.subTest(venue=venue, side=side):
+                    order = OfflineOrder(venue + side.value, 10, side=side)
+                    order.submit_unknown()
+                    order.reconcile(order.client_id, 0)
+                    self.assertEqual((order.state, order.filled_units), (State.SENT_UNKNOWN, 0))
+                    self.assertFalse(order.may_submit_again)
+                    order.acknowledge(order.client_id)
+                    self.assertEqual(order.state, State.ACKED)
+
     def test_unknown_ack_does_not_allow_retry(self):
         order = OfflineOrder("trace", 2)
         order.submit_unknown()
