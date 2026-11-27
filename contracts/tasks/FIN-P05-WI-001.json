@@ -1,0 +1,72 @@
+{
+  "task_id": "FIN-P05-WI-001",
+  "phase": "P05",
+  "workstream": "WI",
+  "objective": "Q03 synthetic quote quarantine: reject crossed dxFeed bid/ask without silent price correction",
+  "scope": [
+    "Offline dxFeed quote parser rejects bid greater than ask",
+    "Regression tests cover direct and wrapped synthetic quotes",
+    "Preserve equal bid/ask source values"
+  ],
+  "out_of_scope": [
+    "Network connections",
+    "Credential access",
+    "Live/Auto/Demo order submission",
+    "Dependency allowlist changes",
+    "Roadmap modifications"
+  ],
+  "dependencies": [
+    "Existing canonical P05 dxFeed parser"
+  ],
+  "read_paths": [
+    "adapters/market_data/dxfeed.py",
+    "tests/p05/test_dxfeed_adapter.py"
+  ],
+  "write_paths": [
+    "adapters/market_data/dxfeed.py",
+    "tests/p05/test_dxfeed_adapter.py",
+    "contracts/tasks/FIN-P05-WI-001.json"
+  ],
+  "forbidden_paths": [
+    "docs/01-roadmap/**",
+    "adapters/execution/**",
+    "secrets/**",
+    "infra/**"
+  ],
+  "agents": [
+    "A5",
+    "A8",
+    "A10"
+  ],
+  "plugins": [
+    "GitHub",
+    "Linear"
+  ],
+  "skills": [],
+  "access": [
+    "REPO_READ",
+    "REPO_WRITE_GOVERNED"
+  ],
+  "secrets": [],
+  "risk_level": "HIGH",
+  "tests": [
+    "python -m unittest tests.p05.test_dxfeed_adapter",
+    "Governance Verify exact HEAD"
+  ],
+  "security_tests": [
+    "Crossed quotes fail closed",
+    "No network calls or trading"
+  ],
+  "evidence": [],
+  "rollback": "Revert scoped parser guard, tests and contract only",
+  "human_gate": true,
+  "definition_of_ready": [
+    "No conflicting P05 quote parser lock confirmed before merge"
+  ],
+  "definition_of_done": [
+    "Tests pass",
+    "Exact-head CI pass",
+    "Independent review and owner Human Gate",
+    "Protected merge and postmerge verification"
+  ]
+}
