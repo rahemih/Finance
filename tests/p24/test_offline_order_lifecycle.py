@@ -163,6 +163,25 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                     order.reconcile(order.client_id, 0, canceled=True)
                     self.assertEqual((order.state, order.filled_units), (State.CANCELED, 0))
 
+    def test_partial_fill_then_cancel_replay_is_terminal_for_both_sides(self):
+        """Cancel after a partial fill must retain executed units and reject late fills."""
+        for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
+            for side in (Side.BUY, Side.SELL):
+                with self.subTest(venue=venue, side=side):
+                    order = OfflineOrder(venue + side.value + "-cancel", 10, side=side)
+                    order.submit_unknown()
+                    order.reconcile(order.client_id, 4)
+                    order.reconcile(order.client_id, 4, canceled=True)
+                    self.assertEqual((order.state, order.filled_units), (State.CANCELED, 4))
+                    order.reconcile(order.client_id, 4, canceled=True)
+                    for later_fill in (5, 10):
+                        with self.assertRaises(LifecycleError):
+                            order.reconcile(order.client_id, later_fill, canceled=True)
+                    with self.assertRaises(LifecycleError):
+                        order.acknowledge(order.client_id)
+                    self.assertFalse(order.may_submit_again)
+                    self.assertEqual((order.state, order.filled_units), (State.CANCELED, 4))
+
     def test_identity_must_be_plain_string_even_if_equal(self):
         """A forged equality object must not authorize ACK or reconciliation."""
         class SpoofedIdentity:
