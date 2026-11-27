@@ -10,6 +10,11 @@ class LifecycleError(ValueError):
     pass
 
 
+class Side(str, Enum):
+    BUY = "BUY"
+    SELL = "SELL"
+
+
 class State(str, Enum):
     NEW = "NEW"
     SENT_UNKNOWN = "SENT_UNKNOWN"
@@ -25,12 +30,13 @@ class OfflineOrder:
     requested_units: int
     filled_units: int = 0
     state: State = State.NEW
+    side: Side = Side.BUY
 
     def __post_init__(self) -> None:
         if (type(self.client_id) is not str or not self.client_id.strip()
                 or type(self.requested_units) is not int or self.requested_units <= 0
                 or type(self.filled_units) is not int or self.filled_units != 0
-                or self.state is not State.NEW):
+                or self.state is not State.NEW or type(self.side) is not Side):
             raise LifecycleError("invalid synthetic intent")
 
     def submit_unknown(self) -> None:
