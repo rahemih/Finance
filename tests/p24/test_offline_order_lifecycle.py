@@ -75,5 +75,24 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                 OfflineOrder(client_id, 2)
 
 
+    def test_invalid_reconciliation_preserves_order_snapshot(self):
+        """Rejected evidence must not partially mutate an ambiguous order."""
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        for client_id, cumulative, canceled in (
+            ("other", 4, False),
+            ("trace", -1, False),
+            ("trace", 11, False),
+            ("trace", True, False),
+            ("trace", 10, True),
+        ):
+            with self.subTest(client_id=client_id, cumulative=cumulative, canceled=canceled):
+                before = (order.state, order.filled_units)
+                with self.assertRaises(LifecycleError):
+                    order.reconcile(client_id, cumulative, canceled=canceled)
+                self.assertEqual((order.state, order.filled_units), before)
+        order.reconcile("trace", 4)
+        self.assertEqual((order.state, order.filled_units), (State.PARTIAL, 4))
+
 if __name__ == "__main__":
     unittest.main()
