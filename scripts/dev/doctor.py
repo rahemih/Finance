@@ -32,7 +32,7 @@ def safe_version_output(tool: str, output: str) -> str:
     """Return a strictly validated version or a fixed non-sensitive sentinel."""
     if not isinstance(output, str) or len(output) > 128 or "\n" in output or "\r" in output:
         return "INVALID_OUTPUT"
-    output = output.strip()
+    # The capture helper already strips process line endings; do not normalize padding.
     if tool == "git":
         match = _GIT_VERSION.fullmatch(output)
     elif tool == "uv":
