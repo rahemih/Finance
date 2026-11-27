@@ -75,6 +75,18 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                 OfflineOrder(client_id, 2)
 
 
+    def test_non_boolean_cancel_flag_is_rejected_atomically(self):
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        for flag in ("false", "true", 0, 1, None, []):
+            with self.subTest(flag=flag):
+                before = (order.state, order.filled_units)
+                with self.assertRaises(LifecycleError):
+                    order.reconcile("trace", 3, canceled=flag)
+                self.assertEqual((order.state, order.filled_units), before)
+        order.reconcile("trace", 3, canceled=False)
+        self.assertEqual((order.state, order.filled_units), (State.PARTIAL, 3))
+
     def test_invalid_reconciliation_preserves_order_snapshot(self):
         """Rejected evidence must not partially mutate an ambiguous order."""
         order = OfflineOrder("trace", 10)
