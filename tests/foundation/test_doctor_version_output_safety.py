@@ -17,6 +17,16 @@ class DoctorVersionOutputTests(unittest.TestCase):
             with self.subTest(tool=tool):
                 self.assertEqual(safe_version_output(tool, "1.2.3"), "INVALID_OUTPUT")
 
+    def test_rejects_padded_version_lines(self):
+        # run_capture removes the legitimate trailing process newline.
+        for tool, valid in (("git", "git version 2.47.1"),
+                            ("node", "v24.21.0"),
+                            ("pnpm", "11.28.4"),
+                            ("uv", "uv 0.12.23")):
+            for padded in (" " + valid, valid + " ", "\t" + valid, valid + "\t"):
+                with self.subTest(tool=tool, padded=repr(padded)):
+                    self.assertEqual(safe_version_output(tool, padded), "INVALID_OUTPUT")
+
     def test_rejects_multiline_and_unexpected_text(self):
         for tool, valid in (("git", "git version 2.47.1"), ("node", "v24.21.0"),
                             ("pnpm", "11.28.4"), ("uv", "uv 0.12.23")):
