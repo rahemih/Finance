@@ -163,5 +163,26 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                     order.reconcile(order.client_id, 0, canceled=True)
                     self.assertEqual((order.state, order.filled_units), (State.CANCELED, 0))
 
+    def test_identity_must_be_plain_string_even_if_equal(self):
+        """A forged equality object must not authorize ACK or reconciliation."""
+        class SpoofedIdentity:
+            def __eq__(self, other):
+                return other == "trace"
+
+        order = OfflineOrder("trace", 10)
+        order.submit_unknown()
+        before = (order.state, order.filled_units)
+        for identity in (SpoofedIdentity(), b"trace", None):
+            with self.subTest(identity=type(identity).__name__):
+                with self.assertRaises(LifecycleError):
+                    order.acknowledge(identity)
+                with self.assertRaises(LifecycleError):
+                    order.reconcile(identity, 5)
+                self.assertEqual((order.state, order.filled_units), before)
+        order.acknowledge("trace")
+        order.reconcile("trace", 5)
+        self.assertEqual((order.state, order.filled_units), (State.PARTIAL, 5))
+
+
 if __name__ == "__main__":
     unittest.main()
