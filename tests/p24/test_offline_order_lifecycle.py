@@ -1,14 +1,18 @@
 """D02 synthetic-only lifecycle tests for both venue labels; no SDK/network calls."""
 import unittest
 
-from packages.production.offline_order_lifecycle import LifecycleError, OfflineOrder, State
+from packages.production.offline_order_lifecycle import LifecycleError, OfflineOrder, Side, State
 
 
 class OfflineOrderLifecycleTests(unittest.TestCase):
     def test_both_venue_labels_have_no_execution_authority(self):
         for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
-            with self.subTest(venue=venue):
-                order = OfflineOrder(venue + "-trace", 10)
+            for side in (Side.BUY, Side.SELL):
+                with self.subTest(venue=venue, side=side):
+                    self._exercise_venue_side(venue, side)
+
+    def _exercise_venue_side(self, venue, side):
+                order = OfflineOrder(venue + "-" + side.value + "-trace", 10, side=side)
                 order.submit_unknown()
                 self.assertFalse(order.may_submit_again)
                 order.acknowledge(order.client_id)
@@ -70,6 +74,9 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
             {"filled_units": True},
             {"state": State.ACKED},
             {"state": "NEW"},
+            {"side": "BUY"},
+            {"side": None},
+            {"side": True},
         ):
             with self.subTest(kwargs=kwargs), self.assertRaises(LifecycleError):
                 OfflineOrder("trace", 2, **kwargs)
