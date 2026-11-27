@@ -51,7 +51,7 @@ class OfflineOrder:
         if type(cumulative_filled) is not int or not self.filled_units <= cumulative_filled <= self.requested_units:
             raise LifecycleError("invalid or regressed fill")
         if self.state in (State.FILLED, State.CANCELED):
-            if cumulative_filled != self.filled_units or (self.state == State.FILLED and canceled):
+            if cumulative_filled != self.filled_units or canceled != (self.state == State.CANCELED):
                 raise LifecycleError("terminal order changed")
             return
         # Reject contradictory terminal evidence before mutating state.
