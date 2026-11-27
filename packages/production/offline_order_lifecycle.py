@@ -49,10 +49,11 @@ class OfflineOrder:
             if cumulative_filled != self.filled_units or (self.state == State.FILLED and canceled):
                 raise LifecycleError("terminal order changed")
             return
+        # Reject contradictory terminal evidence before mutating state.
+        if cumulative_filled == self.requested_units and canceled:
+            raise LifecycleError("filled order cannot cancel")
         self.filled_units = cumulative_filled
         if cumulative_filled == self.requested_units:
-            if canceled:
-                raise LifecycleError("filled order cannot cancel")
             self.state = State.FILLED
         elif canceled:
             self.state = State.CANCELED
