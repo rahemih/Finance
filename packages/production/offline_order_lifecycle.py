@@ -72,7 +72,8 @@ class OfflineOrder:
             self.state = State.CANCELED
         elif cumulative_filled:
             self.state = State.PARTIAL
-        else:
+        elif self.state is not State.SENT_UNKNOWN:
+            # Zero-fill observations are not proof of an ACK.
             self.state = State.ACKED
 
     @property
