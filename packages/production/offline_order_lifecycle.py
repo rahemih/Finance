@@ -44,6 +44,8 @@ class OfflineOrder:
         self.state = State.ACKED
 
     def reconcile(self, client_id: str, cumulative_filled: int, canceled: bool = False) -> None:
+        if type(canceled) is not bool:
+            raise LifecycleError("invalid cancel flag")
         if client_id != self.client_id or self.state == State.NEW:
             raise LifecycleError("unrecognized order")
         if type(cumulative_filled) is not int or not self.filled_units <= cumulative_filled <= self.requested_units:
