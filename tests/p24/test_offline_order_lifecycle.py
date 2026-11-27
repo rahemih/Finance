@@ -182,6 +182,19 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
                     self.assertFalse(order.may_submit_again)
                     self.assertEqual((order.state, order.filled_units), (State.CANCELED, 4))
 
+    def test_replayed_cumulative_fills_are_idempotent_for_both_sides(self):
+        """Cumulative snapshots are totals, never incremental fills."""
+        for venue in ("XCHIEF_MT5_DEMO_MOCK", "TOOBIT_PAPER_MOCK"):
+            for side in (Side.BUY, Side.SELL):
+                with self.subTest(venue=venue, side=side):
+                    order = OfflineOrder(venue + side.value + "-replay", 10, side=side)
+                    order.submit_unknown()
+                    for cumulative in (2, 2, 2, 7, 7, 10, 10):
+                        order.reconcile(order.client_id, cumulative)
+                        self.assertEqual(order.filled_units, cumulative)
+                    self.assertEqual(order.state, State.FILLED)
+                    self.assertFalse(order.may_submit_again)
+
     def test_identity_must_be_plain_string_even_if_equal(self):
         """A forged equality object must not authorize ACK or reconciliation."""
         class SpoofedIdentity:
