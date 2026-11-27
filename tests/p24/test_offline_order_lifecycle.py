@@ -31,6 +31,9 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
         order.reconcile("trace", 5)
         with self.assertRaises(LifecycleError):
             order.reconcile("trace", 4)
+        with self.assertRaises(LifecycleError):
+            order.reconcile("trace", 3, canceled=False)
+        self.assertEqual((order.state, order.filled_units), (State.CANCELED, 3))
 
     def test_cancel_and_terminal_replay(self):
         order = OfflineOrder("trace", 10)
