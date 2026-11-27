@@ -45,9 +45,11 @@ class OfflineOrder:
         self.state = State.SENT_UNKNOWN
 
     def acknowledge(self, client_id: str) -> None:
-        if client_id != self.client_id or self.state not in (State.SENT_UNKNOWN, State.ACKED):
+        if client_id != self.client_id or self.state not in (State.SENT_UNKNOWN, State.ACKED, State.PARTIAL):
             raise LifecycleError("unexpected acknowledgement")
-        self.state = State.ACKED
+        # A delayed ACK must never erase an already reconciled partial fill.
+        if self.state is not State.PARTIAL:
+            self.state = State.ACKED
 
     def reconcile(self, client_id: str, cumulative_filled: int, canceled: bool = False) -> None:
         if type(canceled) is not bool:
