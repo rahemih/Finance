@@ -39,8 +39,10 @@ def safe_version_output(tool: str, output: str) -> str:
         match = _UV_VERSION.fullmatch(output)
     elif tool == "node":
         match = _VERSION.fullmatch(output[1:]) if output.startswith("v") else None
-    else:
+    elif tool == "pnpm":
         match = _VERSION.fullmatch(output)
+    else:
+        return "INVALID_OUTPUT"
     if not match:
         return "INVALID_OUTPUT"
     return match.group(1) if tool in ("git", "uv") else (output[1:] if tool == "node" else output)
