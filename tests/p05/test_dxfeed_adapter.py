@@ -105,6 +105,27 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaises(DxFeedAdapterError):
                     adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_crossed_quotes_are_rejected_without_normalization(self) -> None:
+        """Q03: inverted bid/ask must fail closed for direct and wrapped feeds."""
+        for bid, ask in (("1.20", "1.19"), ("2", "1")):
+            with self.subTest(bid=bid, ask=ask):
+                fixture = load_fixture()
+                fixture["bidPrice"] = bid
+                fixture["askPrice"] = ask
+                for message in (
+                    fixture,
+                    {"status": "OK", "Quote": {"EUR/USD": fixture}},
+                ):
+                    with self.assertRaisesRegex(DxFeedAdapterError, "crossed quote"):
+                        adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
+    def test_equal_bid_ask_is_not_silently_repriced(self) -> None:
+        fixture = load_fixture()
+        fixture["bidPrice"] = "1.17642"
+        fixture["askPrice"] = "1.17642"
+        event = adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(event.payload.bid_price, event.payload.ask_price)
+
     def test_wrong_symbol_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["eventSymbol"] = "USD/JPY"
