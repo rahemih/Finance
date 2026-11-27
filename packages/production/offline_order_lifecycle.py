@@ -27,7 +27,10 @@ class OfflineOrder:
     state: State = State.NEW
 
     def __post_init__(self) -> None:
-        if not self.client_id or type(self.requested_units) is not int or self.requested_units <= 0:
+        if (type(self.client_id) is not str or not self.client_id.strip()
+                or type(self.requested_units) is not int or self.requested_units <= 0
+                or type(self.filled_units) is not int or self.filled_units != 0
+                or self.state is not State.NEW):
             raise LifecycleError("invalid synthetic intent")
 
     def submit_unknown(self) -> None:
