@@ -61,5 +61,19 @@ class OfflineOrderLifecycleTests(unittest.TestCase):
             order.reconcile("trace", True)
 
 
+    def test_forged_initial_state_and_non_string_identity_fail_closed(self):
+        for kwargs in (
+            {"filled_units": 1},
+            {"filled_units": True},
+            {"state": State.ACKED},
+            {"state": "NEW"},
+        ):
+            with self.subTest(kwargs=kwargs), self.assertRaises(LifecycleError):
+                OfflineOrder("trace", 2, **kwargs)
+        for client_id in (123, "   ", None):
+            with self.subTest(client_id=client_id), self.assertRaises(LifecycleError):
+                OfflineOrder(client_id, 2)
+
+
 if __name__ == "__main__":
     unittest.main()
