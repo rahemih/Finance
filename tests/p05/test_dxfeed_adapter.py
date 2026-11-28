@@ -265,6 +265,22 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaises(DxFeedAdapterError):
                     adapter().parse_quote(fixture, received_at_ns=value)  # type: ignore[arg-type]
 
+    def test_int_subclasses_cannot_forge_wire_timestamps_or_sequence(self) -> None:
+        """Q03: JSON integer fields must be exact ints, never custom objects."""
+        class ForgedInt(int):
+            def __lt__(self, other: object) -> bool:
+                return False
+
+        for field in ("sequence", "timeNanoPart", "bidTime", "askTime", "eventTime"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedInt(1)
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be an integer"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+        with self.assertRaisesRegex(DxFeedAdapterError, "must be an integer"):
+            adapter().parse_quote(load_fixture(), received_at_ns=ForgedInt(1))
+
     def test_negative_time_nano_part_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["timeNanoPart"] = -1
