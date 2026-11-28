@@ -144,7 +144,10 @@ class DxFeedForexQuoteAdapter:
         if "eventSymbol" in message:
             return message
 
-        # A failed REST response must never be promoted into a valid quote.\n        if message.get("status") != "OK":\n            raise DxFeedAdapterError("Quote wrapper status must be OK")\n        quote_bucket = _require_mapping(message.get("Quote"), field="Quote")
+        # A failed REST response must never be promoted into a valid quote.
+        if message.get("status") != "OK":
+            raise DxFeedAdapterError("Quote wrapper status must be OK")
+        quote_bucket = _require_mapping(message.get("Quote"), field="Quote")
         candidate = quote_bucket.get(self.subscription.symbol)
         return _require_mapping(candidate, field=f"Quote[{self.subscription.symbol}]")
 
