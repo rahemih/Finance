@@ -103,7 +103,10 @@ def _optional_size(value: object, *, field: str) -> Decimal | None:
         number = Decimal(str(value))
     except (InvalidOperation, ValueError):
         raise DxFeedAdapterError(f"{field} must be numeric or NaN") from None
-    if number.is_nan():
+    # Quiet NaN is the documented missing-size sentinel; signalling NaN is malformed.
+    if number.is_snan():
+        raise DxFeedAdapterError(f"{field} must be finite and >= 0, or NaN")
+    if number.is_qnan():
         return None
     if not number.is_finite() or number < 0:
         raise DxFeedAdapterError(f"{field} must be finite and >= 0, or NaN")
