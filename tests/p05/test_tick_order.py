@@ -11,6 +11,13 @@ class TickOrderTests(unittest.TestCase):
         self.assertEqual(gate.inspect(sequence=2, event_ns=99, now_ns=101), TickDecision.OUT_OF_ORDER)
         self.assertEqual(gate.inspect(sequence=2, event_ns=101, now_ns=112), TickDecision.STALE)
         self.assertEqual(gate.inspect(sequence=2, event_ns=113, now_ns=112), TickDecision.STALE)
+        self.assertEqual(gate.inspect(sequence=2, event_ns=112, now_ns=113), TickDecision.ACCEPT)
+
+    def test_clock_regression_is_rejected_without_advancing_watermark(self):
+        gate = TickOrderGate(10)
+        self.assertEqual(gate.inspect(sequence=1, event_ns=100, now_ns=101), TickDecision.ACCEPT)
+        self.assertEqual(gate.inspect(sequence=2, event_ns=101, now_ns=100), TickDecision.INVALID)
+        self.assertEqual(gate.last_sequence, 1)
         self.assertEqual(gate.inspect(sequence=2, event_ns=102, now_ns=103), TickDecision.ACCEPT)
 
     def test_boundary_and_invalid_values(self):
