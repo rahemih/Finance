@@ -167,6 +167,14 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
         )
         self.assertEqual(wrapped, direct)
 
+    def test_wrapped_non_ok_status_never_promotes_quote(self) -> None:
+        """Q03: an error response containing a plausible quote fails closed."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                message = {"status": status, "Quote": {"EUR/USD": load_fixture()}}
+                with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+                    adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
     def test_raw_or_empty_credential_handle_is_rejected(self) -> None:
         for value in ("raw-token", "secret://", " "):
             with self.subTest(value=value):
