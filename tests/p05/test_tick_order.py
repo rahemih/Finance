@@ -37,6 +37,13 @@ class TickOrderTests(unittest.TestCase):
         self.assertEqual(eurusd.last_sequence, 5)
         self.assertEqual(eurusd.inspect(sequence=6, event_ns=103, now_ns=104), TickDecision.ACCEPT)
 
+    def test_reused_sequence_with_changed_event_time_is_not_a_duplicate(self):
+        gate = TickOrderGate(max_age_ns=20)
+        self.assertEqual(gate.inspect(sequence=7, event_ns=100, now_ns=101), TickDecision.ACCEPT)
+        self.assertEqual(gate.inspect(sequence=7, event_ns=102, now_ns=103), TickDecision.OUT_OF_ORDER)
+        self.assertEqual(gate.last_event_ns, 100)
+        self.assertEqual(gate.inspect(sequence=8, event_ns=104, now_ns=105), TickDecision.ACCEPT)
+
     def test_invalid_configuration(self):
         for age in (-1, True, 1.5):
             with self.assertRaises(ValueError):
