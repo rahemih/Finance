@@ -131,6 +131,15 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric or NaN"):
                     adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_signalling_nan_size_is_rejected_without_quarantine_bypass(self) -> None:
+        """Q03: sNaN is not a valid missing quote-size sentinel."""
+        for field in ("bidSize", "askSize"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = "sNaN"
+                with self.assertRaisesRegex(DxFeedAdapterError, "finite and >= 0"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_crossed_quotes_are_rejected_without_normalization(self) -> None:
         """Q03: inverted bid/ask must fail closed for direct and wrapped feeds."""
         for bid, ask in (("1.20", "1.19"), ("2", "1")):
