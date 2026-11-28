@@ -145,7 +145,7 @@ class DxFeedForexQuoteAdapter:
             return message
 
         # A failed REST response must never be promoted into a valid quote.
-        if message.get("status") != "OK":
+        if type(message.get("status")) is not str or message.get("status") != "OK":
             raise DxFeedAdapterError("Quote wrapper status must be OK")
         quote_bucket = _require_mapping(message.get("Quote"), field="Quote")
         candidate = quote_bucket.get(self.subscription.symbol)
