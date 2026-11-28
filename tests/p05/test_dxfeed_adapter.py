@@ -193,6 +193,16 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
                     adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
 
+    def test_wrapped_success_does_not_override_nested_failure(self) -> None:
+        """Q03: nested provider failure must not be promoted by outer OK."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                quote = load_fixture()
+                quote["status"] = status
+                message = {"status": "OK", "Quote": {"EUR/USD": quote}}
+                with self.assertRaisesRegex(DxFeedAdapterError, "nested Quote status"):
+                    adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
     def test_wrapped_status_cannot_be_forged_by_custom_equality(self) -> None:
         """Q03: an object comparing equal to OK is not a wire status."""
         class ForgedStatus:
