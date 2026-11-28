@@ -172,6 +172,19 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
         with self.assertRaisesRegex(DxFeedAdapterError, "non-empty string"):
             adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_exchange_code_string_subclass_is_rejected(self) -> None:
+        """Q03: provider provenance fields must be primitive wire strings."""
+        class ForgedExchange(str):
+            def __str__(self) -> str:
+                return "SAFE"
+
+        for field in ("bidExchangeCode", "askExchangeCode"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedExchange("UNTRUSTED")
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be a string"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_wrong_symbol_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["eventSymbol"] = "USD/JPY"
