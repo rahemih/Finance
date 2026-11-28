@@ -167,6 +167,15 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
         )
         self.assertEqual(wrapped, direct)
 
+    def test_direct_explicit_failure_status_never_promotes_quote(self) -> None:
+        """Q03: a direct event cannot bypass an explicit provider failure."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                fixture = load_fixture()
+                fixture["status"] = status
+                with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_wrapped_non_ok_status_never_promotes_quote(self) -> None:
         """Q03: an error response containing a plausible quote fails closed."""
         for status in ("ERROR", "STALE", None, True, 200):
