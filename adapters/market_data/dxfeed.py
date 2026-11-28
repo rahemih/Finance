@@ -142,6 +142,9 @@ class DxFeedForexQuoteAdapter:
 
     def _unwrap_quote(self, message: Mapping[str, object]) -> Mapping[str, object]:
         if "eventSymbol" in message:
+            # A direct event carrying an explicit failure status is not trusted.
+            if "status" in message and (type(message["status"]) is not str or message["status"] != "OK"):
+                raise DxFeedAdapterError("Quote status must be OK")
             return message
 
         # A failed REST response must never be promoted into a valid quote.
