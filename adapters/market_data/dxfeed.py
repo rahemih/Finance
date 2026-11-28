@@ -48,7 +48,7 @@ def _require_mapping(value: object, *, field: str) -> Mapping[str, object]:
 
 
 def _require_text(value: object, *, field: str) -> str:
-    if not isinstance(value, str) or not value.strip():
+    if type(value) is not str or not value.strip():
         raise DxFeedAdapterError(f"{field} must be a non-empty string")
     return value.strip()
 
@@ -56,7 +56,7 @@ def _require_text(value: object, *, field: str) -> str:
 def _optional_text(value: object, *, field: str) -> str | None:
     if value is None:
         return None
-    if not isinstance(value, str):
+    if type(value) is not str:
         raise DxFeedAdapterError(f"{field} must be a string when present")
     stripped = value.strip()
     return stripped or None
@@ -72,7 +72,7 @@ def _require_secret_ref(value: object) -> str:
 
 
 def _require_int(value: object, *, field: str, allow_zero: bool = True) -> int:
-    if isinstance(value, bool) or not isinstance(value, int):
+    if type(value) is not int:
         raise DxFeedAdapterError(f"{field} must be an integer")
     if allow_zero:
         if value < 0:
@@ -83,7 +83,7 @@ def _require_int(value: object, *, field: str, allow_zero: bool = True) -> int:
 
 
 def _price(value: object, *, field: str) -> Decimal:
-    if isinstance(value, bool):
+    if type(value) not in (str, int, float, Decimal):
         raise DxFeedAdapterError(f"{field} must be numeric")
     try:
         number = Decimal(str(value))
@@ -97,13 +97,16 @@ def _price(value: object, *, field: str) -> Decimal:
 def _optional_size(value: object, *, field: str) -> Decimal | None:
     if value is None:
         return None
-    if isinstance(value, bool):
+    if type(value) not in (str, int, float, Decimal):
         raise DxFeedAdapterError(f"{field} must be numeric or NaN")
     try:
         number = Decimal(str(value))
     except (InvalidOperation, ValueError):
         raise DxFeedAdapterError(f"{field} must be numeric or NaN") from None
-    if number.is_nan():
+    # Quiet NaN is the documented missing-size sentinel; signalling NaN is malformed.
+    if number.is_snan():
+        raise DxFeedAdapterError(f"{field} must be finite and >= 0, or NaN")
+    if number.is_qnan():
         return None
     if not number.is_finite() or number < 0:
         raise DxFeedAdapterError(f"{field} must be finite and >= 0, or NaN")
@@ -142,11 +145,21 @@ class DxFeedForexQuoteAdapter:
 
     def _unwrap_quote(self, message: Mapping[str, object]) -> Mapping[str, object]:
         if "eventSymbol" in message:
+            # A direct event carrying an explicit failure status is not trusted.
+            if "status" in message and (type(message["status"]) is not str or message["status"] != "OK"):
+                raise DxFeedAdapterError("Quote status must be OK")
             return message
 
+        # A failed REST response must never be promoted into a valid quote.
+        if type(message.get("status")) is not str or message.get("status") != "OK":
+            raise DxFeedAdapterError("Quote wrapper status must be OK")
         quote_bucket = _require_mapping(message.get("Quote"), field="Quote")
         candidate = quote_bucket.get(self.subscription.symbol)
-        return _require_mapping(candidate, field=f"Quote[{self.subscription.symbol}]")
+        quote = _require_mapping(candidate, field=f"Quote[{self.subscription.symbol}]")
+        # A successful wrapper cannot override an explicit nested quote failure.
+        if "status" in quote and (type(quote["status"]) is not str or quote["status"] != "OK"):
+            raise DxFeedAdapterError("nested Quote status must be OK")
+        return quote
 
     def parse_quote(
         self,
@@ -163,6 +176,8 @@ class DxFeedForexQuoteAdapter:
 
         sequence = _require_int(quote.get("sequence"), field="sequence")
         time_nano_part = _require_int(quote.get("timeNanoPart"), field="timeNanoPart")
+        if time_nano_part >= 1_000_000:
+            raise DxFeedAdapterError("timeNanoPart must be < 1000000")
 
         payload = QuotePayload(
             bid_time=_millisecond_timestamp(quote.get("bidTime"), field="bidTime"),
@@ -182,6 +197,10 @@ class DxFeedForexQuoteAdapter:
             time_nano_part=time_nano_part,
             size_semantics=QuoteSizeSemantics.PROVIDER_QUOTE_SIZE_NOT_GLOBAL_SPOT_FX_VOLUME,
         )
+
+        # Crossed quotes cannot enter the canonical market-data path.
+        if payload.bid_price > payload.ask_price:
+            raise DxFeedAdapterError("crossed quote: bid exceeds ask")
 
         return ProviderQuoteEnvelope(
             kind=MarketEventKind.QUOTE,

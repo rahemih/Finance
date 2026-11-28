@@ -105,6 +105,86 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaises(DxFeedAdapterError):
                     adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_object_stringification_cannot_forge_numeric_quote(self) -> None:
+        """Q03: only primitive numeric/string wire values are valid prices."""
+        class ForgedPrice:
+            def __str__(self) -> str:
+                return "1.17642"
+
+        for field in ("bidPrice", "askPrice"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedPrice()
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_object_stringification_cannot_forge_quote_size(self) -> None:
+        """Q03: size fields reject custom objects even when __str__ looks numeric."""
+        class ForgedSize:
+            def __str__(self) -> str:
+                return "2.5"
+
+        for field in ("bidSize", "askSize"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedSize()
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be numeric or NaN"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_signalling_nan_size_is_rejected_without_quarantine_bypass(self) -> None:
+        """Q03: sNaN is not a valid missing quote-size sentinel."""
+        for field in ("bidSize", "askSize"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = "sNaN"
+                with self.assertRaisesRegex(DxFeedAdapterError, "finite and >= 0"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_crossed_quotes_are_rejected_without_normalization(self) -> None:
+        """Q03: inverted bid/ask must fail closed for direct and wrapped feeds."""
+        for bid, ask in (("1.20", "1.19"), ("2", "1")):
+            with self.subTest(bid=bid, ask=ask):
+                fixture = load_fixture()
+                fixture["bidPrice"] = bid
+                fixture["askPrice"] = ask
+                for message in (
+                    fixture,
+                    {"status": "OK", "Quote": {"EUR/USD": fixture}},
+                ):
+                    with self.assertRaisesRegex(DxFeedAdapterError, "crossed quote"):
+                        adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
+    def test_equal_bid_ask_is_not_silently_repriced(self) -> None:
+        fixture = load_fixture()
+        fixture["bidPrice"] = "1.17642"
+        fixture["askPrice"] = "1.17642"
+        event = adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(event.payload.bid_price, event.payload.ask_price)
+
+    def test_string_subclass_cannot_forge_provider_symbol(self) -> None:
+        """Q03: a Python object is not an authentic wire-format symbol."""
+        class ForgedSymbol(str):
+            def __eq__(self, other: object) -> bool:
+                return other == "EUR/USD"
+
+        fixture = load_fixture()
+        fixture["eventSymbol"] = ForgedSymbol("USD/JPY")
+        with self.assertRaisesRegex(DxFeedAdapterError, "non-empty string"):
+            adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_exchange_code_string_subclass_is_rejected(self) -> None:
+        """Q03: provider provenance fields must be primitive wire strings."""
+        class ForgedExchange(str):
+            def __str__(self) -> str:
+                return "SAFE"
+
+        for field in ("bidExchangeCode", "askExchangeCode"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedExchange("UNTRUSTED")
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be a string"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_wrong_symbol_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["eventSymbol"] = "USD/JPY"
@@ -119,6 +199,43 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
             received_at_ns=RECEIVED_AT_NS,
         )
         self.assertEqual(wrapped, direct)
+
+    def test_direct_explicit_failure_status_never_promotes_quote(self) -> None:
+        """Q03: a direct event cannot bypass an explicit provider failure."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                fixture = load_fixture()
+                fixture["status"] = status
+                with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_wrapped_non_ok_status_never_promotes_quote(self) -> None:
+        """Q03: an error response containing a plausible quote fails closed."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                message = {"status": status, "Quote": {"EUR/USD": load_fixture()}}
+                with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+                    adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
+    def test_wrapped_success_does_not_override_nested_failure(self) -> None:
+        """Q03: nested provider failure must not be promoted by outer OK."""
+        for status in ("ERROR", "STALE", None, True, 200):
+            with self.subTest(status=status):
+                quote = load_fixture()
+                quote["status"] = status
+                message = {"status": "OK", "Quote": {"EUR/USD": quote}}
+                with self.assertRaisesRegex(DxFeedAdapterError, "nested Quote status"):
+                    adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
+    def test_wrapped_status_cannot_be_forged_by_custom_equality(self) -> None:
+        """Q03: an object comparing equal to OK is not a wire status."""
+        class ForgedStatus:
+            def __eq__(self, other: object) -> bool:
+                return other == "OK"
+
+        message = {"status": ForgedStatus(), "Quote": {"EUR/USD": load_fixture()}}
+        with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+            adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
 
     def test_raw_or_empty_credential_handle_is_rejected(self) -> None:
         for value in ("raw-token", "secret://", " "):
@@ -148,11 +265,41 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaises(DxFeedAdapterError):
                     adapter().parse_quote(fixture, received_at_ns=value)  # type: ignore[arg-type]
 
+    def test_int_subclasses_cannot_forge_wire_timestamps_or_sequence(self) -> None:
+        """Q03: JSON integer fields must be exact ints, never custom objects."""
+        class ForgedInt(int):
+            def __lt__(self, other: object) -> bool:
+                return False
+
+        for field in ("sequence", "timeNanoPart", "bidTime", "askTime", "eventTime"):
+            with self.subTest(field=field):
+                fixture = load_fixture()
+                fixture[field] = ForgedInt(1)
+                with self.assertRaisesRegex(DxFeedAdapterError, "must be an integer"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+        with self.assertRaisesRegex(DxFeedAdapterError, "must be an integer"):
+            adapter().parse_quote(load_fixture(), received_at_ns=ForgedInt(1))
+
     def test_negative_time_nano_part_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["timeNanoPart"] = -1
         with self.assertRaises(DxFeedAdapterError):
             adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+    def test_time_nano_part_rejects_out_of_range_fraction(self) -> None:
+        """Q03: never silently carry a malformed sub-millisecond fraction."""
+        for value in (1_000_000, 1_000_001):
+            with self.subTest(value=value):
+                fixture = load_fixture()
+                fixture["timeNanoPart"] = value
+                with self.assertRaisesRegex(DxFeedAdapterError, "timeNanoPart"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+        fixture = load_fixture()
+        fixture["timeNanoPart"] = 999_999
+        event = adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(event.payload.time_nano_part, 999_999)
 
     def test_parsing_is_deterministic(self) -> None:
         fixture = load_fixture()
