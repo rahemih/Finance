@@ -44,6 +44,22 @@ class TickOrderTests(unittest.TestCase):
         self.assertEqual(gate.last_event_ns, 100)
         self.assertEqual(gate.inspect(sequence=8, event_ns=104, now_ns=105), TickDecision.ACCEPT)
 
+    def test_invalid_payloads_never_poison_watermark(self):
+        gate = TickOrderGate(max_age_ns=10)
+        self.assertEqual(gate.inspect(sequence=3, event_ns=100, now_ns=101), TickDecision.ACCEPT)
+        for payload in (
+            {"sequence": 4.0, "event_ns": 102, "now_ns": 103},
+            {"sequence": 4, "event_ns": True, "now_ns": 103},
+            {"sequence": 4, "event_ns": 102, "now_ns": False},
+            {"sequence": -1, "event_ns": 102, "now_ns": 103},
+            {"sequence": 4, "event_ns": 102, "now_ns": -1},
+        ):
+            self.assertEqual(gate.inspect(**payload), TickDecision.INVALID)
+            self.assertEqual((gate.last_sequence, gate.last_event_ns, gate.last_now_ns),
+                             (3, 100, 101))
+        self.assertEqual(gate.inspect(sequence=4, event_ns=102, now_ns=103),
+                         TickDecision.ACCEPT)
+
     def test_invalid_configuration(self):
         for age in (-1, True, 1.5):
             with self.assertRaises(ValueError):
