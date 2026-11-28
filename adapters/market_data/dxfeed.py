@@ -56,7 +56,7 @@ def _require_text(value: object, *, field: str) -> str:
 def _optional_text(value: object, *, field: str) -> str | None:
     if value is None:
         return None
-    if not isinstance(value, str):
+    if type(value) is not str:
         raise DxFeedAdapterError(f"{field} must be a string when present")
     stripped = value.strip()
     return stripped or None
