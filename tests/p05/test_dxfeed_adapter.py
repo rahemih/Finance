@@ -175,6 +175,16 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
                 with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
                     adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
 
+    def test_wrapped_status_cannot_be_forged_by_custom_equality(self) -> None:
+        """Q03: an object comparing equal to OK is not a wire status."""
+        class ForgedStatus:
+            def __eq__(self, other: object) -> bool:
+                return other == "OK"
+
+        message = {"status": ForgedStatus(), "Quote": {"EUR/USD": load_fixture()}}
+        with self.assertRaisesRegex(DxFeedAdapterError, "status must be OK"):
+            adapter().parse_quote(message, received_at_ns=RECEIVED_AT_NS)
+
     def test_raw_or_empty_credential_handle_is_rejected(self) -> None:
         for value in ("raw-token", "secret://", " "):
             with self.subTest(value=value):
