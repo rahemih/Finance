@@ -161,6 +161,17 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
         event = adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
         self.assertEqual(event.payload.bid_price, event.payload.ask_price)
 
+    def test_string_subclass_cannot_forge_provider_symbol(self) -> None:
+        """Q03: a Python object is not an authentic wire-format symbol."""
+        class ForgedSymbol(str):
+            def __eq__(self, other: object) -> bool:
+                return other == "EUR/USD"
+
+        fixture = load_fixture()
+        fixture["eventSymbol"] = ForgedSymbol("USD/JPY")
+        with self.assertRaisesRegex(DxFeedAdapterError, "non-empty string"):
+            adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
     def test_wrong_symbol_is_rejected(self) -> None:
         fixture = load_fixture()
         fixture["eventSymbol"] = "USD/JPY"
