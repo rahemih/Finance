@@ -201,6 +201,20 @@ class DxFeedForexQuoteAdapterTests(unittest.TestCase):
         with self.assertRaises(DxFeedAdapterError):
             adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
 
+    def test_time_nano_part_rejects_out_of_range_fraction(self) -> None:
+        """Q03: never silently carry a malformed sub-millisecond fraction."""
+        for value in (1_000_000, 1_000_001):
+            with self.subTest(value=value):
+                fixture = load_fixture()
+                fixture["timeNanoPart"] = value
+                with self.assertRaisesRegex(DxFeedAdapterError, "timeNanoPart"):
+                    adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+
+        fixture = load_fixture()
+        fixture["timeNanoPart"] = 999_999
+        event = adapter().parse_quote(fixture, received_at_ns=RECEIVED_AT_NS)
+        self.assertEqual(event.payload.time_nano_part, 999_999)
+
     def test_parsing_is_deterministic(self) -> None:
         fixture = load_fixture()
         first = adapter().parse_quote(copy.deepcopy(fixture), received_at_ns=RECEIVED_AT_NS)
