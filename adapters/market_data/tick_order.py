@@ -31,7 +31,8 @@ class TickOrderGate:
             return TickDecision.STALE
         if self.last_sequence is not None:
             if sequence == self.last_sequence:
-                return TickDecision.DUPLICATE
+                return (TickDecision.DUPLICATE if event_ns == self.last_event_ns
+                        else TickDecision.OUT_OF_ORDER)
             if sequence < self.last_sequence:
                 return TickDecision.OUT_OF_ORDER
             if self.last_event_ns is not None and event_ns < self.last_event_ns:
