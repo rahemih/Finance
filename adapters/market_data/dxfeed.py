@@ -48,7 +48,7 @@ def _require_mapping(value: object, *, field: str) -> Mapping[str, object]:
 
 
 def _require_text(value: object, *, field: str) -> str:
-    if not isinstance(value, str) or not value.strip():
+    if type(value) is not str or not value.strip():
         raise DxFeedAdapterError(f"{field} must be a non-empty string")
     return value.strip()
 
