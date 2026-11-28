@@ -163,6 +163,8 @@ class DxFeedForexQuoteAdapter:
 
         sequence = _require_int(quote.get("sequence"), field="sequence")
         time_nano_part = _require_int(quote.get("timeNanoPart"), field="timeNanoPart")
+        if time_nano_part >= 1_000_000:
+            raise DxFeedAdapterError("timeNanoPart must be < 1000000")
 
         payload = QuotePayload(
             bid_time=_millisecond_timestamp(quote.get("bidTime"), field="bidTime"),
