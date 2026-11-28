@@ -72,7 +72,7 @@ def _require_secret_ref(value: object) -> str:
 
 
 def _require_int(value: object, *, field: str, allow_zero: bool = True) -> int:
-    if isinstance(value, bool) or not isinstance(value, int):
+    if type(value) is not int:
         raise DxFeedAdapterError(f"{field} must be an integer")
     if allow_zero:
         if value < 0:
