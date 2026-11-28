@@ -27,6 +27,16 @@ class TickOrderTests(unittest.TestCase):
         self.assertEqual(gate.inspect(sequence=1, event_ns=-1, now_ns=21), TickDecision.INVALID)
         self.assertEqual(gate.inspect(sequence=1, event_ns=21, now_ns=21), TickDecision.ACCEPT)
 
+    def test_independent_instrument_watermarks_and_recovery(self):
+        eurusd = TickOrderGate(max_age_ns=10)
+        btcusdt = TickOrderGate(max_age_ns=10)
+        self.assertEqual(eurusd.inspect(sequence=5, event_ns=100, now_ns=101), TickDecision.ACCEPT)
+        self.assertEqual(btcusdt.inspect(sequence=1, event_ns=100, now_ns=101), TickDecision.ACCEPT)
+        self.assertEqual(eurusd.inspect(sequence=4, event_ns=101, now_ns=102), TickDecision.OUT_OF_ORDER)
+        self.assertEqual(btcusdt.inspect(sequence=2, event_ns=102, now_ns=103), TickDecision.ACCEPT)
+        self.assertEqual(eurusd.last_sequence, 5)
+        self.assertEqual(eurusd.inspect(sequence=6, event_ns=103, now_ns=104), TickDecision.ACCEPT)
+
     def test_invalid_configuration(self):
         for age in (-1, True, 1.5):
             with self.assertRaises(ValueError):
