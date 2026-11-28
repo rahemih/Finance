@@ -155,7 +155,11 @@ class DxFeedForexQuoteAdapter:
             raise DxFeedAdapterError("Quote wrapper status must be OK")
         quote_bucket = _require_mapping(message.get("Quote"), field="Quote")
         candidate = quote_bucket.get(self.subscription.symbol)
-        return _require_mapping(candidate, field=f"Quote[{self.subscription.symbol}]")
+        quote = _require_mapping(candidate, field=f"Quote[{self.subscription.symbol}]")
+        # A successful wrapper cannot override an explicit nested quote failure.
+        if "status" in quote and (type(quote["status"]) is not str or quote["status"] != "OK"):
+            raise DxFeedAdapterError("nested Quote status must be OK")
+        return quote
 
     def parse_quote(
         self,
